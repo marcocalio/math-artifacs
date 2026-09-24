@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8. Trigonometria — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 8</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html" class="is-active">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 8 di 9</span>
+        </div>
+        <h1>Trigonometria: la matematica di ciò che si ripete</h1>
+        <p class="subtitle">Nata per misurare i triangoli, la trigonometria è diventata il linguaggio universale di tutto ciò che oscilla e ritorna: onde sonore, maree, correnti elettriche, orbite. In questo capitolo passiamo dal triangolo al cerchio, dal cerchio alle onde, e prepariamo il terreno per limiti e derivate.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina una ruota panoramica che gira lentamente. Sali su una cabina e chiudi gli occhi: non vedi più la ruota, ma senti solo la tua <strong>altezza</strong> cambiare. Parti dal basso, sali, raggiungi il punto più alto, ridiscendi, tocchi il minimo, risali. E poi <strong>tutto ricomincia identico</strong>. Se disegnassi la tua altezza in funzione del tempo, otterresti una curva morbida che sale e scende all'infinito: un'<strong>onda</strong>.</p>
+        <p>Questa è la scoperta centrale della trigonometria: <strong>un movimento circolare, guardato da un solo lato, diventa un'oscillazione</strong>. Il nome tradisce le origini modeste della disciplina — <em>trígonon</em> (triangolo) + <em>métron</em> (misura), cioè "misura dei triangoli" — ma la trigonometria moderna è molto di più: è lo strumento con cui la matematica descrive <strong>qualunque fenomeno periodico</strong>, cioè qualunque cosa si ripeta uguale a intervalli regolari.</p>
+        <p>Il ponte tra "il triangolo" e "l'onda" è un oggetto semplicissimo che useremo ossessivamente in tutto il capitolo: una circonferenza di raggio $1$, il <span class="glossario-term" data-term="cerchio-goniometrico">cerchio goniometrico</span>. Un punto che ruota su questo cerchio ha due coordinate, e queste due coordinate — mentre il punto gira — <strong>salgono e scendono come onde</strong>. Le chiameremo <strong>seno</strong> e <strong>coseno</strong>. Tutto il resto (angoli, formule, grafici, equazioni) nasce da qui.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché per millenni gli esseri umani hanno avuto bisogno di <strong>misurare distanze che non potevano raggiungere</strong>: l'altezza di una montagna, la distanza di una nave dalla costa, il raggio della Terra, la posizione delle stelle. Tutte queste misure "impossibili" si riducono a un unico problema: <strong>in un triangolo, come lego gli angoli alle lunghezze dei lati?</strong> La risposta sono seno, coseno e tangente. Più tardi, la fisica ha scoperto che le stesse funzioni descrivono anche suono, luce ed elettricità — e la trigonometria è diventata un pilastro dell'intera scienza.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema fondamentale è tradurre una <em>rotazione</em> (un angolo) in due <em>numeri</em> (una posizione). Dammi un angolo e io ti dico dove finisce la lancetta di un orologio, dove batte il pistone di un motore, a che altezza è la cabina della ruota panoramica. Questa traduzione è ciò che rende la trigonometria potente: trasforma la geometria in aritmetica.</p>
+        <p><strong>Perché è importante ora?</strong> Perché seno e coseno sono, senza esagerazione, <strong>tra le funzioni più importanti di tutta l'Analisi Matematica</strong>. Ne incontrerai continuamente:</p>
+        <ul>
+          <li>nel primo <span class="glossario-term" data-term="numero-reale">limite</span> davvero non banale che studierai, il <strong>limite notevole</strong> $\displaystyle\lim_{x\to 0}\frac{\sin x}{x}=1$ (te lo anticipiamo qui: <a href="../parte1-analisi1/04-limiti.html">capitolo sui limiti</a>);</li>
+          <li>nelle derivate: scoprirai che $(\sin x)' = \cos x$ e $(\cos x)' = -\sin x$, due formule di eleganza sorprendente (<a href="../parte1-analisi1/07-derivate.html">capitolo sulle derivate</a>);</li>
+          <li>nella descrizione delle curve nel piano e nello spazio, dove $(\cos t,\ \sin t)$ è il modo standard per "far girare" un punto lungo una circonferenza (<a href="../parte2-analisi2/07-curve-superfici.html">curve e superfici</a>).</li>
+        </ul>
+        <p>C'è un dettaglio, apparentemente tecnico, che è la vera ragione per cui affrontiamo la trigonometria <em>prima</em> dell'Analisi: la scelta dell'<strong>unità di misura degli angoli</strong>. Quelle formule pulite sulle derivate — $(\sin x)'=\cos x$ — <strong>valgono solo se gli angoli sono misurati in radianti</strong>, non in gradi. Capire perché è uno degli obiettivi del capitolo.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Onde, cicli e oscillazioni: le sinusoidi sono ovunque</div>
+          <p><strong>La musica.</strong> Una nota "pura" (per esempio un diapason) è, fisicamente, una pressione dell'aria che oscilla nel tempo <em>esattamente</em> come una funzione seno. La <strong>frequenza</strong> dell'oscillazione (quante onde al secondo) determina l'<strong>altezza</strong> della nota — un LA a 440 Hz compie 440 oscillazioni al secondo; l'<strong>ampiezza</strong> dell'onda determina il <strong>volume</strong>. Ogni suono complesso, secondo il teorema di Fourier, è una <em>somma</em> di tante sinusoidi: la trigonometria è, letteralmente, la grammatica della musica.</p>
+          <p><strong>I cicli naturali.</strong> L'alternarsi di giorno e notte, il ritmo delle <strong>maree</strong> che salgono e scendono due volte al giorno, le ore di luce che crescono in primavera e calano in autunno: tutti fenomeni <strong>periodici</strong> che si modellano con seno e coseno, perché nascono da moti sostanzialmente circolari (la rotazione della Terra, l'orbita della Luna).</p>
+          <p><strong>La ruota panoramica.</strong> Come nell'introduzione: l'altezza di una cabina che gira a velocità costante è <em>esattamente</em> una funzione sinusoidale del tempo, del tipo $h(t) = h_0 + R\,\sin(\omega t)$. Il raggio $R$ è l'ampiezza dell'oscillazione, $h_0$ l'altezza del centro.</p>
+          <p><strong>La corrente elettrica di casa.</strong> La tensione che esce dalle prese domestiche non è costante: <strong>oscilla</strong> tra valori positivi e negativi seguendo un coseno, $V(t) = V_{\max}\cos(2\pi f\, t)$, con frequenza $f = 50$ Hz in Europa. È per questo che si chiama <em>corrente alternata</em>: cambia direzione 100 volte al secondo, troppo in fretta perché una lampadina se ne accorga.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-angoli">4.1 Misura degli angoli: gradi e radianti</h3>
+        <p>Un angolo si può misurare in due modi. Il primo, familiare dalla scuola, è in <strong>gradi</strong>: si divide un giro completo in $360$ parti uguali, e ogni parte è un grado ($1^\circ$). Il numero $360$ è puramente convenzionale (eredità dei Babilonesi e della loro aritmetica in base 60): non c'è nulla di "matematico" in esso.</p>
+        <p>Il secondo modo è più naturale e si basa sull'idea di misurare un angolo <strong>attraverso l'arco che esso ritaglia</strong>. Considera una circonferenza di raggio $r$ e un angolo al centro; questo angolo ritaglia un arco di una certa lunghezza $\ell$. La <strong>misura in <span class="glossario-term" data-term="radiante">radianti</span></strong> dell'angolo è il rapporto</p>
+        <div class="formula-block">$$\theta = \frac{\ell}{r} \qquad \text{(lunghezza dell'arco diviso il raggio)}$$</div>
+        <p>Poiché è un rapporto tra due lunghezze, il radiante è un numero <strong>puro</strong> (senza unità di misura). Un radiante è l'angolo che ritaglia un arco lungo <em>esattamente quanto il raggio</em>. Dato che l'intera circonferenza è lunga $2\pi r$, il giro completo misura</p>
+        <div class="formula-block">$$\theta_{\text{giro}} = \frac{2\pi r}{r} = 2\pi \ \text{rad} \qquad \Longleftrightarrow \qquad 360^\circ = 2\pi \ \text{rad}.$$</div>
+        <p>Da questa equivalenza si ricava la <strong>regola di conversione</strong>, che è una semplice proporzione:</p>
+        <div class="formula-block">$$\frac{\text{gradi}}{180^\circ} = \frac{\text{radianti}}{\pi} \qquad\Longrightarrow\qquad \text{rad} = \text{gradi}\cdot\frac{\pi}{180}, \qquad \text{gradi} = \text{rad}\cdot\frac{180}{\pi}.$$</div>
+        <p>Ecco le equivalenze che devi avere sotto mano:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Gradi</th><th>$0^\circ$</th><th>$30^\circ$</th><th>$45^\circ$</th><th>$60^\circ$</th><th>$90^\circ$</th><th>$180^\circ$</th><th>$270^\circ$</th><th>$360^\circ$</th></tr></thead>
+          <tbody>
+            <tr><td>Radianti</td><td>$0$</td><td>$\dfrac{\pi}{6}$</td><td>$\dfrac{\pi}{4}$</td><td>$\dfrac{\pi}{3}$</td><td>$\dfrac{\pi}{2}$</td><td>$\pi$</td><td>$\dfrac{3\pi}{2}$</td><td>$2\pi$</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché in Analisi si usano i radianti?</div>
+          <p>Perché sono l'unità che rende le formule <strong>pulite</strong>. Con gli angoli in radianti valgono le due proprietà che rendono seno e coseno così amati dall'Analisi: il limite notevole $\displaystyle\lim_{x\to0}\frac{\sin x}{x}=1$ e le derivate $(\sin x)'=\cos x$, $(\cos x)'=-\sin x$. Se misurassi in gradi, quelle stesse formule si riempirebbero di un fastidioso fattore $\frac{\pi}{180}$: avresti $(\sin x)'=\frac{\pi}{180}\cos x$. I radianti sono, in un certo senso, l'unità di misura "che la matematica preferisce". D'ora in poi, quando scriviamo $\sin x$ senza specificare nulla, <strong>$x$ è in radianti</strong>.</p>
+        </div>
+
+        <h3 id="teoria-cerchio">4.2 Il cerchio goniometrico: seno, coseno, tangente</h3>
+        <p>Prendi il piano cartesiano e disegna la <span class="glossario-term" data-term="circonferenza">circonferenza</span> di centro l'origine $O$ e raggio $1$: è il <strong><span class="glossario-term" data-term="cerchio-goniometrico">cerchio goniometrico</span></strong>. Parti dal punto $(1,0)$ e ruota in senso antiorario di un angolo $\theta$: arrivi in un punto $P$ del cerchio. Le due coordinate di $P$ sono, <strong>per definizione</strong>, il coseno e il seno di $\theta$:</p>
+        <div class="formula-block">$$P = (\cos\theta,\ \sin\theta).$$</div>
+        <p>Cioè: il <strong>coseno</strong> è l'ascissa (la coordinata orizzontale), il <strong>seno</strong> è l'ordinata (la coordinata verticale) del punto che hai raggiunto ruotando. Ecco l'immagine da tenere sempre in mente:</p>
+
+        <svg viewBox="0 0 400 380" style="max-width:440px;margin:1.4em auto;display:block;" role="img" aria-label="Cerchio goniometrico: il punto P sulla circonferenza di raggio 1 ha coordinate coseno theta e seno theta">
+          <!-- assi -->
+          <line x1="30" y1="190" x2="370" y2="190" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <line x1="190" y1="30" x2="190" y2="350" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+          <text x="360" y="183" font-size="13" fill="currentColor" opacity="0.7">x</text>
+          <text x="197" y="44" font-size="13" fill="currentColor" opacity="0.7">y</text>
+          <!-- tacche unitarie -->
+          <text x="326" y="207" font-size="11" fill="currentColor" opacity="0.6">1</text>
+          <text x="42" y="207" font-size="11" fill="currentColor" opacity="0.6">-1</text>
+          <text x="197" y="56" font-size="11" fill="currentColor" opacity="0.6">1</text>
+          <text x="197" y="330" font-size="11" fill="currentColor" opacity="0.6">-1</text>
+          <!-- cerchio -->
+          <circle cx="190" cy="190" r="140" fill="none" stroke="currentColor" stroke-width="1.6" opacity="0.85"/>
+          <!-- proiezione coseno (orizzontale) -->
+          <line x1="190" y1="190" x2="274" y2="190" stroke="var(--color-secondary)" stroke-width="4"/>
+          <!-- proiezione seno (verticale) -->
+          <line x1="274" y1="190" x2="274" y2="78" stroke="var(--color-accent)" stroke-width="4"/>
+          <!-- linea tratteggiata dal punto agli assi -->
+          <line x1="274" y1="78" x2="190" y2="78" stroke="currentColor" stroke-width="1" stroke-dasharray="4 3" opacity="0.5"/>
+          <!-- raggio -->
+          <line x1="190" y1="190" x2="274" y2="78" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <!-- arco angolo -->
+          <path d="M 230 190 A 40 40 0 0 0 214 158" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+          <text x="222" y="176" font-size="14" fill="var(--color-primary)" font-weight="700">θ</text>
+          <!-- punto P -->
+          <circle cx="274" cy="78" r="4.5" fill="var(--color-primary)"/>
+          <text x="282" y="72" font-size="13" fill="currentColor" font-weight="700">P = (cos θ, sin θ)</text>
+          <!-- etichette proiezioni -->
+          <text x="216" y="207" font-size="12" fill="var(--color-secondary)" font-weight="700">cos θ</text>
+          <text x="280" y="140" font-size="12" fill="var(--color-accent)" font-weight="700">sin θ</text>
+          <text x="172" y="205" font-size="12" fill="currentColor" opacity="0.7">O</text>
+          <!-- quadranti -->
+          <text x="300" y="105" font-size="13" fill="currentColor" opacity="0.45" font-weight="700">I</text>
+          <text x="86" y="105" font-size="13" fill="currentColor" opacity="0.45" font-weight="700">II</text>
+          <text x="82" y="285" font-size="13" fill="currentColor" opacity="0.45" font-weight="700">III</text>
+          <text x="296" y="285" font-size="13" fill="currentColor" opacity="0.45" font-weight="700">IV</text>
+        </svg>
+
+        <p>Questa definizione ha un vantaggio enorme rispetto a quella "scolastica" limitata ai triangoli rettangoli: <strong>funziona per qualunque angolo</strong>, anche maggiore di $90^\circ$, anche negativo, anche maggiore di un giro. Ruotare di $\theta$ o di $\theta + 2\pi$ porta esattamente nello stesso punto $P$: da qui nascerà la <strong>periodicità</strong>.</p>
+        <p>La <strong>tangente</strong> di $\theta$ si definisce come il rapporto tra seno e coseno:</p>
+        <div class="formula-block">$$\tan\theta = \frac{\sin\theta}{\cos\theta} \qquad (\text{definita solo dove } \cos\theta \neq 0).$$</div>
+        <p>Poiché il coseno si annulla in $\frac{\pi}{2}$, $\frac{3\pi}{2}$, ecc., la tangente <strong>non esiste</strong> per quei valori (là il punto $P$ sta sull'asse verticale e la sua ascissa è zero, quindi il rapporto "esploderebbe").</p>
+        <p><strong>Segno delle funzioni nei quattro quadranti.</strong> Il segno di $\sin\theta$ e $\cos\theta$ è semplicemente il segno delle coordinate di $P$; quello di $\tan\theta$ segue di conseguenza (rapporto dei due):</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Quadrante</th><th>Intervallo (rad)</th><th>$\cos\theta$ (ascissa)</th><th>$\sin\theta$ (ordinata)</th><th>$\tan\theta$</th></tr></thead>
+          <tbody>
+            <tr><td>I</td><td>$0 &lt; \theta &lt; \tfrac{\pi}{2}$</td><td>$+$</td><td>$+$</td><td>$+$</td></tr>
+            <tr><td>II</td><td>$\tfrac{\pi}{2} &lt; \theta &lt; \pi$</td><td>$-$</td><td>$+$</td><td>$-$</td></tr>
+            <tr><td>III</td><td>$\pi &lt; \theta &lt; \tfrac{3\pi}{2}$</td><td>$-$</td><td>$-$</td><td>$+$</td></tr>
+            <tr><td>IV</td><td>$\tfrac{3\pi}{2} &lt; \theta &lt; 2\pi$</td><td>$+$</td><td>$-$</td><td>$-$</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="teoria-notevoli">4.3 Angoli notevoli, ricavati dai triangoli (non memorizzati)</h3>
+        <p>Ci sono cinque angoli che ricorrono di continuo: $0$, $\frac{\pi}{6}$, $\frac{\pi}{4}$, $\frac{\pi}{3}$, $\frac{\pi}{2}$. Molti studenti imparano a memoria una tabella di seni e coseni; è un errore, perché la memoria tradisce sotto esame. È molto meglio <strong>ricostruirli</strong> a partire da due triangoli elementari.</p>
+
+        <svg viewBox="0 0 480 240" style="max-width:480px;margin:1.4em auto;display:block;" role="img" aria-label="I due triangoli notevoli: il rettangolo isoscele con angoli di 45 gradi e la metà del triangolo equilatero con angoli di 30 e 60 gradi">
+          <!-- Triangolo 1: rettangolo isoscele 45-45-90 -->
+          <polygon points="50,190 170,190 50,70" fill="var(--color-primary)" opacity="0.12" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="50" y="176" width="14" height="14" fill="none" stroke="var(--color-primary)" stroke-width="1.4"/>
+          <text x="102" y="208" font-size="13" fill="currentColor" font-weight="700">1</text>
+          <text x="30" y="135" font-size="13" fill="currentColor" font-weight="700">1</text>
+          <text x="112" y="122" font-size="13" fill="currentColor" font-weight="700">√2</text>
+          <text x="140" y="184" font-size="11" fill="var(--color-secondary)" font-weight="700">45°</text>
+          <text x="56" y="90" font-size="11" fill="var(--color-secondary)" font-weight="700">45°</text>
+          <text x="60" y="225" font-size="12" fill="currentColor" opacity="0.7">Rettangolo isoscele</text>
+
+          <!-- Triangolo 2: 30-60-90 (mezzo equilatero) -->
+          <polygon points="290,190 450,190 290,90" fill="var(--color-accent)" opacity="0.12" stroke="var(--color-accent)" stroke-width="2"/>
+          <rect x="290" y="176" width="14" height="14" fill="none" stroke="var(--color-accent)" stroke-width="1.4"/>
+          <text x="365" y="208" font-size="13" fill="currentColor" font-weight="700">√3</text>
+          <text x="272" y="145" font-size="13" fill="currentColor" font-weight="700">1</text>
+          <text x="378" y="132" font-size="13" fill="currentColor" font-weight="700">2</text>
+          <text x="418" y="184" font-size="11" fill="var(--color-accent)" font-weight="700">30°</text>
+          <text x="298" y="108" font-size="11" fill="var(--color-accent)" font-weight="700">60°</text>
+          <text x="300" y="225" font-size="12" fill="currentColor" opacity="0.7">Mezzo equilatero</text>
+        </svg>
+
+        <p><strong>Il rettangolo isoscele (angoli di $45^\circ = \frac{\pi}{4}$).</strong> Prendi un quadrato di lato $1$ e taglialo lungo la diagonale: ottieni un triangolo rettangolo con i due cateti uguali a $1$ e i due angoli acuti uguali a $45^\circ$. La sua ipotenusa, per Pitagora, è $\sqrt{1^2+1^2}=\sqrt2$. Seno e coseno di $45^\circ$ sono il rapporto tra cateto e ipotenusa:</p>
+        <div class="formula-block">$$\sin\frac{\pi}{4}=\cos\frac{\pi}{4}=\frac{1}{\sqrt2}=\frac{\sqrt2}{2},\qquad \tan\frac{\pi}{4}=1.$$</div>
+        <p><strong>Il mezzo triangolo equilatero (angoli di $30^\circ=\frac{\pi}{6}$ e $60^\circ=\frac{\pi}{3}$).</strong> Prendi un triangolo equilatero di lato $2$ e taglialo a metà con un'altezza: ottieni un triangolo rettangolo con ipotenusa $2$, un cateto (metà base) lungo $1$ e l'altro cateto (l'altezza) lungo $\sqrt{2^2-1^2}=\sqrt3$. Gli angoli acuti sono $30^\circ$ e $60^\circ$. Leggendo i rapporti cateto/ipotenusa:</p>
+        <div class="formula-block">
+          $$\sin\frac{\pi}{6}=\frac12,\quad \cos\frac{\pi}{6}=\frac{\sqrt3}{2},\quad \tan\frac{\pi}{6}=\frac{1}{\sqrt3}=\frac{\sqrt3}{3};$$
+          $$\sin\frac{\pi}{3}=\frac{\sqrt3}{2},\quad \cos\frac{\pi}{3}=\frac12,\quad \tan\frac{\pi}{3}=\sqrt3.$$
+        </div>
+        <p>Nota la simmetria: $\sin 30^\circ=\cos 60^\circ$ e viceversa. È naturale, perché in quel triangolo il seno di un angolo è il coseno dell'altro (i due cateti si scambiano i ruoli). Aggiungendo i casi limite $0$ e $\frac{\pi}{2}$ (dove $P$ sta sugli assi), ecco la tabella completa — che però ora sai <em>ricostruire</em>, non solo copiare:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$\theta$</th><th>$0$</th><th>$\frac{\pi}{6}$</th><th>$\frac{\pi}{4}$</th><th>$\frac{\pi}{3}$</th><th>$\frac{\pi}{2}$</th></tr></thead>
+          <tbody>
+            <tr><td>$\sin\theta$</td><td>$0$</td><td>$\frac12$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac{\sqrt3}{2}$</td><td>$1$</td></tr>
+            <tr><td>$\cos\theta$</td><td>$1$</td><td>$\frac{\sqrt3}{2}$</td><td>$\frac{\sqrt2}{2}$</td><td>$\frac12$</td><td>$0$</td></tr>
+            <tr><td>$\tan\theta$</td><td>$0$</td><td>$\frac{\sqrt3}{3}$</td><td>$1$</td><td>$\sqrt3$</td><td>non def.</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="teoria-identita">4.4 L'identità fondamentale, la tangente e la periodicità</h3>
+        <p>La più importante di tutte le relazioni è la <strong><span class="glossario-term" data-term="identita-trigonometrica">identità fondamentale</span></strong> della trigonometria:</p>
+        <div class="formula-block">$$\boxed{\ \sin^2\theta + \cos^2\theta = 1\ } \qquad \text{per ogni } \theta.$$</div>
+        <p>La dimostreremo tra poco con il teorema di Pitagora; per ora osserva la sua utilità pratica: <strong>conoscendo una funzione (e il quadrante) puoi ricavare l'altra</strong>. Da essa discende $\sin\theta=\pm\sqrt{1-\cos^2\theta}$, dove il segno lo decide il quadrante.</p>
+        <p>Da questa identità si ottiene anche una relazione utile con la tangente. Passaggi: parto da $\sin^2\theta+\cos^2\theta=1$ e divido <em>ogni</em> termine per $\cos^2\theta$ (lecito quando $\cos\theta\neq0$): $\dfrac{\sin^2\theta}{\cos^2\theta}+\dfrac{\cos^2\theta}{\cos^2\theta}=\dfrac{1}{\cos^2\theta}$. Il primo termine è $\left(\dfrac{\sin\theta}{\cos\theta}\right)^2=\tan^2\theta$ (definizione di tangente, <span class="richiamo" data-sec="4.2">§4.2</span>); il secondo vale $1$ perché numeratore e denominatore coincidono:</p>
+        <div class="formula-block">$$1 + \tan^2\theta = \frac{1}{\cos^2\theta}.$$</div>
+        <p><strong>Periodicità.</strong> Ruotare di un giro intero ($2\pi$) riporta il punto $P$ dov'era. Quindi seno e coseno si <strong>ripetono ogni $2\pi$</strong>: sono funzioni <em>periodiche di periodo $2\pi$</em>.</p>
+        <div class="formula-block">$$\sin(\theta + 2k\pi) = \sin\theta,\qquad \cos(\theta+2k\pi)=\cos\theta \qquad (k\in\mathbb{Z}).$$</div>
+        <p>La tangente ha invece periodo $\pi$ (più corto!): perché ruotando di mezzo giro il punto $P$ va nel punto diametralmente opposto, dove seno e coseno cambiano <em>entrambi</em> di segno, e il loro rapporto resta identico. Quindi $\tan(\theta+k\pi)=\tan\theta$.</p>
+        <p>Ci sono poi due simmetrie che useremo spesso: il seno è una funzione <strong>dispari</strong> ($\sin(-\theta)=-\sin\theta$) e il coseno è <strong>pari</strong> ($\cos(-\theta)=\cos\theta$). Sul cerchio: ruotare di $-\theta$ specchia il punto rispetto all'asse $x$, quindi cambia il segno solo dell'ordinata (il seno).</p>
+
+        <h3 id="teoria-formule">4.5 Formule di addizione, duplicazione, bisezione</h3>
+        <p><strong>Il problema.</strong> Conosciamo seno e coseno di pochi angoli "notevoli" ($30^\circ$, $45^\circ$, $60^\circ$, …). E se ci serve $\sin75^\circ$? Non è nella tabella. Però $75^\circ=45^\circ+30^\circ$, cioè è la <em>somma</em> di due angoli che conosciamo. La domanda diventa: <strong>si può calcolare il seno di una somma a partire da seni e coseni dei due addendi?</strong> Sì, ed è esattamente quello che fanno le formule di questo paragrafo.</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Prima di tutto: cosa NON si può fare</div>
+          <p>Verrebbe voglia di scrivere $\sin(45^\circ+30^\circ)=\sin45^\circ+\sin30^\circ$. È <strong>falso</strong>: a destra verrebbe $\frac{\sqrt2}{2}+\frac12\approx1{,}207$, ma un seno non può mai superare $1$. Il seno non "si distribuisce" sulla somma. Serve una formula apposta.</p>
+        </div>
+
+        <h4>4.5.1 Le formule di addizione (e sottrazione)</h4>
+        <p>Eccole. Non esistono altre "regole" oltre a queste: tutto il resto del paragrafo si ricava da qui con semplici sostituzioni.</p>
+        <div class="formula-block">
+          $$\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta \qquad\qquad \sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta$$
+          $$\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta \qquad\qquad \cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$$
+          $$\tan(\alpha+\beta)=\frac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta} \qquad\qquad \tan(\alpha-\beta)=\frac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}$$
+        </div>
+        <p><strong>Come si leggono.</strong> $\alpha$ e $\beta$ sono due angoli qualsiasi (i due "pezzi"). A sinistra c'è la funzione dell'angolo <em>totale</em>; a destra compaiono soltanto seni e coseni dei <em>singoli pezzi</em>, che sappiamo calcolare. Due osservazioni che evitano il 90% degli errori:</p>
+        <ul>
+          <li>Nel <strong>seno</strong> le funzioni sono <em>miste</em> (un seno per un coseno, poi un coseno per un seno) e il segno in mezzo è <em>lo stesso</em> di quello dentro la parentesi.</li>
+          <li>Nel <strong>coseno</strong> le funzioni sono <em>uguali a coppie</em> (coseno per coseno, seno per seno) e il segno in mezzo è <em>l'opposto</em> di quello dentro la parentesi: per $\cos(\alpha+\beta)$ compare un meno.</li>
+        </ul>
+        <p><strong>Da dove vengono?</strong> Non sono un dogma: si dimostrano con il teorema di Pitagora e la distanza tra due punti del cerchio goniometrico. La dimostrazione completa, un passaggio alla volta, è nella sezione <a href="#dimostrazioni">Dimostrazioni</a>. Qui impariamo prima a <em>usarle</em>.</p>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Come si usa una formula di addizione, passo per passo</span><span class="badge badge--base">Base</span></div>
+          <p>Calcoliamo il valore esatto di $\sin75^\circ$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Spezzo l'angolo</strong> in due angoli notevoli: $75^\circ=45^\circ+30^\circ$. È una <em>somma</em>, quindi userò la formula del seno di una somma.</span>
+            <span class="esempio__passo"><strong>Do un nome ai pezzi</strong>: chiamo $\alpha=45^\circ$ e $\beta=30^\circ$. Da qui in avanti, ogni volta che nella formula vedo $\alpha$ scrivo $45^\circ$, ogni volta che vedo $\beta$ scrivo $30^\circ$.</span>
+            <span class="esempio__passo"><strong>Ricopio la formula</strong> tale e quale: $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$.</span>
+            <span class="esempio__passo"><strong>Sostituisco</strong> i nomi con i valori: $\sin(45^\circ+30^\circ)=\sin45^\circ\cos30^\circ+\cos45^\circ\sin30^\circ$.</span>
+            <span class="esempio__passo"><strong>Inserisco i valori notevoli</strong> (tabella del <span class="richiamo" data-sec="4.3">§4.3</span>): $\sin45^\circ=\frac{\sqrt2}{2}$, $\cos30^\circ=\frac{\sqrt3}{2}$, $\cos45^\circ=\frac{\sqrt2}{2}$, $\sin30^\circ=\frac12$. Ottengo $\frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2}+\frac{\sqrt2}{2}\cdot\frac12$.</span>
+            <span class="esempio__passo"><strong>Faccio i conti</strong>: il primo prodotto vale $\frac{\sqrt2\cdot\sqrt3}{2\cdot2}=\frac{\sqrt6}{4}$ (prodotto di radici con lo stesso indice: $\sqrt2\cdot\sqrt3=\sqrt6$, cap. 3), il secondo vale $\frac{\sqrt2}{4}$. Sommo le due frazioni, che hanno già lo stesso denominatore: $\frac{\sqrt6+\sqrt2}{4}$.</span>
+          </p>
+          <div class="esempio__risultato">$\sin75^\circ=\dfrac{\sqrt6+\sqrt2}{4}\approx0{,}966$. Controllo di buon senso: è compreso tra $0$ e $1$, ed è poco più grande di $\sin60^\circ\approx0{,}866$, come deve essere per un angolo poco più grande di $60^\circ$.</div>
+        </div>
+
+        <h4>4.5.2 Dalle formule di addizione alle formule di duplicazione</h4>
+        <p>"Duplicare" un angolo vuol dire raddoppiarlo: $2\alpha$. Il punto chiave è che <strong>$2\alpha=\alpha+\alpha$</strong>: il doppio di un angolo è la somma di due angoli uguali. Possiamo quindi riusare le formule di addizione con un solo trucco: <em>al posto di $\beta$ scrivo di nuovo $\alpha$</em>. Non c'è nulla di nuovo da memorizzare; vediamo cosa succede, una formula alla volta.</p>
+        <p><strong>Seno.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Parto da $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$.</span>
+          <span class="esempio__passo">Sostituisco $\beta=\alpha$ (cancello ogni $\beta$ e al suo posto scrivo $\alpha$): $\sin(\alpha+\alpha)=\sin\alpha\cos\alpha+\cos\alpha\sin\alpha$.</span>
+          <span class="esempio__passo">A sinistra $\alpha+\alpha=2\alpha$. A destra i due addendi sono uguali (in un prodotto l'ordine dei fattori non conta), quindi la loro somma è il doppio di uno solo.</span>
+        </p>
+        <div class="formula-block">$$\sin(2\alpha)=2\sin\alpha\cos\alpha$$</div>
+        <p><strong>Coseno.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Parto da $\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$.</span>
+          <span class="esempio__passo">Sostituisco $\beta=\alpha$: $\cos(\alpha+\alpha)=\cos\alpha\cos\alpha-\sin\alpha\sin\alpha$.</span>
+          <span class="esempio__passo">Un numero moltiplicato per se stesso è il suo quadrato: $\cos\alpha\cos\alpha=\cos^2\alpha$ e $\sin\alpha\sin\alpha=\sin^2\alpha$.</span>
+        </p>
+        <div class="formula-block">$$\cos(2\alpha)=\cos^2\alpha-\sin^2\alpha \qquad\text{(prima forma)}$$</div>
+        <p>Questa formula ha altre due "versioni", molto utili perché contengono <em>una sola</em> funzione. Si ottengono con l'identità fondamentale $\sin^2\alpha+\cos^2\alpha=1$ (<span class="richiamo" data-sec="4.4">§4.4</span>), letta in due modi:</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><em>Seconda forma (solo coseno).</em> Dall'identità fondamentale ricavo $\sin^2\alpha=1-\cos^2\alpha$ (ho portato $\cos^2\alpha$ a destra cambiandogli segno). Sostituisco questa espressione al posto di $\sin^2\alpha$ nella prima forma: $\cos(2\alpha)=\cos^2\alpha-(1-\cos^2\alpha)$. Tolgo la parentesi cambiando i segni al suo interno: $\cos^2\alpha-1+\cos^2\alpha=2\cos^2\alpha-1$.</span>
+          <span class="esempio__passo"><em>Terza forma (solo seno).</em> Dall'identità fondamentale ricavo invece $\cos^2\alpha=1-\sin^2\alpha$. La sostituisco al posto di $\cos^2\alpha$ nella prima forma: $\cos(2\alpha)=(1-\sin^2\alpha)-\sin^2\alpha=1-2\sin^2\alpha$.</span>
+        </p>
+        <div class="formula-block">$$\cos(2\alpha)=\cos^2\alpha-\sin^2\alpha=2\cos^2\alpha-1=1-2\sin^2\alpha$$</div>
+        <p>Sono tre modi di scrivere <em>lo stesso numero</em>: scegli quello che contiene la funzione che conosci, o quella che ti conviene far sparire.</p>
+        <p><strong>Tangente.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Parto da $\tan(\alpha+\beta)=\dfrac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}$ e sostituisco $\beta=\alpha$: $\tan(2\alpha)=\dfrac{\tan\alpha+\tan\alpha}{1-\tan\alpha\tan\alpha}$.</span>
+          <span class="esempio__passo">Al numeratore $\tan\alpha+\tan\alpha=2\tan\alpha$; al denominatore $\tan\alpha\tan\alpha=\tan^2\alpha$.</span>
+        </p>
+        <div class="formula-block">$$\tan(2\alpha)=\frac{2\tan\alpha}{1-\tan^2\alpha}$$</div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Duplicazione in azione: scegliere la forma giusta</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Sapendo che $\cos\alpha=\frac35$, calcola $\cos(2\alpha)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Conosco solo il coseno di $\alpha$, perciò scelgo la forma che contiene <em>solo il coseno</em>: $\cos(2\alpha)=2\cos^2\alpha-1$. (Con la prima forma avrei dovuto prima ricavare $\sin\alpha$: più lavoro, e il rischio di sbagliare il segno.)</span>
+            <span class="esempio__passo">Sostituisco $\cos\alpha=\frac35$: $\cos(2\alpha)=2\cdot\left(\frac35\right)^2-1$.</span>
+            <span class="esempio__passo">Calcolo il quadrato: $\left(\frac35\right)^2=\frac{9}{25}$. Poi $2\cdot\frac{9}{25}=\frac{18}{25}$. Infine $\frac{18}{25}-1=\frac{18}{25}-\frac{25}{25}=-\frac{7}{25}$.</span>
+          </p>
+          <div class="esempio__risultato">$\cos(2\alpha)=-\dfrac{7}{25}$. Nota: non è servito sapere in che quadrante sta $\alpha$, perché la forma scelta usa solo $\cos^2\alpha$, che non dipende dal segno.</div>
+        </div>
+
+        <h4>4.5.3 Le formule di bisezione (l'angolo metà)</h4>
+        <p>Ora il problema inverso: conosco il coseno di un angolo e voglio seno e coseno della sua <em>metà</em>. L'idea è che le formule di duplicazione legano un angolo al suo doppio: basta <strong>leggerle al contrario</strong>. Il passaggio delicato è un cambio di nome dell'angolo, quindi lo facciamo con calma.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Parto dalla terza forma della duplicazione, $\cos(2\alpha)=1-2\sin^2\alpha$, che vale per <em>qualunque</em> angolo $\alpha$.</span>
+          <span class="esempio__passo"><strong>Cambio nome all'angolo.</strong> Voglio che nella formula compaia "l'angolo metà". Chiamo $x$ l'angolo doppio, cioè pongo $x=2\alpha$; allora $\alpha=\frac{x}{2}$ è la sua metà. Riscrivo la formula con i nuovi nomi, sostituendo $2\alpha$ con $x$ e $\alpha$ con $\frac{x}{2}$: $\cos x=1-2\sin^2\frac{x}{2}$.</span>
+          <span class="esempio__passo"><strong>Isolo l'incognita</strong> $\sin^2\frac{x}{2}$. Porto $2\sin^2\frac{x}{2}$ a sinistra e $\cos x$ a destra (entrambi cambiano segno): $2\sin^2\frac{x}{2}=1-\cos x$. Divido entrambi i membri per $2$: $\sin^2\frac{x}{2}=\dfrac{1-\cos x}{2}$.</span>
+          <span class="esempio__passo"><strong>Estraggo la radice quadrata.</strong> Da un quadrato si risale a <em>due</em> valori opposti, quindi compare il $\pm$: $\sin\frac{x}{2}=\pm\sqrt{\dfrac{1-\cos x}{2}}$. Quale segno? Lo decide il quadrante in cui cade $\frac{x}{2}$ (seno positivo nella metà alta del cerchio, negativo in quella bassa: <span class="richiamo" data-sec="4.2">§4.2</span>).</span>
+          <span class="esempio__passo"><strong>Stesso procedimento per il coseno</strong>, partendo dalla seconda forma $\cos(2\alpha)=2\cos^2\alpha-1$: rinomino con $x=2\alpha$ e ottengo $\cos x=2\cos^2\frac{x}{2}-1$; isolo: $2\cos^2\frac{x}{2}=1+\cos x$, quindi $\cos^2\frac{x}{2}=\dfrac{1+\cos x}{2}$; estraggo la radice, con il $\pm$.</span>
+        </p>
+        <div class="formula-block">
+          $$\sin\frac{x}{2}=\pm\sqrt{\frac{1-\cos x}{2}},\qquad \cos\frac{x}{2}=\pm\sqrt{\frac{1+\cos x}{2}}$$
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Bisezione in azione</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcola $\cos22{,}5^\circ$ (cioè $\cos\frac{\pi}{8}$) sapendo che $\cos45^\circ=\frac{\sqrt2}{2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$22{,}5^\circ$ è la metà di $45^\circ$: uso la bisezione con $x=45^\circ$, così che $\frac{x}{2}=22{,}5^\circ$.</span>
+            <span class="esempio__passo">Ricopio la formula $\cos\frac{x}{2}=\pm\sqrt{\frac{1+\cos x}{2}}$ e sostituisco $\cos x=\cos45^\circ=\frac{\sqrt2}{2}$: $\cos22{,}5^\circ=\pm\sqrt{\dfrac{1+\frac{\sqrt2}{2}}{2}}$.</span>
+            <span class="esempio__passo">Sistemo la frazione dentro la radice: $1+\frac{\sqrt2}{2}=\frac{2}{2}+\frac{\sqrt2}{2}=\frac{2+\sqrt2}{2}$; dividendo ancora per $2$ ottengo $\frac{2+\sqrt2}{4}$. Quindi $\cos22{,}5^\circ=\pm\sqrt{\frac{2+\sqrt2}{4}}=\pm\frac{\sqrt{2+\sqrt2}}{2}$ (la radice di $4$ è $2$).</span>
+            <span class="esempio__passo">Scelgo il segno: $22{,}5^\circ$ è nel I quadrante, dove il coseno è positivo. Tengo il $+$.</span>
+          </p>
+          <div class="esempio__risultato">$\cos22{,}5^\circ=\dfrac{\sqrt{2+\sqrt2}}{2}\approx0{,}924$.</div>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come ricordare i segni senza impazzire</div>
+          <p><strong>Seno</strong>: "sin cos, cos sin" e il segno resta quello della parentesi. <strong>Coseno</strong>: "cos cos, sin sin" e il segno si <em>ribalta</em>. <strong>Tangente</strong>: sopra la somma (o differenza) delle tangenti, sotto $1$ meno (o più) il loro prodotto, cioè segno ribaltato rispetto a sopra. <strong>Duplicazione</strong>: non ricordare nulla, metti $\beta=\alpha$ nell'addizione. <strong>Bisezione</strong>: rinomina $x=2\alpha$ nel coseno duplicato e isola il quadrato.</p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Anteprima di Analisi: a cosa serviranno</div>
+          <p>Queste formule non sono ginnastica fine a sé stessa. La duplicazione serve ad abbassare il grado di $\sin^2x$ e $\cos^2x$ negli integrali; l'addizione è il cuore del calcolo della derivata del seno (comparirà $\sin(x+h)$ da spezzare); la bisezione compare nei limiti notevoli. Ci torneremo in Analisi 1.</p>
+        </div>
+
+        <h3 id="teoria-grafici">4.6 I grafici: ampiezza, periodo, sfasamento</h3>
+        <p>Disegnare i grafici significa "srotolare" il cerchio nel tempo. Immagina di far girare $P$ e di registrare la sua ordinata (il seno) istante per istante: ottieni la classica onda del <strong>seno</strong>, che parte da $0$, sale a $1$, torna a $0$, scende a $-1$, e si ripete ogni $2\pi$. Il <strong>coseno</strong> è la stessa identica onda, ma "in anticipo di $\frac{\pi}{2}$": parte da $1$. Vale infatti $\cos x = \sin\!\left(x+\frac{\pi}{2}\right)$; lo si verifica con la formula di addizione del seno (<span class="richiamo" data-sec="4.5">§4.5</span>) scegliendo $\alpha=x$ e $\beta=\frac{\pi}{2}$: $\sin\!\left(x+\frac{\pi}{2}\right)=\sin x\cos\frac{\pi}{2}+\cos x\sin\frac{\pi}{2}=\sin x\cdot0+\cos x\cdot1=\cos x$ (perché $\cos\frac{\pi}{2}=0$ e $\sin\frac{\pi}{2}=1$).</p>
+        <ul>
+          <li><strong>$y=\sin x$</strong>: dominio $\mathbb{R}$, immagine $[-1,1]$, periodo $2\pi$, dispari, zeri in $x=k\pi$.</li>
+          <li><strong>$y=\cos x$</strong>: dominio $\mathbb{R}$, immagine $[-1,1]$, periodo $2\pi$, pari, zeri in $x=\frac{\pi}{2}+k\pi$.</li>
+          <li><strong>$y=\tan x$</strong>: periodo $\pi$, immagine tutto $\mathbb{R}$, con <strong>asintoti verticali</strong> in $x=\frac{\pi}{2}+k\pi$ (dove il coseno si annulla).</li>
+        </ul>
+        <p>La vera potenza sta nel modificare l'onda-base. La funzione generale</p>
+        <div class="formula-block">$$y = A\,\sin(\omega x + \varphi) + c$$</div>
+        <p>si legge come segue, e ogni parametro ha un significato concreto (pensa alla nota musicale):</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Parametro</th><th>Nome</th><th>Effetto sul grafico</th></tr></thead>
+          <tbody>
+            <tr><td>$|A|$</td><td>ampiezza</td><td>quanto l'onda è "alta": oscilla tra $c-|A|$ e $c+|A|$ (il volume del suono)</td></tr>
+            <tr><td>$\omega$</td><td>pulsazione</td><td>quanto è "compressa": il periodo è $T=\dfrac{2\pi}{\omega}$ (la frequenza/altezza della nota)</td></tr>
+            <tr><td>$\varphi$</td><td>fase</td><td>di quanto è traslata orizzontalmente: sfasamento $=-\dfrac{\varphi}{\omega}$</td></tr>
+            <tr><td>$c$</td><td>valor medio</td><td>traslazione verticale (l'altezza del "centro" dell'oscillazione)</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="teoria-equazioni">4.7 Equazioni e disequazioni goniometriche elementari</h3>
+        <p>Un'equazione goniometrica elementare chiede: "per quali angoli una funzione vale un certo numero $c$?". Il punto delicato è che, per la periodicità, le soluzioni sono <strong>infinite</strong>.</p>
+        <p><strong>Equazione $\sin x = c$.</strong> Ha soluzioni solo se $-1\le c\le 1$ (il seno non può uscire da $[-1,1]$). Sul cerchio, cercare $\sin x=c$ significa cercare i punti a <em>quota</em> $c$: in generale sono <strong>due</strong> per ogni giro (uno a sinistra e uno a destra dell'asse verticale). Se $x_0$ è una soluzione "di base", tutte le soluzioni sono:</p>
+        <div class="formula-block">$$\sin x = c \ \Longrightarrow\ x = x_0 + 2k\pi \quad\text{oppure}\quad x = (\pi - x_0) + 2k\pi, \qquad k\in\mathbb{Z}.$$</div>
+        <p><em>Perché proprio $\pi-x_0$?</em> Perché ha lo stesso seno di $x_0$. Lo verifico con la formula di sottrazione del seno (<span class="richiamo" data-sec="4.5">§4.5</span>) scegliendo $\alpha=\pi$ e $\beta=x_0$: $\sin(\pi-x_0)=\sin\pi\cos x_0-\cos\pi\sin x_0=0\cdot\cos x_0-(-1)\cdot\sin x_0=\sin x_0$, dove ho usato $\sin\pi=0$ e $\cos\pi=-1$ (il punto $(-1,0)$ del cerchio). Geometricamente, $\pi-x_0$ è il simmetrico di $x_0$ rispetto all'asse verticale.</p>
+        <p><strong>Equazione $\cos x = c$</strong> (con $-1\le c\le1$): cercare l'<em>ascissa</em> $c$ dà due punti simmetrici rispetto all'asse orizzontale, cioè $x=\pm x_0$ (hanno lo stesso coseno perché il coseno è pari: $\cos(-x_0)=\cos x_0$, <span class="richiamo" data-sec="4.4">§4.4</span>):</p>
+        <div class="formula-block">$$\cos x = c \ \Longrightarrow\ x = \pm x_0 + 2k\pi, \qquad k\in\mathbb{Z}.$$</div>
+        <p><strong>Equazione $\tan x = c$</strong>: qui $c$ può essere <em>qualsiasi</em> numero reale (la tangente arriva ovunque). Poiché la tangente ha periodo $\pi$, le soluzioni si ripetono ogni $\pi$ (non ogni $2\pi$):</p>
+        <div class="formula-block">$$\tan x = c \ \Longrightarrow\ x = x_0 + k\pi, \qquad k\in\mathbb{Z}.$$</div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché "$+2k\pi$"? Da dove spuntano le infinite soluzioni?</div>
+          <p>Perché $\sin$ e $\cos$ sono periodici: se un certo angolo $x_0$ funziona, allora funziona anche $x_0$ più un giro intero, più due giri, meno un giro... cioè $x_0 + 2k\pi$ per <em>ogni</em> intero $k$ (positivo o negativo). È lo stesso motivo per cui, se sono le 3 in punto, lo sono anche 12, 24, 36 ore dopo: l'orologio "riparte". Dimenticare il $+2k\pi$ (o il $+k\pi$ per la tangente) è l'errore numero uno negli esami — ci torneremo.</p>
+        </div>
+        <p><strong>Disequazioni.</strong> Si risolvono "leggendo un arco" sul cerchio. Per esempio $\sin x \ge \frac12$ significa cercare i punti la cui quota è almeno $\frac12$: sul cerchio è l'arco tra $\frac{\pi}{6}$ e $\frac{5\pi}{6}$, quindi (in un giro) $x\in\left[\frac{\pi}{6},\ \frac{5\pi}{6}\right]$, e ripetuto ogni $2\pi$.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Identità fondamentale.</em> Per ogni angolo $\theta$ vale $\ \sin^2\theta + \cos^2\theta = 1$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (Pitagora sul cerchio unitario)</span>
+          <p>La dimostrazione è quasi "gratis", perché la definizione stessa di seno e coseno è geometrica.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Per definizione, il punto $P=(\cos\theta,\ \sin\theta)$ sta sul cerchio goniometrico, cioè sulla circonferenza di centro l'origine $O$ e raggio $1$.</span>
+          <span class="esempio__passo">Considera il triangolo rettangolo che ha per vertici l'origine $O$, il punto $P$ e la proiezione di $P$ sull'asse $x$, cioè il punto $Q=(\cos\theta,\ 0)$.</span>
+          <span class="esempio__passo">I suoi due cateti sono orizzontale e verticale: il cateto $OQ$ è lungo $|\cos\theta|$, il cateto $QP$ è lungo $|\sin\theta|$. L'ipotenusa è il raggio $OP$, che vale $1$.</span>
+          <span class="esempio__passo">Applico il teorema di Pitagora: (cateto)$^2$ + (cateto)$^2$ = (ipotenusa)$^2$, cioè $\cos^2\theta + \sin^2\theta = 1^2$.</span>
+          </p>
+          <p>Poiché la distanza di un punto qualunque della circonferenza dal centro è sempre $1$, la relazione vale per <strong>ogni</strong> $\theta$ (anche fuori dal primo quadrante, dove i segni dei cateti cambiano ma i quadrati no). <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> In una frase</div>
+          <p>L'identità fondamentale <strong>è</strong> il teorema di Pitagora, travestito. Dire "$\sin^2\theta+\cos^2\theta=1$" è solo un altro modo di dire "$P$ dista $1$ dall'origine", cioè "$P$ sta sul cerchio di raggio $1$".</p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Formula di sottrazione del coseno.</em> Per ogni coppia di angoli $\alpha,\beta$ vale $\ \cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (con la distanza tra due punti del cerchio)</span>
+          <p><strong>Idea della strategia.</strong> Prendo due punti sul cerchio goniometrico e misuro la loro distanza in due modi diversi: prima con le coordinate "originali", poi dopo aver ruotato tutto il disegno in modo che uno dei due punti finisca in $(1,0)$. Una rotazione non cambia le distanze, quindi i due risultati devono coincidere: uguagliandoli spunta la formula. Gli ingredienti sono solo tre, tutti già noti: la formula della distanza tra due punti (cap. 7), il prodotto notevole $(a-b)^2=a^2-2ab+b^2$ (cap. 2) e l'identità fondamentale $\sin^2t+\cos^2t=1$ (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Sul cerchio goniometrico prendo $P=(\cos\alpha,\ \sin\alpha)$ e $Q=(\cos\beta,\ \sin\beta)$: queste sono le coordinate per definizione di seno e coseno (<span class="richiamo" data-sec="4.2">§4.2</span>). L'angolo tra i raggi $OQ$ e $OP$ è $\alpha-\beta$.</span>
+            <span class="esempio__passo"><em>Prima misura.</em> Formula della distanza: $\overline{PQ}^2=(x_P-x_Q)^2+(y_P-y_Q)^2$. Sostituisco le coordinate: $\overline{PQ}^2=(\cos\alpha-\cos\beta)^2+(\sin\alpha-\sin\beta)^2$.</span>
+            <span class="esempio__passo">Sviluppo i due quadrati con il prodotto notevole $(a-b)^2=a^2-2ab+b^2$, la prima volta con $a=\cos\alpha$, $b=\cos\beta$, la seconda con $a=\sin\alpha$, $b=\sin\beta$: $\overline{PQ}^2=\cos^2\alpha-2\cos\alpha\cos\beta+\cos^2\beta+\sin^2\alpha-2\sin\alpha\sin\beta+\sin^2\beta$.</span>
+            <span class="esempio__passo">Riordino gli addendi raggruppandoli: $(\cos^2\alpha+\sin^2\alpha)+(\cos^2\beta+\sin^2\beta)-2(\cos\alpha\cos\beta+\sin\alpha\sin\beta)$. Per l'identità fondamentale ciascuna delle due parentesi tonde vale $1$. Quindi $\overline{PQ}^2=2-2(\cos\alpha\cos\beta+\sin\alpha\sin\beta)$.</span>
+            <span class="esempio__passo"><em>Seconda misura.</em> Ruoto tutto il disegno di $-\beta$ attorno all'origine: $Q$, che stava all'angolo $\beta$, va all'angolo $0$, cioè in $Q'=(1,0)$; $P$, che stava all'angolo $\alpha$, va all'angolo $\alpha-\beta$, cioè in $P'=(\cos(\alpha-\beta),\ \sin(\alpha-\beta))$. Una rotazione è un movimento rigido, quindi $\overline{P'Q'}=\overline{PQ}$.</span>
+            <span class="esempio__passo">Calcolo $\overline{P'Q'}^2=(\cos(\alpha-\beta)-1)^2+(\sin(\alpha-\beta)-0)^2$. Sviluppo il primo quadrato con lo stesso prodotto notevole ($a=\cos(\alpha-\beta)$, $b=1$): $\cos^2(\alpha-\beta)-2\cos(\alpha-\beta)+1+\sin^2(\alpha-\beta)$. Applico l'identità fondamentale all'angolo $\alpha-\beta$: $\cos^2(\alpha-\beta)+\sin^2(\alpha-\beta)=1$. Resta $\overline{P'Q'}^2=2-2\cos(\alpha-\beta)$.</span>
+            <span class="esempio__passo"><em>Uguaglio le due misure</em> (sono la stessa distanza): $2-2\cos(\alpha-\beta)=2-2(\cos\alpha\cos\beta+\sin\alpha\sin\beta)$. Sottraggo $2$ da entrambi i membri, poi divido entrambi per $-2$.</span>
+          </p>
+          <p>Concludo: $\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Corollario</span>
+          <p><em class="nome">Tutte le altre formule di addizione</em> (<span class="richiamo" data-sec="4.5">§4.5</span>) discendono da quella appena dimostrata, con sole sostituzioni.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (una sostituzione alla volta)</span>
+          <p>Chiamo (F) la formula appena dimostrata: $\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$. Userò (F) più volte, insieme alle due simmetrie del <span class="richiamo" data-sec="4.4">§4.4</span>: $\cos(-t)=\cos t$ (il coseno è pari) e $\sin(-t)=-\sin t$ (il seno è dispari). Ogni volta dico esplicitamente <em>cosa</em> sostituisco.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><em>Coseno di una somma.</em> Scrivo $\alpha+\beta$ come una differenza: $\alpha+\beta=\alpha-(-\beta)$. Applico (F) mettendo $-\beta$ al posto di $\beta$: $\cos(\alpha+\beta)=\cos\alpha\cos(-\beta)+\sin\alpha\sin(-\beta)$. Per le simmetrie $\cos(-\beta)=\cos\beta$ e $\sin(-\beta)=-\sin\beta$, quindi $\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta$.</span>
+            <span class="esempio__passo"><em>Angoli complementari.</em> Applico (F) con $\alpha=\frac{\pi}{2}$ e $\beta=t$: $\cos\!\left(\frac{\pi}{2}-t\right)=\cos\frac{\pi}{2}\cos t+\sin\frac{\pi}{2}\sin t$. Sul cerchio l'angolo $\frac{\pi}{2}$ corrisponde al punto $(0,1)$, quindi $\cos\frac{\pi}{2}=0$ e $\sin\frac{\pi}{2}=1$: resta $0\cdot\cos t+1\cdot\sin t=\sin t$. Ho ottenuto (C1): $\cos\!\left(\frac{\pi}{2}-t\right)=\sin t$.</span>
+            <span class="esempio__passo">Nella (C1) sostituisco $t$ con $\frac{\pi}{2}-t$. A sinistra: $\cos\!\left(\frac{\pi}{2}-\left(\frac{\pi}{2}-t\right)\right)=\cos t$. A destra: $\sin\!\left(\frac{\pi}{2}-t\right)$. Ho ottenuto (C2): $\sin\!\left(\frac{\pi}{2}-t\right)=\cos t$.</span>
+            <span class="esempio__passo"><em>Seno di una somma.</em> Applico (C1) con $t=\alpha+\beta$: $\sin(\alpha+\beta)=\cos\!\left(\frac{\pi}{2}-(\alpha+\beta)\right)$. Riscrivo l'argomento raggruppando: $\frac{\pi}{2}-\alpha-\beta=\left(\frac{\pi}{2}-\alpha\right)-\beta$. Applico (F) mettendo $\frac{\pi}{2}-\alpha$ al posto di $\alpha$: $\cos\!\left(\frac{\pi}{2}-\alpha\right)\cos\beta+\sin\!\left(\frac{\pi}{2}-\alpha\right)\sin\beta$. Per (C1) e (C2), $\cos\!\left(\frac{\pi}{2}-\alpha\right)=\sin\alpha$ e $\sin\!\left(\frac{\pi}{2}-\alpha\right)=\cos\alpha$. Quindi $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$.</span>
+            <span class="esempio__passo"><em>Seno di una differenza.</em> Nella formula appena ottenuta metto $-\beta$ al posto di $\beta$: $\sin(\alpha-\beta)=\sin\alpha\cos(-\beta)+\cos\alpha\sin(-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta$ (di nuovo per le simmetrie).</span>
+            <span class="esempio__passo"><em>Tangente.</em> Per definizione $\tan(\alpha+\beta)=\dfrac{\sin(\alpha+\beta)}{\cos(\alpha+\beta)}=\dfrac{\sin\alpha\cos\beta+\cos\alpha\sin\beta}{\cos\alpha\cos\beta-\sin\alpha\sin\beta}$. Divido numeratore e denominatore per la stessa quantità $\cos\alpha\cos\beta$ (supposta diversa da zero; una frazione non cambia). Al numeratore: $\frac{\sin\alpha\cos\beta}{\cos\alpha\cos\beta}+\frac{\cos\alpha\sin\beta}{\cos\alpha\cos\beta}=\frac{\sin\alpha}{\cos\alpha}+\frac{\sin\beta}{\cos\beta}=\tan\alpha+\tan\beta$. Al denominatore: $\frac{\cos\alpha\cos\beta}{\cos\alpha\cos\beta}-\frac{\sin\alpha\sin\beta}{\cos\alpha\cos\beta}=1-\tan\alpha\tan\beta$. La formula per $\tan(\alpha-\beta)$ si ottiene allo stesso modo partendo da seno e coseno della differenza.</span>
+          </p>
+          <p>Tutte le sei formule del <span class="richiamo" data-sec="4.5">§4.5</span> sono così dimostrate, e nessuna di esse è stata assunta senza giustificazione. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Formula di duplicazione del seno.</em> Per ogni $\alpha$ vale $\ \sin(2\alpha)=2\sin\alpha\cos\alpha$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (dalla formula di addizione)</span>
+          <p>La duplicazione non è una formula nuova da memorizzare: è un caso particolare dell'addizione. Basta osservare che <strong>duplicare un angolo significa sommarlo a sé stesso</strong>.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Parto dalla formula di addizione del seno: $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$.</span>
+          <span class="esempio__passo">Scelgo $\beta=\alpha$, perché $2\alpha = \alpha+\alpha$. Sostituisco ovunque $\beta$ con $\alpha$.</span>
+          <span class="esempio__passo">Ottengo $\sin(\alpha+\alpha)=\sin\alpha\cos\alpha+\cos\alpha\sin\alpha$.</span>
+          <span class="esempio__passo">A sinistra $\alpha+\alpha=2\alpha$; a destra i due addendi sono uguali, quindi la loro somma è il doppio di uno di essi.</span>
+          </p>
+          <p>Concludo: $\sin(2\alpha)=2\sin\alpha\cos\alpha$. Con lo stesso identico trucco (ponendo $\beta=\alpha$ nella formula del coseno) si ricava $\cos(2\alpha)=\cos^2\alpha-\sin^2\alpha$. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Conversione gradi ⇄ radianti</span><span class="badge badge--base">Base</span></div>
+          <p>Converti $150^\circ$ in radianti e $\dfrac{7\pi}{4}$ radianti in gradi.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Da gradi a radianti moltiplico per $\frac{\pi}{180}$: $\ 150\cdot\frac{\pi}{180}=\frac{150\pi}{180}=\frac{5\pi}{6}$.</span>
+            <span class="esempio__passo">Da radianti a gradi moltiplico per $\frac{180}{\pi}$: $\ \frac{7\pi}{4}\cdot\frac{180}{\pi}=\frac{7\cdot180}{4}=\frac{1260}{4}=315^\circ$.</span>
+          </p>
+          <div class="esempio__risultato">$150^\circ=\dfrac{5\pi}{6}\,$rad, $\qquad \dfrac{7\pi}{4}\,$rad$\,=315^\circ$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Valori notevoli dal triangolo</span><span class="badge badge--base">Base</span></div>
+          <p>Calcola $\sin\dfrac{\pi}{3}$, $\cos\dfrac{\pi}{3}$ e $\tan\dfrac{\pi}{3}$ senza usare tabelle.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$\frac{\pi}{3}=60^\circ$: disegno mentalmente il mezzo triangolo equilatero (ipotenusa $2$, cateto corto $1$, cateto lungo $\sqrt3$).</span>
+            <span class="esempio__passo">L'angolo di $60^\circ$ ha di fronte il cateto lungo $\sqrt3$ e adiacente il cateto corto $1$. Quindi $\sin60^\circ=\frac{\sqrt3}{2}$ (opposto/ipotenusa) e $\cos60^\circ=\frac12$ (adiacente/ipotenusa).</span>
+            <span class="esempio__passo">$\tan60^\circ=\frac{\sin}{\cos}=\frac{\sqrt3/2}{1/2}=\sqrt3$.</span>
+          </p>
+          <div class="esempio__risultato">$\sin\frac{\pi}{3}=\frac{\sqrt3}{2}$, $\ \cos\frac{\pi}{3}=\frac12$, $\ \tan\frac{\pi}{3}=\sqrt3$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Ricavare una funzione dall'altra</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Sapendo che $\cos\theta=\dfrac{3}{5}$ e che $\theta$ appartiene al IV quadrante, calcola $\sin\theta$ e $\tan\theta$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Dall'identità fondamentale: $\sin^2\theta=1-\cos^2\theta=1-\frac{9}{25}=\frac{16}{25}$, quindi $\sin\theta=\pm\frac45$.</span>
+            <span class="esempio__passo">Scelgo il segno con il quadrante: nel IV quadrante l'ordinata è negativa, quindi $\sin\theta=-\frac45$.</span>
+            <span class="esempio__passo">$\tan\theta=\frac{\sin\theta}{\cos\theta}=\frac{-4/5}{3/5}=-\frac43$ (coerente: nel IV quadrante la tangente è negativa).</span>
+          </p>
+          <div class="esempio__risultato">$\sin\theta=-\dfrac45$, $\qquad \tan\theta=-\dfrac43$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Formula di addizione</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcola il valore esatto di $\sin75^\circ$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Scrivo $75^\circ$ come somma di angoli notevoli: $75^\circ=45^\circ+30^\circ$.</span>
+            <span class="esempio__passo">Applico $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$ con $\alpha=45^\circ$, $\beta=30^\circ$.</span>
+            <span class="esempio__passo">$\sin75^\circ=\sin45^\circ\cos30^\circ+\cos45^\circ\sin30^\circ=\frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2}+\frac{\sqrt2}{2}\cdot\frac12$.</span>
+            <span class="esempio__passo">$=\frac{\sqrt6}{4}+\frac{\sqrt2}{4}=\frac{\sqrt6+\sqrt2}{4}$.</span>
+          </p>
+          <div class="esempio__risultato">$\sin75^\circ=\dfrac{\sqrt6+\sqrt2}{4}\approx 0{,}966$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Semplificare con la duplicazione</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Semplifica l'espressione $\dfrac{\sin(2x)}{1+\cos(2x)}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso $\sin(2x)=2\sin x\cos x$ al numeratore.</span>
+            <span class="esempio__passo">Al denominatore uso la forma comoda $\cos(2x)=2\cos^2 x-1$, così $1+\cos(2x)=1+2\cos^2 x-1=2\cos^2 x$.</span>
+            <span class="esempio__passo">L'espressione diventa $\dfrac{2\sin x\cos x}{2\cos^2 x}$.</span>
+            <span class="esempio__passo">Semplifico il fattore $2\cos x$ (con $\cos x\neq0$): resta $\dfrac{\sin x}{\cos x}$.</span>
+          </p>
+          <div class="esempio__risultato">$\dfrac{\sin(2x)}{1+\cos(2x)}=\tan x$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Equazione goniometrica elementare</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvi in tutto $\mathbb{R}$ l'equazione $\sin x=\dfrac12$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Cerco l'angolo "di base" nel primo quadrante con seno $\frac12$: è $x_0=\frac{\pi}{6}$ (dal triangolo notevole).</span>
+            <span class="esempio__passo">Sul cerchio, i punti a quota $\frac12$ sono due: uno nel I quadrante ($\frac{\pi}{6}$) e il suo simmetrico rispetto all'asse verticale, nel II quadrante, cioè $\pi-\frac{\pi}{6}=\frac{5\pi}{6}$ (i due angoli hanno lo stesso seno perché $\sin(\pi-x)=\sin x$, <span class="richiamo" data-sec="4.7">§4.7</span>).</span>
+            <span class="esempio__passo">Aggiungo la periodicità $+2k\pi$ a entrambe, perché ogni giro completo ripropone le stesse soluzioni.</span>
+          </p>
+          <div class="esempio__risultato">$x=\dfrac{\pi}{6}+2k\pi \ \ \text{oppure}\ \ x=\dfrac{5\pi}{6}+2k\pi, \quad k\in\mathbb{Z}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Leggere un grafico sinusoidale</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determina ampiezza, periodo, sfasamento e valor medio della funzione $y=3\sin\!\left(2x-\dfrac{\pi}{2}\right)+1$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Confronto con la forma generale $y=A\sin(\omega x+\varphi)+c$: leggo $A=3$, $\omega=2$, $\varphi=-\frac{\pi}{2}$, $c=1$.</span>
+            <span class="esempio__passo">Ampiezza: $|A|=3$, quindi l'onda oscilla tra $c-3=-2$ e $c+3=4$.</span>
+            <span class="esempio__passo">Periodo: $T=\frac{2\pi}{\omega}=\frac{2\pi}{2}=\pi$.</span>
+            <span class="esempio__passo">Sfasamento: $-\frac{\varphi}{\omega}=-\frac{-\pi/2}{2}=\frac{\pi}{4}$ (traslazione di $\frac{\pi}{4}$ verso destra).</span>
+          </p>
+          <div class="esempio__risultato">Ampiezza $3$, periodo $\pi$, sfasamento $\frac{\pi}{4}$ a destra, centro dell'oscillazione a quota $1$.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere gradi e radianti nel calcolo</div>
+          <p>Chiedere alla calcolatrice $\sin(30)$ mentre è impostata in radianti dà $\approx-0{,}988$, non $\frac12$: perché "$30$" viene letto come $30$ <em>radianti</em> (quasi cinque giri!), non $30$ gradi. <em>Come evitarlo</em>: in Analisi lavora <strong>sempre</strong> in radianti e, sulla calcolatrice, controlla la modalità (RAD vs DEG). Ricorda che $\sin x$ nelle formule dell'Analisi assume $x$ in radianti: è questa la convenzione che rende vero $\lim_{x\to0}\frac{\sin x}{x}=1$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare il segno nei quadranti</div>
+          <p>Errore tipico: da $\sin^2\theta=\frac{16}{25}$ concludere "$\sin\theta=\frac45$" dimenticando il $\pm$. La radice quadrata dà <strong>due</strong> valori: quale scegliere lo decide il quadrante. <em>Come evitarlo</em>: dopo aver estratto la radice, chiediti sempre "in quale quadrante sono? l'ordinata (seno) è positiva o negativa lì?" e scegli il segno di conseguenza. Il cerchio goniometrico disegnato a lato del foglio è il tuo migliore alleato.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che $\sin(\alpha+\beta)=\sin\alpha+\sin\beta$</div>
+          <p>Il seno <strong>non</strong> è "distributivo" sulla somma. Controesempio numerico secco: prendi $\alpha=\beta=\frac{\pi}{2}$ ($90^\circ$). A sinistra $\sin(\frac{\pi}{2}+\frac{\pi}{2})=\sin\pi=0$. A destra $\sin\frac{\pi}{2}+\sin\frac{\pi}{2}=1+1=2$. Ma $0\neq2$! <em>Come evitarlo</em>: per il seno (o il coseno) di una somma esistono apposta le formule di addizione — usale, non "spezzare" ingenuamente.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare le infinite soluzioni ($+2k\pi$ o $+k\pi$)</div>
+          <p>Risolvere $\sin x=\frac12$ e rispondere "$x=\frac{\pi}{6}$" è <strong>incompleto</strong>: mancano la seconda soluzione in $[0,2\pi)$ ($\frac{5\pi}{6}$) e soprattutto tutta la famiglia $+2k\pi$. Per la tangente il periodo è $\pi$, quindi si aggiunge $+k\pi$. <em>Come evitarlo</em>: dopo aver trovato le soluzioni "di base" su un giro, aggiungi <em>sempre</em> il termine periodico. Se il testo chiede le soluzioni in un intervallo (es. $[0,2\pi]$), allora scegli tra le infinite quelle che ci cadono dentro.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> I segni nei quadranti li leggi, non li impari</div>
+          <p>Non memorizzare la tabella dei segni: <strong>ricostruiscila dal cerchio</strong>. Il coseno è l'ascissa: positivo a <em>destra</em> (I e IV), negativo a sinistra (II e III). Il seno è l'ordinata: positivo in <em>alto</em> (I e II), negativo in basso (III e IV). La tangente è il loro rapporto: positiva dove i due segni sono uguali (I e III), negativa dove differiscono (II e IV). Un cerchio disegnato in un angolo del foglio ti dà tutti i segni in due secondi.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> I valori notevoli in un colpo solo: la regola del $\frac{\sqrt{n}}{2}$</div>
+          <p>C'è uno schema nascosto negli angoli $0,\frac{\pi}{6},\frac{\pi}{4},\frac{\pi}{3},\frac{\pi}{2}$: i loro seni sono $\frac{\sqrt0}{2},\frac{\sqrt1}{2},\frac{\sqrt2}{2},\frac{\sqrt3}{2},\frac{\sqrt4}{2}$, cioè $0,\frac12,\frac{\sqrt2}{2},\frac{\sqrt3}{2},1$. Il coseno è la stessa sequenza <em>al contrario</em>. Se dimentichi la tabella, ricostruiscila con "$\sqrt{0},\sqrt1,\sqrt2,\sqrt3,\sqrt4$ tutti diviso $2$" — oppure, ancora meglio, disegna i due triangoli notevoli e leggi i rapporti dei lati.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Quando usare le formule di duplicazione</div>
+          <p>Due segnali che conviene usarle: <strong>(1)</strong> vedi un "$2x$" e un "$x$" nella stessa espressione (probabilmente devi trasformare il $2x$ per avere lo stesso angolo ovunque); <strong>(2)</strong> compare un prodotto $\sin x\cos x$ (che è $\frac12\sin2x$) o un $\cos^2 x$ / $\sin^2 x$ (che si abbassano di grado con $\cos^2 x=\frac{1+\cos2x}{2}$, formula ottenuta dalla duplicazione $\cos2x=2\cos^2x-1$ del <span class="richiamo" data-sec="4.5">§4.5</span> isolando $\cos^2x$: porto il $-1$ a sinistra, $2\cos^2x=1+\cos2x$, e divido per $2$; allo stesso modo da $\cos2x=1-2\sin^2x$ si ha $\sin^2x=\frac{1-\cos2x}{2}$). Abbassare il grado o unificare l'angolo è quasi sempre la mossa che sblocca l'esercizio.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Coseno = seno "sfasato": una funzione al posto di due</div>
+          <p>Vale $\cos x=\sin\!\left(x+\frac{\pi}{2}\right)$ (verificato nel <span class="richiamo" data-sec="4.6">§4.6</span> con la formula di addizione): il coseno è solo il seno anticipato di un quarto di giro. Questo ti permette di ragionare su <em>una sola</em> onda-base (il seno) e ricavare tutto il resto con traslazioni, invece di trattare seno e coseno come due mondi separati. È esattamente il modo in cui i fisici pensano alle oscillazioni.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Trigonometria</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Angoli e cerchio</strong>
+              <ul><li>Gradi e radianti (360°=2π)</li><li>Cerchio goniometrico r=1</li><li>P=(cos θ, sin θ)</li><li>Segni nei 4 quadranti</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Funzioni e valori</strong>
+              <ul><li>sin, cos, tan=sin/cos</li><li>Triangoli notevoli 45° e 30-60°</li><li>Regola √n/2</li><li>Periodicità 2π (tan: π)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Identità e formule</strong>
+              <ul><li>sin²+cos²=1 (Pitagora)</li><li>Addizione e sottrazione</li><li>Duplicazione sin2α=2 sinα cosα</li><li>Cenno bisezione</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Grafici → Analisi</strong>
+              <ul><li>Ampiezza, periodo, fase</li><li>sin x=k → +2kπ</li><li>lim (sin x)/x = 1</li><li>(sin x)'=cos x</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Radianti</strong>: $360^\circ=2\pi$ rad; conversione rad $=$ gradi$\cdot\frac{\pi}{180}$. In Analisi si usano <em>sempre</em> i radianti (rendono pulite derivate e limiti).</li>
+            <li><strong>Cerchio goniometrico</strong>: $P=(\cos\theta,\sin\theta)$ sulla circonferenza di raggio $1$; $\tan\theta=\frac{\sin\theta}{\cos\theta}$. I segni si leggono dai quadranti.</li>
+            <li><strong>Valori notevoli</strong>: ricavali dai due triangoli (isoscele $45°$; mezzo equilatero $30°$-$60°$) o con la regola $\frac{\sqrt n}{2}$.</li>
+            <li><strong>Identità fondamentale</strong>: $\sin^2\theta+\cos^2\theta=1$ (è Pitagora sul cerchio). Serve a ricavare una funzione dall'altra.</li>
+            <li><strong>Formule</strong>: addizione $\sin(\alpha\pm\beta)=\sin\alpha\cos\beta\pm\cos\alpha\sin\beta$; duplicazione $\sin2\alpha=2\sin\alpha\cos\alpha$, $\cos2\alpha=\cos^2\alpha-\sin^2\alpha$.</li>
+            <li><strong>Periodicità</strong>: $\sin,\cos$ hanno periodo $2\pi$; $\tan$ ha periodo $\pi$. Grafico generale $y=A\sin(\omega x+\varphi)+c$.</li>
+            <li><strong>Equazioni elementari</strong>: $\sin x=k$ e $\cos x=k$ hanno soluzioni $+2k\pi$; $\tan x=k$ ha soluzioni $+k\pi$. <em>Non dimenticare mai il termine periodico.</em></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Converti $135^\circ$ in radianti.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Moltiplico per $\frac{\pi}{180}$: $\ 135\cdot\frac{\pi}{180}=\frac{135\pi}{180}$. Semplifico dividendo per $45$: $\frac{135}{180}=\frac34$.</p>
+              <p><strong>$135^\circ=\dfrac{3\pi}{4}$ rad.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Converti $\dfrac{5\pi}{6}$ radianti in gradi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Moltiplico per $\frac{180}{\pi}$: $\ \frac{5\pi}{6}\cdot\frac{180}{\pi}=\frac{5\cdot180}{6}=\frac{900}{6}=150$.</p>
+              <p><strong>$\dfrac{5\pi}{6}$ rad $=150^\circ$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Usando i triangoli notevoli, scrivi $\sin\frac{\pi}{4}$, $\cos\frac{\pi}{4}$ e $\tan\frac{\pi}{4}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$\frac{\pi}{4}=45^\circ$: triangolo rettangolo isoscele, cateti $1$ e ipotenusa $\sqrt2$. Seno e coseno sono entrambi cateto/ipotenusa $=\frac{1}{\sqrt2}=\frac{\sqrt2}{2}$; la tangente è cateto/cateto $=1$.</p>
+              <p><strong>$\sin\frac{\pi}{4}=\cos\frac{\pi}{4}=\frac{\sqrt2}{2}$, $\ \tan\frac{\pi}{4}=1$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">In quale quadrante si trova l'angolo $200^\circ$? Che segno hanno $\sin$ e $\cos$ di tale angolo?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$200^\circ$ è compreso tra $180^\circ$ e $270^\circ$, quindi cade nel <strong>III quadrante</strong>. Lì il punto $P$ ha entrambe le coordinate negative.</p>
+              <p><strong>$\sin200^\circ &lt; 0$ e $\cos200^\circ &lt; 0$</strong> (la tangente, rapporto di due negativi, è invece positiva).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Sapendo che $\cos\theta=\frac35$ e che $\theta$ è nel IV quadrante, calcola $\sin\theta$ e $\tan\theta$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\sin^2\theta=1-\cos^2\theta=1-\frac{9}{25}=\frac{16}{25}$, quindi $\sin\theta=\pm\frac45$.</span>
+                <span class="esempio__passo">Nel IV quadrante l'ordinata è negativa: $\sin\theta=-\frac45$.</span>
+                <span class="esempio__passo">$\tan\theta=\frac{\sin\theta}{\cos\theta}=\frac{-4/5}{3/5}=-\frac43$.</span>
+              </p>
+              <p><strong>$\sin\theta=-\frac45$, $\ \tan\theta=-\frac43$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il valore esatto di $\cos15^\circ$ usando una formula di sottrazione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$15^\circ=45^\circ-30^\circ$. Uso la formula di sottrazione del coseno $\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta$ con $\alpha=45^\circ$ e $\beta=30^\circ$, poi inserisco i valori notevoli $\cos45^\circ=\sin45^\circ=\frac{\sqrt2}{2}$, $\cos30^\circ=\frac{\sqrt3}{2}$, $\sin30^\circ=\frac12$:</p>
+              <p>$\cos15^\circ=\cos45^\circ\cos30^\circ+\sin45^\circ\sin30^\circ=\frac{\sqrt2}{2}\cdot\frac{\sqrt3}{2}+\frac{\sqrt2}{2}\cdot\frac12=\frac{\sqrt6+\sqrt2}{4}$.</p>
+              <p><strong>$\cos15^\circ=\dfrac{\sqrt6+\sqrt2}{4}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Verifica l'identità $\dfrac{1-\cos^2 x}{\sin x}=\sin x$ (con $\sin x\neq0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Dall'identità fondamentale $1-\cos^2 x=\sin^2 x$. Sostituisco al numeratore:</p>
+              <p>$\dfrac{1-\cos^2 x}{\sin x}=\dfrac{\sin^2 x}{\sin x}=\sin x$. Identità verificata. <strong>∎</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina ampiezza e periodo della funzione $y=3\sin(2x)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Confronto con $y=A\sin(\omega x)$: qui $A=3$ e $\omega=2$.</p>
+              <p>Ampiezza $=|A|=3$; periodo $=\frac{2\pi}{\omega}=\frac{2\pi}{2}=\pi$.</p>
+              <p><strong>Ampiezza $3$, periodo $\pi$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Semplifica l'espressione $\dfrac{\sin(2x)}{2\cos x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Uso la duplicazione $\sin(2x)=2\sin x\cos x$:</p>
+              <p>$\dfrac{2\sin x\cos x}{2\cos x}=\sin x$ (avendo semplificato $2\cos x$, con $\cos x\neq0$).</p>
+              <p><strong>Risultato: $\sin x$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione $2\sin x-1=0$ nell'intervallo $[0,2\pi)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Isolo il seno: $\sin x=\frac12$.</span>
+                <span class="esempio__passo">Le soluzioni "di base" con seno $\frac12$ sono $x=\frac{\pi}{6}$ (I quadrante) e $x=\frac{5\pi}{6}$ (II quadrante).</span>
+                <span class="esempio__passo">Poiché il testo chiede solo $[0,2\pi)$, non aggiungo altri giri.</span>
+              </p>
+              <p><strong>$x=\dfrac{\pi}{6}$ oppure $x=\dfrac{5\pi}{6}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova <em>tutte</em> le soluzioni reali dell'equazione $\cos x=-\frac12$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>L'angolo di base con coseno $\frac12$ è $\frac{\pi}{3}$; con coseno $-\frac12$ cerco dove l'ascissa è $-\frac12$: nel II quadrante $\pi-\frac{\pi}{3}=\frac{2\pi}{3}$ e nel III quadrante $\pi+\frac{\pi}{3}=\frac{4\pi}{3}$ (simmetrici rispetto all'asse $x$). Aggiungo la periodicità:</p>
+              <p><strong>$x=\dfrac{2\pi}{3}+2k\pi$ oppure $x=\dfrac{4\pi}{3}+2k\pi$, con $k\in\mathbb{Z}$</strong> (equivalente a $x=\pm\frac{2\pi}{3}+2k\pi$).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra la formula $\cos(2x)=1-2\sin^2 x$ partendo da $\cos(2x)=\cos^2 x-\sin^2 x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Dall'identità fondamentale $\cos^2 x=1-\sin^2 x$. Sostituisco nella formula di partenza:</p>
+              <p>$\cos(2x)=\cos^2 x-\sin^2 x=(1-\sin^2 x)-\sin^2 x=1-2\sin^2 x$. <strong>∎</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data la funzione $y=2\sin\!\left(x-\frac{\pi}{3}\right)$, determina: (a) ampiezza; (b) periodo; (c) sfasamento; (d) i punti in cui la funzione si annulla.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) $A=2\Rightarrow$ ampiezza $2$ (oscilla tra $-2$ e $2$).</span>
+                <span class="esempio__passo">(b) $\omega=1\Rightarrow T=\frac{2\pi}{1}=2\pi$.</span>
+                <span class="esempio__passo">(c) La fase è $\varphi=-\frac{\pi}{3}$, sfasamento $-\frac{\varphi}{\omega}=\frac{\pi}{3}$ verso destra.</span>
+                <span class="esempio__passo">(d) Il seno si annulla esattamente nei multipli interi di $\pi$ (zeri del seno, <span class="richiamo" data-sec="4.6">§4.6</span>), quindi $\sin\!\left(x-\frac{\pi}{3}\right)=0\Leftrightarrow x-\frac{\pi}{3}=k\pi$; porto $\frac{\pi}{3}$ a destra: $x=\frac{\pi}{3}+k\pi$.</span>
+              </p>
+              <p><strong>Ampiezza $2$, periodo $2\pi$, sfasamento $\frac{\pi}{3}$ a destra, zeri in $x=\frac{\pi}{3}+k\pi$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvi la disequazione $\sin x\ge\frac{\sqrt2}{2}$ nell'intervallo $[0,2\pi]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\sin x=\frac{\sqrt2}{2}$ per $x=\frac{\pi}{4}$ e $x=\frac{3\pi}{4}$ (i due punti a quota $\frac{\sqrt2}{2}$).</span>
+                <span class="esempio__passo">La disequazione chiede dove la quota (l'ordinata) è <em>almeno</em> $\frac{\sqrt2}{2}$: è l'arco superiore compreso tra quei due angoli.</span>
+              </p>
+              <p><strong>$x\in\left[\dfrac{\pi}{4},\ \dfrac{3\pi}{4}\right]$.</strong> (Su tutto $\mathbb{R}$ si aggiungerebbe $+2k\pi$.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un triangolo rettangolo ha ipotenusa lunga $10$ e uno degli angoli acuti pari a $30^\circ$. Determina le lunghezze dei due cateti.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>In un triangolo rettangolo, cateto $=$ ipotenusa $\times$ (seno dell'angolo opposto) $=$ ipotenusa $\times$ (coseno dell'angolo adiacente).</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Cateto opposto ai $30^\circ$: $10\sin30^\circ=10\cdot\frac12=5$.</span>
+                <span class="esempio__passo">Cateto adiacente ai $30^\circ$: $10\cos30^\circ=10\cdot\frac{\sqrt3}{2}=5\sqrt3\approx8{,}66$.</span>
+              </p>
+              <p><strong>I cateti misurano $5$ e $5\sqrt3$.</strong> (Verifica con Pitagora: $25+75=100=10^2$.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostra che $\sin x\cos x=\frac12\sin(2x)$ e usa questa relazione per determinare il valore massimo di $f(x)=\sin x\cos x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dalla duplicazione $\sin(2x)=2\sin x\cos x$, dividendo per $2$: $\sin x\cos x=\frac12\sin(2x)$.</span>
+                <span class="esempio__passo">Quindi $f(x)=\frac12\sin(2x)$. Poiché $\sin(2x)$ varia in $[-1,1]$, il valore massimo di $f$ è $\frac12\cdot1=\frac12$.</span>
+                <span class="esempio__passo">Il massimo si raggiunge quando $\sin(2x)=1$, cioè $2x=\frac{\pi}{2}+2k\pi$, ossia $x=\frac{\pi}{4}+k\pi$.</span>
+              </p>
+              <p><strong>Valore massimo $\frac12$, assunto per $x=\frac{\pi}{4}+k\pi$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) A quanti radianti corrisponde un angolo di $180^\circ$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\frac{\pi}{2}$</button>
+              <button class="quiz-option" data-correct="true">$\pi$</button>
+              <button class="quiz-option" data-correct="false">$2\pi$</button>
+              <button class="quiz-option" data-correct="false">$360$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Un giro intero è $2\pi$, quindi mezzo giro ($180^\circ$) è $\pi$ radianti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Nel II quadrante, quale funzione goniometrica è positiva?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">solo il seno</button>
+              <button class="quiz-option" data-correct="false">solo il coseno</button>
+              <button class="quiz-option" data-correct="false">tutte e tre</button>
+              <button class="quiz-option" data-correct="false">solo la tangente</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Nel II quadrante l'ordinata è positiva (seno $+$) ma l'ascissa è negativa (coseno $-$), quindi anche la tangente è negativa. Resta positivo solo il seno.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) La formula di duplicazione del seno afferma che $\sin(2x)$ è uguale a:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$2\sin x$</button>
+              <button class="quiz-option" data-correct="false">$\sin^2 x-\cos^2 x$</button>
+              <button class="quiz-option" data-correct="true">$2\sin x\cos x$</button>
+              <button class="quiz-option" data-correct="false">$1-2\cos^2 x$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Si ricava da $\sin(\alpha+\beta)$ ponendo $\beta=\alpha$: $\sin(2x)=2\sin x\cos x$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Quali sono tutte le soluzioni reali di $\sin x=0$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">$x=k\pi,\ k\in\mathbb{Z}$</button>
+              <button class="quiz-option" data-correct="false">$x=\frac{\pi}{2}+k\pi$</button>
+              <button class="quiz-option" data-correct="false">$x=2k\pi$</button>
+              <button class="quiz-option" data-correct="false">$x=\frac{\pi}{4}+k\pi$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il seno (l'ordinata) si annulla sull'asse $x$, cioè in $0$ e in $\pi$, e poi ogni mezzo giro: $x=k\pi$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) In Analisi si preferiscono i radianti perché rendono semplici le derivate di seno e coseno.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: solo in radianti valgono $(\sin x)'=\cos x$ e $\lim_{x\to0}\frac{\sin x}{x}=1$, senza fattori correttivi $\frac{\pi}{180}$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Per ogni coppia di angoli vale $\sin(a+b)=\sin a+\sin b$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: con $a=b=\frac{\pi}{2}$ si avrebbe $\sin\pi=0$ a sinistra ma $1+1=2$ a destra. Vale invece la formula di addizione $\sin a\cos b+\cos a\sin b$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) La funzione tangente ha periodo $2\pi$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: la tangente ha periodo $\pi$, perché ruotando di mezzo giro seno e coseno cambiano entrambi segno e il loro rapporto resta invariato.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Sul cerchio goniometrico il coseno di un angolo è la coordinata $x$ (ascissa) del punto corrispondente.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: per definizione $P=(\cos\theta,\ \sin\theta)$, quindi il coseno è l'ascissa e il seno l'ordinata.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="radiante|radianti|radiante">
+            <p class="quiz-question__testo">9. (Completamento) L'unità di misura degli angoli naturale in Analisi, basata sul rapporto arco/raggio, si chiama ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Un giro completo misura $2\pi$ radianti, cioè $360^\circ$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="1|uno">
+            <p class="quiz-question__testo">10. (Completamento) L'identità fondamentale della trigonometria afferma che $\sin^2\theta+\cos^2\theta=$ ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Vale $1$: è il teorema di Pitagora applicato al triangolo con cateti $\sin\theta$ e $\cos\theta$ e ipotenusa (raggio) $1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="goniometrico|goniometrica|unitario">
+            <p class="quiz-question__testo">11. (Completamento) La circonferenza di raggio $1$ centrata nell'origine, usata per definire seno e coseno, si chiama cerchio ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il cerchio goniometrico (o cerchio unitario): il punto che vi ruota ha coordinate $(\cos\theta,\sin\theta)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché un'equazione come $\sin x=\frac12$ ha infinite soluzioni.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: il seno è una funzione periodica di periodo $2\pi$, cioè si ripete identico dopo ogni giro completo del punto sul cerchio goniometrico. Se un certo angolo $x_0$ ha seno $\frac12$, allora anche $x_0$ più (o meno) un numero qualsiasi di giri interi ha lo stesso seno: $x_0+2k\pi$ per ogni $k\in\mathbb{Z}$. Inoltre, in ogni giro ci sono due punti alla stessa quota $\frac12$ (uno nel I e uno nel II quadrante, $\frac{\pi}{6}$ e $\frac{5\pi}{6}$). Le famiglie sono quindi due, ciascuna con infiniti valori: in totale infinite soluzioni.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché in Analisi Matematica gli angoli si misurano quasi sempre in radianti e non in gradi?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: i radianti sono un'unità "pura" (rapporto arco/raggio) che rende pulite le formule fondamentali dell'Analisi. Solo misurando in radianti valgono il limite notevole $\lim_{x\to0}\frac{\sin x}{x}=1$ e le derivate $(\sin x)'=\cos x$, $(\cos x)'=-\sin x$. Se si usassero i gradi, in quelle formule comparirebbe un fattore correttivo $\frac{\pi}{180}$ (per esempio $(\sin x)'=\frac{\pi}{180}\cos x$), rendendo tutto più scomodo. I radianti sono quindi la scelta che semplifica limiti, derivate e integrali.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="07-geometria-analitica.html"><span class="dir">← Capitolo precedente</span><strong>Geometria analitica</strong></a>
+        <a class="next" href="09-funzioni-elementari-grafici.html"><span class="dir">Capitolo successivo →</span><strong>Funzioni elementari e grafici</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

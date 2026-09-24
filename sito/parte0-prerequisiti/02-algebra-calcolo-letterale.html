@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2. Algebra e Calcolo Letterale — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 2</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html" class="is-active">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 2 di 9</span>
+        </div>
+        <h1>Algebra e Calcolo Letterale: costruire con i mattoni dei simboli</h1>
+        <p class="subtitle">Smettere di ragionare su numeri singoli e cominciare a ragionare su quantità generiche: è questo il salto che trasforma l'aritmetica in algebra. In questo capitolo impari a maneggiare monomi, polinomi, prodotti notevoli, scomposizioni e frazioni algebriche — gli attrezzi di calcolo che userai in ogni equazione, ogni derivata e ogni integrale del resto del libro.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina di gestire un magazzino. Ogni giorno arrivano scatole di tre tipi: mele, pere e arance. Se dovessi rifare i conti da capo ogni volta con i numeri esatti ("oggi 12 mele, ieri 7 mele...") impazziresti. La mossa intelligente è un'altra: usare <strong>etichette generiche</strong>. Chiami $m$ il numero di mele, $p$ le pere, $a$ le arance, e scrivi una volta per tutte la regola: "totale $= m + p + a$". Quella formula funziona <em>qualunque</em> siano le quantità di oggi.</p>
+        <p>Questo è esattamente cosa fa l'algebra: <strong>sostituisce ai numeri specifici delle lettere che rappresentano quantità generiche</strong>. Invece di risolvere mille problemi simili uno alla volta, ne risolvi <em>uno solo</em> in forma letterale e poi ci infili dentro i numeri che vuoi.</p>
+        <p>Ma le lettere, da sole, non bastano: servono le <strong>regole per combinarle</strong>. Non puoi sommare mele e pere come se fossero la stessa cosa, e non puoi "cancellare" pezzi a caso da una frazione. Il calcolo letterale è precisamente l'insieme di queste regole: come si sommano, si moltiplicano, si dividono e si scompongono le espressioni fatte di lettere e numeri.</p>
+        <p>Il capitolo precedente ci ha dato il <em>linguaggio</em> (insiemi, logica, numeri). Questo ci dà la <em>grammatica del calcolo</em>: senza padroneggiarla, ogni equazione, ogni limite e ogni integrale del resto del libro diventerebbe un campo minato di errori di segno e di semplificazioni sbagliate.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché la matematica ha bisogno di <strong>parlare di infiniti casi contemporaneamente</strong>. La frase "il quadrato della somma di due numeri è uguale al quadrato del primo, più il doppio prodotto, più il quadrato del secondo" è vera per <em>tutte</em> le infinite coppie di numeri. Scriverla come $(a+b)^2 = a^2 + 2ab + b^2$ non è solo più corto: è un teorema universale racchiuso in poche lettere. L'algebra è la tecnologia che permette di dimostrare e usare regole generali senza doverle verificare un numero alla volta.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Risolve il problema di <em>manipolare l'ignoto</em>. In un'equazione la soluzione è un numero che ancora non conosciamo: lo chiamiamo $x$ e lavoriamo su di esso come se fosse un numero qualsiasi, finché non lo isoliamo. Senza il calcolo letterale non potremmo nemmeno <em>scrivere</em> un'equazione, figurarsi risolverla. E la <span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione in fattori</span> — trasformare una somma in un prodotto — è la chiave che apre la porta di quasi tutte le <span class="glossario-term" data-term="equazione">equazioni</span> di grado superiore al primo.</p>
+        <p><strong>Perché è importante ora?</strong> Perché è la competenza più "trasversale" di tutte. In Analisi 1 dovrai scomporre denominatori per calcolare limiti che danno forma indeterminata $\tfrac{0}{0}$; dovrai riconoscere prodotti notevoli per semplificare rapporti incrementali e derivate. In Analisi 2 spezzerai frazioni algebriche in somme più semplici per integrarle. Detto senza giri di parole: <strong>ogni ora spesa ora a diventare fluente con monomi, polinomi e scomposizioni ti ripaga dieci volte più avanti</strong>, quando l'algebra sarà solo un passaggio automatico dentro problemi molto più grandi.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Una ricetta scritta per "n persone"</div>
+          <p>Apri un qualsiasi libro di cucina professionale: le dosi non sono scritte "per 4 persone", ma <strong>per porzione</strong>. "80 g di pasta a testa, 15 g di parmigiano a testa". Se sei in $n$ persone, servono $80n$ grammi di pasta e $15n$ grammi di parmigiano. Hai appena scritto due <strong>monomi</strong>: $80n$ e $15n$. Sono <em>simili</em> (stessa parte letterale $n$), quindi il costo totale in "unità" si somma facilmente. Questo è un <strong>inventario generico</strong>: invece di rifare la spesa da zero per ogni cena, hai una formula che si adatta a qualunque numero di ospiti.</p>
+          <p>La stessa idea è ovunque: la formula degli interessi bancari, il conto della benzina ($\text{prezzo} \times \text{litri}$), il preventivo di un artigiano ($\text{costo fisso} + \text{costo orario} \times \text{ore}$). E la <span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione in fattori</span> ha un parallelo perfetto nell'aritmetica che già conosci: come $60 = 2^2 \cdot 3 \cdot 5$ ti rivela i "mattoni primi" di un numero, così scomporre $x^2 - 5x + 6$ in $(x-2)(x-3)$ ti rivela i mattoni di un polinomio. In entrambi i casi trasformi qualcosa di "grande e opaco" in un <strong>prodotto di pezzi semplici e leggibili</strong>.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-monomi">4.1 Monomi</h3>
+        <p>Un <strong><span class="glossario-term" data-term="monomio">monomio</span></strong> è un'espressione ottenuta moltiplicando tra loro <em>numeri</em> e <em>lettere</em> elevate a esponenti naturali, senza mai comparire addizioni o sottrazioni al suo interno. Esempi: $3x^2y$, $\ -\tfrac{1}{2}ab^3$, $\ 7$ (anche un numero da solo è un monomio). Un monomio si dice <strong>in forma normale</strong> quando è scritto come un unico coefficiente numerico moltiplicato per le lettere, ciascuna con il suo esponente e senza ripetizioni. In un monomio in forma normale distinguiamo:</p>
+        <ul>
+          <li>la <strong>parte numerica</strong> (o <em>coefficiente</em>): il numero davanti, ad esempio $3$ in $3x^2y$;</li>
+          <li>la <strong>parte letterale</strong>: il prodotto delle lettere con i loro esponenti, ad esempio $x^2y$.</li>
+        </ul>
+        <p>Il <strong>grado</strong> di un monomio (rispetto a tutte le lettere, o <em>grado complessivo</em>) è la somma degli esponenti della parte letterale. Per $3x^2y$ il grado è $2+1 = 3$. Il grado <em>rispetto a una singola lettera</em> è invece l'esponente di quella lettera: rispetto a $x$ il grado di $3x^2y$ è $2$. Due monomi sono <strong>simili</strong> se hanno <em>la stessa identica parte letterale</em>: $3x^2y$ e $-5x^2y$ sono simili; $3x^2y$ e $3xy^2$ non lo sono (gli esponenti sono distribuiti diversamente).</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Operazione</th><th>Regola</th><th>Esempio</th></tr></thead>
+          <tbody>
+            <tr><td>Somma / differenza</td><td>possibile <em>solo tra monomi simili</em>: si sommano i coefficienti, la parte letterale resta invariata</td><td>$5x^2y - 2x^2y = 3x^2y$</td></tr>
+            <tr><td>Prodotto</td><td>si moltiplicano i coefficienti e si <em>sommano</em> gli esponenti delle lettere uguali</td><td>$(3x^2y)(2xy^3) = 6x^3y^4$</td></tr>
+            <tr><td>Quoziente</td><td>si dividono i coefficienti e si <em>sottraggono</em> gli esponenti delle lettere uguali</td><td>$\dfrac{6x^3y^4}{2xy} = 3x^2y^3$</td></tr>
+            <tr><td>Potenza</td><td>si eleva il coefficiente e si <em>moltiplica</em> ogni esponente per l'esponente della potenza</td><td>$(2x^3)^2 = 4x^6$</td></tr>
+          </tbody>
+        </table>
+        <p>Le regole di prodotto, quoziente e potenza non sono inventate: sono le <strong>proprietà delle potenze</strong> (che rivedremo in dettaglio nel <a href="03-potenze-radicali-esponenziali.html">Capitolo 3</a>) applicate a ogni lettera separatamente. Nel prodotto uso $a^m\cdot a^n = a^{m+n}$: per esempio in $(3x^2y)(2xy^3)$ per la lettera $x$ ho $m=2$ e $n=1$, quindi $x^2\cdot x = x^{2+1}=x^3$; per la lettera $y$ ho $m=1$ e $n=3$, quindi $y\cdot y^3=y^{1+3}=y^4$. Nel quoziente uso $a^m : a^n = a^{m-n}$ (gli esponenti si sottraggono), nella potenza uso $(a^m)^n = a^{m\cdot n}$ insieme a $(a\cdot b)^n=a^n b^n$: in $(2x^3)^2$ il fattore $2$ e il fattore $x^3$ vengono elevati separatamente, dando $2^2\cdot (x^3)^2 = 4x^{3\cdot2}=4x^6$.</p>
+        <p>Perché la somma richiede monomi simili? Perché $3x^2y + 2x^2y$ significa "$3$ oggetti di tipo $x^2y$ più $2$ oggetti dello stesso tipo", che fanno $5$ oggetti di quel tipo. Ma $3x^2y + 2xy^2$ sono oggetti di <em>tipi diversi</em>: come tre mele più due pere, restano tre mele e due pere. Non c'è modo di "fonderli".</p>
+        <p>Infine due nozioni utili nelle frazioni: il <strong>Massimo Comun Divisore (MCD)</strong> di più monomi ha come coefficiente il MCD dei coefficienti (quando sono interi) e come parte letterale <em>solo le lettere comuni a tutti, ciascuna col minimo esponente</em>; il <strong>minimo comune multiplo (mcm)</strong> ha come coefficiente il mcm dei coefficienti e come parte letterale <em>tutte le lettere che compaiono, ciascuna col massimo esponente</em>. Esempio: per $12x^3y$ e $18xy^2$ si ha $\text{MCD} = 6xy$ e $\text{mcm} = 36x^3y^2$.</p>
+
+        <h3 id="teoria-polinomi">4.2 Polinomi</h3>
+        <p>Un <strong><span class="glossario-term" data-term="polinomio">polinomio</span></strong> è una somma algebrica di monomi, detti <em>termini</em>. Se i termini sono $2$ si parla di <strong>binomio</strong>, se sono $3$ di <strong>trinomio</strong>, e così via. Un polinomio è <em>ridotto in forma normale</em> quando si sono già sommati tutti i termini simili. Il <strong>grado</strong> di un polinomio è il grado massimo tra i suoi termini: $2x^3 - x^2 + 5$ ha grado $3$.</p>
+        <p>Tre aggettivi ricorrenti descrivono la "forma" di un polinomio in una lettera $x$:</p>
+        <ul>
+          <li><strong>ordinato</strong>: i termini sono scritti secondo potenze decrescenti (o crescenti) di $x$, come $2x^3 - x^2 + 5x - 1$;</li>
+          <li><strong>completo</strong>: compaiono <em>tutte</em> le potenze di $x$ dal grado massimo fino al grado $0$ (il termine noto). $2x^3 - x^2 + 5x - 1$ è completo; $2x^3 + 5x$ non lo è (mancano $x^2$ e il termine noto);</li>
+          <li><strong>omogeneo</strong>: tutti i termini hanno lo stesso grado, come $x^2 + 3xy + y^2$ (tutti di grado $2$).</li>
+        </ul>
+        <p>Il coefficiente del termine di grado massimo si chiama <strong>coefficiente direttivo</strong>; il termine di grado $0$ (senza lettere) è il <strong>termine noto</strong>.</p>
+        <p><strong>Somma e differenza</strong> tra polinomi: si eliminano le parentesi (attenzione al segno!) e si sommano i termini simili. <strong>Prodotto</strong>: si applica la proprietà distributiva, moltiplicando <em>ogni</em> termine del primo per <em>ogni</em> termine del secondo, e poi si riducono i simili. Ad esempio:</p>
+        <div class="formula-block">$$(x+2)(x^2 - 3x + 1) = x^3 - 3x^2 + x + 2x^2 - 6x + 2 = x^3 - x^2 - 5x + 2.$$</div>
+        <p>Vediamo da dove esce ogni pezzo, perché è qui che si perdono i termini. Il primo polinomio ha due termini, $x$ e $+2$; il secondo ne ha tre. Moltiplico prima $x$ per ciascuno dei tre: $x\cdot x^2 = x^3$, $\ x\cdot(-3x)=-3x^2$, $\ x\cdot 1 = x$. Poi moltiplico $+2$ per ciascuno dei tre: $2\cdot x^2 = 2x^2$, $\ 2\cdot(-3x)=-6x$, $\ 2\cdot 1 = 2$. In tutto $2\times3=6$ termini, che sono esattamente quelli scritti in mezzo. Infine riduco i simili, cioè sommo i termini con la stessa parte letterale: quelli in $x^2$ danno $-3x^2+2x^2=-x^2$, quelli in $x$ danno $x-6x=-5x$; $x^3$ e $2$ non hanno compagni e restano com'erano.</p>
+
+        <h3 id="teoria-divisione">4.3 Divisione tra polinomi e regola di Ruffini</h3>
+        <p>Proprio come tra numeri interi $17 = 5 \cdot 3 + 2$ (quoziente $3$, resto $2$), dati due polinomi $A(x)$ (dividendo) e $B(x)\neq 0$ (divisore) esistono e sono unici un <strong>quoziente</strong> $Q(x)$ e un <strong>resto</strong> $R(x)$ tali che</p>
+        <div class="formula-block">$$A(x) = B(x)\cdot Q(x) + R(x), \qquad \text{con } \operatorname{grado}(R) &lt; \operatorname{grado}(B).$$</div>
+        <p>Se $R(x) = 0$ diciamo che $A$ è <strong>divisibile</strong> per $B$. L'algoritmo della divisione lunga funziona come quello dei numeri: a ogni passo si divide il termine di grado più alto del dividendo (aggiornato) per il termine di grado più alto del divisore, si moltiplica e si sottrae. Vedremo un esempio completo nella sezione degli esempi svolti.</p>
+        <p>Quando il divisore ha la forma speciale $(x - a)$, con $a$ numero, esiste una scorciatoia velocissima: la <strong>regola di Ruffini</strong>. Si dispongono in riga i coefficienti del dividendo (ordinato e completo, mettendo $0$ dove una potenza manca) e si esegue uno schema di moltiplicazioni e somme usando il valore $a$. Ecco lo schema per dividere $x^3 - 2x^2 - 5x + 6$ per $(x-1)$, cioè con $a = 1$:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th></th><th>$1$</th><th>$-2$</th><th>$-5$</th><th>$6$</th></tr></thead>
+          <tbody>
+            <tr><td>$a=1$</td><td></td><td>$1$</td><td>$-1$</td><td>$-6$</td></tr>
+            <tr><td></td><td>$1$</td><td>$-1$</td><td>$-6$</td><td>$\mathbf{0}$</td></tr>
+          </tbody>
+        </table>
+        <p>Si abbassa il primo coefficiente ($1$); lo si moltiplica per $a=1$ e si scrive il risultato sotto il coefficiente successivo, poi si somma in colonna ($-2+1=-1$); si ripete. L'ultimo numero della riga in basso è il <strong>resto</strong> (qui $0$: divisibile!); gli altri sono i coefficienti del <strong>quoziente</strong>, di grado uno in meno del dividendo: $Q(x) = x^2 - x - 6$.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Attenzione capitale al segno di $a$</div>
+          <p>Nello schema si usa il valore che <strong>annulla</strong> il divisore. Dividere per $(x-1)$ significa usare $a = +1$ (perché $x-1=0$ per $x=1$); dividere per $(x+2)$ significa usare $a = -2$ (perché $x+2 = x-(-2) = 0$ per $x=-2$). È l'errore numero uno di chi impara Ruffini: lo trovi nella sezione errori comuni con il controesempio.</p>
+        </div>
+
+        <h3 id="teoria-notevoli">4.4 Prodotti notevoli</h3>
+        <p>Alcuni prodotti tra polinomi compaiono così spesso che conviene impararne il risultato a memoria: sono i <strong>prodotti notevoli</strong>. Si chiamano "notevoli" proprio perché si <em>notano a vista</em>: riconoscerne la forma ti permette di scrivere il risultato al volo, saltando tutti i passaggi della distributiva (e i relativi errori). Sono anche le identità che userai "al contrario" per scomporre.</p>
+        <div class="formula-block">
+          $$(a+b)^2 = a^2 + 2ab + b^2 \qquad\qquad (a-b)^2 = a^2 - 2ab + b^2$$
+          $$(a+b+c)^2 = a^2+b^2+c^2 + 2ab + 2ac + 2bc$$
+          $$(a+b)(a-b) = a^2 - b^2 \quad\text{(differenza di quadrati)}$$
+          $$(a+b)^3 = a^3 + 3a^2b + 3ab^2 + b^3 \qquad (a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$$
+          $$a^3 + b^3 = (a+b)(a^2 - ab + b^2) \qquad a^3 - b^3 = (a-b)(a^2 + ab + b^2)$$
+        </div>
+        <p>Un'osservazione che dimezza le cose da ricordare: la formula di $(a-b)^2$ <strong>non</strong> è una regola nuova, si ottiene da quella di $(a+b)^2$ sostituendo $-b$ al posto di $b$. Infatti $(a-b)^2=(a+(-b))^2 = a^2 + 2a(-b) + (-b)^2$; ora $2a(-b)=-2ab$ (più per meno dà meno) e $(-b)^2=+b^2$ (un quadrato è sempre positivo), quindi resta $a^2-2ab+b^2$. Lo stesso trucco trasforma $(a+b)^3$ in $(a-b)^3$ e $a^3+b^3$ in $a^3-b^3$: prova a rifare i conti da solo, è il modo migliore per non confondere i segni.</p>
+        <p>Il quadrato di binomio si legge come una filastrocca: "<em>quadrato del primo, più (o meno) il doppio prodotto, più il quadrato del secondo</em>". La differenza di quadrati è la più preziosa: trasforma una <em>differenza</em> in un <em>prodotto</em>, ed è la scomposizione più usata in assoluto. Nota bene che <strong>la somma di quadrati $a^2 + b^2$ non si scompone</strong> con i <span class="glossario-term" data-term="numero-reale">numeri reali</span> (non esiste una differenza di quadrati "con il più").</p>
+
+        <h3 id="teoria-scomposizione">4.5 Scomposizione in fattori</h3>
+        <p>Scomporre significa scrivere un polinomio come <strong>prodotto</strong> di polinomi di grado più basso: è l'operazione inversa del moltiplicare. Le tecniche fondamentali, da provare più o meno in quest'ordine, sono:</p>
+        <ol>
+          <li><strong>Raccoglimento totale a fattor comune.</strong> Se tutti i termini hanno un fattore in comune, lo si mette davanti a una parentesi: $6x^3 - 9x^2 + 3x = 3x(2x^2 - 3x + 1)$. È il MCD dei termini che "esce". Cosa resta dentro la parentesi? Il risultato della <em>divisione</em> di ogni termine per il fattore raccolto: $6x^3 : 3x = 2x^2$ (divido $6:3=2$ e sottraggo gli esponenti di $x$, $3-1=2$), $\ -9x^2 : 3x = -3x$, $\ 3x : 3x = 1$. Attenzione all'ultimo: quando un termine coincide con il fattore raccolto resta $1$, non $0$ — è l'errore più frequente in assoluto.</li>
+          <li><strong>Raccoglimento parziale (a gruppi).</strong> Quando non c'è un fattore comune a tutti, si raggruppano i termini a coppie sperando che compaia un fattore comune: $ax + ay + bx + by = a(x+y) + b(x+y) = (x+y)(a+b)$. Nel dettaglio: nei primi due termini raccolgo $a$ e resta $a(x+y)$; negli ultimi due raccolgo $b$ e resta $b(x+y)$. A questo punto i due blocchi hanno in comune l'intera parentesi $(x+y)$, che tratto come se fosse una sola lettera e raccolgo a sua volta: davanti mettiamo $(x+y)$ e dentro resta ciò che moltiplicava quella parentesi, cioè $a+b$.</li>
+          <li><strong>Trinomio caratteristico $x^2 + sx + p$.</strong> Si cercano due numeri $m,n$ la cui <em>somma</em> sia $s$ e il cui <em>prodotto</em> sia $p$; allora $x^2 + sx + p = (x+m)(x+n)$. Esempio: per $x^2 - 5x + 6$ servono due numeri con somma $-5$ e prodotto $6$, cioè $-2$ e $-3$, quindi $(x-2)(x-3)$.</li>
+          <li><strong>Prodotti notevoli "al contrario".</strong> Se riconosci la forma di un prodotto notevole, la scomposizione è immediata, a patto di dire ogni volta <em>chi è $a$ e chi è $b$</em>. Per $x^2-16$ uso $a^2-b^2=(a-b)(a+b)$ con $a=x$ e $b=4$ (perché $16=4^2$), e ottengo $(x-4)(x+4)$. Per $x^2+6x+9$ uso $a^2+2ab+b^2=(a+b)^2$ con $a=x$ e $b=3$: controllo che il doppio prodotto torni, $2\cdot x\cdot 3=6x$, sì, quindi è $(x+3)^2$. Per $8x^3+27$ uso $a^3+b^3=(a+b)(a^2-ab+b^2)$ con $a=2x$ (perché $8x^3=(2x)^3$) e $b=3$ (perché $27=3^3$): sostituendo ottengo $(2x+3)\big((2x)^2-(2x)(3)+3^2\big) = (2x+3)(4x^2-6x+9)$.</li>
+          <li><strong>Regola di Ruffini.</strong> Per polinomi di grado $\geq 3$ senza struttura evidente, si cerca una <em>radice</em> $a$ (un valore che annulla il polinomio) e si divide per $(x-a)$: il resto sarà $0$ e si abbassa il grado. Ripetendo si scompone completamente.</li>
+        </ol>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché scomporre è così potente</div>
+          <p>Un prodotto è nullo se e solo se lo è <em>almeno uno</em> dei suoi fattori (legge di annullamento del prodotto). Quindi appena scrivi $(x-2)(x-3) = 0$ leggi immediatamente le soluzioni: $x=2$ oppure $x=3$. Ecco perché la scomposizione è la porta d'ingresso della risoluzione delle equazioni: <em>Approfondiremo questo aspetto quando parleremo di equazioni di grado superiore al primo →</em> (vedi <a href="05-equazioni.html">Capitolo 5 · Equazioni</a>).</p>
+        </div>
+
+        <h3 id="teoria-frazioni">4.6 Frazioni algebriche</h3>
+        <p>Una <strong>frazione algebrica</strong> è il quoziente di due polinomi, $\dfrac{A(x)}{B(x)}$, con $B(x)$ non nullo. La condizione fondamentale — quella che gli studenti dimenticano più spesso — è il <strong>dominio di esistenza</strong> (o <em>condizioni di esistenza</em>, C.E.): la frazione ha senso <strong>solo per i valori che non annullano il denominatore</strong>, perché la divisione per zero non è definita. Prima ancora di semplificare, si impone $B(x) \neq 0$.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il "denominatore diverso da zero" è il tuo primo dominio</div>
+          <p>Tieni a mente questa idea, perché non è un tecnicismo di passaggio: è <em>esattamente</em> il concetto di <strong>dominio di una funzione</strong> che incontrerai tra pochi capitoli. Quando studierai $f(x) = \dfrac{x+3}{x-2}$, il "$x \neq 2$" che scrivi oggi per la frazione algebrica sarà il dominio della funzione. <em>Lo ritroveremo identico quando parleremo di funzioni elementari e grafici →</em> (vedi <a href="09-funzioni-elementari-grafici.html">Capitolo 9</a>).</p>
+        </div>
+        <p><strong>Semplificazione.</strong> Si scompongono numeratore e denominatore in fattori e si eliminano i fattori comuni. Ma attenzione: la semplificazione è lecita <em>solo perché</em> quei fattori sono diversi da zero nel dominio. Ad esempio:</p>
+        <div class="formula-block">$$\frac{x^2 - 1}{x^2 - x} = \frac{(x-1)(x+1)}{x(x-1)} = \frac{x+1}{x}, \qquad \text{valida per } x \neq 0,\ x \neq 1.$$</div>
+        <p>I due passaggi, uno alla volta. Il numeratore $x^2-1$ è una differenza di quadrati $a^2-b^2$ con $a=x$ e $b=1$, quindi diventa $(x-1)(x+1)$. Il denominatore $x^2-x$ si scompone con un raccoglimento a fattor comune: entrambi i termini contengono $x$, quindi $x^2-x=x(x-1)$. Ora sopra e sotto compare lo stesso fattore $(x-1)$, e lo cancello. Le condizioni di esistenza si leggono sui fattori del denominatore <em>prima</em> di semplificare: $x\neq0$ da $x$, e $x\neq1$ da $x-1$.</p>
+        <p><strong>Operazioni.</strong> Funzionano come con le frazioni numeriche:</p>
+        <ul>
+          <li><em>Prodotto</em>: numeratore per numeratore, denominatore per denominatore (e si semplifica): $\dfrac{A}{B}\cdot\dfrac{C}{D} = \dfrac{AC}{BD}$.</li>
+          <li><em>Quoziente</em>: si moltiplica per il reciproco: $\dfrac{A}{B} : \dfrac{C}{D} = \dfrac{A}{B}\cdot\dfrac{D}{C}$.</li>
+          <li><em>Somma / differenza</em>: si riducono al denominatore comune (il mcm dei denominatori scomposti), poi si sommano i numeratori.</li>
+        </ul>
+        <p>La scomposizione dei denominatori e la loro somma sono la stessa tecnica che, in Analisi 2, userai per spezzare una frazione complicata in frazioni semplici da integrare: <em>ne riparleremo con i cosiddetti "fratti semplici" quando affronteremo gli integrali indefiniti →</em> (vedi <a href="../parte1-analisi1/13-integrali-indefiniti.html">Integrali indefiniti</a>).</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Identità</span>
+          <p><em class="nome">Quadrato di un binomio.</em> Per ogni coppia di numeri $a, b$ vale $\ (a+b)^2 = a^2 + 2ab + b^2$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione algebrica</span>
+          <p>Scrivere una potenza al quadrato significa moltiplicare la base per se stessa. Applichiamo la proprietà distributiva "ogni termine per ogni termine".</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Applico la definizione di quadrato (elevare al quadrato = moltiplicare la base per se stessa): $(a+b)^2 = (a+b)(a+b)$.</span>
+            <span class="esempio__passo">Applico la proprietà distributiva (<span class="richiamo" data-sec="4.2">§4.2</span>): ogni termine della prima parentesi moltiplica ogni termine della seconda. Sono $2\times2=4$ prodotti: $a\cdot a$, $\ a\cdot b$, $\ b\cdot a$, $\ b\cdot b$. Li scrivo tutti: $a\cdot a + a\cdot b + b\cdot a + b\cdot b = a^2 + ab + ba + b^2$.</span>
+            <span class="esempio__passo">I due termini centrali sono monomi simili, perché per la proprietà commutativa del prodotto $ba = ab$: hanno cioè la stessa parte letterale. Sommo i loro coefficienti, $1+1=2$, e ottengo $2ab$.</span>
+          </p>
+          <p>Quindi $(a+b)^2 = a^2 + 2ab + b^2$. Il "doppio prodotto" $2ab$ non è un capriccio: nasce dai due modi in cui si incontrano $a$ e $b$ nella distribuzione. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> La stessa identità... con le aree</div>
+          <p>C'è un motivo <em>geometrico</em> per cui compare quel $2ab$. Costruisci un quadrato di lato $(a+b)$: la sua area è $(a+b)^2$. Ora taglialo con una linea orizzontale e una verticale alla distanza $a$ dai bordi: ottieni <strong>quattro pezzi</strong>, un quadrato $a\times a$, un quadrato $b\times b$ e <strong>due</strong> rettangoli $a\times b$. La somma delle aree è $a^2 + b^2 + 2ab$. È lo stesso risultato, ma ora <em>vedi</em> perché i rettangoli misti sono due.</p>
+        </div>
+
+        <svg viewBox="0 0 260 240" style="max-width:340px;margin:1.2em auto;display:block;" role="img" aria-label="Quadrato di lato a più b scomposto in a al quadrato, b al quadrato e due rettangoli a per b">
+          <rect x="40" y="20" width="110" height="110" fill="var(--color-primary)" opacity="0.35" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="150" y="20" width="70" height="110" fill="var(--color-secondary)" opacity="0.35" stroke="var(--color-secondary)" stroke-width="2"/>
+          <rect x="40" y="130" width="110" height="70" fill="var(--color-secondary)" opacity="0.35" stroke="var(--color-secondary)" stroke-width="2"/>
+          <rect x="150" y="130" width="70" height="70" fill="var(--color-accent)" opacity="0.35" stroke="var(--color-accent)" stroke-width="2"/>
+          <text x="95" y="80" font-size="15" font-weight="700" fill="currentColor" text-anchor="middle">a²</text>
+          <text x="185" y="80" font-size="13" fill="currentColor" text-anchor="middle">ab</text>
+          <text x="95" y="170" font-size="13" fill="currentColor" text-anchor="middle">ab</text>
+          <text x="185" y="170" font-size="15" font-weight="700" fill="currentColor" text-anchor="middle">b²</text>
+          <text x="95" y="14" font-size="12" fill="currentColor" text-anchor="middle">a</text>
+          <text x="185" y="14" font-size="12" fill="currentColor" text-anchor="middle">b</text>
+          <text x="30" y="80" font-size="12" fill="currentColor" text-anchor="middle">a</text>
+          <text x="30" y="170" font-size="12" fill="currentColor" text-anchor="middle">b</text>
+        </svg>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Teorema del resto.</em> Il resto della divisione di un polinomio $P(x)$ per $(x-a)$ è uguale al valore $P(a)$. In particolare, $P(x)$ è divisibile per $(x-a)$ se e solo se $P(a) = 0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Usiamo l'unica cosa che sappiamo con certezza: la definizione stessa di divisione.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Scrivo l'identità della divisione vista nel <span class="richiamo" data-sec="4.3">§4.3</span>, $A(x)=B(x)Q(x)+R(x)$, sostituendo $A(x)=P(x)$ (il nostro polinomio) e $B(x)=(x-a)$ (il divisore di questo teorema): esistono $Q(x)$ e un resto $R$ tali che $P(x) = (x-a)\,Q(x) + R$.</span>
+            <span class="esempio__passo">Sempre per il <span class="richiamo" data-sec="4.3">§4.3</span> il resto ha grado minore del divisore. Il divisore $(x-a)$ ha grado $1$, quindi il resto ha grado minore di $1$: è una <em>costante</em>, un semplice numero, ed è per questo che lo scrivo $R$ e non $R(x)$.</span>
+            <span class="esempio__passo">Questa uguaglianza vale per <em>ogni</em> valore di $x$, quindi posso scegliere il valore che mi fa più comodo: scelgo proprio $x=a$, cioè ovunque compaia la lettera $x$ scrivo il numero $a$. A sinistra ottengo $P(a)$; a destra $(a-a)\,Q(a) + R$.</span>
+            <span class="esempio__passo">Ma $a-a=0$, e $0$ moltiplicato per qualunque cosa fa $0$: il primo addendo sparisce, indipendentemente da quanto valga $Q(a)$. Resta $P(a) = 0\cdot Q(a) + R = R$.</span>
+          </p>
+          <p>Dunque $R = P(a)$: il resto è proprio il valore del polinomio calcolato nella radice del divisore. E se $P(a)=0$, allora $R=0$, cioè $(x-a)$ divide esattamente $P(x)$. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Perché è utilissimo</div>
+          <p>Questo teorema è il motore della scomposizione con Ruffini: invece di provare a dividere alla cieca, <strong>prima verifichi con una sostituzione</strong> se un numero $a$ è radice (basta calcolare $P(a)$: se viene $0$, hai trovato un fattore $(x-a)$). Trasforma un problema di divisione in un problema di semplice sostituzione.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Operazioni tra monomi</span><span class="badge badge--base">Base</span></div>
+          <p>Semplificare $5a^2b - 2a^2b + a^2b$ e calcolare $(3x^2y)\cdot(-2xy^3)$ e $(2x^3)^2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">I tre termini sono monomi <em>simili</em> (stessa parte letterale $a^2b$): sommo i coefficienti $5-2+1=4$, quindi $5a^2b - 2a^2b + a^2b = 4a^2b$.</span>
+            <span class="esempio__passo">Prodotto: moltiplico prima i coefficienti, $3\cdot(-2)=-6$ (più per meno dà meno). Poi, per ogni lettera, uso la proprietà delle potenze $a^m\cdot a^n=a^{m+n}$ (cap. 3): per $x$ ho $m=2$ e $n=1$, quindi $x^2\cdot x=x^{2+1}=x^3$; per $y$ ho $m=1$ e $n=3$, quindi $y\cdot y^3=y^{1+3}=y^4$. Risultato $-6x^3y^4$.</span>
+            <span class="esempio__passo">Potenza: uso $(a\cdot b)^n=a^n\cdot b^n$ per separare il coefficiente dalla lettera, cioè $(2x^3)^2=2^2\cdot(x^3)^2$; poi $2^2=4$ e, con $(a^m)^n=a^{m\cdot n}$, $(x^3)^2=x^{3\cdot2}=x^6$. Quindi $(2x^3)^2 = 4x^6$.</span>
+          </p>
+          <div class="esempio__risultato">$4a^2b$, $\quad -6x^3y^4$, $\quad 4x^6$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — MCD e mcm tra monomi</span><span class="badge badge--base">Base</span></div>
+          <p>Determinare MCD e mcm dei monomi $12x^3y$ e $18xy^2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Coefficienti: $\text{MCD}(12,18)=6$ e $\text{mcm}(12,18)=36$.</span>
+            <span class="esempio__passo">MCD parte letterale: solo le lettere comuni a entrambi, col <em>minimo</em> esponente → $x$ (min tra $x^3$ e $x^1$) e $y$ (min tra $y^1$ e $y^2$) → $xy$.</span>
+            <span class="esempio__passo">mcm parte letterale: tutte le lettere, col <em>massimo</em> esponente → $x^3$ e $y^2$ → $x^3y^2$.</span>
+          </p>
+          <div class="esempio__risultato">$\text{MCD} = 6xy$, $\qquad \text{mcm} = 36x^3y^2$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Prodotti notevoli a vista</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Sviluppare $(x+5)^2$, $\ (3a-2)^2$ e $\ (2y-7)(2y+7)$ senza fare la distributiva completa.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$(x+5)^2$: uso $(a+b)^2=a^2+2ab+b^2$ (<span class="richiamo" data-sec="4.4">§4.4</span>) con $a=x$ e $b=5$. Sostituisco prima di fare i conti: $x^2 + 2\cdot x\cdot 5 + 5^2$. Ora calcolo: $2\cdot x\cdot5=10x$ e $5^2=25$ → $x^2 + 10x + 25$.</span>
+            <span class="esempio__passo">$(3a-2)^2$: qui la formula è quella con il meno, $(a-b)^2=a^2-2ab+b^2$, e va usata con $a=3a$ (tutto il termine, coefficiente compreso!) e $b=2$. Sostituisco: $(3a)^2 - 2\cdot(3a)\cdot 2 + 2^2$. Calcolo pezzo per pezzo: $(3a)^2=3^2a^2=9a^2$, poi $2\cdot3a\cdot2=12a$ che entra col segno meno, infine $2^2=4$ → $9a^2 - 12a + 4$.</span>
+            <span class="esempio__passo">$(2y-7)(2y+7)$: riconosco la forma $(a-b)(a+b)$ — stessi due termini, una volta con il meno e una con il più — quindi uso $(a+b)(a-b)=a^2-b^2$ con $a=2y$ e $b=7$. Sostituisco: $(2y)^2 - 7^2 = 4y^2 - 49$.</span>
+          </p>
+          <div class="esempio__risultato">$x^2+10x+25$, $\quad 9a^2-12a+4$, $\quad 4y^2-49$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Cubo di binomio e quadrato di trinomio</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Sviluppare $(2x-1)^3$ e $(x+y+2)^2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso la formula del cubo di binomio con il meno (<span class="richiamo" data-sec="4.4">§4.4</span>), $(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$, ponendo $a=2x$ e $b=1$. Sostituisco senza ancora calcolare nulla: $(2x)^3 - 3(2x)^2(1) + 3(2x)(1)^2 - 1^3$.</span>
+            <span class="esempio__passo">Ora sviluppo un addendo alla volta: $(2x)^3 = 2^3x^3 = 8x^3$; $\ -3(2x)^2(1) = -3\cdot4x^2 = -12x^2$; $\ +3(2x)(1)^2 = 3\cdot2x\cdot1 = 6x$; $\ -1^3 = -1$. Risultato: $8x^3 - 12x^2 + 6x - 1$.</span>
+            <span class="esempio__passo">Per $(x+y+2)^2$ uso il quadrato di trinomio $(a+b+c)^2=a^2+b^2+c^2+2ab+2ac+2bc$ con $a=x$, $b=y$, $c=2$. Sostituisco: i tre quadrati sono $x^2$, $y^2$ e $2^2=4$; i tre doppi prodotti, uno per ogni coppia possibile, sono $2ab=2\cdot x\cdot y = 2xy$, $\ 2ac=2\cdot x\cdot 2 = 4x$, $\ 2bc=2\cdot y\cdot 2 = 4y$.</span>
+          </p>
+          <div class="esempio__risultato">$(2x-1)^3 = 8x^3 - 12x^2 + 6x - 1$; $\quad (x+y+2)^2 = x^2 + y^2 + 4 + 2xy + 4x + 4y$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Scomposizione con più tecniche</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Scomporre in fattori: (a) $2x^3 - 8x$; (b) $x^2 - 7x + 12$; (c) $ax - ay + bx - by$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) I due termini $2x^3$ e $-8x$ hanno in comune il fattore $2x$ (MCD dei coefficienti $2$ e $8$ è $2$; lettera comune col minimo esponente è $x$). Raccolgo: dentro la parentesi va il risultato delle divisioni $2x^3:2x = x^2$ e $-8x:2x = -4$, quindi $2x(x^2 - 4)$. Ora guardo la parentesi: $x^2-4$ è una differenza di quadrati $a^2-b^2$ con $a=x$ e $b=2$ (perché $4=2^2$), quindi $x^2-4=(x-2)(x+2)$. Risultato $2x(x-2)(x+2)$.</span>
+            <span class="esempio__passo">(b) Confronto $x^2-7x+12$ con la forma $x^2+sx+p$: il coefficiente di $x$ è $s=-7$ e il termine noto è $p=12$. Cerco due numeri con somma $-7$ e prodotto $12$. Il prodotto è positivo e la somma negativa, quindi devono essere entrambi negativi; provo le coppie di divisori di $12$: $-1$ e $-12$ (somma $-13$, no), $-2$ e $-6$ (somma $-8$, no), $-3$ e $-4$ (somma $-7$, sì). Quindi $(x-3)(x-4)$.</span>
+            <span class="esempio__passo">(c) Nei primi due termini di $ax - ay + bx - by$ raccolgo $a$ e ottengo $a(x-y)$; negli ultimi due raccolgo $b$ e ottengo $b(x-y)$. La parentesi $(x-y)$ è ora comune ai due blocchi: la raccolgo trattandola come una lettera sola, e dentro resta quello che la moltiplicava, cioè $a+b$: $(x-y)(a+b)$.</span>
+          </p>
+          <div class="esempio__risultato">$2x(x-2)(x+2)$; $\quad (x-3)(x-4)$; $\quad (x-y)(a+b)$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Divisione tra polinomi con resto</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Eseguire la divisione $(2x^3 + 3x^2 - x + 5) : (x^2 + x - 1)$, indicando quoziente e resto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Divido il termine di grado massimo del dividendo per quello del divisore: $2x^3 : x^2 = 2x$. Primo termine del quoziente: $2x$.</span>
+            <span class="esempio__passo">Moltiplico il termine trovato per tutto il divisore: $2x\cdot(x^2+x-1) = 2x^3 + 2x^2 - 2x$. Lo sottraggo al dividendo, e per farlo tolgo la parentesi <strong>cambiando il segno a ogni suo termine</strong>: $2x^3+3x^2-x+5 - 2x^3 - 2x^2 + 2x$. Ora sommo i simili: $2x^3-2x^3=0$ (il termine di grado più alto si cancella sempre, è lo scopo del passo), $3x^2-2x^2=x^2$, $-x+2x=x$, e il $+5$ resta. Ottengo $x^2 + x + 5$.</span>
+            <span class="esempio__passo">Ripeto: $x^2 : x^2 = 1$. Secondo termine del quoziente: $+1$.</span>
+            <span class="esempio__passo">Moltiplico $1\cdot(x^2+x-1) = x^2+x-1$ e sottraggo, di nuovo cambiando i segni della parentesi: $x^2+x+5 - x^2 - x + 1$. Si cancellano $x^2$ con $-x^2$ e $x$ con $-x$; resta $5+1=6$. Il grado del resto $6$ è $0$, che è minore del grado $2$ del divisore: la condizione del <span class="richiamo" data-sec="4.3">§4.3</span> è soddisfatta e mi fermo.</span>
+            <span class="esempio__passo">Verifica con l'identità $A=BQ+R$. Calcolo $(x^2+x-1)(2x+1)$ con la distributiva: $2x$ per ogni termine dà $2x^3+2x^2-2x$; $1$ per ogni termine dà $x^2+x-1$. Sommando i simili: $2x^3 + (2x^2+x^2) + (-2x+x) - 1 = 2x^3+3x^2-x-1$. Aggiungo il resto $6$: $2x^3+3x^2-x-1+6 = 2x^3+3x^2-x+5$, cioè il dividendo di partenza. ✓</span>
+          </p>
+          <div class="esempio__risultato">Quoziente $Q(x) = 2x+1$, resto $R = 6$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Scomposizione completa con Ruffini</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Scomporre completamente $P(x) = x^3 - 7x + 6$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Cerco una radice intera tra i divisori del termine noto $6$ (se una radice intera esiste, deve per forza dividere il termine noto): i candidati sono $\pm1, \pm2, \pm3, \pm6$. Provo $x=1$, cioè sostituisco $1$ al posto di ogni $x$: $P(1) = 1^3 - 7\cdot1 + 6 = 1 - 7 + 6 = 0$. Trovata! Per il teorema del resto (sezione 5), $P(1)=0$ significa che $(x-1)$ è un fattore.</span>
+            <span class="esempio__passo">Divido con Ruffini per $(x-1)$. Il valore da usare è quello che annulla il divisore, cioè $a=1$; i coefficienti ordinati del dividendo sono $1,\ 0,\ -7,\ 6$ (lo $0$ tiene il posto del termine in $x^2$, che manca). Lo schema: abbasso il primo coefficiente, $1$; lo moltiplico per $a=1$ e sommo al successivo, $0+1=1$; moltiplico $1$ per $a=1$ e sommo, $-7+1=-6$; moltiplico $-6$ per $a=1$ e sommo, $6-6=0$, che è il resto (zero, come previsto). I numeri rimasti $1,\ 1,\ -6$ sono i coefficienti del quoziente, che ha grado $2$ perché il dividendo aveva grado $3$: $x^2 + x - 6$.</span>
+            <span class="esempio__passo">Scompongo il trinomio $x^2 + x - 6$ con la regola somma-prodotto: qui $s=1$ e $p=-6$, quindi cerco due numeri con somma $1$ e prodotto $-6$. Il prodotto è negativo, quindi i due numeri hanno segni opposti; le coppie di divisori di $6$ sono $1$ e $6$, $2$ e $3$: con segni opposti la seconda dà $3+(-2)=1$. Sono $3$ e $-2$ → $(x+3)(x-2)$.</span>
+          </p>
+          <div class="esempio__risultato">$x^3 - 7x + 6 = (x-1)(x-2)(x+3)$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Frazione algebrica: dominio, semplificazione, somma</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Data $\dfrac{x^2-9}{x^2-5x+6}$, determinarne il dominio e semplificarla; poi calcolare $\dfrac{1}{x-1} + \dfrac{2}{x+1}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Scompongo il denominatore con la regola del trinomio caratteristico (<span class="richiamo" data-sec="4.5">§4.5</span>): in $x^2-5x+6$ ho $s=-5$ e $p=6$, e i due numeri con somma $-5$ e prodotto $6$ sono $-2$ e $-3$, quindi $x^2 - 5x + 6 = (x-2)(x-3)$. Condizioni di esistenza: annullo ciascun fattore del denominatore e li escludo, cioè $x \neq 2$ e $x \neq 3$.</span>
+            <span class="esempio__passo">Scompongo il numeratore con la differenza di quadrati $a^2-b^2=(a-b)(a+b)$, con $a=x$ e $b=3$ (perché $9=3^2$): $x^2 - 9 = (x-3)(x+3)$.</span>
+            <span class="esempio__passo">Riscrivo la frazione con le due scomposizioni e cancello il fattore $(x-3)$, che compare identico sopra e sotto (posso farlo proprio perché nel dominio $x\neq3$, quindi $x-3\neq0$): $\dfrac{(x-3)(x+3)}{(x-2)(x-3)} = \dfrac{x+3}{x-2}$ (per $x\neq 2,3$).</span>
+            <span class="esempio__passo">Per la somma: i denominatori $x-1$ e $x+1$ si annullano per $x=1$ e $x=-1$, quindi C.E. $x\neq 1$ e $x\neq -1$. Essendo diversi e senza fattori comuni, il denominatore comune è il loro prodotto $(x-1)(x+1)$.</span>
+            <span class="esempio__passo">Trasformo ogni frazione nel nuovo denominatore: la prima va moltiplicata sopra e sotto per $(x+1)$, cioè $\dfrac{1}{x-1}=\dfrac{1\cdot(x+1)}{(x-1)(x+1)}$; la seconda sopra e sotto per $(x-1)$, cioè $\dfrac{2}{x+1}=\dfrac{2\cdot(x-1)}{(x-1)(x+1)}$. Ora i denominatori sono uguali e sommo solo i numeratori: $1\cdot(x+1) + 2\cdot(x-1) = x+1+2x-2 = 3x-1$. Il denominatore $(x-1)(x+1)$ è una differenza di quadrati letta al contrario, cioè $x^2-1$.</span>
+          </p>
+          <div class="esempio__risultato">$\dfrac{x^2-9}{x^2-5x+6} = \dfrac{x+3}{x-2}$; $\qquad \dfrac{1}{x-1}+\dfrac{2}{x+1} = \dfrac{3x-1}{x^2-1}$</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "Il quadrato di una somma è la somma dei quadrati"</div>
+          <p>Scrivere $(a+b)^2 = a^2 + b^2$ è <strong>sbagliato</strong>: manca il doppio prodotto $2ab$. Controprova numerica schiacciante: $(2+3)^2 = 5^2 = 25$, mentre $2^2 + 3^2 = 4 + 9 = 13$. Sono numeri diversi! <em>Come evitarlo</em>: recita sempre la filastrocca completa — "primo al quadrato, <strong>più il doppio prodotto</strong>, più il secondo al quadrato". Il termine centrale non è opzionale.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Il segno "meno" davanti a una parentesi</div>
+          <p>Un $-$ davanti a una parentesi cambia il segno di <strong>tutti</strong> i termini interni, non solo del primo: $-(a - b + c) = -a + b - c$. L'errore tipico è scrivere $-a - b + c$ o $-a - b - c$. Controprova numerica con $a=5, b=2, c=1$: $-(5-2+1) = -4$, e infatti $-5+2-1 = -4$ ✓, mentre $-5-2-1 = -8$ ✗. <em>Come evitarlo</em>: immagina il meno come un $(-1)$ che moltiplica <em>ogni</em> addendo della parentesi.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Semplificare addendi invece che fattori</div>
+          <p>In $\dfrac{x^2 + x}{x}$ è <strong>vietato</strong> "cancellare le $x$" così com'è per ottenere $x^2$: si semplificano solo i <em>fattori</em>, mai i termini di una somma. Prima si scompone: $\dfrac{x^2+x}{x} = \dfrac{x(x+1)}{x} = x+1$ (per $x\neq 0$). Controprova con $x=2$: la frazione vale $\tfrac{4+2}{2}=3$, e $x+1 = 3$ ✓; l'errata "$x^2$" darebbe $4$ ✗. <em>Come evitarlo</em>: se sopra o sotto c'è un $+$ o un $-$, <strong>non puoi cancellare finché non hai scomposto</strong>.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare le condizioni di esistenza</div>
+          <p>Semplificare $\dfrac{x^2-1}{x-1} = x+1$ e scordarsi di scrivere $x \neq 1$ è un errore che costa punti all'esame: la frazione di partenza <em>non esiste</em> in $x=1$ (denominatore nullo), mentre $x+1$ esisterebbe. Le due espressioni coincidono <strong>solo nel dominio</strong> della prima. <em>Come evitarlo</em>: imponi $\text{denominatore} \neq 0$ <strong>prima</strong> di toccare la frazione, e trascina quelle condizioni fino al risultato finale.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Il segno sbagliato nello schema di Ruffini</div>
+          <p>Per dividere per $(x-2)$ si usa $a = +2$; per dividere per $(x+3)$ si usa $a = -3$. L'errore frequentissimo è mettere nello schema il numero "così com'è scritto" (es. $+3$ per $x+3$). <em>Come evitarlo</em>: chiediti sempre "<strong>quale valore annulla il divisore?</strong>". $x+3=0$ dà $x=-3$: quello è il numero da usare. È lo stesso valore che, per il teorema del resto, dovresti sostituire per verificare la divisibilità.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconoscere un prodotto notevole a vista</div>
+          <p>Prima di lanciarti nella distributiva o in Ruffini, fatti tre domande veloci. <strong>Due termini con il meno, entrambi quadrati?</strong> È una differenza di quadrati: $A^2 - B^2 = (A-B)(A+B)$. <strong>Tre termini, i due esterni quadrati e quello centrale è il loro doppio prodotto?</strong> È un quadrato di binomio: $A^2 \pm 2AB + B^2 = (A\pm B)^2$. Riconoscerli ti fa saltare pagine di conti.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Quale radice provare con Ruffini</div>
+          <p>Non tirare a indovinare a caso. Le eventuali radici razionali di un polinomio a coefficienti interi vanno cercate tra le frazioni $\dfrac{p}{q}$ con $p$ divisore del <strong>termine noto</strong> e $q$ divisore del <strong>coefficiente direttivo</strong>. Se il coefficiente direttivo è $1$ (caso frequentissimo), basta provare i <strong>divisori interi del termine noto</strong>, positivi e negativi. Per $x^3 - 7x + 6$ provi $\pm1,\pm2,\pm3,\pm6$: poche prove, non infinite.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Raccogli sempre il pezzo più grande possibile</div>
+          <p>Il primo passo di ogni scomposizione è il raccoglimento totale del <strong>MCD di tutti i termini</strong>, preso il più grande possibile (coefficiente numerico incluso!). In $6x^4 - 12x^3 + 6x^2$ non raccogliere solo $x^2$: raccogli $6x^2$ per ottenere $6x^2(x^2 - 2x + 1) = 6x^2(x-1)^2$. Meno cose restano dentro la parentesi, più facile è riconoscere cosa fare dopo.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Scomponi prima, semplifica poi (e verifica moltiplicando)</div>
+          <p>Con le frazioni algebriche la regola d'oro è: <strong>nessuna semplificazione prima di aver scomposto sia sopra sia sotto</strong>. E per controllare una scomposizione qualsiasi, moltiplica i fattori trovati: devi riottenere il polinomio di partenza. In dieci secondi hai la certezza di non aver sbagliato un segno.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Algebra e Calcolo Letterale</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Monomi</strong>
+              <ul><li>coefficiente + parte letterale</li><li>grado = somma esponenti</li><li>somma solo tra simili</li><li>MCD e mcm</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Polinomi</strong>
+              <ul><li>ordinato / completo / omogeneo</li><li>somma e prodotto (distributiva)</li><li>divisione con resto</li><li>Ruffini per (x−a)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Prodotti notevoli</strong>
+              <ul><li>(a±b)² = a² ± 2ab + b²</li><li>(a+b)(a−b) = a² − b²</li><li>(a±b)³</li><li>a³ ± b³</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Scomposizione</strong>
+              <ul><li>raccoglimento totale / parziale</li><li>trinomio x² + sx + p</li><li>prodotti notevoli al contrario</li><li>Ruffini + teorema del resto</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Frazioni algebriche</strong>
+              <ul><li>dominio: denominatore ≠ 0</li><li>semplifica solo i fattori</li><li>somma con denominatore comune</li><li>anticipa il dominio delle funzioni</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Monomi</strong>: coefficiente $\times$ parte letterale; grado = somma degli esponenti; si sommano <em>solo</em> i monomi simili.</li>
+            <li><strong>Polinomi</strong>: somma di monomi; prodotto con la distributiva; divisione con resto $A = BQ + R$ con $\operatorname{grado}(R)&lt;\operatorname{grado}(B)$.</li>
+            <li><strong>Ruffini</strong> per dividere per $(x-a)$: si usa il valore che <em>annulla</em> il divisore (per $x+3$ è $-3$!). Il resto è $P(a)$ (teorema del resto).</li>
+            <li><strong>Prodotti notevoli</strong>: $(a\pm b)^2 = a^2 \pm 2ab + b^2$; $(a+b)(a-b) = a^2 - b^2$; cubi e somma/differenza di cubi. Riconoscerli a vista fa risparmiare tempo e riduce gli errori.</li>
+            <li><strong>Scomporre</strong> = trovare i "fattori primi" di un polinomio: raccoglimento, trinomio $x^2+sx+p$, prodotti notevoli al contrario, Ruffini. Serve a risolvere le equazioni (legge di annullamento del prodotto).</li>
+            <li><strong>Frazioni algebriche</strong>: prima le condizioni di esistenza (denominatore $\neq 0$), poi si scompone e si semplificano <em>solo i fattori</em>. Questo "denominatore diverso da zero" è già il concetto di <em>dominio</em>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Semplifica $7a^2b - 3a^2b + 2a^2b$ e calcola il prodotto $(4x^2y)\cdot(-3xy^2)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>I tre monomi sono simili perché hanno la stessa parte letterale $a^2b$: posso quindi sommarli, sommando solo i coefficienti e lasciando la parte letterale intatta. I coefficienti sono $7$, $-3$ e $+1$ (davanti a $a^2b$ senza numero c'è un $1$ sottinteso): $7-3+2 = 6$, quindi la somma è $6a^2b$.</p>
+              <p>Prodotto: moltiplico i coefficienti, $4\cdot(-3) = -12$, poi uso la proprietà delle potenze $a^m\cdot a^n=a^{m+n}$ su ogni lettera. Per $x$: $m=2$, $n=1$, quindi $x^2\cdot x=x^3$. Per $y$: $m=1$, $n=2$, quindi $y\cdot y^2=y^3$.</p>
+              <p><strong>$6a^2b$ e $\ -12x^3y^3$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Dato $P(x) = 3x - 5 + 2x^3 - x^2$, riordinalo secondo le potenze decrescenti, indica grado, coefficiente direttivo e termine noto, e di' se è completo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Ordinato: $2x^3 - x^2 + 3x - 5$. Grado $3$; coefficiente direttivo $2$; termine noto $-5$.</p>
+              <p><strong>È completo</strong>: compaiono tutte le potenze da $x^3$ a $x^0$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Sviluppa i prodotti notevoli $(x+4)^2$ e $(2a-3)(2a+3)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Per il primo uso $(a+b)^2=a^2+2ab+b^2$ (<span class="richiamo" data-sec="4.4">§4.4</span>) con $a=x$ e $b=4$. Sostituisco: $x^2 + 2\cdot x\cdot 4 + 4^2$, e poi calcolo $2\cdot x\cdot4=8x$ e $4^2=16$: $(x+4)^2 = x^2 + 8x + 16$.</p>
+              <p>Il secondo ha la forma $(a-b)(a+b)$ (stessi due termini, una volta col meno e una col più), quindi uso $(a+b)(a-b)=a^2-b^2$ con $a=2a$ e $b=3$. Sostituisco: $(2a)^2 - 3^2$; calcolo $(2a)^2=2^2a^2=4a^2$ e $3^2=9$, quindi $4a^2 - 9$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scomponi con un raccoglimento totale a fattor comune: $6x^3 - 9x^2 + 3x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Il MCD dei coefficienti $6,9,3$ è $3$; la lettera comune col minimo esponente è $x$ (compare come $x^3$, $x^2$ e $x^1$: il minimo esponente è $1$). Il fattore da raccogliere è quindi $3x$.</p>
+              <p>Dentro la parentesi va ogni termine <em>diviso</em> per $3x$: $6x^3:3x = 2x^2$ (coefficienti $6:3=2$, esponenti $3-1=2$), $\ -9x^2:3x = -3x$, $\ 3x:3x = 1$ (non $0$!).</p>
+              <p><strong>$6x^3 - 9x^2 + 3x = 3x(2x^2 - 3x + 1)$</strong>. Verifica rifacendo la distributiva all'indietro: $3x\cdot2x^2=6x^3$, $\ 3x\cdot(-3x)=-9x^2$, $\ 3x\cdot1=3x$ ✓.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Sviluppa il cubo di binomio $(2x-1)^3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Uso la formula $(a-b)^3 = a^3 - 3a^2b + 3ab^2 - b^3$ (<span class="richiamo" data-sec="4.4">§4.4</span>) sostituendo $a=2x$ e $b=1$. Prima scrivo la sostituzione senza calcolare: $(2x)^3 - 3(2x)^2(1) + 3(2x)(1)^2 - 1^3$.</span>
+                <span class="esempio__passo">Ora sviluppo ogni addendo: $(2x)^3 = 2^3x^3 = 8x^3$; $\ -3(2x)^2(1) = -3\cdot 4x^2 = -12x^2$; $\ +3(2x)(1)^2 = 6x$; $\ -1^3 = -1$.</span>
+              </p>
+              <p><strong>$(2x-1)^3 = 8x^3 - 12x^2 + 6x - 1$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scomponi il trinomio $x^2 - 7x + 12$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Confronto con la forma $x^2+sx+p$ (<span class="richiamo" data-sec="4.5">§4.5</span>): qui $s=-7$ (coefficiente di $x$) e $p=12$ (termine noto), quindi cerco due numeri con somma $-7$ e prodotto $12$. Prodotto positivo e somma negativa vogliono dire che sono entrambi negativi; provo le coppie di divisori di $12$: $-1,-12$ (somma $-13$), $-2,-6$ (somma $-8$), $-3,-4$ (somma $-7$ ✓). Sono $-3$ e $-4$, che vanno messi come $(x+m)(x+n)$, cioè $(x-3)(x-4)$.</p>
+              <p><strong>$x^2 - 7x + 12 = (x-3)(x-4)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scomponi con il raccoglimento parziale: $ax + ay + bx + by$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Raggruppo le prime due e le ultime due. Nei primi due termini, $ax+ay$, il fattore comune è $a$: raccogliendolo resta $a(x+y)$. Negli ultimi due, $bx+by$, il fattore comune è $b$: resta $b(x+y)$. In tutto: $a(x+y) + b(x+y)$.</span>
+                <span class="esempio__passo">Ora $(x+y)$ è un fattore comune ai due blocchi. Lo raccolgo trattando l'intera parentesi come se fosse una sola lettera: davanti scrivo $(x+y)$ e dentro la nuova parentesi va quello che la moltiplicava nei due blocchi, cioè $a$ e $b$.</span>
+              </p>
+              <p><strong>$ax + ay + bx + by = (x+y)(a+b)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scomponi la somma di cubi $8x^3 + 27$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Riconosco $8x^3 = (2x)^3$ (perché $2^3=8$) e $27 = 3^3$. Uso $a^3+b^3 = (a+b)(a^2-ab+b^2)$ (<span class="richiamo" data-sec="4.4">§4.4</span>) con $a=2x$, $b=3$. Sostituisco prima di semplificare: $(2x+3)\big((2x)^2-(2x)(3)+3^2\big)$; poi calcolo i tre pezzi della seconda parentesi: $(2x)^2=4x^2$, $\ (2x)(3)=6x$ col segno meno, $\ 3^2=9$.</p>
+              <p><strong>$8x^3 + 27 = (2x+3)(4x^2 - 6x + 9)$</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Esegui la divisione $(x^3 - 4x + 2) : (x^2 + x - 1)$ e indica quoziente e resto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Divido i termini di grado massimo: $x^3 : x^2 = x$ (sottraggo gli esponenti, $3-2=1$). Primo termine del quoziente: $x$.</span>
+                <span class="esempio__passo">Moltiplico $x$ per tutto il divisore: $x(x^2+x-1) = x^3+x^2-x$. Lo sottraggo al dividendo togliendo la parentesi e cambiando tutti i segni: $x^3 - 4x + 2 - x^3 - x^2 + x$. Sommo i simili: $x^3-x^3=0$, resta $-x^2$, poi $-4x+x=-3x$ e $+2$. Ottengo $-x^2 - 3x + 2$.</span>
+                <span class="esempio__passo">Ripeto sul nuovo dividendo: $-x^2 : x^2 = -1$. Secondo termine del quoziente: $-1$.</span>
+                <span class="esempio__passo">Moltiplico $-1$ per tutto il divisore: $-1\cdot(x^2+x-1) = -x^2-x+1$. Sottraggo cambiando i segni della parentesi: $-x^2-3x+2 + x^2 + x - 1$. I termini $-x^2$ e $+x^2$ si cancellano; resta $-3x+x=-2x$ e $2-1=1$, cioè $-2x+1$.</span>
+                <span class="esempio__passo">Il grado di $-2x+1$ è $1$, minore del grado $2$ del divisore: la condizione del <span class="richiamo" data-sec="4.3">§4.3</span> è rispettata e mi fermo.</span>
+              </p>
+              <p><strong>Quoziente $x-1$, resto $-2x+1$.</strong> Verifica con $A=BQ+R$: sviluppo $(x^2+x-1)(x-1)$ con la distributiva — $x$ per ogni termine dà $x^3+x^2-x$, poi $-1$ per ogni termine dà $-x^2-x+1$; sommando i simili, $x^2-x^2=0$ e $-x-x=-2x$, resta $x^3-2x+1$. Aggiungo il resto: $x^3-2x+1 + (-2x+1) = x^3 - 4x + 2$ ✓.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Scomponi completamente $x^3 - 7x + 6$ usando la regola di Ruffini.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Le eventuali radici intere vanno cercate tra i divisori del termine noto $6$: $\pm1,\pm2,\pm3,\pm6$. Sostituisco $x=1$ nel polinomio: $P(1)=1^3-7\cdot1+6 = 1-7+6=0$. Per il teorema del resto (sezione 5), resto nullo significa divisibilità: $(x-1)$ è un fattore.</span>
+                <span class="esempio__passo">Applico Ruffini con $a=1$ (il valore che annulla $x-1$) e coefficienti $1,\ 0,\ -7,\ 6$ — lo $0$ sostituisce il termine in $x^2$ mancante. Abbasso $1$; $1\cdot1=1$ e $0+1=1$; $1\cdot1=1$ e $-7+1=-6$; $-6\cdot1=-6$ e $6-6=0$ (resto). I coefficienti del quoziente sono quindi $1,1,-6$, cioè il polinomio di grado $2$: $x^2 + x - 6$.</span>
+                <span class="esempio__passo">Scompongo $x^2+x-6$ con la regola somma-prodotto ($s=1$, $p=-6$): servono due numeri con somma $1$ e prodotto $-6$; essendo il prodotto negativo hanno segni opposti, e la coppia $3$ e $-2$ funziona ($3\cdot(-2)=-6$, $3-2=1$) → $(x+3)(x-2)$.</span>
+              </p>
+              <p><strong>$x^3 - 7x + 6 = (x-1)(x-2)(x+3)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina il dominio e semplifica la frazione algebrica $\dfrac{x^2-9}{x^2-5x+6}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Denominatore: è un trinomio $x^2+sx+p$ con $s=-5$ e $p=6$; i due numeri con somma $-5$ e prodotto $6$ sono $-2$ e $-3$, quindi $x^2-5x+6 = (x-2)(x-3)$. Le C.E. si ottengono imponendo che nessun fattore del denominatore sia nullo: $x-2\neq0$ e $x-3\neq0$, cioè $x\neq 2$ e $x\neq 3$.</span>
+                <span class="esempio__passo">Numeratore: differenza di quadrati $a^2-b^2=(a-b)(a+b)$ con $a=x$ e $b=3$, quindi $x^2-9 = (x-3)(x+3)$.</span>
+                <span class="esempio__passo">Riscrivo tutto scomposto, $\dfrac{(x-3)(x+3)}{(x-2)(x-3)}$, e cancello il fattore $(x-3)$ presente sia sopra sia sotto (lecito perché nel dominio $x\neq3$).</span>
+              </p>
+              <p><strong>$\dfrac{x^2-9}{x^2-5x+6} = \dfrac{x+3}{x-2}$ per $x\neq 2,\ x\neq 3$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\dfrac{1}{x-1} + \dfrac{2}{x+1}$, indicando le condizioni di esistenza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">C.E.: annullo i denominatori, $x-1=0$ dà $x=1$ e $x+1=0$ dà $x=-1$; quindi $x\neq 1$ e $x\neq -1$. I due denominatori non hanno fattori comuni, quindi il denominatore comune è il loro prodotto: $(x-1)(x+1)$, che per la differenza di quadrati vale $x^2-1$.</span>
+                <span class="esempio__passo">Porto ciascuna frazione al denominatore comune moltiplicando sopra e sotto per il fattore che le manca: la prima per $(x+1)$, la seconda per $(x-1)$. Diventano $\dfrac{1\cdot(x+1)}{(x-1)(x+1)}$ e $\dfrac{2\cdot(x-1)}{(x-1)(x+1)}$.</span>
+                <span class="esempio__passo">Con i denominatori uguali sommo solo i numeratori: $1\cdot(x+1) + 2\cdot(x-1)$. Svolgo le moltiplicazioni: $x+1+2x-2$; riduco i simili: $x+2x=3x$ e $1-2=-1$, cioè $3x-1$.</span>
+              </p>
+              <p><strong>$\dfrac{1}{x-1}+\dfrac{2}{x+1} = \dfrac{3x-1}{x^2-1}$ per $x\neq \pm 1$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Scomporre completamente in fattori il polinomio $x^4 - 5x^2 + 4$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">È un polinomio <em>biquadratico</em>: compaiono solo $x^4$, $x^2$ e il termine noto. Pongo $t = x^2$, cioè scrivo la lettera $t$ al posto di $x^2$; allora $x^4=(x^2)^2=t^2$ (proprietà $(a^m)^n=a^{mn}$ letta al contrario). Il polinomio diventa $t^2 - 5t + 4$, che è di secondo grado e so trattare.</span>
+                <span class="esempio__passo">Scompongo il trinomio in $t$ con la regola somma-prodotto: servono due numeri con somma $-5$ e prodotto $4$, e sono $-1$ e $-4$ → $(t-1)(t-4)$.</span>
+                <span class="esempio__passo">Torno alla variabile originale sostituendo all'indietro $t = x^2$, cioè rimetto $x^2$ dove c'è $t$: $(x^2-1)(x^2-4)$.</span>
+                <span class="esempio__passo">Entrambe le parentesi sono differenze di quadrati $a^2-b^2=(a-b)(a+b)$: la prima con $a=x$, $b=1$ dà $(x-1)(x+1)$; la seconda con $a=x$, $b=2$ dà $(x-2)(x+2)$.</span>
+              </p>
+              <p><strong>$x^4 - 5x^2 + 4 = (x-1)(x+1)(x-2)(x+2)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Semplificare, indicando le condizioni di esistenza, l'espressione $\dfrac{x^2-4}{x^2+4x+4} \cdot \dfrac{x+2}{x-2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Scompongo i due denominatori e il numeratore. $x^2-4$ è una differenza di quadrati con $a=x$, $b=2$: $(x-2)(x+2)$. $x^2+4x+4$ è il quadrato di un binomio $a^2+2ab+b^2$ con $a=x$ e $b=2$ (controllo il doppio prodotto: $2\cdot x\cdot2=4x$ ✓), quindi $(x+2)^2$. C.E.: $x\neq -2$ (annulla il denominatore della prima frazione) e $x\neq 2$ (annulla quello della seconda).</span>
+                <span class="esempio__passo">Prima frazione: $\dfrac{(x-2)(x+2)}{(x+2)^2}$; siccome $(x+2)^2=(x+2)(x+2)$, cancello un fattore $(x+2)$ sopra e uno sotto e resta $\dfrac{x-2}{x+2}$.</span>
+                <span class="esempio__passo">Prodotto: moltiplico numeratore per numeratore e denominatore per denominatore, $\dfrac{(x-2)(x+2)}{(x+2)(x-2)}$. Sopra e sotto compaiono esattamente gli stessi due fattori, quindi si cancellano tutti e resta $\dfrac{1}{1}=1$.</span>
+              </p>
+              <p><strong>L'espressione vale $1$, per $x\neq 2$ e $x\neq -2$.</strong> Nota: pur essendo il risultato la costante $1$, le C.E. restano: fuori dal dominio l'espressione originale non esiste.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare il valore di $k$ affinché $P(x) = x^3 - 2x^2 + kx - 6$ sia divisibile per $(x-3)$, e con quel valore scomporre $P(x)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Per il teorema del resto (sezione 5), il resto della divisione per $(x-a)$ è $P(a)$; qui il divisore è $(x-3)$, quindi $a=3$ e la divisibilità equivale a $P(3)=0$.</span>
+                <span class="esempio__passo">Calcolo $P(3)$ sostituendo $3$ al posto di ogni $x$: $P(3) = 3^3 - 2\cdot3^2 + k\cdot3 - 6 = 27 - 2\cdot 9 + 3k - 6 = 27 - 18 + 3k - 6$. Sommo i numeri: $27-18-6=3$, quindi $P(3)=3+3k$.</span>
+                <span class="esempio__passo">Impongo la condizione $P(3)=0$, cioè $3+3k=0$: sottraggo $3$ da entrambi i membri ($3k=-3$) e divido entrambi i membri per $3$, ottenendo $k=-1$.</span>
+                <span class="esempio__passo">Sostituisco $k=-1$ nel polinomio: $P(x)=x^3-2x^2-x-6$. Applico Ruffini con $a=3$ e coefficienti $1,-2,-1,-6$: abbasso $1$; $1\cdot3=3$ e $-2+3=1$; $1\cdot3=3$ e $-1+3=2$; $2\cdot3=6$ e $-6+6=0$ (resto nullo, come deve essere). Il quoziente ha coefficienti $1,1,2$, cioè $x^2+x+2$.</span>
+                <span class="esempio__passo">Resta da vedere se $x^2+x+2$ si scompone ancora. Uso il discriminante $\Delta=b^2-4ac$ (lo rivedremo in dettaglio nel <a href="05-equazioni.html">Capitolo 5</a>) con $a=1$, $b=1$, $c=2$: $\Delta = 1^2-4\cdot1\cdot2 = 1-8 = -7$, negativo. Con discriminante negativo il trinomio non ha radici reali, quindi è irriducibile nei reali e la scomposizione finisce qui.</span>
+              </p>
+              <p><strong>$k=-1$; $\ P(x) = (x-3)(x^2+x+2)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostrare l'identità $(a+b)^3 - (a-b)^3 = 2b\,(3a^2 + b^2)$, valida per ogni $a,b$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Lavoro sul primo membro. Sviluppo i due cubi con le formule del <span class="richiamo" data-sec="4.4">§4.4</span>: $(a+b)^3 = a^3+3a^2b+3ab^2+b^3$ e $(a-b)^3 = a^3-3a^2b+3ab^2-b^3$.</span>
+                <span class="esempio__passo">Scrivo la differenza mettendo il secondo sviluppo tra parentesi: $\big(a^3+3a^2b+3ab^2+b^3\big) - \big(a^3-3a^2b+3ab^2-b^3\big)$. Tolgo la seconda parentesi cambiando il segno a <em>ognuno</em> dei suoi quattro termini: $a^3+3a^2b+3ab^2+b^3 - a^3+3a^2b-3ab^2+b^3$.</span>
+                <span class="esempio__passo">Raggruppo i termini simili: $(a^3-a^3) + (3a^2b+3a^2b) + (3ab^2-3ab^2) + (b^3+b^3) = 0 + 6a^2b + 0 + 2b^3 = 6a^2b + 2b^3$.</span>
+                <span class="esempio__passo">Raccolgo il fattore comune $2b$ (i coefficienti $6$ e $2$ hanno MCD $2$, e la lettera $b$ compare in entrambi col minimo esponente $1$); dentro la parentesi va ogni termine diviso per $2b$: $6a^2b:2b = 3a^2$ e $2b^3:2b = b^2$. Quindi $6a^2b + 2b^3 = 2b(3a^2 + b^2)$, che è esattamente il secondo membro.</span>
+              </p>
+              <p><strong>Il primo membro coincide con il secondo: l'identità è dimostrata. ∎</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Qual è il grado del monomio $7x^2y^3$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$2$</button>
+              <button class="quiz-option" data-correct="false">$3$</button>
+              <button class="quiz-option" data-correct="true">$5$</button>
+              <button class="quiz-option" data-correct="false">$6$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il grado (complessivo) è la somma degli esponenti della parte letterale: $2+3=5$. Il coefficiente $7$ non conta.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Sviluppando $(x-3)^2$ si ottiene:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$x^2 - 9$</button>
+              <button class="quiz-option" data-correct="true">$x^2 - 6x + 9$</button>
+              <button class="quiz-option" data-correct="false">$x^2 + 9$</button>
+              <button class="quiz-option" data-correct="false">$x^2 - 6x - 9$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Quadrato del primo $x^2$, doppio prodotto $-2\cdot x\cdot 3 = -6x$, quadrato del secondo $(-3)^2 = +9$. Il termine noto è positivo perché $(-3)^2&gt;0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) La scomposizione di $x^2 - 25$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$(x-5)^2$</button>
+              <button class="quiz-option" data-correct="true">$(x-5)(x+5)$</button>
+              <button class="quiz-option" data-correct="false">$(x+5)^2$</button>
+              <button class="quiz-option" data-correct="false">non è scomponibile</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È una differenza di quadrati: $A^2 - B^2 = (A-B)(A+B)$ con $A=x$, $B=5$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Per dividere un polinomio per $(x+2)$ con la regola di Ruffini, quale valore va inserito nello schema?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$+2$</button>
+              <button class="quiz-option" data-correct="true">$-2$</button>
+              <button class="quiz-option" data-correct="false">$0$</button>
+              <button class="quiz-option" data-correct="false">$\tfrac{1}{2}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Si usa il valore che annulla il divisore: $x+2=0 \Rightarrow x=-2$. È lo stesso numero da sostituire nel teorema del resto.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Per ogni $a,b$ vale $(a+b)^2 = a^2 + b^2$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: manca il doppio prodotto. Controprova: $(2+3)^2 = 25$, mentre $2^2+3^2 = 13$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Vale l'uguaglianza $x^2 - 9 = (x-3)(x+3)$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: differenza di quadrati con $A=x$, $B=3$. Moltiplicando i due fattori si riottiene $x^2-9$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) La frazione $\dfrac{x^2-4}{x-2}$ è uguale a $x+2$ per <em>ogni</em> valore reale di $x$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: la semplificazione dà $x+2$ ma solo per $x\neq 2$. In $x=2$ la frazione non esiste (denominatore nullo), mentre $x+2$ varrebbe $4$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Il resto della divisione di un polinomio $P(x)$ per $(x-a)$ è uguale a $P(a)$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il teorema del resto. In particolare $P(x)$ è divisibile per $(x-a)$ esattamente quando $P(a)=0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="scomposizione|fattorizzazione|scomposizione in fattori">
+            <p class="quiz-question__testo">9. (Completamento) Riscrivere un polinomio come prodotto di polinomi più semplici si chiama ______ in fattori.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È l'operazione inversa del moltiplicare tra polinomi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="zero|0">
+            <p class="quiz-question__testo">10. (Completamento) In una frazione algebrica il denominatore non può mai essere uguale a ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>La divisione per zero non è definita: da qui nascono le condizioni di esistenza (il "dominio").</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="quadrati|quadrato">
+            <p class="quiz-question__testo">11. (Completamento) L'identità $a^2 - b^2 = (a+b)(a-b)$ è nota come "differenza di ______".</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il prodotto notevole più usato per scomporre: trasforma una differenza in un prodotto.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché $(a+b)^2$ non è uguale a $a^2 + b^2$, usando sia un argomento algebrico sia uno numerico.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: algebricamente $(a+b)^2 = (a+b)(a+b) = a^2 + ab + ba + b^2 = a^2 + 2ab + b^2$; il termine $2ab$ nasce dai due modi in cui $a$ e $b$ si incontrano nella distribuzione (geometricamente, i due rettangoli $a\times b$ nel quadrato di lato $a+b$). Numericamente, con $a=2$ e $b=3$: $(2+3)^2 = 25$, mentre $2^2+3^2 = 13$. Poiché $25\neq 13$, le due espressioni non possono essere uguali: manca proprio il doppio prodotto $2ab = 12$.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché, prima di semplificare una frazione algebrica, bisogna scomporre e imporre le condizioni di esistenza? Collega la tua risposta al concetto di dominio.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si semplificano solo i <em>fattori</em>, quindi bisogna prima scomporre numeratore e denominatore per farli comparire. Ma la semplificazione di un fattore è lecita solo dove quel fattore è diverso da zero; per questo si impongono le condizioni di esistenza (denominatore $\neq 0$) prima di toccare la frazione. Queste condizioni definiscono l'insieme dei valori ammessi, cioè esattamente il <strong>dominio</strong> dell'espressione: dopo la semplificazione l'espressione ridotta coincide con quella originale solo su tale dominio, quindi le C.E. vanno trascinate fino al risultato finale.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a href="01-insiemi-logica-numeri.html"><span class="dir">← Capitolo precedente</span><strong>Insiemi, logica e numeri</strong></a>
+        <a class="next" href="03-potenze-radicali-esponenziali.html"><span class="dir">Capitolo successivo →</span><strong>Potenze, radicali ed esponenziali</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

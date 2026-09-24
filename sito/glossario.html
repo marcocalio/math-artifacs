@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glossario — Analisi 1 & 2, il Manuale Interattivo</title>
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="index.html">Home</a>
+      <a href="index.html#parte0">Parte 0</a>
+      <a href="index.html#parte1">Analisi 1</a>
+      <a href="index.html#parte2">Analisi 2</a>
+      <a href="glossario.html" class="is-active">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="index.html">Home</a><span class="sep">/</span>Glossario</p>
+
+  <div class="hero" style="padding-top:.5rem;">
+    <span class="eyebrow" style="text-align:center;">Consultazione rapida</span>
+    <h1>📖 Glossario di Analisi Matematica</h1>
+    <p class="lead">Tutte le definizioni essenziali del libro in un unico posto, con un linguaggio semplice prima ancora che formale. Cliccando su un termine sottolineato in un capitolo si apre la sua definizione al volo: qui trovi l'elenco completo.</p>
+  </div>
+
+  <input type="text" id="glossario-search" class="glossario-search" placeholder="🔎 Cerca un termine (es. 'derivata', 'gradiente', 'limite'...)">
+
+  <div class="btn-row" id="glossario-filtri">
+    <button class="btn btn--sm btn--primary" data-filtro="tutti">Tutti i termini</button>
+    <button class="btn btn--sm" data-filtro="0">Parte 0 · Prerequisiti</button>
+    <button class="btn btn--sm" data-filtro="1">Parte 1 · Analisi 1</button>
+    <button class="btn btn--sm" data-filtro="2">Parte 2 · Analisi 2</button>
+  </div>
+
+  <div id="glossario-container"></div>
+
+  <p class="text-muted" style="margin-top:2rem;">Il glossario cresce insieme al libro: ogni nuovo capitolo aggiunge le proprie voci tecniche.</p>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="index.html">Torna all'indice generale</a></span>
+  </div>
+</footer>
+
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="assets/js/glossary-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/interactive.js"></script>
+<script>
+(function () {
+  var container = document.getElementById("glossario-container");
+  var searchInput = document.getElementById("glossario-search");
+  var filtriBtns = document.querySelectorAll("#glossario-filtri button");
+  var currentFiltro = "tutti";
+
+  var partLabels = { "0": "Parte 0 · Prerequisiti", "1": "Parte 1 · Analisi Matematica 1", "2": "Parte 2 · Analisi Matematica 2" };
+
+  function render() {
+    var query = (searchInput.value || "").toLowerCase().trim();
+    var entries = Object.keys(window.GLOSSARIO || {}).map(function (slug) {
+      return Object.assign({ slug: slug }, window.GLOSSARIO[slug]);
+    });
+
+    if (currentFiltro !== "tutti") entries = entries.filter(function (e) { return e.parte === currentFiltro; });
+    if (query) entries = entries.filter(function (e) {
+      return e.term.toLowerCase().indexOf(query) !== -1 || e.def.toLowerCase().indexOf(query) !== -1;
+    });
+
+    entries.sort(function (a, b) {
+      if (a.parte !== b.parte) return a.parte.localeCompare(b.parte);
+      return a.term.localeCompare(b.term, "it");
+    });
+
+    if (!entries.length) {
+      container.innerHTML = "<p class='text-muted'>Nessun termine trovato. Prova con un'altra parola chiave.</p>";
+      return;
+    }
+
+    var html = "";
+    var lastParte = null;
+    var grid = "";
+    entries.forEach(function (e) {
+      if (e.parte !== lastParte) {
+        if (grid) { html += "<div class='glossario-grid'>" + grid + "</div>"; grid = ""; }
+        html += "<h2 class='glossario-lettera'>" + partLabels[e.parte] + "</h2>";
+        lastParte = e.parte;
+      }
+      grid += "<div class='glossario-voce' id='" + e.slug + "'><h3>" + e.term + "</h3><p>" + e.def + "</p></div>";
+    });
+    if (grid) html += "<div class='glossario-grid'>" + grid + "</div>";
+    container.innerHTML = html;
+
+    if (location.hash) {
+      var target = document.getElementById(location.hash.slice(1));
+      if (target) setTimeout(function () { target.scrollIntoView({ behavior: "smooth", block: "center" }); target.style.outline = "2px solid var(--color-primary)"; }, 80);
+    }
+  }
+
+  searchInput.addEventListener("input", render);
+  filtriBtns.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      filtriBtns.forEach(function (b) { b.classList.remove("btn--primary"); });
+      btn.classList.add("btn--primary");
+      currentFiltro = btn.getAttribute("data-filtro");
+      render();
+    });
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

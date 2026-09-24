@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2. Limiti e continuità in più variabili — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 2</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html" class="is-active">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 2 di 14</span>
+        </div>
+        <h1>Limiti e continuità in più variabili</h1>
+        <p class="subtitle">In una variabile ci si avvicina a un punto solo da due parti: destra e sinistra. Nel piano ci si avvicina da infinite direzioni e lungo infinite curve, e il limite esiste soltanto se <em>tutte</em> queste strade portano allo stesso numero. È il capitolo che ti insegna a smascherare i limiti che non esistono e a dimostrare con sicurezza quelli che esistono.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve di Analisi 1</div>
+          <p>Prima di partire, quattro idee di Analisi 1. Te le rispiego con parole semplicissime. Niente formule, solo immagini.</p>
+          <p><strong>1) <a href="../parte1-analisi1/04-limiti.html">Limite</a> in una variabile.</strong> Fare un limite vuol dire chiedersi: <em>dove sta andando</em> la funzione? Non dove <em>è</em>, ma dove <em>sta andando</em>. Il punto di arrivo può anche essere un buco: non importa.<br>
+          <em>Immagine mentale</em>: cammini lungo una strada verso un cartello. Anche se il cartello è coperto da un telo, guardando i numeri sui cartelli precedenti capisci quale numero c'è sotto. Quel numero è il limite.</p>
+          <p><strong>2) <a href="../parte1-analisi1/06-continuita.html">Continuità</a>.</strong> Una funzione è continua in un punto se "dove sta andando" e "quanto vale" sono lo stesso numero. Nessun salto, nessun buco.<br>
+          <em>Immagine mentale</em>: disegni il grafico senza mai staccare la penna dal foglio.</p>
+          <p><strong>3) Forme indeterminate.</strong> A volte il calcolo diretto dà scritture come $\frac{0}{0}$ o $\frac{\infty}{\infty}$. Non sono errori: sono <em>segnali</em> che dicono "non lo so ancora, devi lavorare di più".<br>
+          <em>Immagine mentale</em>: un tiro alla fune. Due squadre tirano in direzioni opposte. Chi vince? Dipende da quanto è forte ciascuna: devi guardare meglio.</p>
+          <p><strong>4) Intorni.</strong> Un intorno di un punto è "tutti i punti abbastanza vicini" a quel punto. Serve a dire con precisione cosa vuol dire "avvicinarsi".<br>
+          <em>Immagine mentale</em>: disegni un cerchietto attorno al punto. Chi sta dentro il cerchietto è "vicino". Se stringi il cerchietto, resti solo con i vicinissimi.</p>
+          <p>Tutto qui. In questo capitolo queste quattro idee restano identiche: cambia solo il <em>palcoscenico</em>, che da una retta diventa un piano.</p>
+        </div>
+
+        <p>Ora la domanda che dà il titolo al capitolo. In una variabile, per avvicinarti a un punto $x_0$ sulla retta, hai solo <strong>due strade</strong>: arrivi da sinistra oppure da destra. Ecco perché in Analisi 1 esistevano i due limiti laterali, e perché la regola era semplicissima: <em>se i due laterali coincidono, il limite esiste; se no, no</em>. Due strade, due controlli, finito.</p>
+
+        <p>Nel piano la situazione cambia radicalmente. Per avvicinarti al punto $(x_0,y_0)$ puoi arrivare <strong>da qualunque direzione</strong>: da nord, da sud, da est, da ovest, da nord-est, da un angolo qualsiasi. E non basta: puoi anche arrivare lungo una <strong>curva</strong>: una parabola, una spirale, un percorso a zig-zag che si stringe verso il punto. Le strade non sono due: sono <strong>infinite</strong>.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🏛️</span> L'analogia centrale: la piazza e le infinite strade</div>
+          <p>Immagina una grande piazza al centro di una città antica. Nella piazza convergono <strong>infinite strade</strong>: viali diritti, vicoli storti, stradine che girano in tondo prima di arrivare. Su ogni strada, man mano che ti avvicini alla piazza, un display mostra un numero (è il valore della funzione dove ti trovi).</p>
+          <p>Domanda: "qual è il numero <em>della piazza</em>?" La risposta è chiara solo se accade questo: <strong>da qualunque strada tu arrivi, i display convergono sempre verso lo stesso numero</strong>. Allora quel numero è il limite.</p>
+          <p>Ma se arrivando da via Roma i display tendono a $0$ e arrivando da via Garibaldi tendono a $\tfrac12$, allora la piazza <strong>non ha un numero</strong>: il limite non esiste. E attenzione, basta <em>una sola</em> strada discorde per rovinare tutto.</p>
+        </div>
+
+        <p>Questo squilibrio spiega tutta la struttura del capitolo, che è fatta di due mestieri diversi:</p>
+        <ul>
+          <li><strong>Dimostrare che un limite NON esiste</strong> è relativamente <em>facile</em>: basta trovare due strade che danno risultati diversi. È il metodo delle <strong>restrizioni</strong>.</li>
+          <li><strong>Dimostrare che un limite ESISTE</strong> è più <em>impegnativo</em>: non puoi controllare infinite strade una per una. Serve un argomento che le tratti <strong>tutte insieme</strong>: le <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span> con una maggiorazione, oppure il teorema del confronto.</li>
+        </ul>
+
+        <svg viewBox="0 0 460 300" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Un punto del piano raggiunto da infinite direzioni rettilinee e da una curva a spirale">
+          <circle cx="230" cy="150" r="105" fill="none" stroke="var(--color-border)" stroke-width="1.2" stroke-dasharray="4 5"/>
+          <circle cx="230" cy="150" r="62" fill="none" stroke="var(--color-border)" stroke-width="1.2" stroke-dasharray="4 5"/>
+          <line x1="60" y1="150" x2="205" y2="150" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="400" y1="150" x2="255" y2="150" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="230" y1="20" x2="230" y2="125" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="230" y1="280" x2="230" y2="175" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="110" y1="40" x2="212" y2="132" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="350" y1="260" x2="248" y2="168" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="350" y1="40" x2="248" y2="132" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="110" y1="260" x2="212" y2="168" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <path d="M 420 210 C 330 300, 120 250, 150 150 C 170 80, 280 70, 260 130 C 250 155, 220 160, 230 150" fill="none" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <circle cx="230" cy="150" r="7" fill="var(--color-primary)"/>
+          <text x="243" y="143" font-size="14" font-weight="700" fill="currentColor">P₀</text>
+          <text x="300" y="255" font-size="12.5" fill="var(--color-primary)">una delle infinite curve</text>
+          <text x="62" y="140" font-size="12.5" fill="var(--color-secondary)">rette</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Nel piano si arriva a $P_0$ da infinite direzioni (in azzurro) e lungo infinite curve (in colore pieno). Il limite esiste solo se <em>ogni</em> strada porta allo stesso numero.</p>
+
+        <p>Una precisazione importante fin da subito: questa difficoltà <strong>non è un capriccio dei matematici</strong>. È la realtà geometrica del piano. Una <span class="glossario-term" data-term="funzione-piu-variabili">funzione di due variabili</span> ha per grafico una <em>superficie</em>, e una superficie può fare cose che una curva non può fare: può avere una piega a spirale, un "imbuto" che si comporta diversamente lungo direzioni diverse, una cresta infinitamente sottile. Il metodo delle restrizioni serve proprio a scovare questi comportamenti.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>tutta l'Analisi 2 poggia su questo capitolo</strong>, esattamente come l'Analisi 1 poggiava sui limiti. Derivate parziali, differenziabilità, gradiente, massimi e minimi, integrali doppi: ogni definizione che incontrerai nei prossimi capitoli è, sotto sotto, un limite in più variabili. Se il concetto di limite qui resta nebuloso, tutto il resto diventa manipolazione cieca di formule.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema di dare un senso preciso alla frase "la funzione si avvicina a $L$ quando il punto si avvicina a $P_0$", in un ambiente dove "avvicinarsi" non ha più un significato unico. In una variabile bastavano due limiti laterali; nel piano servirebbe controllare infinite strade. La soluzione è elegante: si riscrive la definizione usando la <strong>distanza</strong> e gli <span class="glossario-term" data-term="intorno">intorni</span>, cioè in una forma che non nomina nessuna strada in particolare e quindi le comprende <em>tutte automaticamente</em>.</p>
+        <p><strong>Perché è importante ora?</strong> Per tre motivi molto concreti:</p>
+        <ul>
+          <li><strong>Perché è il primo scoglio vero di Analisi 2.</strong> Molti studenti arrivano convinti che "in due variabili si fa come in una". Non è così, e questo capitolo è il posto giusto per scoprirlo — meglio ora che all'esame.</li>
+          <li><strong>Perché la <span class="glossario-term" data-term="continuita">continuità</span> in più variabili è la chiave dei teoremi globali.</strong> Il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span> ("su un compatto una funzione continua ha massimo e minimo") è ciò che garantisce che i problemi di ottimizzazione che affronterai nei capitoli <a href="05-hessiano-massimi-minimi.html">5</a> e <a href="06-moltiplicatori-lagrange.html">6</a> abbiano davvero una soluzione.</li>
+          <li><strong>Perché insegna un metodo di ragionamento.</strong> "Prima cerco un controesempio, e se non lo trovo provo a dimostrare" è la strategia mentale del matematico applicata a un caso concreto e accessibile.</li>
+        </ul>
+        <p>C'è poi un motivo storico interessante. Fino all'Ottocento si dava per scontato che le proprietà delle funzioni di una variabile si estendessero "naturalmente" a più variabili. Furono i controesempi come $\frac{x^2y}{x^4+y^2}$ — funzioni che appaiono perfettamente regolari lungo ogni retta, ma non lo sono — a costringere i matematici a una definizione davvero rigorosa, basata sugli intorni. Vedrai quel controesempio nella <a href="#dimostrazioni">sezione 5</a>: è una piccola meraviglia.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌡️</span> La mappa del meteo e il fronte freddo</div>
+          <p>Guarda una <strong>mappa meteo</strong>: a ogni punto del territorio, individuato da due coordinate (latitudine e longitudine), è associata una temperatura. È esattamente una funzione $T(x,y)$ di due variabili.</p>
+          <p>In quasi tutto il territorio la temperatura varia <strong>con continuità</strong>: se ti sposti di cento metri, la temperatura cambia di pochissimo. Ma lungo un <strong>fronte freddo</strong> la faccenda cambia. Il fronte è una linea: da un lato ci sono $20°$, dall'altro $8°$. Avvicinandoti a un punto <em>sulla linea del fronte</em> arrivando da sud leggi $20°$; arrivando da nord leggi $8°$.</p>
+          <p><strong>Due strade, due numeri diversi: il limite non esiste</strong>, e infatti nel modello idealizzato la funzione temperatura è <em>discontinua</em> lungo il fronte. Non è un'astrazione: è la ragione per cui in un pomeriggio di passaggio frontale senti la temperatura crollare in pochi minuti.</p>
+        </div>
+        <p>Lo stesso fenomeno lo tocchi con le mani in cucina. Immagina un <strong>piano cottura in vetroceramica</strong>: la zona della piastra accesa è a $180°$, il piano attorno è a $25°$. La temperatura è una funzione del punto $(x,y)$ del piano. Sul bordo della piastra, avvicinandoti dall'interno leggi $180°$, dall'esterno $25°$: il limite in un punto del bordo <strong>non esiste</strong>. Il bordo è una <span class="glossario-term" data-term="discontinuita">discontinuità</span> che senti, letteralmente, sulla pelle.</p>
+        <p>Un terzo esempio, più moderno. Il <strong>segnale WiFi</strong> in un appartamento è una funzione $S(x,y)$: intensità in ogni punto. Vicino al router il segnale è ottimo, e la funzione è continua quasi ovunque. Ma se in mezzo c'è un <strong>muro di cemento armato</strong>, attraversandolo il segnale salta bruscamente: avvicinandoti a un punto del muro dal lato del router leggi tre tacche, dall'altro lato zero tacche. Ancora una volta: limite non esistente, discontinuità lungo una curva.</p>
+        <p>E dove invece il limite <em>esiste</em>? Pensa alla <strong>profondità di un lago</strong> in funzione del punto, oppure all'<strong>altitudine di una collina</strong>: avvicinandoti alla cima da qualunque sentiero — da nord, da sud, a spirale, con una salita a tornanti — il quadrante dell'altimetro converge sempre allo stesso valore, la quota della vetta. Quella è la situazione buona: <strong>funzione continua</strong>, e infatti puoi costruirci sopra tutto il resto (pendenze, direzioni di massima salita, punti di massimo).</p>
+        <p>Morale operativa, valida in tutti gli esempi: <strong>le discontinuità delle funzioni di due variabili vivono lungo curve</strong> (fronti, bordi, muri), non in punti isolati come accadeva spesso in una variabile. È una differenza qualitativa che vale la pena tenere a mente.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-topologia">4.1 Il minimo di topologia che serve: distanza, palle, punti di accumulazione</h3>
+        <p>Per definire un limite servono gli intorni; per definire gli intorni serve la <strong>distanza</strong>. Nel piano la distanza tra due punti $P=(x,y)$ e $P_0=(x_0,y_0)$ è quella di Pitagora:</p>
+        <div class="formula-block">$$\|P-P_0\| \;=\; \sqrt{(x-x_0)^2+(y-y_0)^2}$$</div>
+        <p>Prima parola nuova, ma concetto vecchio: in una variabile la distanza era $|x-x_0|$, il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span> della differenza. Qui è la stessa idea, solo con il teorema di Pitagora al posto del modulo.</p>
+        <p>Con la distanza definiamo l'analogo dell'intervallo $(x_0-\delta,\ x_0+\delta)$. Nel piano non è un intervallo: è un <strong>disco</strong> (in $\mathbb{R}^n$ una <em>palla</em>).</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Palla aperta (intorno circolare).</em> Dati $P_0\in\mathbb{R}^2$ e $r&gt;0$, si chiama <strong>palla aperta</strong> di centro $P_0$ e raggio $r$ l'insieme</p>
+          <div class="formula-block">$$B_r(P_0)\;=\;\{\,P\in\mathbb{R}^2 \;:\; \|P-P_0\| &lt; r \,\}$$</div>
+          <p>cioè il disco di centro $P_0$ e raggio $r$, <strong>bordo escluso</strong>. Un <span class="glossario-term" data-term="intorno">intorno</span> di $P_0$ è un insieme che contiene una palla $B_r(P_0)$.</p>
+        </div>
+        <p>Tre parole ancora, tutte già incontrate sulla retta nel <a href="../parte1-analisi1/02-valore-assoluto-topologia.html">Capitolo 2 di Analisi 1</a>, qui semplicemente trasportate nel piano:</p>
+        <ul>
+          <li><strong><span class="glossario-term" data-term="insieme-aperto">Insieme aperto</span></strong>: ogni suo punto ha attorno una palla tutta contenuta nell'insieme. Intuitivamente: "non contiene il proprio bordo". Esempio: $\{x^2+y^2&lt;1\}$.</li>
+          <li><strong><span class="glossario-term" data-term="insieme-chiuso">Insieme chiuso</span></strong>: contiene tutti i propri punti di frontiera (equivalentemente: il complementare è aperto). Esempio: $\{x^2+y^2\leq 1\}$.</li>
+          <li><strong><span class="glossario-term" data-term="punto-di-accumulazione">Punto di accumulazione</span></strong> di un insieme $A$: un punto $P_0$ tale che <em>ogni</em> palla $B_r(P_0)$ contiene almeno un punto di $A$ diverso da $P_0$. In parole povere: puoi avvicinarti a $P_0$ restando dentro $A$, senza mai fermarti.</li>
+        </ul>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché serve il punto di accumulazione</div>
+          <p>Il limite si calcola solo dove ha senso <em>avvicinarsi</em>. Se $P_0$ fosse un punto isolato del dominio (un punto attorno al quale non c'è nessun altro punto della funzione), la domanda "dove va la funzione avvicinandosi a $P_0$?" sarebbe vuota: non c'è nessuna strada da percorrere. Per questo la definizione di limite richiede sempre che $P_0$ sia di accumulazione per il dominio.</p>
+        </div>
+        <p>Due ultimi termini, che useranno i teoremi finali: un insieme è <strong>limitato</strong> se sta dentro una palla abbastanza grande; è <strong>compatto</strong> se è chiuso <em>e</em> limitato (in $\mathbb{R}^n$ le due cose insieme equivalgono alla compattezza); è <strong>connesso per archi</strong> se due suoi punti qualsiasi si possono unire con un cammino continuo che resta dentro l'insieme (intuitivamente: "è fatto di un pezzo solo").</p>
+
+        <h3 id="teoria-definizione">4.2 La definizione di limite, simbolo per simbolo</h3>
+        <p>Ed eccoci alla definizione di <span class="glossario-term" data-term="limite">limite</span>. È identica a quella di Analisi 1, con un solo cambiamento: al posto di $|x-x_0|$ compare la distanza nel piano.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Limite di una funzione di due variabili.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e sia $P_0=(x_0,y_0)$ un punto di accumulazione di $A$. Si dice che $f$ tende a $L\in\mathbb{R}$ per $P\to P_0$, e si scrive</p>
+          <div class="formula-block">$$\lim_{(x,y)\to(x_0,y_0)} f(x,y) \;=\; L$$</div>
+          <p>se per ogni $\varepsilon&gt;0$ esiste $\delta&gt;0$ tale che, per ogni $(x,y)\in A$,</p>
+          <div class="formula-block">$$0 &lt; \sqrt{(x-x_0)^2+(y-y_0)^2} &lt; \delta \quad\Longrightarrow\quad |f(x,y)-L| &lt; \varepsilon$$</div>
+        </div>
+        <p>La definizione fa paura solo finché non la si legge lentamente. Ecco il significato di ogni pezzo, in italiano corrente:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Simbolo</th><th>Si legge</th><th>Che cosa vuol dire davvero</th></tr></thead>
+          <tbody>
+            <tr><td>$\varepsilon&gt;0$</td><td>"per ogni epsilon positivo"</td><td>la <strong>tolleranza</strong> sul risultato, scelta dallo sfidante: "voglio $f$ distante da $L$ meno di $\varepsilon$". Può essere piccolissima.</td></tr>
+            <tr><td>$\exists\,\delta&gt;0$</td><td>"esiste un delta positivo"</td><td>il <strong>raggio del cerchietto</strong> attorno a $P_0$ che devi trovare tu per rispondere alla sfida. Dipende da $\varepsilon$.</td></tr>
+            <tr><td>$0&lt;\|P-P_0\|$</td><td>"distanza maggiore di zero"</td><td>escludi il punto $P_0$ stesso: <strong>il valore in $P_0$ non conta</strong>, la funzione potrebbe non essere neanche definita lì.</td></tr>
+            <tr><td>$\|P-P_0\|&lt;\delta$</td><td>"distanza minore di delta"</td><td>$P$ sta <strong>dentro il disco</strong> $B_\delta(P_0)$: qui sta tutta la novità rispetto a una variabile. Il disco contiene <em>tutte</em> le direzioni.</td></tr>
+            <tr><td>$|f(x,y)-L|&lt;\varepsilon$</td><td>"f dista da L meno di epsilon"</td><td>il valore della funzione è <strong>nella striscia</strong> $(L-\varepsilon,\ L+\varepsilon)$.</td></tr>
+          </tbody>
+        </table>
+        <p>In una frase sola: <strong>comunque si stringa la tolleranza sul risultato, esiste un cerchietto attorno a $P_0$ tale che tutti i punti del cerchietto (tranne il centro) hanno immagine dentro quella tolleranza.</strong></p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔍</span> Dove si nascondono le infinite strade</div>
+          <p>Nota una cosa bellissima: nella definizione <strong>non compare nessuna direzione, nessuna retta, nessuna curva</strong>. Si parla solo di "punti a distanza minore di $\delta$", cioè di tutto il disco. Ma il disco contiene automaticamente ogni direzione e ogni curva che si avvicina a $P_0$. È così che una definizione di tre righe controlla infinite strade in un colpo solo: <em>non le nomina, le include</em>.</p>
+        </div>
+        <p>Come in una variabile, il limite (quando esiste) è <strong>unico</strong>, e valgono le solite regole algebriche: il limite di una somma è la somma dei limiti, quello di un prodotto il prodotto dei limiti, quello di un quoziente il quoziente dei limiti quando il denominatore non tende a zero. Restano valide anche le <span class="glossario-term" data-term="forma-indeterminata">forme indeterminate</span>: $\frac{0}{0}$, $\frac{\infty}{\infty}$, $0\cdot\infty$ significano "devi indagare meglio", esattamente come prima.</p>
+
+        <h3 id="teoria-restrizioni">4.3 Il metodo delle restrizioni: come si smonta un limite</h3>
+        <p>Se il limite esiste, allora — riprendendo l'analogia della piazza — <em>ogni</em> strada deve portare allo stesso numero. Formalizziamo l'idea di "strada".</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Restrizione.</em> Sia $\gamma(t)=(x(t),y(t))$ una curva continua definita per $t$ in un intervallo, con $\gamma(t)\to P_0$ per $t\to t_0$ e $\gamma(t)\neq P_0$. La funzione di <strong>una sola variabile</strong></p>
+          <div class="formula-block">$$g(t) \;=\; f\big(x(t),\,y(t)\big)$$</div>
+          <p>si chiama <strong>restrizione</strong> di $f$ alla curva $\gamma$. Calcolare $\lim_{t\to t_0} g(t)$ significa "avvicinarsi a $P_0$ percorrendo quella strada".</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Teorema (delle restrizioni)</span>
+          <p>Se $\lim_{P\to P_0} f(P)=L$, allora <strong>per ogni</strong> curva $\gamma$ che tende a $P_0$ si ha $\lim_{t\to t_0} f(\gamma(t))=L$.</p>
+          <p><strong>Conseguenza operativa (contronominale)</strong>: se si trovano <strong>due</strong> restrizioni con limiti <em>diversi</em>, oppure <strong>una</strong> restrizione il cui limite non esiste, allora il limite di $f$ <strong>non esiste</strong>.</p>
+        </div>
+        <p>Le strade da provare per prime, in ordine di costo:</p>
+        <ol>
+          <li><strong>Gli assi</strong>: $y=0$ (cioè $\gamma(t)=(t,0)$) e $x=0$. Sono i conti più rapidi.</li>
+          <li><strong>Il fascio di rette per il punto</strong>: $y=mx$ se $P_0=(0,0)$, o più in generale $y-y_0=m(x-x_0)$. Un solo conto con il parametro $m$: se il risultato <strong>dipende da $m$</strong>, hai finito.</li>
+          <li><strong>Le parabole</strong> $y=kx^2$ (o $x=ky^2$), e più in generale curve del tipo $y=kx^\alpha$. Servono quando le rette danno tutte lo stesso valore ma il limite comunque non esiste: è il caso classico che vedremo tra poco.</li>
+        </ol>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Il teorema vale in una direzione sola</div>
+          <p>"Limite esiste $\Rightarrow$ tutte le restrizioni danno lo stesso valore" è vero. <strong>Il viceversa è FALSO</strong>: "tutte le rette danno $0$" non permette di concludere che il limite è $0$, perché le rette sono solo <em>alcune</em> delle infinite strade. Questo è l'errore più grave di tutto il capitolo, e gli dedichiamo un controesempio dimostrato nella <a href="#dimostrazioni">sezione 5</a>.</p>
+        </div>
+
+        <h3 id="teoria-polari">4.4 Le coordinate polari: come si dimostra che un limite esiste</h3>
+        <p>Per provare l'<em>esistenza</em> serve un metodo che controlli tutte le strade insieme. L'idea è cambiare il modo di descrivere i punti: invece di dire "quanto a destra e quanto in alto", diciamo "quanto lontano e in che direzione".</p>
+        <p>Con centro nell'origine (il caso più frequente) poniamo</p>
+        <div class="formula-block">$$x=\rho\cos\theta,\qquad y=\rho\sin\theta,\qquad \rho=\sqrt{x^2+y^2}\ \geq 0,\qquad \theta\in[0,2\pi)$$</div>
+        <p>Qui $\rho$ è la <strong>distanza</strong> dall'origine e $\theta$ è la <strong>direzione</strong>. Il punto chiave è tutto in questa equivalenza:</p>
+        <div class="formula-block">$$(x,y)\to(0,0)\qquad\Longleftrightarrow\qquad \rho\to 0^+\quad\text{(con }\theta\text{ qualunque)}$$</div>
+        <p>Cioè: <strong>avvicinarsi all'origine significa soltanto far tendere $\rho$ a zero</strong>, senza alcuna condizione su $\theta$. Le "infinite strade" si sono trasformate in un'unica variabile che va a zero — ma con un prezzo da pagare, che è la sorveglianza su $\theta$.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Criterio</span>
+          <p><em class="nome">Passaggio a polari con maggiorazione uniforme.</em> Se esiste una funzione $g(\rho)$, <strong>dipendente dalla sola $\rho$</strong>, tale che</p>
+          <div class="formula-block">$$\big|f(\rho\cos\theta,\ \rho\sin\theta)-L\big| \;\leq\; g(\rho)\qquad \text{per ogni }\theta, \text{ e } \lim_{\rho\to 0^+} g(\rho)=0,$$</div>
+          <p>allora $\displaystyle\lim_{(x,y)\to(0,0)} f(x,y)=L$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> "Uniforme rispetto a $\theta$": la condizione che tutti dimenticano</div>
+          <p>Non basta che, <em>fissato</em> $\theta$, l'espressione tenda a $L$ per $\rho\to0^+$. Questo direbbe soltanto che il limite lungo ogni <strong>raggio</strong> vale $L$: sono ancora solo le rette, e sappiamo che non bastano!</p>
+          <p>Serve che la maggiorazione $g(\rho)$ <strong>non contenga $\theta$</strong>: solo così la stessa stima vale simultaneamente in tutte le direzioni, e la velocità con cui ci si avvicina a $L$ è la stessa ovunque. Se nella maggiorazione resta un $\theta$ al denominatore (o un fattore che può esplodere per certi angoli), <strong>il metodo non conclude nulla</strong> e va cercato un controesempio.</p>
+        </div>
+        <p>Perché funziona? Perché la condizione $|f-L|\leq g(\rho)$ con $g$ indipendente da $\theta$ è esattamente la definizione $\varepsilon$-$\delta$ travestita: dato $\varepsilon&gt;0$, poiché $g(\rho)\to0$ esiste $\delta&gt;0$ tale che $g(\rho)&lt;\varepsilon$ per $0&lt;\rho&lt;\delta$; ma allora tutti i punti del disco $B_\delta(0)$ — qualunque sia la loro direzione — hanno $|f-L|&lt;\varepsilon$. Ed è precisamente ciò che la definizione richiede.</p>
+
+        <svg viewBox="0 0 420 250" style="max-width:460px;margin:1.4em auto;display:block;" role="img" aria-label="Coordinate polari: un punto individuato dalla distanza rho dall'origine e dall'angolo theta">
+          <line x1="30" y1="200" x2="390" y2="200" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="60" y1="230" x2="60" y2="25" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 130 200 A 70 70 0 0 0 105 145" fill="none" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="60" y1="200" x2="290" y2="70" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <line x1="290" y1="70" x2="290" y2="200" stroke="var(--color-border)" stroke-width="1.4" stroke-dasharray="4 4"/>
+          <line x1="60" y1="70" x2="290" y2="70" stroke="var(--color-border)" stroke-width="1.4" stroke-dasharray="4 4"/>
+          <circle cx="290" cy="70" r="6" fill="var(--color-primary)"/>
+          <circle cx="60" cy="200" r="4" fill="currentColor"/>
+          <text x="300" y="64" font-size="14" font-weight="700" fill="currentColor">P</text>
+          <text x="160" y="120" font-size="15" font-weight="700" fill="var(--color-primary)">ρ</text>
+          <text x="112" y="182" font-size="15" font-weight="700" fill="var(--color-secondary)">θ</text>
+          <text x="252" y="218" font-size="13" fill="var(--color-text-muted)">x = ρ·cos θ</text>
+          <text x="70" y="62" font-size="13" fill="var(--color-text-muted)">y = ρ·sin θ</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">In polari, "andare verso l'origine" è solo $\rho\to 0^+$: l'angolo $\theta$ resta libero, e per questo la stima deve valere per ogni $\theta$.</p>
+
+        <h3 id="teoria-confronto">4.5 Il teorema del confronto (due carabinieri) in due variabili</h3>
+        <p>Spesso il passaggio in polari non serve nemmeno: basta una maggiorazione diretta. Lo strumento è il vecchio teorema dei due carabinieri, che si trasporta parola per parola.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Confronto (due carabinieri).</em> Siano $f$ e $g$ definite in un intorno di $P_0$ (escluso al più $P_0$). Se</p>
+          <div class="formula-block">$$0\;\leq\;|f(x,y)-L|\;\leq\; g(x,y)\qquad\text{e}\qquad \lim_{(x,y)\to P_0} g(x,y)=0,$$</div>
+          <p>allora $\displaystyle\lim_{(x,y)\to P_0} f(x,y)=L$.</p>
+        </div>
+        <p>Il "prigioniero" $|f-L|$ è schiacciato tra due carabinieri: lo zero da sotto e $g$ da sopra. Se il carabiniere di sopra va a zero, il prigioniero non ha scampo. Per usarlo servono <strong>maggiorazioni</strong>: ecco la cassetta degli attrezzi, da imparare a memoria.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Disuguaglianza</th><th>Perché è vera</th><th>Quando si usa</th></tr></thead>
+          <tbody>
+            <tr><td>$|x|\leq\sqrt{x^2+y^2}$ &nbsp;e&nbsp; $|y|\leq\sqrt{x^2+y^2}$</td><td>un cateto non supera l'ipotenusa</td><td>sempre, è la maggiorazione base</td></tr>
+            <tr><td>$2|xy|\leq x^2+y^2$</td><td>da $(|x|-|y|)^2\geq 0$</td><td>quando compare $xy$ al numeratore</td></tr>
+            <tr><td>$\dfrac{x^2}{x^2+y^2}\leq 1$, &nbsp; $\dfrac{|x|}{\sqrt{x^2+y^2}}\leq 1$</td><td>il denominatore è più grande del numeratore</td><td>per "buttare via" pezzi limitati</td></tr>
+            <tr><td>$|\sin t|\leq |t|$, &nbsp; $|\cos\theta|\leq 1$, &nbsp; $|\sin\theta|\leq 1$</td><td>proprietà elementari</td><td>subito dopo il passaggio in polari</td></tr>
+            <tr><td>$\dfrac{2|xy|}{x^2+y^2}\leq 1$</td><td>combinando le precedenti</td><td>la più utile in assoluto negli esercizi</td></tr>
+          </tbody>
+        </table>
+        <p>La strategia tipica è: si isola nel modulo un fattore che <strong>tende a zero</strong> (tipicamente $|x|$, $|y|$ o $\rho$) e uno che resta <strong>limitato</strong>; prodotto di infinitesimo per limitato $=$ infinitesimo, e il gioco è fatto.</p>
+
+        <h3 id="teoria-continuita">4.6 Continuità: definizione e algebra</h3>
+        <p>Con il limite in mano, la continuità si definisce esattamente come in una variabile.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Continuità in un punto.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e $P_0\in A$ punto di accumulazione di $A$. Si dice che $f$ è <strong>continua</strong> in $P_0$ se</p>
+          <div class="formula-block">$$\lim_{(x,y)\to(x_0,y_0)} f(x,y) \;=\; f(x_0,y_0)$$</div>
+          <p>cioè se il limite esiste <em>ed è uguale al valore</em> della funzione nel punto. $f$ è continua in $A$ se lo è in ogni punto di $A$.</p>
+        </div>
+        <p>Tre condizioni implicite, le stesse di Analisi 1: la funzione deve essere <strong>definita</strong> in $P_0$; il limite deve <strong>esistere</strong> finito; i due numeri devono <strong>coincidere</strong>.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione (algebra delle funzioni continue)</span>
+          <p>Se $f$ e $g$ sono continue in $P_0$, allora sono continue in $P_0$ anche</p>
+          <div class="formula-block">$$f+g,\qquad f-g,\qquad f\cdot g,\qquad \lambda f\ (\lambda\in\mathbb{R}),\qquad \frac{f}{g}\ \ \text{se } g(P_0)\neq 0,\qquad |f|$$</div>
+        </div>
+        <p>Per la <strong>composizione</strong> ci sono due versioni, entrambe usatissime:</p>
+        <ul>
+          <li><strong>Con una funzione di una variabile "fuori"</strong>: se $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ è continua in $P_0$ e $h:\mathbb{R}\to\mathbb{R}$ è continua in $f(P_0)$, allora la <span class="glossario-term" data-term="funzione-composta">funzione composta</span> $h\circ f$ è continua in $P_0$. È il motivo per cui $e^{x^2+y^2}$, $\sin(xy)$, $\sqrt{x^2+y^2}$ sono continue: "cosa continua dentro cosa continua".</li>
+          <li><strong>Con una curva "dentro"</strong>: se $\gamma$ è una curva continua e $f$ è continua, allora $t\mapsto f(\gamma(t))$ è continua. È la versione che giustifica il metodo delle restrizioni.</li>
+        </ul>
+        <p>Da qui segue subito il repertorio delle <strong>funzioni continue di partenza</strong>:</p>
+        <ul>
+          <li>le <strong>proiezioni</strong> $(x,y)\mapsto x$ e $(x,y)\mapsto y$ e le costanti sono continue su tutto $\mathbb{R}^2$ (immediato dalla definizione: basta $\delta=\varepsilon$);</li>
+          <li>quindi ogni <strong>polinomio</strong> in $x$ e $y$ è continuo su $\mathbb{R}^2$, essendo somma di prodotti di funzioni continue (per esempio $x^3-4x^2y+7y-2$);</li>
+          <li>ogni <strong>funzione razionale</strong> $\frac{P(x,y)}{Q(x,y)}$ è continua dove $Q\neq 0$;</li>
+          <li>composizioni con $e^t,\ \sin t,\ \cos t,\ \ln t,\ \sqrt{t},\ \arctan t$ sono continue nei rispettivi domini.</li>
+        </ul>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La conseguenza pratica più usata di tutte</div>
+          <p>Se la funzione è un polinomio, o una razionale con denominatore non nullo nel punto, o una composizione di funzioni elementari <strong>ben definita nel punto</strong>, allora il limite si calcola <strong>sostituendo</strong>. Niente restrizioni, niente polari: il limite è $f(x_0,y_0)$ e basta. Le tecniche difficili servono solo nei casi indeterminati, tipicamente quando denominatore e numeratore vanno entrambi a zero.</p>
+        </div>
+        <p>Infine, un modo elegante di leggere la continuità: <em>$f$ è continua su $\mathbb{R}^2$ se e solo se la controimmagine di ogni aperto è un aperto</em>. Ne discende, per esempio, che gli insiemi $\{f&gt;c\}$ e $\{f&lt;c\}$ sono aperti e che gli <span class="glossario-term" data-term="insieme-di-livello">insiemi di livello</span> $\{f=c\}$ sono chiusi: informazione preziosa quando dovrai stabilire se un dominio è compatto.</p>
+
+        <h3 id="teoria-globali">4.7 I due teoremi globali: Weierstrass e valori intermedi</h3>
+        <p>In Analisi 1 i grandi teoremi sulle funzioni continue avevano come ambiente l'intervallo chiuso e limitato $[a,b]$. In più variabili l'intervallo si sostituisce con il <strong>compatto</strong>, e tutto continua a funzionare.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome"><span class="glossario-term" data-term="teorema-di-weierstrass">Teorema di Weierstrass</span>.</em> Sia $K\subseteq\mathbb{R}^n$ un insieme <strong>compatto</strong> (chiuso e limitato) e non vuoto, e sia $f:K\to\mathbb{R}$ <strong>continua</strong>. Allora $f$ è limitata su $K$ ed <strong>esistono</strong> $P_{\min},P_{\max}\in K$ tali che</p>
+          <div class="formula-block">$$f(P_{\min})\;\leq\; f(P)\;\leq\; f(P_{\max})\qquad\text{per ogni } P\in K$$</div>
+          <p>cioè $f$ assume massimo e minimo assoluti su $K$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Entrambe le ipotesi servono davvero</div>
+          <p><strong>Se manca "limitato"</strong>: $f(x,y)=x$ è continua su tutto $\mathbb{R}^2$ (chiuso ma illimitato) e non ha né massimo né minimo.<br>
+          <strong>Se manca "chiuso"</strong>: $f(x,y)=\dfrac{1}{1-x^2-y^2}$ è continua sul disco aperto $\{x^2+y^2&lt;1\}$ (limitato ma non chiuso) e non è nemmeno limitata: esplode avvicinandosi al bordo.<br>
+          <strong>Se manca la continuità</strong>: nessuna speranza, basta una funzione con un salto. Morale: in un esercizio di ottimizzazione, <em>prima</em> verifica compattezza e continuità, <em>poi</em> cerca i punti.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Valori intermedi (su insiemi connessi).</em> Sia $E\subseteq\mathbb{R}^n$ <strong>connesso per archi</strong> e $f:E\to\mathbb{R}$ continua. Se $f$ assume i valori $a$ e $b$ (cioè esistono $P,Q\in E$ con $f(P)=a$, $f(Q)=b$), allora $f$ assume <strong>ogni valore</strong> compreso tra $a$ e $b$. In altre parole $f(E)$ è un intervallo.</p>
+        </div>
+        <p><strong>Perché è vero, in una riga</strong>: si unisce $P$ a $Q$ con un cammino continuo $\gamma$ dentro $E$; la funzione $g(t)=f(\gamma(t))$ è continua <em>di una sola variabile</em> e assume i valori $a$ e $b$; per il teorema dei valori intermedi di Analisi 1 assume tutti i valori intermedi. Il caso a più variabili si riduce così a quello a una variabile, percorrendo una strada: un'ottima illustrazione di quanto le restrizioni siano uno strumento generale e non solo un trucco per i controesempi.</p>
+        <p>Mettendo insieme i due teoremi: se $K$ è compatto <strong>e</strong> connesso e $f$ è continua, allora $f(K)$ è esattamente l'intervallo chiuso $[\min_K f,\ \max_K f]$. Una funzione continua trasforma un "blocco compatto e tutto d'un pezzo" in un segmento: non poteva esserci descrizione più sintetica di che cosa significhi "continua".</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <p><strong>Idea della strategia (prima dimostrazione).</strong> Vogliamo giustificare il metodo delle restrizioni. L'intuizione è semplicissima: se dentro un cerchietto <em>tutti</em> i punti hanno immagine vicina a $L$, allora in particolare ce l'hanno anche i punti di una strada che entra nel cerchietto. La strada non può fare eccezione perché è contenuta nel disco. Traduciamo questa frase in $\varepsilon$-$\delta$.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Le restrizioni ereditano il limite.</em> Se $\lim_{P\to P_0}f(P)=L$ e $\gamma(t)\to P_0$ per $t\to t_0$ con $\gamma(t)\neq P_0$, allora $\lim_{t\to t_0} f(\gamma(t))=L$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Sia $\varepsilon&gt;0$. Per l'ipotesi sul limite di $f$, esiste $\delta&gt;0$ tale che</p>
+          <div class="formula-block">$$0&lt;\|P-P_0\|&lt;\delta \;\Longrightarrow\; |f(P)-L|&lt;\varepsilon .$$</div>
+          <p>Poiché $\gamma(t)\to P_0$, esiste $\sigma&gt;0$ tale che $0&lt;|t-t_0|&lt;\sigma$ implica $\|\gamma(t)-P_0\|&lt;\delta$; inoltre $\gamma(t)\neq P_0$ garantisce $\|\gamma(t)-P_0\|&gt;0$. Allora, per $0&lt;|t-t_0|&lt;\sigma$, il punto $P=\gamma(t)$ soddisfa esattamente l'ipotesi dell'implicazione, e dunque</p>
+          <div class="formula-block">$$|f(\gamma(t))-L|&lt;\varepsilon .$$</div>
+          <p>Per l'arbitrarietà di $\varepsilon$ si conclude $\lim_{t\to t_0} f(\gamma(t))=L$. <span class="qed">∎</span></p>
+          <p>Il valore di questo teorema è nella sua forma negata: <strong>due restrizioni con limiti diversi rendono impossibile l'esistenza del limite</strong>, perché dovrebbero entrambe valere $L$.</p>
+        </div>
+
+        <p><strong>Idea della strategia (seconda dimostrazione).</strong> Prendiamo il più celebre limite inesistente e usiamo il fascio di rette per l'origine. Il ragionamento è: "se mi avvicino lungo una retta di pendenza $m$, che numero leggo?" Se la risposta contiene ancora $m$, significa che strade diverse danno numeri diversi — la piazza non ha un numero.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Controesempio</span>
+          <p><em class="nome">Il limite $\displaystyle\lim_{(x,y)\to(0,0)}\frac{xy}{x^2+y^2}$ non esiste.</em></p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (restrizione alle rette $y=mx$)</span>
+          <p>La funzione è definita su $\mathbb{R}^2\setminus\{(0,0)\}$ e l'origine è punto di accumulazione del dominio: la domanda ha senso. Restringiamo alla generica retta per l'origine $y=mx$, con $m\in\mathbb{R}$ fissato, cioè poniamo $\gamma(t)=(t,\,mt)$ con $t\to 0$:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Dichiaro la sostituzione</strong>: nella formula $f(x,y)=\dfrac{xy}{x^2+y^2}$ metto $t$ al posto di $x$ e $mt$ al posto di $y$ (è proprio la retta $y=mx$, percorsa scegliendo $x=t$). Ottengo $f(t,mt)=\dfrac{t\cdot(mt)}{t^2+(mt)^2}$.</span>
+            <span class="esempio__passo">Sviluppo i conti. Numeratore: $t\cdot mt=m\,t^2$. Denominatore: $(mt)^2=m^2t^2$, quindi diventa $t^2+m^2t^2$; raccolgo $t^2$ (cioè lo metto in evidenza): $t^2+m^2t^2=t^2(1+m^2)$. In tutto: $f(t,mt)=\dfrac{m\,t^2}{t^2(1+m^2)}$.</span>
+            <span class="esempio__passo">Semplifico $t^2$, cioè cancello lo stesso fattore sopra e sotto (lecito perché $t\neq 0$, visto che ci avviciniamo all'origine senza mai toccarla): $\ f(t,mt)=\dfrac{m}{1+m^2}$, una <strong>costante</strong> che non dipende da $t$.</span>
+            <span class="esempio__passo">Dunque $\displaystyle\lim_{t\to0} f(t,mt)=\frac{m}{1+m^2}$.</span>
+          </p>
+          <p>Il risultato <strong>dipende da $m$</strong>: lungo l'asse $x$ ($m=0$) il limite vale $0$; lungo la bisettrice $y=x$ ($m=1$) vale $\tfrac12$; lungo $y=-x$ vale $-\tfrac12$. Due strade, due numeri diversi: per il teorema delle restrizioni il limite <strong>non esiste</strong>. <span class="qed">∎</span></p>
+          <p>Interpretazione geometrica: la superficie $z=\frac{xy}{x^2+y^2}$ è costante lungo ogni raggio uscente dall'origine (vale $\frac{m}{1+m^2}$ su tutta la retta di pendenza $m$). Avvicinandosi all'origine si resta quindi sempre alla stessa quota della propria direzione: è una specie di "ventaglio" di quote diverse tutte incollate sull'origine, che quindi non può avere un'unica quota limite.</p>
+        </div>
+
+        <svg viewBox="0 0 400 250" style="max-width:440px;margin:1.3em auto;display:block;" role="img" aria-label="Rette per l'origine su cui la funzione xy diviso x quadro piu y quadro assume valori costanti diversi">
+          <line x1="30" y1="130" x2="370" y2="130" stroke="var(--color-border)" stroke-width="1.4"/>
+          <line x1="200" y1="15" x2="200" y2="240" stroke="var(--color-border)" stroke-width="1.4"/>
+          <line x1="80" y1="10" x2="320" y2="250" stroke="var(--color-primary)" stroke-width="2.2"/>
+          <line x1="80" y1="250" x2="320" y2="10" stroke="var(--color-secondary)" stroke-width="2.2"/>
+          <circle cx="200" cy="130" r="6" fill="currentColor"/>
+          <text x="300" y="122" font-size="13" fill="var(--color-text-muted)">y = 0 : f vale 0</text>
+          <text x="255" y="30" font-size="13" font-weight="700" fill="var(--color-secondary)">y = x : f vale 1/2</text>
+          <text x="235" y="238" font-size="13" font-weight="700" fill="var(--color-primary)">y = −x : f vale −1/2</text>
+        </svg>
+
+        <p><strong>Idea della strategia (terza dimostrazione).</strong> Ora il controesempio più importante del capitolo: una funzione che <em>supera l'esame di tutte le rette</em> (tutte danno $0$) ma fallisce lungo una parabola. La strategia è: se le rette non bastano, alza il grado della strada. Il motivo profondo è che il denominatore contiene $x^4$, quindi "sente" le curve di tipo $y\sim x^2$ molto più delle rette.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Controesempio fondamentale</span>
+          <p><em class="nome">Per $f(x,y)=\dfrac{x^2y}{x^4+y^2}$ tutte le restrizioni a rette per l'origine danno limite $0$, eppure $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)$ non esiste.</em></p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (rette contro parabole)</span>
+          <p><strong>Passo 1 — le rette.</strong> Restringiamo a $y=mx$, con $m$ fissato, e calcoliamo:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Cosa sostituisco</strong>: in $f(x,y)=\dfrac{x^2y}{x^4+y^2}$ scrivo $t$ al posto di $x$ e $mt$ al posto di $y$. Risultato grezzo, prima di semplificare: $f(t,mt)=\dfrac{t^2\cdot(mt)}{t^4+(mt)^2}$.</span>
+            <span class="esempio__passo">Sviluppo le potenze: $t^2\cdot mt=m\,t^3$ (sommo gli esponenti di $t$) e $(mt)^2=m^2t^2$. Quindi $f(t,mt)=\dfrac{m\,t^3}{t^4+m^2t^2}$.</span>
+            <span class="esempio__passo">Raccolgo $t^2$ al denominatore: $t^4+m^2t^2=t^2(t^2+m^2)$. Semplifico un $t^2$ sopra e sotto (posso, perché $t\neq0$): resta $f(t,mt)=\dfrac{m\,t}{t^2+m^2}$.</span>
+            <span class="esempio__passo">Se $m\neq 0$: per $t\to0$ il numeratore tende a $0$ e il denominatore a $m^2\neq0$, quindi il limite è $\dfrac{0}{m^2}=0$.</span>
+            <span class="esempio__passo">Se $m=0$ (asse $x$): $f(t,0)=\dfrac{0}{t^4}=0$ per ogni $t\neq0$, quindi limite $0$.</span>
+            <span class="esempio__passo">Manca l'asse $y$ (non è della forma $y=mx$): $f(0,t)=\dfrac{0}{t^2}=0$, ancora limite $0$.</span>
+          </p>
+          <p>Conclusione parziale: <strong>lungo ogni retta per l'origine il limite vale $0$</strong>. Chi si fermasse qui concluderebbe (sbagliando) che il limite è $0$.</p>
+          <p><strong>Passo 2 — la parabola.</strong> Proviamo la strada $y=x^2$, cioè $\gamma(t)=(t,\,t^2)$ con $t\to 0$:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Cosa sostituisco</strong>: sempre in $f(x,y)=\dfrac{x^2y}{x^4+y^2}$, ora metto $t$ al posto di $x$ e $t^2$ al posto di $y$ (è la parabola $y=x^2$ percorsa con $x=t$). Prima di semplificare: $f(t,t^2)=\dfrac{t^2\cdot t^2}{t^4+(t^2)^2}$.</span>
+            <span class="esempio__passo">Sviluppo: sopra $t^2\cdot t^2=t^4$; sotto $(t^2)^2=t^{2\cdot2}=t^4$, quindi il denominatore è $t^4+t^4=2t^4$. Semplifico $t^4$ sopra e sotto (con $t\neq0$): $f(t,t^2)=\dfrac{t^4}{2t^4}=\dfrac12$ per ogni $t\neq 0$.</span>
+            <span class="esempio__passo">Quindi $\displaystyle\lim_{t\to0}f(t,t^2)=\frac12\neq 0$.</span>
+          </p>
+          <p>Abbiamo due restrizioni con limiti diversi ($0$ lungo le rette, $\tfrac12$ lungo la parabola): il limite <strong>non esiste</strong>. <span class="qed">∎</span></p>
+          <p><strong>C'è di più</strong>: lungo la famiglia $y=kx^2$ si trova $f(t,kt^2)=\dfrac{k\,t^4}{t^4+k^2t^4}=\dfrac{k}{1+k^2}$, quindi <em>ogni</em> valore della forma $\frac{k}{1+k^2}$ (cioè tutto l'intervallo $[-\tfrac12,\tfrac12]$) è limite lungo un'opportuna parabola. La funzione, vicino all'origine, assume tutti questi valori in ogni intorno, per quanto piccolo: il caos più totale.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> La lezione da portarsi a casa</div>
+          <p>"Tutte le rette danno lo stesso valore" <strong>non</strong> dimostra che il limite esiste. Le rette sono infinite, ma sono solo una <em>piccolissima parte</em> delle infinite strade possibili. Il metodo delle restrizioni può <strong>solo</strong> dimostrare che un limite NON esiste; per l'esistenza servono polari con maggiorazione uniforme o il teorema del confronto.</p>
+        </div>
+
+        <p><strong>Idea della strategia (quarta dimostrazione).</strong> Cambiamo mestiere: adesso il limite <em>esiste</em> e dobbiamo dimostrarlo. Non potendo percorrere infinite strade, passiamo in polari e cerchiamo una stima che valga per ogni angolo contemporaneamente. Il trucco standard: isolare un fattore $\rho$ (che va a zero) e verificare che tutto il resto è limitato da una costante.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">$\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^2+y^2}=0$.</em> (Attenzione: il denominatore è $x^2+y^2$, non $x^4+y^2$ come nel controesempio precedente. Una sola cifra cambia tutto.)</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (coordinate polari con maggiorazione uniforme)</span>
+          <p>Poniamo $x=\rho\cos\theta$, $y=\rho\sin\theta$, con $\rho&gt;0$: cioè, ovunque compaia una $x$ scrivo $\rho\cos\theta$, e ovunque compaia una $y$ scrivo $\rho\sin\theta$. Vediamo separatamente cosa succede sopra e sotto:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><em>Numeratore.</em> $x^2y$ diventa $(\rho\cos\theta)^2\cdot(\rho\sin\theta)$. Elevo al quadrato il primo fattore ($(ab)^2=a^2b^2$): $\rho^2\cos^2\theta$. Moltiplico per $\rho\sin\theta$ e sommo gli esponenti di $\rho$: $\rho^{2+1}\cos^2\theta\sin\theta=\rho^3\cos^2\theta\sin\theta$.</span>
+            <span class="esempio__passo"><em>Denominatore.</em> $x^2+y^2$ diventa $(\rho\cos\theta)^2+(\rho\sin\theta)^2=\rho^2\cos^2\theta+\rho^2\sin^2\theta$. Raccolgo $\rho^2$: $\rho^2\big(\cos^2\theta+\sin^2\theta\big)$. La parentesi vale $1$ per l'<strong>identità fondamentale della trigonometria</strong> (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">Prerequisiti, cap. 8 §4.4</a>): resta $\rho^2$.</span>
+            <span class="esempio__passo">Rimetto insieme e semplifico $\rho^2$ sopra e sotto (posso, perché $\rho&gt;0$): $f(\rho\cos\theta,\rho\sin\theta)=\dfrac{\rho^3\cos^2\theta\,\sin\theta}{\rho^2}=\rho\,\cos^2\theta\,\sin\theta$.</span>
+            <span class="esempio__passo">Prendo il modulo della differenza dal candidato limite $L=0$: $\ \big|\rho\cos^2\theta\sin\theta-0\big|=\rho\,\cos^2\theta\,|\sin\theta|$.</span>
+            <span class="esempio__passo">Maggioro i fattori angolari usando le due disuguaglianze della tabella del <span class="richiamo" data-sec="4.5">§4.5</span>: $\cos^2\theta\leq 1$ e $|\sin\theta|\leq 1$, vere <strong>per ogni</strong> $\theta$ (seno e coseno stanno sempre tra $-1$ e $1$). Sostituisco ciascun fattore con il suo tetto massimo, cioè $1$: $\ \rho\cdot\cos^2\theta\cdot|\sin\theta|\leq\rho\cdot1\cdot1=\rho$. Dunque $\ \big|f-0\big|\leq \rho$.</span>
+          </p>
+          <p>La maggiorazione trovata è $g(\rho)=\rho$: <strong>non contiene $\theta$</strong>, quindi è uniforme rispetto all'angolo. Poiché $g(\rho)=\rho\to0$ per $\rho\to0^+$, il criterio si applica e il limite vale $0$.</p>
+          <p>Volendo esplicitare l'$\varepsilon$-$\delta$: dato $\varepsilon&gt;0$ basta scegliere $\delta=\varepsilon$; se $0&lt;\sqrt{x^2+y^2}=\rho&lt;\delta$ allora $\left|\frac{x^2y}{x^2+y^2}\right|\leq\rho&lt;\varepsilon$. <span class="qed">∎</span></p>
+          <p><strong>Stessa dimostrazione senza polari</strong>, con il teorema del confronto (<span class="richiamo" data-sec="4.5">§4.5</span>). Primo passo: spezzo il modulo in due fattori, $\left|\dfrac{x^2y}{x^2+y^2}\right|=|y|\cdot\dfrac{x^2}{x^2+y^2}$ (il fattore $x^2$ esce dal modulo senza cambiare nulla, perché un quadrato è già positivo o nullo, e lo stesso vale per il denominatore). Secondo passo: il fattore $\dfrac{x^2}{x^2+y^2}$ è $\leq1$, perché il denominatore $x^2+y^2$ è il numeratore $x^2$ più la quantità non negativa $y^2$, quindi è più grande o uguale. Sostituendo a quel fattore il suo tetto $1$ ottengo $\left|\dfrac{x^2y}{x^2+y^2}\right|\leq |y|\cdot1=|y| \to 0$. Infinitesimo per limitato: stesso risultato in una riga.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Quando basta sostituire</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\lim_{(x,y)\to(1,2)}\big(x^2+3xy-y\big)$ e $\displaystyle\lim_{(x,y)\to(0,\pi)}\frac{\cos(x+y)}{1+x^2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">La prima funzione è un <strong>polinomio</strong>: è continua su tutto $\mathbb{R}^2$, quindi il limite è il valore nel punto.</span>
+            <span class="esempio__passo">Sostituisco $x=1$ e $y=2$ (le coordinate del punto) dentro $x^2+3xy-y$: $\ 1^2+3\cdot1\cdot2-2=1+6-2=5$.</span>
+            <span class="esempio__passo">La seconda è un quoziente di funzioni continue con denominatore $1+x^2\neq0$ ovunque: continua, si sostituisce.</span>
+            <span class="esempio__passo">Sostituisco $x=0$ e $y=\pi$: sopra $\cos(0+\pi)=\cos\pi$, che vale $-1$ (sul cerchio goniometrico l'angolo $\pi$ è il punto $(-1,0)$, <a href="../parte0-prerequisiti/08-trigonometria.html#teoria-cerchio">cap. 8 §4.2</a>); sotto $1+0^2=1$. Quindi $\dfrac{-1}{1}=-1$.</span>
+          </p>
+          <div class="esempio__risultato">$5$ &nbsp;e&nbsp; $-1$. Nessuna forma indeterminata: la continuità fa tutto il lavoro.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Primo passaggio in polari</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^3+y^3}{x^2+y^2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Sostituendo $x=0$ e $y=0$ si ottiene $\frac{0}{0}$: forma indeterminata, serve una tecnica.</span>
+            <span class="esempio__passo">Passo in polari (<span class="richiamo" data-sec="4.4">§4.4</span>): metto $\rho\cos\theta$ al posto di ogni $x$ e $\rho\sin\theta$ al posto di ogni $y$. <em>Numeratore</em>: $x^3+y^3$ diventa $(\rho\cos\theta)^3+(\rho\sin\theta)^3=\rho^3\cos^3\theta+\rho^3\sin^3\theta$; raccolgo $\rho^3$ e ottengo $\rho^3(\cos^3\theta+\sin^3\theta)$.</span>
+            <span class="esempio__passo"><em>Denominatore</em>: $x^2+y^2$ diventa $\rho^2\cos^2\theta+\rho^2\sin^2\theta=\rho^2(\cos^2\theta+\sin^2\theta)=\rho^2$, perché la parentesi vale $1$ per l'identità fondamentale (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">cap. 8 §4.4</a>). Questo conto tornerà in ogni esercizio: <strong>in polari $x^2+y^2$ è sempre $\rho^2$</strong>.</span>
+            <span class="esempio__passo">Divido: $f=\dfrac{\rho^3(\cos^3\theta+\sin^3\theta)}{\rho^2}=\rho\,(\cos^3\theta+\sin^3\theta)$ (semplifico $\rho^2$, lecito perché $\rho&gt;0$ fuori dall'origine).</span>
+            <span class="esempio__passo">Maggioro. Prima la disuguaglianza triangolare $|a+b|\leq|a|+|b|$ con $a=\cos^3\theta$, $b=\sin^3\theta$: $|f-0|\leq \rho\,\big(|\cos\theta|^3+|\sin\theta|^3\big)$. Poi $|\cos\theta|\leq1$ e $|\sin\theta|\leq1$, quindi anche i loro cubi sono $\leq1$: sostituisco $1$ a ciascuno e ottengo $|f-0|\leq \rho\,(1+1)=2\rho$.</span>
+            <span class="esempio__passo">La stima $g(\rho)=2\rho$ <strong>non dipende da $\theta$</strong> e tende a $0$: criterio soddisfatto.</span>
+          </p>
+          <div class="esempio__risultato">Il limite vale $\boldsymbol{0}$. Schema tipico: grado $3$ sopra, grado $2$ sotto $\Rightarrow$ resta un fattore $\rho$ che manda tutto a zero.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Un limite che non esiste (rette)</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Studiare $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2-y^2}{x^2+y^2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Forma $\frac00$. Prima mossa: <strong>sospetto</strong>. Provo gli assi, che costano un secondo.</span>
+            <span class="esempio__passo">Lungo $y=0$: $\ \dfrac{x^2-0}{x^2+0}=1$ per ogni $x\neq0$, quindi limite $1$.</span>
+            <span class="esempio__passo">Lungo $x=0$: $\ \dfrac{0-y^2}{0+y^2}=-1$, quindi limite $-1$.</span>
+            <span class="esempio__passo">Due strade, due valori diversi ($1\neq-1$).</span>
+          </p>
+          <div class="esempio__risultato">Il limite <strong>non esiste</strong>. In polari si vedrebbe il quadro completo: sopra $x^2-y^2$ diventa $\rho^2\cos^2\theta-\rho^2\sin^2\theta=\rho^2(\cos^2\theta-\sin^2\theta)$, sotto $x^2+y^2$ diventa $\rho^2$; semplificando $\rho^2$ resta $f=\cos^2\theta-\sin^2\theta$, che per la <strong>formula di duplicazione del coseno</strong> (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">cap. 8 §4.5</a>) è $\cos 2\theta$. Dipende solo da $\theta$, cioè ogni direzione ha la sua quota. Nessuna maggiorazione uniforme è possibile.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Infinitesimo per limitato</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare $\displaystyle\lim_{(x,y)\to(0,0)}\frac{xy^2}{x^2+y^2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Forma $\frac00$. Provo qualche retta: sostituisco $x=t$ e $y=mt$ in $\dfrac{xy^2}{x^2+y^2}$ e ottengo $\dfrac{t\cdot(mt)^2}{t^2+(mt)^2}=\dfrac{m^2t^3}{t^2+m^2t^2}=\dfrac{m^2t^3}{t^2(1+m^2)}=\dfrac{m^2t}{1+m^2}\to0$ (ho raccolto $t^2$ sotto e semplificato). Sospetto che il limite sia $0$: ora devo <strong>dimostrarlo</strong>.</span>
+            <span class="esempio__passo">Spezzo furbescamente il modulo in due fattori: $\left|\dfrac{xy^2}{x^2+y^2}\right|=|x|\cdot\dfrac{y^2}{x^2+y^2}$. Il modulo resta solo sulla $x$ perché $y^2$ e $x^2+y^2$ sono già quantità non negative.</span>
+            <span class="esempio__passo">Il secondo fattore è <strong>limitato</strong>: $\dfrac{y^2}{x^2+y^2}\leq 1$ perché il denominatore è il numeratore $y^2$ più la quantità non negativa $x^2$, quindi è maggiore o uguale. Al posto di quel fattore posso mettere $1$.</span>
+            <span class="esempio__passo">Quindi $\left|\dfrac{xy^2}{x^2+y^2}-0\right|\leq |x|$, e $|x|\to 0$ quando $(x,y)\to(0,0)$: il teorema del confronto conclude.</span>
+          </p>
+          <div class="esempio__risultato">Il limite vale $\boldsymbol{0}$. Questa è la tecnica più veloce quando si riesce a isolare un fattore infinitesimo per uno limitato.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Radice al denominatore</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\displaystyle\lim_{(x,y)\to(0,0)}\frac{xy}{\sqrt{x^2+y^2}}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Attenzione: la funzione somiglia al controesempio $\frac{xy}{x^2+y^2}$, ma qui il denominatore è la <strong>radice</strong>, cioè $\rho$ e non $\rho^2$: grado $1$ invece di $2$. Cambia tutto.</span>
+            <span class="esempio__passo">In polari metto $\rho\cos\theta$ al posto di $x$ e $\rho\sin\theta$ al posto di $y$. Sopra: $xy=\rho\cos\theta\cdot\rho\sin\theta=\rho^2\cos\theta\sin\theta$. Sotto: $\sqrt{x^2+y^2}=\sqrt{\rho^2}=\rho$ (la radice del quadrato è $\rho$ stesso perché $\rho\geq0$ per definizione).</span>
+            <span class="esempio__passo">Divido e semplifico un $\rho$: $\ f=\dfrac{\rho^2\cos\theta\sin\theta}{\rho}=\rho\,\cos\theta\sin\theta$.</span>
+            <span class="esempio__passo">Maggioro. Prendo il modulo: $|f-0|=\rho\,|\cos\theta\,\sin\theta|$ (il fattore $\rho$ esce dal modulo perché è positivo). Uso la <strong>formula di duplicazione del seno</strong> $\sin 2\theta=2\sin\theta\cos\theta$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">cap. 8 §4.5</a>) letta al contrario, cioè $\cos\theta\sin\theta=\tfrac12\sin2\theta$: ottengo $\dfrac{\rho}{2}\,|\sin 2\theta|$. Infine $|\sin 2\theta|\leq 1$, quindi $|f-0|\leq \dfrac{\rho}{2}$.</span>
+            <span class="esempio__passo">La stima $g(\rho)=\rho/2$ è uniforme in $\theta$ e tende a $0$.</span>
+          </p>
+          <div class="esempio__risultato">Il limite vale $\boldsymbol{0}$. Confronto istruttivo: $\frac{xy}{x^2+y^2}$ (grado $2$ sopra e sotto) <strong>non</strong> ha limite, mentre $\frac{xy}{\sqrt{x^2+y^2}}$ (grado $2$ sopra, $1$ sotto) ha limite $0$. La differenza di grado è tutto.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Riportarsi a un limite notevole di Analisi 1</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\displaystyle\lim_{(x,y)\to(0,0)}\frac{\sin(x^2+y^2)}{x^2+y^2}$ e $\displaystyle\lim_{(x,y)\to(0,0)}\frac{1-\cos(xy)}{x^2y^2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Nel primo, la funzione dipende da $x$ e $y$ <strong>solo attraverso</strong> la quantità $t=x^2+y^2$. Sostituisco: quando $(x,y)\to(0,0)$ si ha $t\to0^+$.</span>
+            <span class="esempio__passo">Il limite diventa $\displaystyle\lim_{t\to0^+}\frac{\sin t}{t}=1$, limite notevole di <a href="../parte1-analisi1/04-limiti.html">Analisi 1</a>.</span>
+            <span class="esempio__passo">Nel secondo pongo $s=xy$: se $(x,y)\to(0,0)$ allora $s\to 0$, e $x^2y^2=s^2$.</span>
+            <span class="esempio__passo">Il limite diventa $\displaystyle\lim_{s\to0}\frac{1-\cos s}{s^2}=\frac12$, l'altro limite notevole.</span>
+          </p>
+          <div class="esempio__risultato">$1$ &nbsp;e&nbsp; $\tfrac12$. <strong>Regola d'oro</strong>: la sostituzione è lecita perché la funzione dipende dalle variabili <em>solo</em> tramite una singola espressione che tende a zero. Se così non fosse, sostituire sarebbe un errore.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — La trappola delle polari non uniformi</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Riprendiamo $f(x,y)=\dfrac{x^2y}{x^4+y^2}$ e vediamo <em>esattamente dove</em> fallisce il passaggio in polari. È l'esempio che spiega perché si insiste tanto sulla parola "uniforme".</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">In polari sostituisco $x=\rho\cos\theta$ e $y=\rho\sin\theta$. Sopra: $x^2y=(\rho\cos\theta)^2(\rho\sin\theta)=\rho^3\cos^2\theta\sin\theta$. Sotto: $x^4+y^2=(\rho\cos\theta)^4+(\rho\sin\theta)^2=\rho^4\cos^4\theta+\rho^2\sin^2\theta$. <strong>Attenzione</strong>: qui il denominatore <em>non</em> si semplifica in $\rho^2$, perché i due addendi hanno potenze di $\rho$ diverse ($\rho^4$ e $\rho^2$) e l'identità fondamentale non si può applicare. È tutta qui la differenza con l'esempio precedente.</span>
+            <span class="esempio__passo">Raccolgo $\rho^2$ al denominatore: $\rho^4\cos^4\theta+\rho^2\sin^2\theta=\rho^2\big(\rho^2\cos^4\theta+\sin^2\theta\big)$, e semplifico un $\rho^2$ con quelli del numeratore: $\ f=\dfrac{\rho^3\cos^2\theta\,\sin\theta}{\rho^2\big(\rho^2\cos^4\theta+\sin^2\theta\big)}=\dfrac{\rho\,\cos^2\theta\,\sin\theta}{\rho^2\cos^4\theta+\sin^2\theta}$.</span>
+            <span class="esempio__passo">Fisso $\theta$ con $\sin\theta\neq0$ e mando $\rho\to0^+$: il numeratore tende a $0$, il denominatore a $\sin^2\theta\neq0$, quindi il valore tende a $0$. Sembra fatta!</span>
+            <span class="esempio__passo">Ma questo dice solo che <strong>lungo ogni raggio</strong> il limite è $0$: sono le rette, che già sapevamo non bastare.</span>
+            <span class="esempio__passo">Per applicare il criterio servirebbe una maggiorazione $|f|\leq g(\rho)$ con $g$ <strong>senza $\theta$</strong>. Impossibile: il denominatore $\rho^2\cos^4\theta+\sin^2\theta$ diventa piccolissimo quando $\sin\theta$ è dell'ordine di $\rho$, e in quel regime $f$ arriva a $\tfrac12$.</span>
+            <span class="esempio__passo">Verifica concreta: scegliendo per ogni $\rho$ l'angolo $\theta(\rho)$ che corrisponde alla parabola $y=x^2$, si ottiene sempre il valore $\tfrac12$, mai $0$.</span>
+          </p>
+          <div class="esempio__risultato">Il limite <strong>non esiste</strong>. Lezione: "per ogni $\theta$ fissato la cosa tende a $0$" <strong>non</strong> è il criterio delle polari. Il criterio richiede una stima $g(\rho)$ valida simultaneamente per tutti gli angoli.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Concludere che il limite esiste perché tutte le rette danno lo stesso valore</div>
+          <p>È <strong>l'errore numero uno</strong> del capitolo, ed è quello che l'esame punisce più spesso. Controesempio obbligatorio da ricordare a memoria: per $f(x,y)=\dfrac{x^2y}{x^4+y^2}$ ogni retta per l'origine dà limite $0$ (compresi gli assi), ma lungo la parabola $y=x^2$ la funzione vale costantemente $\tfrac12$. Quindi il limite non esiste.</p>
+          <p><em>Come evitarlo</em>: ricorda che le restrizioni <strong>possono solo smontare</strong> un limite, mai costruirlo. Se le rette danno tutte lo stesso valore $L$, non hai dimostrato niente: hai solo trovato il <em>candidato</em> $L$, che ora va confermato con polari uniformi o con il confronto. Se non riesci a confermarlo, prova con le parabole $y=kx^2$ e con le curve $y=kx^3$: spesso il controesempio è lì.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Usare le coordinate polari dimenticando l'uniformità in $\theta$</div>
+          <p>Scrivere "fissato $\theta$, per $\rho\to0$ l'espressione tende a $L$, quindi il limite è $L$" è <strong>sbagliato</strong>: è la stessa cosa che controllare solo le rette, travestita da calcolo più sofisticato. Nell'Esempio 7 si vede esattamente come questo ragionamento porti a una conclusione falsa.</p>
+          <p><em>Come evitarlo</em>: dopo aver passato in polari, obbligati a scrivere una riga del tipo "$|f-L|\leq g(\rho)$ <strong>per ogni</strong> $\theta$", con $g$ in cui $\theta$ <em>non compare proprio</em>. Se non riesci a scriverla — tipicamente perché resta un $\theta$ al denominatore — <strong>il metodo non conclude</strong>: cambia strategia e cerca un controesempio.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che i limiti iterati decidano il limite</div>
+          <p>I <em>limiti iterati</em> $\displaystyle\lim_{x\to0}\Big(\lim_{y\to0}f(x,y)\Big)$ e $\displaystyle\lim_{y\to0}\Big(\lim_{x\to0}f(x,y)\Big)$ sono tutt'altra cosa dal limite in due variabili. Per $f=\frac{xy}{x^2+y^2}$ entrambi valgono $0$ (perché sono i limiti lungo i due assi, fatti uno dopo l'altro), eppure il limite non esiste.</p>
+          <p><em>Come evitarlo</em>: usali, se vuoi, per indovinare il candidato; ma sappi che se sono <strong>diversi tra loro</strong> allora il limite sicuramente non esiste, mentre se sono uguali <strong>non hai concluso nulla</strong>. Sono due strade su infinite, come le altre.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere "esiste il limite" con "la funzione è continua"</div>
+          <p>Sono cose diverse. La funzione $f(x,y)=\dfrac{x^2y}{x^2+y^2}$ per $(x,y)\neq(0,0)$ ha limite $0$ nell'origine, ma se la si definisce ponendo $f(0,0)=7$ <strong>non è continua</strong>: il limite c'è, però non coincide con il valore. Viceversa, una funzione può essere definita in un punto e non avere limite lì.</p>
+          <p><em>Come evitarlo</em>: negli esercizi di continuità verifica sempre <strong>tre</strong> cose, nell'ordine: (1) la funzione è definita nel punto? (2) il limite esiste finito? (3) i due numeri coincidono? Solo se tutte e tre le risposte sono sì la funzione è continua.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Trasportare meccanicamente le tecniche di una variabile</div>
+          <p>Due errori tipici: applicare <strong>de l'Hôpital</strong> "derivando sopra e sotto" (regola che in due variabili semplicemente non esiste in quella forma), e semplificare un fattore che si annulla come se fosse innocuo, dimenticando che in due variabili il numeratore e il denominatore possono annullarsi lungo <em>curve</em> intere e non solo in punti.</p>
+          <p><em>Come evitarlo</em>: le uniche tecniche lecite qui sono restrizioni, polari, confronto e la riconduzione a un limite di una variabile tramite una sostituzione $t=$ (espressione da cui la funzione dipende <em>interamente</em>), come nell'Esempio 6.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La strategia a due tempi: prima sospetta, poi dimostra</div>
+          <p>Davanti a un limite in $(0,0)$, procedi <strong>sempre</strong> in quest'ordine:</p>
+          <ol>
+            <li><strong>Sostituisci</strong>: se non viene una forma indeterminata, hai finito (continuità).</li>
+            <li><strong>Sospetta</strong> (30 secondi): prova $y=0$, $x=0$, $y=x$. Se trovi due valori diversi, hai già la risposta: il limite non esiste. Se coincidono tutti su $L$, hai il <em>candidato</em>.</li>
+            <li><strong>Dimostra</strong>: conferma $L$ con polari uniformi o con il confronto. Se la stima non viene, torna al punto 2 con strade più curve ($y=kx^2$, $y=kx^3$, $x=ky^2$).</li>
+          </ol>
+          <p>Questo ciclo risolve la quasi totalità degli esercizi d'esame.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La regola dei gradi per le funzioni omogenee</div>
+          <p>Se numeratore e denominatore sono <strong>polinomi omogenei</strong> (tutti i monomi dello stesso grado) di gradi $p$ e $q$, in polari le potenze di $\rho$ si semplificano e resta $\rho^{\,p-q}$ moltiplicato per una funzione del solo $\theta$ limitata. Quindi, quando il denominatore non si annulla per $\rho=1$:</p>
+          <ul>
+            <li>se $p&gt;q$ &nbsp;$\Rightarrow$&nbsp; il limite è $\boldsymbol{0}$ (resta un fattore $\rho$ positivo);</li>
+            <li>se $p=q$ &nbsp;$\Rightarrow$&nbsp; resta solo una funzione di $\theta$: il limite <strong>non esiste</strong>, a meno che quella funzione sia costante;</li>
+            <li>se $p&lt;q$ &nbsp;$\Rightarrow$&nbsp; la funzione esplode: limite infinito o inesistente.</li>
+          </ul>
+          <p>Esempi lampo: $\frac{x^3+y^3}{x^2+y^2}$ ha $p=3&gt;q=2$, limite $0$; $\frac{xy}{x^2+y^2}$ ha $p=q=2$, limite inesistente; $\frac{x^2-y^2}{x^2+y^2}$ idem. <strong>Attenzione</strong>: la regola vale solo per rapporti <em>omogenei</em>. In $\frac{x^2y}{x^4+y^2}$ il denominatore non è omogeneo (gradi $4$ e $2$ mischiati) ed è proprio lì che si annida il controesempio.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Quali strade provare, in ordine di efficacia</div>
+          <p>Guarda il <strong>denominatore</strong>: la strada giusta è quella che rende i suoi due addendi dello <em>stesso ordine</em>, così che non si semplifichino.</p>
+          <ul>
+            <li>Denominatore $x^2+y^2$ $\to$ prova le rette $y=mx$ (entrambi i termini diventano di grado 2).</li>
+            <li>Denominatore $x^4+y^2$ $\to$ prova $y=kx^2$ (entrambi diventano di grado 4).</li>
+            <li>Denominatore $x^6+y^2$ $\to$ prova $y=kx^3$; denominatore $x^2+y^4$ $\to$ prova $x=ky^2$.</li>
+            <li>Denominatore $x^2+y^6$ $\to$ prova $x=ky^3$. Il criterio è sempre "pareggia gli esponenti".</li>
+          </ul>
+          <p>È la scorciatoia che trasforma la caccia al controesempio da tentativi alla cieca in una ricerca mirata di trenta secondi.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sostituzione $t=x^2+y^2$ e simmetria radiale</div>
+          <p>Se la funzione dipende dalle variabili <strong>solo</strong> attraverso $x^2+y^2$ (o solo attraverso $xy$, o solo attraverso $x+y$), <em>non serve alcuna tecnica di Analisi 2</em>: poni $t$ uguale a quella espressione, osserva a cosa tende $t$, e risolvi un normalissimo limite di una variabile con tutti gli strumenti che già conosci — limiti notevoli, Taylor, gerarchie di infiniti.</p>
+          <p>Esempi: $\dfrac{\sin(x^2+y^2)}{x^2+y^2}\to1$; &nbsp;$(x^2+y^2)\ln(x^2+y^2)\to0$ perché $t\ln t\to0$; &nbsp;$\dfrac{e^{x^2+y^2}-1}{x^2+y^2}\to1$.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Weierstrass come "certificato di esistenza"</div>
+          <p>Negli esercizi di ottimizzazione (capitoli <a href="05-hessiano-massimi-minimi.html">5</a> e <a href="06-moltiplicatori-lagrange.html">6</a>) la prima riga della soluzione dovrebbe sempre essere: "<em>$f$ è continua e $K$ è chiuso e limitato, quindi per Weierstrass massimo e minimo esistono</em>". Costa una riga e vale punti, perché giustifica tutto il resto del procedimento. Per riconoscere un compatto a colpo d'occhio: disuguaglianze <strong>non strette</strong> ($\leq$, $\geq$, $=$) che confinano i punti in una regione finita.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Limiti e continuità in $\mathbb{R}^2$</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Definizione</strong>
+              <ul><li>Distanza $\|P-P_0\|$</li><li>Palle $B_\delta(P_0)$ al posto degli intervalli</li><li>$\varepsilon$-$\delta$: $0&lt;\|P-P_0\|&lt;\delta\Rightarrow|f-L|&lt;\varepsilon$</li><li>Il disco contiene TUTTE le strade</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>NON esiste</strong>
+              <ul><li>Metodo delle restrizioni</li><li>Rette $y=mx$: dipende da $m$?</li><li>Parabole $y=kx^2$</li><li>Classici: $\frac{xy}{x^2+y^2}$, $\frac{x^2y}{x^4+y^2}$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>ESISTE</strong>
+              <ul><li>Polari $x=\rho\cos\theta$, $y=\rho\sin\theta$</li><li>Stima $|f-L|\leq g(\rho)$ <em>senza</em> $\theta$</li><li>Confronto (due carabinieri)</li><li>Infinitesimo per limitato</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Continuità</strong>
+              <ul><li>$\lim f = f(P_0)$</li><li>Somma, prodotto, quoziente, composta</li><li>Polinomi e razionali: continui</li><li>Se continua: si sostituisce</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Teoremi globali</strong>
+              <ul><li>Weierstrass su compatti</li><li>Compatto = chiuso + limitato</li><li>Valori intermedi su connessi</li><li>$f$(compatto connesso) $=[\min,\max]$</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>La differenza con Analisi 1</strong>: in una variabile due strade (destra e sinistra), nel piano infinite direzioni e infinite curve. Il limite esiste solo se <em>tutte</em> danno lo stesso valore.</li>
+            <li><strong>Definizione</strong>: $\lim_{(x,y)\to(x_0,y_0)}f=L$ se per ogni $\varepsilon&gt;0$ esiste $\delta&gt;0$ tale che $0&lt;\|P-P_0\|&lt;\delta\Rightarrow|f(P)-L|&lt;\varepsilon$. Non nomina alcuna direzione: le include tutte.</li>
+            <li><strong>Restrizioni</strong>: se il limite esiste, ogni curva dà lo stesso valore. Servono <strong>solo</strong> a dimostrare che un limite NON esiste (due strade discordi).</li>
+            <li><strong>Controesempio obbligatorio</strong>: $\frac{x^2y}{x^4+y^2}$ dà $0$ lungo <em>ogni</em> retta, ma $\tfrac12$ lungo $y=x^2$: le rette non bastano mai.</li>
+            <li><strong>Polari</strong>: $(x,y)\to(0,0)\iff\rho\to0^+$. Il limite è $L$ se $|f-L|\leq g(\rho)$ con $g\to0$ e $g$ <strong>indipendente da $\theta$</strong> (maggiorazione uniforme). Senza uniformità il metodo non conclude.</li>
+            <li><strong>Confronto</strong>: $0\leq|f-L|\leq g$ con $g\to0$ implica $f\to L$. Attrezzi: $|x|\leq\sqrt{x^2+y^2}$, $2|xy|\leq x^2+y^2$, $\frac{x^2}{x^2+y^2}\leq1$.</li>
+            <li><strong>Continuità</strong>: $\lim f=f(P_0)$. Somme, prodotti, quozienti (denominatore non nullo) e composte di continue sono continue; polinomi e razionali sono continui nel loro dominio, quindi lì <em>si sostituisce</em>.</li>
+            <li><strong>Weierstrass</strong>: continua su compatto (chiuso e limitato) $\Rightarrow$ esistono massimo e minimo assoluti. <strong>Valori intermedi</strong>: continua su connesso $\Rightarrow$ l'immagine è un intervallo.</li>
+            <li><strong>Metodo operativo</strong>: sostituisci $\to$ sospetta con 2-3 restrizioni $\to$ dimostra con polari o confronto $\to$ se non riesci, cerca il controesempio pareggiando gli esponenti del denominatore.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\lim_{(x,y)\to(2,-1)}\big(x^2y+3x-y^2\big)$, giustificando il procedimento.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>L'espressione è un <strong>polinomio</strong> in due variabili, quindi è continua su tutto $\mathbb{R}^2$ (somma di prodotti di proiezioni e costanti). Per una funzione continua il limite coincide con il valore nel punto: si sostituisce.</p>
+              <p>$2^2\cdot(-1)+3\cdot2-(-1)^2=-4+6-1=1$.</p>
+              <p><strong>Il limite vale $1$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\lim_{(x,y)\to(0,2)}\frac{x^2+y}{y-x}$ e stabilisci dove la funzione è continua.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Si tratta di una <strong>funzione razionale</strong>: è continua in tutti i punti in cui il denominatore non si annulla, cioè su $\{(x,y): y\neq x\}$, il piano privato della bisettrice.</p>
+              <p>Nel punto $(0,2)$ il denominatore vale $2-0=2\neq0$, quindi la funzione è continua lì e si sostituisce:</p>
+              <p>$\dfrac{0^2+2}{2-0}=\dfrac{2}{2}=1$.</p>
+              <p><strong>Il limite vale $1$; la funzione è continua su $\mathbb{R}^2$ privato della retta $y=x$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Dimostra con la definizione $\varepsilon$-$\delta$ che $\displaystyle\lim_{(x,y)\to(0,0)}(3x+2y)=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sia $\varepsilon&gt;0$ e poniamo $\rho=\sqrt{x^2+y^2}$.</span>
+                <span class="esempio__passo">Per la disuguaglianza triangolare: $|3x+2y-0|\leq 3|x|+2|y|$.</span>
+                <span class="esempio__passo">Maggioro con l'ipotenusa: $|x|\leq\rho$ e $|y|\leq\rho$, quindi $|3x+2y|\leq 3\rho+2\rho=5\rho$.</span>
+                <span class="esempio__passo">Scelgo $\delta=\dfrac{\varepsilon}{5}$: se $0&lt;\rho&lt;\delta$ allora $|3x+2y|\leq5\rho&lt;5\delta=\varepsilon$.</span>
+              </p>
+              <p><strong>La definizione è soddisfatta con $\delta=\varepsilon/5$, quindi il limite vale $0$.</strong> (Coerente con la continuità del polinomio $3x+2y$.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Mostra che $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x-y}{x+y}$ non esiste.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La funzione è definita per $x+y\neq0$; l'origine è di accumulazione per il dominio, quindi la domanda ha senso. Uso due restrizioni.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Lungo $y=0$ (asse $x$): $\ \dfrac{x-0}{x+0}=1$ per ogni $x\neq0$, dunque limite $1$.</span>
+                <span class="esempio__passo">Lungo $x=0$ (asse $y$): $\ \dfrac{0-y}{0+y}=-1$, dunque limite $-1$.</span>
+              </p>
+              <p><strong>Due strade danno $1$ e $-1$: il limite non esiste.</strong> Nota che si trattava di un rapporto omogeneo con $p=q=1$: la regola dei gradi prevedeva già questo esito.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2y^2}{x^2+y^2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Forma $\frac00$. Passo in polari: metto $\rho\cos\theta$ al posto di $x$ e $\rho\sin\theta$ al posto di $y$. Numeratore: $x^2y^2=(\rho\cos\theta)^2(\rho\sin\theta)^2=\rho^2\cos^2\theta\cdot\rho^2\sin^2\theta=\rho^4\cos^2\theta\sin^2\theta$. Denominatore: $x^2+y^2=\rho^2(\cos^2\theta+\sin^2\theta)=\rho^2$ per l'identità fondamentale (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">cap. 8 §4.4</a>).</span>
+                <span class="esempio__passo">Divido e semplifico $\rho^2$ ($\rho&gt;0$ fuori dall'origine): $f=\dfrac{\rho^4\cos^2\theta\sin^2\theta}{\rho^2}=\rho^2\cos^2\theta\sin^2\theta$.</span>
+                <span class="esempio__passo">Maggioro: $|f-0|=\rho^2\cos^2\theta\sin^2\theta\leq\rho^2$ per ogni $\theta$, perché $\cos^2\theta\leq1$ e $\sin^2\theta\leq1$ e quindi posso mettere $1$ al posto di ciascuno dei due fattori angolari.</span>
+                <span class="esempio__passo">$g(\rho)=\rho^2$ non dipende da $\theta$ e tende a $0$.</span>
+              </p>
+              <p><strong>Il limite vale $0$.</strong> Alternativa senza polari: $\left|\frac{x^2y^2}{x^2+y^2}\right|=y^2\cdot\frac{x^2}{x^2+y^2}\leq y^2\to0$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Studia la continuità in $(0,0)$ della funzione $f(x,y)=\dfrac{x^3}{x^2+y^2}$ per $(x,y)\neq(0,0)$, con $f(0,0)=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Serve verificare che il limite nell'origine esista e valga $f(0,0)=0$.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Scrivo $x^3=x\cdot x^2$ e spezzo il modulo in due fattori: $\left|\dfrac{x^3}{x^2+y^2}\right|=|x|\cdot\dfrac{x^2}{x^2+y^2}$ (il modulo resta solo sulla $x$, perché $x^2$ e $x^2+y^2$ sono già non negativi).</span>
+                <span class="esempio__passo">Il secondo fattore è limitato: $\dfrac{x^2}{x^2+y^2}\leq1$, perché il denominatore è il numeratore $x^2$ più $y^2\geq0$. Metto $1$ al suo posto.</span>
+                <span class="esempio__passo">Dunque $\left|f(x,y)-0\right|\leq|x|\to0$ per $(x,y)\to(0,0)$: teorema del confronto.</span>
+              </p>
+              <p><strong>Il limite vale $0=f(0,0)$: la funzione è continua nell'origine</strong> (ed è continua su tutto $\mathbb{R}^2$, essendo razionale con denominatore non nullo altrove).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Stabilisci se esiste $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2}{x^2+y^2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Rapporto omogeneo con $p=q=2$: la regola dei gradi fa sospettare che il limite non esista.</span>
+                <span class="esempio__passo">Lungo $y=0$: $\ \dfrac{x^2}{x^2}=1$, limite $1$.</span>
+                <span class="esempio__passo">Lungo $x=0$: $\ \dfrac{0}{y^2}=0$, limite $0$.</span>
+                <span class="esempio__passo">In polari si vede il quadro completo: sostituendo $x=\rho\cos\theta$, $y=\rho\sin\theta$ il numeratore $x^2$ diventa $\rho^2\cos^2\theta$ e il denominatore $x^2+y^2$ diventa $\rho^2$ (identità fondamentale); semplificando $\rho^2$ resta $f=\cos^2\theta$, che dipende solo dalla direzione.</span>
+              </p>
+              <p><strong>Il limite non esiste</strong>: ogni direzione ha la sua quota $\cos^2\theta$, e nessuna maggiorazione uniforme è possibile.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\lim_{(x,y)\to(0,0)}\frac{e^{x^2+y^2}-1}{x^2+y^2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">La funzione dipende da $(x,y)$ <strong>solo</strong> attraverso la quantità $t=x^2+y^2$.</span>
+                <span class="esempio__passo">Quando $(x,y)\to(0,0)$ si ha $t\to0^+$ (e $t&gt;0$ fuori dall'origine).</span>
+                <span class="esempio__passo">Il limite si riduce a quello di una variabile: $\displaystyle\lim_{t\to0^+}\frac{e^t-1}{t}$.</span>
+                <span class="esempio__passo">È un limite notevole di Analisi 1 e vale $1$.</span>
+              </p>
+              <p><strong>Il limite vale $1$.</strong> La sostituzione è lecita proprio perché la dipendenza dalle due variabili passa <em>tutta</em> attraverso $t$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Stabilisci se esiste $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^3y}{x^6+y^2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Il denominatore non è omogeneo (gradi $6$ e $2$): campanello d'allarme, si applica la strategia "pareggia gli esponenti".</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Rette $y=mx$ con $m\neq0$: sostituisco $t$ al posto di $x$ e $mt$ al posto di $y$ in $\dfrac{x^3y}{x^6+y^2}$, ottenendo $\dfrac{t^3\cdot(mt)}{t^6+(mt)^2}=\dfrac{m\,t^4}{t^6+m^2t^2}$. Raccolgo $t^2$ al denominatore, $t^6+m^2t^2=t^2(t^4+m^2)$, e semplifico un $t^2$ ($t\neq0$): resta $\dfrac{m\,t^2}{t^4+m^2}$. Per $t\to0$ il numeratore va a $0$ e il denominatore a $m^2\neq0$, quindi il limite è $\dfrac{0}{m^2}=0$.</span>
+                <span class="esempio__passo">Assi: lungo $y=0$ e lungo $x=0$ la funzione è identicamente nulla (basta sostituire $y=0$, o $x=0$, al numeratore: viene $0$), limite $0$. Tutte le rette danno $0$.</span>
+                <span class="esempio__passo">Pareggio gli esponenti: voglio che $x^6$ e $y^2$ abbiano lo stesso grado in $t$, quindi scelgo $y=x^3$ (così $y^2=x^6$). Sostituisco $t$ al posto di $x$ e $t^3$ al posto di $y$: $\ \dfrac{t^3\cdot t^3}{t^6+(t^3)^2}=\dfrac{t^6}{t^6+t^6}=\dfrac{t^6}{2t^6}=\dfrac12$, limite $\tfrac12$.</span>
+              </p>
+              <p><strong>Il limite non esiste</strong>: $0$ lungo tutte le rette, $\tfrac12$ lungo la cubica $y=x^3$. È il gemello del controesempio con $x^4+y^2$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\lim_{(x,y)\to(0,0)}\big(x^2+y^2\big)\ln\big(x^2+y^2\big)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dipendenza solo da $t=x^2+y^2$, con $t\to0^+$ (e $t&gt;0$ fuori dall'origine, dove il logaritmo è definito).</span>
+                <span class="esempio__passo">Il limite diventa $\displaystyle\lim_{t\to0^+} t\ln t$, forma indeterminata $0\cdot(-\infty)$.</span>
+                <span class="esempio__passo">Per la gerarchia degli infiniti di <a href="../parte1-analisi1/04-limiti.html">Analisi 1</a> (vicino a zero la potenza $t$ "vince" sul logaritmo, che diverge più lentamente) si ha $t\ln t\to 0$.</span>
+                <span class="esempio__passo">In polari sarebbe lo stesso conto: sostituendo $x=\rho\cos\theta$, $y=\rho\sin\theta$ si ha $x^2+y^2=\rho^2$ (identità fondamentale), quindi l'espressione diventa $\rho^2\ln\rho^2$; per la proprietà dei logaritmi $\ln a^b=b\ln a$ (<a href="../parte0-prerequisiti/04-logaritmi.html">Prerequisiti, cap. 4</a>) con $a=\rho$ e $b=2$ questo è $2\rho^2\ln\rho\to0$, e la stima non contiene $\theta$.</span>
+              </p>
+              <p><strong>Il limite vale $0$.</strong> Ne segue che la funzione estesa con il valore $0$ nell'origine è continua su tutto $\mathbb{R}^2$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Studia la continuità su $\mathbb{R}^2$ di $f(x,y)=\dfrac{x^3-y^3}{x^2+y^2}$ per $(x,y)\neq(0,0)$, $f(0,0)=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Fuori dall'origine $f$ è razionale con denominatore non nullo: continua. Resta da studiare l'origine.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Polari: metto $\rho\cos\theta$ al posto di $x$ e $\rho\sin\theta$ al posto di $y$. Sopra $x^3-y^3$ diventa $\rho^3\cos^3\theta-\rho^3\sin^3\theta=\rho^3(\cos^3\theta-\sin^3\theta)$ (ho raccolto $\rho^3$); sotto $x^2+y^2$ diventa $\rho^2(\cos^2\theta+\sin^2\theta)=\rho^2$ per l'identità fondamentale. Semplifico $\rho^2$: $f=\dfrac{\rho^3(\cos^3\theta-\sin^3\theta)}{\rho^2}=\rho\,(\cos^3\theta-\sin^3\theta)$.</span>
+                <span class="esempio__passo">Maggioro: per la disuguaglianza triangolare $|a-b|\leq|a|+|b|$ (con $a=\cos^3\theta$, $b=\sin^3\theta$) ho $|f-0|\leq\rho\big(|\cos\theta|^3+|\sin\theta|^3\big)$; poi $|\cos\theta|\leq1$ e $|\sin\theta|\leq1$, quindi ciascun cubo è $\leq1$ e la somma è $\leq2$: $|f-0|\leq 2\rho$ per ogni $\theta$.</span>
+                <span class="esempio__passo">$g(\rho)=2\rho$ è indipendente da $\theta$ e tende a $0$: il limite esiste e vale $0$.</span>
+                <span class="esempio__passo">Poiché $f(0,0)=0$, limite e valore coincidono.</span>
+              </p>
+              <p><strong>$f$ è continua su tutto $\mathbb{R}^2$.</strong> Conferma della regola dei gradi: $p=3&gt;q=2$ con denominatore omogeneo non nullo, quindi limite $0$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina per quali $\alpha&gt;0$ si ha $\displaystyle\lim_{(x,y)\to(0,0)}\frac{|x|^\alpha y}{x^2+y^2}=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Polari: sostituisco $x=\rho\cos\theta$, $y=\rho\sin\theta$. Sopra, $|x|^\alpha=|\rho\cos\theta|^\alpha=\rho^\alpha|\cos\theta|^\alpha$ (il modulo di un prodotto è il prodotto dei moduli, e $\rho&gt;0$), moltiplicato per $y=\rho\sin\theta$. Sotto, $x^2+y^2=\rho^2$ per l'identità fondamentale. Quindi $\ \dfrac{\rho^\alpha|\cos\theta|^\alpha\cdot\rho\sin\theta}{\rho^2}$; sommo gli esponenti sopra ($\alpha+1$) e sottraggo quello sotto: $\rho^{\alpha+1-2}=\rho^{\alpha-1}$, cioè $\rho^{\alpha-1}\,|\cos\theta|^\alpha\sin\theta$.</span>
+                <span class="esempio__passo">In modulo, maggioro i fattori angolari con $1$ ($|\cos\theta|\leq1$ implica $|\cos\theta|^\alpha\leq1$; inoltre $|\sin\theta|\leq1$): $\big|\rho^{\alpha-1}|\cos\theta|^\alpha\sin\theta\big|\leq\rho^{\alpha-1}$, stima <strong>uniforme</strong> in $\theta$ perché $\theta$ è sparito.</span>
+                <span class="esempio__passo">Se $\alpha&gt;1$: l'esponente $\alpha-1$ è positivo, quindi $\rho^{\alpha-1}\to0$ e il limite è $0$.</span>
+                <span class="esempio__passo">Se $\alpha=1$: resta $|\cos\theta|\sin\theta$, che dipende solo dall'angolo (vale $0$ sugli assi e $\tfrac12$ per $\theta=\pi/4$): limite inesistente.</span>
+                <span class="esempio__passo">Se $\alpha&lt;1$: lungo $y=x&gt;0$ si ottiene $\dfrac{x^{\alpha+1}}{2x^2}=\dfrac{1}{2}x^{\alpha-1}\to+\infty$: il limite non è $0$.</span>
+              </p>
+              <p><strong>Il limite vale $0$ se e solo se $\alpha&gt;1$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare $a\in\mathbb{R}$ affinché $f(x,y)=\begin{cases}\dfrac{\sin(x^2+y^2)}{x^2+y^2} &amp; (x,y)\neq(0,0)\\[4pt] a &amp; (x,y)=(0,0)\end{cases}$ sia continua in $\mathbb{R}^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Fuori dall'origine $f$ è composizione e quoziente di funzioni continue con denominatore non nullo: continua per ogni $a$.</span>
+                <span class="esempio__passo">Nell'origine serve $\displaystyle\lim_{(x,y)\to(0,0)}f(x,y)=a$.</span>
+                <span class="esempio__passo">Pongo $t=x^2+y^2\to0^+$: il limite diventa $\displaystyle\lim_{t\to0^+}\frac{\sin t}{t}=1$ (limite notevole).</span>
+                <span class="esempio__passo">Uguagliando limite e valore: $a=1$.</span>
+              </p>
+              <p><strong>$a=1$.</strong> Con qualunque altro valore di $a$ la funzione avrebbe nell'origine una discontinuità eliminabile.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Studiare l'esistenza di $\displaystyle\lim_{(x,y)\to(0,0)}\frac{xy^2}{x^2+y^4}$, motivando ogni passaggio.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Denominatore non omogeneo (gradi $2$ e $4$): la strategia è pareggiare gli esponenti con una curva del tipo $x=ky^2$.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Rette $y=mx$: sostituisco $t$ al posto di $x$ e $mt$ al posto di $y$ in $\dfrac{xy^2}{x^2+y^4}$. Sopra: $t\cdot(mt)^2=t\cdot m^2t^2=m^2t^3$. Sotto: $t^2+(mt)^4=t^2+m^4t^4$. Raccolgo $t^2$ sotto, $t^2(1+m^4t^2)$, e semplifico un $t^2$ ($t\neq0$): $\dfrac{m^2t}{1+m^4t^2}$. Per $t\to0$ il numeratore va a $0$ e il denominatore a $1$, quindi il limite è $0$.</span>
+                <span class="esempio__passo">Assi: lungo $x=0$ e lungo $y=0$ il numeratore $xy^2$ si annulla, quindi la funzione è nulla e il limite è $0$. <strong>Tutte le rette danno $0$</strong>.</span>
+                <span class="esempio__passo">Pareggio gli esponenti: voglio che $x^2$ e $y^4$ abbiano lo stesso grado, quindi prendo la parabola $x=y^2$, cioè sostituisco $y^2$ al posto di $x$ lasciando $y$ come parametro. Sopra: $x y^2=y^2\cdot y^2=y^4$. Sotto: $x^2+y^4=(y^2)^2+y^4=y^4+y^4=2y^4$. Quindi $\ \dfrac{y^4}{2y^4}=\dfrac12$, limite $\tfrac12\neq0$.</span>
+                <span class="esempio__passo">Due restrizioni con limiti diversi: per il teorema delle restrizioni il limite non può esistere.</span>
+              </p>
+              <p><strong>Il limite non esiste.</strong> Più in generale, lungo $x=ky^2$ si ottiene $\dfrac{k}{1+k^2}$: variando $k$ si ottengono tutti i valori di $[-\tfrac12,\tfrac12]$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $K=\{(x,y): x^2+y^2\leq1\}$ e $f(x,y)=x^2+y^2-xy$. Giustificare l'esistenza di massimo e minimo assoluti su $K$ e determinarli.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Esistenza</strong>: $K$ è chiuso (disuguaglianza non stretta) e limitato (contenuto in $B_2(0)$), quindi compatto; $f$ è un polinomio, quindi continua. Per il <strong>teorema di Weierstrass</strong> massimo e minimo assoluti esistono.</span>
+                <span class="esempio__passo"><strong>Minimo</strong>: completo il quadrato nella variabile $x$, trattando $y$ come una costante. Voglio far comparire $\left(x-\frac{y}{2}\right)^2$, che sviluppato con $(a-b)^2=a^2-2ab+b^2$ (cap. 2) vale $x^2-xy+\frac{y^2}{4}$: contiene già i pezzi $x^2$ e $-xy$ che mi servono, ma aggiunge $\frac{y^2}{4}$ di troppo. Allora scrivo $x^2-xy+y^2=\left(x-\frac{y}{2}\right)^2-\frac{y^2}{4}+y^2$, e $-\frac{y^2}{4}+y^2=\frac{3}{4}y^2$. Conclusione: $\ x^2+y^2-xy=\left(x-\dfrac{y}{2}\right)^2+\dfrac{3}{4}y^2\geq0$, somma di due quadrati. L'uguaglianza a $0$ richiede entrambi nulli: $\frac34y^2=0$ dà $y=0$, e allora $\left(x-0\right)^2=0$ dà $x=0$. Poiché $(0,0)\in K$ e $f(0,0)=0$, il minimo assoluto è $0$.</span>
+                <span class="esempio__passo"><strong>Massimo</strong>: scrivo $f=(x^2+y^2)-xy$. Uso la disuguaglianza $2|xy|\leq x^2+y^2$ della tabella del <span class="richiamo" data-sec="4.5">§4.5</span>: dividendo entrambi i membri per $2$ diventa $|xy|\leq\dfrac{x^2+y^2}{2}$, e siccome $-xy\leq|xy|$ ottengo $-xy\leq\dfrac{x^2+y^2}{2}$. Sostituisco questo tetto nell'espressione di $f$: $f\leq (x^2+y^2)+\dfrac{x^2+y^2}{2}=\dfrac32(x^2+y^2)$. Infine su $K$ vale $x^2+y^2\leq1$ per definizione di $K$, quindi $f\leq\dfrac32$.</span>
+                <span class="esempio__passo">Il valore $\tfrac32$ è raggiunto. Sul bordo $x^2+y^2=1$, cioè $\rho=1$: in polari $x=\cos\theta$, $y=\sin\theta$, quindi $f=(\cos^2\theta+\sin^2\theta)-\cos\theta\sin\theta=1-\cos\theta\sin\theta$ (di nuovo l'identità fondamentale). Uso la duplicazione $\sin2\theta=2\sin\theta\cos\theta$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">cap. 8 §4.5</a>) al contrario, $\cos\theta\sin\theta=\tfrac12\sin2\theta$: ottengo $f=1-\tfrac12\sin2\theta$. Questa espressione è massima quando $\sin2\theta$ è minimo, cioè $\sin2\theta=-1$: allora $f=1+\tfrac12=\tfrac32$. Risolvendo $\sin2\theta=-1$ si trova $2\theta=\tfrac{3\pi}{2}+2k\pi$, cioè $\theta=\tfrac{3\pi}{4}$ e $\theta=\tfrac{7\pi}{4}$.</span>
+              </p>
+              <p><strong>Minimo assoluto $0$ in $(0,0)$; massimo assoluto $\tfrac32$ nei punti $\pm\left(-\tfrac{\sqrt2}{2},\tfrac{\sqrt2}{2}\right)$ del bordo.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostrare con la definizione $\varepsilon$-$\delta$ che $\displaystyle\lim_{(x,y)\to(0,0)}\frac{x^2y}{x^2+y^2}=0$, esibendo esplicitamente il $\delta$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sia $\varepsilon&gt;0$ e sia $(x,y)\neq(0,0)$; pongo $\rho=\sqrt{x^2+y^2}$.</span>
+                <span class="esempio__passo">Stimo il modulo isolando un fattore limitato: $\left|\dfrac{x^2y}{x^2+y^2}-0\right|=|y|\cdot\dfrac{x^2}{x^2+y^2}$.</span>
+                <span class="esempio__passo">Poiché $x^2\leq x^2+y^2$ (a destra c'è in più $y^2\geq0$), il secondo fattore è $\leq1$ e posso rimpiazzarlo con $1$; inoltre $|y|\leq\sqrt{x^2+y^2}=\rho$, che è la maggiorazione base della tabella del <span class="richiamo" data-sec="4.5">§4.5</span> (un cateto non supera l'ipotenusa). Mettendo insieme le due sostituzioni: $\left|\dfrac{x^2y}{x^2+y^2}\right|\leq\rho\cdot1=\rho$.</span>
+                <span class="esempio__passo">Scelgo $\delta=\varepsilon$. Se $0&lt;\rho&lt;\delta$ allora $\left|\dfrac{x^2y}{x^2+y^2}-0\right|\leq\rho&lt;\varepsilon$.</span>
+              </p>
+              <p><strong>La definizione è verificata con $\delta=\varepsilon$, quindi il limite vale $0$. ∎</strong> Osservazione: lo stesso conto in polari dà $|f|=\rho\cos^2\theta|\sin\theta|\leq\rho$, con maggiorazione uniforme in $\theta$.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Qual è la differenza essenziale tra il limite in una variabile e quello in due variabili?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">In due variabili il limite è sempre infinito</button>
+              <button class="quiz-option" data-correct="true">In due variabili ci si avvicina al punto lungo infinite direzioni e curve, non solo da destra e da sinistra</button>
+              <button class="quiz-option" data-correct="false">In due variabili non esiste la definizione con $\varepsilon$ e $\delta$</button>
+              <button class="quiz-option" data-correct="false">In due variabili basta controllare i due limiti laterali lungo l'asse $x$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Nel piano il "cerchietto" attorno al punto contiene infinite strade: il limite esiste solo se <em>tutte</em> portano allo stesso valore. È l'analogia della piazza raggiunta da infinite vie.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Restringendo $f(x,y)=\dfrac{xy}{x^2+y^2}$ alla retta $y=mx$ si ottiene:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">sempre $0$, qualunque sia $m$</button>
+              <button class="quiz-option" data-correct="true">il valore costante $\dfrac{m}{1+m^2}$, che dipende da $m$</button>
+              <button class="quiz-option" data-correct="false">un'espressione che tende a $+\infty$</button>
+              <button class="quiz-option" data-correct="false">$\dfrac{1}{1+m^2}$, indipendente dal punto e da $m$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\dfrac{t\cdot mt}{t^2+m^2t^2}=\dfrac{m}{1+m^2}$: dipendendo da $m$, strade diverse danno valori diversi ($0$ per $m=0$, $\tfrac12$ per $m=1$) e il limite non esiste.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Per applicare correttamente il criterio delle coordinate polari occorre che:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">per ogni $\theta$ fissato l'espressione tenda a $L$ quando $\rho\to0^+$</button>
+              <button class="quiz-option" data-correct="true">esista una maggiorazione $|f-L|\leq g(\rho)$ con $g$ indipendente da $\theta$ e $g(\rho)\to0$</button>
+              <button class="quiz-option" data-correct="false">la funzione sia un polinomio omogeneo</button>
+              <button class="quiz-option" data-correct="false">il limite lungo tutte le parabole sia lo stesso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La prima opzione equivale a controllare solo i raggi, cioè le rette: non basta (vedi $\frac{x^2y}{x^4+y^2}$). Serve la maggiorazione <strong>uniforme</strong> rispetto all'angolo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Il teorema di Weierstrass in $\mathbb{R}^n$ garantisce massimo e minimo assoluti quando la funzione è continua e l'insieme è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">aperto e connesso</button>
+              <button class="quiz-option" data-correct="false">soltanto limitato</button>
+              <button class="quiz-option" data-correct="true">compatto, cioè chiuso e limitato</button>
+              <button class="quiz-option" data-correct="false">un qualsiasi sottoinsieme non vuoto di $\mathbb{R}^n$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Servono <strong>entrambe</strong> le proprietà: $f(x,y)=x$ su $\mathbb{R}^2$ (chiuso ma illimitato) non ha estremi, e $\frac{1}{1-x^2-y^2}$ sul disco aperto (limitato ma non chiuso) non è nemmeno limitata.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se il limite lungo ogni retta per $(0,0)$ vale $0$, allora il limite della funzione in $(0,0)$ esiste e vale $0$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, ed è l'errore più grave del capitolo: $f(x,y)=\frac{x^2y}{x^4+y^2}$ dà $0$ lungo ogni retta ma vale costantemente $\tfrac12$ sulla parabola $y=x^2$. Le rette sono solo alcune delle infinite strade.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se due restrizioni a curve diverse danno limiti diversi, allora il limite non esiste.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: se il limite esistesse e valesse $L$, ogni restrizione dovrebbe tendere a $L$ (teorema delle restrizioni). Due valori diversi sono quindi impossibili.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Ogni polinomio nelle variabili $x$ e $y$ è continuo su tutto $\mathbb{R}^2$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: le proiezioni $(x,y)\mapsto x$, $(x,y)\mapsto y$ e le costanti sono continue, e somme e prodotti di funzioni continue sono continui. Per i polinomi il limite si calcola sostituendo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Se il limite di $f$ in $P_0$ esiste finito, allora $f$ è continua in $P_0$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: servono tre condizioni. La funzione deve essere definita in $P_0$, il limite deve esistere finito <strong>e</strong> i due numeri devono coincidere. Se $\lim f=0$ ma $f(P_0)=7$, la funzione non è continua (discontinuità eliminabile).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="restrizioni|restrizione|metodo delle restrizioni">
+            <p class="quiz-question__testo">9. (Completamento) Per dimostrare che un limite in due variabili NON esiste si usa il metodo delle ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si calcola il limite lungo due strade diverse (assi, rette $y=mx$, parabole $y=kx^2$): se i valori sono diversi, il limite non esiste.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="polari|coordinate polari">
+            <p class="quiz-question__testo">10. (Completamento) Le coordinate ______ trasformano l'avvicinamento a $(0,0)$ nella sola condizione $\rho\to0^+$.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Con $x=\rho\cos\theta$ e $y=\rho\sin\theta$, avvicinarsi all'origine significa solo $\rho\to0^+$ con $\theta$ libero: per concludere serve una maggiorazione uniforme rispetto a $\theta$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="weierstrass|teorema di weierstrass">
+            <p class="quiz-question__testo">11. (Completamento) Il teorema di ______ garantisce che una funzione continua su un insieme compatto ammette massimo e minimo assoluti.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È la versione in più variabili del teorema visto su $[a,b]$ in Analisi 1: l'intervallo chiuso e limitato viene sostituito da un insieme chiuso e limitato di $\mathbb{R}^n$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue, usando l'immagine della piazza raggiunta da infinite strade, perché in due variabili il limite è più delicato che in una.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: in una variabile un punto della retta si raggiunge solo da due parti, destra e sinistra: bastano due controlli, i limiti laterali, e se coincidono il limite esiste. Nel piano invece il punto è come una piazza in cui confluiscono infinite strade: viali rettilinei in ogni direzione, ma anche curve, parabole, spirali. Il limite esiste solo se, percorrendo <em>qualunque</em> strada, i valori della funzione convergono sempre allo stesso numero; basta una sola strada discorde perché il limite non esista. Questo squilibrio spiega i due mestieri del capitolo: dimostrare che un limite NON esiste è facile, perché basta esibire due strade con esiti diversi (metodo delle restrizioni); dimostrare che ESISTE è più impegnativo, perché non si possono percorrere infinite strade una per una e serve un argomento che le tratti tutte insieme, come la maggiorazione uniforme in coordinate polari o il teorema del confronto. La definizione $\varepsilon$-$\delta$ fa esattamente questo: non nomina nessuna strada, parla solo dei punti del disco di raggio $\delta$, e così le include tutte automaticamente.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché non basta verificare che tutte le rette diano lo stesso limite? Illustra con il controesempio classico.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: le rette per il punto sono infinite, ma restano una piccolissima parte delle strade possibili, perché ci si può avvicinare anche lungo curve. Il controesempio classico è $f(x,y)=\frac{x^2y}{x^4+y^2}$ nell'origine. Lungo la generica retta $y=mx$ si ottiene $\frac{mt^3}{t^2(t^2+m^2)}=\frac{mt}{t^2+m^2}$, che tende a $0$ per ogni $m$; anche lungo i due assi la funzione è identicamente nulla. Tutte le rette danno dunque $0$. Ma lungo la parabola $y=x^2$ si ha $\frac{t^2\cdot t^2}{t^4+t^4}=\frac12$ per ogni $t\neq0$, quindi quella strada dà $\frac12$. Due restrizioni con limiti diversi rendono impossibile l'esistenza del limite. La morale operativa è che le restrizioni servono soltanto a smontare un limite, mai a costruirlo: se tutte le rette danno lo stesso valore $L$, si è trovato solo il candidato, che va poi confermato con le coordinate polari e una maggiorazione uniforme in $\theta$ oppure con il teorema del confronto. Un buon indizio su quale curva provare viene dal denominatore: con $x^4+y^2$ conviene la parabola $y=kx^2$, perché pareggia gli esponenti.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="01-funzioni-piu-variabili.html"><span class="dir">← Capitolo precedente</span><strong>Funzioni di più variabili</strong></a>
+        <a class="next" href="03-derivate-parziali.html"><span class="dir">Capitolo successivo →</span><strong>Derivate parziali</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

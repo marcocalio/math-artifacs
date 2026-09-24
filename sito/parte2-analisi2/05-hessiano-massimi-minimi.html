@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5. Hessiano, massimi e minimi liberi — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 5</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html" class="is-active">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 5 di 14</span>
+        </div>
+        <h1>Hessiano, massimi e minimi liberi</h1>
+        <p class="subtitle">In una variabile bastava $f'=0$ e poi il segno di $f''$. In due variabili il terreno può essere "in piano" anche dove non c'è né una cima né una conca: al <strong>passo di montagna</strong>. Per distinguere una vetta da una conca da una sella serve la matrice delle derivate seconde — la <strong>matrice hessiana</strong> — e il suo determinante. Questo capitolo ti dà la procedura completa, dai punti critici ai massimi e minimi assoluti su un insieme chiuso e limitato.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p><strong>1) Massimi e minimi in una variabile.</strong> In cima a una collina, per un istante, la strada è piatta. Piatta vuol dire pendenza zero, cioè $f'(x_0)=0$. Quindi prima si cerca dove la derivata si annulla. Quei punti sono solo <em>candidati</em>: piatto non vuol dire per forza cima. <em>Immagine mentale: la palla che si ferma solo dove il terreno è orizzontale.</em> (<a href="../parte1-analisi1/09-studio-di-funzione.html">ripasso completo qui</a>)</p>
+          <p><strong>2) Il test della derivata seconda</strong> (cioè della <span class="glossario-term" data-term="concavita">concavità</span>). Due immagini e basta: la <strong>scodella</strong> e la <strong>cupola</strong>. Se $f''(x_0)&gt;0$ la curva è una scodella $\Rightarrow$ minimo. Se $f''(x_0)&lt;0$ è una cupola $\Rightarrow$ massimo. Se $f''(x_0)=0$ il test non dice nulla e bisogna guardare meglio. <em>Immagine mentale: la scodella tiene l'acqua, la cupola la fa scivolare via.</em></p>
+          <p><strong>3) Gradiente.</strong> È la lista delle derivate parziali messa dentro un vettore: $\nabla f=(f_x,\,f_y)$. <em>Immagine mentale: una freccia appoggiata sul terreno che indica dove si sale più ripidamente.</em> Se la freccia ha lunghezza zero, lì il terreno è in piano. (<a href="04-gradiente.html">Capitolo 4</a>)</p>
+          <p><strong>4) Derivate seconde.</strong> Si deriva due volte: $f_{xx}$ è la curvatura camminando verso est, $f_{yy}$ la curvatura camminando verso nord, $f_{xy}$ dice di quanto cambia la pendenza verso est se ti sposti verso nord. <em>Immagine mentale: $f_{xx}$ e $f_{yy}$ misurano quanto il terreno si incurva nelle due direzioni, $f_{xy}$ misura quanto si "torce".</em> (<a href="03-derivate-parziali.html">Capitolo 3</a>)</p>
+          <p><strong>5) Determinante di una matrice $2\times 2$.</strong> Per $\begin{pmatrix} a &amp; b\\ c &amp; d\end{pmatrix}$ il determinante è $ad-bc$: prodotto della diagonale principale meno prodotto dell'altra diagonale. <em>Immagine mentale: una croce — moltiplichi in diagonale e sottrai.</em></p>
+        </div>
+
+        <p>Immagina un <strong>paesaggio di montagna</strong>: l'altitudine del terreno nel punto di coordinate $(x,y)$ è il valore $f(x,y)$. Una <span class="glossario-term" data-term="funzione-piu-variabili">funzione di due variabili</span> è letteralmente un paesaggio. Ora domandati: <em>dove il terreno è perfettamente in piano?</em></p>
+        <p>In piano significa che, da quel punto, non sali e non scendi in <strong>nessuna</strong> direzione (almeno al primo istante). Significa cioè che la freccia del <span class="glossario-term" data-term="gradiente">gradiente</span> ha lunghezza zero: $\nabla f=(0,0)$. Questi punti si chiamano <strong><span class="glossario-term" data-term="punto-critico">punti critici</span></strong> (o stazionari), e sono i <em>candidati</em> a massimo e minimo.</p>
+        <p>Ma ecco la sorpresa dell'Analisi 2. In una variabile, dove $f'=0$ ci sono solo tre possibilità: cima, conca, o flesso orizzontale. In <strong>due</strong> variabili compare un personaggio nuovo, che in una variabile semplicemente non poteva esistere: il <strong><span class="glossario-term" data-term="punto-di-sella">punto di sella</span></strong>.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🏔️</span> Il passo di montagna: minimo e massimo nello stesso punto</div>
+          <p>Pensa a un <strong>passo di montagna</strong> (un colle, una sella): il punto dove la strada attraversa la catena montuosa tra due cime. Il terreno lì è in piano, eppure:</p>
+          <p>• se cammini <strong>lungo la cresta</strong>, cioè da una cima all'altra, il passo è il punto <strong>più basso</strong> del tuo percorso: un <em>minimo</em>;<br>
+          • se cammini <strong>lungo il sentiero trasversale</strong>, cioè scendendo da una valle all'altra attraversando il passo, quello stesso punto è il più <strong>alto</strong> del percorso: un <em>massimo</em>.</p>
+          <p>Minimo in una direzione, massimo in un'altra, nello stesso punto. Non è né una vetta né una conca: è un <strong>punto di sella</strong>. Il nome viene dalla <strong>sella del cavallo</strong>: da davanti a dietro (lungo la schiena) la sella ha un punto più basso; da sinistra a destra ha un punto più alto. Stessa cosa per una patatina Pringles.</p>
+        </div>
+        <p>Ecco allora il problema centrale del capitolo: <strong>$\nabla f=(0,0)$ non basta per decidere</strong>. Serve un secondo strumento che guardi la <em>curvatura</em> del paesaggio in tutte le direzioni contemporaneamente. Quello strumento è la matrice delle derivate seconde, la <strong><span class="glossario-term" data-term="hessiano">matrice hessiana</span></strong>, e il suo determinante sarà l'arbitro che dichiara: cima, conca o sella.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>ottimizzare</strong> — cioè trovare il meglio possibile — è ciò che si chiede alla matematica applicata praticamente sempre, e nella realtà le variabili in gioco non sono mai una sola. Il costo dipende da quanti pezzi produci <em>e</em> da quanto materiale usi; l'errore di un modello dipende da tutti i suoi parametri; il consumo di un'ala dipende da apertura <em>e</em> spessore. Trovare massimi e minimi di funzioni di più variabili è il problema, e l'hessiana è lo strumento che lo risolve.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema di <em>classificare</em>. Trovare i punti critici è facile: basta risolvere il sistema $\nabla f=0$. Ma una volta trovati, resta la domanda vera: quel punto è un massimo, un minimo, o nessuno dei due? In una variabile bastava il segno di $f''$. In due variabili le direzioni in cui ci si può muovere sono infinite, e la funzione può salire in alcune e scendere in altre. L'idea risolutiva, dovuta alla scuola di <strong>Lagrange</strong> e sistematizzata da <strong>Otto Hesse</strong> (che nel 1857 diede il nome alla matrice), è: <em>approssima la funzione vicino al punto critico con un polinomio di secondo grado</em> e studia il segno di quella forma quadratica. Il segno della forma quadratica si legge nel determinante e negli autovalori della matrice hessiana.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo capitolo è il punto di arrivo della catena costruita finora: <a href="03-derivate-parziali.html">derivate parziali</a> $\rightarrow$ <a href="04-gradiente.html">gradiente</a> $\rightarrow$ hessiana. Ed è il punto di partenza di ciò che segue: nel <a href="06-moltiplicatori-lagrange.html">Capitolo 6</a> lo stesso problema verrà affrontato <em>con un vincolo</em> (moltiplicatori di Lagrange), e nel <a href="14-applicazioni-analisi2.html">Capitolo 14</a> ritroverai queste tecniche nei modelli economici e fisici. Inoltre è uno degli argomenti più richiesti agli esami scritti di Analisi 2: l'esercizio "trovare massimo e minimo assoluti di $f$ sull'insieme $D$" è un classico assoluto, e alla fine di questo capitolo saprai svolgerlo in modo meccanico.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🛣️</span> Perché le strade attraversano le montagne <em>proprio</em> ai passi</div>
+          <p>Guarda una cartina delle Alpi: le strade non salgono mai a caso. Il Gran San Bernardo, il Brennero, lo Stelvio, il Gottardo — tutti i valichi storici si trovano in un <strong>punto di sella</strong> della superficie del terreno. Non è una coincidenza, è ottimizzazione pura.</p>
+          <p>Chi deve passare dalla valle A alla valle B vuole salire <strong>il meno possibile</strong>. I punti che permettono di attraversare la cresta sono tutti i punti della cresta stessa; fra questi, quello che costa meno fatica è il <strong>più basso della cresta</strong>. Ed è esattamente il passo: minimo lungo la cresta, massimo lungo il cammino che lo attraversa. Da secoli, ben prima dell'Analisi Matematica, i valichi alpini vengono scelti risolvendo a occhio un problema di punto di sella.</p>
+          <p>Lo stesso concetto ricompare in chimica: la <strong>"energia di attivazione"</strong> di una reazione è l'altezza di un punto di sella sulla superficie dell'energia potenziale. Le molecole devono "valicare il passo" per trasformarsi da reagenti a prodotti.</p>
+        </div>
+        <p><strong>La linea di tendenza di un foglio di calcolo.</strong> Ogni volta che in Excel o in Google Sheets chiedi "aggiungi linea di tendenza" a una nuvola di punti, il software risolve <em>questo</em> problema: cerca il <strong>minimo</strong> della funzione di due variabili $S(m,q)=\sum_i\big(m x_i+q-y_i\big)^2$, cioè la somma dei quadrati degli errori, dove le due incognite sono la pendenza $m$ e l'intercetta $q$ della retta. Si annullano le due derivate parziali, si risolve un sistema lineare $2\times 2$, e l'hessiana conferma che quel punto critico è davvero un minimo. È il <strong>metodo dei minimi quadrati</strong>, che ricaveremo per intero nella sezione 4.10.</p>
+        <p><strong>Intelligenza artificiale.</strong> Addestrare una rete neurale significa minimizzare una funzione di <em>milioni</em> di variabili (i pesi della rete). L'algoritmo di discesa del gradiente segue la freccia $-\nabla f$ verso il basso, ma si ferma ovunque il gradiente si annulli — anche in un punto di sella. In dimensione altissima si è scoperto che l'ostacolo principale <em>non</em> sono i minimi locali, ma proprio le selle, che sono enormemente più numerose: distinguere una sella da un minimo (cioè studiare gli autovalori dell'hessiana) è un tema di ricerca attualissimo.</p>
+        <p><strong>Confezioni e imballaggi.</strong> Una lattina, una scatola di cereali, un Tetra Pak: l'azienda vuole il <em>minimo materiale</em> a parità di volume contenuto, perché il materiale è un costo moltiplicato per centinaia di milioni di pezzi. È un minimo di una funzione di due variabili (due dimensioni libere, la terza fissata dal volume). Lo risolveremo nell'Esercizio 5.16. <strong>In fisica</strong>, infine, un corpo è in <strong>equilibrio stabile</strong> nei minimi dell'energia potenziale (la biglia in fondo alla scodella), in <strong>equilibrio instabile</strong> nei massimi e nelle selle: basta un soffio nella direzione "di discesa" della sella e il sistema scappa via.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizioni">4.1 Massimi e minimi in due variabili: le definizioni</h3>
+        <p>Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e sia $P_0=(x_0,y_0)\in A$. Ricordiamo che l'<strong>intorno</strong> di $P_0$ di raggio $r$ è il disco aperto $B_r(P_0)=\{(x,y):\ \sqrt{(x-x_0)^2+(y-y_0)^2}&lt;r\}$.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Estremi locali e assoluti.</em> Diciamo che $P_0$ è punto di:</p>
+          <ul>
+            <li><strong>massimo locale</strong> (o relativo) se esiste $r&gt;0$ tale che $f(x,y)\leq f(P_0)$ per ogni $(x,y)\in B_r(P_0)\cap A$;</li>
+            <li><strong>minimo locale</strong> se esiste $r&gt;0$ tale che $f(x,y)\geq f(P_0)$ per ogni $(x,y)\in B_r(P_0)\cap A$;</li>
+            <li><strong>massimo assoluto</strong> (o globale) su $A$ se $f(x,y)\leq f(P_0)$ per <em>ogni</em> $(x,y)\in A$; analogamente per il <strong>minimo assoluto</strong>.</li>
+          </ul>
+          <p>L'estremo si dice <strong>stretto</strong> (o proprio) se la disuguaglianza è stretta per $(x,y)\neq P_0$.</p>
+        </div>
+        <p>La differenza fra locale e assoluto è la stessa di sempre: <em>locale</em> significa "il migliore fra i suoi vicini", <em>assoluto</em> significa "il migliore in tutto il territorio". La collina dietro casa è un massimo locale dell'altitudine; il Monte Bianco è il massimo assoluto delle Alpi.</p>
+
+        <h3 id="teoria-critici">4.2 Condizione necessaria: i punti critici (teorema di Fermat)</h3>
+        <p>Il primo risultato traduce in formule l'idea "in cima il terreno è in piano".</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome"><span class="glossario-term" data-term="teorema-di-fermat">Teorema di Fermat</span> in più variabili.</em> Sia $P_0$ un punto <strong>interno</strong> ad $A$, di massimo o di minimo locale per $f$, e supponiamo che esistano le <span class="glossario-term" data-term="derivata-parziale">derivate parziali</span> di $f$ in $P_0$. Allora</p>
+          <div class="formula-block">$$f_x(P_0)=0\qquad\text{e}\qquad f_y(P_0)=0,\qquad\text{cioè}\qquad \nabla f(P_0)=(0,0).$$</div>
+        </div>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Punto critico.</em> Un punto interno $P_0$ in cui $\nabla f(P_0)=(0,0)$ si dice <strong>punto critico</strong> (o <strong>stazionario</strong>) di $f$. Geometricamente il <a href="03-derivate-parziali.html">piano tangente</a> al grafico in $P_0$ è <strong>orizzontale</strong>.</p>
+        </div>
+        <p>Il teorema di Fermat è una condizione <strong>necessaria</strong>, non sufficiente: dice dove <em>cercare</em>, non cosa si è trovato. E dice anche qualcosa di più sottile: chiede che $P_0$ sia <strong>interno</strong>. Se il punto sta sul bordo del dominio, il ragionamento salta (non ci si può muovere in tutte le direzioni) e il gradiente può benissimo essere diverso da zero in un punto di massimo. Tieni bene a mente questa frase: <strong>sarà la ragione per cui, negli estremi assoluti, la frontiera va studiata a parte</strong>.</p>
+        <p>Riassumendo, i <em>candidati</em> a estremo per una funzione su un insieme $A$ sono di tre tipi:</p>
+        <ol>
+          <li>i <strong>punti critici interni</strong>, dove $\nabla f=0$;</li>
+          <li>i punti interni in cui $f$ <strong>non è derivabile parzialmente</strong> (es. $f(x,y)=\sqrt{x^2+y^2}$ nell'origine: è un minimo, ma il gradiente lì non esiste — è la punta del cono);</li>
+          <li>i punti della <strong>frontiera</strong> di $A$.</li>
+        </ol>
+
+        <h3 id="teoria-sella">4.3 Perché non basta: nasce il punto di sella</h3>
+        <p>Prendiamo la funzione più semplice possibile, quella che porta il nome di <em>paraboloide iperbolico</em> — la patatina Pringles:</p>
+        <div class="formula-block">$$f(x,y)=x^2-y^2$$</div>
+        <p>Calcoliamo il gradiente: derivo rispetto a $x$ trattando $y$ come una costante (quindi $-y^2$ ha derivata $0$) e ottengo $f_x=2x$; derivo rispetto a $y$ trattando $x$ come costante e ottengo $f_y=-2y$. Dunque $\nabla f=(2x,\,-2y)$. Imporre $\nabla f=(0,0)$ vuol dire risolvere il sistema $2x=0$, $-2y=0$: dalla prima equazione $x=0$ (divido entrambi i membri per $2$), dalla seconda $y=0$ (divido per $-2$). Quindi $(0,0)$ è l'unico punto critico, e sostituendo nella funzione $f(0,0)=0^2-0^2=0$. È un massimo o un minimo? Guardiamo le due <strong>restrizioni</strong> più semplici, cioè cosa succede camminando lungo i due assi:</p>
+        <ul>
+          <li>lungo l'asse $x$ (cioè $y=0$): $f(x,0)=x^2\geq 0$. Rispetto a questa direzione l'origine è un <strong>minimo</strong>;</li>
+          <li>lungo l'asse $y$ (cioè $x=0$): $f(0,y)=-y^2\leq 0$. Rispetto a questa direzione l'origine è un <strong>massimo</strong>.</li>
+        </ul>
+        <p>In ogni intorno dell'origine la funzione assume dunque sia valori positivi sia valori negativi: l'origine non è né massimo né minimo. È esattamente il passo di montagna, ed è ciò che si chiama <strong>punto di sella</strong>.</p>
+
+        <svg viewBox="0 0 360 260" style="max-width:400px;margin:1.4em auto;display:block;" role="img" aria-label="Linee di livello di x al quadrato meno y al quadrato: iperboli, con la funzione positiva a destra e sinistra e negativa in alto e in basso, punto di sella nell'origine">
+          <line x1="60" y1="130" x2="300" y2="130" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="180" y1="30" x2="180" y2="230" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="100" y1="50" x2="260" y2="210" stroke="var(--color-text-muted)" stroke-width="1.2" stroke-dasharray="5 4" opacity=".7"/>
+          <line x1="100" y1="210" x2="260" y2="50" stroke="var(--color-text-muted)" stroke-width="1.2" stroke-dasharray="5 4" opacity=".7"/>
+          <path d="M 263 63 Q 197 130 263 197" fill="none" stroke="var(--color-primary)" stroke-width="2.2"/>
+          <path d="M 97 63 Q 163 130 97 197" fill="none" stroke="var(--color-primary)" stroke-width="2.2"/>
+          <path d="M 113 47 Q 180 113 247 47" fill="none" stroke="var(--color-secondary)" stroke-width="2.2"/>
+          <path d="M 113 213 Q 180 147 247 213" fill="none" stroke="var(--color-secondary)" stroke-width="2.2"/>
+          <circle cx="180" cy="130" r="5.5" fill="var(--color-danger)"/>
+          <text x="286" y="126" font-size="13" font-weight="700" fill="var(--color-primary)">f &gt; 0</text>
+          <text x="62" y="126" font-size="13" font-weight="700" fill="var(--color-primary)">f &gt; 0</text>
+          <text x="156" y="26" font-size="13" font-weight="700" fill="var(--color-secondary)">f &lt; 0</text>
+          <text x="156" y="248" font-size="13" font-weight="700" fill="var(--color-secondary)">f &lt; 0</text>
+          <text x="188" y="150" font-size="12" font-weight="700" fill="var(--color-danger)">sella</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Le linee di livello di $f(x,y)=x^2-y^2$ sono iperboli: lungo l'asse orizzontale si sale, lungo quello verticale si scende.</p>
+
+        <p>Un secondo esempio, altrettanto famoso: $f(x,y)=xy$. Anche qui $\nabla f=(y,x)$ si annulla solo nell'origine, dove $f=0$; ma lungo la retta $y=x$ si ha $f=x^2\geq 0$ e lungo $y=-x$ si ha $f=-x^2\leq 0$. Di nuovo una sella (è la stessa superficie di prima, ruotata di $45°$).</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Punto di sella.</em> Un punto critico $P_0$ si dice <strong>punto di sella</strong> se in ogni intorno di $P_0$ esistono punti in cui $f&gt;f(P_0)$ e punti in cui $f&lt;f(P_0)$. Cioè: non è né massimo né minimo locale.</p>
+        </div>
+
+        <h3 id="teoria-hessiana">4.4 La matrice hessiana</h3>
+        <p>Se il gradiente (derivate <em>prime</em>) non basta, si passa alle derivate <strong>seconde</strong>, che descrivono la curvatura. In due variabili le derivate seconde sono quattro: $f_{xx}$, $f_{xy}$, $f_{yx}$, $f_{yy}$. Si organizzano in una matrice.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Matrice hessiana.</em> Sia $f$ di classe $C^2$ (derivate seconde continue) in un intorno di $P_0$. La <strong><span class="glossario-term" data-term="hessiano">matrice hessiana</span></strong> di $f$ in $P_0$ è</p>
+          <div class="formula-block">$$H_f(P_0)=\begin{pmatrix} f_{xx}(P_0) &amp; f_{xy}(P_0)\\[2pt] f_{yx}(P_0) &amp; f_{yy}(P_0)\end{pmatrix}$$</div>
+          <p>e il suo determinante, che indicheremo con $\det H_f(P_0)$, vale $f_{xx}f_{yy}-\big(f_{xy}\big)^2$.</p>
+          <p>Da dove salta fuori quell'espressione? È semplicemente la <strong>regola del determinante di una matrice $2\times2$</strong>: $\det\begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix}=ad-bc$ (prodotto della diagonale principale meno prodotto dell'altra diagonale). Qui sostituisco $a=f_{xx}$, $b=f_{xy}$, $c=f_{yx}$, $d=f_{yy}$ e ottengo $\det H_f=f_{xx}f_{yy}-f_{xy}f_{yx}$. Poi, come spiegato qui sotto, $f_{yx}=f_{xy}$, e il secondo prodotto diventa $f_{xy}\cdot f_{xy}=(f_{xy})^2$.</p>
+        </div>
+        <p>Perché $\det H=f_{xx}f_{yy}-(f_{xy})^2$ e non $f_{xx}f_{yy}-f_{xy}f_{yx}$? Perché i due termini misti <strong>coincidono</strong>, grazie a un teorema che hai già incontrato:</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome"><span class="glossario-term" data-term="teorema-di-schwarz">Teorema di Schwarz</span>.</em> Se $f$ è di classe $C^2$ in un intorno di $P_0$, allora $f_{xy}(P_0)=f_{yx}(P_0)$. Di conseguenza <strong>la matrice hessiana è simmetrica</strong>.</p>
+        </div>
+        <p>La simmetria non è un dettaglio estetico: è ciò che garantisce che l'hessiana abbia <strong>autovalori reali</strong> e sia diagonalizzabile in una base ortonormale (teorema spettrale). Senza simmetria, tutto il criterio che stiamo per enunciare non funzionerebbe. In $n$ variabili la definizione è identica: $H_f=\big(f_{x_ix_j}\big)_{i,j=1,\dots,n}$, matrice $n\times n$ simmetrica.</p>
+
+        <h3 id="teoria-taylor">4.5 Da dove viene il criterio: Taylor al secondo ordine</h3>
+        <p>Ecco l'idea che spiega <em>tutto</em> il capitolo. Vicino a un punto, una funzione <span class="glossario-term" data-term="differenziabilita">differenziabile</span> due volte si comporta come il suo polinomio di Taylor di secondo grado. Ponendo $h=x-x_0$, $k=y-y_0$:</p>
+        <div class="formula-block">$$f(x_0+h,\,y_0+k)=f(P_0)+\underbrace{f_x(P_0)h+f_y(P_0)k}_{\text{parte lineare}}+\tfrac12\underbrace{\big(f_{xx}h^2+2f_{xy}hk+f_{yy}k^2\big)}_{\displaystyle Q(h,k)\ =\ \text{forma quadratica}}+o\big(h^2+k^2\big)$$</div>
+        <p>Se $P_0$ è un <strong>punto critico</strong>, la parte lineare sparisce (è proprio $\nabla f\cdot(h,k)=0$) e resta</p>
+        <div class="formula-block">$$f(x_0+h,\,y_0+k)-f(P_0)\;\approx\;\tfrac12\,Q(h,k),\qquad Q(h,k)=f_{xx}h^2+2f_{xy}hk+f_{yy}k^2 .$$</div>
+        <p>Quindi <strong>il segno della variazione di $f$ attorno a $P_0$ è il segno della forma quadratica $Q$</strong>. Tradotto:</p>
+        <ul>
+          <li>se $Q(h,k)&gt;0$ per ogni $(h,k)\neq(0,0)$ (forma <strong>definita positiva</strong>), la funzione cresce in tutte le direzioni $\Rightarrow$ <strong>minimo locale stretto</strong>;</li>
+          <li>se $Q(h,k)&lt;0$ per ogni $(h,k)\neq(0,0)$ (forma <strong>definita negativa</strong>) $\Rightarrow$ <strong>massimo locale stretto</strong>;</li>
+          <li>se $Q$ assume valori di segno opposto (forma <strong>indefinita</strong>) $\Rightarrow$ <strong>punto di sella</strong>;</li>
+          <li>se $Q$ è <strong>semidefinita</strong> (sempre $\geq 0$ oppure sempre $\leq 0$, ma con qualche direzione in cui si annulla) il termine $o(h^2+k^2)$ torna a contare e il metodo <strong>non decide</strong>.</li>
+        </ul>
+        <p>E la forma quadratica $Q$ è esattamente l'hessiana scritta in altro modo: $Q(h,k)=\begin{pmatrix} h &amp; k\end{pmatrix}H_f(P_0)\begin{pmatrix} h\\ k\end{pmatrix}$. Studiare il segno di $Q$ è dunque studiare l'hessiana. Non resta che trovare la regola pratica.</p>
+
+        <h3 id="teoria-criterio">4.6 Il criterio delle derivate seconde in due variabili</h3>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Criterio dell'hessiana (due variabili).</em> Sia $f$ di classe $C^2$ in un intorno del punto critico $P_0$ e sia</p>
+          <div class="formula-block">$$D=\det H_f(P_0)=f_{xx}(P_0)\,f_{yy}(P_0)-\big(f_{xy}(P_0)\big)^2 .$$</div>
+          <p>Allora:</p>
+          <ol>
+            <li>se $D&gt;0$ e $f_{xx}(P_0)&gt;0$ &nbsp;$\Rightarrow$&nbsp; $P_0$ è <strong>minimo locale stretto</strong>;</li>
+            <li>se $D&gt;0$ e $f_{xx}(P_0)&lt;0$ &nbsp;$\Rightarrow$&nbsp; $P_0$ è <strong>massimo locale stretto</strong>;</li>
+            <li>se $D&lt;0$ &nbsp;$\Rightarrow$&nbsp; $P_0$ è <strong>punto di sella</strong>;</li>
+            <li>se $D=0$ &nbsp;$\Rightarrow$&nbsp; <strong>caso dubbio</strong>: il criterio non decide, serve uno studio diretto.</li>
+          </ol>
+        </div>
+        <p>Il modo giusto di ricordarlo è: <strong>il determinante decide <em>se</em> c'è un estremo, il segno di $f_{xx}$ decide <em>quale</em></strong>. E nota che nei casi 1 e 2, se $D&gt;0$ allora $f_{xx}f_{yy}=D+(f_{xy})^2&gt;0$, quindi $f_{xx}$ e $f_{yy}$ hanno necessariamente lo stesso segno: al posto di $f_{xx}$ puoi guardare $f_{yy}$, o la traccia $f_{xx}+f_{yy}$, il risultato non cambia.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$D=\det H$</th><th>Segno di $f_{xx}$</th><th>Natura di $P_0$</th><th>Immagine</th></tr></thead>
+          <tbody>
+            <tr><td>$D&gt;0$</td><td>$f_{xx}&gt;0$</td><td>minimo locale stretto</td><td>scodella (paraboloide verso l'alto)</td></tr>
+            <tr><td>$D&gt;0$</td><td>$f_{xx}&lt;0$</td><td>massimo locale stretto</td><td>cupola (paraboloide verso il basso)</td></tr>
+            <tr><td>$D&lt;0$</td><td>irrilevante</td><td>punto di sella</td><td>passo di montagna, Pringles</td></tr>
+            <tr><td>$D=0$</td><td>irrilevante</td><td>caso dubbio: può succedere di tutto</td><td>valle piatta, cresta piatta…</td></tr>
+          </tbody>
+        </table>
+        <p>Il legame con il caso a una variabile è trasparente: se $f(x,y)=g(x)+h(y)$ la matrice è diagonale, $D=g''(x_0)h''(y_0)$, e ritrovi il vecchio test della derivata seconda applicato due volte.</p>
+
+        <h3 id="teoria-dubbio">4.7 Il caso dubbio $D=0$: può succedere di tutto</h3>
+        <p>Quando $D=0$ il criterio tace, e <strong>tacere non significa "sella"</strong>. Ecco quattro funzioni che hanno tutte l'origine come punto critico con $D=0$, e quattro comportamenti diversi:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Funzione</th><th>$H_f(0,0)$</th><th>$D$</th><th>Natura dell'origine (studio diretto)</th></tr></thead>
+          <tbody>
+            <tr><td>$f=x^2+y^4$</td><td>$\begin{pmatrix}2 &amp; 0\\ 0 &amp; 0\end{pmatrix}$</td><td>$0$</td><td><strong>minimo</strong> stretto: $f\geq 0$ e $f=0$ solo in $(0,0)$</td></tr>
+            <tr><td>$f=x^2-y^4$</td><td>$\begin{pmatrix}2 &amp; 0\\ 0 &amp; 0\end{pmatrix}$</td><td>$0$</td><td><strong>sella</strong>: $f(x,0)=x^2\geq0$ ma $f(0,y)=-y^4\leq 0$</td></tr>
+            <tr><td>$f=x^4+y^4$</td><td>$\begin{pmatrix}0 &amp; 0\\ 0 &amp; 0\end{pmatrix}$</td><td>$0$</td><td><strong>minimo</strong> stretto</td></tr>
+            <tr><td>$f=x^2y^2$</td><td>$\begin{pmatrix}0 &amp; 0\\ 0 &amp; 0\end{pmatrix}$</td><td>$0$</td><td><strong>minimo non stretto</strong>: $f\geq0$ e $f=0$ su tutti gli assi</td></tr>
+          </tbody>
+        </table>
+        <p>Osserva le prime due righe: <strong>stessa hessiana, natura opposta</strong>. È la dimostrazione lampante che con $D=0$ l'informazione contenuta nelle derivate seconde è insufficiente, e bisogna scendere a guardare la funzione direttamente. Le strategie sono due:</p>
+        <ul>
+          <li><strong>per dimostrare che è una sella</strong>: trova due restrizioni (due curve passanti per il punto) lungo le quali la funzione si comporta in modo opposto, come nelle righe 2 della tabella;</li>
+          <li><strong>per dimostrare che è un massimo o un minimo</strong>: dimostra una <em>disuguaglianza</em> valida in tutto un intorno, come $f(x,y)\geq f(P_0)$, magari con un quadrato messo in evidenza o un cambio in coordinate polari.</li>
+        </ul>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Il controesempio di Peano: attenzione alle rette</div>
+          <p>Sia $f(x,y)=(y-x^2)(y-2x^2)=y^2-3x^2y+2x^4$. L'origine è critica e $D=0$. Se restringi $f$ a <em>qualunque retta</em> passante per l'origine ottieni una funzione con un minimo in $0$. Eppure l'origine <strong>non</strong> è un minimo: lungo la parabola $y=\tfrac32 x^2$ si ottiene $f=-\tfrac14 x^4&lt;0$. Morale: nei casi dubbi, controllare solo le rette non basta — le curve possono raccontare un'altra storia.</p>
+        </div>
+
+        <h3 id="teoria-generale">4.8 Il caso generale: autovalori e criterio di Sylvester</h3>
+        <p>In $n$ variabili, il criterio è lo stesso ma va formulato con il linguaggio delle matrici simmetriche. La forma quadratica associata a $H$ è $Q(\mathbf{h})=\mathbf{h}^{T}H\,\mathbf{h}$, e si classifica così:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$H$ è…</th><th>Autovalori</th><th>Significato per $Q$</th><th>Natura del punto critico</th></tr></thead>
+          <tbody>
+            <tr><td><strong>definita positiva</strong></td><td>tutti $\lambda_i&gt;0$</td><td>$Q(\mathbf h)&gt;0$ per $\mathbf h\neq 0$</td><td>minimo locale stretto</td></tr>
+            <tr><td><strong>definita negativa</strong></td><td>tutti $\lambda_i&lt;0$</td><td>$Q(\mathbf h)&lt;0$ per $\mathbf h\neq 0$</td><td>massimo locale stretto</td></tr>
+            <tr><td><strong>indefinita</strong></td><td>autovalori di segno opposto</td><td>$Q$ cambia segno</td><td>punto di sella</td></tr>
+            <tr><td><strong>semidefinita</strong></td><td>qualche $\lambda_i=0$, gli altri di segno concorde</td><td>$Q\geq0$ (o $\leq 0$) ma si annulla</td><td>caso dubbio</td></tr>
+          </tbody>
+        </table>
+        <p>In due variabili questo ricostruisce esattamente il criterio della sezione 4.6, perché per una matrice $2\times2$ vale $\det H=\lambda_1\lambda_2$ e $\operatorname{tr}H=f_{xx}+f_{yy}=\lambda_1+\lambda_2$: il determinante positivo dice "autovalori dello stesso segno", la traccia (o $f_{xx}$) dice quale.</p>
+        <p>Calcolare gli autovalori, però, è spesso scomodo. Fortunatamente esiste un test che usa solo determinanti, il <strong>criterio dei minori principali di testa</strong> (o criterio di Sylvester). Detto $D_k$ il determinante della sottomatrice $k\times k$ in alto a sinistra:</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Criterio di Sylvester</span>
+          <p>Sia $H$ simmetrica $n\times n$. Allora:</p>
+          <ul>
+            <li>$H$ è <strong>definita positiva</strong> $\iff$ $D_1&gt;0,\ D_2&gt;0,\ \dots,\ D_n&gt;0$ (tutti positivi);</li>
+            <li>$H$ è <strong>definita negativa</strong> $\iff$ i minori si <strong>alternano</strong> partendo da negativo: $D_1&lt;0,\ D_2&gt;0,\ D_3&lt;0,\dots$ cioè $(-1)^kD_k&gt;0$ per ogni $k$;</li>
+            <li>se $D_n=\det H\neq 0$ ma nessuna delle due successioni di segni è rispettata, $H$ è <strong>indefinita</strong>: punto di sella.</li>
+          </ul>
+        </div>
+        <p><strong>Esempio in tre variabili.</strong> Sia $H=\begin{pmatrix}2 &amp; -1 &amp; 0\\ -1 &amp; 2 &amp; -1\\ 0 &amp; -1 &amp; 2\end{pmatrix}$. Calcolo i tre minori di testa uno alla volta, dicendo ogni volta quale sottomatrice prendo.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">$D_1$ è il determinante della sottomatrice $1\times1$ in alto a sinistra, cioè il solo numero $2$: quindi $D_1=2&gt;0$.</span>
+          <span class="esempio__passo">$D_2$ è il determinante della sottomatrice $2\times2$ in alto a sinistra, $\begin{pmatrix}2 &amp; -1\\ -1 &amp; 2\end{pmatrix}$. Applico la regola $\det\begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix}=ad-bc$ con $a=2$, $b=-1$, $c=-1$, $d=2$: $D_2=2\cdot2-(-1)\cdot(-1)=4-1=3&gt;0$.</span>
+          <span class="esempio__passo">$D_3$ è il determinante di tutta la matrice. Lo calcolo con lo <strong>sviluppo di Laplace lungo la prima riga</strong>: $\det H=a_{11}M_{11}-a_{12}M_{12}+a_{13}M_{13}$, dove $M_{1j}$ è il determinante $2\times2$ che resta cancellando la prima riga e la colonna $j$-esima. Qui $a_{11}=2$, $a_{12}=-1$, $a_{13}=0$.</span>
+          <span class="esempio__passo">Cancellando riga 1 e colonna 1 resta $\begin{pmatrix}2 &amp; -1\\ -1 &amp; 2\end{pmatrix}$, con $M_{11}=2\cdot2-(-1)(-1)=3$. Cancellando riga 1 e colonna 2 resta $\begin{pmatrix}-1 &amp; -1\\ 0 &amp; 2\end{pmatrix}$, con $M_{12}=(-1)\cdot2-(-1)\cdot0=-2$. Il terzo addendo non lo calcolo nemmeno, perché $a_{13}=0$ lo azzera.</span>
+          <span class="esempio__passo">Metto insieme: $D_3=2\cdot3-(-1)\cdot(-2)+0=6-2=4&gt;0$.</span>
+        </p>
+        <p>Tutti e tre i minori sono positivi, dunque per il criterio di Sylvester $H$ è definita positiva e il punto critico è un <strong>minimo locale</strong>. Se invece avessimo trovato $D_1&lt;0$, $D_2&gt;0$, $D_3&lt;0$ (segni alternati a partire dal meno), sarebbe stato un massimo.</p>
+        <p>Un caso particolare comodissimo: se $H$ è <strong>diagonale</strong>, gli autovalori sono gli elementi della diagonale, e la classificazione si legge a colpo d'occhio dai loro segni.</p>
+
+        <h3 id="teoria-assoluti">4.9 Massimi e minimi ASSOLUTI su un insieme chiuso e limitato</h3>
+        <p>Fin qui abbiamo classificato punti critici, cioè estremi <em>locali</em> e <em>liberi</em>. L'esercizio tipico d'esame chiede però gli estremi <strong>assoluti</strong> su un insieme assegnato. Il punto di partenza è il teorema di esistenza.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome"><span class="glossario-term" data-term="teorema-di-weierstrass">Teorema di Weierstrass</span> in più variabili.</em> Se $K\subseteq\mathbb{R}^n$ è <strong><span class="glossario-term" data-term="insieme-chiuso">chiuso</span> e limitato</strong> (cioè compatto) e $f:K\to\mathbb{R}$ è <strong>continua</strong>, allora $f$ ammette su $K$ massimo e minimo assoluti: esistono $P_M,P_m\in K$ con $f(P_m)\leq f(P)\leq f(P_M)$ per ogni $P\in K$.</p>
+        </div>
+        <p>Il teorema garantisce l'<em>esistenza</em>: non dice dove siano. Ma ci dà una certezza preziosa — i due valori esistono davvero, quindi alla fine del procedimento dobbiamo per forza trovarli. Ecco la <strong>procedura completa</strong>, da seguire sempre in questo ordine:</p>
+        <div class="timeline">
+          <div class="timeline-step"><strong>Passo 0 — Verifica le ipotesi.</strong> Controlla che $K$ sia chiuso (contiene il bordo: disuguaglianze $\leq$, $\geq$) e limitato (sta dentro un disco), e che $f$ sia continua. Solo allora Weierstrass ti garantisce che il massimo e il minimo esistono.</div>
+          <div class="timeline-step"><strong>Passo 1 — Punti critici interni.</strong> Risolvi il sistema $\nabla f=(0,0)$ e <strong>tieni solo le soluzioni che cadono all'interno</strong> di $K$ (bordo escluso). Calcola i valori di $f$ in questi punti. Attenzione: qui <em>non serve</em> classificarli con l'hessiana! Per gli estremi assoluti conta solo il valore numerico, che andrà nella lista finale.</div>
+          <div class="timeline-step"><strong>Passo 2 — Frontiera.</strong> Descrivi $\partial K$ come unione di pezzi (segmenti, archi di circonferenza…). Su ogni pezzo <strong>riduci a una funzione di una sola variabile</strong>, sostituendo il vincolo (es. $y=3-x$ su un segmento) oppure parametrizzando (es. $x=r\cos t$, $y=r\sin t$ su una circonferenza). Poi studi quella funzione di una variabile con gli strumenti di Analisi 1: derivata, punti critici <em>nell'intervallo</em>, ed estremi dell'intervallo.</div>
+          <div class="timeline-step"><strong>Passo 3 — Spigoli e vertici.</strong> Se $K$ è un poligono (triangolo, quadrato) o ha punti angolosi, calcola $f$ <strong>in ogni vertice</strong>: sono punti in cui la parametrizzazione dei lati si interrompe e vanno trattati a mano.</div>
+          <div class="timeline-step"><strong>Passo 4 — Confronto finale.</strong> Metti tutti i valori trovati in un unico elenco. <strong>Il più grande è il massimo assoluto, il più piccolo è il minimo assoluto</strong>, punto. Nessun criterio da applicare: solo un confronto di numeri.</div>
+        </div>
+        <p>Due avvertenze. La prima: se l'insieme <strong>non</strong> è chiuso e limitato, Weierstrass non si applica e gli estremi assoluti possono benissimo non esistere (es. $f(x,y)=x$ su tutto il piano). La seconda: nel Passo 2, invece di parametrizzare, si può usare il metodo dei <a href="06-moltiplicatori-lagrange.html">moltiplicatori di Lagrange</a> del prossimo capitolo — è la stessa cosa vista da un'altra angolazione.</p>
+
+        <h3 id="teoria-minimiquadrati">4.10 Applicazione fondamentale: il metodo dei minimi quadrati</h3>
+        <p>Hai $n$ punti sperimentali $(x_1,y_1),\dots,(x_n,y_n)$ e vuoi la retta $y=mx+q$ che li approssima meglio. "Meglio" va definito: si sceglie di rendere minima la <strong>somma dei quadrati degli scarti verticali</strong>. Questa è una funzione delle due incognite $m$ e $q$:</p>
+        <div class="formula-block">$$S(m,q)=\sum_{i=1}^{n}\big(m x_i+q-y_i\big)^2 .$$</div>
+        <p>Cerchiamo il suo punto critico annullando le due derivate parziali (si deriva rispetto a $m$ e a $q$, non rispetto a $x$!):</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><em>Derivata rispetto a $m$.</em> Ogni addendo è un quadrato, quindi uso la <strong>regola della catena</strong> $\big(g^2\big)'=2g\cdot g'$ con $g=mx_i+q-y_i$; la derivata di $g$ rispetto a $m$ è $x_i$ (gli altri due termini non contengono $m$). Ottengo $\dfrac{\partial S}{\partial m}=2\sum_i x_i\big(mx_i+q-y_i\big)$.</span>
+          <span class="esempio__passo">Pongo questa derivata uguale a $0$, divido entrambi i membri per $2$ e svolgo il prodotto dentro la somma: $\sum_i\big(mx_i^2+qx_i-x_iy_i\big)=0$. Ora spezzo la somma in tre e porto l'ultimo pezzo a destra cambiando segno; $m$ e $q$ non dipendono dall'indice $i$, quindi escono dalle rispettive somme: $\ m\sum x_i^2+q\sum x_i=\sum x_iy_i$.</span>
+          <span class="esempio__passo"><em>Derivata rispetto a $q$.</em> Stessa regola della catena, ma la derivata di $g=mx_i+q-y_i$ rispetto a $q$ vale $1$: $\dfrac{\partial S}{\partial q}=2\sum_i\big(mx_i+q-y_i\big)=0$. Divido per $2$, spezzo la somma e osservo che $\sum_{i=1}^{n}q=n\,q$ (sommo $n$ volte lo stesso numero): $\ m\sum x_i+n\,q=\sum y_i$.</span>
+        </p>
+        <p>Sono le celebri <strong>equazioni normali</strong>: un sistema lineare $2\times2$ nelle incognite $m,q$. Lo si risolve, per esempio, ricavando $q$ dalla seconda equazione ($q=\frac{1}{n}\left(\sum y_i-m\sum x_i\right)=\bar y-m\bar x$, dove $\bar x=\frac1n\sum x_i$ e $\bar y=\frac1n\sum y_i$ sono le medie) e sostituendo questa espressione al posto di $q$ nella prima; oppure applicando la regola di Cramer. In entrambi i modi:</p>
+        <div class="formula-block">$$m=\frac{n\sum x_iy_i-\big(\sum x_i\big)\big(\sum y_i\big)}{n\sum x_i^2-\big(\sum x_i\big)^2},\qquad q=\bar y-m\,\bar x$$</div>
+        <p>Resta da verificare che sia davvero un <em>minimo</em>: serve l'hessiana, cioè le derivate seconde di $S$ rispetto a $m$ e $q$. Derivo ancora una volta le due espressioni trovate sopra: $S_{mm}=\frac{\partial}{\partial m}\big(2\sum x_i(mx_i+q-y_i)\big)=2\sum x_i^2$; $S_{mq}=\frac{\partial}{\partial q}\big(2\sum x_i(mx_i+q-y_i)\big)=2\sum x_i$; $S_{qq}=\frac{\partial}{\partial q}\big(2\sum(mx_i+q-y_i)\big)=2n$. Le sistemo nella matrice:</p>
+        <div class="formula-block">$$H_S=\begin{pmatrix} 2\sum x_i^2 &amp; 2\sum x_i\\[2pt] 2\sum x_i &amp; 2n\end{pmatrix},\qquad \det H_S=4\Big(n\sum x_i^2-\big(\sum x_i\big)^2\Big)$$</div>
+        <p>Il determinante l'ho ottenuto con la solita regola $\det\begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix}=ad-bc$, qui con $a=2\sum x_i^2$, $b=c=2\sum x_i$, $d=2n$: viene $\big(2\sum x_i^2\big)(2n)-\big(2\sum x_i\big)^2=4n\sum x_i^2-4\big(\sum x_i\big)^2$, e raccogliendo il $4$ si ottiene la forma scritta sopra.</p>
+        <p>La quantità fra parentesi è positiva per la disuguaglianza di Cauchy–Schwarz, a meno che tutti gli $x_i$ siano uguali (dati tutti sulla stessa verticale: la retta non è determinata). Dunque $\det H_S&gt;0$ e $S_{mm}=2\sum x_i^2&gt;0$: <strong>minimo assoluto</strong>. La retta di regressione esiste, è unica, e l'hai ricavata con due derivate parziali.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <p><strong>Idea intuitiva della prima dimostrazione.</strong> Se sei in cima a una collina, lo sei anche per chi cammina solo lungo la direzione est–ovest, e anche per chi cammina solo lungo la direzione nord–sud. Ma quelle sono passeggiate <em>a una variabile</em>, e per loro vale il teorema di Fermat di Analisi 1: in cima la derivata è zero. Facciamolo due volte, una per direzione, ed è fatta.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Fermat in più variabili.</em> Se $P_0=(x_0,y_0)$ è interno ad $A$, è punto di massimo o minimo locale per $f$ ed esistono $f_x(P_0)$, $f_y(P_0)$, allora $\nabla f(P_0)=(0,0)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (riduzione a una variabile)</span>
+          <p>Supponiamo che $P_0$ sia di <strong>massimo</strong> locale (il caso del minimo è identico cambiando i versi delle disuguaglianze). Per ipotesi esiste $r&gt;0$ tale che $B_r(P_0)\subseteq A$ (qui usiamo che $P_0$ è <em>interno</em>) e $f(x,y)\leq f(P_0)$ per ogni $(x,y)\in B_r(P_0)$.</p>
+          <p><strong>Passo 1 — congelo $y$.</strong> Definisco la funzione di una sola variabile</p>
+          <div class="formula-block">$$g(t)=f(x_0+t,\ y_0),\qquad t\in(-r,\,r).$$</div>
+          <p>È ben definita perché il punto $(x_0+t,\,y_0)$ appartiene a $B_r(P_0)$ per $|t|&lt;r$.</p>
+          <p><strong>Passo 2 — $g$ ha un massimo in $t=0$.</strong> Infatti $g(t)=f(x_0+t,y_0)\leq f(P_0)=g(0)$ per ogni $t\in(-r,r)$: dunque $t=0$ è punto di massimo locale <em>interno</em> per $g$.</p>
+          <p><strong>Passo 3 — applico Fermat in una variabile.</strong> Per definizione di derivata parziale, $g$ è derivabile in $0$ con $g'(0)=f_x(x_0,y_0)$. Il <a href="../parte1-analisi1/08-teoremi-fondamentali.html">teorema di Fermat</a> di Analisi 1 dice che in un punto di estremo interno in cui la funzione è derivabile la derivata si annulla, quindi</p>
+          <div class="formula-block">$$f_x(x_0,y_0)=g'(0)=0.$$</div>
+          <p><strong>Passo 4 — ripeto congelando $x$.</strong> Con $h(t)=f(x_0,\ y_0+t)$ si ottiene allo stesso modo $f_y(x_0,y_0)=h'(0)=0$.</p>
+          <p>Entrambe le componenti del gradiente sono nulle, cioè $\nabla f(P_0)=(0,0)$. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Dove si usa l'ipotesi "punto interno"</div>
+          <p>Nel Passo 1: se $P_0$ stesse sul bordo del dominio, la funzione $g$ potrebbe non essere definita per $t$ negativi (o positivi) e il ragionamento crollerebbe. Esempio concreto: $f(x,y)=x$ sul quadrato $[0,1]\times[0,1]$ ha massimo assoluto su tutto il lato $x=1$, ma $\nabla f=(1,0)\neq(0,0)$ ovunque. Nessuna contraddizione: quei punti non sono interni. <strong>Ecco perché la frontiera va sempre studiata a parte.</strong></p>
+        </div>
+
+        <p><strong>Idea intuitiva della seconda dimostrazione.</strong> Vicino a un punto critico la funzione somiglia a un polinomio di secondo grado: $Q(h,k)=Ah^2+2Bhk+Ck^2$. Per capire se questa "scodella storta" è sempre positiva basta fare ciò che si fa con i trinomi fin dalle superiori: <strong>completare il quadrato</strong>. Se dopo il completamento restano due pezzi entrambi positivi, la forma è positiva in tutte le direzioni e il punto è un minimo.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Segno della forma quadratica.</em> Posti $A=f_{xx}(P_0)$, $B=f_{xy}(P_0)$, $C=f_{yy}(P_0)$ e $D=AC-B^2$, la forma $Q(h,k)=Ah^2+2Bhk+Ck^2$ è definita positiva se $D&gt;0$ e $A&gt;0$; definita negativa se $D&gt;0$ e $A&lt;0$; indefinita se $D&lt;0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (completamento del quadrato)</span>
+          <p>Supponiamo $A\neq0$ (vero automaticamente quando $D&gt;0$, perché altrimenti $D=-B^2\leq0$). Raccogliamo $A$ e completiamo il quadrato:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Raccolgo $A$ nei due termini che contengono $h$: $Q(h,k)=Ah^2+2Bhk+Ck^2=A\Big(h^2+\dfrac{2B}{A}hk\Big)+Ck^2$ (infatti $A\cdot\frac{2B}{A}hk=2Bhk$, torna).</span>
+            <span class="esempio__passo">Ora <strong>completo il quadrato</strong> dentro la parentesi. Voglio riconoscere $(h+u)^2=h^2+2uh+u^2$: confrontando $2uh$ con $\frac{2B}{A}hk$ leggo $u=\frac{B}{A}k$. Quindi $h^2+\frac{2B}{A}hk=\Big(h+\frac{B}{A}k\Big)^2-\frac{B^2}{A^2}k^2$, dove ho <em>sottratto</em> $u^2=\frac{B^2}{A^2}k^2$ perché il quadrato lo aggiunge e a me non serviva.</span>
+            <span class="esempio__passo">Sostituisco questa riscrittura dentro l'espressione precedente e distribuisco la $A$ su entrambi i pezzi ($A\cdot\frac{B^2}{A^2}=\frac{B^2}{A}$): $Q(h,k)=A\Big(h+\dfrac{B}{A}k\Big)^2-\dfrac{B^2}{A}k^2+Ck^2$.</span>
+            <span class="esempio__passo">Raccolgo $k^2$ negli ultimi due addendi e sommo le frazioni portandole a denominatore comune $A$ (cioè $C=\frac{AC}{A}$): $-\dfrac{B^2}{A}+C=\dfrac{AC-B^2}{A}=\dfrac{D}{A}$, per la definizione $D=AC-B^2$. In conclusione $Q(h,k)=A\Big(h+\dfrac{B}{A}k\Big)^2+\dfrac{D}{A}\,k^2$.</span>
+          </p>
+          <p><strong>Caso $D&gt;0$, $A&gt;0$.</strong> Entrambi i coefficienti $A$ e $D/A$ sono positivi, quindi $Q$ è somma di due quantità $\geq 0$: dunque $Q(h,k)\geq 0$. Inoltre $Q=0$ obbliga $k=0$ (secondo addendo) e poi $h+\frac{B}{A}k=h=0$ (primo addendo): l'unico annullamento è in $(0,0)$. Quindi $Q(h,k)&gt;0$ per ogni $(h,k)\neq(0,0)$: <strong>definita positiva</strong>.</p>
+          <p><strong>Caso $D&gt;0$, $A&lt;0$.</strong> Ora $A&lt;0$ e $D/A&lt;0$: stesso ragionamento con i segni scambiati, $Q(h,k)&lt;0$ per $(h,k)\neq(0,0)$: <strong>definita negativa</strong>.</p>
+          <p><strong>Caso $D&lt;0$ (con $A\neq0$).</strong> Scegliamo due direzioni furbe. Con $k=0$ e $h=1$: $Q(1,0)=A$, che ha il segno di $A$. Con $h=-\frac{B}{A}$ e $k=1$ (che annulla il primo quadrato): $Q=\frac{D}{A}$, che ha il segno <em>opposto</em> a quello di $A$ perché $D&lt;0$. La forma assume dunque entrambi i segni: <strong>indefinita</strong>. Se invece $A=0$, da $D=-B^2&lt;0$ segue $B\neq0$ e $Q(h,1)=2Bh+C$ è una funzione affine non costante di $h$: assume anch'essa entrambi i segni. <span class="qed">∎</span></p>
+        </div>
+        <p>Da qui al criterio il passo è breve: si inserisce il risultato nello sviluppo di Taylor della sezione 4.5.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione del criterio (conclusione)</span>
+          <p>Sia $P_0$ critico e $D&gt;0$, $A=f_{xx}(P_0)&gt;0$. Per Taylor al secondo ordine, per $(h,k)\to(0,0)$:</p>
+          <div class="formula-block">$$f(P_0+(h,k))-f(P_0)=\tfrac12\,Q(h,k)+o\big(h^2+k^2\big).$$</div>
+          <p>Poniamo $\rho^2=h^2+k^2$ e scriviamo $(h,k)=\rho\,(\cos\theta,\sin\theta)$. Poiché $Q$ è omogenea di grado $2$, si ha $Q(h,k)=\rho^2\,Q(\cos\theta,\sin\theta)$. La funzione $\theta\mapsto Q(\cos\theta,\sin\theta)$ è continua sulla circonferenza unitaria, che è chiusa e limitata: per Weierstrass ammette minimo $\mu$, e poiché $Q$ è definita positiva risulta $\mu&gt;0$. Dunque</p>
+          <div class="formula-block">$$f(P_0+(h,k))-f(P_0)\ \geq\ \tfrac12\mu\rho^2+o(\rho^2)=\rho^2\Big(\tfrac{\mu}{2}+\tfrac{o(\rho^2)}{\rho^2}\Big)\ &gt;\ 0$$</div>
+          <p>per $\rho$ abbastanza piccolo, perché il termine $o(\rho^2)/\rho^2$ tende a $0$ e non può battere la costante positiva $\mu/2$. Quindi $f(P)&gt;f(P_0)$ in un intorno bucato di $P_0$: <strong>minimo locale stretto</strong>. Il caso $A&lt;0$ è simmetrico. Se invece $D&lt;0$, per la proposizione precedente esistono due direzioni $\mathbf{u}_+$ e $\mathbf{u}_-$ con $Q(\mathbf u_+)&gt;0$ e $Q(\mathbf u_-)&lt;0$: lungo la prima $f$ cresce, lungo la seconda decresce, quindi in ogni intorno di $P_0$ ci sono valori maggiori e minori di $f(P_0)$: <strong>punto di sella</strong>. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Il paraboloide traslato</span><span class="badge badge--base">Base</span></div>
+          <p>Trovare e classificare i punti critici di $f(x,y)=x^2+y^2-2x+4y+7$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Gradiente.</strong> Derivo rispetto a $x$ trattando $y$ come una costante: da $x^2$ viene $2x$, da $-2x$ viene $-2$, mentre $y^2$, $4y$ e $7$ sono costanti rispetto a $x$ e spariscono. Quindi $f_x=2x-2$. Analogamente rispetto a $y$: $f_y=2y+4$.</span>
+            <span class="esempio__passo"><strong>Sistema $\nabla f=(0,0)$</strong> (è il teorema di Fermat, <span class="richiamo" data-sec="4.2">§4.2</span>: nei punti di estremo interni il gradiente si annulla). Le due equazioni sono indipendenti l'una dall'altra: da $2x-2=0$ porto il $-2$ a destra ($2x=2$) e divido per $2$, ottenendo $x=1$; da $2y+4=0$ porto il $4$ a destra ($2y=-4$) e divido per $2$, ottenendo $y=-2$. Unico punto critico $P=(1,-2)$.</span>
+            <span class="esempio__passo"><strong>Derivate seconde.</strong> Derivo $f_x=2x-2$ ancora rispetto a $x$: $f_{xx}=2$; e rispetto a $y$: $f_{xy}=0$ (in $2x-2$ non c'è $y$). Derivo $f_y=2y+4$ rispetto a $y$: $f_{yy}=2$. Sono costanti, quindi valgono queste anche in $P$.</span>
+            <span class="esempio__passo"><strong>Criterio dell'hessiana (<span class="richiamo" data-sec="4.6">§4.6</span>).</strong> Calcolo $D=\det H=f_{xx}f_{yy}-(f_{xy})^2$ sostituendo $f_{xx}=2$, $f_{yy}=2$, $f_{xy}=0$: $\ D=2\cdot2-0^2=4&gt;0$. Il determinante è positivo, quindi c'è un estremo; guardo $f_{xx}=2&gt;0$, che dice quale: minimo (caso 1 del criterio).</span>
+            <span class="esempio__passo"><strong>Valore.</strong> Sostituisco $x=1$ e $y=-2$ nella $f$ di partenza: $f(1,-2)=1^2+(-2)^2-2\cdot1+4\cdot(-2)+7=1+4-2-8+7=2$.</span>
+          </p>
+          <div class="esempio__risultato">$P=(1,-2)$ è un <strong>minimo locale stretto</strong>, con $f(P)=2$. Essendo $f=(x-1)^2+(y+2)^2+2$, è anche minimo assoluto: una scodella perfetta con il fondo in $(1,-2)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — La sella, riconosciuta col criterio</span><span class="badge badge--base">Base</span></div>
+          <p>Classificare l'unico punto critico di $f(x,y)=x^2-y^2$ e confermare il risultato con le restrizioni.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$\nabla f=(2x,\,-2y)=(0,0)\ \Rightarrow\ P=(0,0)$, con $f(0,0)=0$.</span>
+            <span class="esempio__passo">Derivo una seconda volta: da $f_x=2x$ ottengo $f_{xx}=2$ e $f_{xy}=0$; da $f_y=-2y$ ottengo $f_{yy}=-2$. Incolonnandole nella matrice hessiana (<span class="richiamo" data-sec="4.4">§4.4</span>): $H=\begin{pmatrix}2 &amp; 0\\ 0 &amp; -2\end{pmatrix}$.</span>
+            <span class="esempio__passo">Applico la formula $D=f_{xx}f_{yy}-(f_{xy})^2$ con $f_{xx}=2$, $f_{yy}=-2$, $f_{xy}=0$: $\ D=2\cdot(-2)-0^2=-4&lt;0$. Siamo nel caso 3 del criterio (<span class="richiamo" data-sec="4.6">§4.6</span>), quindi <strong>sella</strong>, senza nemmeno guardare $f_{xx}$.</span>
+            <span class="esempio__passo">Conferma: $f(x,0)=x^2&gt;0$ per $x\neq0$, mentre $f(0,y)=-y^2&lt;0$ per $y\neq0$.</span>
+          </p>
+          <div class="esempio__risultato">L'origine è un <strong>punto di sella</strong>: in ogni suo intorno $f$ assume sia valori positivi sia valori negativi.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Sistema non lineare: due punti critici</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Trovare e classificare i punti critici di $f(x,y)=x^3+y^3-3xy$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo rispetto a $x$ (con $y$ costante): da $x^3$ viene $3x^2$, da $y^3$ viene $0$, da $-3xy$ viene $-3y$. Quindi $f_x=3x^2-3y$. Allo stesso modo $f_y=3y^2-3x$.</span>
+            <span class="esempio__passo">Metto a sistema $f_x=0$ e $f_y=0$. Prima equazione: $3x^2-3y=0$; divido entrambi i membri per $3$ e ottengo $x^2-y=0$, cioè <strong>$y=x^2$</strong>. Seconda equazione: $3y^2-3x=0$, divido per $3$ e ottengo <strong>$x=y^2$</strong>.</span>
+            <span class="esempio__passo">Ora <strong>sostituisco $y=x^2$ (prima equazione) al posto di $y$ nella seconda</strong>, $x=y^2$: viene $x=(x^2)^2=x^4$. Porto tutto a sinistra: $x^4-x=0$. Raccolgo $x$ a fattor comune: $x\,(x^3-1)=0$. Un prodotto è nullo se lo è un fattore: $x=0$ oppure $x^3=1$, cioè $x=1$ (unica radice reale).</span>
+            <span class="esempio__passo">Per ogni $x$ trovato ricavo $y$ dalla relazione $y=x^2$: se $x=0$ allora $y=0^2=0$; se $x=1$ allora $y=1^2=1$. Punti critici: $P_1=(0,0)$ e $P_2=(1,1)$.</span>
+            <span class="esempio__passo">Derivate seconde: derivo $f_x=3x^2-3y$ rispetto a $x$ ottenendo $f_{xx}=6x$, e rispetto a $y$ ottenendo $f_{xy}=-3$; derivo $f_y=3y^2-3x$ rispetto a $y$ ottenendo $f_{yy}=6y$. Applico $D=f_{xx}f_{yy}-(f_{xy})^2$ lasciando le lettere: $D(x,y)=(6x)(6y)-(-3)^2=36xy-9$.</span>
+            <span class="esempio__passo">In $P_1=(0,0)$ sostituisco $x=0$, $y=0$ nella formula di $D$: $D=36\cdot0\cdot0-9=-9&lt;0\ \Rightarrow$ <strong>sella</strong> (valore $f(0,0)=0$).</span>
+            <span class="esempio__passo">In $P_2=(1,1)$ sostituisco $x=1$, $y=1$: $D=36\cdot1\cdot1-9=27&gt;0$, e $f_{xx}(1,1)=6\cdot1=6&gt;0\ \Rightarrow$ <strong>minimo locale</strong>. Il valore è $f(1,1)=1^3+1^3-3\cdot1\cdot1=1+1-3=-1$.</span>
+          </p>
+          <div class="esempio__risultato">$(0,0)$ sella; $(1,1)$ minimo locale con valore $-1$. Non è minimo assoluto: lungo l'asse $x$ si ha $f(x,0)=x^3\to-\infty$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Caso dubbio: stessa hessiana, esiti opposti</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Studiare l'origine per $f(x,y)=x^2+y^4$ e per $g(x,y)=x^2-y^4$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Per entrambe $\nabla=(2x,\ \pm4y^3)$ si annulla solo in $(0,0)$, con valore $0$.</span>
+            <span class="esempio__passo">Hessiane: $H_f=\begin{pmatrix}2 &amp; 0\\ 0 &amp; 12y^2\end{pmatrix}$ e $H_g=\begin{pmatrix}2 &amp; 0\\ 0 &amp; -12y^2\end{pmatrix}$; valutate in $(0,0)$ diventano <em>la stessa</em> matrice $\begin{pmatrix}2 &amp; 0\\ 0 &amp; 0\end{pmatrix}$, con $D=0$.</span>
+            <span class="esempio__passo">Il criterio non decide. Studio diretto di $f$: $f(x,y)=x^2+y^4\geq0$, con uguaglianza solo in $(0,0)$.</span>
+            <span class="esempio__passo">Studio diretto di $g$: $g(x,0)=x^2\geq0$ ma $g(0,y)=-y^4\leq0$.</span>
+          </p>
+          <div class="esempio__risultato">Per $f$ l'origine è un <strong>minimo assoluto stretto</strong>; per $g$ è un <strong>punto di sella</strong>. Stessa hessiana, conclusioni opposte: quando $D=0$ le derivate seconde non sanno più nulla.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Estremi assoluti su un disco</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Determinare massimo e minimo assoluti di $f(x,y)=x^2+y^2-2x$ sul disco $K=\{x^2+y^2\leq4\}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 0.</strong> $K$ è chiuso e limitato, $f$ è un polinomio (continua): Weierstrass garantisce che gli estremi esistono.</span>
+            <span class="esempio__passo"><strong>Passo 1 (interno).</strong> $\nabla f=(2x-2,\,2y)=(0,0)\Rightarrow(1,0)$, che è interno perché $1+0=1&lt;4$. Valore $f(1,0)=1-2=-1$.</span>
+            <span class="esempio__passo"><strong>Passo 2 (frontiera).</strong> La frontiera del disco è la circonferenza di equazione $x^2+y^2=4$. Nell'espressione $f(x,y)=x^2+y^2-2x$ compare proprio il blocco $x^2+y^2$: <strong>sostituisco $4$ al posto di $x^2+y^2$</strong> (lecito perché sul bordo quel blocco vale esattamente $4$) e ottengo $f=4-2x$. Sul bordo l'ascissa varia in $x\in[-2,2]$, perché $x^2\leq x^2+y^2=4$. È una funzione affine di $x$ con coefficiente angolare $-2&lt;0$, quindi decrescente: non ha punti critici interni e i suoi estremi cadono agli estremi dell'intervallo.</span>
+            <span class="esempio__passo">Massimo sulla frontiera: si ha per la $x$ più piccola, $x=-2$, e vale $f=4-2\cdot(-2)=4+4=8$; il punto corrispondente si trova rimettendo $x=-2$ nell'equazione del bordo, $(-2)^2+y^2=4\Rightarrow y^2=0\Rightarrow y=0$, cioè $(-2,0)$. Minimo sulla frontiera: per $x=2$, con $f=4-2\cdot2=0$ nel punto $(2,0)$ (stesso conto).</span>
+            <span class="esempio__passo"><strong>Passo 4 (confronto).</strong> Valori in gioco: $-1$ (interno), $8$ e $0$ (frontiera).</span>
+          </p>
+          <div class="esempio__risultato"><strong>Minimo assoluto $-1$ in $(1,0)$; massimo assoluto $8$ in $(-2,0)$.</strong> In alternativa si poteva parametrizzare la frontiera con $x=2\cos t,\ y=2\sin t$, ottenendo $f(t)=4-4\cos t$ con $t\in[0,2\pi]$: stessi risultati.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Estremi assoluti su un triangolo</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determinare massimo e minimo assoluti di $f(x,y)=x^2+y^2-2x-2y$ sul triangolo $T$ di vertici $(0,0)$, $(3,0)$, $(0,3)$, cioè $T=\{x\geq0,\ y\geq0,\ x+y\leq3\}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Interno.</strong> $\nabla f=(2x-2,\,2y-2)=(0,0)\Rightarrow(1,1)$, interno perché $1+1=2&lt;3$. Valore $f(1,1)=1+1-2-2=-2$.</span>
+            <span class="esempio__passo"><strong>Lato 1</strong> ($y=0$, $x\in[0,3]$): $\varphi(x)=x^2-2x$, $\varphi'(x)=2x-2=0\Rightarrow x=1$, con $\varphi(1)=-1$ nel punto $(1,0)$.</span>
+            <span class="esempio__passo"><strong>Lato 2</strong> ($x=0$, $y\in[0,3]$): per simmetria $\psi(y)=y^2-2y$ ha minimo $-1$ in $(0,1)$.</span>
+            <span class="esempio__passo"><strong>Lato 3.</strong> Il lato obliquo ha equazione $x+y=3$, da cui ricavo $y=3-x$ con $x\in[0,3]$. <strong>Sostituisco $3-x$ al posto di $y$</strong> dentro $f(x,y)=x^2+y^2-2x-2y$ e chiamo $\chi$ la funzione di una sola variabile che ne esce: $\chi(x)=x^2+(3-x)^2-2x-2(3-x)$.</span>
+            <span class="esempio__passo">Semplifico: sviluppo $(3-x)^2$ con il prodotto notevole $(a-b)^2=a^2-2ab+b^2$ (qui $a=3$, $b=x$), ottenendo $9-6x+x^2$; poi tolgo la parentesi in $-2(3-x)=-6+2x$. Sommo tutto: $x^2+9-6x+x^2-2x-6+2x=2x^2-6x+3$.</span>
+            <span class="esempio__passo">Ora è un problema di Analisi 1: derivo $\chi'(x)=4x-6$, la annullo ($4x=6$, divido per $4$) e trovo $x=\tfrac32$, che sta dentro $[0,3]$. Il valore è $\chi\!\left(\tfrac32\right)=2\cdot\tfrac94-6\cdot\tfrac32+3=\tfrac92-9+3=-\tfrac32$, nel punto $\left(\tfrac32,\ 3-\tfrac32\right)=\left(\tfrac32,\tfrac32\right)$.</span>
+            <span class="esempio__passo"><strong>Vertici.</strong> $f(0,0)=0$; $f(3,0)=9-6=3$; $f(0,3)=3$.</span>
+            <span class="esempio__passo"><strong>Confronto.</strong> Elenco completo: $-2,\ -1,\ -1,\ -\tfrac32,\ 0,\ 3,\ 3$.</span>
+          </p>
+          <div class="esempio__risultato"><strong>Minimo assoluto $-2$ in $(1,1)$; massimo assoluto $3$ nei due vertici $(3,0)$ e $(0,3)$.</strong> Nota che il massimo cade in un vertice: se avessi dimenticato i vertici, avresti sbagliato risposta.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Distanza minima da un punto a un piano</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determinare il punto del piano $x+y+z=3$ più vicino all'origine, e la relativa distanza.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Trucco preliminare:</strong> minimizzare la distanza $\sqrt{x^2+y^2+z^2}$ equivale a minimizzare il suo <em>quadrato</em> (la radice è crescente): si evitano così le radici nelle derivate.</span>
+            <span class="esempio__passo">Uso il vincolo per eliminare $z$: dall'equazione del piano $x+y+z=3$ ricavo $z=3-x-y$ e <strong>sostituisco questa espressione al posto di $z$</strong> dentro $x^2+y^2+z^2$. Ottengo $F(x,y)=x^2+y^2+(3-x-y)^2$, che è una funzione <em>libera</em> di due sole variabili: ora posso usare i punti critici del <span class="richiamo" data-sec="4.2">§4.2</span>.</span>
+            <span class="esempio__passo">Derivo $F$ rispetto a $x$. Il termine $(3-x-y)^2$ si deriva con la <strong>regola della catena</strong> $\big(g^2\big)'=2g\cdot g'$, dove $g=3-x-y$ e $g_x=-1$: viene $2(3-x-y)\cdot(-1)=-2(3-x-y)$. Quindi $F_x=2x-2(3-x-y)$.</span>
+            <span class="esempio__passo">Pongo $F_x=0$, divido tutto per $2$ e tolgo la parentesi: $x-3+x+y=0$, cioè $2x+y=3$. Con lo stesso conto rispetto a $y$ (stavolta $g_y=-1$ di nuovo, ma il primo termine derivato è $2y$): $F_y=2y-2(3-x-y)=0\ \Rightarrow\ x+2y=3$.</span>
+            <span class="esempio__passo">Risolvo il sistema $\begin{cases}2x+y=3\\ x+2y=3\end{cases}$ <strong>sottraendo la seconda equazione dalla prima</strong>, membro a membro: $(2x+y)-(x+2y)=3-3$, cioè $x-y=0$, quindi $x=y$. Sostituisco $y=x$ nella prima equazione: $2x+x=3$, cioè $3x=3$ e $x=1$; dunque $x=y=1$. Infine $z=3-x-y=3-1-1=1$.</span>
+            <span class="esempio__passo">Verifica con l'hessiana. Derivo una seconda volta: $F_{xx}=2+2=4$, $F_{yy}=4$, e $F_{xy}=\frac{\partial}{\partial y}\big(2x-2(3-x-y)\big)=-2\cdot(-1)=2$. Applico $D=F_{xx}F_{yy}-(F_{xy})^2=4\cdot4-2^2=16-4=12&gt;0$; poiché anche $F_{xx}=4&gt;0$, siamo nel caso 1 del criterio: <strong>minimo</strong>.</span>
+            <span class="esempio__passo">Distanza: $\sqrt{1+1+1}=\sqrt3$.</span>
+          </p>
+          <div class="esempio__risultato">Il punto più vicino è $(1,1,1)$ e la distanza è $\sqrt3$, in accordo con la formula $d=\dfrac{|{-3}|}{\sqrt{1^2+1^2+1^2}}=\sqrt3$. Geometricamente: il punto è il piede della perpendicolare condotta dall'origine al piano.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — La scatola di volume massimo</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Un corriere accetta pacchi rettangolari purché la somma delle tre dimensioni non superi $12$ dm. Quali dimensioni danno il volume massimo?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Dimensioni $x,y,z&gt;0$ con $x+y+z=12$ (conviene usare tutto il budget: il volume cresce con ogni dimensione). Volume $V=xyz$.</span>
+            <span class="esempio__passo">Dal vincolo $x+y+z=12$ ricavo $z=12-x-y$ e <strong>sostituisco questa espressione al posto di $z$</strong> in $V=xyz$: $\ V(x,y)=xy(12-x-y)$. Svolgo il prodotto distribuendo $xy$ su ciascun termine della parentesi: $V(x,y)=12xy-x^2y-xy^2$, definita sul triangolo $x&gt;0$, $y&gt;0$, $x+y&lt;12$.</span>
+            <span class="esempio__passo">Derivo rispetto a $x$ trattando $y$ come una costante: $V_x=12y-2xy-y^2$. Raccolgo $y$ a fattor comune: $V_x=y\,(12-2x-y)$. Lo pongo uguale a $0$: un prodotto è nullo se lo è un fattore, ma <em>qui $y&gt;0$ per ipotesi</em> (una dimensione nulla darebbe volume zero), quindi resta $12-2x-y=0$, cioè $2x+y=12$.</span>
+            <span class="esempio__passo">Allo stesso modo rispetto a $y$: $V_y=12x-x^2-2xy=x\,(12-x-2y)$. Di nuovo $x&gt;0$, quindi $12-x-2y=0$, cioè $x+2y=12$.</span>
+            <span class="esempio__passo">Risolvo il sistema $\begin{cases}2x+y=12\\ x+2y=12\end{cases}$ <strong>sottraendo la seconda dalla prima</strong>: $(2x+y)-(x+2y)=12-12$, cioè $x-y=0$ e quindi $x=y$. Sostituisco $y=x$ nella prima: $2x+x=12$, cioè $3x=12$ e $x=4$. Dunque $x=y=4$ e $z=12-4-4=4$.</span>
+            <span class="esempio__passo">Hessiana. Derivo ancora: da $V_x=12y-2xy-y^2$ ottengo $V_{xx}=-2y$ (rispetto a $x$) e $V_{xy}=12-2x-2y$ (rispetto a $y$); da $V_y$ ottengo $V_{yy}=-2x$. Sostituisco $x=4$, $y=4$: $V_{xx}=-8$, $V_{yy}=-8$, $V_{xy}=12-8-8=-4$. Applico $D=V_{xx}V_{yy}-(V_{xy})^2=(-8)(-8)-(-4)^2=64-16=48&gt;0$; poiché $V_{xx}=-8&lt;0$ siamo nel caso 2 del criterio: <strong>massimo</strong>.</span>
+          </p>
+          <div class="esempio__risultato">Il pacco ottimale è il <strong>cubo</strong> di lato $4$ dm, con volume $64$ dm³. Sul bordo del triangolo (una dimensione nulla) il volume è $0$, quindi il massimo trovato è anche assoluto.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare la frontiera negli estremi assoluti</div>
+          <p>È l'errore numero uno agli esami: si cercano i punti critici, si classificano con l'hessiana e si scrive la risposta — ignorando che l'insieme ha un bordo. Ma il teorema di Fermat vale solo nei punti <strong>interni</strong>: sulla frontiera il massimo può trovarsi dove il gradiente non si annulla affatto. Caso estremo: $f(x,y)=x+y$ sul disco $x^2+y^2\leq1$ non ha <em>nessun</em> punto critico ($\nabla f=(1,1)$ sempre), eppure massimo e minimo esistono per Weierstrass — e stanno tutti e due sul bordo. <em>Come evitarlo</em>: applica sempre i quattro passi della sezione 4.9, e se l'insieme è un poligono non saltare i <strong>vertici</strong>.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere i segni nel criterio: guardare $f_{xx}$ prima del determinante</div>
+          <p>"$f_{xx}&gt;0$, quindi è un minimo" è falso. Per $f(x,y)=x^2-y^2$ si ha $f_{xx}=2&gt;0$ eppure l'origine è una sella. Il segno di $f_{xx}$ ha significato <strong>solo dopo</strong> aver accertato che $D&gt;0$. Altro scambio frequente: credere che $D&lt;0$ sia il caso incerto. È il contrario: $D&lt;0$ è il caso più <em>sicuro</em> di tutti (sella garantita), mentre $D=0$ è quello indeciso. <em>Come evitarlo</em>: recita sempre l'ordine "<strong>prima $D$, poi $f_{xx}$</strong>".</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che $\det H=0$ significhi "punto di sella"</div>
+          <p>$D=0$ significa soltanto <strong>"il criterio non sa rispondere"</strong>. Può esserci un minimo ($x^2+y^4$, oppure $x^4+y^4$), un massimo ($-x^4-y^4$), una sella ($x^2-y^4$) o un minimo non stretto ($x^2y^2$). Scrivere "poiché $D=0$ il punto è di sella" è un errore grave perché confonde <em>assenza di informazione</em> con <em>informazione negativa</em>. <em>Come evitarlo</em>: quando trovi $D=0$, passa allo studio diretto — segno della funzione, restrizioni lungo curve, coordinate polari.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Applicare l'hessiana in un punto che non è critico</div>
+          <p>Il criterio classifica <strong>solo</strong> punti in cui $\nabla f=(0,0)$: è tutto costruito sul fatto che nello sviluppo di Taylor la parte lineare sparisce. Calcolare $D$ in un punto qualunque e concludere "è un minimo" non ha alcun senso: se il gradiente non è nullo, quel punto non è né massimo né minimo locale, e basta il gradiente per dirlo. <em>Come evitarlo</em>: l'hessiana si tira fuori <strong>dopo</strong> aver risolto il sistema $\nabla f=0$, mai prima.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scambiare estremi locali ed estremi assoluti</div>
+          <p>Il criterio dell'hessiana è <strong>locale</strong>: dice cosa succede in un intorno piccolo del punto, non nel mondo intero. Nell'Esempio 3 il punto $(1,1)$ è un minimo locale ma $f$ non è limitata inferiormente, quindi il minimo assoluto non esiste. E attenzione: in due variabili nemmeno "unico punto critico + è un massimo locale" basta a garantire il massimo assoluto su insiemi illimitati. <em>Come evitarlo</em>: per gli estremi assoluti servono sempre o un insieme chiuso e limitato (Weierstrass) o uno studio del comportamento all'infinito.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La checklist in cinque righe (da ripetere a memoria)</div>
+          <p><strong>1)</strong> calcolo $\nabla f$; <strong>2)</strong> risolvo $\nabla f=0$ e trovo i punti critici; <strong>3)</strong> calcolo le tre derivate seconde e scrivo $H$; <strong>4)</strong> valuto $D=f_{xx}f_{yy}-(f_{xy})^2$ <em>in ciascun punto critico</em>; <strong>5)</strong> se $D&gt;0$ guardo $f_{xx}$, se $D&lt;0$ scrivo "sella", se $D=0$ passo allo studio diretto. Chi salta il passo 4 e guarda subito $f_{xx}$ sbaglia esercizio.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> "Il determinante decide SE, la $f_{xx}$ decide QUALE"</div>
+          <p>Frase da incidere: $D$ stabilisce <em>se</em> il punto è un estremo (sì quando $D&gt;0$, mai quando $D&lt;0$), $f_{xx}$ stabilisce <em>quale</em>. E per il segno usa l'immagine di Analisi 1: $f_{xx}&gt;0$ è la <strong>faccina sorridente</strong> (scodella, minimo), $f_{xx}&lt;0$ è la <strong>faccina triste</strong> (cupola, massimo). Se $f_{xx}$ è scomoda da valutare, usa $f_{yy}$ o la somma $f_{xx}+f_{yy}$: quando $D&gt;0$ hanno tutte lo stesso segno.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Selle riconoscibili a colpo d'occhio</div>
+          <p>Due scorciatoie che risparmiano conti: (a) se $f_{xx}$ e $f_{yy}$ hanno <strong>segni opposti</strong>, allora $f_{xx}f_{yy}&lt;0$ e quindi $D=f_{xx}f_{yy}-(f_{xy})^2&lt;0$ di sicuro: <strong>sella</strong>, senza calcolare altro; (b) se $f_{xx}=f_{yy}=0$ ma $f_{xy}\neq0$, allora $D=-(f_{xy})^2&lt;0$: <strong>sella</strong> (è il caso di $f=xy$). Nota anche che il termine misto entra <em>al quadrato</em> e con il segno meno: un $f_{xy}$ grande "spinge" sempre verso la sella.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Funzioni separabili: due problemi di Analisi 1</div>
+          <p>Se $f(x,y)=g(x)+h(y)$, allora $f_{xy}=0$ e l'hessiana è <strong>diagonale</strong>: $D=g''(x_0)\,h''(y_0)$. Basta quindi studiare separatamente le due funzioni di una variabile: minimo+minimo $\Rightarrow$ minimo; massimo+massimo $\Rightarrow$ massimo; minimo+massimo $\Rightarrow$ sella. Esempio lampo: $f=x^3-3x+y^2$ ha $g=x^3-3x$ (minimo in $1$, massimo in $-1$) e $h=y^2$ (minimo in $0$): quindi $(1,0)$ minimo e $(-1,0)$ sella.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sulla frontiera: sostituire è meglio che parametrizzare</div>
+          <p>Su un segmento come $x+y=3$ conviene sostituire $y=3-x$ e ridursi a una funzione di $x$ su un intervallo. Su una circonferenza $x^2+y^2=r^2$ hai due strade: la parametrizzazione $x=r\cos t,\ y=r\sin t$ (sempre valida) oppure la sostituzione diretta $y^2=r^2-x^2$ quando nella funzione compare solo $y^2$ (più veloce). <strong>In ogni caso, ricordati sempre l'intervallo di variazione</strong> del parametro e controlla gli estremi dell'intervallo: sono candidati anch'essi.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Nei casi dubbi, prova le polari</div>
+          <p>Con $D=0$, poni $x=x_0+\rho\cos\theta$, $y=y_0+\rho\sin\theta$ e studia il segno di $f-f(P_0)$ per $\rho$ piccolo. Se ottieni una quantità sempre positiva (indipendentemente da $\theta$) hai un minimo; se il segno cambia con $\theta$, hai una sella. Alternativa ancora più rapida: cerca di riscrivere la funzione come somma di quadrati o di potenze pari, come in $x^2+y^4\geq0$.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Punti critici e matrice hessiana</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Punti critici</strong>
+              <ul><li>$\nabla f=(0,0)$</li><li>Fermat: condizione necessaria</li><li>Solo nei punti interni</li><li>Candidati, non vincitori</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Hessiana</strong>
+              <ul><li>Matrice derivate seconde</li><li>Simmetrica per Schwarz</li><li>$D=f_{xx}f_{yy}-(f_{xy})^2$</li><li>Nasce da Taylor di ordine 2</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Criterio in 2 variabili</strong>
+              <ul><li>$D&gt;0$, $f_{xx}&gt;0$ → minimo</li><li>$D&gt;0$, $f_{xx}&lt;0$ → massimo</li><li>$D&lt;0$ → sella</li><li>$D=0$ → caso dubbio</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Caso generale</strong>
+              <ul><li>Autovalori di $H$</li><li>Definita positiva/negativa</li><li>Indefinita → sella</li><li>Sylvester: minori di testa</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Estremi assoluti</strong>
+              <ul><li>Weierstrass su chiuso e limitato</li><li>Critici interni</li><li>Frontiera ridotta a 1 variabile</li><li>Vertici, poi confronto valori</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Applicazioni</strong>
+              <ul><li>Minimi quadrati e regressione</li><li>Distanze punto-piano</li><li>Scatole e imballaggi</li><li>Selle in machine learning</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Condizione necessaria (Fermat)</strong>: se $P_0$ è interno ed è estremo locale, allora $\nabla f(P_0)=(0,0)$. Tali punti si dicono <em>critici</em> o <em>stazionari</em>. Non è sufficiente!</li>
+            <li><strong>Il nuovo personaggio</strong>: il <em>punto di sella</em> — minimo in una direzione, massimo in un'altra. Immagini: il passo di montagna, la sella del cavallo, $f(x,y)=x^2-y^2$.</li>
+            <li><strong>Hessiana</strong>: $H_f=\begin{pmatrix} f_{xx} &amp; f_{xy}\\ f_{xy} &amp; f_{yy}\end{pmatrix}$, simmetrica per il teorema di Schwarz; $D=\det H=f_{xx}f_{yy}-(f_{xy})^2$.</li>
+            <li><strong>Criterio</strong>: $D&gt;0$ e $f_{xx}&gt;0$ → minimo; $D&gt;0$ e $f_{xx}&lt;0$ → massimo; $D&lt;0$ → sella; $D=0$ → caso dubbio (può essere qualsiasi cosa: $x^2+y^4$ minimo, $x^2-y^4$ sella, con la stessa hessiana).</li>
+            <li><strong>Perché funziona</strong>: Taylor al secondo ordine riduce il problema al segno della forma quadratica $Q(h,k)=f_{xx}h^2+2f_{xy}hk+f_{yy}k^2$, studiato con il completamento del quadrato.</li>
+            <li><strong>Caso generale</strong>: autovalori tutti positivi → minimo; tutti negativi → massimo; di segno discorde → sella. Test pratico: criterio di Sylvester sui minori principali di testa (tutti $&gt;0$, oppure a segni alternati partendo da $&lt;0$).</li>
+            <li><strong>Estremi assoluti su $K$ chiuso e limitato</strong> (esistono per Weierstrass): punti critici interni + studio della frontiera ridotta a una variabile + vertici, quindi <em>confronto dei valori</em>. Sulla frontiera non si usa l'hessiana.</li>
+            <li><strong>Applicazione principe</strong>: i minimi quadrati. Annullando $\partial S/\partial m$ e $\partial S/\partial q$ si ottengono le equazioni normali e la retta di regressione; l'hessiana è definita positiva, quindi è un minimo.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Trova e classifica i punti critici di $f(x,y)=x^2+y^2-6x+2y+5$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=2x-6=0\Rightarrow x=3$; &nbsp;$f_y=2y+2=0\Rightarrow y=-1$. Unico punto critico $(3,-1)$.</span>
+                <span class="esempio__passo">$f_{xx}=2$, $f_{yy}=2$, $f_{xy}=0\Rightarrow D=4&gt;0$.</span>
+                <span class="esempio__passo">$f_{xx}=2&gt;0$: minimo. Valore $f(3,-1)=9+1-18-2+5=-5$.</span>
+              </p>
+              <p><strong>$(3,-1)$ è minimo locale (e assoluto) con $f=-5$.</strong> Infatti $f=(x-3)^2+(y+1)^2-5$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Classifica il punto critico di $f(x,y)=4-x^2-y^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\nabla f=(-2x,-2y)=(0,0)\Rightarrow(0,0)$, con $f(0,0)=4$.</span>
+                <span class="esempio__passo">$f_{xx}=-2$, $f_{yy}=-2$, $f_{xy}=0\Rightarrow D=(-2)(-2)-0=4&gt;0$.</span>
+                <span class="esempio__passo">$D&gt;0$ e $f_{xx}=-2&lt;0$.</span>
+              </p>
+              <p><strong>$(0,0)$ è massimo locale (e assoluto), $f=4$:</strong> è la cupola del paraboloide rivolto verso il basso.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Mostra che l'origine è punto di sella per $f(x,y)=xy$, sia con il criterio sia con due restrizioni.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\nabla f=(y,x)=(0,0)\Rightarrow(0,0)$, con $f=0$.</span>
+                <span class="esempio__passo">$f_{xx}=0$, $f_{yy}=0$, $f_{xy}=1\Rightarrow D=0\cdot0-1^2=-1&lt;0$: sella.</span>
+                <span class="esempio__passo">Restrizioni: lungo $y=x$ si ha $f=x^2&gt;0$; lungo $y=-x$ si ha $f=-x^2&lt;0$.</span>
+              </p>
+              <p><strong>L'origine è un punto di sella:</strong> in ogni intorno $f$ assume valori di entrambi i segni.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scrivi la matrice hessiana di $f(x,y)=x^3+2xy^2-y^3$ e valutala in $(1,-1)$. Il punto $(1,-1)$ è critico?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivate prime: $f_x=3x^2+2y^2$, $f_y=4xy-3y^2$.</span>
+                <span class="esempio__passo">Derivate seconde: $f_{xx}=6x$, $f_{xy}=4y$, $f_{yy}=4x-6y$.</span>
+                <span class="esempio__passo">Sostituisco $x=1$, $y=-1$: $f_{xx}=6\cdot1=6$, $f_{xy}=4\cdot(-1)=-4$, $f_{yy}=4\cdot1-6\cdot(-1)=4+6=10$. Quindi $H=\begin{pmatrix}6 &amp; -4\\ -4 &amp; 10\end{pmatrix}$ e, con la regola $\det\begin{pmatrix}a &amp; b\\ c &amp; d\end{pmatrix}=ad-bc$ (qui $a=6$, $b=c=-4$, $d=10$), $\det H=6\cdot10-(-4)(-4)=60-16=44$.</span>
+                <span class="esempio__passo">Ma $f_x(1,-1)=3+2=5\neq0$: il gradiente non è nullo.</span>
+              </p>
+              <p><strong>$H(1,-1)=\begin{pmatrix}6 &amp; -4\\ -4 &amp; 10\end{pmatrix}$ con $\det=44$; il punto NON è critico</strong>, quindi il criterio non si applica (e $(1,-1)$ non è né massimo né minimo).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Trova e classifica i punti critici di $f(x,y)=x^3-3x+y^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=3x^2-3=0\Rightarrow x=\pm1$; &nbsp;$f_y=2y=0\Rightarrow y=0$. Punti: $(1,0)$ e $(-1,0)$.</span>
+                <span class="esempio__passo">$f_{xx}=6x$, $f_{yy}=2$, $f_{xy}=0$. Applico $D=f_{xx}f_{yy}-(f_{xy})^2=(6x)\cdot2-0^2$, cioè $D(x,y)=12x$: dipende solo da $x$.</span>
+                <span class="esempio__passo">In $(1,0)$: $D=12&gt;0$, $f_{xx}=6&gt;0$ → minimo, $f=1-3=-2$.</span>
+                <span class="esempio__passo">In $(-1,0)$: $D=-12&lt;0$ → sella, $f=-1+3=2$.</span>
+              </p>
+              <p><strong>$(1,0)$ minimo locale ($f=-2$); $(-1,0)$ sella ($f=2$).</strong> È una funzione separabile: $x^3-3x$ più $y^2$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Trova e classifica i punti critici di $f(x,y)=x^2+y^2+xy-4x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=2x+y-4=0$; &nbsp;$f_y=2y+x=0$. Dalla seconda ricavo $x$ portando $2y$ a destra: $x=-2y$.</span>
+                <span class="esempio__passo"><strong>Sostituisco $-2y$ al posto di $x$ nella prima equazione</strong> $2x+y-4=0$: viene $2(-2y)+y-4=0$, cioè $-4y+y-4=0$. Sommo i termini simili: $-3y-4=0$, quindi $-3y=4$ e dividendo per $-3$ ottengo $y=-\tfrac43$. Rimetto questo valore in $x=-2y$: $x=-2\cdot\left(-\tfrac43\right)=\tfrac83$.</span>
+                <span class="esempio__passo">Derivate seconde: da $f_x=2x+y-4$ ottengo $f_{xx}=2$ e $f_{xy}=1$; da $f_y=2y+x$ ottengo $f_{yy}=2$. Applico $D=f_{xx}f_{yy}-(f_{xy})^2=2\cdot2-1^2=4-1=3&gt;0$, e $f_{xx}=2&gt;0$: caso 1 del criterio.</span>
+                <span class="esempio__passo">Valore: sostituisco $x=\tfrac83$, $y=-\tfrac43$ in $f=x^2+y^2+xy-4x$: $\ \tfrac{64}{9}+\tfrac{16}{9}+\tfrac83\cdot\left(-\tfrac43\right)-4\cdot\tfrac83=\tfrac{64}{9}+\tfrac{16}{9}-\tfrac{32}{9}-\tfrac{32}{3}$. Porto l'ultima frazione a denominatore $9$ ($\tfrac{32}{3}=\tfrac{96}{9}$): $\ \tfrac{64+16-32}{9}-\tfrac{96}{9}=\tfrac{48}{9}-\tfrac{96}{9}=-\tfrac{48}{9}=-\tfrac{16}{3}$.</span>
+              </p>
+              <p><strong>$\left(\tfrac83,-\tfrac43\right)$ è minimo locale (e assoluto) con $f=-\tfrac{16}{3}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Trova e classifica i punti critici di $f(x,y)=x^4+y^4-4xy$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=4x^3-4y=0\Rightarrow y=x^3$; &nbsp;$f_y=4y^3-4x=0\Rightarrow x=y^3$.</span>
+                <span class="esempio__passo"><strong>Sostituisco $y=x^3$ (prima equazione) al posto di $y$ nella seconda</strong>, $x=y^3$: viene $x=(x^3)^3=x^9$ (potenza di potenza: gli esponenti si moltiplicano, $3\cdot3=9$). Porto tutto a sinistra, $x^9-x=0$, e raccolgo $x$: $x\,(x^8-1)=0$. Quindi $x=0$ oppure $x^8=1$, che fra i reali dà $x=1$ e $x=-1$.</span>
+                <span class="esempio__passo">Per ciascun $x$ ricavo $y$ da $y=x^3$: $x=0\Rightarrow y=0$; $x=1\Rightarrow y=1$; $x=-1\Rightarrow y=(-1)^3=-1$. Punti critici: $(0,0)$, $(1,1)$, $(-1,-1)$.</span>
+                <span class="esempio__passo">Derivate seconde: $f_{xx}=12x^2$, $f_{yy}=12y^2$, $f_{xy}=-4$. Applico $D=f_{xx}f_{yy}-(f_{xy})^2=(12x^2)(12y^2)-(-4)^2=144x^2y^2-16$.</span>
+                <span class="esempio__passo">In $(0,0)$: $D=-16&lt;0$ → sella. In $(\pm1,\pm1)$: $D=144-16=128&gt;0$ e $f_{xx}=12&gt;0$ → minimi, con $f=1+1-4=-2$.</span>
+              </p>
+              <p><strong>$(0,0)$ sella; $(1,1)$ e $(-1,-1)$ minimi locali con $f=-2$</strong> (sono anche assoluti, perché $f\to+\infty$ all'infinito).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina massimo e minimo assoluti di $f(x,y)=x+y$ sul disco $x^2+y^2\leq1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Interno: $\nabla f=(1,1)$ non si annulla mai → <strong>nessun</strong> punto critico interno.</span>
+                <span class="esempio__passo">Per Weierstrass gli estremi esistono comunque: stanno per forza sulla frontiera.</span>
+                <span class="esempio__passo">Parametrizzo la frontiera $x^2+y^2=1$ ponendo $x=\cos t$, $y=\sin t$ con $t\in[0,2\pi]$ (funziona perché $\cos^2t+\sin^2t=1$, identità fondamentale della trigonometria). <strong>Sostituisco $\cos t$ al posto di $x$ e $\sin t$ al posto di $y$</strong> in $f=x+y$: $\ g(t)=\cos t+\sin t$.</span>
+                <span class="esempio__passo">Riscrivo $g$ in una forma più leggibile usando la <a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">formula di addizione del seno</a>, $\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta$. Provo con $\alpha=t$ e $\beta=\tfrac{\pi}{4}$: poiché $\cos\tfrac{\pi}{4}=\sin\tfrac{\pi}{4}=\tfrac{\sqrt2}{2}$, viene $\sin\!\left(t+\tfrac{\pi}{4}\right)=\tfrac{\sqrt2}{2}\sin t+\tfrac{\sqrt2}{2}\cos t=\tfrac{\sqrt2}{2}(\sin t+\cos t)$. Moltiplico entrambi i membri per $\sqrt2$ (e $\sqrt2\cdot\tfrac{\sqrt2}{2}=1$): $\ \sqrt2\,\sin\!\left(t+\tfrac{\pi}{4}\right)=\sin t+\cos t=g(t)$.</span>
+                <span class="esempio__passo">Il seno assume tutti e soli i valori fra $-1$ e $1$, quindi $g=\sqrt2\sin\!\left(t+\tfrac{\pi}{4}\right)$ varia fra $-\sqrt2$ e $\sqrt2$. Il massimo si ha quando $\sin\!\left(t+\tfrac{\pi}{4}\right)=1$, cioè $t+\tfrac{\pi}{4}=\tfrac{\pi}{2}$ e quindi $t=\tfrac{\pi}{4}$; il minimo quando il seno vale $-1$, cioè $t+\tfrac{\pi}{4}=\tfrac{3\pi}{2}$ e quindi $t=\tfrac{5\pi}{4}$.</span>
+                <span class="esempio__passo">Ritorno alle coordinate rimettendo questi $t$ dentro la parametrizzazione: per $t=\tfrac{\pi}{4}$ il punto è $\left(\cos\tfrac{\pi}{4},\sin\tfrac{\pi}{4}\right)=\left(\tfrac{\sqrt2}{2},\tfrac{\sqrt2}{2}\right)$; per $t=\tfrac{5\pi}{4}$ è il punto opposto.</span>
+              </p>
+              <p><strong>Massimo $\sqrt2$ in $\left(\tfrac{\sqrt2}{2},\tfrac{\sqrt2}{2}\right)$; minimo $-\sqrt2$ in $\left(-\tfrac{\sqrt2}{2},-\tfrac{\sqrt2}{2}\right)$.</strong> Esempio perfetto del perché la frontiera non va mai dimenticata.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova e classifica i quattro punti critici di $f(x,y)=x^3+y^3-3x-12y+20$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=3x^2-3=0\Rightarrow x=\pm1$; &nbsp;$f_y=3y^2-12=0\Rightarrow y=\pm2$. Quattro combinazioni.</span>
+                <span class="esempio__passo">$f_{xx}=6x$, $f_{yy}=6y$, $f_{xy}=0$ (nella $f$ non c'è nessun termine misto in $xy$). Applico $D=f_{xx}f_{yy}-(f_{xy})^2=(6x)(6y)-0^2=36xy$: il segno di $D$ è quello del prodotto $xy$.</span>
+                <span class="esempio__passo">$(1,2)$: $D=72&gt;0$, $f_{xx}=6&gt;0$ → <strong>minimo</strong>, $f=1+8-3-24+20=2$.</span>
+                <span class="esempio__passo">$(1,-2)$: $D=-72&lt;0$ → sella. &nbsp;$(-1,2)$: $D=-72&lt;0$ → sella.</span>
+                <span class="esempio__passo">$(-1,-2)$: $D=72&gt;0$, $f_{xx}=-6&lt;0$ → <strong>massimo</strong>, $f=-1-8+3+24+20=38$.</span>
+              </p>
+              <p><strong>Minimo locale in $(1,2)$ ($f=2$), massimo locale in $(-1,-2)$ ($f=38$), selle in $(1,-2)$ e $(-1,2)$.</strong> Nessuno dei due è assoluto: $f$ è illimitata in entrambi i versi.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Per $f(x,y)=x^4+y^4$ e $g(x,y)=x^3+y^3$ verifica che l'origine è critica con $\det H=0$, e determina la natura del punto con lo studio diretto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\nabla f=(4x^3,4y^3)$ e $\nabla g=(3x^2,3y^2)$: entrambi si annullano solo in $(0,0)$, dove $f=g=0$.</span>
+                <span class="esempio__passo">$H_f=\begin{pmatrix}12x^2 &amp; 0\\ 0 &amp; 12y^2\end{pmatrix}$ e $H_g=\begin{pmatrix}6x &amp; 0\\ 0 &amp; 6y\end{pmatrix}$: in $(0,0)$ entrambe sono la matrice nulla, $D=0$. Criterio muto.</span>
+                <span class="esempio__passo">Studio di $f$: somma di due potenze pari, $f(x,y)\geq0$ con uguaglianza solo in $(0,0)$.</span>
+                <span class="esempio__passo">Studio di $g$: lungo l'asse $x$, $g(x,0)=x^3$, positivo per $x&gt;0$ e negativo per $x&lt;0$.</span>
+              </p>
+              <p><strong>Per $f$ l'origine è minimo assoluto stretto; per $g$ è un punto di sella.</strong> Ancora una volta $D=0$ non significa "sella", significa "il criterio non decide".</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina massimo e minimo assoluti di $f(x,y)=xy$ sul disco $x^2+y^2\leq1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Interno.</strong> $\nabla f=(y,x)=(0,0)\Rightarrow(0,0)$, interno al disco, con $f(0,0)=0$ (è una sella, ma per gli assoluti conta solo il valore $0$).</span>
+                <span class="esempio__passo"><strong>Frontiera.</strong> Parametrizzo $x^2+y^2=1$ con $x=\cos t$, $y=\sin t$, $t\in[0,2\pi]$, e <strong>sostituisco al posto di $x$ e $y$</strong> in $f=xy$: $\ g(t)=\cos t\,\sin t$.</span>
+                <span class="esempio__passo">Uso la <a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">formula di duplicazione del seno</a>, $\sin(2t)=2\sin t\cos t$. Divido entrambi i membri per $2$ e ottengo $\sin t\cos t=\tfrac12\sin(2t)$: quindi $g(t)=\tfrac12\sin(2t)$.</span>
+                <span class="esempio__passo">Poiché $\sin(2t)$ varia fra $-1$ e $1$, $g$ varia fra $-\tfrac12$ e $\tfrac12$. Il massimo si ha quando $\sin(2t)=1$, cioè $2t=\tfrac{\pi}{2}$ da cui $t=\tfrac{\pi}{4}$ (e, aggiungendo un periodo a $2t$, anche $t=\tfrac{5\pi}{4}$); il minimo quando $\sin(2t)=-1$, cioè $2t=\tfrac{3\pi}{2}$ da cui $t=\tfrac{3\pi}{4}$ (e $t=\tfrac{7\pi}{4}$).</span>
+                <span class="esempio__passo"><strong>Confronto.</strong> Valori: $0$, $\tfrac12$, $-\tfrac12$.</span>
+              </p>
+              <p><strong>Massimo assoluto $\tfrac12$ in $\left(\pm\tfrac{\sqrt2}{2},\pm\tfrac{\sqrt2}{2}\right)$ (segni concordi); minimo assoluto $-\tfrac12$ nei punti a segni discordi.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina il punto del piano $2x+y-z=5$ più vicino all'origine e la distanza corrispondente.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Minimizzo il <em>quadrato</em> della distanza (la radice è crescente, quindi il punto di minimo è lo stesso). Dal vincolo $2x+y-z=5$ ricavo $z=2x+y-5$ e <strong>sostituisco questa espressione al posto di $z$</strong> in $x^2+y^2+z^2$: $\ F(x,y)=x^2+y^2+(2x+y-5)^2$.</span>
+                <span class="esempio__passo">Derivo rispetto a $x$: il termine quadrato si deriva con la <strong>regola della catena</strong> $\big(g^2\big)'=2g\cdot g_x$, con $g=2x+y-5$ e $g_x=2$, quindi dà $2(2x+y-5)\cdot2=4(2x+y-5)$. In tutto $F_x=2x+4(2x+y-5)$. Svolgo la parentesi: $2x+8x+4y-20=10x+4y-20$. Pongo $=0$ e divido tutto per $2$: $\ 5x+2y=10$.</span>
+                <span class="esempio__passo">Derivo rispetto a $y$: ora $g_y=1$, quindi il quadrato dà $2(2x+y-5)$. In tutto $F_y=2y+2(2x+y-5)=4x+4y-10$. Pongo $=0$ e divido per $2$: $\ 2x+2y=5$.</span>
+                <span class="esempio__passo">Risolvo il sistema $\begin{cases}5x+2y=10\\ 2x+2y=5\end{cases}$ <strong>sottraendo la seconda equazione dalla prima</strong>: i termini in $y$ sono identici e si cancellano, restando $(5x-2x)=10-5$, cioè $3x=5$ e $x=\tfrac53$. Sostituisco $x=\tfrac53$ nella seconda equazione: $2\cdot\tfrac53+2y=5$, cioè $2y=5-\tfrac{10}{3}=\tfrac{15-10}{3}=\tfrac53$, da cui $y=\tfrac56$. Infine $z=2x+y-5=\tfrac{10}{3}+\tfrac56-5=-\tfrac56$.</span>
+                <span class="esempio__passo">Hessiana: derivo una seconda volta $F_x=10x+4y-20$ ottenendo $F_{xx}=10$ e $F_{xy}=4$, e $F_y=4x+4y-10$ ottenendo $F_{yy}=4$. Applico $D=F_{xx}F_{yy}-(F_{xy})^2=10\cdot4-4^2=40-16=24&gt;0$, con $F_{xx}=10&gt;0$: minimo.</span>
+                <span class="esempio__passo">Distanza$^2=\tfrac{25}{9}+\tfrac{25}{36}+\tfrac{25}{36}=\tfrac{150}{36}=\tfrac{25}{6}$.</span>
+              </p>
+              <p><strong>Punto $\left(\tfrac53,\tfrac56,-\tfrac56\right)$, distanza $\dfrac{5}{\sqrt6}$</strong>, in accordo con la formula $d=\dfrac{|-5|}{\sqrt{4+1+1}}$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare massimo e minimo assoluti di $f(x,y)=x^2+y^2-xy$ sul quadrato $Q=[-1,1]\times[-1,1]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Interno.</strong> $f_x=2x-y=0$, $f_y=2y-x=0\Rightarrow x=y=0$. Punto $(0,0)$ interno, $f=0$. (Con $D=4-1=3&gt;0$ e $f_{xx}=2&gt;0$ è anche minimo locale.)</span>
+                <span class="esempio__passo"><strong>Lati verticali.</strong> Sul lato $x=1$ <strong>sostituisco $1$ al posto di $x$</strong> in $f=x^2+y^2-xy$: resta la funzione della sola $y$ $\ \varphi(y)=1^2+y^2-1\cdot y=1+y^2-y$, con $y\in[-1,1]$. Derivo: $\varphi'(y)=2y-1$; la annullo, $2y=1$, quindi $y=\tfrac12$ (dentro l'intervallo). Valore: $\varphi\!\left(\tfrac12\right)=1+\tfrac14-\tfrac12=\tfrac34$. Sul lato $x=-1$, per simmetria, si trova ancora $\tfrac34$ in $y=-\tfrac12$.</span>
+                <span class="esempio__passo"><strong>Lati orizzontali.</strong> Per simmetria in $x\leftrightarrow y$: valore $\tfrac34$ in $\left(\tfrac12,1\right)$ e $\left(-\tfrac12,-1\right)$.</span>
+                <span class="esempio__passo"><strong>Vertici.</strong> $f(1,1)=1$, $f(-1,-1)=1$, $f(1,-1)=1+1+1=3$, $f(-1,1)=3$.</span>
+                <span class="esempio__passo"><strong>Confronto.</strong> $0,\ \tfrac34,\ 1,\ 3$.</span>
+              </p>
+              <p><strong>Minimo assoluto $0$ in $(0,0)$; massimo assoluto $3$ nei vertici $(1,-1)$ e $(-1,1)$.</strong> Se avessi trascurato i vertici avresti dato $1$ come massimo: risposta sbagliata.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare massimo e minimo assoluti di $f(x,y)=x+y-xy$ sul triangolo di vertici $(0,0)$, $(4,0)$, $(0,4)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Interno.</strong> $f_x=1-y=0$, $f_y=1-x=0\Rightarrow(1,1)$, interno perché $1+1=2&lt;4$. Valore $f(1,1)=1$. (È una sella: $D=0\cdot0-(-1)^2=-1&lt;0$, ma per gli assoluti serve solo il valore.)</span>
+                <span class="esempio__passo"><strong>Lato $y=0$</strong>, $x\in[0,4]$: $f=x$, crescente, valori da $0$ a $4$.</span>
+                <span class="esempio__passo"><strong>Lato $x=0$</strong>, $y\in[0,4]$: $f=y$, valori da $0$ a $4$.</span>
+                <span class="esempio__passo"><strong>Ipotenusa.</strong> Ha equazione $x+y=4$, da cui $y=4-x$ con $x\in[0,4]$. <strong>Sostituisco $4-x$ al posto di $y$</strong> in $f=x+y-xy$: $\ f=x+(4-x)-x(4-x)$. Semplifico: $x+4-x=4$, e $-x(4-x)=-4x+x^2$; in tutto $4-4x+x^2$. Riconosco il prodotto notevole $a^2-2ab+b^2=(a-b)^2$ con $a=x$ e $b=2$ (infatti $2ab=4x$ e $b^2=4$), quindi $f=(x-2)^2$. È un quadrato: vale $0$ (minimo) per $x=2$, cioè nel punto $(2,\,4-2)=(2,2)$, e agli estremi dà $(0-2)^2=4$ e $(4-2)^2=4$.</span>
+                <span class="esempio__passo"><strong>Vertici.</strong> $f(0,0)=0$, $f(4,0)=4$, $f(0,4)=4$.</span>
+              </p>
+              <p><strong>Minimo assoluto $0$, raggiunto in $(0,0)$ e in $(2,2)$; massimo assoluto $4$, raggiunto in $(4,0)$ e $(0,4)$.</strong> Il punto critico interno, essendo una sella, non entra in gioco.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Con il metodo dei minimi quadrati, determinare la retta $y=mx+q$ che approssima meglio i punti $(0,1)$, $(1,3)$, $(2,4)$, $(3,6)$, e verificare con l'hessiana che si tratta di un minimo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Somme: $n=4$, $\sum x_i=6$, $\sum y_i=14$, $\sum x_iy_i=0+3+8+18=29$, $\sum x_i^2=0+1+4+9=14$.</span>
+                <span class="esempio__passo">Scrivo le <strong>equazioni normali</strong> del <span class="richiamo" data-sec="4.10">§4.10</span>, $m\sum x_i^2+q\sum x_i=\sum x_iy_i$ e $m\sum x_i+nq=\sum y_i$, sostituendo i numeri appena calcolati: $\ 14m+6q=29$ e $6m+4q=14$.</span>
+                <span class="esempio__passo">Uso la formula risolutiva già ricavata nel <span class="richiamo" data-sec="4.10">§4.10</span>, $m=\dfrac{n\sum x_iy_i-\big(\sum x_i\big)\big(\sum y_i\big)}{n\sum x_i^2-\big(\sum x_i\big)^2}$, sostituendo $n=4$, $\sum x_iy_i=29$, $\sum x_i=6$, $\sum y_i=14$, $\sum x_i^2=14$: $\ m=\dfrac{4\cdot29-6\cdot14}{4\cdot14-6^2}=\dfrac{116-84}{56-36}=\dfrac{32}{20}=1{,}6$.</span>
+                <span class="esempio__passo">Per $q$ uso l'altra formula del <span class="richiamo" data-sec="4.10">§4.10</span>, $q=\bar y-m\bar x$, dove le medie sono $\bar y=\dfrac{\sum y_i}{n}=\dfrac{14}{4}=3{,}5$ e $\bar x=\dfrac{\sum x_i}{n}=\dfrac{6}{4}=1{,}5$: $\ q=3{,}5-1{,}6\cdot1{,}5=3{,}5-2{,}4=1{,}1$.</span>
+                <span class="esempio__passo">Hessiana: $H_S=\begin{pmatrix}2\sum x_i^2 &amp; 2\sum x_i\\ 2\sum x_i &amp; 2n\end{pmatrix}=\begin{pmatrix}28 &amp; 12\\ 12 &amp; 8\end{pmatrix}$, $\det=224-144=80&gt;0$ con $28&gt;0$.</span>
+              </p>
+              <p><strong>Retta di regressione: $y=1{,}6\,x+1{,}1$</strong>; l'hessiana è definita positiva, quindi il punto critico $(m,q)$ è il minimo (assoluto) della somma dei quadrati degli scarti.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Una scatola a base rettangolare <em>senza coperchio</em> deve avere volume $32$ dm³. Determinare le dimensioni che minimizzano la superficie di materiale impiegato.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Base $x\times y$, altezza $z$, con $xyz=32$. Superficie (senza coperchio): $S=xy+2xz+2yz$.</span>
+                <span class="esempio__passo">Dal vincolo $xyz=32$ ricavo $z=\dfrac{32}{xy}$ e <strong>sostituisco questa espressione al posto di $z$</strong> in $S=xy+2xz+2yz$: $\ 2xz=2x\cdot\dfrac{32}{xy}=\dfrac{64}{y}$ (la $x$ si semplifica) e $2yz=2y\cdot\dfrac{32}{xy}=\dfrac{64}{x}$ (si semplifica la $y$). Quindi $S(x,y)=xy+\dfrac{64}{y}+\dfrac{64}{x}$, con $x,y&gt;0$.</span>
+                <span class="esempio__passo">Derivo rispetto a $x$ (con $y$ costante): da $xy$ viene $y$; da $\frac{64}{y}$ viene $0$; da $\frac{64}{x}=64x^{-1}$ viene $-64x^{-2}=-\frac{64}{x^2}$. Quindi $S_x=y-\dfrac{64}{x^2}=0$, da cui $y=\dfrac{64}{x^2}$. Per simmetria $S_y=x-\dfrac{64}{y^2}=0$, da cui $x=\dfrac{64}{y^2}$.</span>
+                <span class="esempio__passo"><strong>Sostituisco $y=\dfrac{64}{x^2}$ al posto di $y$ nella seconda relazione</strong> $x=\dfrac{64}{y^2}$. Al denominatore: $y^2=\left(\dfrac{64}{x^2}\right)^2=\dfrac{4096}{x^4}$. Dividere per una frazione equivale a moltiplicare per la sua inversa, quindi $x=\dfrac{64}{\ \frac{4096}{x^4}\ }=\dfrac{64\,x^4}{4096}=\dfrac{x^4}{64}$ (perché $4096:64=64$).</span>
+                <span class="esempio__passo">Moltiplico entrambi i membri per $64$: $64x=x^4$. Porto tutto a sinistra e raccolgo $x$: $x^4-64x=0$, cioè $x\,(x^3-64)=0$. Siccome $x&gt;0$, scarto $x=0$ e resta $x^3=64$, cioè $x=4$. Poi $y=\dfrac{64}{4^2}=\dfrac{64}{16}=4$ e $z=\dfrac{32}{4\cdot4}=\dfrac{32}{16}=2$.</span>
+                <span class="esempio__passo">Hessiana: derivo ancora $S_x=y-64x^{-2}$, ottenendo $S_{xx}=128x^{-3}=\dfrac{128}{x^3}$ (rispetto a $x$) e $S_{xy}=1$ (rispetto a $y$); analogamente $S_{yy}=\dfrac{128}{y^3}$. Sostituisco $x=y=4$, con $4^3=64$: $S_{xx}=\dfrac{128}{64}=2$, $S_{yy}=2$, $S_{xy}=1$. Applico $D=S_{xx}S_{yy}-(S_{xy})^2=2\cdot2-1^2=3&gt;0$, con $S_{xx}=2&gt;0$: <strong>minimo</strong>.</span>
+              </p>
+              <p><strong>Base quadrata $4\times4$ dm e altezza $2$ dm, con superficie minima $S=16+16+16=48$ dm².</strong> Nota il risultato tipico: senza coperchio l'altezza ottimale è metà del lato di base.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) In un punto critico $P_0$ si trova $\det H(P_0)&gt;0$ e $f_{xx}(P_0)&gt;0$. Allora $P_0$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un massimo locale</button>
+              <button class="quiz-option" data-correct="true">un minimo locale stretto</button>
+              <button class="quiz-option" data-correct="false">un punto di sella</button>
+              <button class="quiz-option" data-correct="false">un caso dubbio</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il determinante decide <em>se</em> c'è un estremo ($D&gt;0$: sì), il segno di $f_{xx}$ decide <em>quale</em>: positivo significa "scodella", quindi minimo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Per $f(x,y)=x^2-y^2$ l'origine è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un minimo, perché $f_{xx}=2&gt;0$</button>
+              <button class="quiz-option" data-correct="true">un punto di sella, perché $\det H=-4&lt;0$</button>
+              <button class="quiz-option" data-correct="false">un massimo, perché $f_{yy}=-2&lt;0$</button>
+              <button class="quiz-option" data-correct="false">un caso dubbio, perché $f_{xy}=0$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$D=f_{xx}f_{yy}-(f_{xy})^2=2\cdot(-2)-0=-4&lt;0$: sella. Guardare $f_{xx}$ senza aver prima controllato $D$ è l'errore classico.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Quale condizione è <strong>necessaria</strong> perché un punto interno $P_0$ sia di massimo o minimo locale per una funzione con derivate parziali?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\det H(P_0)=0$</button>
+              <button class="quiz-option" data-correct="true">$\nabla f(P_0)=(0,0)$</button>
+              <button class="quiz-option" data-correct="false">$f_{xx}(P_0)&lt;0$</button>
+              <button class="quiz-option" data-correct="false">$f(P_0)&gt;0$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È il teorema di Fermat in più variabili: congelando una variabile alla volta ci si riduce a due funzioni di una variabile con estremo interno, e le loro derivate si annullano.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Per trovare massimo e minimo <strong>assoluti</strong> di una funzione continua su un insieme chiuso e limitato occorre:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">classificare con l'hessiana tutti i punti critici e scegliere il massimo fra i massimi locali</button>
+              <button class="quiz-option" data-correct="true">confrontare i valori di $f$ nei punti critici interni, sulla frontiera e nei vertici</button>
+              <button class="quiz-option" data-correct="false">calcolare $\det H$ in ogni punto dell'insieme</button>
+              <button class="quiz-option" data-correct="false">verificare che il gradiente sia non nullo sulla frontiera</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Weierstrass garantisce l'esistenza; il metodo è un confronto di <em>valori</em>. Sui punti critici interni non serve nemmeno classificarli, e la frontiera si riduce a problemi di una variabile.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se $\nabla f(P_0)=(0,0)$ allora $P_0$ è certamente un massimo o un minimo locale.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: la condizione è necessaria ma non sufficiente. Il controesempio è il punto di sella, come l'origine per $f(x,y)=x^2-y^2$ o per $f(x,y)=xy$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se le derivate seconde sono continue, la matrice hessiana è simmetrica.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, per il teorema di Schwarz: $f_{xy}=f_{yx}$. Da qui segue anche $\det H=f_{xx}f_{yy}-(f_{xy})^2$, con il termine misto al quadrato.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Se $\det H(P_0)=0$ allora $P_0$ è certamente un punto di sella.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: $\det H=0$ è il <strong>caso dubbio</strong>. $x^2+y^4$ ha un minimo e $x^2-y^4$ una sella, pur avendo la stessa hessiana nulla nella seconda riga e colonna.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Se $\det H(P_0)&lt;0$ il punto critico $P_0$ è sicuramente di sella, qualunque sia il segno di $f_{xx}$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: con $D&lt;0$ la forma quadratica è indefinita, cioè assume valori di entrambi i segni, e il punto è di sella. È il caso più "sicuro" del criterio.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="critico|stazionario|punto critico|punto stazionario">
+            <p class="quiz-question__testo">9. (Completamento) Un punto interno in cui il gradiente si annulla si chiama punto ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Punto <strong>critico</strong> (o stazionario): il piano tangente è orizzontale. È solo un candidato a estremo, non una garanzia.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="massimo">
+            <p class="quiz-question__testo">10. (Completamento) Se in un punto critico $\det H&gt;0$ e $f_{xx}&lt;0$, il punto è un ______ locale.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Con $D&gt;0$ le due curvature hanno lo stesso segno; $f_{xx}&lt;0$ significa "cupola", quindi <strong>massimo</strong> locale stretto.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="weierstrass|teorema di weierstrass">
+            <p class="quiz-question__testo">11. (Completamento) Il teorema di ______ garantisce che una funzione continua su un insieme chiuso e limitato ammette massimo e minimo assoluti.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il teorema di <strong>Weierstrass</strong>, valido in $\mathbb{R}^n$ esattamente come sulla retta: è il motivo per cui la ricerca degli estremi assoluti si conclude sempre con successo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché un passo di montagna è un punto di sella e perché lì il gradiente è nullo.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: pensa all'altitudine come alla funzione $f(x,y)$. Al passo il terreno è localmente pianeggiante: spostandosi di poco in qualunque direzione non si sale né si scende "al primo ordine", quindi entrambe le derivate parziali sono nulle e $\nabla f=(0,0)$ — il piano tangente alla superficie è orizzontale. Però il passo non è né una vetta né una conca: camminando lungo la cresta che unisce le due cime, il passo è il punto più <em>basso</em> del percorso (minimo in quella direzione); camminando lungo il sentiero che attraversa la catena da una valle all'altra, è il punto più <em>alto</em> (massimo in quella direzione). Poiché in ogni intorno del passo ci sono punti più alti e punti più bassi, non può essere un estremo: è un punto di sella. Formalmente, la forma quadratica associata all'hessiana assume valori di segno opposto nelle due direzioni, cioè $\det H&lt;0$.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Descrivi la procedura completa per determinare massimo e minimo assoluti di una funzione continua su un insieme chiuso e limitato, spiegando perché la frontiera non si può trascurare.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: prima si verifica che l'insieme $K$ sia chiuso e limitato e che $f$ sia continua: il teorema di Weierstrass assicura allora che massimo e minimo assoluti esistono. Poi: (1) si risolve $\nabla f=(0,0)$ e si tengono solo le soluzioni <em>interne</em> a $K$, calcolando il valore di $f$ in ciascuna (non serve classificarle con l'hessiana, perché alla fine conta solo il confronto dei valori); (2) si studia la frontiera pezzo per pezzo, riducendo ogni pezzo a una funzione di una sola variabile — sostituendo il vincolo su un segmento, oppure parametrizzando un arco di circonferenza — e si cercano i suoi estremi con gli strumenti di Analisi 1, senza dimenticare gli estremi dell'intervallo del parametro; (3) se $K$ ha spigoli o vertici, si calcola $f$ anche lì; (4) si confrontano tutti i valori: il più grande è il massimo assoluto, il più piccolo il minimo assoluto. La frontiera non si può trascurare perché il teorema di Fermat vale solo nei punti <strong>interni</strong>: in un punto di bordo la funzione può avere un estremo pur avendo gradiente diverso da zero. L'esempio di $f(x,y)=x+y$ sul disco unitario è esemplare: non esiste alcun punto critico, eppure massimo e minimo esistono e stanno entrambi sul bordo.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="04-gradiente.html"><span class="dir">← Capitolo precedente</span><strong>Il gradiente</strong></a>
+        <a class="next" href="06-moltiplicatori-lagrange.html"><span class="dir">Capitolo successivo →</span><strong>Moltiplicatori di Lagrange</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

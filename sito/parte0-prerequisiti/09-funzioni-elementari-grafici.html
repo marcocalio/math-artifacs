@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9. Funzioni Elementari e Grafici — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 9</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html" class="is-active">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 9 di 9</span>
+        </div>
+        <h1>Funzioni Elementari e Grafici: il ponte verso l'Analisi</h1>
+        <p class="subtitle">Tutta l'Analisi Matematica parla, in fondo, di una sola cosa: le funzioni. In questo capitolo finale della Parte 0 impariamo a vederle come "macchine" che trasformano numeri, a riconoscere a colpo d'occhio i grafici delle funzioni che hai già incontrato e a manipolarli con traslazioni, dilatazioni e riflessioni. È il ponte che ti porta dritto dentro l'Analisi 1.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina una <strong>macchinetta distributrice</strong> di snack. Inserisci un codice — diciamo <em>B3</em> — e la macchinetta ti restituisce sempre <strong>lo stesso identico prodotto</strong>. Se inserisci di nuovo <em>B3</em>, esce di nuovo quello snack, non un altro a caso. Ecco: hai già capito, senza saperlo, cos'è una funzione.</p>
+        <p>Una <strong>funzione</strong> è una macchina che riceve un <strong>input</strong> (un numero) e restituisce un unico <strong>output</strong> (un altro numero), seguendo una regola precisa. La regola può essere "moltiplica per 2", "eleva al quadrato", "calcola il seno": in ogni caso, a ogni input corrisponde <strong>una e una sola</strong> uscita.</p>
+
+        <svg viewBox="0 0 440 150" style="max-width:460px;margin:1.4em auto;display:block;" role="img" aria-label="Diagramma di una funzione vista come una macchina che riceve l'input x e restituisce l'output f di x">
+          <text x="18" y="80" font-size="22" font-weight="800" fill="currentColor">x</text>
+          <line x1="46" y1="74" x2="136" y2="74" stroke="currentColor" stroke-width="2"/>
+          <polygon points="136,74 123,68 123,80" fill="currentColor"/>
+          <rect x="142" y="34" width="152" height="80" rx="14" fill="var(--color-primary)" opacity="0.30" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <text x="218" y="66" font-size="14" font-weight="600" fill="currentColor" text-anchor="middle">regola</text>
+          <text x="218" y="92" font-size="20" font-weight="800" fill="currentColor" text-anchor="middle">f</text>
+          <line x1="300" y1="74" x2="390" y2="74" stroke="currentColor" stroke-width="2"/>
+          <polygon points="390,74 377,68 377,80" fill="currentColor"/>
+          <text x="400" y="80" font-size="18" font-weight="700" fill="currentColor">f(x)</text>
+          <text x="66" y="106" font-size="12" fill="currentColor" opacity="0.7">input</text>
+          <text x="330" y="106" font-size="12" fill="currentColor" opacity="0.7">output</text>
+        </svg>
+
+        <p>Il <strong>grafico</strong> di una funzione è semplicemente la sua "fotografia": segniamo sul piano cartesiano tutti i punti $(x,\ f(x))$, cioè input in orizzontale e output in verticale. Guardare il grafico ci dice, in un istante, tutto quello che la funzione fa: dove sale, dove scende, dove vale zero, quanto diventa grande.</p>
+        <p>In questo capitolo <strong>non definiremo</strong> ancora la funzione con pieno rigore — lo faremo con cura all'inizio dell'Analisi 1, nel capitolo <a href="../parte1-analisi1/03-funzioni.html">Funzioni: dominio, codominio, iniettività</a>. Qui ci basta l'intuizione operativa ("macchina input → output") e l'abilità pratica di <strong>leggere e trasformare un grafico</strong>. Sono le due competenze che useremo in ogni singola pagina dell'Analisi.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>l'Analisi Matematica è, dall'inizio alla fine, lo studio delle funzioni</strong>. I limiti descrivono come si comporta una funzione avvicinandosi a un punto; le derivate misurano quanto rapidamente cresce; gli integrali ne calcolano l'area sotto il grafico. Prima di poter <em>analizzare</em> le funzioni con questi strumenti potenti, dobbiamo <em>conoscerle</em>: sapere che faccia hanno, dove sono definite, come si trasformano.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Immagina di dover disegnare il grafico di $y = -2(x-1)^2 + 3$. Senza tecniche, dovresti costruire una tabella di decine di punti e unirli sperando che venga bene. Con le <strong>trasformazioni dei grafici</strong>, invece, riconosci subito che si tratta della parabola $y=x^2$ (che conosci a memoria) spostata, ribaltata e allargata: la disegni in dieci secondi, senza calcolare nemmeno un punto. È la differenza tra fare le cose a forza bruta e farle da matematico.</p>
+        <p><strong>Perché è importante ora?</strong> Perché ogni volta che in Analisi 1 dovrai fare lo <a href="../parte1-analisi1/09-studio-di-funzione.html">studio completo di una funzione</a> — dominio, simmetrie, segno, limiti, grafico — partirai proprio da qui: riconoscere la "forma base" e capire come è stata modificata. Chi padroneggia i grafici elementari affronta lo studio di funzione con serenità; chi non li conosce si perde già al primo passo.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Macchinette, editor di foto e farfalle</div>
+          <p>La <strong>macchinetta distributrice</strong> è la funzione perfetta: stesso codice, sempre lo stesso snack. Questa è la proprietà cruciale — a ogni input <em>un solo</em> output. Se premendo <em>B3</em> uscisse a volte una barretta e a volte una lattina, la macchinetta sarebbe rotta... e in matematica <em>non</em> sarebbe una funzione.</p>
+          <p>Le <strong>trasformazioni dei grafici</strong> sono esattamente ciò che fai in un <strong>editor di immagini</strong>: sposti la foto a destra o in alto (traslazioni), la ingrandisci o la restringi (dilatazioni e contrazioni), la specchi orizzontalmente o verticalmente (riflessioni). Il grafico di una funzione è la "foto" di partenza; le trasformazioni sono i pulsanti dell'editor.</p>
+          <p>Infine, le simmetrie. Una <strong>farfalla</strong> ha le due ali speculari rispetto al corpo centrale: è come una funzione <strong>pari</strong>, simmetrica rispetto all'asse verticale. Una <strong>girandola</strong> che, ruotata di mezzo giro, torna identica a sé stessa è come una funzione <strong>dispari</strong>, simmetrica rispetto all'origine. Riconoscere queste simmetrie ti fa risparmiare metà del lavoro: se conosci una metà del grafico, l'altra viene da sé.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-idea">4.1 L'idea di funzione e il suo grafico</h3>
+        <p>Fissiamo il linguaggio operativo. Una funzione $f$ associa a ogni numero $x$ (preso da un certo insieme, il <strong>dominio</strong>) un unico numero $f(x)$. Si scrive:</p>
+        <div class="formula-block">$$x \ \longmapsto\ f(x), \qquad \text{oppure} \qquad y = f(x)$$</div>
+        <p>La lettera $x$ è la <strong>variabile indipendente</strong> (l'input, quello che scegliamo noi); $y$ è la <strong>variabile dipendente</strong> (l'output, che <em>dipende</em> dalla scelta di $x$).</p>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (operativa)</span>
+          <p><em class="nome">Grafico di una funzione.</em> Il grafico di $f$ è l'insieme di tutti i punti del piano cartesiano della forma $(x,\ f(x))$, con $x$ nel dominio. In simboli: $G_f = \{\, (x, y) : y = f(x) \,\}$.</p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il test della retta verticale</div>
+          <p>Come faccio a sapere, guardando una curva, se è il grafico di una funzione? Semplice: <strong>ogni retta verticale deve intersecarla al massimo in un punto</strong>. Se una retta verticale la tagliasse in due punti, quello stesso input $x$ avrebbe due output diversi — la macchinetta sarebbe rotta! Per questo una <span class="glossario-term" data-term="circonferenza">circonferenza</span> completa non è il grafico di una funzione, mentre una <span class="glossario-term" data-term="parabola">parabola</span> con asse verticale sì.</p>
+        </div>
+
+        <h3 id="teoria-elementari">4.2 Rassegna delle funzioni elementari</h3>
+        <p>Ecco le funzioni "mattone" che hai già incontrato nei capitoli precedenti. Per ciascuna indichiamo <strong>dominio</strong>, <strong>comportamento</strong> e <strong>simmetria</strong>. Imparale a memoria come si impara l'alfabeto: tutto il resto si costruisce a partire da queste.</p>
+
+        <table class="tabella-comparativa">
+          <thead><tr><th>Funzione</th><th>Formula</th><th>Dominio</th><th>Comportamento (immagine)</th><th>Simmetria</th></tr></thead>
+          <tbody>
+            <tr><td>Lineare</td><td>$y=mx+q$</td><td>$\mathbb{R}$</td><td><span class="glossario-term" data-term="retta-cartesiana">retta</span>; sale se il <span class="glossario-term" data-term="coefficiente-angolare">coefficiente angolare</span> $m&gt;0$, scende se $m&lt;0$</td><td>dispari solo se $q=0$</td></tr>
+            <tr><td>Quadratica</td><td>$y=x^2$</td><td>$\mathbb{R}$</td><td>parabola con vertice nell'origine, $y\geq 0$</td><td>pari</td></tr>
+            <tr><td>Potenza (n pari)</td><td>$y=x^n$</td><td>$\mathbb{R}$</td><td>a "U", sempre $y\geq 0$, più "schiacciata" vicino a 0</td><td>pari</td></tr>
+            <tr><td>Potenza (n dispari)</td><td>$y=x^n$</td><td>$\mathbb{R}$</td><td>tipo cubica, crescente, passa per l'origine</td><td>dispari</td></tr>
+            <tr><td>Radice</td><td>$y=\sqrt{x}$</td><td>$[0,+\infty)$</td><td>mezza parabola "sdraiata"; cresce sempre più lentamente</td><td>né pari né dispari</td></tr>
+            <tr><td>Esponenziale</td><td>$y=a^x$ ($a&gt;0,\ a\neq 1$)</td><td>$\mathbb{R}$</td><td>sempre $y&gt;0$; cresce se $a&gt;1$, decresce se $0&lt;a&lt;1$; passa per $(0,1)$</td><td>né pari né dispari</td></tr>
+            <tr><td>Logaritmica</td><td>$y=\log_a x$</td><td>$(0,+\infty)$</td><td>inversa dell'esponenziale; passa per $(1,0)$; va a $-\infty$ vicino a 0</td><td>né pari né dispari</td></tr>
+            <tr><td>Seno</td><td>$y=\sin x$</td><td>$\mathbb{R}$</td><td>onda tra $-1$ e $1$, periodo $2\pi$</td><td>dispari</td></tr>
+            <tr><td>Coseno</td><td>$y=\cos x$</td><td>$\mathbb{R}$</td><td>onda tra $-1$ e $1$, periodo $2\pi$ (seno traslato)</td><td>pari</td></tr>
+            <tr><td>Tangente</td><td>$y=\tan x$</td><td>$x\neq \tfrac{\pi}{2}+k\pi$</td><td>asintoti verticali, periodo $\pi$, cresce su ogni ramo</td><td>dispari</td></tr>
+            <tr><td>Valore assoluto</td><td>$y=|x|$</td><td>$\mathbb{R}$</td><td>a forma di "V" con vertice nell'origine, $y\geq 0$</td><td>pari</td></tr>
+          </tbody>
+        </table>
+
+        <p>Due osservazioni che valgono oro. La <span class="glossario-term" data-term="esponenziale">funzione esponenziale</span> $y=a^x$ e la <span class="glossario-term" data-term="logaritmo">funzione logaritmica</span> $y=\log_a x$ sono l'una l'<strong>inversa</strong> dell'altra: i loro grafici sono specchiati rispetto alla bisettrice $y=x$. Il motivo è questo: passare alla funzione inversa vuol dire scambiare il ruolo di input e output, cioè scambiare fra loro le due coordinate di ogni punto, $(x,y)\mapsto(y,x)$; e quello scambio di coordinate è esattamente la riflessione rispetto alla retta $y=x$. E la <span class="glossario-term" data-term="radicale">funzione radice</span> $y=\sqrt{x}$ è definita solo per $x\geq 0$: <strong>non ha senso</strong> la radice quadrata di un numero negativo tra i <span class="glossario-term" data-term="numero-reale">numeri reali</span>. Ricorda anche che per le funzioni goniometriche l'input $x$ va inteso in <span class="glossario-term" data-term="radiante">radianti</span>.</p>
+
+        <h3 id="teoria-simmetrie">4.3 Simmetrie: funzioni pari e dispari</h3>
+        <p>Una simmetria è una regolarità del grafico che possiamo riconoscere <strong>algebricamente</strong>, cioè guardando la formula, senza disegnare nulla. Ne esistono due fondamentali.</p>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Funzione pari e funzione dispari.</em> Sia $f$ definita su un dominio simmetrico rispetto a $0$. Diciamo che:</p>
+          <p>• $f$ è <strong>pari</strong> se $f(-x) = f(x)$ per ogni $x$ del dominio &nbsp;→&nbsp; grafico simmetrico rispetto all'<strong>asse $y$</strong>;</p>
+          <p>• $f$ è <strong>dispari</strong> se $f(-x) = -f(x)$ per ogni $x$ del dominio &nbsp;→&nbsp; grafico simmetrico rispetto all'<strong>origine</strong>.</p>
+        </div>
+
+        <p>L'idea è semplice. In una funzione <strong>pari</strong>, cambiare segno all'input non cambia l'output: la metà sinistra del grafico è l'immagine speculare della metà destra, come le ali di una farfalla. In una funzione <strong>dispari</strong>, cambiare segno all'input cambia anche il segno dell'output: il grafico si ottiene ruotando di mezzo giro ($180°$) attorno all'origine.</p>
+
+        <svg viewBox="0 0 470 220" style="max-width:470px;margin:1.4em auto;display:block;" role="img" aria-label="A sinistra una parabola simmetrica rispetto all'asse y (funzione pari), a destra una cubica simmetrica rispetto all'origine (funzione dispari)">
+          <line x1="30" y1="120" x2="215" y2="120" stroke="currentColor" opacity="0.4" stroke-width="1.5"/>
+          <line x1="122" y1="25" x2="122" y2="195" stroke="currentColor" opacity="0.4" stroke-width="1.5"/>
+          <path d="M 60,40 Q 122,235 184,40" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <text x="122" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">pari: f(-x) = f(x)</text>
+          <text x="150" y="52" font-size="13" font-weight="700" fill="var(--color-primary)">y = x²</text>
+          <line x1="262" y1="120" x2="447" y2="120" stroke="currentColor" opacity="0.4" stroke-width="1.5"/>
+          <line x1="354" y1="25" x2="354" y2="195" stroke="currentColor" opacity="0.4" stroke-width="1.5"/>
+          <path d="M 292,190 C 328,158 340,132 354,120 C 368,108 380,82 416,50" fill="none" stroke="var(--color-secondary)" stroke-width="2.5"/>
+          <circle cx="354" cy="120" r="3.5" fill="var(--color-secondary)"/>
+          <text x="354" y="215" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">dispari: f(-x) = -f(x)</text>
+          <text x="378" y="60" font-size="13" font-weight="700" fill="var(--color-secondary)">y = x³</text>
+        </svg>
+
+        <p>Un modo rapidissimo per i <span class="glossario-term" data-term="polinomio">polinomi</span>: se compaiono <strong>solo esponenti pari</strong> (incluso il termine noto, che è $x^0$) la funzione è pari; se compaiono <strong>solo esponenti dispari</strong> (e nessun termine noto) è dispari; se sono <strong>mescolati</strong>, non è né l'una né l'altra. Approfondiremo questo trucco nella sezione dedicata.</p>
+        <p><strong>Perché funziona.</strong> Tutto dipende da una sola regola dei segni sulle potenze: elevare $-x$ a un esponente <em>pari</em> fa sparire il meno, elevarlo a un esponente <em>dispari</em> lo lascia davanti. In formule, $(-x)^n = x^n$ se $n$ è pari, $(-x)^n = -x^n$ se $n$ è dispari (perché i segni meno si accoppiano a due a due: $(-x)^2=(-x)(-x)=x^2$, mentre $(-x)^3=(-x)(-x)(-x)=-x^3$). Quindi se nel polinomio ci sono solo esponenti pari, sostituire $-x$ al posto di $x$ lascia tutto com'era ($f(-x)=f(x)$: pari); se ci sono solo esponenti dispari, ogni addendo cambia segno e si può raccogliere un meno da tutto ($f(-x)=-f(x)$: dispari).</p>
+
+        <h3 id="teoria-trasformazioni">4.4 Trasformazioni dei grafici</h3>
+        <p>Ora il cuore del capitolo. Data una funzione $f$ di cui conosciamo il grafico, come cambia il grafico se modifichiamo la formula? Ci sono quattro famiglie di trasformazioni, riassunte in questa tabella; poi le commentiamo una per una.</p>
+
+        <table class="tabella-comparativa">
+          <thead><tr><th>Nuova formula</th><th>Effetto sul grafico di $f$</th></tr></thead>
+          <tbody>
+            <tr><td>$f(x)+k$</td><td>traslazione <strong>verticale</strong>: verso l'alto se $k&gt;0$, verso il basso se $k&lt;0$</td></tr>
+            <tr><td>$f(x-k)$</td><td>traslazione <strong>orizzontale</strong>: verso <strong>destra</strong> se $k&gt;0$, verso sinistra se $k&lt;0$ (attenzione, è controintuitivo!)</td></tr>
+            <tr><td>$k\cdot f(x)$, con $k&gt;0$</td><td>dilatazione verticale se $k&gt;1$, contrazione verticale se $0&lt;k&lt;1$</td></tr>
+            <tr><td>$f(kx)$, con $k&gt;0$</td><td>contrazione orizzontale se $k&gt;1$, dilatazione orizzontale se $0&lt;k&lt;1$ (si comporta "al contrario")</td></tr>
+            <tr><td>$-f(x)$</td><td>riflessione rispetto all'<strong>asse $x$</strong> (ribalta sopra/sotto)</td></tr>
+            <tr><td>$f(-x)$</td><td>riflessione rispetto all'<strong>asse $y$</strong> (ribalta destra/sinistra)</td></tr>
+            <tr><td>$|f(x)|$</td><td>ribalta <strong>sopra</strong> l'asse $x$ tutte le parti del grafico che stavano sotto</td></tr>
+            <tr><td>$f(|x|)$</td><td>tiene solo la parte con $x\geq 0$ e la <strong>specchia</strong> a sinistra dell'asse $y$</td></tr>
+          </tbody>
+        </table>
+
+        <h4>Traslazioni verticali: $f(x)+k$</h4>
+        <p>La più naturale. Aggiungere $k$ all'output significa alzare ogni punto del grafico di $k$: tutto il grafico si sposta in verticale. Con $k&gt;0$ sale, con $k&lt;0$ scende. Nessuna sorpresa qui.</p>
+
+        <h4>Traslazioni orizzontali: $f(x-k)$ — l'insidia</h4>
+        <p>Qui casca l'asino. Il grafico di $f(x-k)$ si sposta verso <strong>destra</strong> di $k$ quando $k&gt;0$, cioè nella direzione <em>opposta</em> a quella che il segno "meno" suggerirebbe. Il perché lo dimostriamo rigorosamente nella prossima sezione; per ora tieni a mente questo esempio numerico che vale più di mille parole:</p>
+        <div class="formula-block">$$f(x)=x^2 \quad\Rightarrow\quad g(x)=(x-3)^2 \quad\text{ha vertice in } x=3,\ \text{non in } x=-3.$$</div>
+        <p>Infatti $g(3) = (3-3)^2 = 0 = f(0)$: il punto che in $f$ stava in $x=0$ (il vertice) in $g$ si ritrova in $x=3$. Il grafico si è spostato di $3$ a destra.</p>
+
+        <svg viewBox="0 0 330 210" style="max-width:420px;margin:1.4em auto;display:block;" role="img" aria-label="La parabola y uguale x quadro e la parabola y uguale (x meno 3) al quadrato, traslata di tre unità verso destra">
+          <line x1="15" y1="150" x2="315" y2="150" stroke="currentColor" opacity="0.4" stroke-width="1.5"/>
+          <line x1="70" y1="22" x2="70" y2="185" stroke="currentColor" opacity="0.4" stroke-width="1.5"/>
+          <path d="M 25,48 Q 70,255 115,48" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <path d="M 91,48 Q 136,255 181,48" fill="none" stroke="var(--color-secondary)" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <circle cx="70" cy="150" r="3.5" fill="var(--color-primary)"/>
+          <circle cx="136" cy="150" r="3.5" fill="var(--color-secondary)"/>
+          <line x1="78" y1="132" x2="128" y2="132" stroke="currentColor" stroke-width="1.8"/>
+          <polygon points="128,132 117,127 117,137" fill="currentColor"/>
+          <text x="103" y="124" text-anchor="middle" font-size="11" font-weight="700" fill="currentColor">+3 a destra</text>
+          <text x="24" y="44" font-size="12" font-weight="700" fill="var(--color-primary)">y = x²</text>
+          <text x="150" y="44" font-size="12" font-weight="700" fill="var(--color-secondary)">y = (x-3)²</text>
+          <text x="66" y="168" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">(0,0)</text>
+          <text x="140" y="168" text-anchor="middle" font-size="10" fill="currentColor" opacity="0.75">(3,0)</text>
+        </svg>
+
+        <h4>Dilatazioni e contrazioni</h4>
+        <p>Moltiplicare l'<strong>output</strong> per un fattore $k&gt;0$, cioè $k\cdot f(x)$, "stira" il grafico in verticale: con $k&gt;1$ diventa più alto e stretto (dilatazione verticale), con $0&lt;k&lt;1$ più basso e schiacciato (contrazione). È intuitivo: raddoppiare le uscite raddoppia le altezze.</p>
+        <p>Moltiplicare invece l'<strong>input</strong>, cioè $f(kx)$, agisce in orizzontale e — di nuovo — <strong>al contrario</strong> di quanto ci si aspetta: con $k&gt;1$ il grafico si <em>comprime</em> orizzontalmente (si stringe verso l'asse $y$), con $0&lt;k&lt;1$ si <em>dilata</em>. Il motivo è lo stesso delle traslazioni orizzontali: la modifica è "dentro" l'argomento, e ciò che accade all'input si riflette in modo invertito sulla posizione orizzontale. Un esempio numerico chiarisce tutto. Prendi $k=2$ e chiama $g(x)=f(2x)$: allora $g(3)=f(2\cdot 3)=f(6)$, cioè il valore che $f$ raggiungeva in $x=6$, $g$ lo raggiunge già in $x=3$. In generale il punto di ascissa $a$ del grafico di $f$ si ritrova in $\frac{a}{2}$ nel grafico di $g$: ogni punto dimezza la sua distanza dall'asse $y$, e il grafico si stringe.</p>
+
+        <h4>Riflessioni</h4>
+        <p>Un segno meno <strong>davanti</strong> alla funzione, $-f(x)$, cambia segno a tutti gli output: il grafico si ribalta rispetto all'<strong>asse $x$</strong> (quello che stava sopra va sotto e viceversa). Un segno meno <strong>dentro</strong> l'argomento, $f(-x)$, scambia gli input opposti: il grafico si ribalta rispetto all'<strong>asse $y$</strong> (destra e sinistra si scambiano). Nota che se $f$ è pari, $f(-x)=f(x)$ e la riflessione orizzontale non cambia nulla; se è dispari, $f(-x)=-f(x)$ e le due riflessioni coincidono.</p>
+
+        <h4>I moduli: $|f(x)|$ e $f(|x|)$</h4>
+        <p>Sono due operazioni diverse, da non confondere. Il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span> attorno a tutta la funzione, $|f(x)|$, <strong>ribalta sopra l'asse $x$</strong> le parti di grafico che erano negative (le rende positive), lasciando intatto ciò che era già $\geq 0$. Il valore assoluto solo sull'input, $f(|x|)$, invece <strong>butta via</strong> la parte sinistra del grafico e al suo posto mette lo specchio della parte destra: il risultato è sempre una funzione pari. Perché è pari? Basta applicare la definizione del <span class="richiamo" data-sec="4.3">§4.3</span>: chiamo $F(x)=f(|x|)$ e calcolo $F(-x)=f(|-x|)$; ma il valore assoluto di un numero e del suo opposto coincidono, $|-x|=|x|$, quindi $F(-x)=f(|x|)=F(x)$, che è proprio la condizione di funzione pari.</p>
+
+        <h3 id="teoria-composizione">4.5 Composizione di funzioni: un cenno grafico</h3>
+        <p>Le trasformazioni viste sopra sono, in realtà, casi particolari di <strong>composizione</strong>: applicare una funzione al risultato di un'altra. Ad esempio $g(x)=(x-3)^2$ è "prima sottrai $3$, poi eleva al quadrato": è la composizione della traslazione $x\mapsto x-3$ con l'elevamento al quadrato. Graficamente, comporre significa <strong>concatenare due macchine</strong>: l'output della prima diventa l'input della seconda.</p>
+        <p><strong>Scriviamolo con i nomi, senza saltare passaggi.</strong> Chiamo $h(x)=x-3$ la prima macchina e $f(t)=t^2$ la seconda (uso la lettera $t$ per il suo input, così non la confondo con la $x$ di partenza: il nome della variabile non conta, conta cosa fa la regola — elevare al quadrato ciò che riceve). Comporre vuol dire questo: prendo la formula di $f$, cioè $t^2$, e al posto di $t$ scrivo <em>tutto il blocco</em> $h(x)$, cioè $x-3$. Ottengo $f(h(x))=(x-3)^2$, che è proprio $g$. Attenzione all'ordine: se invece componessi al contrario, cioè $h(f(x))$, dovrei mettere $f(x)=x^2$ al posto della $x$ dentro $h$, ottenendo $x^2-3$, che è tutta un'altra funzione.</p>
+        <div class="formula-block">$$x \ \xrightarrow{\ \ h\ \ }\ h(x)\ \xrightarrow{\ \ f\ \ }\ f\big(h(x)\big) \qquad\text{si scrive } (f\circ h)(x)=f(h(x))$$</div>
+        <p>Non ci serve altro per ora: studieremo la composizione con rigore nella Parte 1. L'idea da portare a casa è che <strong>ogni grafico complicato è una catena di trasformazioni semplici applicate a una funzione elementare</strong>. Ed è proprio così che impareremo a costruirlo: un passo alla volta.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Direzione della traslazione orizzontale.</em> Sia $g(x) = f(x-k)$ con $k&gt;0$. Allora il grafico di $g$ si ottiene da quello di $f$ traslandolo di $k$ unità verso <strong>destra</strong>.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (corrispondenza tra punti)</span>
+          <p>Confrontiamo quali punti stanno sui due grafici, ragionando sulle coordinate.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Un punto $(x_0,\ y_0)$ appartiene al grafico di $g$ se e solo se $y_0 = g(x_0) = f(x_0 - k)$.</span>
+          <span class="esempio__passo">Per la definizione di grafico (<span class="richiamo" data-sec="4.1">§4.1</span>), scrivere $y_0=f(x_0-k)$ significa esattamente che il punto di ascissa $x_0-k$ e ordinata $y_0$, cioè il punto $(x_0-k,\ y_0)$, appartiene al grafico di $f$: stessa quota $y_0$, ma raggiunta nell'ascissa $x_0-k$ anziché in $x_0$.</span>
+          <span class="esempio__passo">Leggiamo la relazione all'inverso: dato un qualsiasi punto $(a,\ y_0)$ del grafico di $f$, ponendo $a = x_0 - k$ otteniamo $x_0 = a + k$. Dunque al punto $(a, y_0)$ di $f$ corrisponde il punto $(a+k,\ y_0)$ di $g$.</span>
+          <span class="esempio__passo">Stessa quota $y_0$, ascissa aumentata di $k$: ogni punto si sposta esattamente di $k$ verso destra (perché $k&gt;0$).</span>
+          </p>
+          <p>Il grafico di $g$ è quindi il grafico di $f$ traslato di $k$ a destra. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché "meno" vuol dire "destra"?</div>
+          <p>Pensa a quale input serve alla nuova funzione per fare la stessa cosa della vecchia. Se $f$ faceva qualcosa di speciale in $x=0$ (per esempio il vertice di $x^2$), allora $g(x)=f(x-3)$ fa quella stessa cosa quando $x-3=0$, cioè in $x=3$. La funzione deve "aspettare" input più grandi di $3$ per ripetere ciò che $f$ faceva prima: ecco perché tutto si sposta in avanti, a destra.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Pari e dispari insieme.</em> L'unica funzione che sia <strong>contemporaneamente</strong> pari e dispari sul suo dominio (simmetrico) è la funzione nulla $f(x)=0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (uso diretto delle definizioni)</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Poiché $f$ è pari, per ogni $x$ vale $f(-x) = f(x)$.</span>
+            <span class="esempio__passo">Poiché $f$ è anche dispari, per lo stesso $x$ vale $f(-x) = -f(x)$.</span>
+            <span class="esempio__passo">I due membri di sinistra sono identici, quindi possiamo uguagliare i membri di destra: $f(x) = -f(x)$.</span>
+            <span class="esempio__passo">Porto il $-f(x)$ dal membro di destra a quello di sinistra, dove cambia segno e diventa $+f(x)$: $\ f(x) + f(x) = 0$, cioè $2f(x) = 0$. Divido entrambi i membri per $2$ e ottengo $f(x) = 0$.</span>
+          </p>
+          <p>Questo vale per ogni $x$ del dominio, quindi $f$ è identicamente nulla. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> A cosa serve saperlo?</div>
+          <p>Questa piccola proposizione ti mette in guardia: <strong>una funzione "normale" non può essere sia pari sia dispari</strong>. Se, verificando una funzione, ti sembra che soddisfi entrambe le condizioni, quasi certamente hai commesso un errore di segno nei calcoli. È un ottimo controllo di coerenza durante gli esami.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — La funzione come macchina</span><span class="badge badge--base">Base</span></div>
+          <p>Data $f(x) = 2x+1$, calcolare $f(0)$, $f(1)$, $f(-2)$ e indicare i punti corrispondenti sul grafico.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Inserisco gli input nella "macchina": $f(0) = 2\cdot 0 + 1 = 1$.</span>
+            <span class="esempio__passo">$f(1) = 2\cdot 1 + 1 = 3$.</span>
+            <span class="esempio__passo">$f(-2) = 2\cdot(-2) + 1 = -3$.</span>
+          </p>
+          <div class="esempio__risultato">I punti sul grafico sono $(0,1)$, $(1,3)$, $(-2,-3)$: essendo $f$ lineare, sono allineati su una retta di coefficiente angolare $2$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Riconoscere pari, dispari o né</span><span class="badge badge--base">Base</span></div>
+          <p>Stabilire se sono pari, dispari o nessuno dei due: $f(x)=x^4-3x^2$, $\ g(x)=x^3-x$, $\ h(x)=2x^2+x$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il metodo è sempre lo stesso: nella formula scrivo $-x$ al posto di <em>ogni</em> $x$, e confronto il risultato con $f(x)$ (definizione del <span class="richiamo" data-sec="4.3">§4.3</span>). Per la prima: $f(-x) = (-x)^4 - 3(-x)^2$. Ora uso la regola dei segni delle potenze: l'esponente $4$ è pari, quindi $(-x)^4=x^4$; anche $2$ è pari, quindi $(-x)^2=x^2$. Resta $x^4 - 3x^2$, che è identico a $f(x)$: è <strong>pari</strong> (solo esponenti pari).</span>
+            <span class="esempio__passo">$g(-x) = (-x)^3 - (-x)$. L'esponente $3$ è dispari, quindi $(-x)^3=-x^3$; e $-(-x)=+x$. Ottengo $-x^3 + x$. Raccolgo un segno meno da entrambi gli addendi: $-x^3+x = -(x^3 - x) = -g(x)$. È <strong>dispari</strong> (solo esponenti dispari).</span>
+            <span class="esempio__passo">$h(-x) = 2(-x)^2 + (-x) = 2x^2 - x$ (esponente $2$ pari, quindi $(-x)^2=x^2$). Confronto: $h(x)=2x^2+x$ ha il $+x$, quindi $h(-x)\neq h(x)$; e $-h(x)=-2x^2-x$ ha il primo termine negativo, quindi $h(-x)\neq -h(x)$. Non è né l'una né l'altra cosa: <strong>né pari né dispari</strong> (esponenti misti).</span>
+          </p>
+          <div class="esempio__risultato">Verifica sempre $f(-x)$ algebricamente: l'occhio inganna, la sostituzione no.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Traslazione orizzontale (l'insidia)</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Partendo dal grafico di $y=x^2$, disegnare $y=(x-3)^2$ e indicare dove finisce il vertice.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">La formula ha la struttura $f(x-k)$ con $f(x)=x^2$ e $k=3&gt;0$: traslazione orizzontale.</span>
+            <span class="esempio__passo">Poiché $k&gt;0$, il grafico si sposta a <strong>destra</strong> di $3$ (non a sinistra!).</span>
+            <span class="esempio__passo">Verifica sul vertice: in $y=x^2$ sta in $x=0$; nella nuova funzione $g(3)=(3-3)^2=0=f(0)$, quindi il vertice è ora in $x=3$.</span>
+          </p>
+          <div class="esempio__risultato">Il vertice passa da $(0,0)$ a $(3,0)$: stessa parabola, spostata di $3$ verso destra.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Verticale contro orizzontale</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Descrivere le trasformazioni che portano da $y=\sqrt{x}$ ai grafici di $y=\sqrt{x}-2$ e $y=\sqrt{x+4}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$y=\sqrt{x}-2$: il $-2$ è <strong>fuori</strong> dalla radice, quindi agisce sull'output → traslazione verticale verso il <strong>basso</strong> di $2$. Il punto di partenza $(0,0)$ va in $(0,-2)$.</span>
+            <span class="esempio__passo">$y=\sqrt{x+4}$: il $+4$ è <strong>dentro</strong> la radice, quindi è una trasformazione orizzontale. Per capire di quanto e in che verso devo riportarla alla forma standard $f(x-k)$, che ha il <em>meno</em>: riscrivo $x+4=x-(-4)$, quindi $k=-4$. Essendo $k$ negativo la traslazione è verso <strong>sinistra</strong>, di $4$. Controprova sul punto di partenza: la radice "parte" dove il suo argomento vale $0$, cioè dove $x+4=0$, ossia $x=-4$. Perciò il dominio passa da $[0,+\infty)$ a $[-4,+\infty)$.</span>
+          </p>
+          <div class="esempio__risultato">Regola d'oro: modifica <em>fuori</em> = verticale e diretta; modifica <em>dentro l'argomento</em> = orizzontale e invertita.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Costruire un grafico passo dopo passo</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Disegnare $y = -2(x-1)^2 + 3$ partendo dalla parabola $y=x^2$, applicando una trasformazione alla volta.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parto da $y=x^2$: vertice in $(0,0)$, "braccia" verso l'alto.</span>
+            <span class="esempio__passo">$(x-1)^2$: traslazione orizzontale di $1$ a destra → vertice in $(1,0)$.</span>
+            <span class="esempio__passo">$2(x-1)^2$: ora c'è un fattore <em>fuori</em>, forma $k\cdot f(x)$ con $k=2$. Essendo $k=2&gt;1$ è una dilatazione verticale → parabola più "stretta". Il vertice resta in $(1,0)$, perché la sua quota è $0$ e $2\cdot 0=0$: moltiplicare per $2$ non sposta i punti che stanno sull'asse $x$.</span>
+            <span class="esempio__passo">$-2(x-1)^2$: il segno meno riflette rispetto all'asse $x$ → ora le braccia puntano verso il <strong>basso</strong>.</span>
+            <span class="esempio__passo">$-2(x-1)^2+3$: traslazione verticale di $3$ verso l'alto → vertice finale in $(1,3)$.</span>
+          </p>
+          <div class="esempio__risultato">Risultato: parabola con la concavità verso il basso, vertice in $(1,3)$, più stretta della standard. Nessun punto calcolato "a mano".</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Il grafico di $|f(x)|$</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Tracciare $y=|x^2-4|$ a partire dalla parabola $y=x^2-4$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parto da $y=x^2-4$: il $-4$ è fuori, quindi è la parabola $y=x^2$ traslata di $4$ verso il basso, con vertice in $(0,-4)$. Le intersezioni con l'asse $x$ si trovano imponendo $y=0$: $\ x^2-4=0$; porto il $-4$ a destra, $x^2=4$; estraggo la radice ricordando che un quadrato uguale a $4$ ammette <em>due</em> soluzioni opposte, $x=\pm 2$.</span>
+            <span class="esempio__passo">Il valore assoluto $|\cdot|$ non tocca le parti già positive (dove $x&lt;-2$ o $x&gt;2$).</span>
+            <span class="esempio__passo">La parte compresa tra $x=-2$ e $x=2$, che sta <em>sotto</em> l'asse $x$, viene <strong>ribaltata sopra</strong>: la "conca" negativa diventa una "gobba" positiva con massimo in $(0,4)$.</span>
+          </p>
+          <div class="esempio__risultato">Il grafico di $y=|x^2-4|$ tocca l'asse $x$ in $x=\pm 2$ e non scende mai sotto di esso: è tutto $\geq 0$. Diverso da $f(|x|)$, che avrebbe invece specchiato la parte destra a sinistra.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Pensare che $f(x-k)$ sposti a sinistra</div>
+          <p>È l'errore numero uno. Vedendo il "$-3$" in $g(x)=(x-3)^2$ l'istinto dice "sposto a sinistra". <strong>Sbagliato</strong>: si sposta a destra di $3$. <em>Come convincerti definitivamente</em>: calcola dove finisce il vertice. In $f(x)=x^2$ il vertice è in $x=0$; in $g$ si ha $g(3)=(3-3)^2=0=f(0)$, quindi il vertice è in $x=3$, cioè spostato a destra. Il segno "meno" nella formula produce uno spostamento in senso opposto.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere $k\cdot f(x)$ con $f(kx)$</div>
+          <p>Sono trasformazioni completamente diverse. $k\cdot f(x)$ agisce in <strong>verticale</strong> e in modo diretto ($k&gt;1$ allunga in altezza). $f(kx)$ agisce in <strong>orizzontale</strong> e "al contrario": $f(2x)$ <em>comprime</em> il grafico verso l'asse $y$, mentre $f(x/2)$ lo <em>dilata</em>. <em>Come evitarlo</em>: chiediti sempre se il fattore moltiplica l'<em>output</em> (verticale) o l'<em>input dentro l'argomento</em> (orizzontale, invertito).</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Giudicare pari/dispari "a occhio"</div>
+          <p>Molti dichiarano pari una funzione come $h(x)=x^2+x$ solo perché "c'è un $x^2$". Falso: $h(-x)=x^2-x\neq h(x)$, quindi non è pari (né dispari). <em>Come evitarlo</em>: non fidarti dell'aspetto, <strong>sostituisci $-x$ al posto di $x$</strong> e confronta il risultato con $f(x)$ e con $-f(x)$. Solo la verifica algebrica è affidabile.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare il dominio delle funzioni base</div>
+          <p>Errori classici: scrivere che $y=\sqrt{x}$ è definita per ogni $x$ (no: solo $x\geq 0$), che $y=\log_a x$ accetta lo zero o i negativi (no: solo $x&gt;0$), o che l'esponenziale $y=a^x$ può valere zero o negativo (no: è sempre $&gt;0$). <em>Come evitarlo</em>: memorizza dominio e immagine dalla tabella della sezione teorica — sono gli stessi in ogni esercizio.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scambiare $-f(x)$ con $f(-x)$</div>
+          <p>Il meno davanti riflette rispetto all'asse $x$ (sopra/sotto); il meno dentro l'argomento riflette rispetto all'asse $y$ (destra/sinistra). Confonderli capovolge il grafico nel verso sbagliato. <em>Come evitarlo</em>: "meno fuori, ribalta l'output (verticale); meno dentro, ribalta l'input (orizzontale)".</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Direzione delle traslazioni orizzontali: "annulla l'argomento"</div>
+          <p>Per sapere di quanto e in che verso si sposta $f(x-k)$, poni l'argomento uguale a zero: $x-k=0 \Rightarrow x=k$. Il punto di riferimento (per esempio il vertice o il punto in cui $f$ "parte") finisce proprio in $x=k$. Se ottieni $x=+3$ va a destra, se ottieni $x=-3$ va a sinistra. Niente più dubbi sul segno.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Simmetrie dagli esponenti, in un secondo</div>
+          <p>Per un polinomio: <strong>tutti esponenti pari</strong> (il termine noto conta come $x^0$, pari) → funzione pari; <strong>tutti esponenti dispari</strong> e senza termine noto → funzione dispari; <strong>esponenti misti</strong> → né pari né dispari. Esempio lampo: $x^4+5$ è pari, $x^3-7x$ è dispari, $x^2+x$ non è né l'uno né l'altro.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Un grafico complesso? Una trasformazione alla volta</div>
+          <p>Non provare a disegnare tutto insieme. Identifica la funzione elementare "madre", poi applica le trasformazioni in quest'ordine sicuro: prima quelle <strong>orizzontali</strong> (dentro l'argomento: traslazioni e dilatazioni in $x$), poi le <strong>riflessioni</strong>, infine quelle <strong>verticali</strong> (fuori: dilatazione $k\cdot$ e traslazione $+k$). Disegna il grafico intermedio a ogni passo: è lento a parole, ma velocissimo e infallibile sul foglio.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> "Dentro o fuori?" la domanda che risolve tutto</div>
+          <p>Davanti a una modifica della formula, chiediti solo: agisce <em>fuori</em> o <em>dentro</em> l'argomento? <strong>Fuori</strong> → effetto <em>verticale e diretto</em> (come te lo aspetti). <strong>Dentro</strong> → effetto <em>orizzontale e invertito</em> (al contrario). Questa singola domanda copre traslazioni, dilatazioni e riflessioni in un colpo solo.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Funzioni Elementari e Grafici</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Idea di funzione</strong>
+              <ul><li>Macchina input → output</li><li>Un solo output per input</li><li>Grafico = punti (x, f(x))</li><li>Test retta verticale</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Funzioni elementari</strong>
+              <ul><li>Lineare, x², xⁿ (pari/dispari)</li><li>√x, aˣ, logₐx</li><li>sin, cos, tan</li><li>|x|: dominio e immagine</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Trasformazioni</strong>
+              <ul><li>f(x)+k: su/giù</li><li>f(x-k): destra/sinistra (!)</li><li>k·f(x) e f(kx)</li><li>-f(x), f(-x), |f(x)|, f(|x|)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Simmetrie</strong>
+              <ul><li>Pari: f(-x)=f(x), asse y</li><li>Dispari: f(-x)=-f(x), origine</li><li>Guarda gli esponenti</li><li>Verifica sempre algebrica</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Funzione</strong>: macchina che a ogni input $x$ associa un unico output $f(x)$; il grafico è l'insieme dei punti $(x, f(x))$.</li>
+            <li><strong>Funzioni elementari</strong>: conosci a memoria dominio, comportamento e simmetria di $mx+q$, $x^2$, $x^n$, $\sqrt{x}$, $a^x$, $\log_a x$, $\sin/\cos/\tan$, $|x|$.</li>
+            <li><strong>Traslazioni</strong>: $f(x)+k$ sposta in verticale (su se $k&gt;0$); $f(x-k)$ sposta in orizzontale a <em>destra</em> se $k&gt;0$ (controintuitivo!).</li>
+            <li><strong>Dilatazioni e riflessioni</strong>: $k\cdot f(x)$ agisce in verticale (diretto), $f(kx)$ in orizzontale (invertito); $-f(x)$ riflette rispetto all'asse $x$, $f(-x)$ rispetto all'asse $y$.</li>
+            <li><strong>Moduli</strong>: $|f(x)|$ ribalta sopra l'asse $x$ le parti negative; $f(|x|)$ specchia la parte destra a sinistra.</li>
+            <li><strong>Simmetrie</strong>: pari $\Leftrightarrow f(-x)=f(x)$ (asse $y$); dispari $\Leftrightarrow f(-x)=-f(x)$ (origine). Verifica sempre sostituendo $-x$.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎉</span> Hai completato la Parte 0 — congratulazioni!</div>
+          <p>Con questo capitolo hai finito i <strong>prerequisiti</strong>. Sei partito dagli insiemi, dalla logica e dai numeri, hai attraversato algebra, potenze, radicali, logaritmi, equazioni, disequazioni, geometria analitica e trigonometria, e ora sai leggere e trasformare il grafico di qualunque funzione elementare. Hai in mano <strong>tutti gli strumenti</strong> per affrontare l'Analisi Matematica 1 vera e propria: limiti, derivate e integrali non ti coglieranno impreparato.</p>
+          <p>Il prossimo passo è dove comincia il bello. Si riparte dai <span class="glossario-term" data-term="numero-reale">numeri reali</span>, ma questa volta studiati come struttura completa e ordinata: è la fondazione su cui poggia tutta l'Analisi.</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="../parte1-analisi1/01-numeri-reali-struttura.html">🚀 Inizia la Parte 1: Numeri reali e struttura d'ordine →</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Data $f(x)=3x-2$, calcola $f(0)$, $f(2)$ e $f(-1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituisco ogni input nella regola: $f(0)=3\cdot 0-2=-2$; $\ f(2)=3\cdot 2-2=4$; $\ f(-1)=3\cdot(-1)-2=-5$.</p>
+              <p><strong>$f(0)=-2$, $\ f(2)=4$, $\ f(-1)=-5$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina il dominio (l'insieme degli input ammessi) di $f(x)=\sqrt{x-1}$ e di $g(x)=\dfrac{1}{x-3}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Per $f$, l'argomento della radice deve essere $\geq 0$: $x-1\geq 0 \Rightarrow x\geq 1$, quindi dominio $[1,+\infty)$.</p>
+              <p>Per $g$, il denominatore non può annullarsi: $x-3\neq 0 \Rightarrow x\neq 3$, quindi dominio $\mathbb{R}\setminus\{3\}$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Stabilisci se sono pari, dispari o né: $f(x)=x^6$, $\ g(x)=x^5$, $\ h(x)=x^3+x^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>In ogni caso sostituisco $-x$ al posto di $x$ e uso la regola delle potenze del <span class="richiamo" data-sec="4.3">§4.3</span> ($(-x)^n=x^n$ se $n$ è pari, $(-x)^n=-x^n$ se $n$ è dispari).</p>
+              <p>$f(-x)=(-x)^6=x^6=f(x)$ (esponente $6$ pari) → <strong>pari</strong>. $g(-x)=(-x)^5=-x^5=-g(x)$ (esponente $5$ dispari) → <strong>dispari</strong>. Per l'ultima: $h(-x)=(-x)^3+(-x)^2=-x^3+x^2$, che è diverso sia da $h(x)=x^3+x^2$ (cambia il segno del primo termine) sia da $-h(x)=-x^3-x^2$ (cambia il segno del secondo) → <strong>né pari né dispari</strong> (esponenti misti).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">A partire da $y=x^2$, descrivi come ottenere i grafici di $y=x^2+3$ e $y=x^2-1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Entrambe sono modifiche <em>fuori</em> dall'argomento, quindi traslazioni verticali. $y=x^2+3$: parabola alzata di $3$ (vertice in $(0,3)$). $y=x^2-1$: parabola abbassata di $1$ (vertice in $(0,-1)$).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Descrivi la sequenza di trasformazioni che porta da $y=|x|$ al grafico di $y=|x-2|+1$, e indica dove finisce il vertice.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$|x-2|$: modifica dentro l'argomento → traslazione orizzontale di $2$ a destra (poni $x-2=0 \Rightarrow x=2$). Il vertice della "V" va in $(2,0)$.</span>
+                <span class="esempio__passo">$|x-2|+1$: modifica fuori → traslazione verticale di $1$ in alto. Il vertice sale in $(2,1)$.</span>
+              </p>
+              <p><strong>Grafico a "V" con vertice in $(2,1)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Verifica algebricamente che $y=\cos x$ è pari e $y=\sin x$ è dispari.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Uso le formule degli archi opposti, viste nel capitolo di <a href="08-trigonometria.html">Trigonometria</a> (<span class="richiamo" data-sec="4.4">§4.4</span>), e le confronto con le definizioni di pari e dispari del <span class="richiamo" data-sec="4.3">§4.3</span>. Prima formula: $\cos(-x)=\cos x$ per ogni $x$, che è esattamente la condizione $f(-x)=f(x)$ → coseno <strong>pari</strong> (grafico simmetrico rispetto all'asse $y$). Seconda formula: $\sin(-x)=-\sin x$ per ogni $x$, che è la condizione $f(-x)=-f(x)$ → seno <strong>dispari</strong> (grafico simmetrico rispetto all'origine).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Il punto $(2,5)$ appartiene al grafico di $f$. In quale punto si trasforma applicando: (a) $y=f(x)+3$; (b) $y=f(x-1)$; (c) $y=-f(x)$; (d) $y=f(-x)$?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) $+3$ fuori → alzo la quota di $3$: $(2,\ 5+3)=(2,8)$.</span>
+                <span class="esempio__passo">(b) $f(x-1)$ ha la forma $f(x-k)$ con $k=1&gt;0$, quindi (<span class="richiamo" data-sec="4.4">§4.4</span>) è una traslazione verso destra di $1$: l'ascissa aumenta di $1$ e la quota resta la stessa, $(2+1,\ 5)=(3,5)$.</span>
+                <span class="esempio__passo">(c) $-f(x)$ → rifletto rispetto all'asse $x$ (cambio segno all'output): $(2,\ -5)$.</span>
+                <span class="esempio__passo">(d) $f(-x)$ → rifletto rispetto all'asse $y$ (cambio segno all'input): $(-2,\ 5)$.</span>
+              </p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Indica dominio e comportamento di $y=\log_2 x$ e di $y=\log_2(x-3)$, spiegando la trasformazione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$y=\log_2 x$: dominio $(0,+\infty)$, passa per $(1,0)$, cresce lentamente e tende a $-\infty$ vicino a $0$. $y=\log_2(x-3)$: modifica dentro l'argomento → traslazione di $3$ a destra; il dominio diventa $x-3&gt;0 \Rightarrow x&gt;3$, cioè $(3,+\infty)$, e la curva passa per $(4,0)$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Costruisci passo dopo passo il grafico di $y=-(x-2)^2+4$ partendo da $y=x^2$, indicando il vertice finale e la concavità.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$y=x^2$: vertice $(0,0)$, concavità verso l'alto.</span>
+                <span class="esempio__passo">$(x-2)^2$: traslazione di $2$ a destra → vertice $(2,0)$.</span>
+                <span class="esempio__passo">$-(x-2)^2$: riflessione rispetto all'asse $x$ → concavità verso il <strong>basso</strong>, vertice ancora $(2,0)$.</span>
+                <span class="esempio__passo">$-(x-2)^2+4$: traslazione di $4$ in alto → vertice finale $(2,4)$.</span>
+              </p>
+              <p><strong>Parabola con concavità verso il basso e vertice (massimo) in $(2,4)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Traccia $y=|x-3|$ e $y=|x|-3$ e spiega perché sono grafici diversi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$y=|x-3|$: il $-3$ è <em>dentro</em> il valore assoluto → traslazione orizzontale di $3$ a destra; "V" con vertice in $(3,0)$, sempre $\geq 0$.</p>
+              <p>$y=|x|-3$: il $-3$ è <em>fuori</em> → traslazione verticale di $3$ in basso; "V" con vertice in $(0,-3)$, che scende sotto l'asse $x$ e lo taglia in $x=\pm 3$.</p>
+              <p>Diversi perché il $-3$ agisce, nei due casi, su input e output rispettivamente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che ogni funzione dispari, se definita in $0$, soddisfa necessariamente $f(0)=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Per definizione di funzione dispari, $f(-x)=-f(x)$ per ogni $x$ del dominio.</span>
+                <span class="esempio__passo">Sostituisco $x=0$ (cioè scrivo $0$ al posto di ogni $x$): $\ f(-0)=-f(0)$. Ma $-0$ e $0$ sono lo stesso numero, quindi a sinistra c'è semplicemente $f(0)$, e resta $f(0)=-f(0)$.</span>
+                <span class="esempio__passo">Sommo $f(0)$ a entrambi i membri: a sinistra $f(0)+f(0)=2f(0)$, a destra $-f(0)+f(0)=0$. Quindi $2f(0)=0$; divido entrambi i membri per $2$ e ottengo $f(0)=0$.</span>
+              </p>
+              <p><strong>Quindi il grafico di una funzione dispari, se contiene un punto sull'asse $y$, passa per l'origine. ∎</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Traccia $y=\sqrt{-x}$, spiega quale trasformazione lo lega a $y=\sqrt{x}$ e determinane il dominio.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$\sqrt{-x}$ ha la forma $f(-x)$ con $f(x)=\sqrt{x}$: è la <strong>riflessione</strong> di $y=\sqrt{x}$ rispetto all'asse $y$. Il grafico, invece di aprirsi verso destra, si apre verso <strong>sinistra</strong>. Dominio: serve $-x\geq 0 \Rightarrow x\leq 0$, cioè $(-\infty,\ 0]$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data $y=(x+1)^2-4$: (a) ottienila come trasformazione di $y=x^2$; (b) determina il vertice; (c) trova le intersezioni con gli assi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) $(x+1)^2$: traslazione di $1$ a sinistra (poni $x+1=0 \Rightarrow x=-1$); poi $-4$: traslazione di $4$ in basso.</span>
+                <span class="esempio__passo">(b) Vertice in $(-1,\ -4)$, concavità verso l'alto.</span>
+                <span class="esempio__passo">(c) Con l'asse $y$: i suoi punti hanno $x=0$, quindi sostituisco $x=0$ nell'equazione, $\ y=(0+1)^2-4=1-4=-3$, punto $(0,-3)$. Con l'asse $x$: i suoi punti hanno $y=0$, quindi impongo $(x+1)^2-4=0$; porto il $-4$ a destra e ottengo $(x+1)^2=4$. Estraggo la radice ricordando che ci sono <em>due</em> soluzioni opposte: $x+1=+2$ oppure $x+1=-2$. Dalla prima, portando l'$1$ a destra, $x=2-1=1$; dalla seconda $x=-2-1=-3$. Punti $(1,0)$ e $(-3,0)$.</span>
+              </p>
+              <p><strong>Vertice $(-1,-4)$; intersezioni $(0,-3)$, $(1,0)$, $(-3,0)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Classifica come pari, dispari o né, giustificando: $f(x)=\dfrac{x}{x^2+1}$, $\ g(x)=e^{x}+e^{-x}$, $\ h(x)=x\,|x|$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Scrivo $-x$ al posto di ogni $x$: $\ f(-x)=\dfrac{-x}{(-x)^2+1}$. Al denominatore l'esponente $2$ è pari, quindi $(-x)^2=x^2$ e il denominatore non cambia; al numeratore resta $-x$. Ottengo $\dfrac{-x}{x^2+1}$, che è la frazione di partenza con un meno davanti, cioè $-f(x)$ → <strong>dispari</strong>.</span>
+                <span class="esempio__passo">$g(-x)=e^{-x}+e^{-(-x)}=e^{-x}+e^{x}$: i due addendi sono gli stessi di $g(x)=e^x+e^{-x}$, solo scambiati d'ordine, e nella somma l'ordine non conta. Quindi $g(-x)=g(x)$ → <strong>pari</strong> (è, a meno di un fattore, il coseno iperbolico).</span>
+                <span class="esempio__passo">$h(-x)=(-x)\,|-x|$. Il valore assoluto di un numero e del suo opposto coincidono, $|-x|=|x|$, quindi resta $(-x)\,|x|$. Raccolgo il segno meno: $-\big(x\,|x|\big)=-h(x)$ → <strong>dispari</strong>.</span>
+              </p>
+              <p><strong>$f$ dispari, $g$ pari, $h$ dispari.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Partendo dal grafico di $y=\sin x$, descrivi le trasformazioni per ottenere $y=2\sin x+1$ e $y=\sin\!\left(x-\tfrac{\pi}{2}\right)$, precisando immagine (valori assunti) nel primo caso.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>$y=2\sin x+1$</strong>: $2\sin x$ è una dilatazione verticale di fattore $2$ (l'ampiezza dell'onda passa da $1$ a $2$); il $+1$ è una traslazione verticale in alto di $1$. Per l'immagine seguo i due passaggi in ordine: $\sin x$ assume tutti i valori fra $-1$ e $1$ (capitolo di <a href="08-trigonometria.html">Trigonometria</a>); moltiplicando per $2$, i due estremi diventano $2\cdot(-1)=-2$ e $2\cdot 1=2$; aggiungendo $1$ a entrambi diventano $-2+1=-1$ e $2+1=3$. Immagine: $[-1,\ 3]$.</p>
+              <p><strong>$y=\sin\!\left(x-\tfrac{\pi}{2}\right)$</strong>: modifica dentro l'argomento → traslazione orizzontale di $\tfrac{\pi}{2}$ a destra. (Curiosità: il risultato coincide con $-\cos x$.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Traccia $y=|\log_2 x|$ spiegando la trasformazione $|f(x)|$ applicata al logaritmo; determina dominio e intersezione con l'asse $x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Parto da $y=\log_2 x$: dominio $(0,+\infty)$, negativo per $0&lt;x&lt;1$ e positivo per $x&gt;1$, con $\log_2 1=0$.</p>
+              <p>Il valore assoluto $|f(x)|$ lascia inalterata la parte già positiva ($x&gt;1$) e <strong>ribalta sopra l'asse $x$</strong> la parte negativa ($0&lt;x&lt;1$). Il grafico risulta tutto $\geq 0$, a forma di "valle" con minimo che tocca l'asse $x$.</p>
+              <p><strong>Dominio: $(0,+\infty)$; interseca l'asse $x$ solo in $x=1$ (dove $\log_2 1=0$).</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Il grafico di $y=f(x-2)$ si ottiene da quello di $f$ mediante una traslazione:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">verso sinistra di $2$</button>
+              <button class="quiz-option" data-correct="true">verso destra di $2$</button>
+              <button class="quiz-option" data-correct="false">verso l'alto di $2$</button>
+              <button class="quiz-option" data-correct="false">verso il basso di $2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La modifica è dentro l'argomento (orizzontale) e, con il segno meno, sposta a destra: poni $x-2=0 \Rightarrow x=2$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quale di queste funzioni è <strong>pari</strong>?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$y=\sin x$</button>
+              <button class="quiz-option" data-correct="true">$y=\cos x$</button>
+              <button class="quiz-option" data-correct="false">$y=\tan x$</button>
+              <button class="quiz-option" data-correct="false">$y=x^3$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\cos(-x)=\cos x$, quindi il coseno è pari (simmetrico rispetto all'asse $y$). Seno, tangente e $x^3$ sono tutte dispari.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Qual è il dominio di $y=\log_a x$ (con $a&gt;0$, $a\neq 1$)?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\mathbb{R}$</button>
+              <button class="quiz-option" data-correct="true">$(0,+\infty)$</button>
+              <button class="quiz-option" data-correct="false">$[0,+\infty)$</button>
+              <button class="quiz-option" data-correct="false">$\mathbb{R}\setminus\{0\}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il logaritmo è definito solo per argomenti strettamente positivi: dominio $(0,+\infty)$. Attenzione: lo zero è escluso.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Il grafico di $y=-f(x)$ si ottiene da quello di $f$ mediante:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">riflessione rispetto all'asse $x$</button>
+              <button class="quiz-option" data-correct="false">riflessione rispetto all'asse $y$</button>
+              <button class="quiz-option" data-correct="false">traslazione verticale</button>
+              <button class="quiz-option" data-correct="false">dilatazione orizzontale</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il meno è <em>fuori</em> dalla funzione: cambia segno all'output, quindi ribalta il grafico rispetto all'asse $x$. (Il meno <em>dentro</em>, $f(-x)$, riflette invece rispetto all'asse $y$.)</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Il grafico di $y=f(x)+k$ è quello di $f$ traslato verticalmente di $k$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: aggiungere $k$ all'output alza (se $k&gt;0$) o abbassa (se $k&lt;0$) l'intero grafico.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) La funzione $y=x^2$ è dispari.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: $(-x)^2=x^2$, quindi $x^2$ è <strong>pari</strong> (simmetrica rispetto all'asse $y$), non dispari.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Rispetto a $f(x)$, il grafico di $f(2x)$ risulta compresso orizzontalmente verso l'asse $y$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: moltiplicare l'input per $2$ (fattore $&gt;1$) comprime il grafico in orizzontale. Le trasformazioni "dentro l'argomento" agiscono al contrario dell'intuito.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) La funzione esponenziale $y=a^x$ (con $a&gt;0$) può assumere valori negativi.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: l'esponenziale è sempre strettamente positiva, $a^x&gt;0$ per ogni $x$. Il suo grafico sta interamente sopra l'asse $x$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="pari">
+            <p class="quiz-question__testo">9. (Completamento) Una funzione tale che $f(-x)=f(x)$ per ogni $x$ si dice funzione ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È una funzione pari: il suo grafico è simmetrico rispetto all'asse $y$ (come $x^2$ o $\cos x$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="dispari">
+            <p class="quiz-question__testo">10. (Completamento) Una funzione tale che $f(-x)=-f(x)$ per ogni $x$ si dice funzione ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È una funzione dispari: il suo grafico è simmetrico rispetto all'origine (come $x^3$ o $\sin x$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="destra|a destra|verso destra">
+            <p class="quiz-question__testo">11. (Completamento) Il grafico di $y=f(x-3)$ è quello di $f$ traslato di $3$ unità verso ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Verso destra: è la traslazione orizzontale "controintuitiva". Poni $x-3=0 \Rightarrow x=3$ per convincerti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché $f(x-k)$, con $k&gt;0$, sposta il grafico verso destra e non verso sinistra.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: la nuova funzione $g(x)=f(x-k)$ ripete ciò che $f$ faceva, ma solo quando il suo argomento $x-k$ assume il valore "speciale" che prima aveva $x$. Se $f$ faceva qualcosa in $x=0$, allora $g$ lo fa quando $x-k=0$, cioè in $x=k$: il comportamento viene "ritardato" e appare più avanti, a destra. Numericamente, con $f(x)=x^2$ e $g(x)=(x-3)^2$, il vertice passa da $x=0$ a $x=3$ perché $g(3)=f(0)$. Il segno meno nell'argomento produce quindi uno spostamento nel verso opposto, cioè a destra.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Descrivi come costruiresti, un passo alla volta, il grafico di $y=-2(x-1)^2+3$ a partire da $y=x^2$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: parto dalla parabola nota $y=x^2$ (vertice nell'origine, concavità in alto). (1) $(x-1)^2$: traslo di $1$ a destra, vertice in $(1,0)$. (2) $2(x-1)^2$: dilato in verticale di fattore $2$, la parabola si stringe. (3) $-2(x-1)^2$: rifletto rispetto all'asse $x$, la concavità va verso il basso. (4) $-2(x-1)^2+3$: traslo di $3$ in alto, vertice finale in $(1,3)$. Applicando prima l'orizzontale, poi la riflessione, poi le verticali, ottengo il grafico senza calcolare punti a mano.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="08-trigonometria.html"><span class="dir">← Capitolo precedente</span><strong>Trigonometria</strong></a>
+        <a class="next" href="../parte1-analisi1/01-numeri-reali-struttura.html"><span class="dir">Inizia la Parte 1 →</span><strong>Numeri reali e struttura d'ordine</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

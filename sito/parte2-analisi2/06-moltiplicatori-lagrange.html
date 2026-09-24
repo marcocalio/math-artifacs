@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6. Massimi e minimi vincolati: moltiplicatori di Lagrange — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 6</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html" class="is-active">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 6 di 14</span>
+        </div>
+        <h1>Massimi e minimi vincolati: moltiplicatori di Lagrange</h1>
+        <p class="subtitle">Nel capitolo precedente cercavamo i punti più alti e più bassi di una superficie <em>ovunque</em>. Ma nella realtà quasi nessuna scelta è libera: c'è un budget da rispettare, una quantità di materiale fissata, un sentiero da non abbandonare. Il metodo dei moltiplicatori di Lagrange risponde a una sola, enorme domanda: <strong>qual è il meglio che posso fare, restando dentro le regole?</strong> E lo fa con un'idea geometrica di rara eleganza: nel punto migliore, il vincolo e la curva di livello si sfiorano.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p><strong>Il <span class="glossario-term" data-term="gradiente">gradiente</span> $\nabla f$.</strong> È una freccia. La metti in un punto e ti indica <em>dove salire più ripidamente</em>. Punta verso l'alto della collina. Più è lunga, più il pendio è ripido. Se il terreno è piatto, la freccia ha lunghezza zero. <em>Immagine mentale</em>: la bussola che punta sempre verso la salita più dura. (Dettagli: <a href="04-gradiente.html">Capitolo 4</a>.)</p>
+          <p><strong>Le <span class="glossario-term" data-term="insieme-di-livello">curve di livello</span>.</strong> Sono le linee di quota di una mappa escursionistica. Lungo una di queste linee l'altezza non cambia mai. Camminando su una curva di livello non sali e non scendi. <em>Immagine mentale</em>: i cerchi concentrici disegnati attorno a una montagna sulla carta topografica. (Dettagli: <a href="01-funzioni-piu-variabili.html">Capitolo 1</a>.)</p>
+          <p><strong>Fatto chiave che unisce i due.</strong> La freccia del gradiente è sempre <em>perpendicolare</em> alla linea di quota che passa per quel punto. Ha senso: la salita più ripida è quella che taglia le curve di livello ad angolo retto.</p>
+          <p><strong>I sistemi di equazioni.</strong> Tante condizioni che devono valere <em>tutte insieme</em>. Risolvere un sistema significa trovare i valori che accontentano ogni riga contemporaneamente. <em>Immagine mentale</em>: più filtri applicati insieme; sopravvive solo ciò che li passa tutti.</p>
+          <p><strong>I <span class="glossario-term" data-term="punto-critico">punti critici</span>.</strong> Sono i punti dove il gradiente si annulla: terreno pianeggiante. Lì la funzione può avere un massimo, un minimo o una sella. <em>Immagine mentale</em>: la cima di una collina, il fondo di una conca, o il centro di un valico di montagna. (Dettagli: <a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>.)</p>
+          <p>Se hai in mente queste cinque immagini, il capitolo che stai per leggere ti sembrerà quasi ovvio. Davvero.</p>
+        </div>
+
+        <p>Immagina di essere su una montagna. La quota del terreno è descritta da una funzione $f(x,y)$: dammi le coordinate, ti dico quanto sei alto. Nel <a href="05-hessiano-massimi-minimi.html">capitolo precedente</a> cercavamo la cima in <strong>totale libertà</strong>: potevi muoverti ovunque, in qualunque direzione, e bastava trovare il punto in cui il terreno era piatto.</p>
+        <p>Ora cambia una cosa sola, e cambia tutto: <strong>non puoi uscire dal sentiero</strong>. C'è una traccia segnata sul fianco della montagna, e tu devi restarci sopra. Il sentiero è descritto da un'equazione $g(x,y)=0$: i punti che la soddisfano sono quelli su cui ti è concesso camminare, tutti gli altri sono vietati.</p>
+        <p>La domanda diventa: <strong>qual è il punto più alto che riesco a raggiungere <em>camminando sul sentiero</em>?</strong> Attenzione: quasi certamente non è la cima della montagna, perché la cima potrebbe essere lontanissima dal sentiero. È un'altra cosa: è il punto più alto <em>fra quelli permessi</em>.</p>
+        <p>Adesso arriva l'idea geniale, e vale la pena leggerla lentamente. Cammini sul sentiero con in mano la mappa delle linee di quota. Finché il sentiero <strong>taglia</strong> una linea di quota, significa che stai passando da una quota a un'altra: <strong>stai ancora salendo o stai ancora scendendo</strong>. Quindi non puoi essere nel punto più alto: basta fare un altro passo nella direzione giusta e sali ancora.</p>
+        <p>Ne segue, per pura logica, che il punto più alto del sentiero può trovarsi solo dove il sentiero <strong>smette di tagliare</strong> le linee di quota e le <strong>sfiora</strong>: il punto in cui sentiero e curva di livello sono <strong>tangenti</strong>.</p>
+        <p>E la tangenza si traduce subito in una condizione sui gradienti. Se le due curve si toccano, hanno la stessa direzione tangente; e allora anche le due perpendicolari coincidono come direzione. Ma la perpendicolare alla curva di livello di $f$ è $\nabla f$, e la perpendicolare al vincolo è $\nabla g$. Conclusione: <strong>nel punto ottimo i due gradienti sono paralleli</strong>, cioè uno è multiplo dell'altro:</p>
+        <div class="formula-block">$$\nabla f(x_0,y_0) \;=\; \lambda\,\nabla g(x_0,y_0)$$</div>
+        <p>Quel numero $\lambda$ (lambda) è il <strong><span class="glossario-term" data-term="moltiplicatori-di-lagrange">moltiplicatore di Lagrange</span></strong>. Non è un fastidio tecnico da eliminare in fretta: come vedremo, ha un significato economico preciso e bellissimo. Tutto il capitolo nasce da qui.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>nella vita reale non si ottimizza mai in libertà</strong>. Un'azienda non può produrre all'infinito: ha un budget. Un ingegnere non può costruire un serbatoio con lamiera infinita: ha una quantità di materiale. Un fisico sa che una particella si muove su una superficie, non nel vuoto assoluto. Persino tu, quando scegli come organizzare la giornata, ottimizzi qualcosa sotto il vincolo "24 ore e non una di più". Il calcolo dei massimi e minimi <em>liberi</em> del Capitolo 5 non basta: serve un metodo per ottimizzare <strong>restando dentro le regole</strong>.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema è questo. Sappiamo che in un punto di massimo o minimo <em>libero</em> il gradiente si annulla: $\nabla f = 0$. Ma sul vincolo questa condizione è quasi sempre <strong>inutile</strong>, perché nel punto migliore del sentiero il terreno <em>non</em> è affatto piatto: sei in salita, semplicemente non puoi proseguire nella direzione della salita perché usciresti dal sentiero. Cercare $\nabla f = 0$ lungo il vincolo, nella maggior parte dei casi, non trova nulla. Serve una condizione diversa, più debole, che catturi esattamente l'idea "non posso più migliorare <em>senza uscire</em>". Quella condizione è $\nabla f = \lambda\nabla g$.</p>
+        <p><strong>Perché non basta sostituire?</strong> Una risposta ingenua sarebbe: "ricavo $y$ dal vincolo, lo sostituisco in $f$ e faccio uno studio di funzione a una variabile". A volte funziona benissimo, e vedremo quando. Ma spesso il vincolo <strong>non è esplicitabile</strong>: prova a ricavare $y$ da $x^4 + x^2y^2 + y^4 = 12$, oppure da $e^{xy} + x - y = 3$. E anche quando si può, la sostituzione <strong>rompe la simmetria</strong> del problema e produce espressioni mostruose. Lagrange invece tratta tutte le variabili allo stesso modo e conserva l'eleganza del problema.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo è il capitolo in cui l'Analisi 2 diventa palesemente <em>utile</em>. Il metodo di Lagrange è lo strumento base della microeconomia (il consumatore massimizza l'utilità con un budget), della meccanica razionale (le equazioni di Lagrange del moto vincolato nascono da qui), della statistica (la massima verosimiglianza con parametri vincolati), del <em>machine learning</em> (le <em>support vector machine</em> e ogni regolarizzazione sono problemi vincolati). È anche, molto concretamente, uno degli esercizi che compaiono più spesso agli esami scritti di Analisi 2. Impararlo bene rende più semplici i capitoli successivi su <a href="07-curve-superfici.html">curve e superfici</a> e sulle <a href="14-applicazioni-analisi2.html">applicazioni</a>.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🛒</span> La spesa settimanale è un problema di Lagrange</div>
+          <p>Hai <strong>60 euro</strong> per la spesa della settimana. Devi comprare due cose: chiamiamole $x$ (chili di cibo fresco, 3 euro al chilo) e $y$ (confezioni di dispensa, 2 euro l'una). Il tuo vincolo è chiarissimo:</p>
+          <div class="formula-block">$$3x + 2y = 60$$</div>
+          <p>Non puoi spendere di più, e non ha senso spendere di meno se vuoi mangiare al meglio. Ora, non tutte le combinazioni ti rendono ugualmente felice: dieci chili di verdura e zero pasta è un disastro, e così pure il contrario. La tua <strong>soddisfazione</strong> è una funzione $U(x,y)$ delle due quantità, e tu vuoi renderla massima.</p>
+          <p>Ecco il punto: <strong>il massimo di $U$ in assoluto non ti interessa</strong>, perché sarebbe "compra tutto ciò che vuoi", e non hai i soldi. Ti interessa il massimo <em>sulla retta del budget</em>. Le curve di livello di $U$ sono le combinazioni che ti danno la stessa soddisfazione (in economia si chiamano <strong>curve di indifferenza</strong>: ti è indifferente stare in un punto o nell'altro della stessa curva). E la risposta è geometricamente splendida: <strong>il carrello ottimale è quello in cui la retta del budget è tangente a una curva di indifferenza</strong>. Se la tagliasse, potresti spostarti lungo la retta e arrivare a una curva più alta, cioè spendere gli stessi soldi ed essere più felice.</p>
+          <p>E $\lambda$? Nel gergo degli economisti è l'<strong>utilità marginale del reddito</strong>: dice di quanto crescerebbe la tua soddisfazione se qualcuno ti regalasse <strong>un euro in più</strong>. Non è un dettaglio: è esattamente il numero che serve per decidere se conviene chiedere un aumento di budget.</p>
+        </div>
+        <p>Lo stesso schema, identico nella struttura, ricompare ovunque. <strong>Confezioni e imballaggi</strong>: un'azienda deve contenere un litro di bibita usando meno alluminio possibile. Il volume è il vincolo ($\pi r^2 h = 1$), la superficie è la funzione da minimizzare. La forma che ne esce spiega perché le lattine hanno certe proporzioni e non altre.</p>
+        <p><strong>Ingegneria strutturale</strong>: distribuire il materiale di una trave in modo da massimizzare la rigidezza a peso fissato. <strong>Logistica</strong>: massimizzare il valore trasportato da un camion con portata massima. <strong>Fotografia e ottica</strong>: la legge di Snell sulla rifrazione si ricava minimizzando il tempo di percorrenza della luce sotto il vincolo di passare per la superficie di separazione. <strong>Termodinamica</strong>: la distribuzione di Boltzmann si ottiene massimizzando l'entropia con i vincoli di normalizzazione e di energia media — e i moltiplicatori che saltano fuori sono, letteralmente, la temperatura e il potenziale chimico.</p>
+        <p>E poi il caso più quotidiano di tutti: <strong>il punto più caldo di un anello metallico</strong>. Scalda una piastra in modo non uniforme, appoggiaci sopra un anello di metallo, e chiediti dove l'anello raggiunge la temperatura massima. La temperatura è $T(x,y)$, l'anello è il vincolo $x^2+y^2 = r^2$. Non stai cercando il punto più caldo della piastra: stai cercando il punto più caldo <em>dell'anello</em>. È esattamente il problema di questo capitolo, e lo risolveremo negli esempi.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-problema">4.1 Il problema: ottimizzazione libera e ottimizzazione vincolata</h3>
+        <p>Mettiamo in fila i due problemi, uno accanto all'altro, perché la differenza è tutta lì.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th></th><th>Ottimizzazione libera (Cap. 5)</th><th>Ottimizzazione vincolata (questo capitolo)</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Domanda</strong></td><td>Dove $f(x,y)$ è massima o minima su tutto il dominio?</td><td>Dove $f(x,y)$ è massima o minima <em>soltanto</em> sui punti con $g(x,y)=0$?</td></tr>
+            <tr><td><strong>Dove ci si muove</strong></td><td>In tutto il piano (un insieme aperto, bidimensionale)</td><td>Solo su una curva (un insieme unidimensionale)</td></tr>
+            <tr><td><strong>Condizione necessaria</strong></td><td>$\nabla f = 0$</td><td>$\nabla f = \lambda\,\nabla g$</td></tr>
+            <tr><td><strong>Incognite del sistema</strong></td><td>$x,\,y$</td><td>$x,\,y,\,\lambda$</td></tr>
+            <tr><td><strong>Classificazione</strong></td><td><span class="glossario-term" data-term="hessiano">Hessiano</span></td><td>Weierstrass + confronto dei valori (quasi sempre)</td></tr>
+          </tbody>
+        </table>
+        <p>Formalizziamo. Siano $f$ (la <strong>funzione obiettivo</strong>) e $g$ (la <strong>funzione vincolo</strong>) due <span class="glossario-term" data-term="funzione-piu-variabili">funzioni di più variabili</span> di classe $C^1$, cioè con <span class="glossario-term" data-term="derivata-parziale">derivate parziali</span> continue. Chiamiamo <strong>insieme ammissibile</strong> (o <em>vincolo</em>) l'insieme</p>
+        <div class="formula-block">$$V=\{(x,y)\in\mathbb{R}^2 \;:\; g(x,y)=0\}$$</div>
+        <p>Un punto $P_0\in V$ è <strong>massimo locale vincolato</strong> se esiste un intorno $B$ di $P_0$ tale che $f(P)\leq f(P_0)$ per ogni $P\in V\cap B$: cioè $P_0$ batte tutti i punti <em>del vincolo</em> che gli stanno vicino. Analogamente per il minimo. Il confronto avviene <strong>solo</strong> con i punti ammissibili: quello che succede fuori dal vincolo è del tutto irrilevante.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché il vincolo è quasi sempre scritto "$=0$"</div>
+          <p>Un vincolo naturale spesso si presenta nella forma $g(x,y)=c$ (per esempio "il perimetro vale $20$"). Basta portare tutto a sinistra e ridefinire $\tilde g = g - c$ per riscriverlo come $\tilde g(x,y)=0$. Il gradiente non cambia ($\nabla\tilde g=\nabla g$, perché la derivata di una costante è zero), quindi le due scritture sono perfettamente equivalenti. Nel seguito useremo indifferentemente $g=0$ oppure $g=c$, a seconda di quale sia più comoda.</p>
+        </div>
+
+        <h3 id="teoria-geometria">4.2 L'idea geometrica: la tangenza</h3>
+        <p>Riprendiamo l'intuizione della sezione 1 e rendiamola precisa in tre passaggi.</p>
+        <p><strong>Passo 1 — camminare sul vincolo.</strong> Supponiamo di poter descrivere il vincolo, vicino al punto che ci interessa, come una curva $\boldsymbol{r}(t)=(x(t),y(t))$ percorsa da un camminatore. Il vettore $\boldsymbol{r}'(t)$ è la sua <strong>velocità</strong>, tangente al sentiero.</p>
+        <p><strong>Passo 2 — la quota vista dal camminatore.</strong> Mentre cammina, la quota che legge è $\varphi(t)=f(\boldsymbol{r}(t))$: una funzione di <em>una sola</em> variabile. La regola della catena per funzioni di più variabili (vista nel <a href="03-derivate-parziali.html">Capitolo 3</a>) dà</p>
+        <div class="formula-block">$$\varphi'(t)=\nabla f(\boldsymbol{r}(t))\cdot \boldsymbol{r}'(t)$$</div>
+        <p>Questa formula è il cuore di tutto: <strong>la velocità con cui cambia la quota è il prodotto scalare fra il gradiente e la direzione di marcia</strong>. Se il prodotto scalare è positivo stai salendo, se è negativo stai scendendo, se è zero sei momentaneamente "in piano" rispetto al tuo cammino.</p>
+        <p><strong>Passo 3 — la conclusione.</strong> Nel punto più alto del sentiero, $\varphi$ ha un massimo, quindi $\varphi'=0$, quindi $\nabla f \cdot \boldsymbol{r}'=0$: <strong>il gradiente di $f$ è perpendicolare alla direzione del sentiero</strong>. D'altra parte $g$ è costante lungo il sentiero (vale sempre zero!), quindi per lo stesso motivo anche $\nabla g \cdot \boldsymbol{r}'=0$. Due vettori del piano, entrambi perpendicolari allo stesso vettore non nullo $\boldsymbol{r}'$, sono necessariamente <strong>paralleli fra loro</strong>. Ed ecco la condizione $\nabla f = \lambda \nabla g$.</p>
+
+        <svg viewBox="0 0 480 320" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Curve di livello concentriche e retta del vincolo: nel punto di tangenza i gradienti di f e g sono paralleli, mentre dove il vincolo taglia una curva di livello si può ancora migliorare">
+          <!-- curve di livello -->
+          <ellipse cx="200" cy="160" rx="40" ry="28" fill="none" stroke="var(--color-border)" stroke-width="1.4"/>
+          <ellipse cx="200" cy="160" rx="80" ry="56" fill="none" stroke="var(--color-border)" stroke-width="1.4"/>
+          <ellipse cx="200" cy="160" rx="120" ry="84" fill="none" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <ellipse cx="200" cy="160" rx="160" ry="112" fill="none" stroke="var(--color-border)" stroke-width="1.4"/>
+          <!-- vincolo -->
+          <line x1="147.8" y1="19.5" x2="397.8" y2="166.6" stroke="var(--color-secondary)" stroke-width="2.8"/>
+          <!-- punti di taglio -->
+          <circle cx="358.2" cy="143.3" r="4" fill="none" stroke="var(--color-secondary)" stroke-width="2"/>
+          <circle cx="196.2" cy="48.0" r="4" fill="none" stroke="var(--color-secondary)" stroke-width="2"/>
+          <!-- punto di tangenza -->
+          <circle cx="277.1" cy="95.6" r="6" fill="var(--color-danger)"/>
+          <!-- gradiente di f -->
+          <line x1="277.1" y1="95.6" x2="245.7" y2="149.0" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <polygon points="245.7,149.0 251.6,138.5 256.0,145.0" fill="var(--color-primary)"/>
+          <!-- gradiente di g -->
+          <line x1="285.7" y1="100.7" x2="264.4" y2="136.9" stroke="var(--color-success)" stroke-width="2.6"/>
+          <polygon points="264.4,136.9 270.3,126.4 274.7,132.9" fill="var(--color-success)"/>
+          <!-- etichette -->
+          <text x="196" y="164" font-size="12" fill="var(--color-text-muted)">valori</text>
+          <text x="190" y="178" font-size="12" fill="var(--color-text-muted)">crescenti</text>
+          <text x="216" y="160" font-size="13" font-weight="700" fill="var(--color-primary)">∇f</text>
+          <text x="268" y="152" font-size="13" font-weight="700" fill="var(--color-success)">∇g</text>
+          <text x="290" y="84" font-size="13" font-weight="700" fill="var(--color-danger)">tangenza = ottimo</text>
+          <text x="330" y="176" font-size="12" fill="var(--color-secondary)">qui il vincolo taglia:</text>
+          <text x="330" y="190" font-size="12" fill="var(--color-secondary)">si può ancora migliorare</text>
+          <text x="120" y="40" font-size="13" font-weight="700" fill="var(--color-secondary)">vincolo</text>
+          <text x="120" y="56" font-size="13" font-weight="700" fill="var(--color-secondary)">g = 0</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Dove il vincolo <em>taglia</em> una curva di livello si sta ancora salendo o scendendo. L'ottimo è dove il vincolo la <em>sfiora</em>: lì $\nabla f$ e $\nabla g$ hanno la stessa direzione.</p>
+
+        <h3 id="teoria-teorema">4.3 Il teorema dei moltiplicatori di Lagrange</h3>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Moltiplicatori di Lagrange (un vincolo, due variabili).</em> Siano $f,g:A\subseteq\mathbb{R}^2\to\mathbb{R}$ di classe $C^1$ su un aperto $A$. Sia $P_0=(x_0,y_0)$ un punto di massimo o di minimo <strong>locale</strong> di $f$ ristretta al vincolo $V=\{g=0\}$. Se vale la <strong>condizione di regolarità</strong></p>
+          <div class="formula-block">$$\nabla g(x_0,y_0)\neq (0,0)$$</div>
+          <p>allora esiste un numero reale $\lambda$, detto <strong>moltiplicatore di Lagrange</strong>, tale che</p>
+          <div class="formula-block">$$\nabla f(x_0,y_0)=\lambda\,\nabla g(x_0,y_0)$$</div>
+        </div>
+        <p>Tre avvertenze che valgono oro e che vanno lette adesso, non dopo il primo esercizio sbagliato.</p>
+        <ul>
+          <li><strong>È una condizione solo necessaria.</strong> Il teorema dice: "se $P_0$ è un estremo vincolato regolare, <em>allora</em> i gradienti sono paralleli". Non dice il contrario. I punti che risolvono il sistema sono <strong>candidati</strong>, e fra loro possono esserci punti che non sono né massimi né minimi (l'analogo vincolato dei punti di sella).</li>
+          <li><strong>Il segno e il valore di $\lambda$ non sono liberi.</strong> $\lambda$ è un'incognita a tutti gli effetti, da determinare insieme a $x$ e $y$. Può essere positivo, negativo o nullo. Se $\lambda=0$ significa che $\nabla f(P_0)=0$: il punto è anche un punto critico libero, e il vincolo lì "non morde".</li>
+          <li><strong>L'ipotesi $\nabla g\neq 0$ non è un dettaglio burocratico.</strong> Senza di essa il teorema è falso, come vedremo con un controesempio esplicito nella sezione 4.6.</li>
+        </ul>
+        <p>La generalizzazione a $n$ variabili è immediata e si scrive esattamente allo stesso modo: se $f,g:A\subseteq\mathbb{R}^n\to\mathbb{R}$ e $P_0$ è un estremo vincolato con $\nabla g(P_0)\neq \boldsymbol{0}$, allora $\nabla f(P_0)=\lambda\,\nabla g(P_0)$, che in componenti sono $n$ equazioni.</p>
+
+        <h3 id="teoria-lagrangiana">4.4 La funzione lagrangiana e il sistema da risolvere</h3>
+        <p>C'è un modo molto elegante per <strong>ricordare</strong> le equazioni senza impararle a memoria: si costruisce un'unica funzione ausiliaria, la <strong>lagrangiana</strong>, che ingloba obiettivo e vincolo, e se ne cercano i punti critici <em>liberi</em>.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Funzione lagrangiana.</em> Dati $f$ e $g$, si chiama lagrangiana la funzione delle <strong>tre</strong> variabili $x,y,\lambda$:</p>
+          <div class="formula-block">$$\mathcal{L}(x,y,\lambda)\;=\;f(x,y)\;-\;\lambda\,g(x,y)$$</div>
+        </div>
+        <p>Il trucco è che imporre $\nabla \mathcal{L}=0$ (gradiente rispetto a <em>tutte e tre</em> le variabili) riproduce esattamente le condizioni di Lagrange <strong>più</strong> l'equazione del vincolo. Facciamo i conti: derivo $\mathcal{L}=f-\lambda g$ rispetto a $x$ trattando $\lambda$ come una costante (viene $f_x-\lambda g_x$), poi rispetto a $y$ (viene $f_y-\lambda g_y$), e infine rispetto a $\lambda$: lì $f$ non contiene $\lambda$ e ha derivata nulla, mentre $-\lambda g$ è "costante per $\lambda$" e dà $-g$. In formule:</p>
+        <div class="formula-block">
+          $$\frac{\partial \mathcal{L}}{\partial x}=f_x-\lambda g_x=0,\qquad
+          \frac{\partial \mathcal{L}}{\partial y}=f_y-\lambda g_y=0,\qquad
+          \frac{\partial \mathcal{L}}{\partial \lambda}=-g(x,y)=0$$
+        </div>
+        <p>Le prime due sono le componenti di $\nabla f=\lambda\nabla g$; la terza <strong>è il vincolo stesso</strong>, che ricompare gratis. Il sistema da risolvere è dunque:</p>
+        <div class="formula-block">
+          $$\begin{cases}
+          f_x(x,y)=\lambda\,g_x(x,y)\\[2pt]
+          f_y(x,y)=\lambda\,g_y(x,y)\\[2pt]
+          g(x,y)=0
+          \end{cases}$$
+        </div>
+        <p>Tre equazioni, tre incognite. Non è sempre lineare, spesso non lo è affatto, ma è un sistema perfettamente concreto. Le sue soluzioni $(x,y,\lambda)$ danno i punti candidati $(x,y)$ e, in regalo, il valore del moltiplicatore.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Perché il segno meno nella lagrangiana?</div>
+          <p>Molti testi scrivono $\mathcal{L}=f-\lambda g$, altri $\mathcal{L}=f+\lambda g$. <strong>Non cambia nulla</strong>: nel secondo caso il moltiplicatore che si trova è semplicemente l'opposto del primo. L'insieme dei punti candidati è identico. L'unica accortezza è la coerenza: se scegli un segno, tienilo per tutto l'esercizio, e ricorda quale convenzione hai usato se poi devi interpretare $\lambda$. In questo libro useremo sempre $\mathcal{L}=f-\lambda g$.</p>
+        </div>
+
+        <h3 id="teoria-lambda">4.5 Che cos'è davvero $\lambda$: il prezzo ombra</h3>
+        <p>Qui arriva la parte che quasi nessuno racconta bene, e che invece è il motivo per cui il metodo è così amato fuori dalla matematica. Consideriamo una <strong>famiglia</strong> di problemi, in cui il livello del vincolo può cambiare:</p>
+        <div class="formula-block">$$\text{ottimizzare } f(x,y)\quad\text{con}\quad g(x,y)=c$$</div>
+        <p>Per ogni valore di $c$ c'è (diciamo) un ottimo, e chiamiamo $v(c)$ il <strong>valore ottimo</strong> corrispondente: la migliore quota raggiungibile quando il sentiero è quello di livello $c$. Il risultato, che dimostreremo nella <a href="#dimostrazioni">sezione 5</a>, è sorprendentemente semplice:</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Interpretazione del moltiplicatore.</em> Sotto ipotesi di regolarità e derivabilità della soluzione rispetto a $c$, vale</p>
+          <div class="formula-block">$$v'(c)=\lambda$$</div>
+          <p>cioè <strong>$\lambda$ è la derivata del valore ottimo rispetto al livello del vincolo</strong>.</p>
+        </div>
+        <p>In parole poverissime: <strong>$\lambda$ dice quanto migliora l'ottimo se allento il vincolo di una unità</strong>. Se stai massimizzando il profitto con un budget di $1000$ euro e trovi $\lambda = 3{,}5$, significa che un euro in più di budget ti farebbe guadagnare circa $3{,}5$ euro in più. Da cui la decisione immediata: se puoi ottenere quell'euro pagandolo meno di $3{,}5$ euro, conviene.</p>
+        <p>Per questo in economia $\lambda$ si chiama <strong>prezzo ombra</strong> (<em>shadow price</em>): è il "prezzo" implicito che il problema attribuisce a una unità della risorsa scarsa, anche se su nessun cartellino è scritto. In meccanica, i moltiplicatori sono le <strong>reazioni vincolari</strong>: la forza che il binario esercita sul treno per tenerlo sui binari. In termodinamica sono temperatura e potenziale chimico. Ogni volta, la stessa storia: <em>quanto mi costa la regola che sto rispettando</em>.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">💶</span> Un modo per non dimenticarlo mai</div>
+          <p>Se $f$ si misura in euro e $g$ in ore di lavoro, allora $\lambda$ si misura in <strong>euro per ora</strong>. Il controllo dimensionale è il modo più rapido per ricordare che cos'è: $\lambda$ ha sempre le unità di misura di $f$ <em>diviso</em> le unità di $g$. È letteralmente un tasso di cambio fra l'obiettivo e la risorsa.</p>
+        </div>
+
+        <h3 id="teoria-regolarita">4.6 La condizione di regolarità, e cosa succede quando cade</h3>
+        <p>L'ipotesi $\nabla g(P_0)\neq \boldsymbol{0}$ serve a garantire che il vincolo, vicino a $P_0$, sia una <strong>curva liscia e ben definita</strong>, con una direzione tangente. È il teorema di Dini (o della funzione implicita) a garantirlo: se $\nabla g\neq 0$, allora almeno una derivata parziale non è nulla, e localmente si può esplicitare una variabile in funzione dell'altra ottenendo una curva regolare.</p>
+        <p>Quando invece $\nabla g(P_0)=\boldsymbol{0}$, il vincolo in $P_0$ può <strong>degenerare</strong>: avere una cuspide, un punto isolato, un'autointersezione. E in quei punti la logica della tangenza si inceppa, perché non c'è una sola direzione tangente. Vediamolo con un caso concreto e istruttivo.</p>
+        <p>Consideriamo il vincolo $g(x,y)=y^2-x^3=0$, cioè la curva $y^2=x^3$ (una <em>cubica cuspidale</em>), e cerchiamo il <strong>minimo</strong> di $f(x,y)=x$ su di essa. Poiché $x^3=y^2\geq 0$, sul vincolo si ha $x\geq 0$, e il minimo di $x$ vale chiaramente $0$, raggiunto nell'origine. Il minimo <strong>esiste, ed è evidentissimo</strong>. Proviamo con Lagrange. I gradienti sono $\nabla f=(1,0)$ (derivate di $f=x$ rispetto a $x$ e a $y$) e $\nabla g=(-3x^2,\,2y)$ (derivate di $y^2-x^3$). La condizione $\nabla f=\lambda\nabla g$ si scrive <strong>componente per componente</strong>: la prima componente dà $1=\lambda\cdot(-3x^2)$, la seconda $0=\lambda\cdot 2y$; a queste aggiungo l'equazione del vincolo. Ecco il sistema:</p>
+        <div class="formula-block">
+          $$\nabla f=(1,0),\qquad \nabla g=(-3x^2,\,2y)$$
+          $$\begin{cases}1=-3\lambda x^2\\ 0=2\lambda y\\ y^2=x^3\end{cases}$$
+        </div>
+        <p>Dalla seconda equazione: $\lambda=0$ oppure $y=0$. Se $\lambda=0$, la prima diventa $1=0$, assurdo. Se $y=0$, il vincolo dà $x^3=0$, cioè $x=0$, e di nuovo la prima diventa $1=0$, assurdo. <strong>Il sistema non ha alcuna soluzione</strong>, eppure il minimo esiste. Il metodo non lo vede, e il colpevole è proprio $\nabla g(0,0)=(0,0)$.</p>
+
+        <svg viewBox="0 0 320 360" style="max-width:330px;margin:1.3em auto;display:block;" role="img" aria-label="La cubica cuspidale y quadro uguale x cubo: nell'origine la curva ha una cuspide e il gradiente del vincolo si annulla">
+          <line x1="20" y1="200" x2="300" y2="200" stroke="var(--color-border)" stroke-width="1.4"/>
+          <line x1="60" y1="40" x2="60" y2="345" stroke="var(--color-border)" stroke-width="1.4"/>
+          <polyline points="60,200 63.6,199.7 74.4,197.4 92.4,191.4 117.6,179.5 150,160 179,139.2 212.1,112.1 249.2,78" fill="none" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <polyline points="60,200 63.6,200.3 74.4,202.6 92.4,208.6 117.6,220.5 150,240 179,260.8 212.1,287.9 249.2,322" fill="none" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <circle cx="60" cy="200" r="6" fill="var(--color-danger)"/>
+          <text x="74" y="196" font-size="13" font-weight="700" fill="var(--color-danger)">cuspide</text>
+          <text x="74" y="212" font-size="12" fill="var(--color-danger)">∇g = (0, 0)</text>
+          <text x="200" y="60" font-size="13" fill="var(--color-text-muted)">y² = x³</text>
+          <text x="150" y="345" font-size="12" fill="var(--color-text-muted)">il minimo di x è qui, ma Lagrange non lo trova</text>
+        </svg>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> La regola operativa da applicare sempre</div>
+          <p>All'elenco dei candidati prodotti dal sistema di Lagrange va <strong>sempre aggiunto</strong> l'elenco dei punti del vincolo in cui $\nabla g=\boldsymbol{0}$, da studiare a parte. In formule, i candidati sono:</p>
+          <div class="formula-block">$$\underbrace{\{P\in V:\ \nabla f(P)=\lambda\nabla g(P)\ \text{per qualche}\ \lambda\}}_{\text{soluzioni del sistema}}\ \cup\ \underbrace{\{P\in V:\ \nabla g(P)=\boldsymbol{0}\}}_{\text{punti singolari del vincolo}}$$</div>
+          <p>Buona notizia: nella stragrande maggioranza degli esercizi il secondo insieme è vuoto (per esempio se il vincolo è una circonferenza, un'ellisse, una retta o un piano, $\nabla g$ non si annulla mai sul vincolo). Ma il controllo costa dieci secondi e vale punti all'esame.</p>
+        </div>
+
+        <h3 id="teoria-weierstrass">4.7 Esistenza e classificazione: Weierstrass è tuo amico</h3>
+        <p>Il teorema di Lagrange fornisce candidati, ma non dice se siano massimi, minimi o niente. Per fortuna, in moltissimi casi possiamo scavalcare del tutto il problema grazie a un teorema che già conosci.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome"><span class="glossario-term" data-term="teorema-di-weierstrass">Weierstrass</span> in più variabili.</em> Se $K\subseteq\mathbb{R}^n$ è <strong>chiuso e limitato</strong> (compatto) e non vuoto, e $f:K\to\mathbb{R}$ è continua, allora $f$ ammette su $K$ massimo e minimo <strong>assoluti</strong>.</p>
+        </div>
+        <p>Ecco la strategia vincente, quella che risolve nove esercizi d'esame su dieci:</p>
+        <ol>
+          <li>Verifica che il vincolo $V$ sia <strong><span class="glossario-term" data-term="insieme-chiuso">chiuso</span> e limitato</strong>. Una circonferenza lo è; un'ellisse lo è; una sfera lo è; una retta <strong>no</strong> (non è limitata); un'iperbole <strong>no</strong>.</li>
+          <li>Se lo è, Weierstrass <strong>garantisce</strong> che massimo e minimo assoluti esistono e sono raggiunti in punti di $V$.</li>
+          <li>Quei punti devono essere fra i candidati trovati (soluzioni del sistema più eventuali punti singolari).</li>
+          <li>Allora basta <strong>calcolare $f$ in tutti i candidati e confrontare i numeri</strong>: il più grande è il massimo, il più piccolo è il minimo. Fine. Nessun hessiano, nessuna derivata seconda.</li>
+        </ol>
+        <p>Se invece il vincolo <strong>non</strong> è limitato (una retta, una parabola, un ramo di iperbole), Weierstrass non si applica e bisogna ragionare a parte: studiare il comportamento di $f$ all'infinito lungo il vincolo, oppure usare la struttura del problema. Per esempio, minimizzare la distanza da un punto a una retta ha certamente soluzione — la distanza tende a $+\infty$ allontanandosi — ma il <em>massimo</em> non esiste.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Come riconoscere al volo un vincolo compatto</div>
+          <p>Chiediti due cose. <strong>Chiuso?</strong> Se il vincolo è scritto come $\{g=0\}$ con $g$ continua, sì, sempre: è la controimmagine di un punto. <strong>Limitato?</strong> Guarda se l'equazione "intrappola" le variabili: $x^2+y^2=4$ impone $|x|\leq 2$ e $|y|\leq 2$, quindi sì. Invece $xy=1$ lascia $x$ andare a $+\infty$, quindi no. E $x+y=1$ nemmeno.</p>
+        </div>
+
+        <h3 id="teoria-due-vincoli">4.8 Due vincoli in $\mathbb{R}^3$</h3>
+        <p>Passiamo a tre variabili e a <strong>due</strong> vincoli simultanei. La situazione tipica: $g(x,y,z)=0$ descrive una superficie, $h(x,y,z)=0$ ne descrive un'altra, e il vincolo effettivo è la loro <strong>intersezione</strong>, che in generale è una <em>curva</em> nello spazio. Per esempio un cilindro tagliato da un piano dà un'ellisse sospesa nello spazio.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Moltiplicatori con due vincoli.</em> Siano $f,g,h$ di classe $C^1$ in $\mathbb{R}^3$ e sia $P_0$ un estremo locale di $f$ vincolato a $\{g=0\}\cap\{h=0\}$. Se i gradienti $\nabla g(P_0)$ e $\nabla h(P_0)$ sono <strong>linearmente indipendenti</strong> (cioè non paralleli e non nulli), allora esistono $\lambda,\mu\in\mathbb{R}$ tali che</p>
+          <div class="formula-block">$$\nabla f(P_0)=\lambda\,\nabla g(P_0)+\mu\,\nabla h(P_0)$$</div>
+        </div>
+        <p>L'intuizione è la stessa, appena arricchita. La curva di intersezione ha una sola direzione tangente $\boldsymbol{\tau}$. Nel punto ottimo $\nabla f\cdot\boldsymbol{\tau}=0$, quindi $\nabla f$ sta nel piano perpendicolare a $\boldsymbol{\tau}$. Ma anche $\nabla g$ e $\nabla h$ stanno in quel piano (sono perpendicolari alla curva, che giace su entrambe le superfici), e se sono indipendenti lo <strong>generano tutto</strong>. Dunque $\nabla f$ è una loro combinazione lineare: ecco $\lambda$ e $\mu$. La lagrangiana diventa $\mathcal{L}=f-\lambda g-\mu h$ e il sistema ha $5$ equazioni in $5$ incognite $(x,y,z,\lambda,\mu)$.</p>
+        <p>La regola generale, valida con $n$ variabili e $k$ vincoli (con $k&lt;n$), è sempre la stessa: $\nabla f=\sum_{i=1}^{k}\lambda_i\,\nabla g_i$, con la condizione di regolarità che la matrice dei gradienti dei vincoli abbia rango massimo $k$.</p>
+
+        <h3 id="teoria-confronto">4.9 Lagrange contro sostituzione: il confronto onesto</h3>
+        <p>Il metodo di <strong>sostituzione</strong> consiste nel ricavare una variabile dal vincolo e infilarla nella funzione obiettivo, riducendo il problema a una variabile. È legittimo, spesso più rapido, e sarebbe sciocco snobbarlo. Ma ha limiti precisi. Ecco il confronto senza sconti.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Situazione</th><th>Meglio la sostituzione</th><th>Meglio Lagrange</th></tr></thead>
+          <tbody>
+            <tr><td>Vincolo lineare, es. $x+y=10$</td><td>✅ Sì: $y=10-x$, studio di funzione in una variabile e via</td><td>Funziona, ma è più laborioso del necessario</td></tr>
+            <tr><td>Vincolo esplicitabile senza radici, es. $y=x^2$</td><td>✅ Sì: sostituzione immediata e pulita</td><td>Equivalente, nessun vantaggio</td></tr>
+            <tr><td>Circonferenza $x^2+y^2=1$</td><td>⚠️ Introduce $y=\pm\sqrt{1-x^2}$: due rami, radici, punti $x=\pm1$ da trattare a parte</td><td>✅ Sì: nessuna radice, nessun caso separato</td></tr>
+            <tr><td>Vincolo non esplicitabile, es. $x^4+x^2y^2+y^4=12$</td><td>❌ Impossibile in pratica</td><td>✅ L'unica strada ragionevole</td></tr>
+            <tr><td>Problema simmetrico in $x,y,z$</td><td>❌ La sostituzione distrugge la simmetria</td><td>✅ Le equazioni restano simmetriche e si risolvono per confronto</td></tr>
+            <tr><td>Più vincoli insieme</td><td>❌ Diventa rapidamente ingestibile</td><td>✅ Basta aggiungere un moltiplicatore per vincolo</td></tr>
+            <tr><td>Serve la sensibilità al vincolo (prezzo ombra)</td><td>❌ Non la fornisce</td><td>✅ Te la regala: è $\lambda$</td></tr>
+          </tbody>
+        </table>
+        <p>Una nota tecnica che spesso sfugge: la sostituzione può <strong>far perdere soluzioni</strong>. Se dal vincolo $x^2+y^2=1$ ricavi $y=\sqrt{1-x^2}$ e ti dimentichi del ramo negativo, hai buttato via metà del problema. E se studi $h(x)$ su $[-1,1]$ senza controllare gli estremi $x=\pm1$, ne perdi altri due. Lagrange, trattando $x$ e $y$ alla pari, non ha questo difetto.</p>
+        <p>Il consiglio pratico è semplice: <strong>se il vincolo è lineare o banalmente esplicitabile, sostituisci; in tutti gli altri casi, Lagrange</strong>. E se hai tempo, usa il secondo metodo per verificare il primo.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <h3>5.1 Lemma: il gradiente è perpendicolare all'insieme di livello</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea in una frase</div>
+          <p>Se cammini lungo una linea di quota, <strong>la tua altezza non cambia mai</strong>. Ma la velocità con cui cambia l'altezza è il prodotto scalare fra il gradiente e la tua direzione di marcia. Se quella variazione è zero, il prodotto scalare è zero, e prodotto scalare nullo significa <em>perpendicolare</em>. Tutto qui.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Lemma</span>
+          <p>Sia $g$ di classe $C^1$ e sia $\boldsymbol{r}(t)$ una curva derivabile interamente contenuta nell'insieme di livello $\{g=k\}$, con $\boldsymbol{r}(0)=P$. Allora $\nabla g(P)\cdot\boldsymbol{r}'(0)=0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Per ipotesi la curva sta dentro l'insieme di livello, quindi per ogni $t$ vale l'identità</p>
+          <div class="formula-block">$$g(\boldsymbol{r}(t))=k \qquad\text{(costante)}$$</div>
+          <p>Deriviamo entrambi i membri rispetto a $t$. A destra c'è una costante, la cui derivata è $0$. A sinistra c'è una funzione composta, e applichiamo la regola della catena in più variabili:</p>
+          <div class="formula-block">$$\frac{d}{dt}\,g(\boldsymbol{r}(t))=\nabla g(\boldsymbol{r}(t))\cdot \boldsymbol{r}'(t)$$</div>
+          <p>Uguagliando e valutando in $t=0$, dove $\boldsymbol{r}(0)=P$:</p>
+          <div class="formula-block">$$\nabla g(P)\cdot \boldsymbol{r}'(0)=0$$</div>
+          <p>Il prodotto scalare è nullo, dunque i due vettori sono ortogonali. Poiché $\boldsymbol{r}$ era una curva <em>qualsiasi</em> nell'insieme di livello, $\nabla g(P)$ è perpendicolare a <strong>ogni</strong> direzione tangente all'insieme di livello in $P$. <span class="qed">∎</span></p>
+        </div>
+
+        <h3>5.2 Il teorema dei moltiplicatori di Lagrange</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea in tre righe, prima dei simboli</div>
+          <p>Trasformo il problema vincolato in un problema a <strong>una sola variabile</strong>: parametrizzo il sentiero e guardo la quota come funzione del tempo di cammino. Nel punto migliore quella funzione ha un massimo, quindi la sua derivata si annulla: $\nabla f$ è perpendicolare al sentiero. Ma per il lemma appena dimostrato anche $\nabla g$ lo è. E nel piano, <strong>due frecce perpendicolari alla stessa freccia non nulla sono per forza parallele fra loro</strong>.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Moltiplicatori di Lagrange.</em> Siano $f,g\in C^1(A)$, $A\subseteq\mathbb{R}^2$ aperto, e sia $P_0\in V=\{g=0\}$ un punto di estremo locale di $f|_V$. Se $\nabla g(P_0)\neq\boldsymbol{0}$, allora esiste $\lambda\in\mathbb{R}$ con $\nabla f(P_0)=\lambda\,\nabla g(P_0)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Passo 1 — il vincolo è una curva regolare vicino a $P_0$.</strong> Poiché $\nabla g(P_0)\neq\boldsymbol{0}$, almeno una derivata parziale è diversa da zero; supponiamo $g_y(P_0)\neq 0$ (l'altro caso è identico scambiando i ruoli). Il <strong>teorema della funzione implicita</strong> (Dini) garantisce allora che in un intorno di $P_0$ l'insieme $\{g=0\}$ coincide con il grafico di una funzione $y=\psi(x)$ di classe $C^1$. Poniamo</p>
+          <div class="formula-block">$$\boldsymbol{r}(t)=\big(x_0+t,\ \psi(x_0+t)\big),\qquad \boldsymbol{r}(0)=P_0$$</div>
+          <p>Si tratta di una curva derivabile, contenuta in $V$, con $\boldsymbol{r}'(0)=(1,\psi'(x_0))\neq\boldsymbol{0}$: la prima componente vale $1$, quindi il vettore non può annullarsi.</p>
+          <p><strong>Passo 2 — da due variabili a una sola.</strong> Definiamo la funzione della sola variabile $t$</p>
+          <div class="formula-block">$$\varphi(t)=f(\boldsymbol{r}(t))$$</div>
+          <p>che rappresenta il valore di $f$ mentre ci si muove <em>sul vincolo</em>. Per ipotesi $P_0$ è un estremo locale di $f$ ristretta a $V$; dunque $t=0$ è un punto di estremo locale (libero!) per $\varphi$, che è derivabile. Per il <strong>teorema di Fermat</strong> di Analisi 1:</p>
+          <div class="formula-block">$$\varphi'(0)=0$$</div>
+          <p><strong>Passo 3 — la regola della catena.</strong> Calcoliamo $\varphi'(0)$ esplicitamente:</p>
+          <div class="formula-block">$$\varphi'(0)=\nabla f(P_0)\cdot \boldsymbol{r}'(0)=0$$</div>
+          <p>quindi $\nabla f(P_0)\perp \boldsymbol{r}'(0)$.</p>
+          <p><strong>Passo 4 — il lemma.</strong> La curva $\boldsymbol{r}$ giace in $\{g=0\}$, quindi per il Lemma 5.1</p>
+          <div class="formula-block">$$\nabla g(P_0)\cdot \boldsymbol{r}'(0)=0$$</div>
+          <p>e anche $\nabla g(P_0)\perp\boldsymbol{r}'(0)$.</p>
+          <p><strong>Passo 5 — conclusione di algebra lineare.</strong> Sia $\boldsymbol{w}=\boldsymbol{r}'(0)\neq\boldsymbol{0}$. L'insieme dei vettori di $\mathbb{R}^2$ ortogonali a $\boldsymbol{w}$ è il suo complemento ortogonale $\boldsymbol{w}^{\perp}$, che ha <strong>dimensione $1$</strong>: è una retta per l'origine. Entrambi i vettori $\nabla f(P_0)$ e $\nabla g(P_0)$ appartengono a questa retta. Poiché $\nabla g(P_0)\neq\boldsymbol{0}$, esso è una <strong>base</strong> di $\boldsymbol{w}^{\perp}$, e quindi ogni altro elemento è un suo multiplo scalare: esiste $\lambda\in\mathbb{R}$ tale che</p>
+          <div class="formula-block">$$\nabla f(P_0)=\lambda\,\nabla g(P_0)$$</div>
+          <p><span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Dove si è usata ciascuna ipotesi</div>
+          <p><strong>$\nabla g(P_0)\neq 0$</strong> è servita due volte: per applicare Dini nel Passo 1 (senza, il vincolo potrebbe non essere una curva) e nel Passo 5 (senza, $\nabla g$ non sarebbe una base e $\lambda$ non esisterebbe). <strong>La derivabilità di $f$</strong> è servita nel Passo 3. <strong>Il fatto che $P_0$ sia un estremo</strong> è servito solo nel Passo 2, tramite Fermat — ed è per questo che la condizione è soltanto necessaria: Fermat dà $\varphi'(0)=0$ anche nei punti di flesso a tangente orizzontale, che estremi non sono.</p>
+        </div>
+
+        <h3>5.3 Il significato del moltiplicatore: $\lambda$ è la derivata del valore ottimo</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea in una frase</div>
+          <p>Sposto di pochissimo il sentiero (allento il vincolo) e guardo di quanto sale la quota massima raggiungibile. Il conto si fa derivando <em>due</em> identità: quella che dice "l'ottimo sta sul vincolo" e quella che dice "nell'ottimo i gradienti sono paralleli". Le due si incastrano e producono esattamente $\lambda$.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Sensibilità dell'ottimo (prezzo ombra).</em> Si consideri, al variare di $c$, il problema di ottimizzare $f$ sul vincolo $g(x,y)=c$. Si supponga che per $c$ vicino a $c_0$ la soluzione $P(c)=(x(c),y(c))$ e il moltiplicatore $\lambda(c)$ esistano e dipendano da $c$ in modo derivabile, con $\nabla g(P(c))\neq \boldsymbol 0$. Allora la funzione valore ottimo $v(c)=f(P(c))$ è derivabile e</p>
+          <div class="formula-block">$$v'(c)=\lambda(c)$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Prima identità: l'ottimo sta sul vincolo.</strong> Per costruzione, per ogni $c$ vale</p>
+          <div class="formula-block">$$g\big(x(c),y(c)\big)=c$$</div>
+          <p>Deriviamo entrambi i membri rispetto a $c$. A sinistra c'è una funzione composta: $c$ entra dentro $x(c)$ e $y(c)$, che a loro volta entrano in $g$. La regola della catena in più variabili (Cap. 3) dà $\dfrac{d}{dc}g\big(x(c),y(c)\big)=g_x\cdot x'(c)+g_y\cdot y'(c)$, che è esattamente il prodotto scalare $\nabla g\cdot P'(c)$ se chiamo $P'(c)=(x'(c),y'(c))$ la velocità di spostamento dell'ottimo. A destra la derivata di $c$ rispetto a $c$ vale $1$:</p>
+          <div class="formula-block">$$\nabla g\big(P(c)\big)\cdot P'(c)=1 \tag{A}$$</div>
+          <p><strong>Seconda identità: la derivata del valore ottimo.</strong> Deriviamo $v(c)=f(x(c),y(c))$, sempre con la regola della catena:</p>
+          <div class="formula-block">$$v'(c)=\nabla f\big(P(c)\big)\cdot P'(c) \tag{B}$$</div>
+          <p><strong>Incastro.</strong> Per il teorema di Lagrange, nel punto ottimo $\nabla f(P(c))=\lambda(c)\,\nabla g(P(c))$. <strong>Sostituisco $\lambda(c)\nabla g(P(c))$ al posto di $\nabla f(P(c))$ dentro la (B)</strong>, e porto fuori lo scalare $\lambda(c)$ dal prodotto scalare; quello che resta, $\nabla g(P(c))\cdot P'(c)$, vale $1$ per la (A):</p>
+          <div class="formula-block">$$v'(c)=\lambda(c)\,\nabla g\big(P(c)\big)\cdot P'(c)=\lambda(c)\cdot 1=\lambda(c)$$</div>
+          <p>Si noti l'eleganza del meccanismo: <strong>non serve sapere come si sposta l'ottimo</strong> (il vettore $P'(c)$ sparisce da solo). È questo che rende $\lambda$ così utile nelle applicazioni, dove ricalcolare l'ottimo per ogni valore del budget sarebbe proibitivo. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Approssimazione pratica che si usa davvero</div>
+          <p>Dalla proposizione segue la stima di prim'ordine che in economia e ingegneria si usa quotidianamente:</p>
+          <div class="formula-block">$$v(c_0+\Delta c)\ \approx\ v(c_0)+\lambda\,\Delta c$$</div>
+          <p>Quindi se allento il vincolo di $\Delta c$ unità, il valore ottimo migliora di circa $\lambda\,\Delta c$. Per $\Delta c$ piccolo l'approssimazione è ottima; e nei problemi con $f$ omogenea di grado uno (come molte funzioni di produzione) è addirittura <strong>esatta</strong>, come vedremo nell'Esercizio 6.15.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Rettangolo di area massima con perimetro fissato</span><span class="badge badge--base">Base</span></div>
+          <p>Fra tutti i rettangoli di perimetro $20$, qual è quello di area massima?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Traduco.</strong> Lati $x,y&gt;0$. Obiettivo: $f(x,y)=xy$ (l'area). Vincolo: $2x+2y=20$, cioè $g(x,y)=2x+2y-20=0$.</span>
+            <span class="esempio__passo"><strong>Gradienti.</strong> $\nabla f=(y,\,x)$ e $\nabla g=(2,\,2)$. Nota che $\nabla g\neq\boldsymbol 0$ ovunque: regolarità a posto.</span>
+            <span class="esempio__passo"><strong>Sistema.</strong> Scrivo $\nabla f=\lambda\nabla g$ <em>componente per componente</em>: la prima componente di $\nabla f$ è $y$, quella di $\nabla g$ è $2$, quindi $y=\lambda\cdot2$; la seconda dà $x=\lambda\cdot2$. Aggiungo l'equazione del vincolo e ottengo $\begin{cases}y=2\lambda\\ x=2\lambda\\ 2x+2y=20\end{cases}$</span>
+            <span class="esempio__passo"><strong>Risolvo.</strong> Le prime due equazioni hanno lo <em>stesso</em> membro destro, $2\lambda$: due quantità uguali a una terza sono uguali fra loro, quindi $x=y$. <strong>Sostituisco $x$ al posto di $y$ nel vincolo</strong> $2x+2y=20$: viene $2x+2x=20$, cioè $4x=20$ e dividendo per $4$ si ha $x=5$; di conseguenza $y=5$. Il moltiplicatore lo leggo da $x=2\lambda$: $\lambda=x/2=5/2$.</span>
+            <span class="esempio__passo"><strong>Verifico che sia un massimo.</strong> Sul vincolo con $x,y&gt;0$ si ha $y=10-x$ con $x\in(0,10)$, quindi $A(x)=x(10-x)$: una parabola con la concavità verso il basso, massima in $x=5$. Confermato.</span>
+          </p>
+          <div class="esempio__risultato">Il rettangolo di area massima è il <strong>quadrato di lato $5$</strong>, con area $25$. Inoltre $\lambda=2{,}5$: se il perimetro disponibile aumentasse di una unità, l'area massima crescerebbe di circa $2{,}5$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Distanza minima da un punto a una retta</span><span class="badge badge--base">Base</span></div>
+          <p>Trovare il punto della retta $x+2y=5$ più vicino all'origine, e la relativa distanza.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Trucco preliminare.</strong> Minimizzare $\sqrt{x^2+y^2}$ equivale a minimizzare $x^2+y^2$, perché la radice è crescente: stesso punto di minimo, conti molto più semplici. Poniamo dunque $f(x,y)=x^2+y^2$ e $g(x,y)=x+2y-5$.</span>
+            <span class="esempio__passo"><strong>Gradienti.</strong> $\nabla f=(2x,\,2y)$, $\nabla g=(1,\,2)$.</span>
+            <span class="esempio__passo"><strong>Sistema.</strong> Scrivo $\nabla f=\lambda\nabla g$ componente per componente: prima componente $2x=\lambda\cdot1$, seconda componente $2y=\lambda\cdot2$. Con il vincolo: $\begin{cases}2x=\lambda\\ 2y=2\lambda\\ x+2y=5\end{cases}$ Dalle prime due ricavo le variabili in funzione di $\lambda$ dividendo per $2$: $\ x=\dfrac{\lambda}{2}$ e $y=\lambda$.</span>
+            <span class="esempio__passo"><strong>Sostituisco nel vincolo</strong> $x+2y=5$ le espressioni appena trovate, cioè metto $\frac{\lambda}{2}$ al posto di $x$ e $\lambda$ al posto di $y$: $\ \dfrac{\lambda}{2}+2\lambda=5$. Sommo le due frazioni portando a denominatore $2$ ($2\lambda=\frac{4\lambda}{2}$): $\ \dfrac{5\lambda}{2}=5$; moltiplico entrambi i membri per $\frac{2}{5}$ e ottengo $\lambda=2$. Rimetto $\lambda=2$ nelle espressioni di prima: $x=\frac{2}{2}=1$ e $y=2$.</span>
+            <span class="esempio__passo"><strong>Distanza.</strong> $d=\sqrt{1^2+2^2}=\sqrt5$.</span>
+            <span class="esempio__passo"><strong>Controllo.</strong> La formula della geometria analitica dà $d=\dfrac{|0+2\cdot 0-5|}{\sqrt{1^2+2^2}}=\dfrac{5}{\sqrt5}=\sqrt5$. Perfetto.</span>
+          </p>
+          <div class="esempio__risultato">Punto più vicino $(1,\,2)$, distanza $\sqrt5\approx 2{,}24$. Osserva che il vettore $(1,2)$ dall'origine al punto è <strong>parallelo a $\nabla g=(1,2)$</strong>, cioè perpendicolare alla retta: è esattamente il "piede della perpendicolare" della geometria elementare, ritrovato per via analitica.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Il punto più caldo di un anello</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>La temperatura di una piastra è $T(x,y)=x^2+2y^2$. Un anello circolare di raggio $1$ centrato nell'origine è appoggiato sulla piastra. Determinare i punti più caldi e più freddi dell'anello.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Impostazione.</strong> $f(x,y)=x^2+2y^2$, $g(x,y)=x^2+y^2-1$. Il vincolo è chiuso e limitato, quindi per <strong>Weierstrass</strong> massimo e minimo esistono: basterà confrontare i valori nei candidati.</span>
+            <span class="esempio__passo"><strong>Sistema.</strong> Derivo: $\nabla f=(2x,\,4y)$ e $\nabla g=(2x,\,2y)$. Scrivo $\nabla f=\lambda\nabla g$ componente per componente — prima componente $2x=\lambda\cdot 2x$, seconda $4y=\lambda\cdot 2y$ — e aggiungo il vincolo: $\begin{cases}2x=2\lambda x\\ 4y=2\lambda y\\ x^2+y^2=1\end{cases}$</span>
+            <span class="esempio__passo"><strong>Attenzione: non dividere!</strong> Nella prima equazione porto tutto a sinistra, $2x-2\lambda x=0$, e <em>raccolgo</em> $2x$ a fattor comune: $2x(1-\lambda)=0$. Nella seconda, $4y-2\lambda y=0$ diventa $2y(2-\lambda)=0$. Dividere per $x$ (o per $y$) sarebbe illecito quando vale zero, e farebbe perdere soluzioni: meglio il raccoglimento, che dice "un prodotto è nullo se e solo se lo è uno dei fattori".</span>
+            <span class="esempio__passo"><strong>Caso A: $x=0$</strong> (primo fattore nullo). Sostituisco $x=0$ nel vincolo: $0+y^2=1$, cioè $y=\pm1$. Punti $(0,\pm1)$. Il moltiplicatore lo ricavo dalla seconda equazione $2y(2-\lambda)=0$: siccome qui $y=\pm1\neq0$, deve annullarsi l'altro fattore, quindi $\lambda=2$. Valore: sostituisco nel testo di $f$, $\ f(0,\pm1)=0^2+2\cdot(\pm1)^2=2$.</span>
+            <span class="esempio__passo"><strong>Caso B: $\lambda=1$</strong> (secondo fattore della prima equazione nullo). Sostituisco $\lambda=1$ nella seconda equazione: $2y(2-1)=0$, cioè $2y=0$ e quindi $y=0$. Metto $y=0$ nel vincolo: $x^2=1$, cioè $x=\pm1$. Punti $(\pm1,0)$. Valore: $f(\pm1,0)=(\pm1)^2+2\cdot0^2=1$.</span>
+            <span class="esempio__passo"><strong>Nessun altro caso:</strong> le due equazioni fattorizzate dicono "($x=0$ oppure $\lambda=1$)" e "($y=0$ oppure $\lambda=2$)"; $\lambda$ non può valere $1$ e $2$ insieme, e l'unica combinazione rimasta, $x=0$ e $y=0$, non soddisfa il vincolo $x^2+y^2=1$.</span>
+            <span class="esempio__passo"><strong>Confronto.</strong> Valori candidati: $2,\,2,\,1,\,1$.</span>
+          </p>
+          <div class="esempio__risultato">Punti <strong>più caldi</strong>: $(0,1)$ e $(0,-1)$ con $T=2$. Punti <strong>più freddi</strong>: $(1,0)$ e $(-1,0)$ con $T=1$. Ha senso: il coefficiente $2$ davanti a $y^2$ "pesa" di più, quindi conviene spendere tutto il raggio nella direzione $y$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Scatola di superficie minima a volume fissato</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Si vuole costruire una scatola chiusa a forma di parallelepipedo rettangolo con volume $8$ dm³, usando il minimo cartone possibile. Quali dimensioni?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Impostazione.</strong> Spigoli $x,y,z&gt;0$. Superficie totale $S(x,y,z)=2(xy+yz+xz)$ da minimizzare; vincolo $g=xyz-8=0$.</span>
+            <span class="esempio__passo"><strong>Gradienti.</strong> $\nabla S=\big(2(y+z),\,2(x+z),\,2(x+y)\big)$ e $\nabla g=(yz,\,xz,\,xy)$, mai nullo nella regione $x,y,z&gt;0$.</span>
+            <span class="esempio__passo"><strong>Sistema.</strong> $\begin{cases}2(y+z)=\lambda yz\\ 2(x+z)=\lambda xz\\ 2(x+y)=\lambda xy\\ xyz=8\end{cases}$</span>
+            <span class="esempio__passo"><strong>Trucco di simmetria.</strong> Moltiplico la prima per $x$ e la seconda per $y$: entrambe hanno a destra $\lambda\,xyz$, quindi i membri sinistri sono uguali: $2x(y+z)=2y(x+z)$, cioè $2xy+2xz=2xy+2yz$, cioè $xz=yz$. Essendo $z&gt;0$, ottengo $\boldsymbol{x=y}$.</span>
+            <span class="esempio__passo"><strong>Ripeto.</strong> Moltiplico la seconda equazione per $y$: $2y(x+z)=\lambda xyz$; e la terza per $z$: $2z(x+y)=\lambda xyz$. Di nuovo i membri destri coincidono, quindi $2y(x+z)=2z(x+y)$, cioè $2xy+2yz=2xz+2yz$; tolgo $2yz$ da entrambi e resta $2xy=2xz$, cioè (dividendo per $2x&gt;0$) $\boldsymbol{y=z}$.</span>
+            <span class="esempio__passo"><strong>Concludo.</strong> Ho $x=y$ e $y=z$, dunque $x=y=z$. <strong>Sostituisco $x$ al posto di $y$ e di $z$ nel vincolo</strong> $xyz=8$: viene $x\cdot x\cdot x=x^3=8$, quindi $x=\sqrt[3]{8}=2$ e perciò $x=y=z=2$. Superficie: sostituisco in $S=2(xy+yz+xz)$, cioè $S=2(2\cdot2+2\cdot2+2\cdot2)=2(4+4+4)=24$ dm². Il moltiplicatore si legge dalla prima equazione $2(y+z)=\lambda yz$ mettendo $y=z=2$: $\ 2(2+2)=\lambda\cdot 4$, cioè $8=4\lambda$ e $\lambda=2$.</span>
+          </p>
+          <div class="esempio__risultato">La scatola ottimale è il <strong>cubo di lato $2$ dm</strong>, con superficie $24$ dm². È il principio per cui, a parità di volume, la forma più "compatta" spreca meno materiale — lo stesso motivo per cui le bolle di sapone sono sferiche.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Massimizzare l'utilità con un vincolo di budget</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Un consumatore ha utilità $U(x,y)=\sqrt{xy}$, i prezzi sono $p_x=2$ e $p_y=4$ euro, e il reddito è $R=80$ euro. Determinare il paniere ottimale, il livello di utilità raggiunto e interpretare $\lambda$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Impostazione.</strong> Massimizzare $U=x^{1/2}y^{1/2}$ con $x,y&gt;0$ e vincolo $g=2x+4y-80=0$.</span>
+            <span class="esempio__passo"><strong>Derivate parziali.</strong> Scrivo $U=x^{1/2}y^{1/2}$ e derivo rispetto a $x$ con la regola della potenza $(x^a)'=a\,x^{a-1}$, tenendo $y^{1/2}$ come costante moltiplicativa: $U_x=\tfrac12x^{-1/2}y^{1/2}=\dfrac12\sqrt{\dfrac{y}{x}}$ (perché $x^{-1/2}=1/\sqrt x$). Simmetricamente $U_y=\dfrac12\sqrt{\dfrac{x}{y}}$. Il gradiente del vincolo $g=2x+4y-80$ è invece immediato: $\nabla g=(2,4)$.</span>
+            <span class="esempio__passo"><strong>Sistema.</strong> $\begin{cases}\frac12\sqrt{y/x}=2\lambda\\[2pt] \frac12\sqrt{x/y}=4\lambda\\[2pt] 2x+4y=80\end{cases}$</span>
+            <span class="esempio__passo"><strong>Elimino $\lambda$ dividendo membro a membro</strong> le prime due (lecito: $\lambda\neq 0$, altrimenti $U_x=0$, impossibile per $x,y&gt;0$): $\ \dfrac{\sqrt{y/x}}{\sqrt{x/y}}=\dfrac{2\lambda}{4\lambda}=\dfrac12$.</span>
+            <span class="esempio__passo"><strong>Semplifico.</strong> Dividere per $\sqrt{x/y}$ equivale a moltiplicare per il suo reciproco $\sqrt{y/x}$; inoltre il fattore $\frac12$ presente sopra e sotto si cancella. Quindi il primo membro vale $\sqrt{y/x}\cdot\sqrt{y/x}=\left(\sqrt{y/x}\right)^2=\dfrac{y}{x}$. Dunque $\dfrac{y}{x}=\dfrac12$; moltiplicando in croce, $2y=x$, cioè $x=2y$. (Questa è la condizione economica "rapporto delle utilità marginali uguale al rapporto dei prezzi".)</span>
+            <span class="esempio__passo"><strong>Vincolo.</strong> <strong>Sostituisco $2y$ al posto di $x$</strong> in $2x+4y=80$: $\ 2(2y)+4y=80$, cioè $4y+4y=8y=80$; divido per $8$ e ottengo $y=10$. Rimetto nel legame $x=2y$: $x=20$.</span>
+            <span class="esempio__passo"><strong>Utilità ottima.</strong> $U^{*}=\sqrt{20\cdot10}=\sqrt{200}=10\sqrt2\approx 14{,}14$.</span>
+            <span class="esempio__passo"><strong>Moltiplicatore.</strong> Dalla seconda equazione: $\frac12\sqrt{20/10}=4\lambda\ \Rightarrow\ \frac{\sqrt2}{2}=4\lambda\ \Rightarrow\ \lambda=\dfrac{\sqrt2}{8}\approx 0{,}177$.</span>
+            <span class="esempio__passo"><strong>Verifica del significato.</strong> Rifacendo i conti con reddito generico $R$ si trova $x=R/4$, $y=R/8$, quindi $U^{*}(R)=\sqrt{R^2/32}=\dfrac{R}{4\sqrt2}$. Derivando: $\dfrac{dU^{*}}{dR}=\dfrac{1}{4\sqrt2}=\dfrac{\sqrt2}{8}$. Coincide con $\lambda$, come promesso dalla Proposizione 5.3.</span>
+          </p>
+          <div class="esempio__risultato">Paniere ottimale $(x,y)=(20,\,10)$, utilità $10\sqrt2\approx14{,}14$, moltiplicatore $\lambda=\sqrt2/8\approx0{,}177$: <strong>un euro di reddito in più vale circa $0{,}177$ unità di utilità</strong>. Nota che il consumatore spende $2\cdot20=40$ euro in $x$ e $4\cdot10=40$ euro in $y$: metà del budget ciascuno, come è tipico delle utilità del tipo $x^ay^b$ con $a=b$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Due vincoli in $\mathbb{R}^3$</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determinare il punto più alto e il punto più basso della curva ottenuta intersecando il cilindro $x^2+y^2=1$ con il piano $x+y+z=1$. In altre parole: massimo e minimo di $f(x,y,z)=z$ su quella curva.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Impostazione.</strong> $f=z$, $g=x^2+y^2-1$, $h=x+y+z-1$. Condizione: $\nabla f=\lambda\nabla g+\mu\nabla h$.</span>
+            <span class="esempio__passo"><strong>Gradienti.</strong> $\nabla f=(0,0,1)$, $\nabla g=(2x,\,2y,\,0)$, $\nabla h=(1,1,1)$. Sul vincolo $x^2+y^2=1$ non può essere $x=y=0$, quindi $\nabla g\neq\boldsymbol0$; inoltre $\nabla g$ ha terza componente nulla e $\nabla h$ no, dunque non sono paralleli: regolarità verificata.</span>
+            <span class="esempio__passo"><strong>Sistema.</strong> Scrivo $\nabla f=\lambda\nabla g+\mu\nabla h$ <em>componente per componente</em>, incolonnando le tre coordinate: prima componente $0=\lambda\cdot2x+\mu\cdot1$; seconda $0=\lambda\cdot2y+\mu\cdot1$; terza $1=\lambda\cdot0+\mu\cdot1$. Aggiungo le due equazioni dei vincoli: $\begin{cases}0=2\lambda x+\mu\\ 0=2\lambda y+\mu\\ 1=0+\mu\\ x^2+y^2=1\\ x+y+z=1\end{cases}$</span>
+            <span class="esempio__passo"><strong>Terza equazione:</strong> dà $\mu=1$ immediatamente.</span>
+            <span class="esempio__passo"><strong>Prime due.</strong> Sostituisco $\mu=1$: $2\lambda x+1=0$ e $2\lambda y+1=0$, cioè $2\lambda x=-1$ e $2\lambda y=-1$. Prima di dividere per $\lambda$ controllo il caso $\lambda=0$: darebbe $0=-1$, assurdo. Dunque $\lambda\neq0$ e posso dividere entrambe per $2\lambda$: $\ x=-\dfrac{1}{2\lambda}$ e $y=-\dfrac{1}{2\lambda}$, cioè $x=y$.</span>
+            <span class="esempio__passo"><strong>Vincolo cilindro.</strong> <strong>Sostituisco $x$ al posto di $y$</strong> in $x^2+y^2=1$: viene $x^2+x^2=2x^2=1$, quindi $x^2=\tfrac12$ e $x=\pm\dfrac{1}{\sqrt2}=\pm\dfrac{\sqrt2}{2}$ (razionalizzo moltiplicando sopra e sotto per $\sqrt2$). E $y=x$.</span>
+            <span class="esempio__passo"><strong>Vincolo piano.</strong> Ricavo $z$ da $x+y+z=1$: $\ z=1-x-y=1-2x$. Con $x=\tfrac{\sqrt2}{2}$ viene $z=1-2\cdot\tfrac{\sqrt2}{2}=1-\sqrt2$; con $x=-\tfrac{\sqrt2}{2}$ viene $z=1+\sqrt2$.</span>
+            <span class="esempio__passo"><strong>Confronto.</strong> Candidati: $\left(\frac{\sqrt2}{2},\frac{\sqrt2}{2},\,1-\sqrt2\right)$ con $z\approx-0{,}41$, e $\left(-\frac{\sqrt2}{2},-\frac{\sqrt2}{2},\,1+\sqrt2\right)$ con $z\approx2{,}41$. La curva è chiusa e limitata (un'ellisse), quindi Weierstrass garantisce che questi sono proprio massimo e minimo assoluti.</span>
+          </p>
+          <div class="esempio__risultato">Punto più alto $\left(-\frac{\sqrt2}{2},\,-\frac{\sqrt2}{2},\,1+\sqrt2\right)$ con $z_{\max}=1+\sqrt2$; punto più basso $\left(\frac{\sqrt2}{2},\,\frac{\sqrt2}{2},\,1-\sqrt2\right)$ con $z_{\min}=1-\sqrt2$. Geometricamente: il piano taglia il cilindro secondo un'ellisse inclinata, e i due punti trovati ne sono gli estremi della "salita".</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Quando il metodo fallisce: regolarità violata</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Minimizzare $f(x,y)=x$ sul vincolo $g(x,y)=y^2-x^3=0$. Discutere.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Risposta "a occhio".</strong> Sul vincolo $x^3=y^2\geq0$, quindi $x\geq0$; e il valore $x=0$ è effettivamente raggiunto nell'origine, che appartiene al vincolo. Il minimo esiste, vale $0$, ed è assunto in $(0,0)$.</span>
+            <span class="esempio__passo"><strong>Applico Lagrange.</strong> $\nabla f=(1,0)$, $\nabla g=(-3x^2,\,2y)$. Sistema: $\begin{cases}1=-3\lambda x^2\\ 0=2\lambda y\\ y^2=x^3\end{cases}$</span>
+            <span class="esempio__passo"><strong>Seconda equazione:</strong> $\lambda=0$ oppure $y=0$.</span>
+            <span class="esempio__passo"><strong>Se $\lambda=0$:</strong> la prima diventa $1=0$. Assurdo.</span>
+            <span class="esempio__passo"><strong>Se $y=0$:</strong> dal vincolo $x^3=0$, cioè $x=0$; ma allora la prima equazione dà ancora $1=0$. Assurdo.</span>
+            <span class="esempio__passo"><strong>Diagnosi.</strong> Il sistema è impossibile. Il colpevole è $\nabla g(0,0)=(0,0)$: nell'origine il vincolo ha una <strong>cuspide</strong> e l'ipotesi del teorema cade, quindi il teorema semplicemente non ha nulla da dire su quel punto.</span>
+          </p>
+          <div class="esempio__risultato">Il minimo è $f(0,0)=0$, <strong>ma non è una soluzione del sistema di Lagrange</strong>. Morale operativa: quando il sistema non ha soluzioni (o quando ne ha, ma nessuna sembra plausibile), il primo sospettato è sempre l'insieme dei punti con $\nabla g=\boldsymbol 0$, da esaminare separatamente.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Fermarsi ai candidati senza dire chi è massimo e chi è minimo</div>
+          <p>È l'errore numero uno, e all'esame costa sempre punti. Il sistema di Lagrange produce una lista di punti; <strong>il teorema non dice quale sia massimo, quale minimo e quale nessuno dei due</strong>. Consegnare "i candidati sono $(1,2)$ e $(-1,-2)$" e fermarsi lì è una risposta incompleta.</p>
+          <p><em>Come evitarlo</em>: aggiungi sempre l'ultimo passaggio. Se il vincolo è chiuso e limitato, calcola $f$ in <strong>tutti</strong> i candidati e confronta i numeri: il più grande è il massimo assoluto, il più piccolo il minimo assoluto (Weierstrass ti autorizza a farlo). Se il vincolo non è limitato, studia il comportamento di $f$ all'infinito lungo il vincolo prima di concludere.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Perdere soluzioni dividendo per $\lambda$ (o per $x$, o per $y$)</div>
+          <p>Classico: dal sistema $\begin{cases}2x=2\lambda x\\ 4y=2\lambda y\end{cases}$ lo studente frettoloso divide la prima per $2x$ e la seconda per $2y$, ottenendo $\lambda=1$ e $\lambda=2$, conclude "impossibile" e dichiara che non ci sono soluzioni. Ma sono stati divisi per quantità che <strong>possono essere nulle</strong>, e proprio i casi $x=0$ e $y=0$ contengono tutte e quattro le soluzioni del problema (è l'Esempio 3).</p>
+          <p><em>Come evitarlo</em>: non dividere mai, <strong>raccogli</strong>. Scrivi $2x(1-\lambda)=0$ e $2y(2-\lambda)=0$, poi discuti i casi con la legge di annullamento del prodotto. Stessa cosa con $\lambda$: prima di dividere per $\lambda$ chiediti sempre "e se $\lambda$ fosse zero?", e tratta quel caso a parte (spesso si esclude in una riga, ma va scritto).</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Ignorare i punti in cui $\nabla g$ si annulla</div>
+          <p>Il teorema vale <strong>solo</strong> dove $\nabla g\neq\boldsymbol 0$. Se sul vincolo esistono punti singolari e non li controlli, il metodo può restituire una lista incompleta — o addirittura vuota, pur esistendo massimo e minimo (Esempio 7, la cubica cuspidale $y^2=x^3$).</p>
+          <p><em>Come evitarlo</em>: prima di risolvere, scrivi $\nabla g$ e risolvi $\nabla g=\boldsymbol0$; poi verifica se quelle soluzioni stanno sul vincolo. Nella maggior parte degli esercizi standard (circonferenze, ellissi, sfere, rette, piani) non ce ne sono, e liquidi la questione con una riga. Ma quella riga va scritta: dimostra che sai perché il teorema funziona.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare l'equazione del vincolo nel sistema</div>
+          <p>Le due (o tre) equazioni $\nabla f=\lambda\nabla g$ da sole <strong>non bastano</strong>: descrivono tutti i punti del piano in cui i gradienti sono paralleli, compresi quelli fuori dal vincolo. Senza $g(x,y)=0$ il sistema ha infinite soluzioni inutili e le incognite non tornano.</p>
+          <p><em>Come evitarlo</em>: usa la lagrangiana $\mathcal{L}=f-\lambda g$ e ricorda che $\partial\mathcal{L}/\partial\lambda=0$ <em>è</em> il vincolo. Oppure, banalmente: conta le incognite ($x,y,\lambda$: tre) e assicurati di avere tre equazioni.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere $\nabla f=\lambda\nabla g$ con $f=\lambda g$</div>
+          <p>La condizione riguarda i <strong>gradienti</strong>, non le funzioni. Scrivere $f=\lambda g$ è un errore concettuale grave: significherebbe che la funzione obiettivo è proporzionale al vincolo, cosa che non c'entra nulla. Parente stretto di questo errore: scrivere $\nabla f\cdot\nabla g=0$ (ortogonalità) al posto del parallelismo — è esattamente il contrario di quel che serve.</p>
+          <p><em>Come evitarlo</em>: ripeti la frase chiave ogni volta che imposti il problema: "<strong>nel punto di tangenza i due gradienti hanno la stessa direzione, quindi uno è multiplo dell'altro</strong>". Multiplo, non ortogonale; gradienti, non funzioni.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Usare l'hessiano di $f$ per classificare i punti vincolati</div>
+          <p>L'<span class="glossario-term" data-term="hessiano">hessiano</span> di $f$ classifica i punti critici <strong>liberi</strong>. Sul vincolo non serve, e usarlo porta a conclusioni sbagliate: un punto può essere un minimo lungo il vincolo pur essendo, per esempio, una sella della funzione libera. Il criterio corretto, quando serve davvero, è l'hessiano <em>orlato</em> della lagrangiana, che però in Analisi 2 di base quasi mai si richiede.</p>
+          <p><em>Come evitarlo</em>: nel 95% degli esercizi il confronto dei valori sui candidati (via Weierstrass) è sufficiente e del tutto rigoroso. Usalo, è più veloce e più sicuro.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La ricetta in cinque mosse, da seguire sempre</div>
+          <ol>
+            <li><strong>Traduci</strong>: chi è $f$ (ciò che voglio ottimizzare) e chi è $g$ (la regola da rispettare, portata nella forma $g=0$).</li>
+            <li><strong>Controlla la regolarità</strong>: risolvi $\nabla g=\boldsymbol 0$ e verifica se quelle soluzioni stanno sul vincolo. Se sì, mettile da parte come candidati extra.</li>
+            <li><strong>Scrivi il sistema</strong>: $\nabla f=\lambda\nabla g$ più l'equazione $g=0$. Tante equazioni quante incognite.</li>
+            <li><strong>Risolvi raccogliendo</strong>, mai dividendo, e discuti tutti i casi.</li>
+            <li><strong>Concludi</strong>: verifica la compattezza del vincolo, calcola $f$ in ogni candidato e confronta i valori. Poi rispondi a parole alla domanda che ti è stata fatta.</li>
+          </ol>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Ottimizza il quadrato della distanza, mai la distanza</div>
+          <p>Ogni volta che il problema chiede "il punto più vicino/più lontano", <strong>non</strong> lavorare con $d=\sqrt{(x-a)^2+(y-b)^2}$: derivare una radice è inutilmente scomodo. Usa invece $D=d^2=(x-a)^2+(y-b)^2$. Poiché $t\mapsto\sqrt t$ è strettamente crescente su $[0,+\infty)$, <strong>$d$ e $d^2$ hanno gli stessi punti di minimo e di massimo</strong>. Alla fine, se serve il valore della distanza, estrai la radice del risultato.</p>
+          <p>La stessa idea vale in generale: se $\Phi$ è strettamente crescente, ottimizzare $f$ o $\Phi(f)$ è la stessa cosa. È il motivo per cui in statistica si massimizza sempre il <em>logaritmo</em> della verosimiglianza invece della verosimiglianza.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Elimina $\lambda$ dividendo membro a membro</div>
+          <p>Il moltiplicatore è un'incognita ausiliaria: spesso non ti interessa il suo valore. Dalle due equazioni $f_x=\lambda g_x$ e $f_y=\lambda g_y$, dividendo membro a membro (dopo aver escluso i casi di annullamento) ottieni la relazione pulita</p>
+          <div class="formula-block">$$\frac{f_x}{f_y}=\frac{g_x}{g_y}\qquad\text{ovvero}\qquad f_x\,g_y-f_y\,g_x=0$$</div>
+          <p>La seconda forma è preferibile perché <strong>non divide per nulla</strong>: è semplicemente la condizione di parallelismo scritta come determinante nullo, $\det\begin{pmatrix}f_x&amp;f_y\\ g_x&amp;g_y\end{pmatrix}=0$. Messa a sistema con $g=0$, dà due equazioni in due incognite e $\lambda$ sparisce del tutto.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sfrutta la simmetria: se il problema è simmetrico, l'ottimo spesso lo è</div>
+          <p>Quando $f$ e $g$ sono <strong>simmetriche</strong> rispetto allo scambio delle variabili (per esempio $f=xyz$ e $g=x+y+z-12$), le equazioni del sistema si trasformano l'una nell'altra scambiando i nomi. In quei casi la strada più rapida è: moltiplica ogni equazione per la variabile "mancante", confronta i membri destri (che diventano tutti uguali) e deduci $x=y=z$. È il trucco usato negli Esempi 4 e 6 e negli Esercizi 6.7 e 6.16.</p>
+          <p>Attenzione però: la simmetria suggerisce, non dimostra. Vanno sempre discussi anche i casi degeneri (variabili nulle, segni opposti), che a volte contengono il minimo mentre la soluzione simmetrica contiene il massimo.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Somma e sottrai le equazioni quando compaiono $x\pm y$</div>
+          <p>Nei problemi su circonferenze con obiettivi del tipo $x^2+y^2-xy$ oppure $xy$, il sistema ha spesso la forma $\begin{cases}a x+b y=2\lambda x\\ b x+a y=2\lambda y\end{cases}$. <strong>Sommando</strong> le due equazioni compare il fattore $(x+y)$, <strong>sottraendole</strong> compare $(x-y)$. Si ottengono così due prodotti uguagliati a zero, e i casi da discutere diventano immediati: $x=y$, $x=-y$, oppure i valori speciali di $\lambda$. È la tecnica dell'Esercizio 6.13, e fa risparmiare molti minuti.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Controlla la coerenza con le unità di misura e con l'intuizione</div>
+          <p>Due verifiche rapide che smascherano quasi tutti gli errori di conto. <strong>Prima</strong>: $\lambda$ ha le unità di $f$ diviso quelle di $g$; se stai massimizzando un'area (m²) con vincolo un perimetro (m), $\lambda$ deve venire in metri. <strong>Seconda</strong>: chiediti se la risposta è plausibile. In quasi tutti i problemi "belli" (perimetro fissato, volume fissato, budget fissato) la soluzione è simmetrica: quadrato, cubo, sfera, spesa equamente ripartita. Se ti viene fuori un rettangolo $1\times 99$ come area massima a perimetro fissato, hai sbagliato qualcosa.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Moltiplicatori di Lagrange</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Il problema</strong>
+              <ul><li>Ottimizzare $f$ su $\{g=0\}$</li><li>Non su tutto il piano</li><li>Sentiero sulla montagna</li><li>Lì $\nabla f\neq 0$: inutile cercarlo</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>L'idea geometrica</strong>
+              <ul><li>Se il vincolo taglia, si migliora ancora</li><li>Ottimo = tangenza</li><li>Gradienti perpendicolari al vincolo</li><li>Quindi paralleli fra loro</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Il metodo</strong>
+              <ul><li>$\nabla f=\lambda\nabla g$</li><li>$\mathcal{L}=f-\lambda g$</li><li>Sistema: 2 eq. + vincolo</li><li>Incognite $x,y,\lambda$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Il moltiplicatore</strong>
+              <ul><li>$v'(c)=\lambda$</li><li>Prezzo ombra</li><li>Unità: $f$ diviso $g$</li><li>$\lambda=0$: vincolo non "morde"</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Ipotesi e trappole</strong>
+              <ul><li>Serve $\nabla g\neq 0$</li><li>Cuspidi: candidati extra</li><li>Solo condizione necessaria</li><li>Raccogli, non dividere</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Concludere</strong>
+              <ul><li>Vincolo chiuso e limitato?</li><li>Weierstrass garantisce max e min</li><li>Confronta i valori nei candidati</li><li>Niente hessiano di $f$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Estensioni</strong>
+              <ul><li>$n$ variabili: stessa formula</li><li>Due vincoli: $\nabla f=\lambda\nabla g+\mu\nabla h$</li><li>Serve indipendenza dei $\nabla$</li><li>$k$ vincoli: $k$ moltiplicatori</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Lagrange o sostituzione?</strong>
+              <ul><li>Vincolo lineare: sostituisci</li><li>Circonferenze: Lagrange</li><li>Non esplicitabile: Lagrange</li><li>Serve $\lambda$: Lagrange</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Il problema</strong>: ottimizzare $f(x,y)$ non su tutto il piano, ma solo sui punti del vincolo $g(x,y)=0$. Sul vincolo la condizione $\nabla f=0$ è quasi sempre inutile.</li>
+            <li><strong>L'immagine</strong>: cammini su un sentiero in montagna. Finché il sentiero <em>taglia</em> le curve di livello stai ancora salendo o scendendo; il punto migliore è dove il sentiero le <em>sfiora</em>, cioè dove c'è <strong>tangenza</strong>.</li>
+            <li><strong>La condizione</strong>: $\ \nabla f(P_0)=\lambda\,\nabla g(P_0)$, valida se $\nabla g(P_0)\neq\boldsymbol 0$. È <strong>solo necessaria</strong>: produce candidati.</li>
+            <li><strong>La lagrangiana</strong>: $\mathcal{L}=f-\lambda g$; imporre $\nabla\mathcal{L}=0$ rispetto a $x,y,\lambda$ restituisce le due equazioni dei gradienti <em>e</em> il vincolo.</li>
+            <li><strong>Il sistema</strong>: $\ f_x=\lambda g_x,\quad f_y=\lambda g_y,\quad g=0$. Tre equazioni, tre incognite.</li>
+            <li><strong>Il significato di $\lambda$</strong>: $v'(c)=\lambda$, cioè di quanto migliora l'ottimo se il vincolo viene allentato di una unità. In economia è il <strong>prezzo ombra</strong>; in meccanica è la reazione vincolare.</li>
+            <li><strong>Regolarità</strong>: dove $\nabla g=\boldsymbol 0$ il teorema non vale. Quei punti vanno aggiunti a mano alla lista dei candidati (controesempio: minimo di $x$ su $y^2=x^3$).</li>
+            <li><strong>Esistenza</strong>: se il vincolo è <strong>chiuso e limitato</strong> e $f$ è continua, Weierstrass garantisce massimo e minimo assoluti; allora basta confrontare i valori di $f$ nei candidati, senza derivate seconde.</li>
+            <li><strong>Due vincoli in $\mathbb{R}^3$</strong>: $\ \nabla f=\lambda\nabla g+\mu\nabla h$, con $\nabla g$ e $\nabla h$ linearmente indipendenti. Cinque equazioni in $x,y,z,\lambda,\mu$.</li>
+            <li><strong>Lagrange o sostituzione?</strong> Vincolo lineare o facilmente esplicitabile: sostituzione. Vincolo implicito, simmetrico, con radici o con più condizioni: Lagrange.</li>
+            <li><strong>Errori da non fare</strong>: fermarsi ai candidati senza classificarli; dividere per $\lambda$, $x$ o $y$ senza discutere il caso nullo; dimenticare l'equazione del vincolo; ignorare i punti singolari.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina massimo e minimo assoluti di $f(x,y)=2x+y$ sul vincolo $x^2+y^2=5$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il vincolo è una circonferenza: chiusa e limitata, quindi per Weierstrass massimo e minimo esistono.</span>
+                <span class="esempio__passo">$g=x^2+y^2-5$, $\nabla g=(2x,2y)$, che si annulla solo in $(0,0)$, punto che <em>non</em> appartiene al vincolo: regolarità verificata ovunque.</span>
+                <span class="esempio__passo">$\nabla f=(2,1)$. Scrivo $\nabla f=\lambda\nabla g$ componente per componente — prima componente $2=\lambda\cdot2x$, seconda $1=\lambda\cdot2y$ — e aggiungo il vincolo: $\begin{cases}2=2\lambda x\\ 1=2\lambda y\\ x^2+y^2=5\end{cases}$. Prima di dividere per $\lambda$ controllo il caso $\lambda=0$: la prima equazione darebbe $2=0$, assurdo. Quindi $\lambda\neq0$ e posso dividere.</span>
+                <span class="esempio__passo">Dalla prima, dividendo per $2\lambda$: $x=\dfrac{2}{2\lambda}=\dfrac{1}{\lambda}$. Dalla seconda: $y=\dfrac{1}{2\lambda}$. <strong>Sostituisco queste due espressioni al posto di $x$ e $y$ nel vincolo</strong> $x^2+y^2=5$: $\ \dfrac{1}{\lambda^2}+\dfrac{1}{4\lambda^2}=5$. Porto a denominatore comune $4\lambda^2$: $\ \dfrac{4+1}{4\lambda^2}=\dfrac{5}{4\lambda^2}=5$. Moltiplico in croce: $5=20\lambda^2$, cioè $\lambda^2=\dfrac14$ e $\lambda=\pm\dfrac12$.</span>
+                <span class="esempio__passo">Rimetto i due valori nelle espressioni di $x$ e $y$. Con $\lambda=\frac12$: $x=\frac{1}{1/2}=2$ e $y=\frac{1}{2\cdot(1/2)}=1$, quindi $(x,y)=(2,1)$ e $f=2\cdot2+1=5$. Con $\lambda=-\frac12$ tutti i segni si ribaltano: $(x,y)=(-2,-1)$ e $f=-5$.</span>
+              </p>
+              <p><strong>Massimo $5$ in $(2,1)$; minimo $-5$ in $(-2,-1)$.</strong> Controllo geometrico: il massimo di un prodotto scalare $\boldsymbol v\cdot P$ su una circonferenza di raggio $r$ vale $|\boldsymbol v|\,r=\sqrt5\cdot\sqrt5=5$. Coerente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Fra tutti i rettangoli di area $36$, trova quello di perimetro minimo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Lati $x,y&gt;0$. Minimizzo $P(x,y)=2x+2y$ con vincolo $g=xy-36=0$.</span>
+                <span class="esempio__passo">$\nabla P=(2,2)$, $\nabla g=(y,x)$; nella regione $x,y&gt;0$ il gradiente del vincolo non si annulla mai.</span>
+                <span class="esempio__passo">Sistema: $2=\lambda y$, $2=\lambda x$, $xy=36$. Dalle prime due $\lambda x=\lambda y$; poiché $\lambda\neq0$ (altrimenti $2=0$), segue $x=y$.</span>
+                <span class="esempio__passo">Vincolo: $x^2=36\Rightarrow x=6$ (scarto $x=-6$ perché i lati sono positivi), quindi $y=6$ e $P=24$. Inoltre $\lambda=1/3$.</span>
+                <span class="esempio__passo">Che sia un minimo si vede subito: per $x\to0^+$ o $x\to+\infty$ il perimetro $2x+72/x$ tende a $+\infty$.</span>
+              </p>
+              <p><strong>Il quadrato di lato $6$, con perimetro $24$.</strong> È il problema "gemello" dell'Esempio 1: scambiando il ruolo di obiettivo e vincolo, la risposta resta il quadrato.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Trova il punto della retta $3x+4y=25$ più vicino all'origine e calcola la distanza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Minimizzo il quadrato della distanza: $f=x^2+y^2$, con $g=3x+4y-25$.</span>
+                <span class="esempio__passo">$\nabla f=(2x,2y)$ e $\nabla g=(3,4)$. Scrivo $\nabla f=\lambda\nabla g$ componente per componente: $2x=3\lambda$ e $2y=4\lambda$. Divido entrambe per $2$ e ricavo le variabili in funzione di $\lambda$: $\ x=\dfrac{3\lambda}{2}$ e $y=2\lambda$.</span>
+                <span class="esempio__passo"><strong>Sostituisco queste espressioni al posto di $x$ e $y$ nel vincolo</strong> $3x+4y=25$: $\ 3\cdot\dfrac{3\lambda}{2}+4\cdot2\lambda=25$, cioè $\dfrac{9\lambda}{2}+8\lambda=25$. Porto a denominatore comune $2$ ($8\lambda=\frac{16\lambda}{2}$): $\ \dfrac{25\lambda}{2}=25$, quindi $\lambda=2$.</span>
+                <span class="esempio__passo">Quindi $x=3$, $y=4$, e $f=9+16=25$, cioè $d=5$.</span>
+                <span class="esempio__passo">Il massimo non esiste: la retta non è limitata e $f\to+\infty$ allontanandosi.</span>
+              </p>
+              <p><strong>Punto $(3,4)$, distanza $5$.</strong> Verifica con la formula elementare: $\dfrac{|{-25}|}{\sqrt{9+16}}=\dfrac{25}{5}=5$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scrivi la funzione lagrangiana e il sistema di Lagrange per il problema "minimizzare $f(x,y)=x^2+y^2$ con vincolo $2x-y=4$", poi risolvilo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Porto il vincolo nella forma $g=2x-y-4=0$ e scrivo $\ \mathcal{L}(x,y,\lambda)=x^2+y^2-\lambda\,(2x-y-4)$.</span>
+                <span class="esempio__passo">$\dfrac{\partial\mathcal L}{\partial x}=2x-2\lambda=0$; &nbsp; $\dfrac{\partial\mathcal L}{\partial y}=2y+\lambda=0$; &nbsp; $\dfrac{\partial\mathcal L}{\partial \lambda}=-(2x-y-4)=0$.</span>
+                <span class="esempio__passo">Dalle prime due: $x=\lambda$ e $y=-\dfrac{\lambda}{2}$.</span>
+                <span class="esempio__passo">Sostituisco nella terza: $2\lambda+\dfrac{\lambda}{2}=4\ \Rightarrow\ \dfrac{5\lambda}{2}=4\ \Rightarrow\ \lambda=\dfrac{8}{5}$.</span>
+                <span class="esempio__passo">Quindi $x=\dfrac85$, $y=-\dfrac45$, e $f=\dfrac{64}{25}+\dfrac{16}{25}=\dfrac{80}{25}=\dfrac{16}{5}$.</span>
+              </p>
+              <p><strong>Minimo $\dfrac{16}{5}$ nel punto $\left(\dfrac85,-\dfrac45\right)$, con $\lambda=\dfrac85$.</strong> La distanza dall'origine è $\sqrt{16/5}=\dfrac{4}{\sqrt5}$, in accordo con la formula punto-retta.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina massimo e minimo assoluti di $f(x,y)=x^2y$ sulla circonferenza $x^2+y^2=3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Vincolo compatto: Weierstrass garantisce l'esistenza di massimo e minimo assoluti.</span>
+                <span class="esempio__passo">$\nabla f=(2xy,\,x^2)$, $\nabla g=(2x,\,2y)$. Sistema: $\begin{cases}2xy=2\lambda x\\ x^2=2\lambda y\\ x^2+y^2=3\end{cases}$</span>
+                <span class="esempio__passo">Prima equazione, <strong>raccolgo</strong>: $2x(y-\lambda)=0$, quindi $x=0$ oppure $\lambda=y$.</span>
+                <span class="esempio__passo"><strong>Caso $x=0$</strong>: dal vincolo $y=\pm\sqrt3$, e $f=0$ in entrambi i punti.</span>
+                <span class="esempio__passo"><strong>Caso $\lambda=y$</strong>: <strong>sostituisco $y$ al posto di $\lambda$ nella seconda equazione</strong> $x^2=2\lambda y$, che diventa $x^2=2y\cdot y=2y^2$. Ora <strong>sostituisco $2y^2$ al posto di $x^2$ nel vincolo</strong> $x^2+y^2=3$: viene $2y^2+y^2=3y^2=3$, quindi $y^2=1$ e $y=\pm1$. Rimetto nel legame $x^2=2y^2=2$, cioè $x=\pm\sqrt2$ (i due segni sono indipendenti).</span>
+                <span class="esempio__passo">Valori: in questi punti $x^2=2$, quindi $f=x^2y=2y$; sostituendo $y=1$ ottengo $f=2$, e con $y=-1$ ottengo $f=-2$.</span>
+                <span class="esempio__passo">Confronto fra $0,\,0,\,2,\,2,\,-2,\,-2$.</span>
+              </p>
+              <p><strong>Massimo $2$ nei punti $(\pm\sqrt2,\,1)$; minimo $-2$ nei punti $(\pm\sqrt2,\,-1)$.</strong> I punti $(0,\pm\sqrt3)$ sono candidati che non sono né massimi né minimi: la prova concreta che il metodo produce soltanto candidati.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina il punto della parabola $y=x^2$ più vicino al punto $A=(3,0)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Minimizzo $f(x,y)=(x-3)^2+y^2$ con vincolo $g=y-x^2=0$, cioè $\nabla g=(-2x,\,1)$, mai nullo (la seconda componente vale sempre $1$).</span>
+                <span class="esempio__passo">Sistema: $\begin{cases}2(x-3)=-2\lambda x\\ 2y=\lambda\\ y=x^2\end{cases}$</span>
+                <span class="esempio__passo">Dalla seconda e dalla terza: $\lambda=2y=2x^2$.</span>
+                <span class="esempio__passo">Sostituisco nella prima: $2(x-3)=-2(2x^2)x=-4x^3$, cioè $2x-6=-4x^3$, ovvero $4x^3+2x-6=0$, e dividendo per $2$: $\ 2x^3+x-3=0$.</span>
+                <span class="esempio__passo">$x=1$ è radice ($2+1-3=0$). Scomponendo con Ruffini: $2x^3+x-3=(x-1)(2x^2+2x+3)$. Il fattore quadratico ha $\Delta=4-24=-20&lt;0$: nessun'altra radice reale.</span>
+                <span class="esempio__passo">Quindi $x=1$, $y=1$, e $f=(1-3)^2+1=5$.</span>
+                <span class="esempio__passo">Il minimo esiste perché $f\to+\infty$ lungo la parabola quando $|x|\to+\infty$, e il candidato è unico.</span>
+              </p>
+              <p><strong>Il punto più vicino è $(1,\,1)$, a distanza $\sqrt5$.</strong> Il massimo non esiste: la parabola non è limitata.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Massimizza $f(x,y,z)=xyz$ con $x+y+z=12$ e $x,y,z&gt;0$. Deduci la disuguaglianza fra media aritmetica e media geometrica per tre numeri.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\nabla f=(yz,\,xz,\,xy)$, $\nabla g=(1,1,1)$, mai nullo. Sistema: $yz=\lambda$, $xz=\lambda$, $xy=\lambda$, $x+y+z=12$.</span>
+                <span class="esempio__passo">Da $yz=xz$ con $z&gt;0$ segue $x=y$. Da $xz=xy$ con $x&gt;0$ segue $z=y$.</span>
+                <span class="esempio__passo">Quindi $x=y=z=4$, con $f=64$ e $\lambda=16$.</span>
+                <span class="esempio__passo">È un massimo: avvicinandosi al bordo della regione (una variabile che tende a $0$) il prodotto tende a $0$, quindi il candidato interno è il massimo.</span>
+                <span class="esempio__passo"><strong>Conseguenza generale.</strong> Con vincolo $x+y+z=s$ lo stesso conto dà $x=y=z=s/3$ e $f_{\max}=(s/3)^3$. Dunque per ogni $x,y,z&gt;0$ vale $xyz\leq\left(\dfrac{x+y+z}{3}\right)^3$.</span>
+              </p>
+              <p><strong>Massimo $64$ in $(4,4,4)$, con $\lambda=16$.</strong> Estraendo la radice cubica dalla disuguaglianza ottenuta: $\sqrt[3]{xyz}\leq\dfrac{x+y+z}{3}$, cioè la <strong>media geometrica non supera mai la media aritmetica</strong>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Trova i punti della curva $x^2+xy+y^2=3$ più vicini e più lontani dall'origine.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f=x^2+y^2$ (quadrato della distanza), $g=x^2+xy+y^2-3$. La curva è un'ellisse ruotata: chiusa e limitata, quindi Weierstrass si applica.</span>
+                <span class="esempio__passo">$\nabla f=(2x,2y)$, $\nabla g=(2x+y,\ x+2y)$, che si annulla solo in $(0,0)$, non appartenente al vincolo.</span>
+                <span class="esempio__passo">Sistema: $2x=\lambda(2x+y)$ e $2y=\lambda(x+2y)$, più il vincolo.</span>
+                <span class="esempio__passo"><strong>Sottraggo</strong> le due equazioni: $2(x-y)=\lambda\big((2x+y)-(x+2y)\big)=\lambda(x-y)$, cioè $(x-y)(2-\lambda)=0$.</span>
+                <span class="esempio__passo"><strong>Sommo</strong> le due equazioni: $2(x+y)=\lambda\,3(x+y)$, cioè $(x+y)(2-3\lambda)=0$.</span>
+                <span class="esempio__passo"><strong>Caso $x=y$</strong>: <strong>sostituisco $x$ al posto di $y$ nel vincolo</strong> $x^2+xy+y^2=3$, ottenendo $x^2+x\cdot x+x^2=3x^2=3$, quindi $x^2=1$ e $x=\pm1$: punti $(1,1)$ e $(-1,-1)$, con $f=x^2+y^2=1+1=2$.</span>
+                <span class="esempio__passo"><strong>Caso $\lambda=2$</strong>: la seconda relazione diventa $(x+y)(2-6)=0$, quindi $y=-x$; il vincolo dà $x^2-x^2+x^2=3$, cioè $x=\pm\sqrt3$: punti $(\sqrt3,-\sqrt3)$ e $(-\sqrt3,\sqrt3)$, con $f=6$.</span>
+              </p>
+              <p><strong>Più vicini: $(1,1)$ e $(-1,-1)$, a distanza $\sqrt2$. Più lontani: $(\sqrt3,-\sqrt3)$ e $(-\sqrt3,\sqrt3)$, a distanza $\sqrt6$.</strong> Sono i semiassi minore e maggiore dell'ellisse, che risultano ruotati di $45°$ rispetto agli assi cartesiani.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Una scatola a base rettangolare <strong>senza coperchio</strong> deve avere volume $32$. Determina le dimensioni che minimizzano la superficie di materiale usato.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Base $x\times y$, altezza $z$, tutte positive. Senza coperchio la superficie è $S=xy+2xz+2yz$; vincolo $g=xyz-32=0$.</span>
+                <span class="esempio__passo">$\nabla S=(y+2z,\ x+2z,\ 2x+2y)$, $\nabla g=(yz,\ xz,\ xy)$, mai nullo per $x,y,z&gt;0$.</span>
+                <span class="esempio__passo">Sistema: $y+2z=\lambda yz$, &nbsp;$x+2z=\lambda xz$, &nbsp;$2x+2y=\lambda xy$, &nbsp;$xyz=32$.</span>
+                <span class="esempio__passo"><strong>Moltiplico la prima per $x$ e la seconda per $y$</strong>: entrambi i membri destri valgono $\lambda xyz$, quindi $xy+2xz=xy+2yz$, da cui $xz=yz$ e, essendo $z&gt;0$, $\ \boldsymbol{x=y}$.</span>
+                <span class="esempio__passo"><strong>Moltiplico la prima per $x$ e la terza per $z$</strong>: di nuovo i membri destri coincidono, quindi $xy+2xz=2xz+2yz$, da cui $xy=2yz$ e, essendo $y&gt;0$, $\ \boldsymbol{x=2z}$.</span>
+                <span class="esempio__passo">Dunque $x=y=2z$. Vincolo: $(2z)(2z)z=4z^3=32\Rightarrow z^3=8\Rightarrow z=2$, quindi $x=y=4$.</span>
+                <span class="esempio__passo">Superficie: $S=16+2\cdot8+2\cdot8=48$. È un minimo perché $S\to+\infty$ quando una qualsiasi dimensione tende a $0$ o a $+\infty$ mantenendo il volume.</span>
+              </p>
+              <p><strong>Base quadrata $4\times4$ e altezza $2$, con superficie minima $48$.</strong> Attenzione: <em>non</em> è un cubo. Senza coperchio conviene una scatola larga e bassa, con l'altezza pari a metà del lato di base.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina il punto della retta intersezione dei piani $x+y+z=1$ e $x+2y+3z=6$ più vicino all'origine (due vincoli).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f=x^2+y^2+z^2$, $g=x+y+z-1$, $h=x+2y+3z-6$. I gradienti $\nabla g=(1,1,1)$ e $\nabla h=(1,2,3)$ non sono paralleli: regolarità verificata.</span>
+                <span class="esempio__passo">Condizione: $(2x,2y,2z)=\lambda(1,1,1)+\mu(1,2,3)$, cioè $2x=\lambda+\mu$, &nbsp;$2y=\lambda+2\mu$, &nbsp;$2z=\lambda+3\mu$.</span>
+                <span class="esempio__passo"><strong>Sommo le tre</strong>: $2(x+y+z)=3\lambda+6\mu$. Usando il primo vincolo: $\ 3\lambda+6\mu=2$.</span>
+                <span class="esempio__passo"><strong>Combino con pesi $1,2,3$</strong>, cioè moltiplico la prima equazione per $1$, la seconda per $2$, la terza per $3$ e poi le sommo. A sinistra viene $2x+2\cdot2y+3\cdot2z=2(x+2y+3z)$, che è proprio il secondo vincolo moltiplicato per $2$. A destra viene $(\lambda+\mu)+2(\lambda+2\mu)+3(\lambda+3\mu)=\lambda+2\lambda+3\lambda+\mu+4\mu+9\mu=6\lambda+14\mu$. Dal secondo vincolo $x+2y+3z=6$, quindi il lato sinistro vale $2\cdot6=12$: $\ 6\lambda+14\mu=12$.</span>
+                <span class="esempio__passo">Ho un sistema $2\times2$ in $\lambda,\mu$. Dalla prima relazione $3\lambda+6\mu=2$ ricavo $\lambda=\dfrac{2-6\mu}{3}$. <strong>Sostituisco questa espressione al posto di $\lambda$ nella seconda</strong>, $6\lambda+14\mu=12$: viene $6\cdot\dfrac{2-6\mu}{3}+14\mu=12$, e poiché $6:3=2$ resta $2(2-6\mu)+14\mu=12$, cioè $4-12\mu+14\mu=12$ e quindi $4+2\mu=12$, da cui $2\mu=8$ e $\mu=4$. Rimetto in $\lambda=\frac{2-6\mu}{3}$: $\ \lambda=\frac{2-24}{3}=-\dfrac{22}{3}$.</span>
+                <span class="esempio__passo">Ricavo: $x=\dfrac{\lambda+\mu}{2}=-\dfrac53$, &nbsp;$y=\dfrac{\lambda+2\mu}{2}=\dfrac13$, &nbsp;$z=\dfrac{\lambda+3\mu}{2}=\dfrac73$.</span>
+                <span class="esempio__passo"><strong>Verifica dei vincoli</strong>: $-\frac53+\frac13+\frac73=\frac33=1$ ✓ &nbsp;e&nbsp; $-\frac53+\frac23+\frac{21}{3}=\frac{18}{3}=6$ ✓.</span>
+              </p>
+              <p><strong>Punto $\left(-\dfrac53,\ \dfrac13,\ \dfrac73\right)$, con $f=\dfrac{75}{9}=\dfrac{25}{3}$, cioè distanza $\dfrac{5}{\sqrt3}$.</strong> Il massimo non esiste: una retta non è un insieme limitato.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Un consumatore ha utilità $U(x,y)=x^{1/3}y^{2/3}$, prezzi $p_x=2$ e $p_y=3$, reddito $R=90$. Determina il paniere ottimale e il valore di $\lambda$, interpretandolo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Vincolo $g=2x+3y-90=0$, con $x,y&gt;0$. Derivate: $U_x=\dfrac13 x^{-2/3}y^{2/3}=\dfrac13\left(\dfrac yx\right)^{2/3}$ e $U_y=\dfrac23 x^{1/3}y^{-1/3}=\dfrac23\left(\dfrac xy\right)^{1/3}$.</span>
+                <span class="esempio__passo">Sistema: $U_x=2\lambda$ e $U_y=3\lambda$. <strong>Divido membro a membro</strong> (lecito perché $\lambda\neq0$: se fosse nullo entrambe le derivate si annullerebbero, impossibile per $x,y&gt;0$): $\dfrac{U_x}{U_y}=\dfrac23$.</span>
+                <span class="esempio__passo">Calcolo il primo membro. I coefficienti danno $\frac13:\frac23=\frac13\cdot\frac32=\frac12$. Per le potenze, dividere per $(x/y)^{1/3}$ equivale a moltiplicare per il reciproco $(y/x)^{1/3}$. Resta quindi $\dfrac12\left(\dfrac yx\right)^{2/3}\left(\dfrac yx\right)^{1/3}$, e per la regola $a^m\cdot a^n=a^{m+n}$ gli esponenti si sommano: $\frac23+\frac13=1$. In tutto: $\ \dfrac12\cdot\dfrac yx$.</span>
+                <span class="esempio__passo">Quindi $\dfrac{y}{2x}=\dfrac23\ \Rightarrow\ y=\dfrac{4x}{3}$.</span>
+                <span class="esempio__passo">Vincolo: $2x+3\cdot\dfrac{4x}{3}=90\ \Rightarrow\ 2x+4x=90\ \Rightarrow\ x=15$, quindi $y=20$.</span>
+                <span class="esempio__passo">Utilità: $U^{*}=15^{1/3}\,20^{2/3}\approx 2{,}466\cdot 7{,}368\approx 18{,}17$.</span>
+                <span class="esempio__passo"><strong>Moltiplicatore</strong>: $\lambda=\dfrac{U_x}{2}=\dfrac16\left(\dfrac{20}{15}\right)^{2/3}=\dfrac16\left(\dfrac43\right)^{2/3}\approx 0{,}202$.</span>
+                <span class="esempio__passo"><strong>Controllo con la teoria</strong>: con reddito generico si trova $x=\frac{R}{3\cdot 2}\cdot 1=\frac{R}{6}$ e $y=\frac{2R}{3\cdot 3}=\frac{2R}{9}$, da cui $U^{*}(R)=R\left(\frac16\right)^{1/3}\left(\frac29\right)^{2/3}$, lineare in $R$. Dunque $\dfrac{dU^{*}}{dR}=\dfrac{U^{*}}{R}\approx\dfrac{18{,}17}{90}\approx0{,}202$, uguale a $\lambda$. ✓</span>
+              </p>
+              <p><strong>Paniere ottimale $(15,\,20)$, utilità $\approx18{,}17$, $\lambda\approx0{,}202$</strong>: un euro di reddito in più fa crescere l'utilità di circa $0{,}2$. Nota la regola generale delle utilità $x^ay^b$ con $a+b=1$: si spende la frazione $a$ del reddito in $x$ ($\frac13\cdot90=30=2\cdot15$ ✓) e la frazione $b$ in $y$ ($\frac23\cdot90=60=3\cdot20$ ✓).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina massimo e minimo di $f(x,y)=xy$ sull'ellisse $\dfrac{x^2}{9}+\dfrac{y^2}{4}=1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$g=\dfrac{x^2}{9}+\dfrac{y^2}{4}-1$, con $\nabla g=\left(\dfrac{2x}{9},\ \dfrac{y}{2}\right)$, nullo solo in $(0,0)$, che non sta sul vincolo. L'ellisse è compatta: Weierstrass si applica.</span>
+                <span class="esempio__passo">Sistema: $y=\dfrac{2\lambda x}{9}$ e $x=\dfrac{\lambda y}{2}$, più il vincolo.</span>
+                <span class="esempio__passo">Sostituisco la seconda nella prima: $y=\dfrac{2\lambda}{9}\cdot\dfrac{\lambda y}{2}=\dfrac{\lambda^2 y}{9}$, cioè $y\left(1-\dfrac{\lambda^2}{9}\right)=0$.</span>
+                <span class="esempio__passo"><strong>Se $y=0$</strong> allora anche $x=0$ dalla seconda equazione, ma $(0,0)$ non sta sull'ellisse: caso da scartare.</span>
+                <span class="esempio__passo"><strong>Dunque $\lambda^2=9$, cioè $\lambda=\pm3$.</strong></span>
+                <span class="esempio__passo">$\lambda=3$: $x=\dfrac{3y}{2}$. Vincolo: $\dfrac{9y^2/4}{9}+\dfrac{y^2}{4}=\dfrac{y^2}{4}+\dfrac{y^2}{4}=\dfrac{y^2}{2}=1\Rightarrow y=\pm\sqrt2$, $x=\pm\dfrac{3\sqrt2}{2}$ (segni concordi). Valore: $f=xy=\dfrac{3\sqrt2}{2}\cdot\sqrt2=3$.</span>
+                <span class="esempio__passo">$\lambda=-3$: $x=-\dfrac{3y}{2}$, segni discordi, e $f=-3$.</span>
+              </p>
+              <p><strong>Massimo $3$ nei punti $\left(\pm\frac{3\sqrt2}{2},\ \pm\sqrt2\right)$ con segni concordi; minimo $-3$ con segni discordi.</strong> In generale, il massimo di $xy$ sull'ellisse $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$ vale $\frac{ab}{2}$: qui $\frac{3\cdot2}{2}=3$ ✓. Geometricamente è il rettangolo di area massima inscritto nell'ellisse (area $4xy=12$).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare massimo e minimo assoluti di $f(x,y)=x^2+y^2-xy$ sulla circonferenza $x^2+y^2=4$, giustificandone l'esistenza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Esistenza</strong>: $f$ è continua (polinomio) e il vincolo è chiuso e limitato, quindi per il teorema di Weierstrass massimo e minimo assoluti esistono.</span>
+                <span class="esempio__passo"><strong>Regolarità</strong>: $\nabla g=(2x,2y)=\boldsymbol0$ solo in $(0,0)$, che non appartiene al vincolo. Nessun candidato extra.</span>
+                <span class="esempio__passo">$\nabla f=(2x-y,\ 2y-x)$. Sistema: $2x-y=2\lambda x$ e $2y-x=2\lambda y$, più $x^2+y^2=4$.</span>
+                <span class="esempio__passo"><strong>Sottraggo</strong>: $(2x-y)-(2y-x)=3x-3y$ a sinistra e $2\lambda(x-y)$ a destra, quindi $(x-y)(3-2\lambda)=0$.</span>
+                <span class="esempio__passo"><strong>Sommo</strong>: $(2x-y)+(2y-x)=x+y$ a sinistra e $2\lambda(x+y)$ a destra, quindi $(x+y)(1-2\lambda)=0$.</span>
+                <span class="esempio__passo"><strong>Caso $x=y$</strong> (che richiede $\lambda=\frac12$ dalla seconda relazione, salvo $x+y=0$ che con $x=y$ dà solo l'origine, esclusa dal vincolo). <strong>Sostituisco $x$ al posto di $y$ nel vincolo</strong> $x^2+y^2=4$: viene $2x^2=4$, cioè $x^2=2$ e $x=\pm\sqrt2$. Punti $(\sqrt2,\sqrt2)$ e $(-\sqrt2,-\sqrt2)$; il valore è $f=x^2+y^2-xy=2+2-\sqrt2\cdot\sqrt2=2+2-2=2$.</span>
+                <span class="esempio__passo"><strong>Caso $\lambda=\frac32$</strong>: la seconda relazione diventa $(x+y)(1-3)=0$, cioè $y=-x$; allora $2x^2=4\Rightarrow x=\pm\sqrt2$. Punti $(\sqrt2,-\sqrt2)$ e $(-\sqrt2,\sqrt2)$, con $f=2+2+2=6$.</span>
+                <span class="esempio__passo"><strong>Confronto</strong>: i valori sono $2,\,2,\,6,\,6$.</span>
+              </p>
+              <p><strong>Massimo $6$ in $(\sqrt2,-\sqrt2)$ e $(-\sqrt2,\sqrt2)$; minimo $2$ in $(\sqrt2,\sqrt2)$ e $(-\sqrt2,-\sqrt2)$.</strong> Verifica rapida: sul vincolo $f=4-xy$, e poiché su $x^2+y^2=4$ il prodotto $xy$ varia in $[-2,2]$, si ha $f\in[2,6]$. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare massimo e minimo assoluti di $f(x,y)=x^2+2y^2-x$ sul disco chiuso $x^2+y^2\leq 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Strategia.</strong> Il dominio è chiuso e limitato: Weierstrass garantisce l'esistenza. Gli estremi si trovano o all'<em>interno</em> (punti critici liberi) o sulla <em>frontiera</em> (problema vincolato). Vanno studiati entrambi i casi e poi confrontati.</span>
+                <span class="esempio__passo"><strong>Interno.</strong> $\nabla f=(2x-1,\ 4y)=\boldsymbol0$ dà $x=\frac12$, $y=0$. Il punto $(\frac12,0)$ è interno al disco ($\frac14&lt;1$) ed è accettabile. Valore: $f=\frac14-\frac12=-\frac14$.</span>
+                <span class="esempio__passo"><strong>Frontiera</strong> $x^2+y^2=1$, con Lagrange: $\begin{cases}2x-1=2\lambda x\\ 4y=2\lambda y\\ x^2+y^2=1\end{cases}$</span>
+                <span class="esempio__passo">Seconda equazione, raccogliendo: $2y(2-\lambda)=0$, quindi $y=0$ oppure $\lambda=2$.</span>
+                <span class="esempio__passo"><strong>Caso $y=0$</strong>: $x=\pm1$. Valori: $f(1,0)=1-1=0$ e $f(-1,0)=1+1=2$.</span>
+                <span class="esempio__passo"><strong>Caso $\lambda=2$</strong>: <strong>sostituisco $2$ al posto di $\lambda$ nella prima equazione</strong> $2x-1=2\lambda x$, che diventa $2x-1=4x$; porto $2x$ a destra ottenendo $-1=2x$, cioè $x=-\frac12$. Metto questo valore nel vincolo $x^2+y^2=1$: $\ y^2=1-\frac14=\frac34$, cioè $y=\pm\frac{\sqrt3}{2}$. Valore: sostituisco in $f=x^2+2y^2-x$, ricordando che $-x=+\frac12$: $\ f=\frac14+2\cdot\frac34+\frac12=\frac14+\frac32+\frac12=\frac94$.</span>
+                <span class="esempio__passo"><strong>Confronto finale</strong> fra $-\frac14$ (interno), $0$, $2$, $\frac94$ (frontiera).</span>
+              </p>
+              <p><strong>Massimo assoluto $\dfrac94$ nei punti $\left(-\dfrac12,\ \pm\dfrac{\sqrt3}{2}\right)$; minimo assoluto $-\dfrac14$ nel punto interno $\left(\dfrac12,\ 0\right)$.</strong> Schema da ricordare per tutti gli esercizi su domini chiusi: <em>interno con gradiente nullo, frontiera con Lagrange, confronto dei valori</em>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un'impresa produce $P(x,y)=10\sqrt{xy}$ unità impiegando $x$ unità di capitale (costo $4$ ciascuna) e $y$ unità di lavoro (costo $1$ ciascuna), con budget $100$. Determinare la produzione massima, il valore di $\lambda$ e verificare numericamente il suo significato con un budget di $101$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Massimizzo $P=10x^{1/2}y^{1/2}$ con $g=4x+y-100=0$, $x,y&gt;0$.</span>
+                <span class="esempio__passo">$P_x=5\sqrt{y/x}$, &nbsp;$P_y=5\sqrt{x/y}$, &nbsp;$\nabla g=(4,1)$. Sistema: $5\sqrt{y/x}=4\lambda$ e $5\sqrt{x/y}=\lambda$.</span>
+                <span class="esempio__passo"><strong>Divido membro a membro</strong> ($\lambda\neq0$): $\dfrac{\sqrt{y/x}}{\sqrt{x/y}}=\dfrac{4\lambda}{\lambda}=4$, e il primo membro vale $\dfrac{y}{x}$. Quindi $y=4x$.</span>
+                <span class="esempio__passo">Vincolo: $4x+4x=100\Rightarrow x=12{,}5$ e $y=50$.</span>
+                <span class="esempio__passo">Produzione: $P^{*}=10\sqrt{12{,}5\cdot50}=10\sqrt{625}=10\cdot25=250$.</span>
+                <span class="esempio__passo">Moltiplicatore: $\lambda=5\sqrt{x/y}=5\sqrt{12{,}5/50}=5\sqrt{0{,}25}=5\cdot0{,}5=\boldsymbol{2{,}5}$.</span>
+                <span class="esempio__passo"><strong>Verifica con budget generico $R$</strong>: lo stesso conto dà $x=\dfrac{R}{8}$, $y=\dfrac{R}{2}$, quindi $P^{*}(R)=10\sqrt{\dfrac{R^2}{16}}=\dfrac{10R}{4}=2{,}5\,R$.</span>
+                <span class="esempio__passo"><strong>Con $R=101$</strong>: $P^{*}=2{,}5\cdot101=252{,}5$, cioè esattamente $2{,}5$ unità in più. L'approssimazione $v(c+\Delta c)\approx v(c)+\lambda\Delta c$ qui è addirittura <em>esatta</em>, perché $P^{*}(R)$ è lineare in $R$ (la funzione di produzione è omogenea di grado $1$).</span>
+              </p>
+              <p><strong>Produzione massima $250$ con $x=12{,}5$ e $y=50$; $\lambda=2{,}5$ unità di prodotto per euro di budget.</strong> Conseguenza gestionale: conviene aumentare il budget finché il costo marginale di un euro aggiuntivo è inferiore al valore di $2{,}5$ unità di prodotto.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostrare che, fra tutti i parallelepipedi rettangoli inscritti nella sfera $x^2+y^2+z^2=R^2$ con i lati paralleli agli assi, quello di volume massimo è il cubo. Calcolarne il volume.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Impostazione.</strong> Se $(x,y,z)$ con $x,y,z&gt;0$ è il vertice nel primo ottante, per simmetria gli spigoli misurano $2x,2y,2z$ e il volume è $V=8xyz$. Vincolo: $g=x^2+y^2+z^2-R^2=0$.</span>
+                <span class="esempio__passo"><strong>Esistenza.</strong> La porzione di sfera con $x,y,z\geq0$ è chiusa e limitata, $V$ è continua: il massimo esiste. Sul bordo di questa porzione una variabile è nulla e $V=0$, quindi il massimo è interno, con $x,y,z&gt;0$.</span>
+                <span class="esempio__passo"><strong>Regolarità.</strong> $\nabla g=(2x,2y,2z)$ si annulla solo nell'origine, che non sta sulla sfera.</span>
+                <span class="esempio__passo"><strong>Sistema.</strong> $\nabla V=(8yz,\ 8xz,\ 8xy)=\lambda(2x,2y,2z)$, cioè $4yz=\lambda x$, &nbsp;$4xz=\lambda y$, &nbsp;$4xy=\lambda z$.</span>
+                <span class="esempio__passo"><strong>Trucco.</strong> Moltiplico la prima per $x$, la seconda per $y$, la terza per $z$: ottengo $4xyz=\lambda x^2$, &nbsp;$4xyz=\lambda y^2$, &nbsp;$4xyz=\lambda z^2$. I membri sinistri sono identici, quindi $\lambda x^2=\lambda y^2=\lambda z^2$.</span>
+                <span class="esempio__passo"><strong>Escludo $\lambda=0$</strong>: darebbe $yz=0$, impossibile con $x,y,z&gt;0$. Dunque $x^2=y^2=z^2$ e, per la positività, $x=y=z$.</span>
+                <span class="esempio__passo"><strong>Vincolo.</strong> <strong>Sostituisco $x$ al posto di $y$ e di $z$</strong> in $x^2+y^2+z^2=R^2$: viene $x^2+x^2+x^2=3x^2=R^2$, quindi $x^2=\frac{R^2}{3}$ e $x=y=z=\dfrac{R}{\sqrt3}$ (prendo la radice positiva). Lo spigolo del parallelepipedo è il doppio, $\dfrac{2R}{\sqrt3}$: le tre dimensioni sono uguali, dunque si tratta di un <strong>cubo</strong>.</span>
+                <span class="esempio__passo"><strong>Volume.</strong> Sostituisco in $V=8xyz=8x^3$ con $x=\frac{R}{\sqrt3}$: $\ x^3=\dfrac{R^3}{(\sqrt3)^3}=\dfrac{R^3}{3\sqrt3}$, quindi $V=\dfrac{8R^3}{3\sqrt3}$. Razionalizzo moltiplicando sopra e sotto per $\sqrt3$ (al denominatore $3\sqrt3\cdot\sqrt3=3\cdot3=9$): $\ V=\dfrac{8\sqrt3}{9}R^3\approx1{,}54\,R^3$.</span>
+              </p>
+              <p><strong>Il parallelepipedo di volume massimo è il cubo di spigolo $\dfrac{2R}{\sqrt3}$, con volume $\dfrac{8\sqrt3}{9}R^3$.</strong> Come confronto, la sfera che lo contiene ha volume $\frac43\pi R^3\approx4{,}19\,R^3$: il cubo inscritto ne occupa circa il $37\%$.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) In un punto di estremo di $f$ vincolato a $g=0$, con $\nabla g\neq\boldsymbol0$, vale la condizione:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$f(x,y)=\lambda\,g(x,y)$</button>
+              <button class="quiz-option" data-correct="true">$\nabla f(x,y)=\lambda\,\nabla g(x,y)$</button>
+              <button class="quiz-option" data-correct="false">$\nabla f(x,y)\cdot\nabla g(x,y)=0$</button>
+              <button class="quiz-option" data-correct="false">$\nabla f(x,y)=\boldsymbol 0$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La condizione riguarda i <strong>gradienti</strong> e impone che siano <strong>paralleli</strong> (uno multiplo dell'altro), non ortogonali. Richiedere $\nabla f=\boldsymbol0$ sarebbe la condizione per gli estremi <em>liberi</em>, che sul vincolo quasi mai è soddisfatta.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Geometricamente, nel punto di ottimo vincolato la curva di livello di $f$ e il vincolo sono:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">perpendicolari</button>
+              <button class="quiz-option" data-correct="true">tangenti</button>
+              <button class="quiz-option" data-correct="false">coincidenti</button>
+              <button class="quiz-option" data-correct="false">disgiunte</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Finché il vincolo <em>taglia</em> una curva di livello si sta ancora salendo o scendendo, quindi si può migliorare. L'ottimo può stare solo dove il vincolo la <strong>sfiora</strong>: è la tangenza, che si traduce nel parallelismo dei gradienti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Il massimo di $f(x,y)=x+y$ sul vincolo $x^2+y^2=2$ vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$1$</button>
+              <button class="quiz-option" data-correct="true">$2$</button>
+              <button class="quiz-option" data-correct="false">$\sqrt2$</button>
+              <button class="quiz-option" data-correct="false">$4$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Dal sistema $1=2\lambda x$, $1=2\lambda y$ segue $x=y$; il vincolo dà $2x^2=2$, cioè $x=y=\pm1$. Il massimo è $f(1,1)=2$ (e il minimo $f(-1,-1)=-2$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Se stai massimizzando un profitto (in euro) con un vincolo di ore lavorate e ottieni $\lambda=12$, questo significa che:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">il profitto massimo vale $12$ euro</button>
+              <button class="quiz-option" data-correct="true">un'ora di lavoro in più farebbe crescere il profitto ottimo di circa $12$ euro</button>
+              <button class="quiz-option" data-correct="false">servono $12$ ore per raggiungere l'ottimo</button>
+              <button class="quiz-option" data-correct="false">il vincolo è soddisfatto con $12$ unità di scarto</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vale $v'(c)=\lambda$: il moltiplicatore è la <strong>derivata del valore ottimo rispetto al livello del vincolo</strong>, cioè il prezzo ombra. Le sue unità sono quelle di $f$ diviso quelle di $g$: euro per ora.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Il metodo dei moltiplicatori di Lagrange individua dei candidati, ma da solo non dice quali siano massimi e quali minimi.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è una condizione soltanto <strong>necessaria</strong>. Fra i candidati possono esserci punti che non sono né massimi né minimi (vedi l'Esercizio 6.5). Per classificarli si confrontano i valori di $f$, dopo aver verificato con Weierstrass che massimo e minimo esistano.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se $\nabla g(P)=\boldsymbol 0$, il teorema di Lagrange si applica ugualmente in $P$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: la condizione di regolarità $\nabla g\neq\boldsymbol0$ è un'ipotesi essenziale. Il controesempio è il minimo di $f=x$ su $y^2=x^3$: il minimo esiste nell'origine, ma il sistema di Lagrange non ha soluzioni perché lì $\nabla g=(0,0)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Se il vincolo è un insieme chiuso e limitato e $f$ è continua, massimo e minimo assoluti di $f$ sul vincolo esistono certamente.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il teorema di <strong>Weierstrass</strong> in più variabili. È proprio ciò che autorizza la scorciatoia "calcolo $f$ in tutti i candidati e confronto i numeri", senza derivate seconde. Attenzione però: una retta o un'iperbole non sono limitate, e lì il teorema non si applica.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Il metodo di sostituzione è sempre preferibile a quello di Lagrange.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso. La sostituzione è ottima con vincoli lineari o facilmente esplicitabili, ma fallisce quando il vincolo non è esplicitabile (per esempio $x^4+x^2y^2+y^4=12$), introduce radici e casi separati sulle circonferenze, rompe la simmetria e non fornisce il prezzo ombra $\lambda$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="tangenti|tangente|tangenza">
+            <p class="quiz-question__testo">9. (Completamento) Nel punto di ottimo vincolato, il vincolo e la curva di livello di $f$ sono ______ fra loro.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Sono <strong>tangenti</strong>: hanno la stessa direzione tangente, quindi le rispettive perpendicolari — cioè $\nabla f$ e $\nabla g$ — hanno la stessa direzione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="ombra|prezzo ombra">
+            <p class="quiz-question__testo">10. (Completamento) In economia il moltiplicatore $\lambda$ viene chiamato prezzo ______, perché misura quanto vale una unità in più della risorsa vincolata.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Prezzo <strong>ombra</strong> (<em>shadow price</em>): è il prezzo implicito che il problema attribuisce alla risorsa scarsa, anche se non compare su nessun listino. Formalmente $v'(c)=\lambda$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="lagrangiana|funzione lagrangiana">
+            <p class="quiz-question__testo">11. (Completamento) La funzione ausiliaria $\mathcal{L}=f-\lambda g$ si chiama funzione ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È la <strong>lagrangiana</strong>. Imporre che il suo gradiente rispetto a $x$, $y$ e $\lambda$ sia nullo restituisce le due equazioni $\nabla f=\lambda\nabla g$ e, come terza equazione, il vincolo $g=0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con l'immagine del sentiero in montagna perché il punto più alto raggiungibile si trova dove il sentiero è tangente a una curva di livello, e come da questo si arriva alla condizione $\nabla f=\lambda\nabla g$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: immagina di camminare su un sentiero segnato sul fianco di una montagna, con in mano una mappa delle linee di quota. Se in un certo punto il sentiero <strong>attraversa</strong> una linea di quota, significa che stai passando da una quota all'altra: stai ancora salendo (o scendendo). Quindi quel punto non può essere il più alto del sentiero, perché basta fare un altro passo nella direzione giusta per salire ancora. Ne segue che il punto più alto può trovarsi solo dove il sentiero smette di attraversare le linee di quota e le <strong>sfiora</strong>, cioè dove sentiero e curva di livello sono tangenti. Ora traduco in formule: se le due curve sono tangenti hanno la stessa direzione tangente, quindi anche le loro perpendicolari hanno la stessa direzione. Ma la perpendicolare alla curva di livello di $f$ è $\nabla f$ (il gradiente è sempre ortogonale agli insiemi di livello) e la perpendicolare al vincolo è $\nabla g$. Due vettori con la stessa direzione sono uno multiplo dell'altro: esiste dunque un numero $\lambda$ tale che $\nabla f=\lambda\nabla g$. In modo equivalente: muovendomi sul vincolo la quota è $\varphi(t)=f(\boldsymbol r(t))$, e nel punto migliore $\varphi'(t)=\nabla f\cdot\boldsymbol r'=0$, cioè $\nabla f$ è perpendicolare al sentiero; anche $\nabla g$ lo è, perché $g$ è costante lungo il sentiero; e nel piano due vettori perpendicolari allo stesso vettore non nullo sono paralleli.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché prima di applicare il metodo occorre controllare dove $\nabla g$ si annulla? Illustra con l'esempio del minimo di $f(x,y)=x$ sul vincolo $y^2=x^3$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: l'ipotesi $\nabla g\neq\boldsymbol0$ serve a garantire che il vincolo, vicino al punto considerato, sia una curva liscia con una ben definita direzione tangente (è il teorema della funzione implicita a garantirlo). Dove $\nabla g=\boldsymbol0$ il vincolo può degenerare — cuspidi, punti isolati, autointersezioni — e il ragionamento basato sulla tangenza perde senso, perché non esiste una sola direzione tangente. Nell'esempio, il vincolo $g(x,y)=y^2-x^3=0$ impone $x^3=y^2\geq0$, quindi $x\geq0$ su tutto il vincolo, e il valore $x=0$ è raggiunto nell'origine, che appartiene al vincolo: il minimo <strong>esiste</strong> e vale $0$. Ma il sistema di Lagrange, con $\nabla f=(1,0)$ e $\nabla g=(-3x^2,2y)$, richiede $1=-3\lambda x^2$ e $0=2\lambda y$: dalla seconda si ha $\lambda=0$ (e allora la prima diventa $1=0$, assurdo) oppure $y=0$, che per il vincolo obbliga $x=0$ e di nuovo rende la prima assurda. Il sistema non ha dunque alcuna soluzione, pur esistendo il minimo. Il colpevole è proprio $\nabla g(0,0)=(0,0)$: nell'origine la curva ha una cuspide. Morale operativa: ai candidati prodotti dal sistema vanno sempre aggiunti, come candidati da esaminare a parte, i punti del vincolo in cui $\nabla g$ si annulla.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="05-hessiano-massimi-minimi.html"><span class="dir">← Capitolo precedente</span><strong>Hessiano, massimi e minimi</strong></a>
+        <a class="next" href="07-curve-superfici.html"><span class="dir">Capitolo successivo →</span><strong>Curve e superfici</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3. Potenze, Radicali ed Esponenziali — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 3</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html" class="is-active">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 3 di 9</span>
+        </div>
+        <h1>Potenze, Radicali ed Esponenziali: la crescita che accelera</h1>
+        <p class="subtitle">Un'unica idea — moltiplicare più volte lo stesso numero — genera tre strumenti fondamentali: le potenze (la scorciatoia), i radicali (l'operazione inversa) e la funzione esponenziale (la crescita più rapida che incontrerai in tutta l'Analisi). Impararli bene ora significa non inciampare mai più su segni, indici e denominatori.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina di piegare a metà un foglio di carta. Dopo una piega hai 2 strati, dopo due pieghe 4, dopo tre pieghe 8... A ogni piega il numero di strati <strong>raddoppia</strong>. Se potessi piegarlo 42 volte, la pila di carta supererebbe la distanza Terra–Luna. Questo è il potere di ciò che studieremo: numeri che, moltiplicandosi ripetutamente, crescono in modo <strong>esplosivo</strong>.</p>
+        <p>Scrivere "$2$ moltiplicato per sé stesso $42$ volte" sarebbe scomodissimo. Per questo la matematica inventa una scorciatoia: la <span class="glossario-term" data-term="potenza">potenza</span> $2^{42}$. Il numero grande, la <em>base</em>, è ciò che moltiplichiamo; il numero piccolo in alto, l'<em>esponente</em>, conta quante volte lo facciamo.</p>
+        <p>In questo capitolo incontrerai <strong>tre personaggi</strong>, ma tutti nati dalla stessa idea:</p>
+        <p>1) le <strong>potenze</strong>, cioè la moltiplicazione ripetuta, con le loro regole di calcolo; 2) i <strong>radicali</strong> (le radici), che sono l'operazione <em>inversa</em>: dato il risultato di una potenza, ci dicono qual era il numero di partenza; 3) la <strong>funzione esponenziale</strong> $a^x$, che nasce lasciando "scivolare" l'esponente lungo tutti i numeri reali e che descrive ogni fenomeno che cresce (o decresce) accelerando.</p>
+        <p>Un'immagine utile: la potenza è come uno <strong>zoom ripetuto</strong> su una mappa digitale (ogni tocco ingrandisce di un fattore fisso); la radice è lo <strong>zoom all'indietro</strong>, che ti riporta esattamente al livello di partenza.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché la realtà è piena di quantità che <strong>non crescono in modo costante, ma si moltiplicano</strong>: soldi che generano interessi, popolazioni che si riproducono, contenuti che diventano virali. Le potenze e gli esponenziali sono il linguaggio matematico di questa "crescita che accelera". Senza di essi non potremmo nemmeno scrivere comodamente la massa di un elettrone ($\approx 9 \cdot 10^{-31}$ kg) o il numero di atomi in un grammo di materia ($\approx 6 \cdot 10^{23}$).</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Due problemi complementari. Il primo è <em>scrivere in modo compatto</em> moltiplicazioni lunghissime e numeri enormi o piccolissimi. Il secondo, più profondo, è <em>tornare indietro</em>: se so che l'area di un quadrato è $50$, qual è il lato? La risposta è $\sqrt{50}$, ed è un'operazione — l'estrazione di <span class="glossario-term" data-term="radicale">radice</span> — che non potremmo definire senza aver prima capito bene le potenze.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo capitolo è il trampolino verso i tre successivi. I <a href="04-logaritmi.html"><span class="glossario-term" data-term="logaritmo">logaritmi</span></a> (capitolo 4) sono, per definizione, l'operazione inversa dell'esponenziale: senza padroneggiare $a^x$ non li capirai. E in Analisi 1, quando confronterai la velocità con cui diverse funzioni tendono a infinito, scoprirai che <a href="../parte1-analisi1/05-infinitesimi-infiniti.html">l'esponenziale batte qualunque potenza</a>: un risultato spettacolare che ha senso solo se qui costruisci basi solide. In più, il 90% degli errori negli esami di Analisi su domini e disequazioni nasce da regole delle potenze applicate male.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> La leggenda del chicco di riso</div>
+          <p>Un re promise all'inventore degli scacchi qualunque ricompensa. L'inventore chiese, con apparente modestia: "Un chicco di riso sulla prima casella, due sulla seconda, quattro sulla terza, e così via <strong>raddoppiando</strong> fino alla 64ª". Il re accettò ridendo... salvo poi scoprire che sull'ultima casella andavano $2^{63}$ chicchi, e in totale $2^{64}-1 \approx 1.8 \cdot 10^{19}$ chicchi: più riso di quanto ne sia stato prodotto in tutta la storia dell'umanità. È la firma inconfondibile della <strong>crescita esponenziale</strong>: parte piano, poi diventa incontrollabile.</p>
+        </div>
+        <p>Gli stessi numeri governano situazioni quotidianissime:</p>
+        <ul>
+          <li><strong>Interesse composto in banca.</strong> Se investi un capitale $C$ a un tasso annuo $r$, dopo $t$ anni possiedi $C\,(1+r)^t$. L'esponente $t$ trasforma una piccola percentuale in una crescita che, sul lungo periodo, sorprende chiunque. È il motore di ogni piano pensionistico.</li>
+          <li><strong>Un batterio che si duplica ogni ora.</strong> Da 1 batterio si passa a $2$, poi $4$, poi $8$: dopo $t$ ore ce ne sono $2^{t}$. Dopo un solo giorno sono $2^{24} \approx 16.8$ milioni. Le epidemie, nella fase iniziale, seguono la stessa legge.</li>
+          <li><strong>La viralità sui social.</strong> Se ogni persona che vede un contenuto lo condivide in media con 3 altre, il numero di visualizzazioni dopo $n$ passaggi è dell'ordine di $3^{n}$: bastano pochi "salti" per raggiungere milioni di persone.</li>
+        </ul>
+        <p>E i <span class="glossario-term" data-term="radicale">radicali</span>? Sono lo <strong>zoom all'indietro</strong>. Il tuo televisore "Full HD" ha $1920 \times 1080$ pixel: se ti dicessero solo che ha circa $2$ milioni di pixel disposti in un quadrato, per ritrovare il lato dovresti fare una radice quadrata. Ogni volta che da un'area risali a una lunghezza, da un volume a uno spigolo, o da un risultato a "quanto valeva prima di essere elevato", stai usando una radice.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-potenze">4.1 Potenze con esponente naturale</h3>
+        <p>Dato un <span class="glossario-term" data-term="numero-reale">numero reale</span> $a$ (la <strong>base</strong>) e un numero naturale $n \geq 1$ (l'<strong>esponente</strong>), la <strong><span class="glossario-term" data-term="potenza">potenza</span></strong> $a^n$ è il prodotto di $n$ fattori tutti uguali ad $a$:</p>
+        <div class="formula-block">
+          $$a^n = \underbrace{a \cdot a \cdot a \cdots a}_{n \text{ fattori}}$$
+        </div>
+        <p>Per esempio $2^5 = 2\cdot2\cdot2\cdot2\cdot2 = 32$. Si legge "$2$ elevato alla $5$" oppure "$2$ alla quinta". Due casi al limite meritano attenzione:</p>
+        <ul>
+          <li>$a^1 = a$: un solo fattore. Elevare alla prima non cambia nulla.</li>
+          <li>$a^0 = 1$ per ogni $a \neq 0$: sembra strano (nessun fattore?), ma tra poco lo dimostreremo. L'espressione $0^0$, invece, non è definita.</li>
+        </ul>
+
+        <h3 id="teoria-proprieta">4.2 Le cinque proprietà delle potenze</h3>
+        <p>Sono il cuore di tutto il calcolo con le potenze. Valgono per esponenti naturali (e, come vedremo, si estendono a esponenti interi e razionali). Assumiamo le basi diverse da zero quando compaiono al denominatore.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Proprietà</th><th>Formula</th><th>Esempio numerico</th></tr></thead>
+          <tbody>
+            <tr><td>Prodotto di potenze con la <strong>stessa base</strong></td><td>$a^m \cdot a^n = a^{m+n}$</td><td>$2^3 \cdot 2^4 = 2^7 = 128$</td></tr>
+            <tr><td>Quoziente di potenze con la <strong>stessa base</strong></td><td>$\dfrac{a^m}{a^n} = a^{m-n}$</td><td>$\dfrac{5^6}{5^2} = 5^4 = 625$</td></tr>
+            <tr><td>Potenza di potenza</td><td>$(a^m)^n = a^{m\cdot n}$</td><td>$(3^2)^4 = 3^8 = 6561$</td></tr>
+            <tr><td>Potenza di un prodotto</td><td>$(a\cdot b)^n = a^n \cdot b^n$</td><td>$(2\cdot5)^3 = 2^3\cdot 5^3 = 1000$</td></tr>
+            <tr><td>Potenza di un quoziente</td><td>$\left(\dfrac{a}{b}\right)^n = \dfrac{a^n}{b^n}$</td><td>$\left(\dfrac{3}{2}\right)^2 = \dfrac{9}{4}$</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Attenzione fin da subito</div>
+          <p>La proprietà del prodotto vale <strong>solo con la stessa base</strong>: $2^3 \cdot 5^3$ NON è $10^{3+3}$. E soprattutto <strong>NON esiste</strong> alcuna regola per la <em>somma</em> nella base: $(a+b)^n \neq a^n + b^n$. Ci torneremo nella sezione errori, perché è lo sbaglio numero uno.</p>
+        </div>
+
+        <h3 id="teoria-negativi">4.3 Esponente intero negativo e base negativa</h3>
+        <p>Per estendere le potenze agli esponenti negativi conservando la regola del quoziente, si <em>deve</em> porre (con $a \neq 0$):</p>
+        <div class="formula-block">
+          $$a^{-n} = \frac{1}{a^n}$$
+        </div>
+        <p>Un esponente negativo significa quindi "<strong>fai il reciproco</strong>": applicando la formula con $a=2$ e $n=3$ ottengo $2^{-3} = \dfrac{1}{2^3} = \dfrac{1}{8}$. Con una base frazionaria, $\left(\dfrac{3}{4}\right)^{-1}$, applico la stessa formula con $a=\frac34$ e $n=1$: viene $\dfrac{1}{\left(\frac34\right)^{1}} = \dfrac{1}{\frac34}$, e dividere per una frazione significa moltiplicare per il suo reciproco, cioè $1\cdot\dfrac43=\dfrac{4}{3}$ (la frazione si capovolge). Un modo pratico di leggerlo: una potenza con esponente negativo <strong>attraversa la linea di frazione</strong> cambiando segno all'esponente.</p>
+        <p>Va poi tenuto d'occhio il <strong>segno</strong> quando la base è negativa. La regola dipende dalla <strong>parità dell'esponente</strong>:</p>
+        <div class="formula-block">
+          $$(-a)^n = \begin{cases} +\,a^n & \text{se } n \text{ è pari} \\ -\,a^n & \text{se } n \text{ è dispari} \end{cases} \qquad (a &gt; 0)$$
+        </div>
+        <p>Il motivo è intuitivo: ogni coppia di fattori negativi dà segno positivo (meno per meno fa più). Se i fattori negativi sono in numero pari, si "cancellano" tutti; se sono dispari, ne avanza uno e il risultato resta negativo. Per esempio $(-2)^4 = 16$ (positivo, esponente pari) mentre $(-2)^3 = -8$ (negativo, esponente dispari).</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> La parentesi cambia tutto</div>
+          <p>$(-2)^4$ e $-2^4$ sono due cose diverse! Nella prima la base è $-2$ e il risultato è $+16$. Nella seconda l'esponente si applica solo al $2$, e il segno meno resta "fuori": $-2^4 = -(2^4) = -16$. La parentesi non è un dettaglio estetico: definisce chi viene elevato a potenza.</p>
+        </div>
+
+        <h3 id="teoria-radicali">4.4 Radicali: definizione e condizioni di esistenza</h3>
+        <p>La <strong><span class="glossario-term" data-term="radicale">radice</span> $n$-esima</strong> di un numero $a$ è l'operazione inversa dell'elevamento a potenza: cerca quel numero che, elevato alla $n$, restituisce $a$. In simboli:</p>
+        <div class="formula-block">
+          $$\sqrt[n]{a} = b \quad\Longleftrightarrow\quad b^n = a$$
+        </div>
+        <p>Qui $n$ è l'<strong>indice</strong> (un numero naturale $\geq 2$) e $a$ è il <strong>radicando</strong>. Quando $n=2$ scriviamo semplicemente $\sqrt{a}$ (radice quadrata) e l'indice si sottintende. Esempio: $\sqrt[3]{8} = 2$ perché $2^3 = 8$; $\sqrt{25} = 5$ perché $5^2 = 25$.</p>
+        <p>Le <strong>condizioni di esistenza in $\mathbb{R}$</strong> dipendono dalla parità dell'indice:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Indice</th><th>Radicando ammesso</th><th>Segno del risultato</th><th>Esempio</th></tr></thead>
+          <tbody>
+            <tr><td>$n$ <strong>pari</strong></td><td>$a \geq 0$ (obbligatorio)</td><td>sempre $\geq 0$</td><td>$\sqrt{9}=3$; $\ \sqrt{-9}$ non esiste in $\mathbb{R}$</td></tr>
+            <tr><td>$n$ <strong>dispari</strong></td><td>qualunque $a \in \mathbb{R}$</td><td>stesso segno di $a$</td><td>$\sqrt[3]{-8} = -2$</td></tr>
+          </tbody>
+        </table>
+        <p>Perché la radice di indice pari di un numero negativo non esiste? Perché qualunque numero reale, elevato a una potenza pari, dà un risultato $\geq 0$: non c'è alcun $b$ reale con $b^2 = -9$. (Nei numeri complessi si potrà; ma noi qui lavoriamo in $\mathbb{R}$.)</p>
+        <p>Un punto <strong>cruciale</strong>, fonte di infiniti errori: la radice quadrata di un quadrato non è "il numero stesso", ma il suo <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span>:</p>
+        <div class="formula-block">
+          $$\sqrt{a^2} = |a| \qquad\text{e più in generale}\qquad \sqrt[n]{a^n} = \begin{cases} |a| & n \text{ pari} \\ a & n \text{ dispari} \end{cases}$$
+        </div>
+        <p>La ragione: per definizione la radice di indice pari deve dare un risultato $\geq 0$, quindi non può restituire un numero negativo. Lo dimostreremo rigorosamente tra poco.</p>
+
+        <h3 id="teoria-proprieta-radicali">4.5 Proprietà dei radicali</h3>
+        <p>Rispecchiano quelle delle potenze (e presto capiremo perché <em>sono</em> le stesse). Salvo avviso contrario, supponiamo i radicandi $\geq 0$ quando l'indice è pari, così tutto esiste in $\mathbb{R}$.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Proprietà</th><th>Formula</th><th>Esempio</th></tr></thead>
+          <tbody>
+            <tr><td>Radice di un prodotto</td><td>$\sqrt[n]{a\cdot b} = \sqrt[n]{a}\cdot\sqrt[n]{b}$</td><td>$\sqrt{4\cdot9}=\sqrt4\cdot\sqrt9=6$</td></tr>
+            <tr><td>Radice di un quoziente</td><td>$\sqrt[n]{\dfrac{a}{b}} = \dfrac{\sqrt[n]{a}}{\sqrt[n]{b}}$</td><td>$\sqrt{\dfrac{16}{9}}=\dfrac{4}{3}$</td></tr>
+            <tr><td>Radice di radice</td><td>$\sqrt[m]{\sqrt[n]{a}} = \sqrt[m\cdot n]{a}$</td><td>$\sqrt{\sqrt[3]{a}}=\sqrt[6]{a}$</td></tr>
+            <tr><td>Semplificazione dell'indice</td><td>$\sqrt[n\cdot p]{a^{m\cdot p}} = \sqrt[n]{a^m}$</td><td>$\sqrt[6]{a^{2}}=\sqrt[3]{a}$</td></tr>
+          </tbody>
+        </table>
+        <p>L'ultima riga merita una lettura lenta, perché la formula con tre lettere spaventa. Dice: se indice ed esponente hanno un fattore in comune, quel fattore si può cancellare da entrambi, esattamente come si semplifica una frazione. Nell'esempio $\sqrt[6]{a^2}$ ho indice $6$ ed esponente $2$, che hanno in comune il fattore $p=2$: divido entrambi per $2$ e ottengo indice $6:2=3$ ed esponente $2:2=1$, cioè $\sqrt[3]{a}$. In termini della formula: $n=3$, $m=1$, $p=2$, perché $6=3\cdot2$ e $2=1\cdot2$.</p>
+        <p>Due manovre pratiche che userai continuamente:</p>
+        <ul>
+          <li><strong>Portare un fattore fuori dal segno di radice.</strong> Se sotto radice compare un quadrato perfetto (o una potenza multipla dell'indice), lo si può "estrarre": $\sqrt{a^2\,b} = |a|\,\sqrt{b}$. Questa non è una regola nuova: è la proprietà "radice di un prodotto" applicata con i due fattori $a^2$ e $b$, cioè $\sqrt{a^2\cdot b}=\sqrt{a^2}\cdot\sqrt b$, seguita dal fatto che $\sqrt{a^2}=|a|$ (<span class="richiamo" data-sec="4.4">§4.4</span>). Esempio: in $\sqrt{72}$ cerco il più grande quadrato perfetto che divide $72$ e trovo $36$, perché $72=36\cdot2$; quindi $\sqrt{72} = \sqrt{36\cdot 2}=\sqrt{36}\cdot\sqrt2 = 6\sqrt{2}$.</li>
+          <li><strong>Portare un fattore dentro il segno di radice.</strong> È l'operazione inversa: $a\sqrt{b} = \sqrt{a^2\,b}$ (valida per $a \geq 0$). Funziona perché, quando $a\geq0$, si ha $a=\sqrt{a^2}$: scrivo cioè il fattore esterno come una radice e poi uso di nuovo la proprietà del prodotto, $\sqrt{a^2}\cdot\sqrt b = \sqrt{a^2 b}$. Esempio: $3\sqrt{2} = \sqrt{3^2}\cdot\sqrt2 = \sqrt{9\cdot 2} = \sqrt{18}$.</li>
+        </ul>
+
+        <h3 id="teoria-razionale">4.6 Esponente razionale: il ponte tra potenze e radicali</h3>
+        <p>Ecco l'idea più elegante del capitolo. Cosa può mai significare $a^{1/2}$? Vogliamo che continui a valere la regola della potenza di potenza. Se così fosse, $\left(a^{1/2}\right)^2 = a^{(1/2)\cdot 2} = a^1 = a$. Ma il numero che elevato al quadrato dà $a$ è proprio $\sqrt{a}$! Quindi, per coerenza, si <em>definisce</em> (con $a &gt; 0$):</p>
+        <div class="formula-block">
+          $$a^{1/n} = \sqrt[n]{a} \qquad\text{e in generale}\qquad a^{m/n} = \sqrt[n]{a^{m}} = \left(\sqrt[n]{a}\right)^m$$
+        </div>
+        <p>In altre parole: <strong>un radicale non è altro che una potenza con esponente frazionario</strong>, in cui l'indice della radice finisce a denominatore dell'esponente. Questo è enormemente comodo, perché permette di applicare ai radicali <em>le stesse cinque proprietà delle potenze</em>, senza dover imparare regole separate. Per esempio:</p>
+        <div class="formula-block">
+          $$\sqrt{a}\cdot\sqrt[3]{a} = a^{1/2}\cdot a^{1/3} = a^{\frac{1}{2}+\frac{1}{3}} = a^{5/6} = \sqrt[6]{a^{5}}$$
+        </div>
+        <p>Rileggiamo la catena un pezzo alla volta, perché ogni uguale nasconde una regola diversa. <em>Primo uguale</em>: uso la definizione appena data con $n=2$ e con $n=3$, cioè riscrivo $\sqrt a = a^{1/2}$ e $\sqrt[3]a=a^{1/3}$. <em>Secondo uguale</em>: ora che sono due potenze con la stessa base posso usare $a^m\cdot a^n=a^{m+n}$ (<span class="richiamo" data-sec="4.2">§4.2</span>) con $m=\frac12$ e $n=\frac13$. <em>Terzo uguale</em>: sommo le due frazioni portandole al denominatore comune $6$ (minimo comune multiplo di $2$ e $3$): $\frac12=\frac36$ e $\frac13=\frac26$, quindi $\frac36+\frac26=\frac56$. <em>Quarto uguale</em>: rileggo $a^{5/6}$ come radicale con la definizione, stavolta al contrario: il denominatore $6$ torna a fare l'indice e il numeratore $5$ l'esponente del radicando.</p>
+
+        <h3 id="teoria-razionalizzazione">4.7 Razionalizzazione del denominatore</h3>
+        <p>Avere una radice al denominatore di una frazione è considerato "poco elegante" e scomodo per i calcoli successivi. La <strong><span class="glossario-term" data-term="razionalizzazione">razionalizzazione</span></strong> è la tecnica per eliminarla, moltiplicando numeratore <em>e</em> denominatore per una quantità opportuna (cioè moltiplicando per $1$ scritto in modo furbo). Due casi tipici:</p>
+        <p><strong>Caso 1 — un solo radicale al denominatore.</strong> Si moltiplica sopra e sotto per quel radicale:</p>
+        <div class="formula-block">
+          $$\frac{c}{\sqrt{a}} = \frac{c}{\sqrt{a}}\cdot\frac{\sqrt{a}}{\sqrt{a}} = \frac{c\,\sqrt{a}}{a} \qquad\text{es.}\qquad \frac{6}{\sqrt{3}} = \frac{6\sqrt{3}}{3} = 2\sqrt{3}$$
+        </div>
+        <p>Due domande legittime. <em>Perché è lecito?</em> Perché $\frac{\sqrt a}{\sqrt a}$ vale $1$, e moltiplicare per $1$ non cambia il valore di nulla: cambia solo l'aspetto. <em>Perché al denominatore sparisce la radice?</em> Perché $\sqrt a\cdot\sqrt a = (\sqrt a)^2 = a$: per definizione la radice quadrata è quel numero che, elevato al quadrato, restituisce il radicando. Nell'esempio numerico: moltiplico sopra e sotto per $\sqrt3$, il denominatore diventa $\sqrt3\cdot\sqrt3=3$ e resta $\frac{6\sqrt3}{3}$; infine semplifico il numero $6$ con il $3$ ($6:3=2$), ottenendo $2\sqrt3$.</p>
+        <p><strong>Caso 2 — un binomio con radicali al denominatore.</strong> Qui si usa un'idea bellissima: la <a href="02-algebra-calcolo-letterale.html">differenza di quadrati</a> $(x+y)(x-y) = x^2 - y^2$. Si moltiplica per il <strong>coniugato</strong> del denominatore (lo stesso binomio con il segno centrale cambiato), così i radicali spariscono:</p>
+        <div class="formula-block">
+          $$\frac{c}{\sqrt{a}+\sqrt{b}} = \frac{c}{\sqrt{a}+\sqrt{b}}\cdot\frac{\sqrt{a}-\sqrt{b}}{\sqrt{a}-\sqrt{b}} = \frac{c\,(\sqrt{a}-\sqrt{b})}{a-b}$$
+        </div>
+        <p>perché al denominatore $(\sqrt{a}+\sqrt{b})(\sqrt{a}-\sqrt{b}) = (\sqrt a)^2 - (\sqrt b)^2 = a - b$, senza più radici. Questo trucco è, in fondo, una <span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione in fattori</span> letta al contrario.</p>
+
+        <h3 id="teoria-esponenziale">4.8 La funzione esponenziale</h3>
+        <p>Finora l'esponente è stato un numero fisso. Ora lo facciamo <strong>diventare la variabile</strong>: fissiamo la base $a$ e lasciamo scivolare l'esponente lungo tutti i reali. Nasce la <strong>funzione <span class="glossario-term" data-term="esponenziale">esponenziale</span></strong>:</p>
+        <div class="formula-block">
+          $$f(x) = a^{x}, \qquad \text{con } a &gt; 0 \ \text{ e } \ a \neq 1$$
+        </div>
+        <p>Perché queste condizioni sulla base?</p>
+        <ul>
+          <li><strong>$a &gt; 0$</strong>: se la base fosse negativa, potenze come $a^{1/2}$ (cioè $\sqrt{a}$) non esisterebbero in $\mathbb{R}$, e il grafico sarebbe pieno di "buchi". Con $a=0$, poi, $0^x$ non è definito per $x \leq 0$.</li>
+          <li><strong>$a \neq 1$</strong>: se $a=1$ avremmo $1^x = 1$ per ogni $x$, cioè una retta orizzontale costante: non una vera "crescita", ma un caso degenere che escludiamo.</li>
+        </ul>
+        <p>Con queste ipotesi, la funzione esponenziale ha <strong>dominio</strong> tutto $\mathbb{R}$ (puoi elevare a qualunque esponente reale) e assume <strong>solo valori positivi</strong>: $a^x &gt; 0$ sempre. Ecco le sue proprietà grafiche, tutte da ricordare:</p>
+
+        <svg viewBox="0 0 380 250" style="max-width:480px;margin:1.4em auto;display:block;" role="img" aria-label="Grafico della funzione esponenziale: una curva crescente per base maggiore di 1 e una decrescente per base tra 0 e 1, entrambe passanti per il punto (0,1) con asintoto orizzontale y uguale a 0">
+          <!-- assi -->
+          <line x1="40" y1="210" x2="345" y2="210" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+          <line x1="190" y1="20" x2="190" y2="222" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+          <!-- asintoto y=0 coincide con asse x, lo evidenzio tratteggiato -->
+          <line x1="40" y1="210" x2="345" y2="210" stroke="var(--color-danger)" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.7"/>
+          <!-- curva con base maggiore di 1 (crescente, es. 2^x) -->
+          <polyline points="60,204 100,199 140,189 190,178 220,156 260,112 285,72 305,30" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <!-- curva con base compresa tra 0 e 1 (decrescente, es. (1/2)^x) -->
+          <polyline points="75,30 95,72 120,112 160,156 190,178 240,189 280,199 320,204" fill="none" stroke="var(--color-secondary)" stroke-width="2.5"/>
+          <!-- punto fisso (0,1) -->
+          <circle cx="190" cy="178" r="4.5" fill="var(--color-accent)"/>
+          <text x="197" y="173" font-size="12" font-weight="700" fill="currentColor">(0, 1)</text>
+          <!-- etichette curve -->
+          <text x="300" y="24" font-size="12" font-weight="700" fill="var(--color-primary)">a &gt; 1</text>
+          <text x="60" y="24" font-size="12" font-weight="700" fill="var(--color-secondary)">0 &lt; a &lt; 1</text>
+          <!-- etichette assi e asintoto -->
+          <text x="332" y="204" font-size="12" fill="currentColor">x</text>
+          <text x="196" y="30" font-size="12" fill="currentColor">y</text>
+          <text x="250" y="224" font-size="11" fill="var(--color-danger)">asintoto y = 0</text>
+        </svg>
+
+        <ul>
+          <li><strong>Punto fisso $(0,1)$</strong>: ogni curva $a^x$ passa per $(0,1)$, perché $a^0 = 1$ qualunque sia la base.</li>
+          <li><strong>Monotonia</strong>: se $a &gt; 1$ la funzione è <em>crescente</em> (sale sempre più ripida); se $0 &lt; a &lt; 1$ è <em>decrescente</em> (scende avvicinandosi a zero). Le due curve sono l'una il riflesso dell'altra rispetto all'asse $y$.</li>
+          <li><strong>Asintoto orizzontale $y = 0$</strong>: la curva si avvicina indefinitamente all'asse delle $x$ senza mai toccarlo (da destra se $a&gt;1$ per $x\to-\infty$; da sinistra se $0&lt;a&lt;1$ per $x\to+\infty$). Non assume mai il valore $0$.</li>
+        </ul>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il numero di Nepero $e$</div>
+          <p>Tra tutte le basi possibili, ce n'è una speciale, il <strong>numero di Nepero</strong> $e \approx 2{,}71828\ldots$, un <span class="glossario-term" data-term="numero-irrazionale">numero irrazionale</span> come $\pi$. La funzione $e^x$ ha una proprietà quasi magica (la sua "velocità di crescita" in ogni punto è uguale al suo stesso valore) che la rende la vera regina dell'Analisi. Qui ti basti sapere che esiste: la incontrerai in Analisi 1 studiando i limiti notevoli e le derivate.</p>
+        </div>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Prodotto di potenze con la stessa base.</em> Per ogni $a \in \mathbb{R}$ e ogni $m, n \in \mathbb{N}$ con $m, n \geq 1$ vale $\ a^m \cdot a^n = a^{m+n}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per conteggio dei fattori)</span>
+          <p>L'idea è semplicissima: contare quante volte compare $a$ come fattore.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Per definizione, $a^m$ è il prodotto di $m$ fattori uguali ad $a$, e $a^n$ è il prodotto di $n$ fattori uguali ad $a$.</span>
+          <span class="esempio__passo">Il loro prodotto $a^m \cdot a^n$ è dunque un unico prodotto in cui $a$ compare $m + n$ volte: $\underbrace{a\cdots a}_{m} \cdot \underbrace{a\cdots a}_{n} = \underbrace{a\cdots a}_{m+n}$.</span>
+          <span class="esempio__passo">Ma un prodotto di $m+n$ fattori uguali ad $a$ è, sempre per definizione, la potenza $a^{m+n}$.</span>
+          </p>
+          <p>Quindi $a^m \cdot a^n = a^{m+n}$. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Perché $a^0 = 1$.</em> Per ogni $a \neq 0$ risulta $a^0 = 1$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (coerenza con la regola del quoziente)</span>
+          <p>Non "decidiamo" arbitrariamente che $a^0 = 1$: lo <em>deduciamo</em> imponendo che continui a valere la regola del quoziente.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Prendiamo una qualunque potenza $a^n$ con $a \neq 0$ e dividiamola per sé stessa: il risultato è ovviamente $1$, perché ogni numero (non nullo) diviso per sé stesso fa $1$. Quindi $\dfrac{a^n}{a^n} = 1$.</span>
+          <span class="esempio__passo">D'altra parte, applicando la regola del quoziente $\dfrac{a^m}{a^n} = a^{m-n}$ con $m=n$, otteniamo $\dfrac{a^n}{a^n} = a^{n-n} = a^{0}$.</span>
+          <span class="esempio__passo">Le due espressioni descrivono lo stesso numero, quindi devono essere uguali.</span>
+          </p>
+          <p>Confrontando: $a^0 = 1$. La richiesta $a \neq 0$ è essenziale, perché $\dfrac{0^n}{0^n}$ sarebbe $\dfrac{0}{0}$, privo di senso. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Radice quadrata di un quadrato.</em> Per ogni $a \in \mathbb{R}$ vale $\ \sqrt{a^2} = |a|$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (dalla definizione di radice)</span>
+          <p>Ricordiamo che per definizione $\sqrt{a^2}$ è <strong>quell'unico numero non negativo</strong> il cui quadrato vale $a^2$. Basta allora verificare che $|a|$ soddisfa entrambe le richieste.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>È non negativo:</strong> per definizione di valore assoluto, $|a| \geq 0$ sempre. ✔</span>
+          <span class="esempio__passo"><strong>Il suo quadrato vale $a^2$:</strong> infatti $|a|^2 = a^2$, dato che elevare al quadrato "dimentica" il segno (sia $a$ sia $-a$ hanno quadrato $a^2$). ✔</span>
+          <span class="esempio__passo">Poiché $|a|$ è non negativo e il suo quadrato è $a^2$, esso è <em>proprio</em> la radice quadrata di $a^2$.</span>
+          </p>
+          <p>Dunque $\sqrt{a^2} = |a|$. Concludere invece $\sqrt{a^2} = a$ sarebbe sbagliato: se $a &lt; 0$, il membro di destra sarebbe negativo, mentre una radice quadrata non può esserlo. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Controllo numerico immediato</div>
+          <p>Con $a = -3$: $\sqrt{(-3)^2} = \sqrt{9} = 3$, e infatti $|-3| = 3$. La radice ha "raddrizzato" il segno. Se avessimo scritto $\sqrt{(-3)^2} = -3$ avremmo affermato che $\sqrt 9 = -3$, palesemente falso.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Perché funziona la razionalizzazione con il coniugato.</em> Per ogni $a, b \geq 0$ vale $\ (\sqrt{a}+\sqrt{b})(\sqrt{a}-\sqrt{b}) = a - b$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (differenza di quadrati)</span>
+          <p>Applichiamo il prodotto notevole $(x+y)(x-y) = x^2 - y^2$ (cap. 2) sostituendo $x = \sqrt{a}$ e $y = \sqrt{b}$, cioè scrivendo $\sqrt a$ ovunque la formula dica $x$ e $\sqrt b$ ovunque dica $y$. Nel risultato compaiono allora $(\sqrt a)^2$ e $(\sqrt b)^2$, che valgono rispettivamente $a$ e $b$ per la definizione stessa di radice quadrata (<span class="richiamo" data-sec="4.4">§4.4</span>):</p>
+          <div class="formula-block">
+            $$(\sqrt{a}+\sqrt{b})(\sqrt{a}-\sqrt{b}) = (\sqrt{a})^2 - (\sqrt{b})^2 = a - b.$$
+          </div>
+          <p>Il risultato $a - b$ non contiene più alcuna radice: ecco perché, moltiplicando un denominatore $\sqrt{a}+\sqrt{b}$ per il suo coniugato $\sqrt{a}-\sqrt{b}$, la radice sparisce dal denominatore. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Proprietà delle potenze</span><span class="badge badge--base">Base</span></div>
+          <p>Semplificare $\dfrac{a^5 \cdot a^3}{a^2}$ (con $a \neq 0$).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Al numeratore uso la prima proprietà del <span class="richiamo" data-sec="4.2">§4.2</span>, $a^m\cdot a^n=a^{m+n}$, con $m=5$ e $n=3$: gli esponenti si sommano, $a^5 \cdot a^3 = a^{5+3} = a^{8}$.</span>
+            <span class="esempio__passo">Ora uso la seconda proprietà, $\dfrac{a^m}{a^n}=a^{m-n}$, con $m=8$ e $n=2$: gli esponenti si sottraggono, $\dfrac{a^{8}}{a^{2}} = a^{8-2} = a^6$.</span>
+          </p>
+          <div class="esempio__risultato">$\dfrac{a^5 \cdot a^3}{a^2} = a^{6}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Esponente negativo e zero</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $2^{-3}$, $\ \left(\dfrac{3}{4}\right)^{-1}$ e $\ 7^{0}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso la definizione $a^{-n}=\dfrac{1}{a^n}$ (<span class="richiamo" data-sec="4.3">§4.3</span>) con $a=2$ e $n=3$: $2^{-3} = \dfrac{1}{2^3} = \dfrac{1}{8}$. L'esponente negativo diventa un reciproco.</span>
+            <span class="esempio__passo">Stessa definizione con $a=\dfrac34$ e $n=1$: $\left(\dfrac{3}{4}\right)^{-1} = \dfrac{1}{\left(\frac34\right)^1}=\dfrac{1}{\frac34}$. Dividere per una frazione equivale a moltiplicare per il suo reciproco, quindi il risultato è $\dfrac{4}{3}$: la frazione si capovolge.</span>
+            <span class="esempio__passo">$7^{0} = 1$: per la proposizione dimostrata nella sezione 5, qualunque base non nulla elevata a $0$ dà $1$.</span>
+          </p>
+          <div class="esempio__risultato">$2^{-3}=\dfrac18, \quad \left(\tfrac34\right)^{-1}=\dfrac43, \quad 7^0=1$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Segno e parentesi</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare, facendo attenzione al segno: $(-2)^4$, $\ (-2)^5$ e $\ -2^{4}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$(-2)^4$: base $-2$, esponente pari → risultato positivo. $(-2)^4 = 16$.</span>
+            <span class="esempio__passo">$(-2)^5$: base $-2$, esponente dispari → risultato negativo. $(-2)^5 = -32$.</span>
+            <span class="esempio__passo">$-2^4$: qui NON c'è la parentesi, quindi l'esponente agisce solo sul $2$ e il segno resta fuori: $-2^4 = -(2^4) = -16$.</span>
+          </p>
+          <div class="esempio__risultato">$(-2)^4 = 16, \quad (-2)^5 = -32, \quad -2^4 = -16$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Portare fuori dal segno di radice</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Semplificare $\sqrt{72}$ e $\sqrt[3]{54}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Cerco il più grande quadrato perfetto che divide $72$: provo $36$ e funziona, perché $72 = 36 \cdot 2$ e $36 = 6^2$. Riscrivo il radicando come prodotto e uso la proprietà "radice di un prodotto" (<span class="richiamo" data-sec="4.5">§4.5</span>), $\sqrt[n]{a\cdot b}=\sqrt[n]a\cdot\sqrt[n]b$, con $a=6^2$ e $b=2$: $\sqrt{72} = \sqrt{6^2 \cdot 2} = \sqrt{6^2}\cdot\sqrt2 = 6\sqrt{2}$, perché $\sqrt{6^2}=6$ (radice e quadrato si annullano, e $6$ è già positivo).</span>
+            <span class="esempio__passo">Con l'indice $3$ il ragionamento è lo stesso, ma cerco un <em>cubo</em> perfetto: $54 = 27 \cdot 2$ e $27 = 3^3$. Quindi $\sqrt[3]{54} = \sqrt[3]{3^3 \cdot 2} = \sqrt[3]{3^3}\cdot\sqrt[3]2 = 3\sqrt[3]{2}$.</span>
+          </p>
+          <div class="esempio__risultato">$\sqrt{72} = 6\sqrt{2}, \qquad \sqrt[3]{54} = 3\sqrt[3]{2}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Radicali come potenze frazionarie</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Semplificare $\sqrt{a}\cdot\sqrt[3]{a}$ e $\sqrt[6]{a^{4}}$ (con $a &gt; 0$), scrivendo il risultato sia come potenza sia come radicale.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Trasformo i radicali in potenze con la definizione $a^{1/n}=\sqrt[n]a$ (<span class="richiamo" data-sec="4.6">§4.6</span>) letta al contrario: l'indice della radice va a denominatore dell'esponente. Con $n=2$ ottengo $\sqrt{a} = a^{1/2}$, con $n=3$ ottengo $\sqrt[3]{a} = a^{1/3}$.</span>
+            <span class="esempio__passo">Ora sono due potenze della stessa base $a$, quindi applico $a^m\cdot a^n = a^{m+n}$ con $m=\frac12$ e $n=\frac13$: $a^{1/2}\cdot a^{1/3} = a^{\frac{1}{2}+\frac{1}{3}}$.</span>
+            <span class="esempio__passo">Sommo le due frazioni all'esponente: il denominatore comune è $6$ (minimo comune multiplo di $2$ e $3$), quindi $\frac12=\frac36$ e $\frac13=\frac26$, e la somma è $\frac{3+2}{6}=\frac56$. Ottengo $a^{5/6}$, che ritradotto in radicale (denominatore $\to$ indice, numeratore $\to$ esponente del radicando) è $\sqrt[6]{a^{5}}$.</span>
+            <span class="esempio__passo">Per il secondo uso la definizione $a^{m/n}=\sqrt[n]{a^m}$ con $m=4$ e $n=6$: $\sqrt[6]{a^{4}} = a^{4/6}$. Semplifico la frazione dell'esponente dividendo numeratore e denominatore per $2$: $\frac46=\frac23$. Quindi $a^{2/3}$, cioè $\sqrt[3]{a^{2}}$.</span>
+          </p>
+          <div class="esempio__risultato">$\sqrt{a}\cdot\sqrt[3]{a} = a^{5/6} = \sqrt[6]{a^{5}}, \qquad \sqrt[6]{a^{4}} = a^{2/3} = \sqrt[3]{a^{2}}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Razionalizzazione</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Razionalizzare i denominatori: $\dfrac{1}{\sqrt{5}}$ e $\dfrac{2}{\sqrt{3}+1}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Primo caso, un solo radicale: moltiplico sopra e sotto per $\sqrt{5}$, cioè moltiplico per $\dfrac{\sqrt5}{\sqrt5}$, che vale $1$ e quindi non altera il valore della frazione. Al numeratore viene $1\cdot\sqrt5=\sqrt5$; al denominatore $\sqrt5\cdot\sqrt5=(\sqrt5)^2=5$, perché la radice quadrata elevata al quadrato restituisce il radicando. Risultato: $\dfrac{1}{\sqrt{5}}\cdot\dfrac{\sqrt5}{\sqrt5} = \dfrac{\sqrt{5}}{5}$.</span>
+            <span class="esempio__passo">Secondo caso, al denominatore c'è un binomio: il suo coniugato si ottiene cambiando il segno centrale, quindi il coniugato di $\sqrt3+1$ è $\sqrt3-1$. Moltiplico sopra e sotto per esso (di nuovo sto moltiplicando per $1$).</span>
+            <span class="esempio__passo">Denominatore: ha la forma $(x+y)(x-y)$ con $x=\sqrt3$ e $y=1$, quindi per la differenza di quadrati vale $x^2-y^2=(\sqrt3)^2-1^2 = 3 - 1 = 2$: le radici sono sparite. Numeratore: $2\cdot(\sqrt3-1)$, che lascio così com'è.</span>
+            <span class="esempio__passo">Ottengo $\dfrac{2}{\sqrt3+1} = \dfrac{2(\sqrt3-1)}{2}$; il fattore $2$ compare sia sopra sia sotto e si semplifica, lasciando $\sqrt3 - 1$.</span>
+          </p>
+          <div class="esempio__risultato">$\dfrac{1}{\sqrt5} = \dfrac{\sqrt5}{5}, \qquad \dfrac{2}{\sqrt3+1} = \sqrt3 - 1$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Monotonia dell'esponenziale</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Senza calcolatrice, ordinare dal più piccolo al più grande i numeri $3^{-2}$, $\ 3^{0}$, $\ 3^{1/2}$, $\ 3^{2}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Hanno tutti la stessa base $3 &gt; 1$, quindi la funzione $3^x$ è <strong>crescente</strong>: a esponente più grande corrisponde valore più grande.</span>
+            <span class="esempio__passo">Basta allora ordinare gli esponenti: $-2 &lt; 0 &lt; \tfrac12 &lt; 2$.</span>
+            <span class="esempio__passo">Di conseguenza l'ordine dei valori è lo stesso. (Verifica: $3^{-2} = \tfrac19$, $\ 3^0 = 1$, $\ 3^{1/2} = \sqrt3 \approx 1{,}73$, $\ 3^2 = 9$.)</span>
+          </p>
+          <div class="esempio__risultato">$3^{-2} &lt; 3^{0} &lt; 3^{1/2} &lt; 3^{2}$</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "$(a+b)^n = a^n + b^n$"</div>
+          <p>È l'errore più diffuso in assoluto. La potenza <strong>non</strong> si distribuisce sulla somma. Controesempio numerico con $a=2$, $b=3$, $n=2$: $(2+3)^2 = 5^2 = 25$, mentre $2^2 + 3^2 = 4 + 9 = 13$. Sono diversi! Il pezzo che manca è il doppio prodotto: $(a+b)^2 = a^2 + 2ab + b^2$. <em>Come evitarlo</em>: la regola $(a\cdot b)^n = a^n b^n$ vale per il <strong>prodotto</strong>, non per la somma; appena vedi una somma dentro la potenza, pensa ai prodotti notevoli.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "$\sqrt{a^2} = a$"</div>
+          <p>Vero solo se $a \geq 0$. In generale $\sqrt{a^2} = |a|$. Controesempio con $a = -3$: $\sqrt{(-3)^2} = \sqrt{9} = 3 = |-3|$, <strong>non</strong> $-3$. Dimenticare il valore assoluto è la causa numero uno di soluzioni sbagliate nelle equazioni e nelle disequazioni con radici. <em>Come evitarlo</em>: ogni volta che estrai una radice di indice pari da un quadrato, scrivi meccanicamente le barrette del modulo, e semmai le togli dopo aver verificato il segno.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Radice pari di un numero negativo</div>
+          <p>Scrivere $\sqrt{-4} = -2$ è <strong>sbagliato</strong>: infatti $(-2)^2 = +4$, non $-4$. Nessun numero reale elevato al quadrato dà un risultato negativo, quindi $\sqrt{-4}$ <em>non esiste in $\mathbb{R}$</em>. <em>Come evitarlo</em>: prima di calcolare una radice di indice pari, controlla che il radicando sia $\geq 0$; è esattamente questa la condizione di esistenza che ti servirà per trovare i domini in Analisi 1.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Segno delle potenze a base negativa</div>
+          <p>Confondere $(-2)^4$ con $(-2)^3$, o $(-2)^4$ con $-2^4$. Ricorda: base negativa ed esponente <strong>pari</strong> → risultato <strong>positivo</strong> ($(-2)^4 = 16$); esponente <strong>dispari</strong> → risultato <strong>negativo</strong> ($(-2)^3 = -8$). E senza parentesi il segno resta escluso: $-2^4 = -16$. <em>Come evitarlo</em>: cerchia sempre la base con una parentesi mentale prima di elevare.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Razionalizzare "a metà"</div>
+          <p>Nel razionalizzare, alcuni moltiplicano solo il denominatore per il radicale (o per il coniugato) e dimenticano il numeratore. Ma moltiplicare solo sotto <strong>cambia il valore</strong> della frazione! Bisogna moltiplicare sopra <em>e</em> sotto per la stessa quantità (cioè per $1$): $\dfrac{6}{\sqrt3} = \dfrac{6}{\sqrt3}\cdot\dfrac{\sqrt3}{\sqrt3} = \dfrac{6\sqrt3}{3} = 2\sqrt3$. <em>Come evitarlo</em>: scrivi sempre esplicitamente la frazione $\dfrac{\sqrt3}{\sqrt3}$ (che vale $1$) come fattore, così non ne dimenticherai mai un pezzo.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Radicale ↔ potenza frazionaria in un lampo</div>
+          <p>Per passare da radicale a potenza: l'<strong>indice</strong> della radice va a <strong>denominatore</strong> dell'esponente, l'esponente del radicando va a numeratore. Cioè $\sqrt[n]{a^{m}} = a^{m/n}$. E viceversa: $a^{3/5} = \sqrt[5]{a^3}$. Con questa conversione, ogni prodotto o quoziente di radicali (anche con indici diversi!) diventa una banale somma di frazioni tra esponenti. È lo strumento più potente del capitolo.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Razionalizzare vs unica radice: quando conviene cosa</div>
+          <p>Se hai <strong>radici al denominatore</strong>, razionalizza (moltiplica per il radicale o per il coniugato). Se invece devi <strong>moltiplicare o dividere più radicali</strong> con indici diversi, conviene portarli tutti sotto un'unica radice usando le potenze frazionarie e un indice comune: $\sqrt{2}\cdot\sqrt[3]{2} = 2^{1/2}\cdot 2^{1/3} = 2^{5/6} = \sqrt[6]{2^{5}} = \sqrt[6]{32}$. Regola pratica: <em>denominatore sporco → razionalizza; prodotto di radici → unica radice</em>.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Mnemonico per il segno delle basi negative</div>
+          <p>"<strong>PA-PO, DI-mantiene</strong>": esponente <strong>PA</strong>ri → risultato <strong>PO</strong>sitivo; esponente <strong>DI</strong>spari → <strong>mantiene</strong> il segno della base. Così $(-5)^{100}$ è positivo (pari), $(-5)^{7}$ è negativo (dispari), senza fare alcun conto. E ricorda la parentesi: senza di essa, come in $-5^2$, il meno non fa parte della base.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Esponente negativo = "capovolgi"</div>
+          <p>Un esponente negativo non rende mai negativo il risultato: <em>capovolge</em> la base. $a^{-n} = \dfrac{1}{a^n}$, e per le frazioni $\left(\dfrac{p}{q}\right)^{-n} = \left(\dfrac{q}{p}\right)^{n}$. Trucco veloce: un fattore con esponente negativo "salta" dall'altra parte della linea di frazione cambiando segno all'esponente. Così $\dfrac{a^{-2}}{b^{-3}} = \dfrac{b^{3}}{a^{2}}$ in un colpo solo.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Potenze, Radicali ed Esponenziali</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Potenze</strong>
+              <ul><li>$a^n$ = prodotto ripetuto</li><li>5 proprietà (·, :, potenza di potenza...)</li><li>$a^0=1$, $\ a^{-n}=1/a^n$</li><li>Segno: pari → +, dispari → segno base</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Radicali</strong>
+              <ul><li>$\sqrt[n]{a}=b \Leftrightarrow b^n=a$</li><li>Indice pari → radicando ≥ 0</li><li>$\sqrt{a^2}=|a|$</li><li>Portar dentro/fuori, razionalizzare</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Il ponte</strong>
+              <ul><li>$\sqrt[n]{a^m}=a^{m/n}$</li><li>Radicale = potenza frazionaria</li><li>Stesse proprietà delle potenze</li><li>Indice ↔ denominatore</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Esponenziale</strong>
+              <ul><li>$f(x)=a^x$, $\ a&gt;0$, $\ a\neq1$</li><li>Dominio ℝ, valori sempre &gt; 0</li><li>Passa per $(0,1)$, asintoto $y=0$</li><li>$a&gt;1$ cresce; $0&lt;a&lt;1$ decresce</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Cinque proprietà delle potenze</strong>: $a^m a^n = a^{m+n}$; $\ a^m/a^n = a^{m-n}$; $\ (a^m)^n = a^{mn}$; $\ (ab)^n = a^n b^n$; $\ (a/b)^n = a^n/b^n$.</li>
+            <li><strong>Casi speciali</strong>: $a^0 = 1$ (se $a\neq0$); $\ a^{-n} = 1/a^n$ (reciproco); $\ (a+b)^n \neq a^n + b^n$.</li>
+            <li><strong>Segno</strong>: base negativa con esponente pari → positivo; con esponente dispari → negativo. La parentesi definisce la base.</li>
+            <li><strong>Radice</strong>: $\sqrt[n]{a}=b \Leftrightarrow b^n=a$. Indice pari → radicando $\geq 0$ e risultato $\geq 0$; indice dispari → sempre definita.</li>
+            <li><strong>$\sqrt{a^2} = |a|$</strong>, non $a$. È la regola che salva più esami di ogni altra.</li>
+            <li><strong>Radicale = potenza frazionaria</strong>: $\sqrt[n]{a^m} = a^{m/n}$. Unifica tutte le regole in una sola.</li>
+            <li><strong>Razionalizzazione</strong>: moltiplica sopra e sotto per il radicale, o per il coniugato (differenza di quadrati) se è un binomio.</li>
+            <li><strong>Esponenziale $a^x$</strong> ($a&gt;0$, $a\neq1$): dominio $\mathbb{R}$, valori $&gt;0$, passa per $(0,1)$, asintoto $y=0$; crescente se $a&gt;1$, decrescente se $0&lt;a&lt;1$.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola: $3^4$, $\ 2^5$, $\ 10^3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$3^4 = 3\cdot3\cdot3\cdot3 = 81$; $\ 2^5 = 32$; $\ 10^3 = 1000$.</p>
+              <p><strong>$3^4=81,\quad 2^5=32,\quad 10^3=1000$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Semplifica applicando le proprietà: $x^7 \cdot x^2 : x^3$ e $\ (y^2)^3$ (con $x,y\neq0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Tutte le potenze hanno la stessa base $x$, quindi procedo da sinistra. Prima il prodotto, con $a^m\cdot a^n=a^{m+n}$ e $m=7$, $n=2$: $x^7\cdot x^2 = x^{7+2}=x^9$. Poi il quoziente, con $\dfrac{a^m}{a^n}=a^{m-n}$ e $m=9$, $n=3$: $x^9:x^3 = x^{9-3}=x^6$. In un colpo solo: $x^{7+2-3} = x^6$.</p>
+              <p>Per il secondo uso la potenza di potenza $(a^m)^n=a^{m\cdot n}$ con $m=2$ e $n=3$: gli esponenti si <em>moltiplicano</em>, $(y^2)^3 = y^{2\cdot3} = y^6$.</p>
+              <p><strong>$x^7 \cdot x^2 : x^3 = x^6, \qquad (y^2)^3 = y^6$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola: $5^{-2}$, $\ \left(\dfrac{2}{3}\right)^{-1}$, $\ 7^{0}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Applico $a^{-n}=\dfrac{1}{a^n}$ (<span class="richiamo" data-sec="4.3">§4.3</span>) con $a=5$, $n=2$: $5^{-2} = \dfrac{1}{5^2} = \dfrac{1}{25}$. Stessa formula con $a=\tfrac23$, $n=1$: $\left(\tfrac23\right)^{-1} = \dfrac{1}{\frac23}=\dfrac32$, cioè la frazione si capovolge. Infine $7^0 = 1$ per la proposizione della sezione 5 (base non nulla elevata a zero).</p>
+              <p><strong>$5^{-2}=\dfrac{1}{25},\quad \left(\tfrac23\right)^{-1}=\dfrac32,\quad 7^0=1$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola, se esistono in $\mathbb{R}$: $\sqrt{49}$, $\ \sqrt[3]{8}$, $\ \sqrt{-16}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$\sqrt{49} = 7$ (perché $7^2=49$); $\ \sqrt[3]{8} = 2$ (perché $2^3=8$); $\ \sqrt{-16}$ <strong>non esiste in $\mathbb{R}$</strong> (indice pari, radicando negativo).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Porta fuori dal segno di radice: $\sqrt{48}$, $\ \sqrt{75}$, $\ \sqrt[3]{16}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>In tutti e tre i casi spezzo il radicando in due fattori — uno dei quali è una potenza con lo stesso esponente dell'indice — e poi uso la proprietà $\sqrt[n]{a\cdot b}=\sqrt[n]a\cdot\sqrt[n]b$ (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
+              <p>$48 = 16\cdot3$ con $16=4^2$, quindi $\sqrt{48}=\sqrt{16}\cdot\sqrt3=4\sqrt3$. $\ 75 = 25\cdot3$ con $25=5^2$, quindi $\sqrt{75}=\sqrt{25}\cdot\sqrt3=5\sqrt3$. Per l'ultimo l'indice è $3$, quindi cerco un <em>cubo</em>: $16 = 8\cdot2 = 2^3\cdot2$, quindi $\sqrt[3]{16}=\sqrt[3]{2^3}\cdot\sqrt[3]2=2\sqrt[3]{2}$.</p>
+              <p><strong>$\sqrt{48}=4\sqrt3,\quad \sqrt{75}=5\sqrt3,\quad \sqrt[3]{16}=2\sqrt[3]{2}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scrivi come potenza con esponente frazionario e semplifica: $\sqrt[6]{a^{3}}$ e $\ \sqrt{a}\cdot\sqrt[4]{a}$ (con $a &gt; 0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Uso la definizione $a^{m/n}=\sqrt[n]{a^m}$ (<span class="richiamo" data-sec="4.6">§4.6</span>) con $m=3$ e $n=6$: $\sqrt[6]{a^3} = a^{3/6}$. Semplifico la frazione all'esponente dividendo sopra e sotto per $3$: $\frac36=\frac12$. Quindi $a^{1/2}$, che riletto come radicale è $\sqrt{a}$.</p>
+              <p>Per il prodotto trasformo prima i due radicali in potenze: $\sqrt a = a^{1/2}$ e $\sqrt[4]a=a^{1/4}$. Poi applico $a^m\cdot a^n=a^{m+n}$ con $m=\frac12$ e $n=\frac14$: devo sommare le due frazioni, il cui denominatore comune è $4$, quindi $\frac12=\frac24$ e la somma è $\frac{2+1}{4}=\frac34$. Ottengo $a^{3/4} = \sqrt[4]{a^3}$.</p>
+              <p><strong>$\sqrt[6]{a^3} = \sqrt{a}, \qquad \sqrt{a}\cdot\sqrt[4]{a} = a^{3/4}=\sqrt[4]{a^3}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina il segno (senza svolgere tutti i conti) di: $(-3)^4$, $\ (-3)^3$, $\ -3^2$, $\ (-1)^{100}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$(-3)^4$: pari → positivo, $= 81$. $\ (-3)^3$: dispari → negativo, $= -27$. $\ -3^2$: niente parentesi, $= -(3^2) = -9$. $\ (-1)^{100}$: pari → positivo, $= 1$.</p>
+              <p><strong>$81,\quad -27,\quad -9,\quad 1$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per quali valori di $x$ è definita in $\mathbb{R}$ l'espressione $\sqrt{x-2}$? E $\sqrt[3]{x-2}$?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La prima ha indice pari (è una radice quadrata): per la tabella del <span class="richiamo" data-sec="4.4">§4.4</span> serve radicando $\geq 0$. Qui il radicando è l'intera espressione $x-2$, quindi impongo $x - 2 \geq 0$ e risolvo sommando $2$ a entrambi i membri: $x \geq 2$. La seconda ha indice dispari: è definita per <strong>ogni</strong> $x \in \mathbb{R}$.</p>
+              <p><strong>$\sqrt{x-2}$ esiste per $x \geq 2$; $\ \sqrt[3]{x-2}$ esiste per ogni $x\in\mathbb{R}$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Razionalizza: $\dfrac{6}{\sqrt2}$ e $\ \dfrac{4}{\sqrt6+\sqrt2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Primo: moltiplico numeratore e denominatore per $\sqrt2$, cioè moltiplico la frazione per $\dfrac{\sqrt2}{\sqrt2}=1$. Sopra ottengo $6\sqrt2$, sotto $\sqrt2\cdot\sqrt2=(\sqrt2)^2=2$. Resta $\dfrac{6\sqrt2}{2}$, e semplificando il numero ($6:2=3$) ottengo $3\sqrt2$.</span>
+                <span class="esempio__passo">Secondo: il coniugato di $\sqrt6+\sqrt2$ si ottiene cambiando il segno centrale, cioè è $\sqrt6-\sqrt2$; moltiplico sopra e sotto per esso. Al denominatore riconosco la forma $(x+y)(x-y)=x^2-y^2$ con $x=\sqrt6$ e $y=\sqrt2$, quindi vale $(\sqrt6)^2-(\sqrt2)^2 = 6-2 = 4$. Al numeratore resta $4(\sqrt6-\sqrt2)$.</span>
+                <span class="esempio__passo">La frazione è quindi $\dfrac{4(\sqrt6-\sqrt2)}{4}$: il fattore $4$ sopra e sotto si semplifica e resta $\sqrt6-\sqrt2$.</span>
+              </p>
+              <p><strong>$\dfrac{6}{\sqrt2}=3\sqrt2, \qquad \dfrac{4}{\sqrt6+\sqrt2}=\sqrt6-\sqrt2$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Semplifica $\dfrac{a^{3/2}\cdot a^{1/2}}{a^{-1}}$ (con $a &gt; 0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Numeratore: uso $a^m\cdot a^n=a^{m+n}$ con $m=\frac32$ e $n=\frac12$; le due frazioni hanno già lo stesso denominatore, quindi $\frac32+\frac12=\frac{3+1}{2}=\frac42=2$. Viene $a^{3/2}\cdot a^{1/2} = a^{2}$.</p>
+              <p>Quoziente: uso $\dfrac{a^m}{a^n}=a^{m-n}$ con $m=2$ e $n=-1$ (l'esponente del denominatore è $-1$, segno compreso). La sottrazione è quindi $2-(-1)$, e sottrarre un numero negativo equivale a sommarlo col segno cambiato: $2+1=3$. Risultato $a^{3}$.</p>
+              <p><strong>$\dfrac{a^{3/2}\cdot a^{1/2}}{a^{-1}} = a^{3}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Mostra, verificandolo su $a=5$ e $a=-5$, che $\sqrt{a^2}=|a|$, e spiega perché scrivere $\sqrt{a^2}=a$ sarebbe scorretto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Con $a=5$: $\sqrt{5^2}=\sqrt{25}=5=|5|$. Con $a=-5$: $\sqrt{(-5)^2}=\sqrt{25}=5=|-5|$. In entrambi i casi il risultato è $5\geq0$, cioè $|a|$. Scrivere $\sqrt{a^2}=a$ per $a=-5$ darebbe $-5$, ma una radice quadrata non può essere negativa: assurdo. La formula corretta con il valore assoluto "raddrizza" il segno.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Semplifica $\sqrt[3]{\sqrt{a^{12}}}$ (con $a \geq 0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Uso la proprietà "radice di radice" (<span class="richiamo" data-sec="4.5">§4.5</span>), $\sqrt[m]{\sqrt[n]{a}} = \sqrt[m\cdot n]{a}$, con $m=3$ (indice esterno) e $n=2$ (indice interno, sottinteso nella radice quadrata): gli indici si moltiplicano, $3\cdot2=6$, quindi le due radici si fondono in una sola di indice $6$.</span>
+                <span class="esempio__passo">Ottengo $\sqrt[3]{\sqrt{a^{12}}} = \sqrt[6]{a^{12}}$. Passo alla notazione con esponente frazionario usando $\sqrt[n]{a^m}=a^{m/n}$ con $m=12$ e $n=6$: $a^{12/6}$. Siccome $12:6=2$, l'esponente è $2$ e il risultato è $a^{2}$.</span>
+              </p>
+              <p><strong>$\sqrt[3]{\sqrt{a^{12}}} = a^{2}$</strong> (verifica con $a=2$: $\sqrt{2^{12}}=\sqrt{4096}=64$, e $\sqrt[3]{64}=4=2^2$).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Semplifica completamente $\dfrac{(2a^2b)^3 \cdot a^{-4}}{4ab^2}$ (con $a,b &gt; 0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sviluppo la potenza del prodotto con $(a\cdot b)^n=a^n b^n$ (<span class="richiamo" data-sec="4.2">§4.2</span>): l'esponente $3$ si applica a <em>ciascuno</em> dei tre fattori dentro la parentesi, quindi $(2a^2b)^3 = 2^3\cdot (a^2)^3\cdot b^3$. Ora calcolo i pezzi: $2^3=8$ e, per la potenza di potenza $(a^m)^n=a^{mn}$ con $m=2$ e $n=3$, $(a^2)^3 = a^{2\cdot3}=a^6$. Ottengo $8a^6 b^3$.</span>
+                <span class="esempio__passo">Moltiplico per $a^{-4}$ usando $a^m\cdot a^n=a^{m+n}$ con $m=6$ e $n=-4$ (sommo gli esponenti tenendo il segno): $6+(-4)=2$, quindi $8a^6 b^3 \cdot a^{-4} = 8a^{2} b^3$.</span>
+                <span class="esempio__passo">Divido per $4ab^2$ trattando separatamente numero e lettere. Coefficiente: $8:4 = 2$. Lettera $a$: uso $\frac{a^m}{a^n}=a^{m-n}$ con $m=2$ e $n=1$ (la $a$ sola ha esponente $1$ sottinteso), quindi $a^{2-1}=a^1=a$. Lettera $b$: $m=3$, $n=2$, quindi $b^{3-2}=b$.</span>
+              </p>
+              <p><strong>$\dfrac{(2a^2b)^3 \cdot a^{-4}}{4ab^2} = 2ab$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Calcola, razionalizzando, il valore di $\dfrac{\sqrt3}{\sqrt3-1} + \dfrac{\sqrt3}{\sqrt3+1}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Primo addendo: il denominatore è $\sqrt3-1$, il cui coniugato è $\sqrt3+1$; moltiplico sopra e sotto per esso. Numeratore: $\sqrt3(\sqrt3+1) = \sqrt3\cdot\sqrt3 + \sqrt3\cdot1 = 3+\sqrt3$ (uso la distributiva, e $\sqrt3\cdot\sqrt3=3$). Denominatore: forma $(x-y)(x+y)=x^2-y^2$ con $x=\sqrt3$, $y=1$, cioè $3-1=2$. Risultato $\dfrac{3+\sqrt3}{2}$.</span>
+                <span class="esempio__passo">Secondo addendo: stesso procedimento a specchio, con coniugato $\sqrt3-1$. Numeratore: $\sqrt3(\sqrt3-1)=3-\sqrt3$. Denominatore: ancora $(\sqrt3)^2-1^2=2$. Risultato $\dfrac{3-\sqrt3}{2}$.</span>
+                <span class="esempio__passo">I due addendi hanno ora lo stesso denominatore $2$, quindi li sommo tenendo il denominatore e sommando i numeratori: $\dfrac{(3+\sqrt3)+(3-\sqrt3)}{2}$. Al numeratore $+\sqrt3$ e $-\sqrt3$ si cancellano e resta $3+3=6$, cioè $\dfrac{6}{2}=3$.</span>
+              </p>
+              <p><strong>Il risultato è $3$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Della funzione $f(x)=\left(\dfrac12\right)^{x}$ determina: dominio, segno, monotonia, il valore in $x=0$ e il comportamento intuitivo per $x\to+\infty$ e $x\to-\infty$; indica l'eventuale asintoto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Base $a=\tfrac12$, con $0&lt;a&lt;1$: è un'esponenziale valida. <strong>Dominio</strong>: tutto $\mathbb{R}$. <strong>Segno</strong>: sempre positiva ($f(x)&gt;0$). <strong>Monotonia</strong>: decrescente. <strong>$f(0)$</strong>$=\left(\tfrac12\right)^0 = 1$, passa per $(0,1)$. Per $x\to+\infty$, $\left(\tfrac12\right)^x \to 0^+$ (si schiaccia sull'asse $x$); per $x\to-\infty$ tende a $+\infty$. <strong>Asintoto orizzontale</strong>: $y=0$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Stabilisci se ciascuna affermazione è vera o falsa, motivando: (a) $(a+b)^2 = a^2 + b^2$; (b) $\sqrt{a^2+b^2} = a+b$; (c) $2^{x} &gt; 0$ per ogni $x \in \mathbb{R}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>(a) <strong>Falsa</strong>: manca il doppio prodotto, perché la formula corretta (cap. 2) è $(a+b)^2 = a^2 + 2ab + b^2$. Controesempio con $a=b=1$: a sinistra $(1+1)^2=2^2=4$, a destra $1^2+1^2=2$, e $4 \neq 2$. (b) <strong>Falsa</strong>: la proprietà $\sqrt[n]{a\cdot b}=\sqrt[n]a\cdot\sqrt[n]b$ vale sul <em>prodotto</em>, non sulla somma, e non esiste alcuna regola analoga per $\sqrt{a+b}$. Controesempio con $a=b=3$: a sinistra $\sqrt{3^2+3^2}=\sqrt{9+9}=\sqrt{18}\approx4{,}24$, a destra $3+3=6$, quindi sono diversi. (c) <strong>Vera</strong>: la funzione esponenziale assume solo valori positivi, per qualunque esponente reale.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Quanto vale $a^m \cdot a^n$ (stessa base)?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$a^{m\cdot n}$</button>
+              <button class="quiz-option" data-correct="true">$a^{m+n}$</button>
+              <button class="quiz-option" data-correct="false">$a^{m-n}$</button>
+              <button class="quiz-option" data-correct="false">$a^{m} + a^{n}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Nel prodotto di potenze con la stessa base gli esponenti si <em>sommano</em>: $a^m \cdot a^n = a^{m+n}$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quanto vale $2^{-3}$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$-8$</button>
+              <button class="quiz-option" data-correct="false">$-6$</button>
+              <button class="quiz-option" data-correct="true">$\dfrac{1}{8}$</button>
+              <button class="quiz-option" data-correct="false">$8$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>L'esponente negativo indica il reciproco, non un risultato negativo: $2^{-3} = \dfrac{1}{2^3} = \dfrac18$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Quanto vale $\sqrt{(-4)^2}$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$-4$</button>
+              <button class="quiz-option" data-correct="true">$4$</button>
+              <button class="quiz-option" data-correct="false">$\pm 4$</button>
+              <button class="quiz-option" data-correct="false">Non esiste in $\mathbb{R}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\sqrt{(-4)^2} = \sqrt{16} = 4 = |-4|$. Ricorda: $\sqrt{a^2} = |a|$, sempre non negativo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) La funzione $f(x)=a^x$ con $0 &lt; a &lt; 1$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">crescente</button>
+              <button class="quiz-option" data-correct="true">decrescente</button>
+              <button class="quiz-option" data-correct="false">costante</button>
+              <button class="quiz-option" data-correct="false">non monotona</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Con base tra $0$ e $1$ l'esponenziale <em>decresce</em> avvicinandosi all'asse $x$. È crescente solo quando $a &gt; 1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Vale sempre $(a+b)^2 = a^2 + b^2$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: manca il doppio prodotto. $(a+b)^2 = a^2 + 2ab + b^2$. Controesempio: $(2+3)^2 = 25 \neq 4+9 = 13$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) $a^0 = 1$ per ogni numero reale $a$, nessuno escluso.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: vale per ogni $a \neq 0$. L'espressione $0^0$ non è definita.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) La radice quadrata di un numero negativo non esiste nell'insieme dei numeri reali.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: nessun reale elevato al quadrato dà un numero negativo, quindi $\sqrt{-k}$ (con $k&gt;0$) non esiste in $\mathbb{R}$. Più in generale vale per ogni radice di indice pari.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Il grafico di $y = a^x$ (con $a&gt;0$, $a\neq1$) passa sempre per il punto $(0,1)$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: $a^0 = 1$ per qualunque base ammessa, quindi tutte le curve esponenziali si incontrano in $(0,1)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="radice|radici|estrazione di radice">
+            <p class="quiz-question__testo">9. (Completamento) L'operazione inversa dell'elevamento a potenza è l'estrazione di ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Proprio così: la radice "annulla" la potenza, come lo zoom all'indietro riporta la mappa al livello iniziale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="1|uno">
+            <p class="quiz-question__testo">10. (Completamento) Per ogni $a \neq 0$, $\ a^{0} = $ ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si ricava dalla regola del quoziente: $\dfrac{a^n}{a^n} = a^{0} = 1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="razionalizzazione">
+            <p class="quiz-question__testo">11. (Completamento) L'operazione con cui si eliminano i radicali dal denominatore di una frazione si chiama ______ del denominatore.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si moltiplica sopra e sotto per il radicale (o per il coniugato, se è un binomio): la differenza di quadrati fa sparire le radici.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché $\sqrt{a^2} = |a|$ e non semplicemente $a$, usando un esempio numerico.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: per definizione la radice quadrata restituisce sempre un numero non negativo. Se $a$ è negativo, scrivere $\sqrt{a^2}=a$ darebbe un risultato negativo, in contraddizione con la definizione. Il valore assoluto risolve il problema perché è sempre $\geq 0$ e $|a|^2 = a^2$. Esempio: con $a=-3$, $\sqrt{(-3)^2}=\sqrt9=3$, che è $|-3|$ e non $-3$. La radice ha "raddrizzato" il segno.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché la funzione esponenziale $f(x)=a^x$ richiede $a &gt; 0$ e $a \neq 1$? Cosa accadrebbe altrimenti?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si chiede $a &gt; 0$ perché con base negativa alcune potenze a esponente frazionario (come $a^{1/2} = \sqrt a$) non esisterebbero in $\mathbb{R}$, e il grafico avrebbe infiniti "buchi"; con $a = 0$, poi, $0^x$ non è definito per $x \leq 0$. Si esclude $a = 1$ perché $1^x = 1$ per ogni $x$: si ridurrebbe a una retta orizzontale costante, un caso degenere privo di interesse. Con $a&gt;0$ e $a\neq1$, invece, otteniamo una curva sempre positiva, monotòna, che passa per $(0,1)$ con asintoto $y=0$.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="02-algebra-calcolo-letterale.html"><span class="dir">← Capitolo precedente</span><strong>Algebra e calcolo letterale</strong></a>
+        <a class="next" href="04-logaritmi.html"><span class="dir">Capitolo successivo →</span><strong>Logaritmi</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12. Teoremi di Green, Gauss e Stokes — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 12</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html" class="is-active">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 12 di 14</span>
+        </div>
+        <h1>Teoremi di Green, Gauss e Stokes</h1>
+        <p class="subtitle">Tre teoremi con tre nomi diversi che dicono, in fondo, una cosa sola: <strong>quello che succede dentro una regione si può leggere guardando soltanto il suo bordo</strong>. Sono la versione adulta del Teorema Fondamentale del Calcolo di Analisi 1, e sono il motivo per cui la fisica moderna si scrive in quattro equazioni invece che in quattromila.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~70 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Quattro mattoni, spiegati in parole poverissime, con una sola immagine mentale ciascuno. Se li hai in testa, questo capitolo ti sembrerà facile.</p>
+          <p><strong>1) L'<a href="10-integrali-curvilinei.html">integrale curvilineo</a> di un campo è il <em>lavoro</em>: quanto il campo ti ha spinto lungo il cammino.</strong> Cammini lungo una curva. A ogni passo guardi se il vento soffia a favore (guadagno) o contro (perdo). Sommi tutto. <br><em>Immagine: remare in un fiume.</em> Se remi con la corrente arrivi riposato, se remi contro arrivi distrutto. Il lavoro è il totale di quelle spinte. Se la curva è chiusa (torni al punto di partenza) il lavoro si chiama <span class="glossario-term" data-term="circuitazione">circuitazione</span>: "quanto mi ha spinto in un giro completo".</p>
+          <p><strong>2) Il <a href="11-integrali-superficie-campi-vettoriali.html">flusso</a> è <em>quanta roba passa attraverso</em>.</strong> Metti una retina nell'acqua e conta quanti litri la attraversano al secondo. <br><em>Immagine: la zanzariera alla finestra.</em> Se il vento le soffia contro in pieno, il flusso è grande; se soffia di taglio, è quasi zero. Conta solo la componente <strong>perpendicolare</strong> alla superficie: per questo nel <span class="glossario-term" data-term="flusso">flusso</span> compare sempre il versore normale $\mathbf{n}$.</p>
+          <p><strong>3) <a href="11-integrali-superficie-campi-vettoriali.html">Divergenza</a> = rubinetto o scarico. <a href="11-integrali-superficie-campi-vettoriali.html">Rotore</a> = girandola.</strong> La <span class="glossario-term" data-term="divergenza">divergenza</span> in un punto dice se lì dentro l'acqua viene <em>creata</em> (sorgente, $\operatorname{div}\gt 0$) o <em>ingoiata</em> (pozzo, $\operatorname{div}\lt 0$). Il <span class="glossario-term" data-term="rotore">rotore</span> dice se lì c'è un vortice. <br><em>Immagine: butta una girandolina nell'acqua.</em> Se resta ferma e gira su sé stessa, il rotore non è zero; l'asse della girandola è la direzione del vettore rotore. Sono due "derivate" di un <span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span>: misurano quanto il campo cambia in un puntino piccolissimo.</p>
+          <p><strong>4) L'<a href="08-integrali-doppi.html">integrale doppio</a> (e triplo) somma su tutta una regione.</strong> Spezzi la regione in tessere piccolissime, misuri una quantità su ogni tessera, sommi tutto. <br><em>Immagine: pesare un pavimento a mattonelle.</em> Pesi ogni mattonella e fai il totale.</p>
+          <p><strong>5) E infine il <a href="../parte1-analisi1/14-integrali-definiti.html">teorema fondamentale del calcolo</a>: la somma delle variazioni è la variazione totale.</strong> Se sommi tutti i piccoli cambiamenti lungo il percorso, ottieni semplicemente "valore alla fine meno valore all'inizio": $\int_a^b F'(x)\,dx=F(b)-F(a)$. <br><em>Immagine: il contachilometri.</em> Non ti serve ricostruire tutto il viaggio: guardi il numero all'arrivo e quello alla partenza, e sottrai. <strong>Tieni questa frase ben stretta: tutto il capitolo è una sua eco.</strong></p>
+        </div>
+
+        <p>Adesso l'idea centrale, in una riga sola:</p>
+        <div class="formula-block">$$\boxed{\ \text{quello che succede \textbf{dentro} una regione si legge guardando soltanto il suo \textbf{bordo}}\ }$$</div>
+        <p>Detta così sembra un'affermazione assurda. Come fa il bordo a sapere cosa succede in mezzo? Eppure la usi tutti i giorni senza accorgertene.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚰</span> L'analogia del serbatoio</div>
+          <p>Hai un serbatoio d'acqua con dei tubi che entrano ed escono. Vuoi sapere <strong>quanta acqua viene prodotta o consumata dentro</strong> (magari c'è una perdita, o una pompa nascosta sul fondo). Hai due strade:</p>
+          <p><strong>Strada A — guardare dentro.</strong> Apri il serbatoio, vai centimetro cubo per centimetro cubo, e in ognuno misuri se l'acqua viene creata o sparisce. Poi sommi su tutto il volume. È l'integrale della <strong>divergenza</strong>.</p>
+          <p><strong>Strada B — guardare il bordo.</strong> Non apri niente. Ti metti fuori, misuri quanti litri al secondo escono da ogni tubo e quanti entrano, e fai la differenza. È il <strong>flusso attraverso la superficie</strong>.</p>
+          <p>Le due strade danno <strong>lo stesso numero</strong>. Ed è ovvio: l'acqua non svanisce nel nulla. Se dentro se ne produce più di quanta se ne consuma, la differenza <em>deve</em> uscire dai tubi. Questo, scritto in formule, è il <span class="glossario-term" data-term="teorema-di-gauss">teorema della divergenza</span>.</p>
+        </div>
+
+        <p>E per il rotore? Cambia l'immagine, ma il meccanismo è identico.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🌀</span> L'analogia delle girandole affiancate</div>
+          <p>Immagina di riempire una regione piana con tantissime <strong>girandoline</strong> quadrate, affiancate come le piastrelle di un pavimento. Ogni girandola gira perché il campo la spinge: la sua "rotazione" è il rotore in quel puntino.</p>
+          <p>Ora somma il giro di tutte. Guarda il lato che <strong>due girandole vicine hanno in comune</strong>: la prima lo percorre verso l'alto, la seconda — che gira nello stesso verso — lo percorre verso il basso. Le due spinte sono uguali e opposte: <strong>si cancellano a due a due</strong>. Questo succede su ogni lato interno.</p>
+          <p>Cosa sopravvive? Solo i lati che <em>non</em> sono condivisi con nessuno: i lati del <strong>bordo esterno</strong>. Ecco il miracolo: la somma di tutte le rotazioni interne è uguale al giro lungo il solo bordo. Questo è il <span class="glossario-term" data-term="teorema-di-green">teorema di Green</span> (nel piano) e il <span class="glossario-term" data-term="teorema-di-stokes">teorema di Stokes</span> (nello spazio).</p>
+        </div>
+
+        <svg viewBox="0 0 470 250" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Griglia di piccole circuitazioni: i contributi sui lati interni si cancellano a due a due e resta solo il bordo esterno">
+          <rect x="70" y="40" width="330" height="165" fill="var(--color-primary)" opacity="0.10" stroke="none"/>
+          <g stroke="var(--color-border)" stroke-width="1">
+            <line x1="180" y1="40" x2="180" y2="205"/>
+            <line x1="290" y1="40" x2="290" y2="205"/>
+            <line x1="70" y1="95" x2="400" y2="95"/>
+            <line x1="70" y1="150" x2="400" y2="150"/>
+          </g>
+          <g fill="none" stroke="var(--color-accent)" stroke-width="1.6" opacity="0.85">
+            <circle cx="125" cy="67" r="16"/><circle cx="235" cy="67" r="16"/><circle cx="345" cy="67" r="16"/>
+            <circle cx="125" cy="122" r="16"/><circle cx="235" cy="122" r="16"/><circle cx="345" cy="122" r="16"/>
+            <circle cx="125" cy="177" r="16"/><circle cx="235" cy="177" r="16"/><circle cx="345" cy="177" r="16"/>
+          </g>
+          <rect x="70" y="40" width="330" height="165" fill="none" stroke="var(--color-primary)" stroke-width="3.2"/>
+          <text x="235" y="228" font-size="12" text-anchor="middle" fill="var(--color-text-muted)">i lati interni si annullano · sopravvive solo il bordo esterno</text>
+        </svg>
+
+        <p>Infine, la cosa più importante di tutte. Tutti e tre i teoremi — Green, Gauss, Stokes — <strong>sono lo stesso teorema scritto in dimensioni diverse</strong>, e tutti e tre sono figli del <span class="glossario-term" data-term="teorema-fondamentale-del-calcolo">teorema fondamentale del calcolo</span> che conosci da Analisi 1:</p>
+        <div class="formula-block">$$\int_a^b \underbrace{F'(x)}_{\text{la "derivata" DENTRO}}\,dx \;=\; \underbrace{F(b)-F(a)}_{\text{i valori sul BORDO}}$$</div>
+        <p>Anche lì, infatti: sommi una derivata su tutto l'intervallo e ottieni solo i valori agli estremi. Gli estremi $a$ e $b$ sono il "bordo" dell'intervallo $[a,b]$. Cambia la dimensione, cambia quale derivata usi (semplice, rotore, divergenza), cambia che aspetto ha il bordo (due punti, una curva, una superficie). <strong>La frase resta sempre la stessa.</strong></p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché misurare il bordo è quasi sempre <strong>molto più facile</strong> che misurare l'interno. Il bordo è accessibile, è più piccolo, ha una dimensione in meno. L'interno è nascosto, enorme, spesso impossibile da ispezionare. Questi tre teoremi sono, letteralmente, una <strong>macchina per scambiare un problema difficile con uno facile</strong>: quando l'integrale sul bordo è orribile passi all'interno, quando l'interno è orribile passi al bordo. E ogni volta è lecito, perché i due numeri sono lo stesso numero.</p>
+        </div>
+        <p><strong>Quale problema risolvono?</strong> Fino al capitolo 11 hai imparato a <em>calcolare</em> integrali curvilinei, doppi, tripli e di superficie. Ma erano mondi separati: ogni tipo di integrale aveva le sue tecniche e nessun ponte con gli altri. Green, Gauss e Stokes costruiscono i ponti. Da questo momento un integrale curvilineo può trasformarsi in doppio, un integrale di superficie in triplo, e viceversa. È come scoprire che quattro città che credevi isolate sono in realtà collegate da autostrade.</p>
+        <p><strong>Perché è importante ora?</strong> Perché è il punto di arrivo dell'intero corso di Analisi 2, e il punto di partenza della fisica matematica. Le <strong>equazioni di Maxwell</strong> dell'elettromagnetismo, l'<strong>equazione di continuità</strong> della meccanica dei fluidi, la <strong>legge di conservazione</strong> del calore: sono tutte scritte in "forma integrale" (sul bordo) e in "forma differenziale" (dentro), e il ponte fra le due forme sono esattamente Gauss e Stokes. Senza questi teoremi, la fisica del continuo semplicemente non si potrebbe scrivere.</p>
+        <p><strong>E c'è di più.</strong> Questo capitolo chiude anche un discorso aperto al <a href="10-integrali-curvilinei.html">Capitolo 10</a>: quando un <span class="glossario-term" data-term="campo-conservativo">campo conservativo</span> è davvero conservativo? Green ti dà finalmente la risposta completa, e ti mostra perché la condizione $\partial_x Q=\partial_y P$ da sola <strong>non basta</strong> se il dominio ha dei buchi.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">📐</span> Il planimetro: misurare un'area camminandoci intorno</div>
+          <p>Prima dei computer, i catastisti e gli ingegneri avevano un problema pratico: calcolare l'area di un appezzamento dal contorno irregolare disegnato su una mappa. Nessuna formula, nessun poligono regolare. La soluzione fu uno strumento meccanico geniale, il <strong>planimetro polare</strong>, inventato nel 1854: appoggi il braccio articolato sulla mappa, fai percorrere alla punta <strong>tutto il contorno</strong> della figura, e una rotellina ti legge direttamente l'area racchiusa.</p>
+          <p>Come fa? <strong>Con il teorema di Green.</strong> La rotellina misura l'integrale curvilineo $\frac12\oint(x\,dy-y\,dx)$ lungo il bordo, e Green garantisce che quel numero è esattamente l'area interna. Non hai misurato niente dentro la figura: hai solo camminato lungo il perimetro.</p>
+          <p>È la stessa cosa che fa oggi il tuo telefono quando, con un'app di catasto o con Google Earth, tracci un poligono su una mappa e lui ti sputa fuori i metri quadrati: sotto il cofano, sta applicando la formula di Green ai vertici del tuo contorno.</p>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">⚡</span> La gabbia di Faraday e la legge di Gauss</div>
+          <p>Perché in ascensore non prende il telefono, e perché in aereo sei al sicuro dai fulmini? Perché una scatola metallica chiusa scherma il campo elettrico al suo interno. La spiegazione parte da qui: la <strong>legge di Gauss dell'elettrostatica</strong> dice che il flusso del campo elettrico attraverso una superficie chiusa dipende <strong>solo dalla carica racchiusa dentro</strong>:</p>
+          <div class="formula-block">$$\iint_{\partial\Omega}\mathbf{E}\cdot\mathbf{n}\,dS=\frac{Q_{\text{int}}}{\varepsilon_0}$$</div>
+          <p>Traduzione a parole: <em>non ti serve sapere com'è fatto il campo punto per punto; ti basta contare le cariche dentro</em>. Ed è la stessa identica frase del serbatoio: le cariche sono i rubinetti, il campo elettrico è l'acqua, il flusso è quello che esce dai tubi. Se dentro la scatola non ci sono cariche, il flusso netto è zero — e da lì si costruisce tutto il resto.</p>
+          <p>La stessa struttura governa il <strong>meteo</strong> (l'aria che entra ed esce da una colonna atmosferica), l'<strong>idraulica</strong> (il bilancio di portata in un tratto di tubo), la <strong>termodinamica</strong> (il calore che attraversa la parete di una casa) e perfino la <strong>finanza</strong> di certi modelli di diffusione. Ogni volta che senti la frase "bilancio di quello che entra e quello che esce", dietro c'è Gauss.</p>
+        </div>
+
+        <p>E Stokes? Stokes è il teorema delle <strong>turbine e delle dinamo</strong>. La legge di Faraday dell'induzione dice che la forza elettromotrice indotta lungo una spira chiusa è pari alla variazione del flusso magnetico che <em>attraversa</em> la spira. Circuitazione lungo il bordo da un lato, flusso attraverso la superficie dall'altro: è letteralmente la struttura del teorema di Stokes. Ogni generatore di corrente elettrica del pianeta, dalla diga alla centrale eolica alla dinamo della bicicletta, funziona grazie a questa uguaglianza.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-idea">4.1 L'idea unificante: dentro ↔ bordo</h3>
+        <p>Prima delle formule, fissiamo lo schema. Ogni teorema di questo capitolo ha esattamente la stessa forma:</p>
+        <div class="formula-block">$$\int_{\text{REGIONE}}\big(\text{una derivata di } \mathbf{F}\big)\;=\;\int_{\text{BORDO della regione}}\big(\mathbf{F} \text{ stesso}\big)$$</div>
+        <p>A sinistra si integra una <em>derivata</em> su un oggetto di dimensione $n$; a destra si integra il campo <em>non derivato</em> su un oggetto di dimensione $n-1$. Ogni volta: <strong>una derivata in meno, una dimensione in meno</strong>. Questo è il motivo profondo per cui tutto funziona, ed è il modo giusto di ricordare i tre enunciati senza impararli a memoria.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧩</span> Perché "bordo" e non "contorno qualsiasi"?</div>
+          <p>Attenzione a una parola che useremo sempre: il <strong>bordo</strong> di una regione, scritto $\partial D$ o $\partial\Omega$, non è una curva qualunque, è <em>quella</em> curva (o superficie) che chiude la regione. Il bordo di un intervallo $[a,b]$ è la coppia di punti $\{a,b\}$; il bordo di un disco è la circonferenza; il bordo di una palla è la sfera; il bordo di una calotta è la circonferenza che la orla. E — dettaglio decisivo — <strong>il bordo di un bordo è sempre vuoto</strong>: la sfera che borda una palla non ha, a sua volta, alcun bordo. È da questa frasetta che discendono metà dei risultati del capitolo.</p>
+        </div>
+
+        <h3 id="teoria-green">4.2 Il teorema di Green nel piano</h3>
+        <p>Partiamo dalla dimensione più bassa, quella dove si vede tutto. Siamo nel piano, con un <span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span> $\mathbf{F}(x,y)=\big(P(x,y),\,Q(x,y)\big)$.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di Green</span>
+          <p><em class="nome">Teorema di Green.</em> Sia $D\subset\mathbb{R}^2$ una regione limitata e chiusa, il cui bordo $\partial D$ è una curva semplice, chiusa e regolare a tratti, <strong>orientata positivamente</strong>. Sia $\mathbf{F}=(P,Q)$ di classe $C^1$ su un aperto che contiene $D$. Allora</p>
+          <div class="formula-block">$$\oint_{\partial D} P\,dx+Q\,dy \;=\; \iint_{D}\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dx\,dy.$$</div>
+        </div>
+
+        <p>Le <strong>ipotesi</strong> non sono decorazione: ciascuna serve, e ciascuna è una possibile trappola d'esame.</p>
+        <ul>
+          <li><strong>$D$ limitata e chiusa</strong>: serve perché gli integrali abbiano senso e siano finiti.</li>
+          <li><strong>$\partial D$ semplice e chiusa</strong>: "semplice" vuol dire che la curva non si autointerseca (non fa il numero otto); "chiusa" che torna al punto di partenza. Regolare <em>a tratti</em> basta: un rettangolo, con i suoi quattro spigoli, va benissimo.</li>
+          <li><strong>$\mathbf{F}$ di classe $C^1$ su tutto $D$</strong> — bordo <em>e</em> interno. È l'ipotesi che gli studenti dimenticano più spesso, ed è quella che fa saltare tutto quando il campo ha una singolarità nascosta dentro la regione (ci torneremo, è il famoso "vortice").</li>
+          <li><strong>Orientazione positiva del bordo</strong>: se la sbagli, ottieni il risultato giusto <em>cambiato di segno</em>.</li>
+        </ul>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🧭</span> La regola dell'orientazione positiva</div>
+          <p>Immagina di <strong>camminare lungo il bordo</strong>. L'orientazione è positiva quando <strong>la regione ti resta alla sinistra</strong>. Per una regione senza buchi questo significa percorrere il bordo in <em>senso antiorario</em>. Se la regione ha un buco, il bordo del buco va percorso in senso <em>orario</em>: anche lì, camminando, il materiale (la regione) ti resta a sinistra. È la stessa regola, applicata due volte.</p>
+        </div>
+
+        <svg viewBox="0 0 480 210" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Orientazione positiva: bordo esterno antiorario, bordo del buco orario, in entrambi i casi la regione resta a sinistra">
+          <path d="M 40 105 a 90 65 0 1 0 180 0 a 90 65 0 1 0 -180 0" fill="var(--color-primary)" opacity="0.16" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <path d="M 285 105 a 105 68 0 1 0 170 0 a 105 68 0 1 0 -170 0" fill="var(--color-accent)" opacity="0.16" stroke="var(--color-accent)" stroke-width="2.6"/>
+          <circle cx="370" cy="105" r="30" fill="var(--color-bg)" stroke="var(--color-accent)" stroke-width="2.2"/>
+          <path d="M 128 40 l 16 6 l -16 6 z" fill="var(--color-primary)" transform="rotate(180 130 46)"/>
+          <path d="M 385 32 l 16 6 l -16 6 z" fill="var(--color-accent)" transform="rotate(180 387 38)"/>
+          <path d="M 362 72 l 16 6 l -16 6 z" fill="var(--color-accent)"/>
+          <text x="130" y="192" font-size="12" text-anchor="middle" fill="var(--color-text-muted)">senza buchi: antiorario</text>
+          <text x="370" y="192" font-size="12" text-anchor="middle" fill="var(--color-text-muted)">col buco: esterno antiorario, interno orario</text>
+        </svg>
+
+        <h4>Le due facce di Green: forma del rotore e forma della divergenza</h4>
+        <p>La quantità $\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{\partial y}$ non è arrivata dal nulla: è la <strong>componente $z$ del rotore</strong> del campo $\mathbf{F}=(P,Q,0)$. Verifichiamolo, così non resta un'affermazione da prendere per buona. La formula del rotore (<a href="11-integrali-superficie-campi-vettoriali.html#teoria-rotore">Capitolo 11</a>) è $\operatorname{rot}\mathbf{F}=\big(\partial_y F_3-\partial_z F_2,\ \partial_z F_1-\partial_x F_3,\ \partial_x F_2-\partial_y F_1\big)$; qui sostituisco $F_1=P$, $F_2=Q$, $F_3=0$, e osservo che $P$ e $Q$ non contengono $z$, quindi ogni derivata rispetto a $z$ è nulla. Prima componente: $\partial_y(0)-\partial_z Q=0-0=0$. Seconda: $\partial_z P-\partial_x(0)=0-0=0$. Terza: $\partial_x Q-\partial_y P=Q_x-P_y$. Dunque $\operatorname{rot}\mathbf{F}=(0,\,0,\,Q_x-P_y)$ ed è proprio la terza componente a comparire in Green. Riscrivendo l'enunciato in linguaggio vettoriale si ottiene la <strong>forma del rotore</strong>:</p>
+        <div class="formula-block">$$\oint_{\partial D}\mathbf{F}\cdot d\mathbf{r}\;=\;\iint_{D}\big(\operatorname{rot}\mathbf{F}\big)\cdot\mathbf{k}\,dA$$</div>
+        <p>a parole: <em>la circuitazione lungo il bordo è la somma di tutte le microrotazioni interne</em>. È l'immagine delle girandole.</p>
+        <p>Ma c'è una seconda lettura, altrettanto importante. Invece di far scorrere il campo <em>lungo</em> il bordo, misuriamo quanto <em>esce</em> dal bordo. Se $\mathbf{n}$ è il versore normale <strong>uscente</strong> alla curva $\partial D$ e $ds$ l'elemento di lunghezza, si ottiene la <strong>forma della divergenza</strong>:</p>
+        <div class="formula-block">$$\oint_{\partial D}\mathbf{F}\cdot\mathbf{n}\,ds\;=\;\iint_{D}\operatorname{div}\mathbf{F}\,dA\;=\;\iint_D\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}\right)dA$$</div>
+        <p>a parole: <em>quello che esce complessivamente dal bordo è quanto se n'è prodotto dentro</em>. È l'immagine del serbatoio, in versione piatta.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🔁</span> Le due forme sono la stessa formula ruotata di 90°</div>
+          <p>Non sono due teoremi: è uno solo. Per passare dall'una all'altra basta ruotare il campo di un quarto di giro. Se nella forma del rotore sostituisci $\mathbf{F}=(P,Q)$ con il campo ruotato $(-Q,P)$, ottieni la forma della divergenza, e viceversa. Il motivo geometrico è che, lungo una curva, il versore normale $\mathbf{n}$ è il versore tangente $\mathbf{T}$ ruotato di $90°$: con l'orientazione positiva, se $\mathbf{T}=(x'(s),y'(s))$ allora $\mathbf{n}=(y'(s),-x'(s))$. Da qui, $\mathbf{F}\cdot\mathbf{n}\,ds=P\,dy-Q\,dx$: e infatti applicare Green a questa forma differenziale dà proprio $\operatorname{div}\mathbf{F}$.</p>
+        </div>
+
+        <h3 id="teoria-aree">4.3 Calcolare aree con un integrale sul bordo</h3>
+        <p>Ecco la prima applicazione spettacolare. Nella formula di Green, scegli il campo in modo che l'integranda a destra faccia $1$. Allora l'integrale doppio diventa semplicemente l'<strong>area</strong> di $D$, e Green ti dice che quell'area si legge sul solo bordo.</p>
+        <p>Ci sono tre scelte classiche del campo, tutte con $\partial_x Q-\partial_y P=1$:</p>
+        <div class="formula-block">
+          $$\text{Area}(D)=\oint_{\partial D} x\,dy \qquad\quad \text{Area}(D)=-\oint_{\partial D} y\,dx$$
+          $$\textbf{Formula del planimetro:}\qquad \text{Area}(D)=\frac12\oint_{\partial D}\big(x\,dy-y\,dx\big)$$
+        </div>
+        <p>La prima si ottiene con $P=0,\ Q=x$; la seconda con $P=-y,\ Q=0$; la terza è la media delle due, ed è la preferita perché è <strong>simmetrica</strong> in $x$ e $y$ e quindi quasi sempre la più semplice da calcolare con una parametrizzazione. È letteralmente la formula che sta dentro il planimetro meccanico e dentro i software di cartografia.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il caso dei poligoni: la "formula del laccio"</div>
+          <p>Applicando il planimetro a un poligono di vertici $(x_1,y_1),\dots,(x_n,y_n)$ elencati in senso antiorario, ogni lato dà un contributo elementare e la formula diventa</p>
+          <div class="formula-block">$$\text{Area}=\frac12\left|\sum_{i=1}^{n}\big(x_i\,y_{i+1}-x_{i+1}\,y_i\big)\right|,\qquad (x_{n+1},y_{n+1})=(x_1,y_1).$$</div>
+          <p>È nota come <em>shoelace formula</em> ("formula del laccio da scarpe", per come si incrociano i prodotti) e la usa ogni software di GIS e ogni motore grafico. Nasce da Green, riga per riga.</p>
+        </div>
+
+        <h3 id="teoria-buchi">4.4 Regioni con buchi e bordi multipli</h3>
+        <p>Green vale anche quando $D$ non è "piena" ma ha dei buchi, purché si orienti bene <em>tutto</em> il bordo. Sia $D$ la regione racchiusa da una curva esterna $C_0$ e contenente $k$ buchi delimitati dalle curve $C_1,\dots,C_k$. Applicando la regola "la regione resta a sinistra": $C_0$ va percorsa in senso antiorario, le $C_i$ in senso orario. Con questa convenzione vale ancora, tale e quale,</p>
+        <div class="formula-block">$$\oint_{\partial D} P\,dx+Q\,dy=\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA.$$</div>
+        <p>Se invece preferisci orientare <em>tutte</em> le curve in senso antiorario (spesso più comodo), devi cambiare segno ai buchi:</p>
+        <div class="formula-block">$$\iint_D\left(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}\right)dA=\oint_{C_0}\mathbf{F}\cdot d\mathbf{r}-\sum_{i=1}^{k}\oint_{C_i}\mathbf{F}\cdot d\mathbf{r}.$$</div>
+        <p>Perché funziona? Con l'idea del "taglio": collega il bordo esterno a quello del buco con un corridoio sottilissimo. La regione diventa semplicemente connessa (senza buchi), Green si applica, e i due lati del corridoio vengono percorsi in versi opposti: i loro contributi <strong>si cancellano</strong>. Resta esattamente la somma dei bordi orientati come sopra. È di nuovo la cancellazione delle girandole, vista in grande.</p>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">🌀</span> Il vortice: il controesempio che devi conoscere a memoria</div>
+          <p>Considera il campo</p>
+          <div class="formula-block">$$\mathbf{F}(x,y)=\left(\frac{-y}{x^2+y^2},\ \frac{x}{x^2+y^2}\right),\qquad (x,y)\neq(0,0).$$</div>
+          <p>Calcoliamo le due derivate con la <strong>regola del quoziente</strong> $\left(\frac{u}{v}\right)'=\frac{u'v-uv'}{v^2}$. Per $Q=\frac{x}{x^2+y^2}$, derivando rispetto a $x$: $u=x$ dà $u_x=1$, $v=x^2+y^2$ dà $v_x=2x$, quindi $Q_x=\frac{1\cdot(x^2+y^2)-x\cdot 2x}{(x^2+y^2)^2}=\frac{x^2+y^2-2x^2}{(x^2+y^2)^2}=\frac{y^2-x^2}{(x^2+y^2)^2}$. Per $P=\frac{-y}{x^2+y^2}$, derivando rispetto a $y$: $u=-y$ dà $u_y=-1$, $v_y=2y$, quindi $P_y=\frac{-1\cdot(x^2+y^2)-(-y)\cdot 2y}{(x^2+y^2)^2}=\frac{-x^2-y^2+2y^2}{(x^2+y^2)^2}=\frac{y^2-x^2}{(x^2+y^2)^2}$. Sono uguali, quindi $\partial_x Q-\partial_y P=0$ ovunque il campo è definito. Se applicassimo Green "alla cieca" al disco unitario concluderemmo che la circuitazione sul bordo è $0$.</p>
+          <p>Ma calcoliamola davvero sulla circonferenza unitaria, parametrizzata da $\mathbf{r}(t)=(\cos t,\sin t)$ con $t\in[0,2\pi]$. Su questa curva $x^2+y^2=\cos^2t+\sin^2t=1$, quindi il denominatore del campo vale $1$ e <strong>sostituendo $x=\cos t$, $y=\sin t$</strong> si ottiene $\mathbf{F}=(-\sin t,\ \cos t)$. Derivando la parametrizzazione, $\mathbf{r}'(t)=(-\sin t,\ \cos t)$. Prodotto scalare componente per componente: $(-\sin t)(-\sin t)+(\cos t)(\cos t)=\sin^2t+\cos^2t=1$. Dunque</p>
+          <div class="formula-block">$$\oint_{x^2+y^2=1}\mathbf{F}\cdot d\mathbf{r}=\int_0^{2\pi}1\,dt=2\pi\neq 0.$$</div>
+          <p><strong>Contraddizione? No: ipotesi violata.</strong> Il campo <em>non</em> è di classe $C^1$ su tutto il disco, perché nell'origine non è nemmeno definito. Green richiede regolarità su <strong>tutta</strong> la regione, bordo e interno. Morale: rotore nullo non basta per concludere che il campo è <span class="glossario-term" data-term="campo-conservativo">conservativo</span>; serve anche che il dominio non abbia buchi intorno ai quali il campo "gira".</p>
+        </div>
+
+        <h3 id="teoria-gauss">4.5 Il teorema della divergenza (Gauss) in $\mathbb{R}^3$</h3>
+        <p>Saliamo di una dimensione. Ora la regione è un solido $\Omega\subset\mathbb{R}^3$ e il suo bordo è una <strong>superficie chiusa</strong> $\partial\Omega$.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema della divergenza (Gauss–Ostrogradskij)</span>
+          <p><em class="nome">Teorema della divergenza.</em> Sia $\Omega\subset\mathbb{R}^3$ un solido limitato e chiuso, il cui bordo $\partial\Omega$ è una superficie chiusa, regolare a tratti, orientata con il versore normale $\mathbf{n}$ <strong>uscente</strong>. Sia $\mathbf{F}=(P,Q,R)$ di classe $C^1$ su un aperto contenente $\Omega$. Allora</p>
+          <div class="formula-block">$$\iint_{\partial\Omega}\mathbf{F}\cdot\mathbf{n}\,dS\;=\;\iiint_{\Omega}\operatorname{div}\mathbf{F}\,dV,\qquad \operatorname{div}\mathbf{F}=\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}.$$</div>
+        </div>
+
+        <p><strong>Come leggerlo.</strong> A sinistra c'è il <span class="glossario-term" data-term="flusso">flusso</span> uscente: quanti "litri al secondo" escono complessivamente dalla superficie che avvolge il solido. A destra c'è il totale di quanto viene <em>prodotto</em> (dove $\operatorname{div}\mathbf{F}\gt 0$: sorgenti) meno quanto viene <em>consumato</em> (dove $\operatorname{div}\mathbf{F}\lt 0$: pozzi). È il <strong>bilancio del serbatoio</strong>, senza sconti:</p>
+        <div class="formula-block">$$\underbrace{\text{quello che esce}-\text{quello che entra}}_{\text{flusso netto sul bordo}}\;=\;\underbrace{\text{quello che viene prodotto dentro}}_{\text{integrale della divergenza}}$$</div>
+        <p>Tre conseguenze immediate, tutte utili:</p>
+        <ul>
+          <li>Se $\operatorname{div}\mathbf{F}=0$ ovunque (campo <strong>solenoidale</strong>, cioè senza sorgenti né pozzi), il flusso uscente da <em>qualunque</em> superficie chiusa è zero. Il campo magnetico è così: le linee di campo non nascono e non muoiono, si chiudono su sé stesse.</li>
+          <li>Se $\operatorname{div}\mathbf{F}=1$ ovunque, il flusso uscente vale esattamente il <strong>volume</strong> del solido. È il trucco duale della formula del planimetro.</li>
+          <li>Il flusso uscente non dipende dalla "forma" della superficie ma solo da cosa racchiude: è l'essenza della legge di Gauss dell'elettrostatica, dove al posto del volume c'è la carica.</li>
+        </ul>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">⚡</span> Dalla forma integrale a quella differenziale: come nasce un'equazione della fisica</div>
+          <p>La legge di Gauss si scopre sperimentalmente in <strong>forma integrale</strong>: $\iint_{\partial\Omega}\mathbf{E}\cdot\mathbf{n}\,dS=Q_{\text{int}}/\varepsilon_0$. Scrivendo $Q_{\text{int}}=\iiint_\Omega\rho\,dV$ (con $\rho$ la densità di carica) e applicando il teorema della divergenza al primo membro, si ottiene $\iiint_\Omega\operatorname{div}\mathbf{E}\,dV=\iiint_\Omega\frac{\rho}{\varepsilon_0}\,dV$ per <em>ogni</em> volume $\Omega$. Due integrali uguali su ogni volume, per funzioni continue, costringono le integrande a coincidere:</p>
+          <div class="formula-block">$$\operatorname{div}\mathbf{E}=\frac{\rho}{\varepsilon_0}$$</div>
+          <p>ed ecco la prima equazione di Maxwell in forma differenziale. Lo stesso passaggio, fatto con Stokes al posto di Gauss, genera la legge di Faraday $\operatorname{rot}\mathbf{E}=-\partial_t\mathbf{B}$. <strong>Le equazioni di Maxwell sono, in larga parte, questi due teoremi applicati a leggi sperimentali.</strong></p>
+        </div>
+
+        <h3 id="teoria-stokes">4.6 Il teorema di Stokes</h3>
+        <p>Ultimo passo. Stokes è Green liberato dal piano: la regione non è più piatta, è una <strong>superficie curva nello spazio</strong>, e il suo bordo è una curva chiusa che la orla, come il filo che orla una retina da pesca.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di Stokes (del rotore)</span>
+          <p><em class="nome">Teorema di Stokes.</em> Sia $S\subset\mathbb{R}^3$ una superficie regolare a tratti, <strong>orientabile</strong>, con versore normale $\mathbf{n}$ fissato, e sia $\partial S$ il suo bordo: una curva chiusa, regolare a tratti, orientata <strong>coerentemente</strong> con $\mathbf{n}$. Sia $\mathbf{F}$ di classe $C^1$ su un aperto contenente $S$. Allora</p>
+          <div class="formula-block">$$\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}\;=\;\iint_{S}\big(\operatorname{rot}\mathbf{F}\big)\cdot\mathbf{n}\,dS.$$</div>
+          <p>dove il rotore si calcola con il determinante simbolico</p>
+          <div class="formula-block">$$\operatorname{rot}\mathbf{F}=\nabla\times\mathbf{F}=\begin{vmatrix}\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k}\\ \partial_x &amp; \partial_y &amp; \partial_z\\ P &amp; Q &amp; R\end{vmatrix}=\big(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y\big).$$</div>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🤚</span> Orientazione coerente: la regola della mano destra</div>
+          <p>Punta il <strong>pollice destro</strong> nella direzione del versore normale $\mathbf{n}$ scelto sulla superficie. Le altre quattro dita si arricciano: <strong>quello è il verso in cui va percorso il bordo</strong>. Formulazione equivalente, forse più intuitiva: se cammini lungo il bordo con la testa dalla parte di $\mathbf{n}$, la superficie ti resta <strong>a sinistra</strong> — la stessa identica regola di Green.</p>
+          <p>Corollario pratico: <strong>se capovolgi $\mathbf{n}$, devi capovolgere anche il verso del bordo</strong>. Entrambi i membri cambiano segno e l'uguaglianza resta vera. Ma se ne capovolgi uno solo, il risultato è sbagliato di segno.</p>
+        </div>
+
+        <p><strong>Green è il caso piano di Stokes.</strong> Prendi come superficie $S$ una regione piatta $D$ contenuta nel piano $xy$, con $\mathbf{n}=\mathbf{k}$ (normale verso l'alto). Un campo piano $\mathbf{F}=(P,Q,0)$ ha rotore $\operatorname{rot}\mathbf{F}=\big(0,\,0,\,Q_x-P_y\big)$ — è il conto fatto riga per riga nel <span class="richiamo" data-sec="4.2">§4.2</span>. Faccio ora il prodotto scalare con $\mathbf{k}=(0,0,1)$, moltiplicando le componenti omologhe e sommando: $0\cdot 0+0\cdot 0+\big(Q_x-P_y\big)\cdot 1=Q_x-P_y$. Inoltre su una regione piana $dS$ coincide con l'elemento d'area $dA$. La formula di Stokes diventa</p>
+        <div class="formula-block">$$\oint_{\partial D}P\,dx+Q\,dy=\iint_D\big(Q_x-P_y\big)\,dA,$$</div>
+        <p>che è esattamente Green. E la regola della mano destra, con $\mathbf{n}=\mathbf{k}$, dà il senso antiorario: anche l'orientazione coincide. <strong>Green non è un teorema diverso: è Stokes appiattito.</strong></p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🎈</span> Il flusso del rotore dipende SOLO dal bordo</div>
+          <p>È la conseguenza più utile di tutto il capitolo. Guarda il membro di sinistra della formula di Stokes: $\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}$ <strong>non contiene la superficie</strong>, solo la sua curva di bordo. Quindi:</p>
+          <p><strong>Se due superfici $S_1$ e $S_2$ hanno lo stesso bordo, orientato allo stesso modo, il flusso del rotore attraverso di esse è lo stesso.</strong></p>
+          <p><em>Immagine: la bolla di sapone sull'anello.</em> Prendi un cerchietto di fil di ferro e immergilo nell'acqua saponata. La pellicola può essere piatta come un tamburello, oppure gonfiarsi a cupola se ci soffi sopra. Sono superfici diversissime — ma hanno lo stesso orlo, e il rotore ci fluisce attraverso allo stesso modo.</p>
+          <p>In pratica: se devi calcolare il flusso del rotore attraverso una semisfera, un paraboloide o una piramide senza base, <strong>sostituiscili con il disco piatto che ha lo stesso bordo</strong>. Il conto si accorcia di tre quarti. E se la superficie è <em>chiusa</em>, il bordo è vuoto: il flusso del rotore attraverso qualunque superficie chiusa è <strong>zero</strong>.</p>
+        </div>
+
+        <h3 id="teoria-tabella">4.7 Schema finale: quattro teoremi, una sola frase</h3>
+        <p>Questa tabella è il capitolo intero compresso in quattro righe. Leggila da sinistra a destra come una frase: <em>la derivata integrata dentro è uguale al campo integrato sul bordo</em>.</p>
+
+        <table class="tabella-comparativa">
+          <thead><tr><th>Teorema</th><th>Regione (dentro)</th><th>"Derivata" integrata dentro</th><th>Bordo</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Fondamentale del calcolo</strong><br><span class="text-muted">Analisi 1</span></td>
+              <td>intervallo $[a,b]$ (dim. 1)</td>
+              <td>$F'(x)$</td>
+              <td>due punti $\{a,b\}$ (dim. 0)</td>
+              <td>$\displaystyle\int_a^b F'\,dx=F(b)-F(a)$</td>
+            </tr>
+            <tr>
+              <td><strong>Green</strong></td>
+              <td>regione piana $D$ (dim. 2)</td>
+              <td>$Q_x-P_y$ (rotore scalare)</td>
+              <td>curva chiusa $\partial D$ (dim. 1)</td>
+              <td>$\displaystyle\iint_D (Q_x-P_y)\,dA=\oint_{\partial D}\mathbf{F}\cdot d\mathbf{r}$</td>
+            </tr>
+            <tr>
+              <td><strong>Stokes</strong></td>
+              <td>superficie $S$ nello spazio (dim. 2)</td>
+              <td>$\operatorname{rot}\mathbf{F}\cdot\mathbf{n}$</td>
+              <td>curva chiusa $\partial S$ (dim. 1)</td>
+              <td>$\displaystyle\iint_S \operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}$</td>
+            </tr>
+            <tr>
+              <td><strong>Gauss (divergenza)</strong></td>
+              <td>solido $\Omega$ (dim. 3)</td>
+              <td>$\operatorname{div}\mathbf{F}$</td>
+              <td>superficie chiusa $\partial\Omega$ (dim. 2)</td>
+              <td>$\displaystyle\iiint_\Omega \operatorname{div}\mathbf{F}\,dV=\iint_{\partial\Omega}\mathbf{F}\cdot\mathbf{n}\,dS$</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Un solo teorema, davvero</div>
+          <p>La somiglianza fra le quattro righe non è una coincidenza didattica: è un teorema vero. Nel linguaggio delle <em>forme differenziali</em> tutte e quattro si scrivono in una riga sola,</p>
+          <div class="formula-block">$$\int_{M}d\omega=\int_{\partial M}\omega,$$</div>
+          <p>nota come <strong>teorema di Stokes generalizzato</strong>. Qui $M$ è una regione di dimensione qualunque, $\partial M$ il suo bordo, $\omega$ una forma differenziale e $d\omega$ la sua derivata esterna — l'operazione che in dimensione 1 è la derivata, in dimensione 2 il rotore, in dimensione 3 la divergenza. Non ti serve per l'esame, ma sapere che esiste ti fa capire perché i tre enunciati "si somigliano così tanto": sono <em>lo stesso enunciato</em>.</p>
+        </div>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea comune a tutte e tre le dimostrazioni</div>
+          <p>Nessuna di queste dimostrazioni è "magica": tutte fanno lo stesso identico gesto in tre passi. <strong>(1)</strong> Si scrive l'integrale multiplo come integrale iterato, mettendo per ultima la variabile "verticale". <strong>(2)</strong> Sull'integrale interno si applica il <a href="../parte1-analisi1/14-integrali-definiti.html">teorema fondamentale del calcolo</a> di Analisi 1: la derivata integrata dà la differenza dei valori agli estremi, cioè sulla faccia superiore meno quella inferiore. <strong>(3)</strong> Si riconosce che quella differenza è <em>esattamente</em> l'integrale sul bordo, perché le due facce sono percorse (o orientate) in versi opposti. Tutto il capitolo, in fondo, è il teorema fondamentale del calcolo applicato una variabile alla volta.</p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di Green</span>
+          <p><em class="nome">Dimostrazione su domini normali.</em> Se $D$ è un dominio normale (semplice) sia rispetto a $x$ sia rispetto a $y$, e $\mathbf{F}=(P,Q)$ è $C^1$ su un aperto contenente $D$, allora $\displaystyle\oint_{\partial D}P\,dx+Q\,dy=\iint_D\big(Q_x-P_y\big)\,dA$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Dimostriamo separatamente le due identità</p>
+          <div class="formula-block">$$\text{(A)}\quad\oint_{\partial D}P\,dx=-\iint_D\frac{\partial P}{\partial y}\,dA,\qquad\qquad \text{(B)}\quad\oint_{\partial D}Q\,dy=+\iint_D\frac{\partial Q}{\partial x}\,dA,$$</div>
+          <p>la cui somma è la tesi. Proviamo (A) usando che $D$ è normale rispetto all'asse $x$, cioè</p>
+          <div class="formula-block">$$D=\big\{(x,y):\ a\le x\le b,\ \ g_1(x)\le y\le g_2(x)\big\}$$</div>
+          <p>con $g_1,g_2$ continue e regolari a tratti. <strong>Primo passo: l'integrale doppio.</strong> Lo scriviamo iterato, integrando prima in $y$ e applicando il teorema fondamentale del calcolo alla funzione $y\mapsto P(x,y)$, di cui $P_y$ è la derivata:</p>
+          <div class="formula-block">$$\iint_D\frac{\partial P}{\partial y}\,dA=\int_a^b\!\!\left[\int_{g_1(x)}^{g_2(x)}\frac{\partial P}{\partial y}(x,y)\,dy\right]dx=\int_a^b\Big[P\big(x,g_2(x)\big)-P\big(x,g_1(x)\big)\Big]dx.$$</div>
+          <p><strong>Secondo passo: l'integrale sul bordo.</strong> Il bordo orientato positivamente si compone di quattro pezzi: il grafico inferiore $y=g_1(x)$ percorso da $x=a$ a $x=b$ (da sinistra a destra), il segmento verticale destro, il grafico superiore $y=g_2(x)$ percorso da $x=b$ ad $x=a$ (da destra a sinistra) e il segmento verticale sinistro. Sui due segmenti verticali la coordinata $x$ è costante, dunque $dx=0$ e il loro contributo a $\oint P\,dx$ è <strong>nullo</strong>. Restano i due grafici:</p>
+          <div class="formula-block">$$\oint_{\partial D}P\,dx=\int_a^b P\big(x,g_1(x)\big)\,dx+\int_b^a P\big(x,g_2(x)\big)\,dx=\int_a^b\Big[P\big(x,g_1(x)\big)-P\big(x,g_2(x)\big)\Big]dx.$$</div>
+          <p>(Nel secondo integrale abbiamo usato $\int_b^a=-\int_a^b$: è proprio l'orientazione a produrre il segno meno.)</p>
+          <p><strong>Terzo passo: confronto.</strong> Le due espressioni ottenute sono l'una l'opposta dell'altra. Dunque $\oint_{\partial D}P\,dx=-\iint_D P_y\,dA$, che è (A).</p>
+          <p>La (B) si ottiene con lo stesso ragionamento scambiando i ruoli degli assi: si usa che $D$ è normale rispetto a $y$, cioè $D=\{(x,y):c\le y\le d,\ h_1(y)\le x\le h_2(y)\}$, si integra prima in $x$, e sui due tratti orizzontali del bordo si ha $dy=0$. In formule, il teorema fondamentale del calcolo applicato a $x\mapsto Q(x,y)$ dà $\iint_D Q_x\,dA=\int_c^d\big[Q\big(h_2(y),y\big)-Q\big(h_1(y),y\big)\big]dy$, mentre sul bordo restano i due grafici verticali. Questa volta l'orientazione positiva fa percorrere il grafico $x=h_2(y)$ <em>verso l'alto</em> (da $y=c$ a $y=d$) e il grafico $x=h_1(y)$ verso il basso, quindi $\oint_{\partial D}Q\,dy=\int_c^d\big[Q(h_2(y),y)-Q(h_1(y),y)\big]dy$: le due espressioni coincidono e il segno che compare è $+$, non $-$ come in (A).</p>
+          <p>Sommando (A) e (B) si ottiene la formula di Green. <strong>E per una regione qualsiasi?</strong> La si spezza con dei tagli in un numero finito di pezzi che siano normali in entrambi i sensi, si applica il risultato a ciascun pezzo e si somma: ogni taglio viene percorso <strong>due volte in versi opposti</strong> (una volta come bordo del pezzo a destra, una come bordo del pezzo a sinistra), quindi i contributi dei tagli si cancellano a coppie e resta soltanto il bordo originale. È di nuovo la cancellazione delle girandole. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Corollario</span>
+          <p><em class="nome">Formula del planimetro.</em> Per ogni regione $D$ nelle ipotesi di Green, $\ \text{Area}(D)=\dfrac12\displaystyle\oint_{\partial D}(x\,dy-y\,dx)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Applichiamo Green al campo $\mathbf{F}=\big(-\tfrac{y}{2},\ \tfrac{x}{2}\big)$, che è di classe $C^\infty$ ovunque. Qui <strong>sostituisco</strong> $P=-\tfrac y2$ e $Q=\tfrac x2$ nell'integranda di Green $Q_x-P_y$: derivo $Q=\frac x2$ rispetto a $x$ (e $\frac12$ è il coefficiente, quindi $Q_x=\frac12$), poi derivo $P=-\frac y2$ rispetto a $y$ (quindi $P_y=-\frac12$). La differenza è</p>
+          <div class="formula-block">$$\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y}=\frac12-\left(-\frac12\right)=\frac12+\frac12=1.$$</div>
+          <p>Osserviamo anche come si scrive il primo membro di Green con questo campo: $P\,dx+Q\,dy=-\dfrac y2\,dx+\dfrac x2\,dy$, e raccogliendo $\frac12$ diventa $\dfrac12\big(x\,dy-y\,dx\big)$ — esattamente l'integranda del planimetro. La formula di Green dà allora</p>
+          <div class="formula-block">$$\frac12\oint_{\partial D}\big(x\,dy-y\,dx\big)=\oint_{\partial D}P\,dx+Q\,dy=\iint_D 1\,dA=\text{Area}(D).\qquad\text{∎}$$</div>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema della divergenza</span>
+          <p><em class="nome">Dimostrazione su domini semplici.</em> Se $\Omega$ è un solido semplice rispetto ai tre assi e $\mathbf{F}=(P,Q,R)$ è $C^1$ su un aperto contenente $\Omega$, allora $\displaystyle\iint_{\partial\Omega}\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_\Omega\operatorname{div}\mathbf{F}\,dV$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Per linearità basta dimostrare le tre identità separate, una per componente; le sommeremo alla fine. Dimostriamo la terza:</p>
+          <div class="formula-block">$$\iint_{\partial\Omega}R\,\big(\mathbf{k}\cdot\mathbf{n}\big)\,dS=\iiint_\Omega\frac{\partial R}{\partial z}\,dV.$$</div>
+          <p>Supponiamo $\Omega$ semplice rispetto a $z$, cioè compreso fra due grafici sopra una regione piana $D$:</p>
+          <div class="formula-block">$$\Omega=\big\{(x,y,z):\ (x,y)\in D,\ \ \varphi_1(x,y)\le z\le\varphi_2(x,y)\big\}.$$</div>
+          <p><strong>Primo passo: l'integrale triplo.</strong> Integriamo per fili verticali e applichiamo il teorema fondamentale del calcolo in $z$:</p>
+          <div class="formula-block">$$\iiint_\Omega\frac{\partial R}{\partial z}\,dV=\iint_D\!\left[\int_{\varphi_1(x,y)}^{\varphi_2(x,y)}\frac{\partial R}{\partial z}\,dz\right]dA=\iint_D\Big[R\big(x,y,\varphi_2\big)-R\big(x,y,\varphi_1\big)\Big]dA.$$</div>
+          <p><strong>Secondo passo: l'integrale di superficie.</strong> Il bordo $\partial\Omega$ ha tre pezzi: il <em>tappo superiore</em> $S_2$ (grafico di $\varphi_2$, normale uscente rivolta verso l'alto), il <em>fondo</em> $S_1$ (grafico di $\varphi_1$, normale uscente rivolta verso il basso) e la <em>parete laterale</em> $S_3$. Per un grafico $z=\varphi(x,y)$ con normale verso l'alto vale la formula nota dal <a href="11-integrali-superficie-campi-vettoriali.html">Capitolo 11</a>:</p>
+          <div class="formula-block">$$\mathbf{n}\,dS=\big(-\varphi_x,\ -\varphi_y,\ 1\big)\,dA\qquad\Longrightarrow\qquad \mathbf{k}\cdot\mathbf{n}\,dS=dA.$$</div>
+          <p>Perché l'implicazione? Perché $\mathbf{k}=(0,0,1)$, e il prodotto scalare con $(-\varphi_x,-\varphi_y,1)$ si fa moltiplicando le componenti omologhe e sommando: $0\cdot(-\varphi_x)+0\cdot(-\varphi_y)+1\cdot 1=1$. Le due derivate $\varphi_x,\varphi_y$ vengono azzerate dalle prime due componenti nulle di $\mathbf{k}$: resta solo $1\cdot dA$.</p>
+          <p>Dunque il tappo superiore contribuisce $+\iint_D R(x,y,\varphi_2)\,dA$, perché lì $z=\varphi_2(x,y)$ e quindi <strong>sostituisco $\varphi_2$ al posto di $z$</strong> dentro $R$. Sul fondo la normale uscente punta <em>verso il basso</em>, cioè è $\big(\varphi_{1,x},\ \varphi_{1,y},\ -1\big)\,dA$ con il segno opposto: il prodotto con $\mathbf{k}$ dà $-1$ e il contributo è $-\iint_D R(x,y,\varphi_1)\,dA$. Sulla parete laterale la normale è <strong>orizzontale</strong>, cioè ha terza componente nulla ed è perpendicolare a $\mathbf{k}$: qui $\mathbf{k}\cdot\mathbf{n}=0$ e il contributo è nullo.</p>
+          <div class="formula-block">$$\iint_{\partial\Omega}R\,\big(\mathbf{k}\cdot\mathbf{n}\big)\,dS=\iint_D R\big(x,y,\varphi_2\big)\,dA-\iint_D R\big(x,y,\varphi_1\big)\,dA.$$</div>
+          <p><strong>Terzo passo: confronto.</strong> Le due espressioni coincidono, e la terza identità è provata. Le altre due si ottengono in modo del tutto analogo usando che $\Omega$ è semplice rispetto a $x$ (fili orizzontali nella direzione $x$, pareti con $\mathbf{i}\cdot\mathbf{n}=0$) e rispetto a $y$. Sommando le tre:</p>
+          <div class="formula-block">$$\iint_{\partial\Omega}\big(P\,\mathbf{i}+Q\,\mathbf{j}+R\,\mathbf{k}\big)\cdot\mathbf{n}\,dS=\iiint_\Omega\left(\frac{\partial P}{\partial x}+\frac{\partial Q}{\partial y}+\frac{\partial R}{\partial z}\right)dV.$$</div>
+          <p>Per un solido generale si decompone in un numero finito di pezzi semplici: le pareti di taglio interne vengono contate due volte con normali uscenti <strong>opposte</strong> e si cancellano, esattamente come i tagli nella dimostrazione di Green. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di Stokes</span>
+          <p><em class="nome">Dimostrazione per superfici grafico.</em> Sia $S$ il grafico $z=f(x,y)$, con $f$ di classe $C^2$, sopra una regione piana $D$ nelle ipotesi di Green, orientata con normale verso l'alto; sia $\mathbf{F}=(P,Q,R)$ di classe $C^1$. Allora $\displaystyle\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}=\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (riduzione a Green)</span>
+          <p><strong>Idea.</strong> Una superficie-grafico è solo la regione piana $D$ "sollevata". Proiettando tutto su $D$, il bordo $\partial S$ diventa $\partial D$ e Stokes si riduce a Green. Serve solo un po' di attenzione con la regola della catena.</p>
+          <p><strong>Primo passo: il membro di destra.</strong> Per il grafico con normale verso l'alto vale $\mathbf{n}\,dS=(-f_x,-f_y,1)\,dA$ (<a href="11-integrali-superficie-campi-vettoriali.html">Capitolo 11</a>: nel flusso il modulo si semplifica e resta il prodotto vettoriale grezzo). Il rotore è $\operatorname{rot}\mathbf{F}=\big(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y\big)$. Faccio il prodotto scalare fra i due, moltiplicando le componenti omologhe e sommando: prima con prima, $\big(R_y-Q_z\big)\cdot(-f_x)$; seconda con seconda, $\big(P_z-R_x\big)\cdot(-f_y)$; terza con terza, $\big(Q_x-P_y\big)\cdot 1$. Si ottiene</p>
+          <div class="formula-block">$$\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=\iint_D\Big[-\big(R_y-Q_z\big)f_x-\big(P_z-R_x\big)f_y+\big(Q_x-P_y\big)\Big]dA.$$</div>
+          <p><strong>Secondo passo: il membro di sinistra.</strong> Parametrizziamo $\partial D$ come $t\mapsto\big(x(t),y(t)\big)$ con orientazione positiva; allora $\partial S$ è $t\mapsto\big(x(t),y(t),f(x(t),y(t))\big)$, e per la regola della catena $dz=f_x\,dx+f_y\,dy$. Sostituendo:</p>
+          <div class="formula-block">$$\oint_{\partial S}P\,dx+Q\,dy+R\,dz=\oint_{\partial D}\underbrace{\big(P+R\,f_x\big)}_{\tilde P}\,dx+\underbrace{\big(Q+R\,f_y\big)}_{\tilde Q}\,dy,$$</div>
+          <p>dove $P,Q,R$ sono valutate in $\big(x,y,f(x,y)\big)$. Ora il membro di sinistra è un integrale curvilineo <strong>piano</strong>: possiamo applicare Green al campo $(\tilde P,\tilde Q)$.</p>
+          <p><strong>Terzo passo: applicare Green e derivare con la catena.</strong> Attenzione, è il punto delicato: dentro $\tilde Q=Q+R\,f_y$ le funzioni $Q$ e $R$ sono valutate in $\big(x,y,f(x,y)\big)$, quindi dipendono da $x$ in <em>due</em> modi — direttamente, e attraverso la terza variabile $z=f(x,y)$. La regola della catena (<a href="03-derivate-parziali.html">Capitolo 3</a>) dice allora $\frac{\partial}{\partial x}\big[Q(x,y,f)\big]=Q_x+Q_z\,f_x$. Per il secondo addendo $R\,f_y$ serve anche la regola del prodotto: derivo $R$ (di nuovo con la catena, ottenendo $R_x+R_z f_x$) per $f_y$, più $R$ per la derivata di $f_y$ rispetto a $x$, che è $f_{yx}$. In tutto:</p>
+          <div class="formula-block">$$\frac{\partial\tilde Q}{\partial x}=Q_x+Q_z f_x+\big(R_x+R_z f_x\big)f_y+R\,f_{yx},$$</div>
+          <p>e, scambiando i ruoli di $x$ e $y$ nello stesso ragionamento applicato a $\tilde P=P+R\,f_x$:</p>
+          <div class="formula-block">$$\frac{\partial\tilde P}{\partial y}=P_y+P_z f_y+\big(R_y+R_z f_y\big)f_x+R\,f_{xy}.$$</div>
+          <p>Sottraiamo la seconda riga dalla prima, guardando quali termini si elidono. I termini $R\,f_{yx}$ e $R\,f_{xy}$ si cancellano per il <strong>teorema di Schwarz</strong> (qui serve $f$ di classe $C^2$), che garantisce $f_{yx}=f_{xy}$. Sviluppando le due parentesi tonde compaiono $R_x f_y+R_z f_x f_y$ nella prima riga e $R_y f_x+R_z f_y f_x$ nella seconda: il termine misto $R_z f_x f_y$ è identico nelle due righe (il prodotto è commutativo) e quindi sparisce nella differenza. Resta</p>
+          <div class="formula-block">$$\frac{\partial\tilde Q}{\partial x}-\frac{\partial\tilde P}{\partial y}=\big(Q_x-P_y\big)-\big(R_y-Q_z\big)f_x-\big(P_z-R_x\big)f_y,$$</div>
+          <p>che è <strong>esattamente</strong> l'integranda trovata al primo passo. Per Green,</p>
+          <div class="formula-block">$$\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}=\iint_D\left(\frac{\partial\tilde Q}{\partial x}-\frac{\partial\tilde P}{\partial y}\right)dA=\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS.$$</div>
+          <p>Una superficie generale orientabile si spezza in un numero finito di pezzi che sono grafici (eventualmente rispetto ad assi diversi): applicando il risultato a ciascun pezzo e sommando, le curve di taglio interne vengono percorse due volte in versi opposti e si cancellano. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Green su un quadrato</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\oint_{\partial D}\big(y^2\,dx+x^2\,dy\big)$ dove $D=[0,1]\times[0,1]$ e il bordo è orientato positivamente.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Identifico $P=y^2$ e $Q=x^2$; entrambi sono polinomi, quindi $C^\infty$: le ipotesi di Green sono soddisfatte.</span>
+            <span class="esempio__passo">Calcolo l'integranda di Green, che è $\dfrac{\partial Q}{\partial x}-\dfrac{\partial P}{\partial y}$ — la scrivo per esteso invece di tenerla "in blocco". Derivo $Q=x^2$ rispetto a $x$: $\dfrac{\partial Q}{\partial x}=2x$. Derivo $P=y^2$ rispetto a $y$: $\dfrac{\partial P}{\partial y}=2y$. Differenza: $Q_x-P_y=2x-2y$.</span>
+            <span class="esempio__passo">Integro sul quadrato, prima in $y$ (tenendo $x$ fisso, quindi $2x$ è una costante): $\displaystyle\int_0^1(2x-2y)\,dy=\big[2xy-y^2\big]_0^1=(2x-1)-0=2x-1$.</span>
+            <span class="esempio__passo">Ora integro il risultato in $x$: $\displaystyle\int_0^1\big(2x-1\big)dx=\big[x^2-x\big]_0^1=(1-1)-0=0$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\oint_{\partial D}\big(y^2\,dx+x^2\,dy\big)=0$. Con Green: tre righe. Direttamente sui quattro lati: quattro integrali separati.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Area di un'ellisse con il planimetro</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare l'area racchiusa dall'ellisse $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ usando solo un integrale sul bordo.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parametrizzo il bordo in senso antiorario: $\mathbf{r}(t)=\big(a\cos t,\ b\sin t\big)$, $t\in[0,2\pi]$. Che sia la curva giusta si verifica sostituendo nell'equazione: $\frac{(a\cos t)^2}{a^2}+\frac{(b\sin t)^2}{b^2}=\cos^2t+\sin^2t=1$ per ogni $t$.</span>
+            <span class="esempio__passo">Calcolo i differenziali derivando le due componenti rispetto a $t$: $dx=x'(t)\,dt=-a\sin t\,dt$ e $dy=y'(t)\,dt=b\cos t\,dt$.</span>
+            <span class="esempio__passo">Costruisco l'integranda della <strong>formula del planimetro</strong> $\text{Area}=\frac12\oint(x\,dy-y\,dx)$ (<span class="richiamo" data-sec="4.3">§4.3</span>), sostituendo un pezzo alla volta. Primo pezzo: $x\,dy=(a\cos t)(b\cos t\,dt)=ab\cos^2 t\,dt$. Secondo pezzo: $-y\,dx=-(b\sin t)(-a\sin t\,dt)=+ab\sin^2 t\,dt$ (meno per meno dà più). Sommo: $ab\cos^2 t\,dt+ab\sin^2 t\,dt=ab\big(\cos^2t+\sin^2t\big)dt=ab\,dt$, per l'<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">identità fondamentale</a>.</span>
+            <span class="esempio__passo">Applico la formula: $\text{Area}=\dfrac12\displaystyle\int_0^{2\pi}ab\,dt=\dfrac12\,ab\big[t\big]_0^{2\pi}=\dfrac12\,ab\,(2\pi)=\pi ab$.</span>
+          </p>
+          <div class="esempio__risultato">$\text{Area}=\pi ab$. Con $a=b=R$ si ritrova $\pi R^2$. Nota la bellezza del passaggio 3: l'identità fondamentale della trigonometria fa collassare tutto in una costante.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Quando Green salva la vita</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare $\displaystyle\oint_{C}\mathbf{F}\cdot d\mathbf{r}$ con $\mathbf{F}(x,y)=\big(y+e^{\sqrt{x}},\ 2x+\cos(y^2)\big)$, dove $C$ è il bordo, orientato positivamente, della regione compresa fra le curve $y=x^2$ e $y=x$ per $x\in[0,1]$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Guardo il campo: $e^{\sqrt{x}}$ e $\cos(y^2)$ non hanno primitive elementari. Calcolare l'integrale curvilineo direttamente è <strong>impossibile</strong>. Questo è il segnale che devo usare Green.</span>
+            <span class="esempio__passo">Calcolo $Q_x-P_y$: la derivata di $2x+\cos(y^2)$ rispetto a $x$ è $2$ (il pezzo in $y$ sparisce); la derivata di $y+e^{\sqrt x}$ rispetto a $y$ è $1$. Quindi $Q_x-P_y=2-1=1$. <strong>I termini mostruosi si sono cancellati.</strong></span>
+            <span class="esempio__passo">Con integranda $1$, l'integrale doppio di Green è semplicemente l'<strong>area</strong> della regione. Descrivo la regione come dominio normale rispetto a $x$: per $x\in[0,1]$ si ha $x^2\leq x$ (elevare al quadrato un numero fra $0$ e $1$ lo rimpicciolisce), quindi la parabola sta <em>sotto</em> la retta e la regione è $\{x^2\leq y\leq x\}$.</span>
+            <span class="esempio__passo">Integro prima in $y$: $\displaystyle\int_{x^2}^{x}1\,dy=\big[y\big]_{x^2}^{x}=x-x^2$ (estremo superiore meno estremo inferiore). Poi in $x$: $\displaystyle\int_0^1\big(x-x^2\big)dx=\Big[\frac{x^2}{2}-\frac{x^3}{3}\Big]_0^1=\frac12-\frac13$. Riduco allo stesso denominatore: $\frac{3}{6}-\frac{2}{6}=\frac16$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\oint_C\mathbf{F}\cdot d\mathbf{r}=\frac16$. Morale: se il campo contiene funzioni impossibili da integrare ma che dipendono da una sola variabile, Green le fa evaporare.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Gauss sulla sfera</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il flusso uscente di $\mathbf{F}(x,y,z)=(x,y,z)$ attraverso la sfera $x^2+y^2+z^2=4$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Controllo le ipotesi di Gauss prima di usarlo</strong>, perché è l'errore numero uno. (i) La superficie è <em>chiusa</em>: $x^2+y^2+z^2=4$ si legge $x^2+y^2+z^2=2^2$, è la sfera di raggio $2$, che racchiude la palla piena $\Omega$. (ii) Il campo $(x,y,z)$ è fatto di polinomi, quindi è $C^1$ ovunque, bordo e interno compresi. Posso applicare Gauss.</span>
+            <span class="esempio__passo">Calcolo la divergenza scrivendo i tre addendi (definizione, <a href="11-integrali-superficie-campi-vettoriali.html#teoria-divergenza">Capitolo 11</a>): con $P=x$, $Q=y$, $R=z$ si ha $\partial_x P=\partial_x(x)=1$, $\partial_y Q=\partial_y(y)=1$, $\partial_z R=\partial_z(z)=1$. Somma: $\operatorname{div}\mathbf{F}=1+1+1=3$, costante.</span>
+            <span class="esempio__passo">Il volume della palla di raggio $r$ è $\frac43\pi r^3$; sostituisco $r=2$: $\dfrac43\pi\,2^3=\dfrac43\pi\cdot 8=\dfrac{32\pi}{3}$.</span>
+            <span class="esempio__passo">Poiché l'integranda è costante, esce dall'integrale triplo e resta il volume: $\displaystyle\iiint_\Omega 3\,dV=3\cdot\text{Vol}(\Omega)=3\cdot\frac{32\pi}{3}=32\pi$.</span>
+            <span class="esempio__passo"><strong>Verifica diretta</strong> (qui è fattibile). Sulla sfera di raggio $2$ il versore normale uscente è $\mathbf{n}=\mathbf{r}/2$ (Capitolo 11). Prodotto scalare: $\mathbf{F}\cdot\mathbf{n}=\mathbf{r}\cdot\frac{\mathbf{r}}{2}=\frac{x^2+y^2+z^2}{2}$, e sulla sfera $x^2+y^2+z^2=4$, quindi $\frac42=2$, costante. L'area della sfera è $4\pi R^2=4\pi\cdot 2^2=16\pi$. Flusso $=2\cdot16\pi=32\pi$. ✓</span>
+          </p>
+          <div class="esempio__risultato">Flusso $=32\pi$. Il campo $\mathbf{F}=(x,y,z)$ ha divergenza $3$: il flusso uscente da <em>qualsiasi</em> solido è tre volte il suo volume.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Stokes: il bordo è quello che conta</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare $\displaystyle\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}$ con $\mathbf{F}=(-y,\ x,\ z)$, dove $S$ è la semisfera $x^2+y^2+z^2=1$, $z\ge 0$, orientata con normale verso l'alto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Prima di tutto do un nome alle componenti: $P=-y$, $Q=x$, $R=z$. Ora calcolo il rotore <strong>scrivendo tutte e sei le derivate parziali</strong>, invece di andare a colpo d'occhio. Prima componente, $R_y-Q_z$: $\partial_y(z)=0$ e $\partial_z(x)=0$, quindi $0-0=0$. Seconda, $P_z-R_x$: $\partial_z(-y)=0$ e $\partial_x(z)=0$, quindi $0-0=0$. Terza, $Q_x-P_y$: $\partial_x(x)=1$ e $\partial_y(-y)=-1$, quindi $1-(-1)=1+1=2$. In tutto $\operatorname{rot}\mathbf{F}=(0,0,2)$.</span>
+            <span class="esempio__passo">Il bordo di $S$ è la circonferenza che orla la calotta: si trova ponendo $z=0$ nell'equazione della semisfera, cioè $x^2+y^2=1$ nel piano $z=0$. Con la mano destra (pollice verso l'alto, come la normale scelta) va percorsa in <strong>senso antiorario</strong>: dichiaro l'orientazione ora, perché da essa dipende il segno del risultato.</span>
+            <span class="esempio__passo"><strong>Trucco:</strong> il flusso del rotore dipende solo dal bordo (<span class="richiamo" data-sec="4.6">§4.6</span>), quindi sostituisco la semisfera con il disco piatto $D:\ x^2+y^2\le1$, $z=0$, che ha lo stesso bordo, con normale $\mathbf{n}=\mathbf{k}=(0,0,1)$ (coerente con l'antiorario). Prodotto scalare: $(0,0,2)\cdot(0,0,1)=0\cdot 0+0\cdot 0+2\cdot 1=2$. Costante, quindi $\displaystyle\iint_D 2\,dA=2\cdot\text{Area}(D)=2\cdot\pi\cdot 1^2=2\pi$.</span>
+            <span class="esempio__passo"><strong>Verifica sul bordo:</strong> parametrizzo l'antiorario con $\mathbf{r}(t)=(\cos t,\sin t,0)$, $t\in[0,2\pi]$. Sostituisco $x=\cos t$, $y=\sin t$, $z=0$ dentro $\mathbf{F}=(-y,x,z)$ e ottengo $\mathbf{F}=(-\sin t,\ \cos t,\ 0)$. Derivo la parametrizzazione: $\mathbf{r}'(t)=(-\sin t,\ \cos t,\ 0)$. Prodotto scalare: $(-\sin t)(-\sin t)+(\cos t)(\cos t)+0=\sin^2t+\cos^2t=1$ per l'identità fondamentale. L'integrale vale $\displaystyle\int_0^{2\pi}1\,dt=\big[t\big]_0^{2\pi}=2\pi$. ✓</span>
+          </p>
+          <div class="esempio__risultato">Circuitazione $=2\pi$. Nessuno ci ha obbligati a integrare sulla semisfera curva: avere lo stesso bordo basta.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Gauss su un cilindro</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare il flusso uscente di $\mathbf{F}=(x,\ y,\ z^2)$ attraverso il bordo del cilindro pieno $\Omega:\ x^2+y^2\le1$, $0\le z\le 2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il bordo è formato da tre pezzi (parete laterale, disco inferiore, disco superiore): calcolare i tre flussi separatamente è lungo. Ma il bordo è <strong>chiuso</strong>, quindi uso Gauss.</span>
+            <span class="esempio__passo">Divergenza, termine per termine: con $P=x$, $Q=y$, $R=z^2$ si ha $\partial_x(x)=1$, $\partial_y(y)=1$, $\partial_z(z^2)=2z$. Somma: $\operatorname{div}\mathbf{F}=1+1+2z=2+2z$.</span>
+            <span class="esempio__passo">Integro per fette orizzontali (metodo del <a href="09-integrali-tripli-cambi-variabile.html">Capitolo 9</a>): a quota $z$ la sezione del cilindro è il disco unitario, di area $\pi\cdot 1^2=\pi$, e l'integranda $2+2z$ è costante su quella fetta perché non contiene né $x$ né $y$. Quindi l'integrale sulla fetta è $(2+2z)\cdot\pi$ e resta da sommare sulle quote: $\displaystyle\iiint_\Omega(2+2z)\,dV=\int_0^2(2+2z)\,\pi\,dz$.</span>
+            <span class="esempio__passo">$\displaystyle\pi\int_0^2(2+2z)\,dz=\pi\big[2z+z^2\big]_0^2=\pi\,(4+4)=8\pi$.</span>
+          </p>
+          <div class="esempio__risultato">Flusso uscente $=8\pi$. Tre integrali di superficie condensati in un integrale iterato di una riga.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Chiudere la superficie con il "tappo"</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare il flusso di $\mathbf{F}=\big(x+y^2,\ y+z^2,\ z+x^2\big)$ attraverso la semisfera <strong>aperta</strong> $S:\ x^2+y^2+z^2=1$, $z\ge 0$, orientata verso l'alto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Attenzione:</strong> $S$ non è chiusa (è una calotta, le manca il fondo), quindi Gauss non si applica direttamente. La strategia è <strong>chiuderla</strong>.</span>
+            <span class="esempio__passo">Aggiungo il "tappo" $T$: il disco $z=0$, $x^2+y^2\le1$. Perché la normale sia <em>uscente</em> dal solido semisferico $\Omega$, su $T$ deve puntare verso il basso: $\mathbf{n}=-\mathbf{k}$.</span>
+            <span class="esempio__passo">Ora $S\cup T$ è chiusa e Gauss si applica. Calcolo la divergenza termine per termine, e qui c'è una finezza: nella prima componente $x+y^2$ derivo <em>rispetto a $x$</em>, e $y^2$ non contiene $x$, quindi sparisce: $\partial_x(x+y^2)=1+0=1$. Allo stesso modo $\partial_y(y+z^2)=1+0=1$ e $\partial_z(z+x^2)=1+0=1$. Dunque $\operatorname{div}\mathbf{F}=1+1+1=3$. Il solido $\Omega$ è mezza palla di raggio $1$, quindi $\text{Vol}(\Omega)=\frac12\cdot\frac43\pi\cdot 1^3=\frac{2\pi}{3}$. Gauss dà $\Phi_S+\Phi_T=\displaystyle\iiint_\Omega 3\,dV=3\cdot\frac{2\pi}{3}=2\pi$.</span>
+            <span class="esempio__passo">Calcolo il flusso del tappo. Su $T$ la normale uscente è $-\mathbf{k}=(0,0,-1)$, quindi il prodotto scalare tiene solo la terza componente del campo cambiata di segno: $\mathbf{F}\cdot(-\mathbf{k})=(x+y^2)\cdot 0+(y+z^2)\cdot 0+(z+x^2)\cdot(-1)=-(z+x^2)$. Su $T$ vale $z=0$: <strong>sostituisco</strong> e resta $-x^2$. Dunque $\Phi_T=-\displaystyle\iint_{x^2+y^2\le1}x^2\,dA$.</span>
+            <span class="esempio__passo">Per calcolare $\iint_D x^2\,dA$ uso un argomento di <strong>simmetria</strong>: il disco è invariante se scambio i ruoli di $x$ e $y$, quindi $\iint_D x^2\,dA=\iint_D y^2\,dA$; sommandoli, ciascuno vale la metà di $\iint_D(x^2+y^2)\,dA$. Passo poi in coordinate polari ponendo $x=r\cos\theta$, $y=r\sin\theta$, con $dA=r\,dr\,d\theta$ e $x^2+y^2=r^2$: $\frac12\displaystyle\int_0^{2\pi}\!\!\int_0^1 r^2\cdot r\,dr\,d\theta=\frac12\cdot 2\pi\cdot\Big[\frac{r^4}{4}\Big]_0^1=\frac12\cdot2\pi\cdot\frac14=\frac{\pi}{4}$. Quindi $\Phi_T=-\frac{\pi}{4}$.</span>
+            <span class="esempio__passo">Ricavo il flusso cercato: $\Phi_S=2\pi-\Phi_T=2\pi+\dfrac{\pi}{4}=\dfrac{9\pi}{4}$.</span>
+          </p>
+          <div class="esempio__risultato">$\Phi_S=\dfrac{9\pi}{4}$. Schema da memorizzare: <strong>chiudo</strong> la superficie, applico Gauss al solido, <strong>sottraggo</strong> il flusso del tappo (con la sua normale uscente corretta).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Stokes su un paraboloide</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\displaystyle\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$ con $\mathbf{F}=(z,\ x,\ y)$, dove $S$ è la porzione di paraboloide $z=1-x^2-y^2$ con $z\ge 0$, orientata con normale verso l'alto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Do un nome alle componenti: $P=z$, $Q=x$, $R=y$. Rotore, tutte e sei le derivate. Prima componente $R_y-Q_z$: $\partial_y(y)=1$, $\partial_z(x)=0$, quindi $1-0=1$. Seconda $P_z-R_x$: $\partial_z(z)=1$, $\partial_x(y)=0$, quindi $1-0=1$. Terza $Q_x-P_y$: $\partial_x(x)=1$, $\partial_y(z)=0$, quindi $1-0=1$. In tutto $\operatorname{rot}\mathbf{F}=(1,1,1)$.</span>
+            <span class="esempio__passo"><strong>Via diretta.</strong> È un grafico $z=f(x,y)=1-x^2-y^2$ con normale verso l'alto, quindi $\mathbf{n}\,dS=(-f_x,-f_y,1)\,dA$. Calcolo $f_x=-2x$ e $f_y=-2y$, e attenzione al doppio segno: $-f_x=-(-2x)=2x$, $-f_y=2y$. Dunque $\mathbf{n}\,dS=(2x,\ 2y,\ 1)\,dA$. Il dominio si trova da $z\geq 0$, cioè $1-x^2-y^2\geq 0$: $D:\ x^2+y^2\le1$.</span>
+            <span class="esempio__passo">Prodotto scalare componente per componente: $(1,1,1)\cdot(2x,2y,1)=1\cdot 2x+1\cdot 2y+1\cdot 1=2x+2y+1$. Quindi $\displaystyle\iint_D\big(2x+2y+1\big)dA$. Per <strong>simmetria</strong> del disco rispetto all'origine, a ogni punto $(x,y)$ corrisponde $(-x,-y)$ con integranda opposta, quindi $\iint_D x\,dA=\iint_D y\,dA=0$; resta $\iint_D 1\,dA=\text{Area}(D)=\pi\cdot 1^2=\pi$.</span>
+            <span class="esempio__passo"><strong>Via Stokes (molto più rapida).</strong> Il bordo di $S$ si ottiene ponendo $z=0$: è la circonferenza $x^2+y^2=1$ nel piano $z=0$, percorsa in senso antiorario (mano destra con il pollice verso l'alto). Parametrizzo $\mathbf{r}(t)=(\cos t,\sin t,0)$, $t\in[0,2\pi]$, da cui $dx=-\sin t\,dt$, $dy=\cos t\,dt$, $dz=0$ (la terza componente è costante). Nell'integrale $\oint P\,dx+Q\,dy+R\,dz=\oint z\,dx+x\,dy+y\,dz$ il primo addendo si annulla perché $z=0$ sul bordo e il terzo perché $dz=0$: resta $\oint x\,dy$.</span>
+            <span class="esempio__passo">Sostituisco $x=\cos t$ e $dy=\cos t\,dt$: $\oint x\,dy=\displaystyle\int_0^{2\pi}\cos t\cdot\cos t\,dt=\int_0^{2\pi}\cos^2 t\,dt$. Questo integrale <em>non</em> si fa a occhio: serve la <strong>formula di duplicazione</strong> $\cos 2t=2\cos^2t-1$, da cui, isolando, $\cos^2 t=\dfrac{1+\cos 2t}{2}$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">prerequisiti, §4.5</a>). Allora $\displaystyle\int_0^{2\pi}\frac{1+\cos 2t}{2}\,dt=\frac12\big[t\big]_0^{2\pi}+\frac12\Big[\frac{\sin 2t}{2}\Big]_0^{2\pi}=\frac12\cdot 2\pi+\frac12\cdot\frac{\sin 4\pi-\sin 0}{2}=\pi+0=\pi$. ✓</span>
+          </p>
+          <div class="esempio__risultato">Flusso del rotore $=\pi$, con entrambi i metodi. Il confronto mostra il vantaggio di Stokes: un integrale in una variabile invece di un integrale doppio.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Orientazione sbagliata del bordo: il segno finale capovolto</div>
+          <p>È l'errore numero uno, e il più insidioso perché il conto "sembra" giusto: sbagli solo il segno. Succede quando la parametrizzazione del bordo gira in senso orario mentre Green pretende l'antiorario, oppure quando in Stokes scegli la normale verso l'alto ma percorri il bordo come se fosse verso il basso.</p>
+          <p><em>Come evitarlo</em>: prima di ogni conto, scrivi a margine la regola. <strong>Green</strong>: cammino sul bordo e la regione mi resta a sinistra (antiorario se non ci sono buchi, orario per i bordi dei buchi). <strong>Stokes</strong>: pollice destro lungo $\mathbf{n}$, le dita indicano il verso del bordo. <strong>Gauss</strong>: la normale punta sempre verso l'esterno del solido. E se ti accorgi alla fine di aver girato al contrario, non rifare i conti: basta cambiare segno al risultato.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Applicare Green o Stokes a un campo non regolare dentro la regione</div>
+          <p>Il caso classico è il <strong>vortice</strong> $\mathbf{F}=\left(\dfrac{-y}{x^2+y^2},\ \dfrac{x}{x^2+y^2}\right)$. Ha rotore nullo ovunque è definito, quindi si è tentati di concludere che ogni circuitazione sia $0$. Ma sulla circonferenza unitaria la circuitazione vale $2\pi$. Il motivo è che il campo <strong>non esiste nell'origine</strong>, che sta dentro il disco: l'ipotesi "$\mathbf{F}$ di classe $C^1$ su tutta la regione" è violata, e senza ipotesi non c'è teorema.</p>
+          <p><em>Come evitarlo</em>: prima di scrivere la formula, individua i <strong>punti singolari</strong> del campo (denominatori che si annullano, radici, logaritmi) e chiediti se cadono dentro la regione. Se sì, non applicare Green ingenuamente: isola la singolarità con una piccola circonferenza e lavora sulla regione con il buco, usando la versione a bordi multipli.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Applicare Gauss a una superficie che non è chiusa</div>
+          <p>Il teorema della divergenza parla del bordo di un <em>solido</em>: la superficie deve essere <strong>chiusa</strong>, cioè racchiudere completamente un volume, senza aperture. Scrivere $\iint_S\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_\Omega\operatorname{div}\mathbf{F}\,dV$ quando $S$ è una semisfera, un cono senza base o un cilindro senza tappi è semplicemente falso: non esiste nessun $\Omega$ di cui quella $S$ sia il bordo completo.</p>
+          <p><em>Come evitarlo</em>: prima di invocare Gauss, fatti la domanda "se ci verso dentro dell'acqua, esce da qualche parte?". Se la risposta è sì, la superficie è aperta: o calcoli il flusso direttamente, o la chiudi con un tappo (errore successivo).</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Chiudere la superficie e poi dimenticare di sottrarre il tappo</div>
+          <p>Variante più sottile del precedente, e forse la più comune negli esami. Lo studente capisce che deve chiudere la calotta con un disco, applica correttamente Gauss al solido... e poi scrive il risultato dell'integrale triplo come risposta finale, dimenticando che quel numero è $\Phi_S+\Phi_T$, non $\Phi_S$. La formula giusta è sempre</p>
+          <div class="formula-block">$$\Phi_S=\iiint_\Omega\operatorname{div}\mathbf{F}\,dV\;-\;\Phi_T.$$</div>
+          <p>Seconda trappola dentro la trappola: sul tappo la normale deve essere quella <strong>uscente dal solido</strong>, che spesso punta verso il basso ($-\mathbf{k}$) e non verso l'alto. Sbagliare quella normale sbaglia il segno di $\Phi_T$, e quindi il risultato.</p>
+          <p><em>Come evitarlo</em>: disegna il solido, disegna le frecce uscenti su <em>tutte</em> le facce, e scrivi esplicitamente le tre quantità $\Phi_{\text{totale}}$, $\Phi_T$, $\Phi_S$ prima di sostituire i numeri.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere divergenza e rotore (e i teoremi che li usano)</div>
+          <p>In due dimensioni $\operatorname{div}\mathbf{F}=P_x+Q_y$ mentre il rotore scalare è $Q_x-P_y$: stesse lettere, derivate incrociate diverse, un più e un meno. Scambiarli porta a un numero plausibile ma sbagliato, senza nessun campanello d'allarme. Analogamente, si applica Gauss quando serve Stokes (o viceversa) solo perché "c'era una superficie".</p>
+          <p><em>Come evitarlo</em>: parti sempre dalla <strong>domanda</strong>, non dalla formula. Se ti chiedono un <em>giro lungo una curva chiusa</em> (circuitazione, lavoro), serve il <strong>rotore</strong>: Green o Stokes. Se ti chiedono <em>quanto attraversa una superficie chiusa</em> (flusso, portata), serve la <strong>divergenza</strong>: Gauss. Indice mnemonico: <em>giro → rotore</em>, <em>attraverso → divergenza</em>.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Scegli il lato facile del ponte</div>
+          <p>Ogni teorema di questo capitolo è un'uguaglianza fra due integrali: sei sempre libero di calcolare quello che preferisci. Prima di iniziare, guarda entrambi i membri e chiediti quale è meno doloroso.</p>
+          <p><strong>Passa dal bordo all'interno</strong> se: il bordo è fatto di più pezzi (poligoni, superfici a più facce), oppure il campo contiene funzioni non integrabili elementarmente che però si cancellano nella derivata. <strong>Passa dall'interno al bordo</strong> se: l'integranda "dentro" è brutta, oppure il bordo è una curva con una parametrizzazione semplicissima (una circonferenza, un segmento).</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Se l'integranda diventa 1, stai calcolando un'area (o un volume)</div>
+          <p>Controlla sempre per primo il valore di $Q_x-P_y$ (in Green) o di $\operatorname{div}\mathbf{F}$ (in Gauss). Se viene $1$, hai finito senza integrare: il risultato è l'<strong>area</strong> della regione o il <strong>volume</strong> del solido, che spesso conosci a memoria ($\pi R^2$, $\pi ab$, $\frac43\pi R^3$...). Se viene una costante $c$, il risultato è $c$ volte l'area o il volume. Questa sola osservazione risolve una buona metà degli esercizi d'esame.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il flusso del rotore: cambia superficie, tieni il bordo</div>
+          <p>Se devi calcolare $\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$ e $S$ è una superficie curva antipatica (semisfera, paraboloide, cono, "cupola" qualsiasi), <strong>sostituiscila con la superficie più piatta che ha lo stesso bordo</strong> — quasi sempre un disco. Il risultato è identico e il conto diventa banale. Ricorda anche il caso limite: se $S$ è <em>chiusa</em>, non ha bordo, e il flusso del rotore è automaticamente $0$ (nessun calcolo).</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sfrutta le simmetrie prima di integrare</div>
+          <p>Negli integrali che nascono da questi teoremi compaiono spessissimo termini dispari su domini simmetrici. Sul disco centrato nell'origine, $\iint x\,dA=\iint y\,dA=\iint xy\,dA=0$: spariscono senza calcoli. E se restano $x^2$ o $y^2$, usa la simmetria di rotazione: $\iint x^2\,dA=\iint y^2\,dA=\frac12\iint(x^2+y^2)\,dA$, che in coordinate polari è immediato. Stessa storia in $\mathbb{R}^3$ su sfere e cilindri centrati.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il controllo di plausibilità sul segno</div>
+          <p>Finito il conto, fai una verifica da dieci secondi. Se $\operatorname{div}\mathbf{F}\gt 0$ dappertutto (il campo "produce" roba), il flusso <em>uscente</em> dev'essere positivo: se ti viene negativo hai quasi certamente invertito la normale. Allo stesso modo, un campo che ruota visibilmente in senso antiorario deve dare circuitazione positiva sul bordo antiorario. Il segno è l'unica cosa che questi teoremi ti possono far sbagliare in modo silenzioso: controllalo sempre.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">DENTRO ↔ BORDO<br><span style="font-weight:400;font-size:.9rem;">$\displaystyle\int_{\text{regione}}(\text{derivata})=\int_{\text{bordo}}(\text{campo})$</span></div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Idea unificante</strong>
+              <ul><li>Una derivata in meno, una dimensione in meno</li><li>Tutti figli del teorema fondamentale del calcolo</li><li>Girandole: i lati interni si cancellano</li><li>Serbatoio: conta solo cosa esce dai tubi</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Green (piano)</strong>
+              <ul><li>$\oint_{\partial D}P\,dx+Q\,dy=\iint_D(Q_x-P_y)\,dA$</li><li>Bordo positivo: regione a sinistra</li><li>Forma rotore e forma divergenza</li><li>Aree: $\frac12\oint(x\,dy-y\,dx)$</li><li>Buchi: esterno antiorario, interni orari</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Gauss (divergenza)</strong>
+              <ul><li>$\iint_{\partial\Omega}\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_\Omega\operatorname{div}\mathbf{F}\,dV$</li><li>Superficie CHIUSA, normale USCENTE</li><li>Bilancio: esce = prodotto dentro</li><li>Legge di Gauss: $\operatorname{div}\mathbf{E}=\rho/\varepsilon_0$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Stokes (rotore)</strong>
+              <ul><li>$\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}=\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$</li><li>Mano destra: pollice su $\mathbf{n}$</li><li>Green = Stokes appiattito</li><li>Dipende SOLO dal bordo</li><li>Superficie chiusa ⇒ flusso del rotore $=0$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Trappole</strong>
+              <ul><li>Orientazione ⇒ segno sbagliato</li><li>Singolarità dentro: il vortice</li><li>Gauss su superfici aperte: vietato</li><li>Tappo dimenticato o con normale invertita</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>L'idea unica</strong>: quello che succede <em>dentro</em> una regione si legge sul suo <em>bordo</em>. A sinistra una derivata integrata su dimensione $n$, a destra il campo integrato su dimensione $n-1$. Tutti e tre i teoremi sono generalizzazioni di $\int_a^b F'=F(b)-F(a)$.</li>
+            <li><strong>Green</strong>: $\displaystyle\oint_{\partial D}P\,dx+Q\,dy=\iint_D\big(Q_x-P_y\big)\,dA$, con $\partial D$ orientato positivamente (la regione resta a sinistra: antiorario fuori, orario attorno ai buchi) e $\mathbf{F}$ di classe $C^1$ su <em>tutta</em> $D$.</li>
+            <li><strong>Due forme di Green</strong>: forma del rotore ($\oint\mathbf{F}\cdot d\mathbf{r}=\iint\operatorname{rot}\mathbf{F}\cdot\mathbf{k}\,dA$) e forma della divergenza ($\oint\mathbf{F}\cdot\mathbf{n}\,ds=\iint\operatorname{div}\mathbf{F}\,dA$). Si passa dall'una all'altra ruotando il campo di $90°$.</li>
+            <li><strong>Aree dal bordo</strong>: $\text{Area}(D)=\oint x\,dy=-\oint y\,dx=\frac12\oint(x\,dy-y\,dx)$ — la formula del planimetro, da cui la <em>shoelace formula</em> per i poligoni.</li>
+            <li><strong>Gauss</strong>: $\displaystyle\iint_{\partial\Omega}\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_\Omega\operatorname{div}\mathbf{F}\,dV$, con superficie <strong>chiusa</strong> e normale <strong>uscente</strong>. Lettura: "quello che esce meno quello che entra è quanto viene prodotto dentro". Base della legge di Gauss dell'elettrostatica.</li>
+            <li><strong>Stokes</strong>: $\displaystyle\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}=\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$, con bordo e normale legati dalla <strong>regola della mano destra</strong>. Green è il caso in cui $S$ è piatta e $\mathbf{n}=\mathbf{k}$.</li>
+            <li><strong>Il flusso del rotore dipende solo dal bordo</strong>: due superfici con lo stesso bordo danno lo stesso risultato; una superficie chiusa (senza bordo) dà $0$. È il trucco che accorcia i conti più di ogni altro.</li>
+            <li><strong>Le ipotesi contano</strong>: il vortice $\big(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2}\big)$ ha rotore nullo ma circuitazione $2\pi$ attorno all'origine, perché lì non è definito. Rotore nullo $\Rightarrow$ campo conservativo <em>solo</em> su domini senza buchi.</li>
+            <li><strong>Superficie aperta e Gauss</strong>: non si applica. Bisogna <strong>chiuderla con un tappo</strong> e poi sottrarre il flusso del tappo, calcolato con la sua normale uscente.</li>
+            <li><strong>Scelta rapida</strong>: <em>giro lungo una curva chiusa</em> $\Rightarrow$ rotore (Green/Stokes); <em>quanto attraversa una superficie chiusa</em> $\Rightarrow$ divergenza (Gauss).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Usando il teorema di Green, calcola $\displaystyle\oint_{\partial D}\big(-y\,dx+x\,dy\big)$, dove $D$ è il disco $x^2+y^2\le 4$ con bordo orientato positivamente.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Qui $P=-y$ e $Q=x$, entrambi polinomi: ipotesi di Green soddisfatte.</span>
+                <span class="esempio__passo">$\dfrac{\partial Q}{\partial x}=1$ e $\dfrac{\partial P}{\partial y}=-1$, quindi $Q_x-P_y=1-(-1)=2$.</span>
+                <span class="esempio__passo">L'integranda è costante: $\displaystyle\iint_D 2\,dA=2\cdot\text{Area}(D)=2\cdot\pi\cdot 2^2=8\pi$.</span>
+              </p>
+              <p><strong>$\displaystyle\oint_{\partial D}(-y\,dx+x\,dy)=8\pi$.</strong> Coerente con la formula del planimetro: metà di questo integrale, cioè $4\pi$, è proprio l'area del disco di raggio $2$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\oint_{\partial D}\big(xy\,dx+x^2\,dy\big)$ con $D=[0,1]\times[0,1]$ e bordo orientato positivamente.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$P=xy$, $Q=x^2$. Scrivo per esteso l'integranda di Green $Q_x-P_y$: derivo $Q=x^2$ rispetto a $x$ e ottengo $Q_x=2x$; derivo $P=xy$ rispetto a $y$ tenendo $x$ come costante moltiplicativa e ottengo $P_y=x$. Quindi $Q_x-P_y=2x-x=x$.</span>
+                <span class="esempio__passo">$\displaystyle\iint_D x\,dA=\int_0^1\!\!\int_0^1 x\,dy\,dx$. Integrale interno (in $y$, con $x$ costante): $\int_0^1 x\,dy=x\big[y\big]_0^1=x$. Integrale esterno: $\int_0^1 x\,dx=\Big[\frac{x^2}{2}\Big]_0^1=\frac12$.</span>
+              </p>
+              <p><strong>$\displaystyle\oint_{\partial D}(xy\,dx+x^2\,dy)=\frac12$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Con la formula del planimetro $\text{Area}=\frac12\oint(x\,dy-y\,dx)$, calcola l'area del triangolo di vertici $(0,0)$, $(4,0)$, $(0,3)$ percorrendo il bordo in senso antiorario.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Lato 1</strong>, da $(0,0)$ a $(4,0)$: qui $y=0$ e $dy=0$, quindi $x\,dy-y\,dx=0$. Contributo nullo.</span>
+                <span class="esempio__passo"><strong>Lato 2</strong>, da $(4,0)$ a $(0,3)$: parametrizzo $\mathbf{r}(t)=(4-4t,\ 3t)$, $t\in[0,1]$, da cui $dx=-4\,dt$ e $dy=3\,dt$. Allora $x\,dy-y\,dx=(4-4t)(3)\,dt-3t(-4)\,dt=(12-12t+12t)\,dt=12\,dt$, e il contributo è $\int_0^1 12\,dt=12$.</span>
+                <span class="esempio__passo"><strong>Lato 3</strong>, da $(0,3)$ a $(0,0)$: qui $x=0$ e $dx=0$, quindi $x\,dy-y\,dx=0$. Contributo nullo.</span>
+                <span class="esempio__passo">Sommo e dimezzo: $\text{Area}=\frac12\cdot 12=6$.</span>
+              </p>
+              <p><strong>Area $=6$.</strong> Verifica elementare: $\frac{\text{base}\cdot\text{altezza}}{2}=\frac{4\cdot3}{2}=6$. ✓ Nota che i due lati sugli assi non contribuiscono: è tipico della formula del planimetro.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola con il teorema della divergenza il flusso uscente di $\mathbf{F}=(x,y,z)$ attraverso il bordo del cubo $\Omega=[0,1]^3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">La superficie del cubo è chiusa: Gauss si applica.</span>
+                <span class="esempio__passo">$\operatorname{div}\mathbf{F}=1+1+1=3$.</span>
+                <span class="esempio__passo">$\displaystyle\iiint_\Omega 3\,dV=3\cdot\text{Vol}(\Omega)=3\cdot 1=3$.</span>
+              </p>
+              <p><strong>Flusso uscente $=3$.</strong> Senza Gauss avresti dovuto calcolare sei integrali di superficie, uno per faccia.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\oint_{C}\Big(\big(y+e^{x^2}\big)\,dx+\big(3x+\sin(y^2)\big)\,dy\Big)$, dove $C$ è la circonferenza $x^2+y^2=1$ percorsa in senso antiorario.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Le funzioni $e^{x^2}$ e $\sin(y^2)$ non hanno primitive elementari: il calcolo diretto è impraticabile. Uso Green.</span>
+                <span class="esempio__passo">$Q=3x+\sin(y^2)\Rightarrow Q_x=3$ (il termine in $y$ non dipende da $x$). $P=y+e^{x^2}\Rightarrow P_y=1$.</span>
+                <span class="esempio__passo">Quindi $Q_x-P_y=3-1=2$: i termini scomodi si sono cancellati.</span>
+                <span class="esempio__passo">$\displaystyle\iint_{x^2+y^2\le1}2\,dA=2\cdot\pi\cdot1^2=2\pi$.</span>
+              </p>
+              <p><strong>L'integrale vale $2\pi$.</strong> È il caso in cui Green non è una comodità: è l'unica via.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso uscente di $\mathbf{F}=\big(x^2,\ y^2,\ z^2\big)$ attraverso il bordo del cubo $[0,1]^3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Divergenza termine per termine: $\partial_x(x^2)=2x$, $\partial_y(y^2)=2y$, $\partial_z(z^2)=2z$. Quindi $\operatorname{div}\mathbf{F}=2x+2y+2z$.</span>
+                <span class="esempio__passo">Per linearità spezzo l'integrale nella somma dei tre addendi. Il primo: $\displaystyle\iiint_{[0,1]^3}2x\,dV=2\int_0^1\!\!\int_0^1\!\!\int_0^1 x\,dx\,dy\,dz$. Il dominio è un cubo e l'integranda dipende solo da $x$, quindi il triplo si fattorizza: $2\left(\int_0^1 x\,dx\right)\left(\int_0^1 dy\right)\left(\int_0^1 dz\right)=2\cdot\frac12\cdot 1\cdot 1=1$.</span>
+                <span class="esempio__passo">Per simmetria i tre addendi danno lo stesso valore $1$ ciascuno.</span>
+                <span class="esempio__passo">Totale: $1+1+1=3$.</span>
+              </p>
+              <p><strong>Flusso uscente $=3$.</strong> Attenzione a non confondere questo campo con $(x,y,z)$ dell'Esercizio 12.4: il risultato numerico coincide per caso, ma le divergenze sono diverse.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Sia $\mathbf{F}=(y,\ -x,\ z)$ e sia $S$ il disco $x^2+y^2\le 9$ nel piano $z=0$, orientato con normale $\mathbf{n}=\mathbf{k}$. Calcola $\displaystyle\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$ e verifica il risultato con l'integrale curvilineo sul bordo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Componenti: $P=y$, $Q=-x$, $R=z$. Rotore, tutte e sei le derivate. Prima, $R_y-Q_z$: $\partial_y(z)=0$ e $\partial_z(-x)=0$, quindi $0-0=0$. Seconda, $P_z-R_x$: $\partial_z(y)=0$ e $\partial_x(z)=0$, quindi $0-0=0$. Terza, $Q_x-P_y$: $\partial_x(-x)=-1$ e $\partial_y(y)=1$, quindi $-1-1=-2$. In tutto $\operatorname{rot}\mathbf{F}=(0,0,-2)$.</span>
+                <span class="esempio__passo">Flusso: prodotto scalare con $\mathbf{k}=(0,0,1)$, cioè $0\cdot 0+0\cdot 0+(-2)\cdot 1=-2$, costante. Esce dall'integrale e lascia l'area del disco di raggio $3$, cioè $\pi\cdot 3^2=9\pi$: $\displaystyle\iint_S(-2)\,dA=-2\cdot 9\pi=-18\pi$.</span>
+                <span class="esempio__passo"><strong>Verifica con Stokes.</strong> Con $\mathbf{n}=\mathbf{k}$, la mano destra impone il bordo antiorario: $\mathbf{r}(t)=(3\cos t,\ 3\sin t,\ 0)$, $t\in[0,2\pi]$.</span>
+                <span class="esempio__passo">Sostituisco la parametrizzazione nel campo $\mathbf{F}=(y,-x,z)$, mettendo $x=3\cos t$, $y=3\sin t$, $z=0$: $\mathbf{F}\big(\mathbf{r}(t)\big)=(3\sin t,\ -3\cos t,\ 0)$. Derivo la parametrizzazione: $\mathbf{r}'(t)=(-3\sin t,\ 3\cos t,\ 0)$. Prodotto scalare: $(3\sin t)(-3\sin t)+(-3\cos t)(3\cos t)+0=-9\sin^2t-9\cos^2t$. Raccolgo $-9$ e uso $\sin^2t+\cos^2t=1$: il risultato è $-9$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{2\pi}(-9)\,dt=-18\pi$. ✓</span>
+              </p>
+              <p><strong>Risultato: $-18\pi$ con entrambi i metodi.</strong> Il segno negativo dice che il campo ruota in senso <em>orario</em>, opposto all'orientazione scelta.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Usando la forma della divergenza del teorema di Green, calcola il flusso uscente del campo piano $\mathbf{F}=(x,y)$ attraverso la circonferenza $x^2+y^2=R^2$. Verifica il risultato con un conto diretto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Forma della divergenza: $\displaystyle\oint_{\partial D}\mathbf{F}\cdot\mathbf{n}\,ds=\iint_D\operatorname{div}\mathbf{F}\,dA$.</span>
+                <span class="esempio__passo">$\operatorname{div}\mathbf{F}=\dfrac{\partial x}{\partial x}+\dfrac{\partial y}{\partial y}=1+1=2$.</span>
+                <span class="esempio__passo">L'integranda è la costante $2$, che esce dall'integrale e lascia l'area del disco di raggio $R$, cioè $\pi R^2$: $\displaystyle\iint_{x^2+y^2\le R^2}2\,dA=2\cdot\pi R^2=2\pi R^2$.</span>
+                <span class="esempio__passo"><strong>Verifica diretta.</strong> Sulla circonferenza il versore normale uscente punta radialmente: $\mathbf{n}=\dfrac{(x,y)}{R}$ (si divide per $R$ per avere modulo $1$). Prodotto scalare: $\mathbf{F}\cdot\mathbf{n}=(x,y)\cdot\dfrac{(x,y)}{R}=\dfrac{x^2+y^2}{R}$, e sulla circonferenza $x^2+y^2=R^2$, quindi $\dfrac{R^2}{R}=R$, costante. Una costante esce dall'integrale curvilineo e lascia $\oint_{\partial D}ds$, che è la <em>lunghezza</em> della circonferenza, cioè $2\pi R$. Quindi $R\cdot 2\pi R=2\pi R^2$. ✓</span>
+              </p>
+              <p><strong>Flusso $=2\pi R^2$.</strong> Il campo $(x,y)$ è una sorgente uniforme: più grande il cerchio, più roba esce.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola l'area racchiusa dall'<strong>astroide</strong> $\mathbf{r}(t)=\big(\cos^3 t,\ \sin^3 t\big)$, $t\in[0,2\pi]$, usando la formula del planimetro.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">L'astroide non è il grafico di una funzione e non ha una formula d'area elementare: il planimetro è la via naturale.</span>
+                <span class="esempio__passo">Derivo le due componenti con la <strong>regola della catena</strong>: $x(t)=\cos^3t=(\cos t)^3$ è una potenza terza di $\cos t$, quindi $x'(t)=3(\cos t)^2\cdot\big(-\sin t\big)=-3\cos^2 t\,\sin t$ (derivata della potenza per derivata dell'interno). Allo stesso modo $y(t)=(\sin t)^3$ dà $y'(t)=3(\sin t)^2\cdot\cos t=3\sin^2 t\,\cos t$.</span>
+                <span class="esempio__passo">Costruisco l'integranda del planimetro $x\,y'-y\,x'$, un pezzo alla volta. Primo: $x\,y'=\cos^3t\cdot 3\sin^2t\cos t=3\cos^4t\,\sin^2t$. Secondo: $-y\,x'=-\sin^3t\cdot\big(-3\cos^2t\sin t\big)=+3\sin^4t\,\cos^2t$ (meno per meno dà più). Sommo e raccolgo il fattore comune $3\cos^2t\sin^2t$: resta $3\cos^2t\sin^2t\big(\cos^2t+\sin^2t\big)$, e la parentesi vale $1$ per l'identità fondamentale. Quindi $x\,y'-y\,x'=3\cos^2t\,\sin^2t$.</span>
+                <span class="esempio__passo">Ora abbasso il grado con la <strong>formula di duplicazione del seno</strong>, $\sin 2t=2\sin t\cos t$, che riscritta dà $\sin t\cos t=\frac12\sin 2t$. Osservo che $\cos^2t\sin^2t=(\sin t\cos t)^2$, quindi sostituendo: $\big(\tfrac12\sin 2t\big)^2=\tfrac14\sin^2 2t$. L'integranda diventa $3\cdot\frac14\sin^2 2t=\frac34\sin^2 2t$.</span>
+                <span class="esempio__passo">Resta $\displaystyle\int_0^{2\pi}\sin^2 2t\,dt$, che <em>non</em> si integra direttamente: uso di nuovo la duplicazione, questa volta nella forma $\cos(2u)=1-2\sin^2u$, da cui $\sin^2 u=\frac{1-\cos 2u}{2}$. Qui l'angolo è $u=2t$, quindi $\sin^2 2t=\frac{1-\cos 4t}{2}$. Allora $\displaystyle\int_0^{2\pi}\frac{1-\cos 4t}{2}\,dt=\frac12\big[t\big]_0^{2\pi}-\frac12\Big[\frac{\sin 4t}{4}\Big]_0^{2\pi}=\frac12\cdot 2\pi-\frac12\cdot\frac{\sin 8\pi-\sin 0}{4}=\pi-0=\pi$.</span>
+                <span class="esempio__passo">Metto tutto nella formula del planimetro, che ha il fattore $\frac12$ davanti: $\text{Area}=\dfrac12\cdot\dfrac34\cdot\pi=\dfrac{3\pi}{8}$.</span>
+              </p>
+              <p><strong>Area $=\dfrac{3\pi}{8}\approx1{,}178$.</strong> Ragionevole: l'astroide è inscritta nel quadrato $[-1,1]^2$ (area $4$) ma ha i lati fortemente rientrati.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Sia $\mathbf{F}(x,y)=\left(\dfrac{-y}{x^2+y^2},\ \dfrac{x}{x^2+y^2}\right)$. (a) Verifica che $Q_x=P_y$. (b) Calcola la circuitazione lungo la circonferenza unitaria antioraria. (c) Spiega perché non c'è contraddizione con il teorema di Green. (d) Quanto vale la circuitazione lungo una curva chiusa che <em>non</em> racchiude l'origine?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> Applico la <strong>regola del quoziente</strong> $\left(\frac{u}{v}\right)'=\frac{u'v-uv'}{v^2}$. Per $Q=\frac{x}{x^2+y^2}$ derivata rispetto a $x$ (numeratore $u=x$, $u_x=1$; denominatore $v=x^2+y^2$, $v_x=2x$): $Q_x=\dfrac{1\cdot(x^2+y^2)-x\cdot 2x}{(x^2+y^2)^2}=\dfrac{y^2-x^2}{(x^2+y^2)^2}$. Per $P=\frac{-y}{x^2+y^2}$ derivata rispetto a $y$ ($u=-y$, $u_y=-1$; $v_y=2y$): $P_y=\dfrac{-1\cdot(x^2+y^2)-(-y)\cdot 2y}{(x^2+y^2)^2}=\dfrac{-x^2-y^2+2y^2}{(x^2+y^2)^2}=\dfrac{y^2-x^2}{(x^2+y^2)^2}$. Sono uguali, quindi $Q_x-P_y=0$ ovunque il campo è definito.</span>
+                <span class="esempio__passo"><strong>(b)</strong> Con $\mathbf{r}(t)=(\cos t,\sin t)$ si ha $x^2+y^2=1$, quindi $\mathbf{F}=(-\sin t,\cos t)$ e $\mathbf{r}'(t)=(-\sin t,\cos t)$. Allora $\mathbf{F}\cdot\mathbf{r}'=\sin^2t+\cos^2t=1$ e la circuitazione è $\int_0^{2\pi}1\,dt=2\pi$.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Green richiede $\mathbf{F}$ di classe $C^1$ su <strong>tutta</strong> la regione racchiusa, bordo e interno. Qui il campo non è definito nell'origine, che sta dentro il disco: l'ipotesi è violata, il teorema non si applica e non c'è alcuna contraddizione.</span>
+                <span class="esempio__passo"><strong>(d)</strong> Se la curva chiusa non racchiude l'origine, il campo è $C^1$ su tutta la regione interna e Green si applica: la circuitazione vale $\iint(Q_x-P_y)\,dA=\iint 0\,dA=0$.</span>
+              </p>
+              <p><strong>(a) $Q_x=P_y$; (b) $2\pi$; (c) singolarità nell'origine, ipotesi violata; (d) $0$.</strong> Lezione generale: rotore nullo garantisce che il campo sia conservativo solo su domini <em>semplicemente connessi</em> (senza buchi).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso di $\mathbf{F}=(x,\ y,\ z+1)$ attraverso la superficie <strong>aperta</strong> $S:\ z=4-x^2-y^2$ con $z\ge0$, orientata con normale rivolta verso l'alto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$S$ è una cupola senza fondo: Gauss non si applica direttamente. La chiudo con il tappo $T:\ z=0$, $x^2+y^2\le 4$, con normale uscente $-\mathbf{k}$.</span>
+                <span class="esempio__passo">Il solido racchiuso è $\Omega=\{(x,y,z):\ 0\le z\le 4-x^2-y^2\}$. Divergenza termine per termine: $\partial_x(x)=1$, $\partial_y(y)=1$, $\partial_z(z+1)=1+0=1$ (la costante $1$ ha derivata nulla). Quindi $\operatorname{div}\mathbf{F}=3$ e Gauss dà $\Phi_S+\Phi_T=\displaystyle\iiint_\Omega 3\,dV=3\cdot\text{Vol}(\Omega)$.</span>
+                <span class="esempio__passo">Volume per fette orizzontali: a quota $z$ fissata, l'equazione $z=4-x^2-y^2$ dà $x^2+y^2=4-z$, cioè la sezione è un disco di raggio $\sqrt{4-z}$ e quindi di area $\pi\big(\sqrt{4-z}\big)^2=\pi(4-z)$. Allora $\text{Vol}(\Omega)=\displaystyle\pi\int_0^4(4-z)\,dz=\pi\Big[4z-\frac{z^2}{2}\Big]_0^4=\pi\big(16-8\big)=8\pi$.</span>
+                <span class="esempio__passo">Dunque $\Phi_S+\Phi_T=3\cdot 8\pi=24\pi$.</span>
+                <span class="esempio__passo">Flusso del tappo. Il tappo è il disco che si ottiene ponendo $z=0$ nell'equazione: $x^2+y^2=4$, quindi raggio $2$. Sostituendo $z=0$ nel campo, $\mathbf{F}=(x,\ y,\ 0+1)=(x,y,1)$. Prodotto scalare con $-\mathbf{k}=(0,0,-1)$: $x\cdot 0+y\cdot 0+1\cdot(-1)=-1$, costante. Allora $\Phi_T=-1\cdot\text{Area}(T)=-\pi\cdot 2^2=-4\pi$.</span>
+                <span class="esempio__passo">Ricavo: $\Phi_S=24\pi-(-4\pi)=28\pi$.</span>
+              </p>
+              <p><strong>$\Phi_S=28\pi$.</strong> Controllo di plausibilità: la divergenza è positiva ovunque e la normale di $S$ è uscente, quindi ci aspettavamo un flusso positivo. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Sia $\mathbf{F}=(y,\ z,\ x)$ e sia $S$ la porzione di piano $x+y+z=1$ contenuta nel primo ottante, orientata con normale avente componente $z$ positiva. Calcola $\displaystyle\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}$ con Stokes e verifica il risultato con il calcolo diretto sui tre lati.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Componenti: $P=y$, $Q=z$, $R=x$. Rotore, tutte e sei le derivate. Prima, $R_y-Q_z$: $\partial_y(x)=0$ e $\partial_z(z)=1$, quindi $0-1=-1$. Seconda, $P_z-R_x$: $\partial_z(y)=0$ e $\partial_x(x)=1$, quindi $0-1=-1$. Terza, $Q_x-P_y$: $\partial_x(z)=0$ e $\partial_y(y)=1$, quindi $0-1=-1$. In tutto $\operatorname{rot}\mathbf{F}=(-1,-1,-1)$.</span>
+                <span class="esempio__passo">La normale al piano $x+y+z=1$ si legge dai coefficienti dell'equazione (è il gradiente di $x+y+z$): il vettore $(1,1,1)$. Lo normalizzo dividendo per il suo modulo $\sqrt{1^2+1^2+1^2}=\sqrt3$, e ottengo $\mathbf{n}=\dfrac{1}{\sqrt3}(1,1,1)$, che ha terza componente positiva come richiesto. Prodotto scalare: $\operatorname{rot}\mathbf{F}\cdot\mathbf{n}=\dfrac{(-1)(1)+(-1)(1)+(-1)(1)}{\sqrt3}=\dfrac{-3}{\sqrt3}=-\sqrt3$ (perché $\frac{3}{\sqrt3}=\frac{3}{\sqrt3}\cdot\frac{\sqrt3}{\sqrt3}=\sqrt3$), costante su tutto il triangolo.</span>
+                <span class="esempio__passo">$S$ è il triangolo di vertici $(1,0,0)$, $(0,1,0)$, $(0,0,1)$. Il lato fra i primi due vertici misura $\sqrt{(1-0)^2+(0-1)^2+0^2}=\sqrt2$, e per simmetria gli altri due lati misurano lo stesso: è equilatero di lato $\ell=\sqrt2$. L'area di un triangolo equilatero è $\frac{\sqrt3}{4}\ell^2$, quindi $\dfrac{\sqrt3}{4}\big(\sqrt2\big)^2=\dfrac{\sqrt3}{4}\cdot 2=\dfrac{\sqrt3}{2}$.</span>
+                <span class="esempio__passo">Flusso del rotore: integranda costante per l'area, cioè $-\sqrt3\cdot\dfrac{\sqrt3}{2}=-\dfrac{3}{2}$ (perché $\sqrt3\cdot\sqrt3=3$).</span>
+                <span class="esempio__passo"><strong>Verifica diretta.</strong> Con la mano destra (pollice lungo $\mathbf{n}$, che punta "verso l'alto e verso l'esterno") il bordo va percorso $(1,0,0)\to(0,1,0)\to(0,0,1)\to(1,0,0)$. Primo lato: parametrizzo con $\mathbf{r}(t)=(1-t,\ t,\ 0)$, $t\in[0,1]$, che per $t=0$ dà $(1,0,0)$ e per $t=1$ dà $(0,1,0)$. Differenziali: $dx=-dt$, $dy=dt$, $dz=0$. Sostituisco in $\oint P\,dx+Q\,dy+R\,dz=\oint y\,dx+z\,dy+x\,dz$, con $y=t$, $z=0$, $x=1-t$: $t\cdot(-dt)+0\cdot dt+(1-t)\cdot 0=-t\,dt$. Contributo: $\int_0^1(-t)\,dt=-\Big[\frac{t^2}{2}\Big]_0^1=-\frac12$.</span>
+                <span class="esempio__passo">Secondo lato: $\mathbf{r}=(0,\ 1-t,\ t)$, quindi $dx=0$, $dy=-dt$, $dz=dt$, e $y\,dx+z\,dy+x\,dz=(1-t)\cdot 0+t\cdot(-dt)+0\cdot dt=-t\,dt$, contributo $-\frac12$. Terzo lato: $\mathbf{r}=(t,\ 0,\ 1-t)$, quindi $dx=dt$, $dy=0$, $dz=-dt$, e $0\cdot dt+(1-t)\cdot 0+t\cdot(-dt)=-t\,dt$, contributo $-\frac12$.</span>
+                <span class="esempio__passo">Totale: $-\frac12-\frac12-\frac12=-\frac32$. ✓</span>
+              </p>
+              <p><strong>$\displaystyle\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}=-\dfrac32$.</strong> Bella simmetria: i tre lati danno lo stesso contributo, riflesso della simmetria ciclica del campo $(y,z,x)$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $\mathbf{F}(x,y)=\big(x^2y,\ -xy^2\big)$ e sia $D$ il disco $x^2+y^2\le a^2$ con $a\gt 0$. (a) Calcola la circuitazione di $\mathbf{F}$ lungo $\partial D$ orientato positivamente. (b) Commenta il segno ottenuto. (c) Cosa cambia se il bordo viene percorso in senso orario?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> $P=x^2y$ e $Q=-xy^2$, entrambi polinomi (quindi $C^1$ ovunque): le ipotesi di Green sono soddisfatte. Derivo $Q=-xy^2$ rispetto a $x$, con $y^2$ costante: $Q_x=-y^2$. Derivo $P=x^2y$ rispetto a $y$, con $x^2$ costante: $P_y=x^2$. Differenza: $Q_x-P_y=-y^2-x^2=-\big(x^2+y^2\big)$.</span>
+                <span class="esempio__passo">Il dominio è un disco, quindi passo in <strong>coordinate polari</strong>: pongo $x=r\cos\theta$, $y=r\sin\theta$, con $r\in[0,a]$ e $\theta\in[0,2\pi]$; lo jacobiano dà $dA=r\,dr\,d\theta$, e l'integranda diventa $-(x^2+y^2)=-r^2\big(\cos^2\theta+\sin^2\theta\big)=-r^2$. Dunque $\displaystyle\iint_D-\big(x^2+y^2\big)dA=-\int_0^{2\pi}\!\!\int_0^a r^2\cdot r\,dr\,d\theta$.</span>
+                <span class="esempio__passo">L'integranda $r^3$ non dipende da $\theta$, quindi l'integrale in $\theta$ dà il fattore $2\pi$: $\displaystyle=-2\pi\int_0^a r^3\,dr=-2\pi\Big[\frac{r^4}{4}\Big]_0^a=-2\pi\cdot\frac{a^4}{4}=-\frac{\pi a^4}{2}$.</span>
+                <span class="esempio__passo"><strong>(b)</strong> Il segno è negativo perché l'integranda $-(x^2+y^2)$ è negativa in tutto il disco (tranne l'origine): il campo, nel complesso, si oppone al verso antiorario. Il risultato dipende da $a^4$: raddoppiando il raggio la circuitazione si moltiplica per $16$.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Invertire l'orientazione del bordo inverte il segno dell'integrale curvilineo: si ottiene $+\dfrac{\pi a^4}{2}$. L'integrale doppio invece non cambia: è l'orientazione a decidere quale dei due segni è "quello giusto".</span>
+              </p>
+              <p><strong>(a) $-\dfrac{\pi a^4}{2}$; &nbsp; (b) integranda negativa ovunque; &nbsp; (c) diventa $+\dfrac{\pi a^4}{2}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $\Omega$ il guscio sferico $1\le x^2+y^2+z^2\le 4$ e sia $\mathbf{F}=(x,y,z)$. Calcola il flusso totale uscente dal bordo di $\Omega$ (che è formato da due sfere) con il teorema della divergenza, e verifica il risultato calcolando separatamente i due contributi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Attenzione all'orientazione.</strong> "Uscente da $\Omega$" significa: sulla sfera esterna (raggio $2$) la normale punta lontano dall'origine; sulla sfera interna (raggio $1$) la normale punta <strong>verso</strong> l'origine, perché è da lì che si esce dal guscio.</span>
+                <span class="esempio__passo">Divergenza termine per termine: $\partial_x(x)+\partial_y(y)+\partial_z(z)=1+1+1=3$. Volume del guscio: è il volume della palla di raggio $2$ meno quello della palla di raggio $1$, cioè $\dfrac43\pi\cdot 2^3-\dfrac43\pi\cdot 1^3=\dfrac43\pi\big(8-1\big)=\dfrac43\pi\cdot 7=\dfrac{28\pi}{3}$.</span>
+                <span class="esempio__passo">Flusso totale $=3\cdot\dfrac{28\pi}{3}=28\pi$.</span>
+                <span class="esempio__passo"><strong>Verifica.</strong> Sfera esterna, raggio $2$: la normale uscente è $\mathbf{n}=\frac{\mathbf{r}}{2}$, quindi $\mathbf{F}\cdot\mathbf{n}=\mathbf{r}\cdot\frac{\mathbf{r}}{2}=\frac{x^2+y^2+z^2}{2}=\frac{2^2}{2}=2$, cioè $|\mathbf{r}|$. L'area è $4\pi R^2=4\pi\cdot2^2=16\pi$, quindi il contributo è $2\cdot16\pi=32\pi$.</span>
+                <span class="esempio__passo">Sfera interna, raggio $1$, con normale rivolta <em>verso</em> l'origine, cioè $\mathbf{n}=-\frac{\mathbf{r}}{1}$ (il segno meno è tutto il punto dell'esercizio): $\mathbf{F}\cdot\mathbf{n}=-\frac{x^2+y^2+z^2}{1}=-1$. L'area è $4\pi\cdot 1^2=4\pi$, quindi il contributo è $-1\cdot 4\pi=-4\pi$.</span>
+                <span class="esempio__passo">Somma: $32\pi-4\pi=28\pi$. ✓</span>
+              </p>
+              <p><strong>Flusso totale uscente $=28\pi$.</strong> Il punto dell'esercizio è l'orientazione del bordo interno: è l'analogo tridimensionale dei buchi in Green.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Uno studente deve calcolare il flusso di $\mathbf{F}=(x,\ y,\ 2z+3)$ attraverso la semisfera $S:\ x^2+y^2+z^2=4$, $z\ge0$, con normale verso l'alto. Scrive: "$\operatorname{div}\mathbf{F}=4$, il volume della semipalla è $\frac{16\pi}{3}$, quindi il flusso è $\frac{64\pi}{3}$". Individua l'errore e calcola il valore corretto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>L'errore.</strong> La semisfera $S$ è una superficie <strong>aperta</strong>: non racchiude alcun volume da sola (l'acqua uscirebbe dal fondo). Il teorema della divergenza richiede una superficie chiusa, quindi il conto dello studente calcola in realtà il flusso attraverso $S$ <em>più</em> quello attraverso il disco di base.</span>
+                <span class="esempio__passo"><strong>Correzione: chiudo.</strong> Aggiungo il tappo $T:\ z=0$, $x^2+y^2\le4$, con normale uscente dal solido, cioè $\mathbf{n}=-\mathbf{k}$.</span>
+                <span class="esempio__passo">Gauss sul solido $\Omega$ (semipalla di raggio $2$). Divergenza termine per termine: $\partial_x(x)=1$, $\partial_y(y)=1$, $\partial_z(2z+3)=2+0=2$, quindi $\operatorname{div}\mathbf{F}=1+1+2=4$. Volume della semipalla: metà di quella di raggio $2$, cioè $\frac12\cdot\frac43\pi\cdot 2^3=\frac12\cdot\frac{32\pi}{3}=\frac{16\pi}{3}$. Dunque $\Phi_S+\Phi_T=4\cdot\dfrac{16\pi}{3}=\dfrac{64\pi}{3}$. Questo è (correttamente) il numero trovato dallo studente, ma non è la risposta alla domanda.</span>
+                <span class="esempio__passo">Flusso del tappo: su $T$ si ha $z=0$, quindi <strong>sostituisco $z=0$</strong> nel campo e ottengo $\mathbf{F}=(x,\ y,\ 2\cdot 0+3)=(x,y,3)$. Prodotto scalare con la normale $-\mathbf{k}=(0,0,-1)$: $x\cdot 0+y\cdot 0+3\cdot(-1)=-3$, costante. Area del disco di raggio $2$: $\pi\cdot 2^2=4\pi$. Dunque $\Phi_T=-3\cdot 4\pi=-12\pi$.</span>
+                <span class="esempio__passo">Ricavo: $\Phi_S=\dfrac{64\pi}{3}-\big(-12\pi\big)=\dfrac{64\pi}{3}+\dfrac{36\pi}{3}=\dfrac{100\pi}{3}$.</span>
+              </p>
+              <p><strong>Errore: Gauss applicato a una superficie aperta. Valore corretto: $\Phi_S=\dfrac{100\pi}{3}$.</strong> Nota che il tappo contribuisce solo tramite la componente $z$ del campo, perché le altre due sono tangenti al disco.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 12.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostra che, per ogni campo $\mathbf{F}$ di classe $C^2$ e per ogni superficie <strong>chiusa</strong> regolare $S$, il flusso del rotore attraverso $S$ è nullo: $\displaystyle\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=0$. Fornisci due dimostrazioni indipendenti, una con Gauss e una con Stokes.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Prima dimostrazione (via Gauss).</strong> Poiché $S$ è chiusa, è il bordo di un solido $\Omega$; applico il teorema della divergenza al campo $\operatorname{rot}\mathbf{F}$: $\displaystyle\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_\Omega\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)\,dV$.</span>
+                <span class="esempio__passo">Calcolo la divergenza del rotore, ricordando che $\operatorname{rot}\mathbf{F}=\big(R_y-Q_z,\ P_z-R_x,\ Q_x-P_y\big)$: $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=\big(R_{yx}-Q_{zx}\big)+\big(P_{zy}-R_{xy}\big)+\big(Q_{xz}-P_{yz}\big)$.</span>
+                <span class="esempio__passo">Per il teorema di Schwarz (valido perché $\mathbf{F}$ è $C^2$) le derivate miste si scambiano: $R_{yx}=R_{xy}$, $Q_{zx}=Q_{xz}$, $P_{zy}=P_{yz}$. I sei termini si cancellano a coppie, quindi $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$ e l'integrale triplo è nullo.</span>
+                <span class="esempio__passo"><strong>Seconda dimostrazione (via Stokes).</strong> Taglio $S$ con un piano in due calotte $S_1$ e $S_2$, che condividono la stessa curva $C$ come bordo. Con le normali entrambe uscenti da $S$, l'orientazione coerente della mano destra fa percorrere $C$ in versi <strong>opposti</strong> per le due calotte.</span>
+                <span class="esempio__passo">Per Stokes: $\displaystyle\iint_{S_1}\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=\oint_{C}\mathbf{F}\cdot d\mathbf{r}$ e $\displaystyle\iint_{S_2}\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=-\oint_{C}\mathbf{F}\cdot d\mathbf{r}$.</span>
+                <span class="esempio__passo">Sommando, i due integrali curvilinei si cancellano e si ottiene $\displaystyle\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS=0$.</span>
+              </p>
+              <p><strong>Il flusso del rotore attraverso una superficie chiusa è sempre nullo. ∎</strong> Interpretazione unificante: una superficie chiusa <em>non ha bordo</em>, e il flusso del rotore dipende solo dal bordo. Se non c'è bordo, non c'è niente da integrare.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Qual è l'idea comune a Green, Gauss e Stokes?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Permettono di calcolare integrali che altrimenti sarebbero divergenti</button>
+              <button class="quiz-option" data-correct="true">Quello che succede dentro una regione si può leggere integrando solo sul suo bordo</button>
+              <button class="quiz-option" data-correct="false">Trasformano ogni campo vettoriale in un campo conservativo</button>
+              <button class="quiz-option" data-correct="false">Servono a cambiare variabili negli integrali multipli</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Tutti e tre hanno la forma "integrale di una derivata sulla regione $=$ integrale del campo sul bordo", con una derivata e una dimensione in meno. Sono generalizzazioni del teorema fondamentale del calcolo $\int_a^b F'=F(b)-F(a)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Nel teorema di Green, l'orientazione positiva del bordo di una regione <strong>senza buchi</strong> è quella:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">oraria, cioè con la regione alla destra di chi cammina</button>
+              <button class="quiz-option" data-correct="true">antioraria, cioè con la regione alla sinistra di chi cammina</button>
+              <button class="quiz-option" data-correct="false">indifferente, perché il risultato non cambia</button>
+              <button class="quiz-option" data-correct="false">quella che parte dal punto più vicino all'origine</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La regola è "la regione resta a sinistra": per una regione senza buchi significa antiorario. Invertire l'orientazione cambia il <strong>segno</strong> del risultato, quindi non è affatto indifferente. Attorno ai buchi, la stessa regola impone il verso orario.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Per applicare il teorema della divergenza di Gauss, la superficie deve essere:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">una qualsiasi superficie regolare, anche aperta</button>
+              <button class="quiz-option" data-correct="false">piana, con normale $\mathbf{k}$</button>
+              <button class="quiz-option" data-correct="true">chiusa, cioè bordo di un solido, con normale orientata verso l'esterno</button>
+              <button class="quiz-option" data-correct="false">il grafico di una funzione di due variabili</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Gauss lega il flusso sul bordo di un <strong>solido</strong> all'integrale della divergenza nel solido: serve una superficie chiusa con normale <strong>uscente</strong>. Se la superficie è aperta, va prima chiusa con un "tappo", e poi si sottrae il flusso del tappo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Devi calcolare $\displaystyle\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$ su una calotta paraboloidica il cui bordo è la circonferenza $x^2+y^2=1$ nel piano $z=0$. La strada più rapida è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">parametrizzare il paraboloide e calcolare l'integrale di superficie</button>
+              <button class="quiz-option" data-correct="true">sostituire la calotta con il disco piatto che ha lo stesso bordo, oppure calcolare la circuitazione sul bordo</button>
+              <button class="quiz-option" data-correct="false">applicare il teorema della divergenza al paraboloide</button>
+              <button class="quiz-option" data-correct="false">verificare che il campo sia conservativo e concludere che il flusso è nullo</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Per Stokes il flusso del rotore dipende <strong>solo dal bordo</strong>: due superfici con lo stesso bordo (orientato allo stesso modo) danno lo stesso risultato. Sostituire la calotta con il disco piatto, o passare direttamente alla circuitazione, accorcia drasticamente i conti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Il teorema di Green è il caso particolare del teorema di Stokes in cui la superficie è una regione piana del piano $xy$ con normale $\mathbf{n}=\mathbf{k}$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero. Con $\mathbf{F}=(P,Q,0)$ si ha $\operatorname{rot}\mathbf{F}\cdot\mathbf{k}=Q_x-P_y$, e la regola della mano destra con pollice verso l'alto dà il senso antiorario: la formula di Stokes diventa parola per parola quella di Green.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se un campo piano soddisfa $Q_x=P_y$ su tutto il suo dominio, allora la sua circuitazione lungo qualunque curva chiusa è necessariamente nulla.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: il controesempio è il <strong>vortice</strong> $\big(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2}\big)$, che ha $Q_x=P_y$ ovunque è definito ma circuitazione $2\pi$ attorno all'origine. Serve anche che il dominio sia <em>semplicemente connesso</em>, cioè senza buchi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Per una regione $D$ nelle ipotesi di Green vale $\text{Area}(D)=\frac12\displaystyle\oint_{\partial D}\big(x\,dy-y\,dx\big)$, con bordo orientato positivamente.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è la <strong>formula del planimetro</strong>. Si ottiene applicando Green al campo $\big(-\frac y2,\frac x2\big)$, per cui $Q_x-P_y=1$ e l'integrale doppio diventa l'area. È la formula usata dai planimetri meccanici e dai software cartografici.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Il flusso del rotore di un campo $C^2$ attraverso una qualunque superficie chiusa è sempre zero.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, e per due motivi equivalenti: $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$ per il teorema di Schwarz (e allora Gauss dà zero), oppure perché una superficie chiusa <strong>non ha bordo</strong> e il flusso del rotore dipende solo dal bordo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="sinistra|a sinistra|alla sinistra">
+            <p class="quiz-question__testo">9. (Completamento) L'orientazione positiva del bordo di una regione piana è quella per cui, camminando lungo il bordo, la regione ti resta alla ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>La regola vale sia per il bordo esterno (percorso in senso antiorario) sia per i bordi dei buchi (percorsi in senso orario): in entrambi i casi la regione resta a <strong>sinistra</strong>.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="uscente|esterna|verso l esterno">
+            <p class="quiz-question__testo">10. (Completamento) Nel teorema della divergenza di Gauss, la superficie chiusa va orientata con il versore normale ______ rispetto al solido.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>La normale deve essere <strong>uscente</strong>. Con questa scelta il flusso misura "quanto esce meno quanto entra", e il teorema dice che coincide con quanto viene prodotto dentro. Invertendo la normale si ottiene il risultato cambiato di segno.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="stokes|di stokes|teorema di stokes">
+            <p class="quiz-question__testo">11. (Completamento) La formula $\displaystyle\oint_{\partial S}\mathbf{F}\cdot d\mathbf{r}=\iint_S\operatorname{rot}\mathbf{F}\cdot\mathbf{n}\,dS$, con bordo e normale legati dalla regola della mano destra, è il teorema di ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il teorema di <strong>Stokes</strong>, detto anche teorema del rotore. Nel caso di una superficie piana con normale $\mathbf{k}$ si riduce al teorema di Green.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue l'idea unificante di Green, Gauss e Stokes, e in che senso tutti e tre generalizzano il teorema fondamentale del calcolo di Analisi 1.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: tutti e tre dicono che quello che accade <strong>dentro</strong> una regione si può leggere integrando soltanto sul suo <strong>bordo</strong>. Da un lato si integra una "derivata" del campo su una regione di dimensione $n$ (la derivata semplice, il rotore, la divergenza); dall'altro si integra il campo non derivato sul bordo, di dimensione $n-1$. Il motivo intuitivo è la cancellazione: se riempi la regione di tante celle piccolissime, i contributi sulle facce interne, condivise da due celle, si elidono a due a due perché vengono percorsi in versi opposti; sopravvivono solo le facce che appartengono al bordo esterno. In immagine: per sapere quanta acqua viene prodotta dentro un serbatoio basta misurare cosa entra ed esce dai tubi. Il teorema fondamentale del calcolo è lo stesso enunciato in dimensione $1$: $\int_a^b F'(x)\,dx=F(b)-F(a)$ somma la derivata su tutto l'intervallo e restituisce solo i valori nei due punti $a$ e $b$, che sono esattamente il "bordo" di $[a,b]$. Green, Gauss e Stokes non fanno altro che ripetere quella frase in dimensione superiore.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Il campo $\mathbf{F}=\left(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2}\right)$ ha $Q_x-P_y=0$, eppure la sua circuitazione lungo la circonferenza unitaria vale $2\pi$. Perché questo non contraddice il teorema di Green? E cosa ci insegna sui campi conservativi?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: non c'è contraddizione perché un'<strong>ipotesi è violata</strong>. Il teorema di Green richiede che $\mathbf{F}$ sia di classe $C^1$ su <em>tutta</em> la regione racchiusa dalla curva, bordo e interno compresi. Qui il campo non è nemmeno definito nell'origine, che è un punto interno al disco unitario: il teorema semplicemente non si applica, e il conto $\iint 0\,dA=0$ non è lecito. Infatti calcolando direttamente si trova $\mathbf{F}\cdot\mathbf{r}'=1$ lungo la circonferenza, da cui circuitazione $2\pi$. La lezione generale è che la condizione $Q_x=P_y$ (rotore nullo) garantisce che il campo sia <strong>conservativo</strong> soltanto su domini <em>semplicemente connessi</em>, cioè senza buchi. Su un dominio con un buco, come $\mathbb{R}^2$ privato dell'origine, il rotore nullo non basta: esistono curve chiuse che "girano attorno al buco" e lungo le quali il lavoro non è zero. Coerentemente, se una curva chiusa <em>non</em> racchiude l'origine, allora Green si applica e la circuitazione vale effettivamente $0$.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="11-integrali-superficie-campi-vettoriali.html"><span class="dir">← Capitolo precedente</span><strong>Integrali di superficie e campi vettoriali</strong></a>
+        <a class="next" href="13-equazioni-differenziali.html"><span class="dir">Capitolo successivo →</span><strong>Equazioni differenziali</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

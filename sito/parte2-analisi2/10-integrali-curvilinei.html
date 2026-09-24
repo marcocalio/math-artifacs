@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10. Integrali curvilinei e campi conservativi — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 10</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html" class="is-active">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 10 di 14</span>
+        </div>
+        <h1>Integrali curvilinei e campi conservativi</h1>
+        <p class="subtitle">Finora abbiamo integrato lungo un segmento di retta, su una regione piana, su un solido. Ora cambiamo il palcoscenico: integriamo <strong>lungo una curva</strong>. Prima una funzione scalare (la massa di un filo di densità variabile), poi un campo di forze (il lavoro che fai per spingere un carrello lungo un percorso). E scopriremo una famiglia di campi magica — i campi conservativi — in cui il lavoro non dipende dalla strada scelta: l'esatto analogo, in più variabili, del Teorema Fondamentale del Calcolo.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~65 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Quattro cose, spiegate in parole poverissime. Se già le hai in testa, salta pure.</p>
+          <p><strong>1. Curva parametrica e vettore tangente</strong> (<a href="07-curve-superfici.html">Capitolo 7</a>). Una <span class="glossario-term" data-term="curva-parametrica">curva parametrica</span> è una formica che cammina. A ogni istante $t$ la formica si trova in un punto: $\mathbf{r}(t)=\big(x(t),\,y(t)\big)$. La sua <em>velocità</em> è la derivata $\mathbf{r}'(t)$: una freccia che parte dalla formica e punta <strong>dove sta andando</strong>. Immagine mentale: la freccia sul cruscotto che indica il muso dell'auto. La lunghezza di quella freccia, $|\mathbf{r}'(t)|$, è quanto va veloce.</p>
+          <p><strong>2. Il gradiente</strong> (<a href="04-gradiente.html">Capitolo 4</a>). Il <span class="glossario-term" data-term="gradiente">gradiente</span> $\nabla U$ è la freccia "in salita": in ogni punto punta <strong>dove la funzione cresce di più</strong>, ed è tanto più lunga quanto più il terreno è ripido. Immagine mentale: sei su una collina e ti giri verso la salita più ripida. Si costruisce mettendo in fila le <span class="glossario-term" data-term="derivata-parziale">derivate parziali</span>: $\nabla U=\big(U_x,\,U_y\big)$.</p>
+          <p><strong>3. Teorema fondamentale del calcolo e primitive</strong> (<a href="../parte1-analisi1/14-integrali-definiti.html">Capitolo 14 di Analisi 1</a>). Una <span class="glossario-term" data-term="primitiva">primitiva</span> è una funzione la cui derivata è quella che ti interessa. Il <span class="glossario-term" data-term="teorema-fondamentale-del-calcolo">teorema fondamentale</span> dice: per integrare non devi sommare infiniti pezzettini, ti basta <strong>guardare la primitiva agli estremi e sottrarre</strong>, cioè $\int_a^b f=G(b)-G(a)$. Immagine mentale: il contachilometri. Non conta la strada, conta il numero all'arrivo meno quello alla partenza.</p>
+          <p><strong>4. Il prodotto scalare</strong>. Date due frecce $\mathbf{a}$ e $\mathbf{b}$, il numero $\mathbf{a}\cdot\mathbf{b}=a_1b_1+a_2b_2=|\mathbf{a}||\mathbf{b}|\cos\theta$ misura <strong>quanto le due frecce vanno d'accordo</strong>. Positivo se puntano dalla stessa parte, negativo se si oppongono, <strong>zero se sono perpendicolari</strong>. Immagine mentale: il vento alle spalle (positivo), il vento in faccia (negativo), il vento di lato che non ti aiuta né ti ostacola (zero).</p>
+        </div>
+
+        <p>Fin qui abbiamo sempre integrato su insiemi "pieni": un intervallo $[a,b]$ della retta, una regione $D$ del piano, un solido $E$ dello spazio. Ma pensa a un <strong>filo di rame</strong> teso in modo curvo nello spazio, oppure al <strong>sentiero</strong> che sale a tornanti su una montagna. Sono oggetti a una sola dimensione, però non dritti: sono <strong>curve</strong>. E su una curva si può integrare.</p>
+
+        <p>L'idea è la stessa di sempre — <em>spezzetta, approssima, somma, passa al limite</em> — solo che l'ingrediente "larghezza del pezzettino" cambia nome. Sulla retta il pezzettino era $dx$; sulla curva è $ds$, un minuscolo <strong>tratto di percorso</strong>. Se il filo ha densità $f$, ogni pezzettino pesa $f\cdot ds$ e sommando ottieni la massa totale. Questo è l'<strong><span class="glossario-term" data-term="integrale-curvilineo">integrale curvilineo di prima specie</span></strong>.</p>
+
+        <p>Poi c'è la seconda idea, ancora più importante. Immagina di spingere un carrello lungo un sentiero mentre soffia il vento. Il vento non è lo stesso ovunque: in ogni punto ha una direzione e un'intensità diverse. Quello è un <strong><span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span></strong>: una freccia attaccata a ogni punto del piano. Domanda: <strong>quanta fatica ti costa il percorso</strong>? Dipende da quanto, tratto per tratto, il vento ti spinge nella direzione in cui vai (ti aiuta) o contro (ti ostacola). Sommando tutti questi contributi ottieni l'<strong>integrale curvilineo di seconda specie</strong>, cioè il <strong>lavoro</strong>.</p>
+
+        <p>E infine il colpo di scena del capitolo. Per certi campi speciali — i <strong><span class="glossario-term" data-term="campo-conservativo">campi conservativi</span></strong> — la fatica totale <strong>non dipende affatto dal percorso</strong>: dipende solo da dove parti e dove arrivi. Come il contachilometri, come il teorema fondamentale del calcolo. È la gravità: che tu salga in cima alla montagna per la mulattiera ripida o per il sentiero lungo e dolce, l'energia potenziale che guadagni è esattamente la stessa.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché il mondo fisico è fatto di <strong>campi</strong> (gravità, elettricità, vento, correnti) e di <strong>traiettorie</strong> (un pianeta che orbita, una carica che si muove in un circuito, una barca che risale un fiume). Per sapere quanta energia serve, quanto lavoro viene compiuto, quanta carica scorre, bisogna saper integrare <em>un campo lungo un percorso</em>. Nessuno degli integrali visti finora sa farlo: l'integrale definito vive su un segmento di retta, l'integrale doppio su una regione piatta. Serve uno strumento nuovo — ed è esattamente quello che costruiamo qui.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> In fisica elementare hai imparato che il lavoro è "forza per spostamento". Quella formula funziona solo in un caso ridicolmente semplice: forza <em>costante</em>, spostamento <em>rettilineo</em>, e forza parallela allo spostamento. Nella realtà la forza cambia da punto a punto, la traiettoria è curva, e forza e moto formano angoli variabili. L'integrale curvilineo di seconda specie è la versione onesta e generale di $L=F\cdot s$: prende la formula elementare, la applica a pezzettini infinitesimi in cui tutto è "quasi costante e quasi dritto", e somma.</p>
+        <p><strong>Perché è importante ora?</strong> Per tre ragioni. Primo: chiude il cerchio con l'<a href="../parte1-analisi1/14-integrali-definiti.html">Analisi 1</a>. Il teorema fondamentale degli integrali curvilinei è lo stesso teorema di Newton–Leibniz, trasferito in più dimensioni, con il <span class="glossario-term" data-term="potenziale-scalare">potenziale</span> al posto della primitiva e il <span class="glossario-term" data-term="gradiente">gradiente</span> al posto della derivata. Secondo: introduce il vocabolario dei campi vettoriali, che sarà la lingua dei <a href="11-integrali-superficie-campi-vettoriali.html">Capitoli 11</a> e <a href="12-teoremi-green-gauss-stokes.html">12</a>. Terzo: la nozione di campo conservativo è il cuore matematico del <strong>principio di conservazione dell'energia</strong>. Non è un'esagerazione dire che gran parte della fisica sta in quella parola: <em>conservativo</em>.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">⛰️</span> Due sentieri per la stessa cima: l'energia potenziale</div>
+          <p>Devi salire su un rifugio a $800$ metri di dislivello. Due opzioni: la mulattiera ripidissima (corta e brutale) o il sentiero panoramico (lungo, dolce, con tornanti). Chiedi a un fisico quanta <strong>energia potenziale gravitazionale</strong> guadagni nei due casi, e ti risponde: <em>la stessa</em>, esattamente $mgh$ con $h=800$ m. Non un joule di differenza.</p>
+          <p>Non è un caso, è un teorema. La forza peso è un <strong>campo conservativo</strong>: il lavoro che compie (o che devi compiere contro di essa) dipende <strong>solo dalla quota di partenza e da quella di arrivo</strong>. La funzione "quota", moltiplicata per $mg$, è il <span class="glossario-term" data-term="potenziale-scalare">potenziale</span>. E il lavoro è la differenza di potenziale tra arrivo e partenza. È letteralmente il contachilometri del <a href="../parte1-analisi1/14-integrali-definiti.html">Teorema Fondamentale del Calcolo</a>, trasferito in montagna.</p>
+          <div class="formula-block">$$L_{A\to B}\;=\;U(B)-U(A)\qquad\text{(campo conservativo: conta solo dove parti e dove arrivi)}$$</div>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🥾</span> L'attrito, invece, se ne frega degli estremi</div>
+          <p>Stessa gita, domanda diversa: quanta <strong>suola delle scarpe</strong> consumi? Qui la risposta cambia eccome. Il sentiero panoramico è tre volte più lungo, e l'attrito lavora su <em>ogni singolo metro</em> percorso: consumi tre volte tanto. La forza d'attrito è sempre opposta al moto, quindi ogni tratto aggiunge fatica, senza mai restituirne. <strong>Il lavoro dell'attrito dipende dal percorso</strong>, non solo dagli estremi: l'attrito è il prototipo del campo <em>non</em> conservativo (si dice anche <em>dissipativo</em>).</p>
+          <p>Ecco perché la distinzione è così importante nella pratica: se percorri un anello e torni al punto di partenza, la gravità ti ha restituito tutto ciò che le avevi dato (lavoro totale $0$), mentre l'attrito ti ha presentato un conto salato. Nel tuo corpo questa differenza si chiama <em>stanchezza</em>.</p>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🔌</span> La tensione elettrica è una differenza di potenziale</div>
+          <p>Quando leggi "$230$ V" sulla presa di casa, stai leggendo un integrale curvilineo. Il campo elettrico $\mathbf{E}$ è un campo vettoriale; il lavoro che esso compie per portare una carica unitaria da un punto $A$ a un punto $B$ è $\int_\gamma \mathbf{E}\cdot d\mathbf{r}$. In condizioni statiche quel campo è <strong>conservativo</strong>, quindi l'integrale vale $V(A)-V(B)$: la <em>differenza di potenziale</em>, cioè la tensione. È il motivo per cui in elettrotecnica ha senso dire "il potenziale di quel nodo è $5$ volt" senza specificare per quale filo ci sei arrivato.</p>
+          <p>E attenzione al rovescio della medaglia: quando il campo magnetico varia nel tempo, il campo elettrico <strong>smette</strong> di essere conservativo, l'integrale lungo un circuito chiuso non fa più zero — e quel valore non nullo si chiama <strong>forza elettromotrice indotta</strong>. È il principio su cui funzionano dinamo, alternatori e trasformatori: tutta l'energia elettrica che usi nasce da un integrale curvilineo che <em>non</em> si annulla su una curva chiusa.</p>
+        </div>
+
+        <p>Altri esempi in cui questi integrali compaiono ogni giorno: il <strong>peso di un cavo</strong> dell'alta tensione sospeso tra due tralicci (prima specie, con densità lineare costante o variabile per il ghiaccio); il <strong>consumo di carburante</strong> di una nave che attraversa una corrente marina (seconda specie: la corrente a favore fa risparmiare, quella contraria fa spendere); la <strong>lunghezza di una pista</strong> da sci o di un tracciato di Formula 1, calcolata dal GPS come integrale di prima specie della funzione costante $1$.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-ds">4.1 L'elemento d'arco $ds$</h3>
+        <p>Tutto parte da qui. Sia $\gamma$ una curva regolare descritta dalla parametrizzazione $\mathbf{r}(t)=\big(x(t),y(t)\big)$ con $t\in[a,b]$ (nello spazio si aggiunge $z(t)$; "regolare" significa $\mathbf{r}$ di classe $C^1$ con $\mathbf{r}'(t)\neq\mathbf{0}$). Se il parametro avanza di un pezzettino $dt$, la formica si sposta di un vettore $\mathbf{r}'(t)\,dt$; la <strong>lunghezza</strong> di quel minuscolo tratto è il modulo di quel vettore:</p>
+        <div class="formula-block">$$ds\;=\;\big|\mathbf{r}'(t)\big|\,dt\;=\;\sqrt{x'(t)^2+y'(t)^2}\;dt\qquad\text{(in }\mathbb{R}^3:\ \sqrt{x'^2+y'^2+z'^2}\,dt\text{)}$$</div>
+        <p>Questa è la formula-chiave, l'unica da memorizzare davvero. In parole: <em>spazio = velocità × tempo</em>, scritto per un istante infinitesimo. Il simbolo $ds$ si chiama <strong>elemento d'arco</strong> ed è il "$dx$" delle curve. Integrando solo $ds$ si ottiene la <span class="glossario-term" data-term="lunghezza-arco">lunghezza d'arco</span> già incontrata al <a href="07-curve-superfici.html">Capitolo 7</a>.</p>
+
+        <h3 id="teoria-prima-specie">4.2 Integrale curvilineo di prima specie (funzione scalare)</h3>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Integrale curvilineo di prima specie.</em> Sia $\gamma$ una curva regolare di parametrizzazione $\mathbf{r}:[a,b]\to\mathbb{R}^n$ e sia $f$ una funzione scalare continua definita sul sostegno di $\gamma$. Si pone</p>
+          <div class="formula-block">$$\int_\gamma f\,ds\;=\;\int_a^b f\big(\mathbf{r}(t)\big)\,\big|\mathbf{r}'(t)\big|\,dt.$$</div>
+        </div>
+        <p>Guarda com'è costruita: <strong>si valuta $f$ nel punto in cui si trova la formica</strong> e <strong>si pesa con la velocità</strong>. Il risultato è un numero. La ricetta operativa è sempre la stessa in tre mosse: (1) parametrizza la curva; (2) calcola $|\mathbf{r}'(t)|$; (3) sostituisci e integra in $dt$ su $[a,b]$, con un integrale definito di una sola variabile — quindi di nuovo materia di Analisi 1.</p>
+        <p><strong>Che cosa significa?</strong> Due letture, entrambe utili:</p>
+        <ul>
+          <li><strong>Massa di un filo.</strong> Se $\gamma$ è un filo e $f=\rho$ è la sua <em>densità lineare</em> (massa per unità di lunghezza, che può variare da punto a punto), allora $\int_\gamma \rho\,ds$ è la <strong>massa totale</strong> del filo. Ogni pezzettino lungo $ds$ pesa $\rho\,ds$; si sommano tutti.</li>
+          <li><strong>Lunghezza della curva.</strong> Se $f\equiv 1$, ogni pezzettino contribuisce con la propria lunghezza e l'integrale restituisce la lunghezza totale: $\ \text{lunghezza}(\gamma)=\displaystyle\int_\gamma 1\,ds=\int_a^b|\mathbf{r}'(t)|\,dt$. Un filo di densità $1$ ha massa pari alla sua lunghezza: coerente.</li>
+          <li><strong>Area di uno "steccato".</strong> Se $f\geq 0$, l'integrale $\int_\gamma f\,ds$ è l'area del "muretto" che ha per base la curva $\gamma$ e per altezza, in ogni punto, il valore $f$. È l'analogo curvo dell'area sotto un grafico.</li>
+        </ul>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proprietà</span>
+          <p><em class="nome">Invarianza.</em> L'integrale di prima specie <strong>non dipende dalla parametrizzazione scelta</strong> né <strong>dall'orientazione</strong> con cui si percorre la curva:</p>
+          <div class="formula-block">$$\int_{\gamma} f\,ds=\int_{-\gamma} f\,ds$$</div>
+          <p>dove $-\gamma$ indica la stessa curva percorsa in verso opposto. Valgono inoltre la linearità in $f$ e l'additività rispetto alla curva: se $\gamma=\gamma_1\cup\gamma_2$ (percorsi consecutivi), allora $\int_\gamma f\,ds=\int_{\gamma_1}f\,ds+\int_{\gamma_2}f\,ds$.</p>
+        </div>
+        <p>L'invarianza è ragionevolissima: <strong>la massa di un filo non cambia a seconda di da quale estremo cominci a pesarlo</strong>, né a seconda di quanto velocemente lo percorri con il dito. Lo stesso vale per la lunghezza. Tieni a mente questa frase, perché fra poco la seconda specie si comporterà in modo opposto.</p>
+
+        <h3 id="teoria-campi">4.3 Campi vettoriali</h3>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Campo vettoriale.</em> Un <span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span> su un aperto $\Omega\subseteq\mathbb{R}^2$ è una funzione che a ogni punto associa un <strong>vettore</strong>:</p>
+          <div class="formula-block">$$\mathbf{F}(x,y)=\big(P(x,y),\,Q(x,y)\big),\qquad \mathbf{F}:\Omega\to\mathbb{R}^2.$$</div>
+          <p>In $\mathbb{R}^3$: $\ \mathbf{F}(x,y,z)=\big(P,Q,R\big)$. Le funzioni $P,Q,R$ si chiamano <strong>componenti</strong> del campo.</p>
+        </div>
+        <p>La differenza rispetto a una funzione scalare $f(x,y)$ è tutta qui: una funzione scalare attacca a ogni punto un <em>numero</em> (la temperatura, l'altitudine), un campo vettoriale attacca a ogni punto una <em>freccia</em> (direzione, verso e intensità).</p>
+        <p><strong>Come si disegnano.</strong> Si sceglie una griglia di punti e in ciascuno si disegna la freccia $\mathbf{F}$ applicata lì, accorciata di un fattore comune perché non si accavallino. Il disegno che ne risulta assomiglia a una mappa del vento: guardandolo capisci subito dove il campo è forte (frecce lunghe), dove è debole (frecce corte), dove gira, dove converge.</p>
+
+        <svg viewBox="0 0 470 250" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Un campo vettoriale disegnato come una griglia di frecce di direzione e lunghezza variabili">
+          <g stroke="var(--color-primary)" stroke-width="2" fill="none">
+            <path d="M 50 60 l 30 -12 M 80 48 l -8 -1 M 80 48 l -6 6 M 140 60 l 34 -6 M 174 54 l -8 -3 M 174 54 l -7 5 M 230 60 l 36 0 M 266 60 l -8 -4 M 266 60 l -8 4 M 320 60 l 34 8 M 354 68 l -8 -2 M 354 68 l -5 7"/>
+            <path d="M 50 130 l 26 -18 M 76 112 l -8 0 M 76 112 l -4 7 M 140 130 l 32 -10 M 172 120 l -8 -2 M 172 120 l -6 6 M 230 130 l 36 -2 M 266 128 l -8 -4 M 266 128 l -7 5 M 320 130 l 34 4 M 354 134 l -8 -3 M 354 134 l -6 6"/>
+            <path d="M 50 200 l 20 -22 M 70 178 l -7 1 M 70 178 l -2 8 M 140 200 l 28 -18 M 168 182 l -8 0 M 168 182 l -4 7 M 230 200 l 34 -8 M 264 192 l -8 -3 M 264 192 l -6 6 M 320 200 l 36 -2 M 356 198 l -8 -4 M 356 198 l -7 5"/>
+          </g>
+          <text x="384" y="64" font-size="13" font-style="italic" fill="var(--color-primary)">F</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Un campo vettoriale: a ogni punto del piano è attaccata una freccia. Qui somiglia a una corrente d'aria che piega verso l'alto a sinistra.</p>
+
+        <p><strong>Esempi fisici da tenere in mente.</strong></p>
+        <ul>
+          <li><strong>Il vento.</strong> In ogni punto della mappa meteo c'è una freccia: direzione e intensità della raffica. È il campo vettoriale più familiare.</li>
+          <li><strong>La corrente di un fiume.</strong> Vicino alle rive è lenta (frecce corte), al centro è veloce (frecce lunghe), attorno a un masso ruota. È un campo di velocità.</li>
+          <li><strong>Il campo gravitazionale.</strong> Attorno alla Terra, ogni punto ha una freccia che punta verso il centro, lunga $\dfrac{GM}{r^2}$. Attorno a te, sulla superficie, tutte le frecce puntano in basso e sono uguali: il campo costante $\mathbf{F}=(0,-mg)$.</li>
+          <li><strong>Il campo elettrico.</strong> Attorno a una carica positiva le frecce escono a raggiera, attorno a una negativa entrano. Le famose "linee di forza" disegnate a scuola sono le curve tangenti in ogni punto al campo.</li>
+        </ul>
+
+        <h3 id="teoria-seconda-specie">4.4 Integrale curvilineo di seconda specie: il lavoro</h3>
+        <p>Ora mettiamo insieme le due cose: una curva e un campo. Ti muovi lungo $\gamma$ immerso nel campo $\mathbf{F}$; vuoi sapere <strong>quanto il campo lavora su di te</strong>.</p>
+        <p>Prendi un tratto infinitesimo: lo spostamento è il vettore $d\mathbf{r}=\mathbf{r}'(t)\,dt$, mentre il campo lì vale $\mathbf{F}(\mathbf{r}(t))$. Il contributo al lavoro <strong>non è</strong> il prodotto delle lunghezze: conta <em>solo la componente della forza nella direzione del moto</em>. E l'operazione che estrae esattamente quella componente è il <strong>prodotto scalare</strong>. Quindi il contributo del tratto è $\mathbf{F}\cdot d\mathbf{r}$, e sommando:</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Integrale curvilineo di seconda specie (lavoro).</em> Sia $\gamma$ una curva regolare <strong>orientata</strong>, parametrizzata da $\mathbf{r}:[a,b]\to\mathbb{R}^n$, e sia $\mathbf{F}$ un campo vettoriale continuo. Si pone</p>
+          <div class="formula-block">$$\int_\gamma \mathbf{F}\cdot d\mathbf{r}\;=\;\int_a^b \mathbf{F}\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t)\,dt.$$</div>
+          <p>Nel piano, con $\mathbf{F}=(P,Q)$ e $\mathbf{r}(t)=(x(t),y(t))$, si scrive anche nella <strong>notazione differenziale</strong>:</p>
+          <div class="formula-block">$$\int_\gamma P\,dx+Q\,dy\;=\;\int_a^b\Big[P\big(x(t),y(t)\big)\,x'(t)+Q\big(x(t),y(t)\big)\,y'(t)\Big]dt.$$</div>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🛒</span> L'analogia del carrello e del vento</div>
+          <p>Stai spingendo un carrello lungo un percorso e soffia il vento. In ogni tratto possono capitare tre cose.</p>
+          <p><strong>Vento alle spalle</strong> (stessa direzione del moto): ti aiuta, $\mathbf{F}\cdot d\mathbf{r}\gt 0$, il campo compie lavoro positivo e tu fatichi meno. <strong>Vento in faccia</strong>: ti ostacola, $\mathbf{F}\cdot d\mathbf{r}\lt 0$, lavoro negativo, devi spingere di più. <strong>Vento di traverso</strong>, perpendicolare al moto: non ti aiuta né ti frena lungo il cammino, $\mathbf{F}\cdot d\mathbf{r}=0$. Ti spinge di lato, certo, ma per <em>avanzare</em> non conta nulla.</p>
+          <p>Ecco perché compare il prodotto scalare e non un prodotto qualunque: <strong>conta solo la componente della forza parallela al moto</strong>, cioè $|\mathbf{F}|\cos\theta$ dove $\theta$ è l'angolo tra forza e direzione del cammino. L'integrale $\int_\gamma\mathbf{F}\cdot d\mathbf{r}$ somma tutti questi aiuti e tutte queste resistenze lungo l'intero percorso, e restituisce il bilancio complessivo: il <strong>lavoro</strong>.</p>
+        </div>
+
+        <svg viewBox="0 0 470 230" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Una curva con il vettore tangente e la forza scomposta nella componente parallela e in quella perpendicolare">
+          <path d="M 40 180 C 130 60, 260 210, 420 70" fill="none" stroke="currentColor" stroke-width="2.6"/>
+          <path d="M 200 146 l 56 22 M 256 168 l -12 -1 M 256 168 l -7 -10" stroke="var(--color-secondary)" stroke-width="2.4" fill="none"/>
+          <path d="M 200 146 l 40 -54 M 240 92 l -3 -12 M 240 92 l -11 -3" stroke="var(--color-danger)" stroke-width="2.4" fill="none"/>
+          <path d="M 200 146 l 30 12 M 230 158 l 10 -66" stroke="var(--color-accent)" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+          <circle cx="200" cy="146" r="4.5" fill="currentColor"/>
+          <text x="262" y="180" font-size="13" font-weight="700" fill="var(--color-secondary)">dr (tangente)</text><text x="244" y="84" font-size="13" font-weight="700" fill="var(--color-danger)">F</text>
+          <text x="196" y="184" font-size="12" fill="var(--color-accent)">componente utile</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Solo la proiezione di $\mathbf{F}$ sulla tangente $d\mathbf{r}$ produce lavoro. La componente perpendicolare non contribuisce.</p>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proprietà</span>
+          <p><em class="nome">Dipendenza dall'orientazione.</em> L'integrale di seconda specie non dipende dalla particolare parametrizzazione (purché conservi il verso), ma <strong>cambia segno se si inverte l'orientazione</strong>:</p>
+          <div class="formula-block">$$\int_{-\gamma}\mathbf{F}\cdot d\mathbf{r}\;=\;-\int_{\gamma}\mathbf{F}\cdot d\mathbf{r}.$$</div>
+        </div>
+        <p>Ed è giustissimo: se il vento ti spingeva all'andata, al ritorno per la stessa strada te lo trovi in faccia. Confronta con la prima specie, dove invertire il verso non cambiava nulla: lì si sommavano <em>lunghezze</em> (sempre positive), qui si sommano <em>contributi con segno</em>. È lo stesso fenomeno dell'$\int_b^a f=-\int_a^b f$ di Analisi 1.</p>
+        <p>Quando la curva è <strong>chiusa</strong> (parte e arriva nello stesso punto) l'integrale prende un nome tutto suo, <strong><span class="glossario-term" data-term="circuitazione">circuitazione</span></strong>, e si indica con un cerchietto sul segno di integrale:</p>
+        <div class="formula-block">$$\oint_\gamma \mathbf{F}\cdot d\mathbf{r}\;=\;\text{circuitazione di }\mathbf{F}\text{ lungo la curva chiusa }\gamma.$$</div>
+        <p>Per convenzione, nel piano il verso <strong>positivo</strong> di percorrenza è quello antiorario (quello che lascia la regione interna alla propria sinistra).</p>
+
+        <h3 id="teoria-conservativi">4.5 Campi conservativi e potenziale</h3>
+        <p>Arriviamo al cuore del capitolo. Alcuni campi hanno una struttura speciale: sono il gradiente di qualcosa.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Campo conservativo e potenziale scalare.</em> Un campo vettoriale $\mathbf{F}$ continuo su un aperto $\Omega$ si dice <strong><span class="glossario-term" data-term="campo-conservativo">conservativo</span></strong> se esiste una funzione scalare $U:\Omega\to\mathbb{R}$ differenziabile tale che</p>
+          <div class="formula-block">$$\mathbf{F}=\nabla U\qquad\text{cioè}\qquad P=\frac{\partial U}{\partial x},\quad Q=\frac{\partial U}{\partial y}\quad\Big(\text{e }R=\frac{\partial U}{\partial z}\text{ in }\mathbb{R}^3\Big).$$</div>
+          <p>La funzione $U$ si chiama <strong><span class="glossario-term" data-term="potenziale-scalare">potenziale scalare</span></strong> del campo.</p>
+        </div>
+        <p>Il parallelo è immediato e va assaporato: in Analisi 1 la <span class="glossario-term" data-term="primitiva">primitiva</span> $G$ soddisfaceva $G'=f$; qui il potenziale $U$ soddisfa $\nabla U=\mathbf{F}$. <strong>Il potenziale è la primitiva dei campi vettoriali.</strong> E come la primitiva era definita a meno di una costante additiva, così il potenziale: se $U$ è un potenziale, lo è anche $U+c$ per ogni costante $c$ (su un aperto <em>connesso</em> sono tutti e soli quelli).</p>
+        <p class="text-muted">Nota di vocabolario: in fisica si preferisce definire l'<em>energia potenziale</em> con il segno opposto, $\mathbf{F}=-\nabla E_p$, così che una forza attrattiva corrisponda a un'energia che diminuisce avvicinandosi. È solo una convenzione di segno: la matematica è identica.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema fondamentale degli integrali curvilinei</span>
+          <p><em class="nome">Il lavoro è una differenza di potenziale.</em> Sia $\mathbf{F}=\nabla U$ un campo conservativo continuo su un aperto $\Omega$, e sia $\gamma$ una curva regolare a tratti contenuta in $\Omega$ che va dal punto $A$ al punto $B$. Allora</p>
+          <div class="formula-block">$$\int_\gamma \mathbf{F}\cdot d\mathbf{r}\;=\;\int_\gamma \nabla U\cdot d\mathbf{r}\;=\;U(B)-U(A).$$</div>
+        </div>
+        <p>Rileggilo mettendolo accanto a Newton–Leibniz e goditi la simmetria perfetta:</p>
+        <div class="formula-block">$$\int_a^b G'(x)\,dx=G(b)-G(a)\qquad\Longleftrightarrow\qquad \int_\gamma \nabla U\cdot d\mathbf{r}=U(B)-U(A).$$</div>
+        <p>A sinistra la derivata, a destra il gradiente; a sinistra gli estremi di un intervallo, a destra gli estremi di una curva; in entrambi i casi <strong>l'integrale di una "derivata" si calcola guardando solo agli estremi</strong>. È lo stesso teorema, vestito da più variabili.</p>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Corollari</span>
+          <p>Se $\mathbf{F}$ è conservativo su $\Omega$:</p>
+          <p><strong>(a) Indipendenza dal percorso.</strong> Se $\gamma_1$ e $\gamma_2$ sono due curve qualsiasi in $\Omega$ con gli stessi estremi $A$ e $B$, allora $\displaystyle\int_{\gamma_1}\mathbf{F}\cdot d\mathbf{r}=\int_{\gamma_2}\mathbf{F}\cdot d\mathbf{r}=U(B)-U(A)$.</p>
+          <p><strong>(b) Lavoro nullo sulle curve chiuse.</strong> Per ogni curva chiusa $\gamma$ contenuta in $\Omega$ si ha $\displaystyle\oint_\gamma \mathbf{F}\cdot d\mathbf{r}=0$.</p>
+          <p>Vale anche il viceversa: se l'integrale di $\mathbf{F}$ è indipendente dal percorso (equivalentemente: si annulla su ogni curva chiusa) in un aperto connesso, allora $\mathbf{F}$ è conservativo.</p>
+        </div>
+        <p>Il corollario (b) è (a) travestito: una curva chiusa è una curva in cui $B=A$, quindi $U(B)-U(A)=0$. Fisicamente: <strong>in un campo conservativo un giro completo non costa nulla</strong>. Esci di casa, scali la montagna, torni a casa: l'energia potenziale gravitazionale è quella di partenza. In presenza di attrito, invece, la circuitazione è diversa da zero e il conto lo paghi tu.</p>
+
+        <svg viewBox="0 0 460 220" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Due percorsi diversi che congiungono gli stessi due punti A e B">
+          <path d="M 70 160 C 150 40, 280 40, 390 90" fill="none" stroke="var(--color-primary)" stroke-width="2.8"/>
+          <path d="M 70 160 C 170 200, 300 180, 390 90" fill="none" stroke="var(--color-accent)" stroke-width="2.8" stroke-dasharray="7 5"/>
+          <circle cx="70" cy="160" r="6" fill="var(--color-secondary)"/><circle cx="390" cy="90" r="6" fill="var(--color-secondary)"/>
+          <text x="48" y="180" font-size="15" font-weight="700" fill="currentColor">A</text><text x="398" y="82" font-size="15" font-weight="700" fill="currentColor">B</text>
+          <text x="170" y="56" font-size="12.5" font-weight="700" fill="var(--color-primary)">percorso 1</text><text x="176" y="204" font-size="12.5" font-weight="700" fill="var(--color-accent)">percorso 2</text>
+          <text x="120" y="120" font-size="13" fill="var(--color-text-muted)">stesso lavoro: U(B) − U(A)</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">In un campo conservativo i due percorsi costano esattamente lo stesso. Percorrendo il primo in andata e il secondo a ritroso, il bilancio è zero.</p>
+
+        <h3 id="teoria-chiusura">4.6 La condizione di chiusura: necessaria, non sufficiente</h3>
+        <p>Bello sapere che i campi conservativi sono comodi; ma dato un campo, <strong>come faccio a riconoscere se lo è</strong>? Esiste un test rapidissimo.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (condizione necessaria)</span>
+          <p><em class="nome">Chiusura.</em> Se $\mathbf{F}=(P,Q)$ è di classe $C^1$ ed è conservativo su un aperto $\Omega\subseteq\mathbb{R}^2$, allora in ogni punto di $\Omega$</p>
+          <div class="formula-block">$$\frac{\partial P}{\partial y}=\frac{\partial Q}{\partial x}.$$</div>
+          <p>In $\mathbb{R}^3$, con $\mathbf{F}=(P,Q,R)$, le condizioni diventano tre: $\ P_y=Q_x,\quad P_z=R_x,\quad Q_z=R_y$, cioè $\ \operatorname{rot}\mathbf{F}=\mathbf{0}$.</p>
+        </div>
+        <p>Un campo che soddisfa queste uguaglianze si dice <strong>chiuso</strong> (o irrotazionale). La quantità $Q_x-P_y$ è la componente del <span class="glossario-term" data-term="rotore">rotore</span> di $\mathbf{F}$: misura quanto il campo tende a far girare una girandola posta in quel punto. Un campo conservativo non fa girare nulla.</p>
+        <p><strong>Come si usa nella pratica.</strong> Essendo una condizione <em>necessaria</em>, funziona benissimo come <strong>test di esclusione</strong>: se trovi $P_y\neq Q_x$, hai finito, il campo <strong>non</strong> è conservativo e non ha senso cercare il potenziale. Se invece $P_y=Q_x$, non puoi ancora concludere: devi guardare il <em>dominio</em>.</p>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">🌀</span> Il controesempio classico: il campo vortice</div>
+          <p>Considera su $\Omega=\mathbb{R}^2\setminus\{(0,0)\}$ (il piano <em>bucato</em> nell'origine) il campo</p>
+          <div class="formula-block">$$\mathbf{F}(x,y)=\left(\frac{-y}{x^2+y^2},\ \frac{x}{x^2+y^2}\right).$$</div>
+          <p>Verifichiamo la chiusura. Con $P=\dfrac{-y}{x^2+y^2}$ e $Q=\dfrac{x}{x^2+y^2}$, entrambe le derivate si calcolano con la <strong>regola di derivazione del quoziente</strong>, $\left(\frac{N}{D}\right)'=\dfrac{N'D-ND'}{D^2}$ (cap. 3):</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Per $\dfrac{\partial P}{\partial y}$ derivo rispetto a $y$ tenendo $x$ costante. Numeratore $N=-y$, quindi $N_y=-1$; denominatore $D=x^2+y^2$, quindi $D_y=2y$. Applico la regola: $\dfrac{(-1)(x^2+y^2)-(-y)(2y)}{(x^2+y^2)^2}=\dfrac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}$. Svolgo il numeratore: $-x^2-y^2+2y^2=y^2-x^2$.</span>
+            <span class="esempio__passo">Per $\dfrac{\partial Q}{\partial x}$ derivo rispetto a $x$ tenendo $y$ costante. Ora $N=x$ con $N_x=1$, e $D_x=2x$: $\dfrac{1\cdot(x^2+y^2)-x\cdot 2x}{(x^2+y^2)^2}=\dfrac{x^2+y^2-2x^2}{(x^2+y^2)^2}$, e il numeratore è $y^2-x^2$.</span>
+          </p>
+          <div class="formula-block">$$\frac{\partial P}{\partial y}=\frac{-(x^2+y^2)+2y^2}{(x^2+y^2)^2}=\frac{y^2-x^2}{(x^2+y^2)^2},\qquad \frac{\partial Q}{\partial x}=\frac{(x^2+y^2)-2x^2}{(x^2+y^2)^2}=\frac{y^2-x^2}{(x^2+y^2)^2}.$$</div>
+          <p>Sono uguali: il campo è <strong>chiuso</strong> in ogni punto di $\Omega$. Eppure calcoliamo la circuitazione lungo la circonferenza unitaria $\mathbf{r}(t)=(\cos t,\sin t)$, $t\in[0,2\pi]$. Vediamo passo per passo che cosa si sostituisce:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Il campo sulla curva.</strong> Metto $x=\cos t$ e $y=\sin t$ dentro $\mathbf{F}$. Il denominatore diventa $x^2+y^2=\cos^2t+\sin^2t=1$ (identità fondamentale), quindi le due componenti si riducono a $P=\frac{-\sin t}{1}=-\sin t$ e $Q=\frac{\cos t}{1}=\cos t$. In breve: $\mathbf{F}(\mathbf{r}(t))=(-\sin t,\ \cos t)$.</span>
+            <span class="esempio__passo"><strong>Il vettore velocità.</strong> Derivo componente per componente: $\mathbf{r}'(t)=\big((\cos t)',\ (\sin t)'\big)=(-\sin t,\ \cos t)$. Guarda caso è identico al campo.</span>
+            <span class="esempio__passo"><strong>Il prodotto scalare</strong> si fa "prima per prima più seconda per seconda": $\mathbf{F}\cdot\mathbf{r}'=(-\sin t)(-\sin t)+(\cos t)(\cos t)=\sin^2t+\cos^2t=1$, di nuovo per l'identità fondamentale.</span>
+          </p>
+          <p>L'integranda è dunque la costante $1$, e</p>
+          <div class="formula-block">$$\oint_\gamma \mathbf{F}\cdot d\mathbf{r}=\int_0^{2\pi}1\,dt=2\pi\;\neq\;0.$$</div>
+          <p>Un campo conservativo avrebbe dato $0$ su una curva chiusa. Conclusione: <strong>chiuso non implica conservativo</strong>. Il colpevole è il <em>buco</em> nell'origine: la circonferenza gli gira attorno e non si può contrarre a un punto restando dentro $\Omega$.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Insieme semplicemente connesso.</em> Un aperto connesso $\Omega$ si dice <strong>semplicemente connesso</strong> se ogni curva chiusa contenuta in $\Omega$ può essere deformata con continuità fino a ridursi a un punto, <strong>senza mai uscire da $\Omega$</strong>. In parole poverissime: <em>è un insieme senza buchi</em>.</p>
+        </div>
+        <p>Sono semplicemente connessi: tutto $\mathbb{R}^2$, un disco, un rettangolo, un semipiano, e più in generale ogni insieme convesso. <strong>Non</strong> lo sono: il piano bucato $\mathbb{R}^2\setminus\{(0,0)\}$ e una corona circolare, che hanno un foro attorno a cui si può girare. Immagine mentale: un elastico appoggiato dentro un disco lo si può sempre stringere fino a ridurlo a un punto; se però nel disco c'è un chiodo e l'elastico gli gira attorno, non c'è verso di stringerlo senza strapparlo o scavalcare il chiodo.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di Poincaré (condizione sufficiente)</span>
+          <p><em class="nome">Chiuso + semplicemente connesso = conservativo.</em> Sia $\mathbf{F}$ un campo di classe $C^1$ su un aperto $\Omega$ <strong>semplicemente connesso</strong>. Se $\mathbf{F}$ è chiuso (cioè $P_y=Q_x$ nel piano, $\operatorname{rot}\mathbf{F}=\mathbf{0}$ nello spazio), allora $\mathbf{F}$ è <strong>conservativo</strong> su $\Omega$ e ammette potenziale.</p>
+        </div>
+        <p>Questo è il teorema che userai in quasi tutti gli esercizi, perché nella stragrande maggioranza dei casi il campo è definito su tutto $\mathbb{R}^2$ o $\mathbb{R}^3$ — che sono semplicemente connessi. La procedura d'esame diventa allora meccanica: <strong>(1) controlla il dominio; (2) controlla la chiusura; (3) se il dominio è semplicemente connesso e il campo è chiuso, cerca il potenziale.</strong></p>
+
+        <h3 id="teoria-potenziale">4.7 Metodo pratico per trovare il potenziale</h3>
+        <p>Supponiamo di aver superato i due test. Come si costruisce $U$? Con l'<strong>integrazione parziale successiva</strong>: si integra una componente alla volta, portandosi dietro una "costante" che in realtà è una funzione delle altre variabili.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Ricetta (caso piano)</span>
+          <p><strong>Passo 1.</strong> Da $\dfrac{\partial U}{\partial x}=P$, integra rispetto a $x$ trattando $y$ come costante:</p>
+          <div class="formula-block">$$U(x,y)=\int P(x,y)\,dx+h(y).$$</div>
+          <p>Attenzione: la costante d'integrazione non è un numero ma una <strong>funzione arbitraria di $y$</strong>, perché derivando rispetto a $x$ qualunque $h(y)$ sparisce.</p>
+          <p><strong>Passo 2.</strong> Deriva l'espressione trovata rispetto a $y$ e imponi che sia uguale a $Q$:</p>
+          <div class="formula-block">$$\frac{\partial}{\partial y}\left[\int P\,dx\right]+h'(y)=Q(x,y).$$</div>
+          <p><strong>Passo 3.</strong> Ricava $h'(y)$. Se il campo è davvero conservativo, <strong>tutte le $x$ si semplificano</strong> e resta un'espressione nella sola $y$ (è il controllo automatico che stai facendo bene).</p>
+          <p><strong>Passo 4.</strong> Integra $h'(y)$ per ottenere $h(y)$ e scrivi $U$. Aggiungi $+c$ se vuoi la famiglia completa.</p>
+          <p><strong>Passo 5 (facoltativo ma consigliato).</strong> Verifica: calcola $\nabla U$ e controlla che torni $\mathbf{F}$.</p>
+        </div>
+        <p>In $\mathbb{R}^3$ il metodo è identico, con un passaggio in più: dopo $x$ e $y$ si impone anche $U_z=R$, e la funzione arbitraria, da $h(y,z)$, si riduce a $k(z)$ e infine a una costante.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Da quale componente conviene partire?</div>
+          <p>Da quella <strong>più facile da integrare</strong>. Non c'è alcun obbligo di cominciare da $P$: se $Q$ è un polinomio semplice e $P$ contiene un'esponenziale o un arcotangente, parti da $Q$ (integrando in $y$ e portandoti dietro $g(x)$). Il risultato è lo stesso e i conti dimezzano.</p>
+        </div>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea intuitiva della prima dimostrazione</div>
+          <p>Vogliamo dimostrare che il lavoro di un campo conservativo è $U(B)-U(A)$. L'idea sta in una frase: <strong>mentre cammini lungo la curva, guarda come cambia il valore del potenziale sotto i tuoi piedi</strong>. Chiama $g(t)=U(\mathbf{r}(t))$ la "quota" letta all'istante $t$. La regola della catena dice che $g'(t)$ — la rapidità con cui la quota cambia — è esattamente il prodotto scalare tra il gradiente e la velocità, cioè l'integrando del lavoro. Quindi il lavoro è $\int_a^b g'(t)\,dt$: l'integrale di una derivata su un intervallo. E lì entra in scena il vecchio Newton–Leibniz, che restituisce $g(b)-g(a)$, cioè quota d'arrivo meno quota di partenza. <strong>Il teorema nuovo è il teorema vecchio, applicato alla funzione "quota lungo il cammino".</strong></p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema fondamentale degli integrali curvilinei</span>
+          <p><em class="nome">Se $\mathbf{F}=\nabla U$ e $\gamma$ è una curva regolare da $A$ a $B$ contenuta nel dominio, allora $\displaystyle\int_\gamma \mathbf{F}\cdot d\mathbf{r}=U(B)-U(A)$.</em></p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Sia $\mathbf{r}:[a,b]\to\Omega$ una parametrizzazione regolare di $\gamma$, con $\mathbf{r}(a)=A$ e $\mathbf{r}(b)=B$. Partiamo dalla definizione di integrale di seconda specie e usiamo l'ipotesi $\mathbf{F}=\nabla U$:</p>
+          <div class="formula-block">$$\int_\gamma \mathbf{F}\cdot d\mathbf{r}=\int_a^b \mathbf{F}\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t)\,dt=\int_a^b \nabla U\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t)\,dt.$$</div>
+          <p>Introduciamo ora la funzione di <strong>una sola variabile</strong> $g(t)=U\big(\mathbf{r}(t)\big)$, definita su $[a,b]$. È la composizione della funzione differenziabile $U$ con la curva $C^1$ $\mathbf{r}$, quindi è derivabile e la <strong>regola della catena</strong> (vista al <a href="03-derivate-parziali.html">Capitolo 3</a>) dà esattamente:</p>
+          <div class="formula-block">$$g'(t)=\frac{\partial U}{\partial x}\,x'(t)+\frac{\partial U}{\partial y}\,y'(t)=\nabla U\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t).$$</div>
+          <p>Riconosciamo che l'integrando è proprio $g'(t)$. Dunque</p>
+          <div class="formula-block">$$\int_\gamma \mathbf{F}\cdot d\mathbf{r}=\int_a^b g'(t)\,dt.$$</div>
+          <p>A questo punto applichiamo il <a href="../parte1-analisi1/14-integrali-definiti.html">Teorema Fondamentale del Calcolo</a> (formula di Newton–Leibniz) alla funzione $g$, di cui $g$ stessa è una primitiva di $g'$:</p>
+          <div class="formula-block">$$\int_a^b g'(t)\,dt=g(b)-g(a)=U\big(\mathbf{r}(b)\big)-U\big(\mathbf{r}(a)\big)=U(B)-U(A).$$</div>
+          <p>Il risultato dipende solo dai punti $A$ e $B$ e <strong>non dalla curva</strong> che li congiunge: da qui discendono immediatamente l'indipendenza dal percorso e, prendendo $B=A$, l'annullarsi della circuitazione su ogni curva chiusa. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea intuitiva della seconda dimostrazione</div>
+          <p>Perché un campo conservativo deve soddisfare $P_y=Q_x$? Perché le sue componenti non sono due funzioni indipendenti: sono <strong>due derivate della stessa funzione $U$</strong>, $P=U_x$ e $Q=U_y$. E per le derivate seconde miste vale il <strong>teorema di Schwarz</strong>: derivare prima in $x$ e poi in $y$, oppure prima in $y$ e poi in $x$, dà lo stesso risultato. Immagine mentale: sei su una collina e vuoi sapere di quanto cambia la pendenza est–ovest se ti sposti verso nord; la risposta è la stessa che otterresti chiedendo di quanto cambia la pendenza nord–sud spostandoti verso est. La collina è una sola, e le sue pendenze devono essere coerenti fra loro. La condizione $P_y=Q_x$ è esattamente questa coerenza.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione (condizione necessaria di chiusura)</span>
+          <p><em class="nome">Se $\mathbf{F}=(P,Q)$ è conservativo con potenziale $U$ di classe $C^2$, allora $\ \dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$ in tutto il dominio.</em></p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Per ipotesi esiste $U$ tale che $\mathbf{F}=\nabla U$, cioè</p>
+          <div class="formula-block">$$P=\frac{\partial U}{\partial x},\qquad Q=\frac{\partial U}{\partial y}.$$</div>
+          <p>Deriviamo la prima rispetto a $y$ e la seconda rispetto a $x$: otteniamo le due <strong>derivate seconde miste</strong> di $U$,</p>
+          <div class="formula-block">$$\frac{\partial P}{\partial y}=\frac{\partial^2 U}{\partial y\,\partial x},\qquad \frac{\partial Q}{\partial x}=\frac{\partial^2 U}{\partial x\,\partial y}.$$</div>
+          <p>Poiché $\mathbf{F}$ è di classe $C^1$, il potenziale $U$ è di classe $C^2$: le derivate seconde miste sono continue e si può applicare il <strong>teorema di Schwarz</strong> (<a href="03-derivate-parziali.html">Capitolo 3</a>), secondo cui l'ordine di derivazione è irrilevante:</p>
+          <div class="formula-block">$$\frac{\partial^2 U}{\partial y\,\partial x}=\frac{\partial^2 U}{\partial x\,\partial y}.$$</div>
+          <p>Confrontando le tre uguaglianze si conclude $\ \dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$. <span class="qed">∎</span></p>
+          <p>Osserva bene che cosa <em>non</em> abbiamo dimostrato: che la condizione basti. La dimostrazione è a senso unico ("se conservativo, allora chiuso") e non c'è modo di invertirla senza ipotesi sul dominio — come il campo vortice dimostra concretamente.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione (invarianza della prima specie)</span>
+          <p><em class="nome">L'integrale $\displaystyle\int_\gamma f\,ds$ non cambia se si inverte l'orientazione della curva.</em></p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Sia $\mathbf{r}:[a,b]\to\mathbb{R}^n$ una parametrizzazione di $\gamma$ e sia $\boldsymbol{\sigma}(u)=\mathbf{r}(a+b-u)$, $u\in[a,b]$, la stessa curva percorsa a ritroso. Per la regola della catena $\boldsymbol{\sigma}'(u)=-\mathbf{r}'(a+b-u)$, dunque i <strong>moduli coincidono</strong>: $|\boldsymbol{\sigma}'(u)|=|\mathbf{r}'(a+b-u)|$ — il segno meno sparisce dentro il valore assoluto. Allora, con la sostituzione $t=a+b-u$ (da cui $dt=-du$, e gli estremi si scambiano):</p>
+          <div class="formula-block">$$\int_a^b f\big(\boldsymbol{\sigma}(u)\big)\big|\boldsymbol{\sigma}'(u)\big|\,du=\int_b^a f\big(\mathbf{r}(t)\big)\big|\mathbf{r}'(t)\big|\,(-dt)=\int_a^b f\big(\mathbf{r}(t)\big)\big|\mathbf{r}'(t)\big|\,dt.$$</div>
+          <p>I due integrali coincidono. <strong>È il valore assoluto a fare tutta la differenza</strong>: nella seconda specie compare $\mathbf{r}'(u)$ senza modulo, il segno meno sopravvive e l'integrale cambia segno. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Prima specie su un segmento</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\int_\gamma (x+y)\,ds$, dove $\gamma$ è il segmento da $(0,0)$ a $(1,1)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parametrizzo il segmento: $\mathbf{r}(t)=(t,\,t)$ con $t\in[0,1]$. Cioè pongo $x(t)=t$ e $y(t)=t$: per $t=0$ sono in $(0,0)$, per $t=1$ sono in $(1,1)$, e in mezzo percorro la diagonale.</span>
+            <span class="esempio__passo">Velocità: derivo componente per componente, $\mathbf{r}'(t)=(x'(t),y'(t))=(1,1)$. Applico la formula dell'elemento d'arco del <span class="richiamo" data-sec="4.1">§4.1</span>, $ds=\sqrt{x'^2+y'^2}\,dt$: qui $|\mathbf{r}'(t)|=\sqrt{1^2+1^2}=\sqrt{2}$, quindi $ds=\sqrt2\,dt$.</span>
+            <span class="esempio__passo">Integranda sulla curva: nella funzione $f(x,y)=x+y$ <strong>sostituisco $x=t$ e $y=t$</strong>, cioè le coordinate del punto in cui si trova la formica all'istante $t$. Ottengo $f(\mathbf{r}(t))=t+t=2t$.</span>
+            <span class="esempio__passo">Metto insieme le due cose nella definizione, $\int_\gamma f\,ds=\int_a^b f(\mathbf{r}(t))|\mathbf{r}'(t)|\,dt$: $\displaystyle\int_0^1 2t\cdot\sqrt2\,dt$. Porto fuori le costanti ($2\sqrt2$) e integro: $2\sqrt2\Big[\frac{t^2}{2}\Big]_0^1=2\sqrt2\cdot\frac12=\sqrt2$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\int_\gamma (x+y)\,ds=\sqrt{2}$. Nota che $\sqrt2$ è anche la lunghezza del segmento: qui la media di $x+y$ lungo il cammino vale $1$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Lunghezza come integrale di prima specie</span><span class="badge badge--base">Base</span></div>
+          <p>Ricavare la lunghezza di una circonferenza di raggio $R$ calcolando $\displaystyle\int_\gamma 1\,ds$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parametrizzo: $\mathbf{r}(t)=(R\cos t,\,R\sin t)$, $t\in[0,2\pi]$.</span>
+            <span class="esempio__passo">$\mathbf{r}'(t)=(-R\sin t,\,R\cos t)$ (derivo $R\cos t$ e $R\sin t$ rispetto a $t$). Il modulo: elevo al quadrato entrambe le componenti e sommo, $(-R\sin t)^2+(R\cos t)^2=R^2\sin^2t+R^2\cos^2 t$; raccolgo $R^2$ e uso l'identità fondamentale $\sin^2+\cos^2=1$: resta $R^2$. Quindi $|\mathbf{r}'(t)|=\sqrt{R^2}=R$.</span>
+            <span class="esempio__passo">$\displaystyle\int_0^{2\pi}1\cdot R\,dt=R\,[t]_0^{2\pi}=R(2\pi-0)=2\pi R$.</span>
+          </p>
+          <div class="esempio__risultato">Lunghezza $=2\pi R$: la formula della scuola media, riottenuta dall'integrale curvilineo. Un buon test di coerenza del metodo.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Massa di un filo elicoidale</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Un filo ha la forma dell'elica $\mathbf{r}(t)=(\cos t,\,\sin t,\,t)$, $t\in[0,2\pi]$, e densità lineare $\rho(x,y,z)=z$. Calcolarne la massa.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">La massa è l'integrale di prima specie della densità: $m=\displaystyle\int_\gamma \rho\,ds$.</span>
+            <span class="esempio__passo">$\mathbf{r}'(t)=(-\sin t,\,\cos t,\,1)$. Uso la formula dell'elemento d'arco in $\mathbb{R}^3$ (<span class="richiamo" data-sec="4.1">§4.1</span>), $ds=\sqrt{x'^2+y'^2+z'^2}\,dt$: sommo i quadrati, $\sin^2t+\cos^2t+1$, e la somma dei primi due vale $1$ per l'identità fondamentale. Quindi $|\mathbf{r}'(t)|=\sqrt{1+1}=\sqrt2$ (costante: l'elica si percorre a velocità uniforme).</span>
+            <span class="esempio__passo">Densità sulla curva: la densità è $\rho(x,y,z)=z$; <strong>sostituisco la terza componente della parametrizzazione</strong>, cioè $z=t$, e ottengo $\rho(\mathbf{r}(t))=t$ (le altre due coordinate non compaiono in $\rho$).</span>
+            <span class="esempio__passo">$m=\displaystyle\int_0^{2\pi} t\,\sqrt2\,dt=\sqrt2\Big[\frac{t^2}{2}\Big]_0^{2\pi}$. Sostituisco l'estremo: $\frac{(2\pi)^2}{2}=\frac{4\pi^2}{2}=2\pi^2$. Quindi $m=\sqrt2\cdot 2\pi^2=2\sqrt2\,\pi^2$.</span>
+          </p>
+          <div class="esempio__risultato">$m=2\sqrt{2}\,\pi^2\approx 27{,}9$. Il filo è più "pesante" in alto, dove $z$ è grande: la densità cresce con la quota.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Lavoro lungo una parabola</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il lavoro di $\mathbf{F}(x,y)=(y,\,x^2)$ lungo l'arco di parabola $y=x^2$ da $(0,0)$ a $(1,1)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parametrizzo il grafico nel modo più naturale: $\mathbf{r}(t)=(t,\,t^2)$, $t\in[0,1]$; allora $\mathbf{r}'(t)=(1,\,2t)$.</span>
+            <span class="esempio__passo">Campo sulla curva: $\mathbf{F}(\mathbf{r}(t))=\big(y(t),\,x(t)^2\big)=(t^2,\,t^2)$.</span>
+            <span class="esempio__passo">Prodotto scalare: $\mathbf{F}\cdot\mathbf{r}'=t^2\cdot 1+t^2\cdot 2t=t^2+2t^3$.</span>
+            <span class="esempio__passo">$\displaystyle\int_0^1\big(t^2+2t^3\big)dt=\Big[\frac{t^3}{3}+\frac{t^4}{2}\Big]_0^1=\frac13+\frac12=\frac56$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\int_\gamma \mathbf{F}\cdot d\mathbf{r}=\frac56$. Lavoro positivo: lungo questo cammino il campo "spinge" mediamente nel verso del moto.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Quando il percorso conta davvero</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Dato $\mathbf{F}(x,y)=(y,\,2x)$, calcolare il lavoro da $(0,0)$ a $(1,1)$ lungo (a) il segmento e (b) la parabola $y=x^2$. Che cosa si osserva?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Test preliminare: $P=y\Rightarrow P_y=1$; $Q=2x\Rightarrow Q_x=2$. Poiché $1\neq 2$ il campo <strong>non</strong> è chiuso, quindi non è conservativo: mi aspetto risultati diversi.</span>
+            <span class="esempio__passo">(a) Segmento: $\mathbf{r}(t)=(t,t)$, quindi $\mathbf{r}'=(1,1)$. Il campo sulla curva: in $\mathbf{F}=(y,2x)$ sostituisco $x=t$ e $y=t$, ottenendo $\mathbf{F}(\mathbf{r}(t))=(t,\,2t)$. Prodotto scalare componente per componente: $t\cdot1+2t\cdot1=3t$. Integrale: $\int_0^1 3t\,dt=3\Big[\frac{t^2}{2}\Big]_0^1=\frac32$.</span>
+            <span class="esempio__passo">(b) Parabola: $\mathbf{r}(t)=(t,t^2)$, quindi $\mathbf{r}'=(1,2t)$. Ora sostituisco $x=t$ e $y=t^2$ in $\mathbf{F}=(y,2x)$: la prima componente diventa $y=t^2$, la seconda $2x=2t$, cioè $\mathbf{F}(\mathbf{r}(t))=(t^2,\,2t)$. Prodotto scalare: $t^2\cdot 1+2t\cdot 2t=t^2+4t^2=5t^2$. Integrale: $\int_0^1 5t^2\,dt=5\Big[\frac{t^3}{3}\Big]_0^1=\frac53$.</span>
+          </p>
+          <div class="esempio__risultato">(a) $\frac32=1{,}5$ &nbsp;·&nbsp; (b) $\frac53\approx 1{,}67$. <strong>Valori diversi a parità di estremi</strong>: la conferma concreta che il campo non è conservativo. Da qui anche: $\oint=\frac53-\frac32=\frac16\neq 0$ sul cammino chiuso "parabola in andata, segmento a ritroso".</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Trovare il potenziale e usarlo</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Dato $\mathbf{F}(x,y)=\big(2xy+3,\ x^2-4y\big)$: verificare che è conservativo, determinare il potenziale e calcolare il lavoro da $A=(0,0)$ a $B=(1,2)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Dominio:</strong> le componenti sono polinomi, definiti su tutto $\mathbb{R}^2$, che è semplicemente connesso. Ottimo.</span>
+            <span class="esempio__passo"><strong>Chiusura:</strong> $P_y=\frac{\partial}{\partial y}(2xy+3)=2x$ e $Q_x=\frac{\partial}{\partial x}(x^2-4y)=2x$. Coincidono: per il teorema di Poincaré il campo è conservativo.</span>
+            <span class="esempio__passo"><strong>Passo 1.</strong> Da $U_x=P=2xy+3$ integro <em>rispetto a $x$</em>, trattando $y$ come una costante: $\int 2xy\,dx=2y\int x\,dx=2y\cdot\frac{x^2}{2}=x^2y$, e $\int 3\,dx=3x$. La "costante" d'integrazione non è un numero ma una funzione arbitraria $h(y)$, perché derivando in $x$ qualunque $h(y)$ sparisce. Quindi $U(x,y)=x^2y+3x+h(y)$.</span>
+            <span class="esempio__passo"><strong>Passo 2.</strong> Derivo l'espressione trovata rispetto a $y$ (ora è $x$ a fare da costante): $\frac{\partial}{\partial y}(x^2y)=x^2$, $\frac{\partial}{\partial y}(3x)=0$, $\frac{\partial}{\partial y}h(y)=h'(y)$. Quindi $U_y=x^2+h'(y)$, e impongo che sia uguale a $Q=x^2-4y$.</span>
+            <span class="esempio__passo"><strong>Passo 3.</strong> $x^2+h'(y)=x^2-4y$: tolgo $x^2$ da entrambi i membri e resta $h'(y)=-4y$ (le $x$ si sono semplificate, come deve accadere se il campo è davvero conservativo). Integro in $y$: $h(y)=\int(-4y)\,dy=-4\cdot\frac{y^2}{2}=-2y^2$.</span>
+            <span class="esempio__passo"><strong>Passo 4.</strong> Rimetto $h(y)$ al suo posto: $U(x,y)=x^2y+3x-2y^2\ (+c)$. Verifica: $U_x=2xy+3$ e $U_y=x^2-4y$, cioè $\nabla U=\mathbf{F}$. ✓</span>
+            <span class="esempio__passo"><strong>Passo 5.</strong> Applico il teorema fondamentale degli integrali curvilinei (<span class="richiamo" data-sec="4.5">§4.5</span>), $L=U(B)-U(A)$. Sostituisco $x=1,y=2$: $1^2\cdot2+3\cdot1-2\cdot2^2=2+3-8=-3$; e $U(0,0)=0$. Quindi $L=-3-0=-3$.</span>
+          </p>
+          <div class="esempio__risultato">$U(x,y)=x^2y+3x-2y^2$ e $L=-3$, <strong>qualunque sia il percorso</strong> da $(0,0)$ a $(1,2)$. Nessuna parametrizzazione, nessun integrale: solo due valutazioni e una sottrazione.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Potenziale in tre dimensioni</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Verificare che $\mathbf{F}(x,y,z)=(yz,\ xz,\ xy)$ è conservativo su $\mathbb{R}^3$, trovarne il potenziale e calcolare il lavoro da $(1,1,1)$ a $(2,3,4)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Chiusura (tre condizioni).</strong> $P_y=z$ e $Q_x=z$ ✓; $P_z=y$ e $R_x=y$ ✓; $Q_z=x$ e $R_y=x$ ✓. Dunque $\operatorname{rot}\mathbf{F}=\mathbf{0}$, e $\mathbb{R}^3$ è semplicemente connesso.</span>
+            <span class="esempio__passo"><strong>Passo 1.</strong> $U_x=yz\ \Rightarrow\ U=xyz+h(y,z)$.</span>
+            <span class="esempio__passo"><strong>Passo 2.</strong> $U_y=xz+h_y(y,z)\overset{!}{=}xz\ \Rightarrow\ h_y=0\ \Rightarrow\ h=k(z)$.</span>
+            <span class="esempio__passo"><strong>Passo 3.</strong> $U_z=xy+k'(z)\overset{!}{=}xy\ \Rightarrow\ k'(z)=0\ \Rightarrow\ k$ costante. Quindi $U(x,y,z)=xyz$.</span>
+            <span class="esempio__passo"><strong>Passo 4.</strong> $L=U(2,3,4)-U(1,1,1)=24-1=23$.</span>
+          </p>
+          <div class="esempio__risultato">$U(x,y,z)=xyz$ e $L=23$. In $\mathbb{R}^3$ le condizioni di chiusura da verificare diventano tre: sono le tre componenti di $\operatorname{rot}\mathbf{F}=\mathbf{0}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Chiuso ma non conservativo: il vortice</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Il campo $\mathbf{F}(x,y)=\left(\dfrac{-y}{x^2+y^2},\ \dfrac{x}{x^2+y^2}\right)$ è conservativo su $\Omega=\mathbb{R}^2\setminus\{(0,0)\}$? E sul semipiano $\{x\gt 0\}$?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Abbiamo già verificato che $P_y=Q_x=\dfrac{y^2-x^2}{(x^2+y^2)^2}$: il campo è <strong>chiuso</strong> su tutto $\Omega$.</span>
+            <span class="esempio__passo">Su $\Omega$ però la circuitazione lungo la circonferenza unitaria vale $2\pi\neq 0$: se fosse conservativo dovrebbe valere $0$. Quindi <strong>su $\Omega$ non è conservativo</strong>. Il motivo è che $\Omega$ ha un buco e non è semplicemente connesso.</span>
+            <span class="esempio__passo">Sul semipiano $\{x\gt 0\}$, invece, il dominio è convesso, dunque semplicemente connesso: per Poincaré il campo <strong>è</strong> conservativo lì.</span>
+            <span class="esempio__passo">Il potenziale su $\{x\gt0\}$ è $U(x,y)=\arctan\!\dfrac{y}{x}$. Verifichiamolo con la regola della catena, $\big(\arctan u\big)'=\dfrac{u'}{1+u^2}$, applicata con $u=\dfrac{y}{x}$.</span>
+            <span class="esempio__passo">Derivata in $x$: qui $y$ è costante e $\frac{y}{x}=y\cdot x^{-1}$, la cui derivata è $-y\,x^{-2}=-\frac{y}{x^2}$. Quindi $U_x=\dfrac{-y/x^2}{1+y^2/x^2}$. Per semplificare moltiplico numeratore e denominatore per $x^2$: sopra $-y$, sotto $x^2+y^2$. Ottengo $U_x=\dfrac{-y}{x^2+y^2}=P$ ✓.</span>
+            <span class="esempio__passo">Derivata in $y$: ora $x$ è costante e $\frac{\partial}{\partial y}\frac{y}{x}=\frac1x$. Quindi $U_y=\dfrac{1/x}{1+y^2/x^2}$; moltiplico di nuovo sopra e sotto per $x^2$ e ottengo $\dfrac{x}{x^2+y^2}=Q$ ✓.</span>
+          </p>
+          <div class="esempio__risultato">Non conservativo su $\mathbb{R}^2\setminus\{(0,0)\}$, conservativo su ogni semipiano. La morale: <strong>"conservativo" non è una proprietà del solo campo, ma della coppia campo + dominio.</strong> Il potenziale $\arctan(y/x)$ è l'angolo polare, che non si può definire con continuità facendo un giro completo attorno all'origine.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare il modulo $|\mathbf{r}'(t)|$ nella prima specie</div>
+          <p>L'errore più frequente in assoluto: scrivere $\int_\gamma f\,ds=\int_a^b f(\mathbf{r}(t))\,dt$, dimenticando il fattore $|\mathbf{r}'(t)|$. Così facendo si integra rispetto al <em>parametro</em> e non rispetto alla <em>lunghezza</em>, e il risultato perde ogni significato geometrico (dipenderebbe dalla parametrizzazione scelta!). <em>Come evitarlo</em>: ripeti mentalmente "$ds$ uguale modulo di erre primo $dt$" ogni volta che vedi un $ds$, e scrivi il fattore <strong>prima</strong> di sostituire la funzione.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Mettere il modulo anche nella seconda specie</div>
+          <p>L'errore simmetrico: scrivere $\int_\gamma \mathbf{F}\cdot d\mathbf{r}=\int_a^b\mathbf{F}(\mathbf{r}(t))\cdot|\mathbf{r}'(t)|\,dt$ — che per giunta non ha nemmeno senso, perché farebbe il prodotto scalare tra un vettore e un numero. Nella seconda specie compare $\mathbf{r}'(t)$ <strong>come vettore, senza modulo</strong>, perché serve la <em>direzione</em> del moto, non solo la velocità scalare. <em>Come evitarlo</em>: memorizza la coppia. Prima specie: $f$ scalare, $|\mathbf{r}'|$ con modulo, risultato indipendente dal verso. Seconda specie: $\mathbf{F}$ vettore, $\mathbf{r}'$ senza modulo, risultato che cambia segno col verso.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che $P_y=Q_x$ basti per concludere</div>
+          <p>È l'errore concettuale più grave del capitolo, e all'esame viene chiesto apposta. La chiusura è <strong>necessaria</strong>, non <strong>sufficiente</strong>: diventa sufficiente <em>solo</em> se il dominio è semplicemente connesso. Il campo vortice soddisfa $P_y=Q_x$ ovunque su $\mathbb{R}^2\setminus\{(0,0)\}$ e non è conservativo, perché ha circuitazione $2\pi$ attorno all'origine. <em>Come evitarlo</em>: scrivi <strong>sempre</strong> come primo rigo dell'esercizio il dominio del campo e chiediti se ha buchi. Solo dopo calcola le derivate.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Usare una "costante" $C$ invece della funzione $h(y)$</div>
+          <p>Nel Passo 1 del metodo del potenziale, integrando $U_x=P$ rispetto a $x$, molti scrivono "$+C$" come in Analisi 1. Sbagliato: rispetto a $x$, <strong>qualunque funzione della sola $y$ si comporta da costante</strong>. Se scrivi $+C$ perdi tutti i termini che dipendono solo da $y$ e il potenziale risulta incompleto (nell'Esempio 6 avresti perso il $-2y^2$). <em>Come evitarlo</em>: dopo l'integrazione in $x$ scrivi sempre $+h(y)$; dopo quella in $y$, $+g(x)$; in $\mathbb{R}^3$, $+h(y,z)$ e poi $+k(z)$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Ignorare l'orientazione della curva</div>
+          <p>Se il testo dice "dal punto $B$ al punto $A$" e tu parametrizzi da $A$ a $B$, il segno finale è sbagliato. Lo stesso vale per "percorsa in senso orario" quando la parametrizzazione standard $(\cos t,\sin t)$ è antioraria. <em>Come evitarlo</em>: sottolinea nel testo il verso richiesto; se hai parametrizzato al contrario, non rifare i conti, <strong>cambia semplicemente il segno del risultato</strong>. E ricorda: questo problema riguarda solo la seconda specie — nella prima specie il verso è irrilevante.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Applicare $U(B)-U(A)$ a un campo non conservativo</div>
+          <p>La formula del potenziale è comodissima, ma vale <strong>solo</strong> se il campo è conservativo. Applicarla a un campo qualunque (magari inventando un "potenziale" a occhio) è un errore che invalida l'intero esercizio, perché per quei campi il lavoro dipende dal percorso e non esiste alcuna $U$. <em>Come evitarlo</em>: nessuna scorciatoia senza il test. Se la chiusura fallisce, rassegnati e calcola l'integrale per parametrizzazione — è l'unica strada.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Prima di ogni calcolo, fai il test di conservatività</div>
+          <p>Davanti a un integrale di seconda specie, <strong>non partire mai parametrizzando</strong>. Spendi trenta secondi per calcolare $P_y$ e $Q_x$. Se coincidono e il dominio è semplicemente connesso, cerca il potenziale: risparmierai un'intera pagina di conti, soprattutto se la curva è spezzata in più tratti o è particolarmente brutta. Molti esercizi d'esame sono costruiti apposta con curve orribili e campi conservativi: chi si accorge della struttura risolve in tre righe, chi no si perde nei conti.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Su una curva chiusa con campo conservativo, la risposta è zero</div>
+          <p>Se vedi il simbolo $\oint$ (o leggi "lungo il bordo del quadrato", "lungo la circonferenza", "lungo il triangolo di vertici…") fai subito il test di chiusura. Campo conservativo + curva chiusa = <strong>$0$</strong>, senza calcolare nulla. È forse il risparmio di tempo più grande che questo capitolo ti offre. Unica trappola: controlla che la curva chiusa non giri attorno a un punto in cui il campo non è definito.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Scegli il percorso più comodo, non quello del testo</div>
+          <p>Se il campo è conservativo, il lavoro da $A$ a $B$ è lo stesso su qualunque cammino. Quindi, se non vuoi cercare il potenziale, <strong>sostituisci la curva data con una spezzata di segmenti paralleli agli assi</strong>: da $(x_A,y_A)$ a $(x_B,y_A)$ e poi a $(x_B,y_B)$. Sul primo tratto $dy=0$ e resta solo $\int P\,dx$; sul secondo $dx=0$ e resta solo $\int Q\,dy$. Due integrali elementari al posto di uno complicato.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconosci i potenziali "a vista"</div>
+          <p>Con un po' d'occhio molti potenziali si indovinano senza applicare la ricetta: $\mathbf{F}=(y,x)\Rightarrow U=xy$; $\ \mathbf{F}=(2x,2y)\Rightarrow U=x^2+y^2$; $\ \mathbf{F}=(yz,xz,xy)\Rightarrow U=xyz$; $\ \mathbf{F}=(e^x\cos y,\,-e^x\sin y)\Rightarrow U=e^x\cos y$. Il criterio è chiedersi: "di quale funzione queste componenti sono le derivate parziali?". Poi verifica in dieci secondi con $\nabla U$ — se torna, hai finito, e la verifica è a prova di errore.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sfrutta le quantità costanti sulla curva</div>
+          <p>Nella prima specie, prima di integrare guarda se l'integranda si semplifica <em>sulla curva</em>. Se $\gamma$ è la circonferenza di raggio $R$, allora su di essa $x^2+y^2=R^2$: un'integranda come $\sqrt{x^2+y^2}$ diventa la costante $R$ e l'integrale si riduce a $R\cdot\text{lunghezza}(\gamma)$. Stesso discorso per un campo radiale $\mathbf{F}=(x,y)$ lungo una circonferenza centrata nell'origine: è perpendicolare alla tangente in ogni punto, quindi il prodotto scalare è $0$ e il lavoro è nullo senza alcun conto.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Integrali curvilinei e campi conservativi</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Elemento d'arco</strong>
+              <ul><li>$ds=|\mathbf{r}'(t)|\,dt$</li><li>Spazio = velocità × tempo</li><li>$\int_\gamma 1\,ds$ = lunghezza</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Prima specie</strong>
+              <ul><li>$\int_\gamma f\,ds=\int_a^b f(\mathbf{r})|\mathbf{r}'|dt$</li><li>Massa di un filo</li><li>Con il MODULO</li><li>Non dipende dal verso</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Campi vettoriali</strong>
+              <ul><li>$\mathbf{F}=(P,Q)$: una freccia per punto</li><li>Vento, corrente, gravità</li><li>Si disegnano a griglia</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Seconda specie</strong>
+              <ul><li>$\int_\gamma\mathbf{F}\cdot d\mathbf{r}=\int_a^b\mathbf{F}\cdot\mathbf{r}'dt$</li><li>$=\int_\gamma P\,dx+Q\,dy$</li><li>È il LAVORO</li><li>SENZA modulo; cambia segno</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Conservativi</strong>
+              <ul><li>$\mathbf{F}=\nabla U$, $U$ = potenziale</li><li>$\int_\gamma\mathbf{F}\cdot d\mathbf{r}=U(B)-U(A)$</li><li>Indipendenza dal percorso</li><li>$\oint=0$ su curve chiuse</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Riconoscerli</strong>
+              <ul><li>Necessaria: $P_y=Q_x$ (rotore nullo)</li><li>NON basta: vortice</li><li>Poincaré: + semplicemente connesso</li><li>Potenziale per integrazione parziale</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Elemento d'arco</strong>: $ds=|\mathbf{r}'(t)|\,dt$. È la formula-madre di tutto il capitolo.</li>
+            <li><strong>Prima specie</strong>: $\displaystyle\int_\gamma f\,ds=\int_a^b f(\mathbf{r}(t))\,|\mathbf{r}'(t)|\,dt$. Significa <strong>massa di un filo</strong> di densità $f$; con $f\equiv 1$ dà la <strong>lunghezza</strong>. <strong>Non</strong> dipende dalla parametrizzazione né dall'orientazione.</li>
+            <li><strong>Campo vettoriale</strong>: $\mathbf{F}=(P,Q)$, una freccia in ogni punto (vento, corrente, gravità, campo elettrico).</li>
+            <li><strong>Seconda specie</strong>: $\displaystyle\int_\gamma\mathbf{F}\cdot d\mathbf{r}=\int_a^b\mathbf{F}(\mathbf{r}(t))\cdot\mathbf{r}'(t)\,dt=\int_\gamma P\,dx+Q\,dy$. È il <strong>lavoro</strong>: conta solo la componente della forza lungo il moto. <strong>Cambia segno</strong> invertendo l'orientazione.</li>
+            <li><strong>Campo conservativo</strong>: esiste $U$ con $\mathbf{F}=\nabla U$. Il potenziale $U$ è la <strong>primitiva dei campi vettoriali</strong>.</li>
+            <li><strong>Teorema fondamentale degli integrali curvilinei</strong>: $\displaystyle\int_\gamma\nabla U\cdot d\mathbf{r}=U(B)-U(A)$. Conseguenze: lavoro <strong>indipendente dal percorso</strong> e <strong>nullo su ogni curva chiusa</strong> ($\oint=0$).</li>
+            <li><strong>Condizione di chiusura</strong>: $\dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$ (in $\mathbb{R}^3$: $\operatorname{rot}\mathbf{F}=\mathbf{0}$). È <strong>necessaria</strong> ma <strong>non sufficiente</strong>: il vortice $\left(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2}\right)$ è chiuso su $\mathbb{R}^2\setminus\{(0,0)\}$ ma ha circuitazione $2\pi$.</li>
+            <li><strong>Teorema di Poincaré</strong>: chiuso + dominio <strong>semplicemente connesso</strong> (senza buchi) $\Rightarrow$ conservativo.</li>
+            <li><strong>Ricerca del potenziale</strong>: $U=\int P\,dx+h(y)$; poi imponi $U_y=Q$ per ricavare $h'(y)$; integra e verifica con $\nabla U$. La "costante" è una <strong>funzione</strong> delle altre variabili.</li>
+            <li><strong>Vita reale</strong>: la gravità è conservativa (stessa energia per due sentieri diversi), l'attrito no (dipende dalla lunghezza percorsa), la tensione elettrica è una differenza di potenziale.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\int_\gamma 1\,ds$, dove $\gamma$ è il segmento da $(0,0)$ a $(3,4)$, e verifica il risultato con la geometria.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Parametrizzo: $\mathbf{r}(t)=(3t,\,4t)$ con $t\in[0,1]$.</span>
+                <span class="esempio__passo">$\mathbf{r}'(t)=(3,4)$, quindi $|\mathbf{r}'(t)|=\sqrt{9+16}=5$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1 1\cdot 5\,dt=5$.</span>
+              </p>
+              <p><strong>$\displaystyle\int_\gamma 1\,ds=5$</strong>, che è proprio la distanza tra $(0,0)$ e $(3,4)$: il classico triangolo $3$–$4$–$5$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\int_\gamma x\,ds$ dove $\gamma$ è il segmento sull'asse $x$ da $(0,0)$ a $(1,0)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}(t)=(t,\,0)$, $t\in[0,1]$; $\mathbf{r}'(t)=(1,0)$ e $|\mathbf{r}'(t)|=1$, quindi $ds=dt$.</span>
+                <span class="esempio__passo">Sulla curva $x=t$, dunque l'integrale diventa $\displaystyle\int_0^1 t\,dt=\Big[\frac{t^2}{2}\Big]_0^1=\frac12$.</span>
+              </p>
+              <p><strong>$\displaystyle\int_\gamma x\,ds=\frac12$.</strong> Quando la curva giace sull'asse $x$ con $ds=dx$, l'integrale curvilineo si riduce a un normale integrale definito di Analisi 1.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola la lunghezza dell'arco di circonferenza di raggio $2$ centrata nell'origine, da $t=0$ a $t=\pi/2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}(t)=(2\cos t,\,2\sin t)$, $t\in[0,\pi/2]$.</span>
+                <span class="esempio__passo">$\mathbf{r}'(t)=(-2\sin t,\,2\cos t)$, quindi $|\mathbf{r}'(t)|=\sqrt{4\sin^2t+4\cos^2t}=2$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{\pi/2}2\,dt=2\cdot\frac{\pi}{2}=\pi$.</span>
+              </p>
+              <p><strong>Lunghezza $=\pi$.</strong> Coerente con la formula elementare: è un quarto di $2\pi R=4\pi$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola il lavoro del campo costante $\mathbf{F}=(1,2)$ lungo il segmento da $(0,0)$ a $(3,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}(t)=(3t,\,t)$, $t\in[0,1]$; $\mathbf{r}'(t)=(3,1)$.</span>
+                <span class="esempio__passo">$\mathbf{F}\cdot\mathbf{r}'=1\cdot 3+2\cdot 1=5$ (costante).</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1 5\,dt=5$.</span>
+              </p>
+              <p><strong>$L=5$.</strong> Controllo: con forza costante il lavoro è $\mathbf{F}\cdot\overrightarrow{AB}=(1,2)\cdot(3,1)=3+2=5$. La formula elementare della fisica è il caso particolare dell'integrale curvilineo.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\int_\gamma \big(x^2+y^2\big)\,ds$ dove $\gamma$ è la circonferenza unitaria percorsa una volta.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sulla circonferenza unitaria vale $x^2+y^2=1$: l'integranda è <strong>costante uguale a $1$</strong> lungo tutta la curva.</span>
+                <span class="esempio__passo">Quindi $\displaystyle\int_\gamma (x^2+y^2)\,ds=\int_\gamma 1\,ds=\text{lunghezza}(\gamma)=2\pi$.</span>
+                <span class="esempio__passo">Verifica per parametrizzazione: $\mathbf{r}(t)=(\cos t,\sin t)$, $|\mathbf{r}'|=1$, $\int_0^{2\pi}1\cdot 1\,dt=2\pi$.</span>
+              </p>
+              <p><strong>$\displaystyle\int_\gamma (x^2+y^2)\,ds=2\pi$.</strong> Cercare le quantità costanti sulla curva prima di calcolare fa risparmiare moltissimo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola la lunghezza di una spira dell'elica $\mathbf{r}(t)=(3\cos t,\,3\sin t,\,4t)$, con $t\in[0,2\pi]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}'(t)=(-3\sin t,\,3\cos t,\,4)$.</span>
+                <span class="esempio__passo">$|\mathbf{r}'(t)|=\sqrt{9\sin^2t+9\cos^2t+16}=\sqrt{9+16}=\sqrt{25}=5$, costante.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{2\pi}5\,dt=5\cdot 2\pi=10\pi$.</span>
+              </p>
+              <p><strong>Lunghezza $=10\pi\approx 31{,}4$.</strong> Interpretazione: "srotolando" la spira si ottiene l'ipotenusa di un triangolo di cateti $2\pi\cdot 3=6\pi$ (la circonferenza) e $8\pi$ (il dislivello), e infatti $\sqrt{36\pi^2+64\pi^2}=10\pi$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il lavoro del campo radiale $\mathbf{F}(x,y)=(x,y)$ lungo la semicirconferenza $\mathbf{r}(t)=(\cos t,\sin t)$, $t\in[0,\pi]$. Interpreta il risultato.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}'(t)=(-\sin t,\,\cos t)$ e $\mathbf{F}(\mathbf{r}(t))=(\cos t,\,\sin t)$.</span>
+                <span class="esempio__passo">Prodotto scalare: $\cos t\cdot(-\sin t)+\sin t\cdot\cos t=0$ in ogni punto.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{\pi}0\,dt=0$.</span>
+              </p>
+              <p><strong>$L=0$.</strong> Il campo radiale punta sempre lungo il raggio, mentre la tangente alla circonferenza è sempre perpendicolare al raggio: forza e moto sono ortogonali, quindi nessun lavoro. È il "vento di traverso" dell'analogia del carrello. (Coerente anche col fatto che $\mathbf{F}=\nabla\big(\tfrac{x^2+y^2}{2}\big)$ è conservativo e sulla circonferenza il potenziale resta costante.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Verifica che $\mathbf{F}(x,y)=\big(3x^2y,\ x^3+2y\big)$ è conservativo su $\mathbb{R}^2$ e determinane il potenziale.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Dominio</strong>: polinomi su $\mathbb{R}^2$, semplicemente connesso.</span>
+                <span class="esempio__passo"><strong>Chiusura</strong>: $P_y=3x^2$ e $Q_x=3x^2$. Coincidono, quindi per Poincaré il campo è conservativo.</span>
+                <span class="esempio__passo"><strong>Passo 1</strong>: $U_x=3x^2y\Rightarrow U=x^3y+h(y)$.</span>
+                <span class="esempio__passo"><strong>Passo 2</strong>: $U_y=x^3+h'(y)\overset{!}{=}x^3+2y\Rightarrow h'(y)=2y\Rightarrow h(y)=y^2$.</span>
+                <span class="esempio__passo"><strong>Verifica</strong>: $\nabla\big(x^3y+y^2\big)=(3x^2y,\ x^3+2y)$ ✓.</span>
+              </p>
+              <p><strong>$U(x,y)=x^3y+y^2+c$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il lavoro di $\mathbf{F}(x,y)=\big(y^2,\ 2xy\big)$ da $(0,0)$ a $(2,3)$ lungo un percorso qualsiasi, giustificando perché la richiesta ha senso.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$P_y=2y$ e $Q_x=2y$: il campo è chiuso su $\mathbb{R}^2$, che è semplicemente connesso, quindi è <strong>conservativo</strong>. Il lavoro dipende solo dagli estremi: la domanda è ben posta.</span>
+                <span class="esempio__passo">Passo 1: da $U_x=P=y^2$ integro rispetto a $x$ tenendo $y$ costante; $y^2$ è un fattore costante, quindi $\int y^2dx=y^2\cdot x$. Aggiungo la funzione arbitraria della sola $y$: $U=xy^2+h(y)$.</span>
+                <span class="esempio__passo">Passo 2: derivo in $y$ (ora $x$ è costante): $\frac{\partial}{\partial y}(xy^2)=2xy$, quindi $U_y=2xy+h'(y)$. Impongo $U_y=Q=2xy$: i due $2xy$ si cancellano e resta $h'(y)=0$, cioè $h$ costante. Quindi $U(x,y)=xy^2$.</span>
+                <span class="esempio__passo">$L=U(2,3)-U(0,0)$. Sostituisco $x=2$, $y=3$: $2\cdot 3^2=2\cdot 9=18$; e $U(0,0)=0$. Quindi $L=18$.</span>
+              </p>
+              <p><strong>$L=18$</strong> su qualunque curva che congiunga $(0,0)$ a $(2,3)$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\oint_\gamma \big(y\,dx-x\,dy\big)$ lungo la circonferenza unitaria percorsa in senso antiorario, e deduci se il campo è conservativo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Qui $P=y$ e $Q=-x$. Test: $P_y=1$, $Q_x=-1$: <strong>non</strong> coincidono, quindi il campo non è conservativo. Mi aspetto circuitazione diversa da zero.</span>
+                <span class="esempio__passo">Parametrizzo in senso antiorario: $x=\cos t$, $y=\sin t$, $t\in[0,2\pi]$, da cui $dx=-\sin t\,dt$ e $dy=\cos t\,dt$.</span>
+                <span class="esempio__passo">$y\,dx-x\,dy=\sin t(-\sin t)\,dt-\cos t(\cos t)\,dt=-\big(\sin^2t+\cos^2t\big)dt=-dt$.</span>
+                <span class="esempio__passo">$\displaystyle\oint_\gamma=\int_0^{2\pi}(-1)\,dt=-2\pi$.</span>
+              </p>
+              <p><strong>$\displaystyle\oint_\gamma (y\,dx-x\,dy)=-2\pi\neq 0$</strong>, dunque il campo <strong>non è conservativo</strong>: coerente con il test di chiusura. (Se avessi percorso la circonferenza in senso orario avresti ottenuto $+2\pi$: l'orientazione conta.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dato $\mathbf{F}(x,y,z)=\big(2xy,\ x^2+2yz,\ y^2\big)$, verifica che è conservativo, trova il potenziale e calcola il lavoro da $(0,0,0)$ a $(1,2,3)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Chiusura</strong> (tre condizioni): $P_y=2x=Q_x$ ✓; $P_z=0=R_x$ ✓; $Q_z=2y=R_y$ ✓. Il rotore è nullo e $\mathbb{R}^3$ è semplicemente connesso.</span>
+                <span class="esempio__passo"><strong>Passo 1</strong>: $U_x=2xy\Rightarrow U=x^2y+h(y,z)$.</span>
+                <span class="esempio__passo"><strong>Passo 2</strong>: derivo $U=x^2y+h(y,z)$ rispetto a $y$ e ottengo $U_y=x^2+h_y(y,z)$; impongo che sia uguale a $Q=x^2+2yz$. Le $x^2$ si cancellano e resta $h_y=2yz$. Integro rispetto a $y$ tenendo $z$ costante: $\int 2yz\,dy=2z\cdot\frac{y^2}{2}=y^2z$, più una funzione arbitraria della sola $z$. Quindi $h(y,z)=y^2z+k(z)$.</span>
+                <span class="esempio__passo"><strong>Passo 3</strong>: $U_z=y^2+k'(z)\overset{!}{=}y^2\Rightarrow k'(z)=0$. Quindi $U(x,y,z)=x^2y+y^2z$.</span>
+                <span class="esempio__passo"><strong>Passo 4</strong>: $L=U(1,2,3)-U(0,0,0)=\big(1\cdot 2+4\cdot 3\big)-0=2+12=14$.</span>
+              </p>
+              <p><strong>$U(x,y,z)=x^2y+y^2z+c$ &nbsp; e &nbsp; $L=14$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\int_\gamma x\,ds$ dove $\gamma$ è l'arco di parabola $y=x^2$ da $(0,0)$ a $(1,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}(t)=(t,\,t^2)$, $t\in[0,1]$; $\mathbf{r}'(t)=(1,\,2t)$ e $|\mathbf{r}'(t)|=\sqrt{1+4t^2}$.</span>
+                <span class="esempio__passo">L'integrale diventa $\displaystyle\int_0^1 t\sqrt{1+4t^2}\,dt$.</span>
+                <span class="esempio__passo">Sostituzione $u=1+4t^2$, da cui $du=8t\,dt$ cioè $t\,dt=\frac{du}{8}$; gli estremi diventano $u=1$ e $u=5$.</span>
+                <span class="esempio__passo">$\displaystyle\frac18\int_1^5\sqrt{u}\,du$. La primitiva di $\sqrt u=u^{1/2}$ è $\frac{u^{3/2}}{3/2}=\frac23u^{3/2}$, quindi ottengo $\frac18\cdot\frac23\Big[u^{3/2}\Big]_1^5=\frac{1}{12}\big(5^{3/2}-1^{3/2}\big)$. Infine $5^{3/2}=5\cdot 5^{1/2}=5\sqrt5$ e $1^{3/2}=1$: il risultato è $\frac{1}{12}\big(5\sqrt5-1\big)$.</span>
+              </p>
+              <p><strong>$\displaystyle\int_\gamma x\,ds=\frac{5\sqrt5-1}{12}\approx 0{,}848$.</strong> Qui il fattore $|\mathbf{r}'|$ non è costante: dimenticarlo avrebbe dato $\frac12$, un risultato del tutto diverso.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un filo semicircolare di raggio $a$ giace nel semipiano superiore, con centro nell'origine, e ha densità lineare $\rho(x,y)=y$. Calcola (a) la lunghezza del filo e (b) la sua massa.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Parametrizzo: $\mathbf{r}(t)=(a\cos t,\,a\sin t)$, $t\in[0,\pi]$ (semipiano superiore).</span>
+                <span class="esempio__passo">$\mathbf{r}'(t)=(-a\sin t,\,a\cos t)$, quindi $|\mathbf{r}'(t)|=a$ e $ds=a\,dt$.</span>
+                <span class="esempio__passo">(a) Lunghezza: $\displaystyle\int_0^{\pi}a\,dt=\pi a$ (metà circonferenza ✓).</span>
+                <span class="esempio__passo">(b) Densità sulla curva: $\rho=y(t)=a\sin t$. Massa: $\displaystyle\int_0^{\pi}a\sin t\cdot a\,dt=a^2\big[-\cos t\big]_0^{\pi}=a^2(1+1)=2a^2$.</span>
+              </p>
+              <p><strong>(a) Lunghezza $=\pi a$; &nbsp; (b) massa $=2a^2$.</strong> La densità media è $\dfrac{2a^2}{\pi a}=\dfrac{2a}{\pi}$, cioè l'ordinata media del semicerchio: il filo è più pesante in alto, più leggero vicino all'asse $x$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dato $\mathbf{F}(x,y)=\big(e^x\cos y,\ -e^x\sin y\big)$: (a) stabilisci se è conservativo su $\mathbb{R}^2$; (b) determina il potenziale; (c) calcola il lavoro da $(0,0)$ a $(1,\pi)$; (d) calcola la circuitazione lungo il bordo del quadrato di vertici $(0,0),(1,0),(1,1),(0,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) $P_y=\frac{\partial}{\partial y}\big(e^x\cos y\big)=-e^x\sin y$ e $Q_x=\frac{\partial}{\partial x}\big(-e^x\sin y\big)=-e^x\sin y$: coincidono. Dominio $\mathbb{R}^2$ semplicemente connesso $\Rightarrow$ <strong>conservativo</strong>.</span>
+                <span class="esempio__passo">(b) $U_x=e^x\cos y\Rightarrow U=e^x\cos y+h(y)$. Poi $U_y=-e^x\sin y+h'(y)\overset{!}{=}-e^x\sin y\Rightarrow h'(y)=0$. Quindi $U(x,y)=e^x\cos y$.</span>
+                <span class="esempio__passo">(c) Per il teorema fondamentale degli integrali curvilinei basta valutare $U$ agli estremi: $L=U(1,\pi)-U(0,0)=e^1\cos\pi-e^0\cos 0$. Dai valori notevoli, $\cos\pi=-1$ e $\cos0=1$, mentre $e^0=1$: quindi $L=e\cdot(-1)-1\cdot 1=-e-1$.</span>
+                <span class="esempio__passo">(d) La curva è <strong>chiusa</strong> e il campo è conservativo: la circuitazione è $0$ senza alcun calcolo.</span>
+              </p>
+              <p><strong>(a) Sì; (b) $U=e^x\cos y+c$; (c) $L=-e-1\approx-3{,}72$; (d) $\displaystyle\oint=0$.</strong> Il lavoro negativo dice che il campo si è mediamente opposto al moto lungo quel tragitto.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determina per quale valore del parametro $\alpha\in\mathbb{R}$ il campo $\mathbf{F}(x,y)=\big(\alpha xy,\ x^2+y^2\big)$ è conservativo su $\mathbb{R}^2$; per tale $\alpha$ trova il potenziale e calcola il lavoro da $(0,0)$ a $(1,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il dominio è $\mathbb{R}^2$, semplicemente connesso: per Poincaré basta imporre la chiusura.</span>
+                <span class="esempio__passo">$P_y=\alpha x$ e $Q_x=2x$. L'uguaglianza $\alpha x=2x$ deve valere per ogni $x$, quindi <strong>$\alpha=2$</strong>.</span>
+                <span class="esempio__passo">Con $\alpha=2$: $U_x=2xy\Rightarrow U=x^2y+h(y)$.</span>
+                <span class="esempio__passo">$U_y=x^2+h'(y)\overset{!}{=}x^2+y^2\Rightarrow h'(y)=y^2\Rightarrow h(y)=\frac{y^3}{3}$.</span>
+                <span class="esempio__passo">$U(x,y)=x^2y+\frac{y^3}{3}$. Lavoro: $U(1,1)-U(0,0)=1+\frac13=\frac43$.</span>
+              </p>
+              <p><strong>$\alpha=2$, &nbsp; $U(x,y)=x^2y+\dfrac{y^3}{3}+c$, &nbsp; $L=\dfrac43$.</strong> Per $\alpha\neq 2$ il campo non è conservativo e il lavoro dipenderebbe dal percorso scelto.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 10.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un compagno afferma: "un campo $\mathbf{F}=(P,Q)$ di classe $C^1$ che soddisfa $\partial P/\partial y=\partial Q/\partial x$ è sicuramente conservativo". Spiega perché l'affermazione è falsa, esibisci un controesempio completo e indica l'ipotesi mancante.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Perché è falsa.</strong> La condizione $P_y=Q_x$ è solo <em>necessaria</em>: si ottiene derivando due volte il potenziale e applicando il teorema di Schwarz. Il ragionamento non si inverte: la chiusura è un'informazione <em>locale</em>, mentre la conservatività è una proprietà <em>globale</em> del dominio.</span>
+                <span class="esempio__passo"><strong>Controesempio.</strong> Su $\Omega=\mathbb{R}^2\setminus\{(0,0)\}$ prendo $\mathbf{F}=\left(\dfrac{-y}{x^2+y^2},\ \dfrac{x}{x^2+y^2}\right)$, di classe $C^\infty$ su $\Omega$.</span>
+                <span class="esempio__passo"><strong>Verifica della chiusura.</strong> $P_y=\dfrac{y^2-x^2}{(x^2+y^2)^2}=Q_x$: la condizione è soddisfatta in ogni punto di $\Omega$.</span>
+                <span class="esempio__passo"><strong>Ma non è conservativo.</strong> Sulla circonferenza unitaria $\mathbf{r}(t)=(\cos t,\sin t)$ <em>sostituisco $x=\cos t$ e $y=\sin t$</em> dentro il campo: il denominatore diventa $\cos^2t+\sin^2t=1$, quindi $\mathbf{F}(\mathbf{r}(t))=(-\sin t,\ \cos t)$. Derivando la parametrizzazione, $\mathbf{r}'(t)=(-\sin t,\ \cos t)$: è lo stesso vettore. Il prodotto scalare (prima per prima più seconda per seconda) vale $\sin^2t+\cos^2t=1$, quindi $\displaystyle\oint_\gamma\mathbf{F}\cdot d\mathbf{r}=\int_0^{2\pi}1\,dt=2\pi\neq 0$. Se fosse conservativo la circuitazione sarebbe nulla: assurdo.</span>
+                <span class="esempio__passo"><strong>Ipotesi mancante.</strong> Il dominio deve essere <strong>semplicemente connesso</strong> (teorema di Poincaré). Qui $\Omega$ ha un buco nell'origine e la circonferenza non si può contrarre a un punto restando in $\Omega$.</span>
+              </p>
+              <p><strong>Conclusione: chiuso $\not\Rightarrow$ conservativo; chiuso $+$ dominio semplicemente connesso $\Rightarrow$ conservativo.</strong> Si noti che lo stesso campo <em>è</em> conservativo su ogni semipiano (per esempio $\{x\gt 0\}$, dove $U=\arctan(y/x)$): la conservatività dipende dal dominio, non solo dalla formula del campo.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Data la parametrizzazione $\mathbf{r}(t)$ di una curva, l'elemento d'arco $ds$ vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\mathbf{r}'(t)\,dt$ (il vettore velocità)</button>
+              <button class="quiz-option" data-correct="true">$|\mathbf{r}'(t)|\,dt$ (il modulo del vettore velocità)</button>
+              <button class="quiz-option" data-correct="false">$dt$, perché il parametro misura già la lunghezza</button>
+              <button class="quiz-option" data-correct="false">$\mathbf{r}(t)\,dt$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$ds=|\mathbf{r}'(t)|\,dt$: è "spazio = velocità × tempo" scritto per un istante infinitesimo. Il <strong>modulo</strong> serve perché $ds$ è una lunghezza, quindi un numero positivo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Se $\mathbf{F}=\nabla U$ e $\gamma$ va da $A$ a $B$, allora $\displaystyle\int_\gamma \mathbf{F}\cdot d\mathbf{r}$ vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$U(A)-U(B)$</button>
+              <button class="quiz-option" data-correct="true">$U(B)-U(A)$</button>
+              <button class="quiz-option" data-correct="false">$U(B)+U(A)$</button>
+              <button class="quiz-option" data-correct="false">$\nabla U(B)-\nabla U(A)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È il teorema fondamentale degli integrali curvilinei: <strong>arrivo meno partenza</strong>, esattamente come $\int_a^b G'=G(b)-G(a)$. Il potenziale gioca il ruolo della primitiva.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Invertendo l'orientazione di una curva $\gamma$, che cosa succede ai due tipi di integrale curvilineo?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Cambiano segno entrambi</button>
+              <button class="quiz-option" data-correct="false">Non cambia nessuno dei due</button>
+              <button class="quiz-option" data-correct="true">La prima specie non cambia, la seconda specie cambia segno</button>
+              <button class="quiz-option" data-correct="false">La prima specie cambia segno, la seconda specie non cambia</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Nella prima specie compare $|\mathbf{r}'|$ e il modulo cancella il segno: la massa di un filo non dipende da dove inizi a pesarlo. Nella seconda compare $\mathbf{r}'$ senza modulo: il vento a favore all'andata diventa contrario al ritorno.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) La condizione $\dfrac{\partial P}{\partial y}=\dfrac{\partial Q}{\partial x}$ per un campo $C^1$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">necessaria e sufficiente per la conservatività, sempre</button>
+              <button class="quiz-option" data-correct="true">necessaria sempre, sufficiente solo se il dominio è semplicemente connesso</button>
+              <button class="quiz-option" data-correct="false">sufficiente sempre, ma non necessaria</button>
+              <button class="quiz-option" data-correct="false">né necessaria né sufficiente</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È necessaria (per il teorema di Schwarz applicato a $U$), ma non basta: il campo vortice la soddisfa su $\mathbb{R}^2\setminus\{(0,0)\}$ e non è conservativo. Il teorema di Poincaré aggiunge l'ipotesi mancante: dominio <strong>semplicemente connesso</strong>.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) In un campo conservativo, il lavoro lungo qualunque curva chiusa è nullo.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: se la curva è chiusa allora $B=A$, dunque $U(B)-U(A)=0$. È il motivo per cui un giro completo in montagna non cambia la tua energia potenziale gravitazionale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) L'integrale curvilineo di prima specie $\displaystyle\int_\gamma f\,ds$ dipende dall'orientazione con cui si percorre la curva.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: la prima specie è <strong>invariante</strong> sia per riparametrizzazione sia per cambio di verso, perché $|\mathbf{r}'|$ è sempre positivo. È la seconda specie a cambiare segno.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Il campo $\mathbf{F}(x,y)=\left(\dfrac{-y}{x^2+y^2},\ \dfrac{x}{x^2+y^2}\right)$ è conservativo su $\mathbb{R}^2\setminus\{(0,0)\}$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: è il controesempio classico. È <em>chiuso</em> ($P_y=Q_x$ ovunque), ma la circuitazione sulla circonferenza unitaria vale $2\pi\neq 0$. Il dominio ha un buco e non è semplicemente connesso.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Ponendo $f\equiv 1$, l'integrale curvilineo di prima specie restituisce la lunghezza della curva.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: $\displaystyle\int_\gamma 1\,ds=\int_a^b|\mathbf{r}'(t)|\,dt$, che è esattamente la formula della lunghezza d'arco. Un filo di densità $1$ ha massa pari alla propria lunghezza.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="potenziale|potenziale scalare|il potenziale">
+            <p class="quiz-question__testo">9. (Completamento) La funzione scalare $U$ tale che $\mathbf{F}=\nabla U$ si chiama ______ del campo: è l'analogo della primitiva di Analisi 1.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si chiama <strong>potenziale</strong> (scalare). Come la primitiva, è definito a meno di una costante additiva su ogni componente connessa del dominio.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="circuitazione|la circuitazione">
+            <p class="quiz-question__testo">10. (Completamento) L'integrale di un campo vettoriale lungo una curva <em>chiusa</em>, indicato con $\oint$, si chiama ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback><strong>Circuitazione</strong>: misura quanto il campo spinge complessivamente facendo un giro completo. Per un campo conservativo vale sempre $0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="connesso|semplicemente connesso|connesso semplicemente">
+            <p class="quiz-question__testo">11. (Completamento) Un aperto in cui ogni curva chiusa si può contrarre a un punto senza uscirne (cioè "senza buchi") si dice semplicemente ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Semplicemente <strong>connesso</strong>. È l'ipotesi che manca alla sola chiusura per garantire la conservatività (teorema di Poincaré).</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue in che senso il teorema fondamentale degli integrali curvilinei è "lo stesso" teorema fondamentale del calcolo visto in Analisi 1.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: in Analisi 1, se $G$ è una primitiva di $f$ (cioè $G'=f$), allora $\int_a^b f=G(b)-G(a)$: per calcolare l'integrale basta valutare la primitiva agli estremi dell'intervallo. Qui accade la stessa identica cosa in più variabili: se $U$ è un potenziale di $\mathbf{F}$ (cioè $\nabla U=\mathbf{F}$), allora $\int_\gamma \mathbf{F}\cdot d\mathbf{r}=U(B)-U(A)$, cioè basta valutare il potenziale agli estremi della curva. La corrispondenza è punto per punto: la derivata $G'$ diventa il gradiente $\nabla U$, la primitiva diventa il potenziale, l'intervallo $[a,b]$ diventa la curva $\gamma$, gli estremi $a,b$ diventano i punti $A,B$. Anche la dimostrazione lo conferma: ponendo $g(t)=U(\mathbf{r}(t))$, la regola della catena mostra che $g'(t)=\nabla U\cdot\mathbf{r}'$, quindi il lavoro è $\int_a^b g'(t)\,dt$ e si conclude proprio applicando Newton–Leibniz a $g$. La conseguenza concettuale è la stessa: l'integrale di una "derivata" dipende solo dal bordo, cioè dagli estremi — ed è per questo che il lavoro di un campo conservativo non dipende dal percorso.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché la condizione $\partial P/\partial y=\partial Q/\partial x$ non basta per concludere che un campo è conservativo? Descrivi il controesempio del campo vortice e spiega qual è l'ipotesi mancante.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: la condizione $P_y=Q_x$ si dimostra <em>partendo</em> dall'esistenza del potenziale e applicando il teorema di Schwarz alle derivate seconde miste di $U$; è quindi una condizione necessaria, ma la dimostrazione non si può invertire. Il motivo profondo è che la chiusura è una proprietà <strong>locale</strong> (si verifica punto per punto), mentre la conservatività è una proprietà <strong>globale</strong>, che riguarda tutte le curve del dominio. Il controesempio è il campo vortice $\mathbf{F}=\left(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2}\right)$ definito su $\mathbb{R}^2$ privato dell'origine: un calcolo diretto mostra che $P_y=Q_x=\frac{y^2-x^2}{(x^2+y^2)^2}$, quindi il campo è chiuso ovunque nel suo dominio; tuttavia, parametrizzando la circonferenza unitaria con $(\cos t,\sin t)$ si trova $\mathbf{F}\cdot\mathbf{r}'=1$ e dunque circuitazione $\oint=2\pi\neq 0$, mentre un campo conservativo darebbe $0$ su ogni curva chiusa. L'ipotesi mancante è quella del teorema di Poincaré: il dominio deve essere <strong>semplicemente connesso</strong>, cioè senza buchi, così che ogni curva chiusa possa essere contratta a un punto rimanendo nel dominio. Il piano bucato non lo è, perché la circonferenza gira attorno al foro. Infatti, restringendo lo stesso campo a un semipiano (per esempio $x\gt 0$), che è convesso e quindi semplicemente connesso, il campo diventa conservativo con potenziale $U=\arctan(y/x)$.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="09-integrali-tripli-cambi-variabile.html"><span class="dir">← Capitolo precedente</span><strong>Integrali tripli e cambi di variabile</strong></a>
+        <a class="next" href="11-integrali-superficie-campi-vettoriali.html"><span class="dir">Capitolo successivo →</span><strong>Integrali di superficie e campi vettoriali</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

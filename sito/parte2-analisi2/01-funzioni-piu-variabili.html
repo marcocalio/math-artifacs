@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1. Funzioni di più variabili — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 1</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html" class="is-active">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 1 di 14</span>
+        </div>
+        <h1>Funzioni di più variabili</h1>
+        <p class="subtitle">In Analisi 1 ogni funzione aveva un solo ingresso. Ma la temperatura di una stanza dipende da <em>dove</em> sei (tre coordinate), il prezzo di una casa da metri quadri <em>e</em> distanza dal centro, la quota di una montagna da latitudine <em>e</em> longitudine. Qui l'input diventa un punto del piano (o dello spazio) e il grafico smette di essere una curva: diventa una superficie. È il primo, vero salto di dimensione dell'Analisi.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve di Analisi 1</div>
+          <p>Prima di partire, quattro cose da avere in tasca. Te le rispiego come al bar: frasi corte, zero formalismi.</p>
+          <p><strong>1. <a href="../parte1-analisi1/03-funzioni.html">Funzione</a></strong> — è una macchinetta. Tu ci metti dentro un numero, lei ne sputa fuori uno solo. Se rimetti lo stesso numero, riesce lo stesso risultato. Sempre.<br>
+          <em>Immagine mentale</em>: il distributore automatico. Premi B4, esce quella merendina lì. Non a volte una e a volte un'altra.</p>
+          <p><strong>2. <a href="../parte1-analisi1/03-funzioni.html">Dominio</a></strong> — sono i numeri che la macchinetta accetta. Alcuni proprio non li digerisce: dividere per zero no, radice quadrata di un numero negativo no, logaritmo di zero o di un negativo no.<br>
+          <em>Immagine mentale</em>: i tasti grigi del distributore, quelli che puoi premere quanto vuoi ma non succede niente.</p>
+          <p><strong>3. <a href="../parte1-analisi1/03-funzioni.html">Grafico</a></strong> — è la fotografia della macchinetta. Segni sull'orizzontale quello che entra, sulla verticale quello che esce, metti un puntino per ogni coppia. Alla fine i puntini formano una curva, e la curva ti racconta tutto a colpo d'occhio.<br>
+          <em>Immagine mentale</em>: il tracciato del battito cardiaco sul monitor dell'ospedale.</p>
+          <p><strong>4. <a href="../parte1-analisi1/02-valore-assoluto-topologia.html">Intorno</a></strong> — è "la zona lì attorno". Scegli un punto, scegli un raggio piccolo, e prendi tutto quello che sta più vicino di quel raggio. Serve ogni volta che si dice "avvicinandosi a...".<br>
+          <em>Immagine mentale</em>: il cerchietto azzurro del GPS che dice "sei più o meno qui dentro".</p>
+          <p>Tutto qui. Se queste quattro immagini ti sono chiare, il capitolo fila liscio: dobbiamo solo <strong>raddoppiare gli ingressi</strong>.</p>
+        </div>
+
+        <p>Immagina di essere in una stanza d'inverno. Vicino al termosifone fa caldo, vicino alla finestra fa freddo, in mezzo una via di mezzo. <strong>La temperatura non è un numero solo: è un numero diverso in ogni punto.</strong> Se vuoi descriverla con una macchinetta, quella macchinetta deve accettare <em>due</em> ingressi (dove sono: quanto a destra, quanto avanti) e restituirne <em>uno</em> (quanti gradi).</p>
+        <p>Ecco l'idea di tutto il capitolo, in una riga: <strong>una funzione di più variabili è una macchinetta che prende un punto e restituisce un numero</strong>. Prima le davi un numero, ora le dai una posizione. Si scrive $f(x,y)$ e si legge "effe di ics e ipsilon".</p>
+        <p>Il prezzo da pagare è che <strong>il disegno cambia dimensione</strong>. In Analisi 1 il grafico era una curva in un foglio: un asse per l'ingresso, uno per l'uscita, due assi in tutto. Adesso gli ingressi sono due, quindi servono <em>tre</em> assi: due per la posizione sul pavimento e uno, verticale, per il valore. Il grafico non è più una curva: è un <strong>telo</strong>, una superficie sospesa sopra il pavimento, più alta dove la funzione vale tanto e più bassa dove vale poco.</p>
+        <p>E qui nasce il problema pratico: disegnare una superficie su un foglio piatto è difficile. Gli alpinisti hanno risolto questa esatta difficoltà due secoli fa, e la loro soluzione — le <strong>curve di quota</strong> della mappa escursionistica — è esattamente lo strumento matematico che studieremo con il nome di <span class="glossario-term" data-term="insieme-di-livello">curve di livello</span>. Tutto il capitolo ruota attorno a questi tre oggetti: <strong>dominio</strong> (dove la macchinetta funziona), <strong>grafico</strong> (il telo nello spazio), <strong>livelli</strong> (la mappa piatta del telo).</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>quasi nulla, nel mondo reale, dipende da una sola cosa</strong>. Il consumo di un'auto dipende da velocità, peso e pendenza. La resa di un campo dipende da pioggia, concime e temperatura. Il rendimento di un investimento dipende da tasso, durata e rischio. Una funzione di una variabile è un modello che, il più delle volte, è troppo povero per raccontare la realtà. Le funzioni di più variabili sono il linguaggio minimo per parlarne.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema di <em>trattare insieme</em> più cause che agiscono contemporaneamente. Si potrebbe pensare di cavarsela studiando una variabile alla volta e "sommando" i risultati, ma non funziona: le variabili si influenzano a vicenda. L'indice di calore percepito non è "un po' di temperatura più un po' di umidità": a 20 °C l'umidità è quasi irrilevante, a 35 °C è decisiva. Serve un oggetto matematico che guardi <strong>la coppia</strong> $(x,y)$ nel suo insieme, non le due componenti separatamente.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo capitolo è la <em>grammatica</em> di tutta la Parte 2. Ogni concetto che incontrerai dopo è la versione "a più ingressi" di qualcosa che già conosci, e poggia su ciò che impari qui:</p>
+        <ul>
+          <li>Per fare i <a href="02-limiti-continuita-piu-variabili.html">limiti in più variabili</a> ti servono le <strong>palle</strong> e gli <strong>intorni</strong> di questo capitolo: senza, non sai nemmeno cosa voglia dire "avvicinarsi" in un piano.</li>
+          <li>Per capire le <a href="03-derivate-parziali.html">derivate parziali</a> devi prima saper immaginare il grafico come una superficie e saperlo tagliare con dei piani: è la <em>tecnica delle sezioni</em> della sezione 4.6.</li>
+          <li>Per i <a href="05-hessiano-massimi-minimi.html">massimi e minimi</a> servono gli insiemi <span class="glossario-term" data-term="insieme-chiuso">chiusi</span> e limitati (i <em>compatti</em>): è l'ipotesi del <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, che senza topologia non si può nemmeno enunciare.</li>
+          <li>Per gli <a href="08-integrali-doppi.html">integrali doppi</a> dovrai descrivere regioni del piano con disequazioni e disegnarle: è esattamente ciò che facciamo qui con i domini.</li>
+        </ul>
+        <p>In altre parole: se questo capitolo lo studi bene, i prossimi tredici sono in discesa. Se lo studi male, ti trascinerai per mesi la sensazione di "non vedere" cosa stai calcolando.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🗺️</span> La mappa del sentiero è una funzione di due variabili</div>
+          <p>Prendi una <strong>carta escursionistica</strong>. È un foglio piatto, eppure ti dice com'è fatta una montagna in tre dimensioni. Come fa? Con le <strong>curve di quota</strong>: linee sottili, ciascuna etichettata con un numero — 1200, 1300, 1400 metri. Ogni linea unisce tutti i punti che stanno <em>alla stessa altezza</em>.</p>
+          <p>Traduciamo in matematica. La montagna è la funzione $h(x,y)$ = "quota del terreno nel punto di coordinate $(x,y)$": due ingressi (dove sei sulla mappa), un'uscita (quanti metri sul livello del mare). Il <strong>grafico</strong> di $h$ è la montagna vera, quella che ti fa sudare. La <strong>carta</strong> è l'insieme delle sue <strong>curve di livello</strong>.</p>
+          <p>E c'è di più: la carta ti dice anche la <em>fatica</em>. Dove le curve sono <strong>fitte</strong>, guadagni 100 metri di quota in pochi metri di cammino: parete ripida. Dove sono <strong>larghe</strong>, il terreno è quasi pianeggiante. Questa lettura "densità delle curve = ripidità" è, in anticipo, il concetto di <a href="04-gradiente.html">gradiente</a>: leggere una mappa è già fare Analisi 2 senza saperlo.</p>
+        </div>
+        <p>Lo stesso schema si ripresenta ovunque, con nomi diversi:</p>
+        <ul>
+          <li><strong>Temperatura in una stanza</strong>: $T(x,y)$ dà i gradi in ogni punto del pavimento. Le curve di livello si chiamano <em>isoterme</em> e sono quelle che vedi nelle mappe del meteo, colorate dal blu al rosso. Se aggiungi anche l'altezza dal suolo diventa $T(x,y,z)$: una funzione di <em>tre</em> variabili, e i livelli diventano superfici (l'aria calda che ristagna sotto il soffitto è una di queste).</li>
+          <li><strong>Altitudine del terreno</strong>: $h(x,y)$, l'esempio della carta. È anche ciò che sta dietro al rilievo ombreggiato di una mappa satellitare.</li>
+          <li><strong>Prezzo di una casa</strong>: $P(m, d)$ = prezzo in funzione dei metri quadri $m$ e della distanza $d$ dal centro. Cresce con $m$, cala con $d$, e le due cose interagiscono (in centro ogni metro quadro in più costa molto più che in periferia). Le curve di livello sono le combinazioni "stesso prezzo": 60 m² vicino al centro oppure 110 m² in periferia. Le agenzie immobiliari, senza dirlo, ragionano su curve di livello.</li>
+          <li><strong>Indice di calore percepito</strong>: $I(T, U)$, dove $T$ è la temperatura e $U$ l'umidità relativa. È la funzione che il telefono usa per dirti "30 °C, percepiti 38". Anche qui le tabelle che trovi online sono, letteralmente, una funzione di due variabili stampata a griglia.</li>
+          <li><strong>Pressione atmosferica</strong>: le <em>isobare</em> delle previsioni del tempo sono curve di livello di $p(x,y)$. E quando il meteorologo dice "isobare strette, arriva vento forte" sta usando, ancora una volta, la regola "curve fitte = variazione rapida".</li>
+        </ul>
+        <p>Morale: le funzioni di più variabili non sono un'astrazione da matematici. Sono già dentro il telefono che hai in tasca, nel navigatore, nel bollettino meteo e nella carta del CAI che porti nello zaino. Questo capitolo ti dà solo le parole precise per dire cose che, in fondo, sai già leggere.</p>
+      </section>
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizione">4.1 Che cos'è una funzione di due (o più) variabili</h3>
+        <p>Partiamo dall'intuizione, come sempre. Una funzione di due variabili è una regola che <strong>a ogni punto di una regione del piano associa un numero</strong>. Punto dentro, numero fuori. Nient'altro.</p>
+        <p>Ora mettiamola in simboli, spiegando ogni pezzo la prima volta che compare.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Funzione reale di due variabili reali.</em> Sia $A$ un sottoinsieme non vuoto di $\mathbb{R}^2$. Una <strong><span class="glossario-term" data-term="funzione-piu-variabili">funzione di due variabili</span></strong> è una legge</p>
+          <div class="formula-block">$$f : A \subseteq \mathbb{R}^2 \longrightarrow \mathbb{R}, \qquad (x,y) \longmapsto z = f(x,y)$$</div>
+          <p>che associa a <em>ogni</em> coppia $(x,y) \in A$ <em>uno e un solo</em> numero reale $z$. L'insieme $A$ si chiama <span class="glossario-term" data-term="dominio">dominio</span>, l'insieme $\mathbb{R}$ di arrivo si chiama <span class="glossario-term" data-term="codominio">codominio</span>, e l'insieme dei valori effettivamente assunti si chiama <span class="glossario-term" data-term="immagine-funzione">immagine</span>.</p>
+        </div>
+        <p><strong>Il dizionario dei simboli nuovi</strong>, uno per uno:</p>
+        <ul>
+          <li>$\mathbb{R}^2$ si legge "erre due" ed è l'insieme di tutte le <strong>coppie ordinate</strong> di numeri reali, cioè tutti i punti del piano cartesiano. "Ordinate" significa che $(1,2)$ e $(2,1)$ sono punti diversi: l'ordine conta.</li>
+          <li>$\subseteq$ si legge "è contenuto in" (o "è sottoinsieme di"): $A \subseteq \mathbb{R}^2$ vuol dire che $A$ è una porzione del piano, eventualmente tutto il piano.</li>
+          <li>La freccia lunga $\longrightarrow$ collega dominio e codominio: dice <em>da dove a dove</em> lavora la funzione. La freccia con la stanghetta $\longmapsto$ si legge "va in" e descrive invece <em>la singola trasformazione</em>: la coppia $(x,y)$ va nel numero $f(x,y)$.</li>
+          <li>$(x,y)$ sono le <strong>variabili indipendenti</strong> (quelle che scegli tu), $z$ è la <strong>variabile dipendente</strong> (quella che ti ritrovi).</li>
+        </ul>
+        <p>Un nome che sentirai spesso: una funzione di questo tipo si chiama anche <strong>campo scalare</strong>. "Campo" perché assegna qualcosa a ogni punto di una regione, "scalare" perché quel qualcosa è un semplice numero (uno scalare) e non un vettore. La temperatura in una stanza è un campo scalare; la velocità del vento, che ha direzione e verso, sarà invece un <em>campo vettoriale</em> (<a href="11-integrali-superficie-campi-vettoriali.html">Capitolo 11</a>).</p>
+
+        <h4>Il quadro generale: da $\mathbb{R}^n$ a $\mathbb{R}^m$</h4>
+        <p>Due ingressi non sono il punto d'arrivo: sono solo il primo passo. In generale si considera</p>
+        <div class="formula-block">$$f : A \subseteq \mathbb{R}^n \longrightarrow \mathbb{R}^m$$</div>
+        <p>dove $n$ è il numero di ingressi e $m$ il numero di uscite. Tutta l'Analisi che studierai rientra in questo schema; cambia solo la coppia $(n,m)$:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$n$ (ingressi)</th><th>$m$ (uscite)</th><th>Come si chiama</th><th>Esempio tipico</th><th>Dove si studia</th></tr></thead>
+          <tbody>
+            <tr><td>$1$</td><td>$1$</td><td>funzione reale di variabile reale</td><td>$f(x)=x^2$</td><td>tutta l'<a href="../parte1-analisi1/03-funzioni.html">Analisi 1</a></td></tr>
+            <tr><td>$2$ o più</td><td>$1$</td><td>campo scalare</td><td>$T(x,y)$, temperatura</td><td><strong>questo capitolo</strong></td></tr>
+            <tr><td>$1$</td><td>$2$ o più</td><td>curva (funzione a valori vettoriali)</td><td>$\gamma(t)=(\cos t,\ \sin t)$</td><td><a href="07-curve-superfici.html">Capitolo 7</a></td></tr>
+            <tr><td>$2$ o più</td><td>$2$ o più</td><td>campo vettoriale / trasformazione</td><td>$F(x,y)=(-y,\ x)$</td><td><a href="11-integrali-superficie-campi-vettoriali.html">Capitolo 11</a></td></tr>
+          </tbody>
+        </table>
+        <p>Una comodità enorme: una funzione a valori in $\mathbb{R}^m$ si può sempre spezzare nelle sue $m$ <strong>componenti</strong>, che sono funzioni a valori reali. Per esempio $F(x,y) = \big(x^2-y,\ xy\big)$ è la coppia delle due funzioni scalari $F_1(x,y)=x^2-y$ e $F_2(x,y)=xy$. Morale: <strong>capito bene il caso $m=1$, il resto si ottiene per pezzi</strong>. Ecco perché ci concentriamo su $f:\mathbb{R}^2\to\mathbb{R}$.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché proprio due variabili?</div>
+          <p>Non perché siano più importanti di tre o di dieci, ma perché <strong>due è l'unico caso che si può ancora disegnare</strong>: due ingressi più un'uscita fanno tre dimensioni, e tre dimensioni le vediamo. Con tre ingressi servirebbero quattro assi, e la fantasia si ferma. Quasi tutti i concetti che vedrai con $n=2$ si estendono parola per parola a $n$ qualsiasi: cambia il disegno, non la sostanza.</p>
+        </div>
+
+        <h3 id="teoria-dominio">4.2 Il dominio: come si determina e come si <em>disegna</em></h3>
+        <p>Quando la funzione è data da una formula e nessuno specifica dove è definita, per convenzione si prende il <strong>dominio naturale</strong>: l'insieme di tutte le coppie $(x,y)$ per cui la formula ha senso. Le regole sono <em>le stesse</em> di Analisi 1, non ce n'è nemmeno una nuova:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Se nella formula compare...</th><th>Devi imporre</th><th>Tipo di condizione</th></tr></thead>
+          <tbody>
+            <tr><td>una frazione $\dfrac{N(x,y)}{D(x,y)}$</td><td>$D(x,y) \neq 0$</td><td>esclusione di una curva</td></tr>
+            <tr><td>una radice di indice pari $\sqrt{R(x,y)}$</td><td>$R(x,y) \geq 0$</td><td>disuguaglianza larga (bordo incluso)</td></tr>
+            <tr><td>un logaritmo $\ln\big(L(x,y)\big)$</td><td>$L(x,y) &gt; 0$</td><td>disuguaglianza stretta (bordo escluso)</td></tr>
+            <tr><td>$\arcsin\big(g\big)$ oppure $\arccos\big(g\big)$</td><td>$-1 \leq g(x,y) \leq 1$</td><td>doppia disuguaglianza larga</td></tr>
+            <tr><td>$\tan\big(g\big)$</td><td>$g(x,y) \neq \frac{\pi}{2}+k\pi$</td><td>esclusione di curve</td></tr>
+            <tr><td>$\big(B(x,y)\big)^{\alpha}$ con $\alpha$ reale non intero</td><td>$B(x,y) &gt; 0$</td><td>disuguaglianza stretta</td></tr>
+          </tbody>
+        </table>
+        <p>Quello che cambia — ed è il vero salto — è <strong>il risultato</strong>. In una variabile il dominio era un'unione di intervalli sulla retta. Qui ogni condizione è una disequazione in due incognite, e il suo insieme di soluzioni è una <strong>regione del piano</strong>. Il dominio è l'<em>intersezione</em> di tutte queste regioni: una zona, non una lista di intervalli. Va quindi <strong>disegnato</strong>, e il disegno è parte integrante della risposta (all'esame, un dominio senza disegno vale metà).</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🖊️</span> Procedura in 4 mosse per disegnare un dominio</div>
+          <p><strong>(1) Elenca le condizioni.</strong> Leggi la formula pezzo per pezzo e scrivi tutte le disequazioni/esclusioni necessarie, unendole con "e" (sistema).</p>
+          <p><strong>(2) Disegna i bordi.</strong> Sostituisci ogni $\geq$, $\leq$, $&gt;$, $&lt;$, $\neq$ con un $=$: ottieni delle <em>curve</em> (rette, circonferenze, parabole, iperboli) che dividono il piano in regioni. Conviene tratteggiarle se il bordo è escluso, disegnarle piene se è incluso.</p>
+          <p><strong>(3) Scegli il lato con il test del punto.</strong> Prendi un punto qualsiasi <em>non</em> sul bordo, comodo da calcolare (spesso l'origine $(0,0)$). Sostituiscilo nella disequazione: se la soddisfa, la regione buona è quella che lo contiene; se non la soddisfa, è l'altra.</p>
+          <p><strong>(4) Interseca e ombreggia.</strong> Il dominio è la parte di piano che soddisfa <em>tutte</em> le condizioni insieme. Coloriamola, e scriviamola anche in formule con la notazione degli insiemi.</p>
+        </div>
+        <p>Tre bordi ricorrono così spesso che conviene riconoscerli a colpo d'occhio:</p>
+        <ul>
+          <li>$ax+by+c=0$ è una <strong>retta</strong>; la disequazione corrispondente dà un <strong>semipiano</strong>.</li>
+          <li>$x^2+y^2=r^2$ è una <strong>circonferenza</strong> di centro l'origine e raggio $r$; $x^2+y^2 &lt; r^2$ è il <strong>disco aperto</strong> (l'interno), $x^2+y^2 &gt; r^2$ è l'<strong>esterno</strong>. Più in generale $(x-x_0)^2+(y-y_0)^2=r^2$ ha centro $(x_0,y_0)$.</li>
+          <li>$y=x^2$ (o $y = ax^2+bx+c$) è una <strong>parabola</strong>; $y &gt; x^2$ è la regione "interna", quella che contiene l'asse $y$ positivo.</li>
+        </ul>
+
+        <svg viewBox="0 0 420 240" style="max-width:460px;margin:1.4em auto;display:block;" role="img" aria-label="Disegno del dominio della funzione radice di 9 meno x quadro meno y quadro: il disco chiuso di centro l'origine e raggio 3">
+          <line x1="30" y1="120" x2="390" y2="120" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="210" y1="15" x2="210" y2="225" stroke="var(--color-border)" stroke-width="1.5"/>
+          <circle cx="210" cy="120" r="88" fill="var(--color-primary-light)" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <circle cx="210" cy="120" r="4" fill="currentColor"/>
+          <text x="300" y="112" font-size="13" font-weight="700" fill="var(--color-primary)">3</text>
+          <text x="380" y="112" font-size="13" fill="var(--color-text-muted)">x</text>
+          <text x="218" y="26" font-size="13" fill="var(--color-text-muted)">y</text>
+          <text x="150" y="118" font-size="13" font-weight="700" fill="var(--color-primary)">dominio</text>
+          <text x="120" y="215" font-size="12" fill="var(--color-text-muted)">bordo pieno = incluso</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Il dominio di $f(x,y)=\sqrt{9-x^2-y^2}$: il disco chiuso di raggio $3$. La circonferenza è disegnata piena perché la condizione è $\geq$, quindi i punti del bordo appartengono al dominio.</p>
+
+        <h3 id="teoria-grafico">4.3 Il grafico: una superficie nello spazio</h3>
+        <p>Prima l'immagine, poi la formula. Immagina il dominio $A$ steso sul pavimento, e immagina di piantare in ogni suo punto $(x,y)$ un bastoncino verticale alto $f(x,y)$ (se il valore è negativo, il bastoncino scende sotto il pavimento). Le punte di tutti questi bastoncini, prese insieme, formano un <strong>telo sospeso</strong>: quello è il grafico.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Grafico.</em> Il grafico di $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ è l'insieme</p>
+          <div class="formula-block">$$\mathrm{graf}(f) \;=\; \big\{ (x,y,z) \in \mathbb{R}^3 \;:\; (x,y)\in A,\ \ z = f(x,y) \big\}$$</div>
+          <p>cioè un sottoinsieme dello <strong>spazio</strong> $\mathbb{R}^3$, non del piano. Si tratta di una <strong>superficie</strong>, che si proietta esattamente su $A$ quando la si schiaccia sul piano $xy$.</p>
+        </div>
+        <p>Il simbolo $\{\,\cdot\ :\ \cdot\,\}$ si legge "l'insieme dei ... tali che ...": a sinistra dei due punti c'è la forma degli elementi, a destra la condizione che devono soddisfare.</p>
+        <p>Due osservazioni che evitano metà degli errori futuri:</p>
+        <ul>
+          <li><strong>Le dimensioni tornano sempre così</strong>: $n$ variabili indipendenti $+\ 1$ valore $=$ grafico in $\mathbb{R}^{n+1}$. Con $n=1$ avevi una curva nel piano $\mathbb{R}^2$; con $n=2$ hai una superficie in $\mathbb{R}^3$; con $n=3$ avresti un'"ipersuperficie" in $\mathbb{R}^4$, che nessuno sa disegnare (ed è il motivo per cui, da tre variabili in su, si usano solo i livelli).</li>
+          <li><strong>Non tutte le superfici sono grafici.</strong> Perché una superficie sia il grafico di una funzione, ogni retta verticale deve incontrarla al massimo <em>una volta</em> — è il test della retta verticale di Analisi 1, promosso in tre dimensioni. Una sfera non lo supera (una verticale la buca due volte), e infatti la sfera <em>non</em> è il grafico di una funzione: lo sono separatamente la sua metà superiore e la sua metà inferiore.</li>
+        </ul>
+        <p>Resta il problema pratico: una superficie disegnata in prospettiva su un foglio è spesso illeggibile, e a mano libera è quasi impossibile. Per questo si usano due strumenti complementari, che vediamo subito: gli <strong>insiemi di livello</strong> (4.4) e le <strong>sezioni</strong> (4.6).</p>
+
+        <h3 id="teoria-livelli">4.4 Curve e insiemi di livello</h3>
+        <p>Riprendiamo la carta escursionistica. La curva "1300 m" unisce tutti i punti della mappa in cui il terreno sta a 1300 metri. In matematica si fa esattamente questo: si fissa un valore e si guarda <em>dove</em> la funzione lo assume.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="insieme-di-livello">Insieme di livello</span>.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e sia $c\in\mathbb{R}$ una costante fissata (la <em>quota</em>). L'insieme di livello $c$ è</p>
+          <div class="formula-block">$$L_c \;=\; \big\{ (x,y)\in A \;:\; f(x,y) = c \big\} \ \subseteq\ \mathbb{R}^2$$</div>
+          <p>Quando $L_c$ è effettivamente una curva (il caso più frequente) si parla di <strong>curva di livello</strong>. Per una funzione di tre variabili $f(x,y,z)$ lo stesso insieme è in generale una <strong>superficie di livello</strong> in $\mathbb{R}^3$.</p>
+        </div>
+        <p>Attenzione alla differenza cruciale, che è la fonte numero uno di confusione: <strong>il grafico vive in $\mathbb{R}^3$, le curve di livello vivono in $\mathbb{R}^2$</strong>, cioè nello stesso piano del dominio. Geometricamente, $L_c$ si ottiene tagliando il grafico con il piano orizzontale $z=c$ e poi <em>lasciando cadere</em> la curva di intersezione sul pavimento. È la carta stampata: piatta, ma piena di informazioni sul rilievo.</p>
+
+        <svg viewBox="0 0 440 250" style="max-width:480px;margin:1.4em auto;display:block;" role="img" aria-label="Curve di livello concentriche di una funzione a forma di collina, con quote crescenti verso il centro">
+          <line x1="25" y1="220" x2="415" y2="220" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="35" y1="15" x2="35" y2="232" stroke="var(--color-border)" stroke-width="1.5"/>
+          <ellipse cx="200" cy="120" rx="115" ry="78" fill="none" stroke="var(--color-primary)" stroke-width="2" opacity="0.45"/>
+          <ellipse cx="200" cy="120" rx="86" ry="58" fill="none" stroke="var(--color-primary)" stroke-width="2" opacity="0.6"/>
+          <ellipse cx="200" cy="120" rx="57" ry="39" fill="none" stroke="var(--color-primary)" stroke-width="2" opacity="0.75"/>
+          <ellipse cx="200" cy="120" rx="30" ry="21" fill="none" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <circle cx="200" cy="120" r="4" fill="var(--color-danger)"/>
+          <text x="196" y="112" font-size="11" font-weight="700" fill="var(--color-danger)">▲</text>
+          <text x="318" y="124" font-size="12" fill="var(--color-text-muted)">c = 1</text>
+          <text x="290" y="124" font-size="12" fill="var(--color-text-muted)">2</text>
+          <text x="262" y="124" font-size="12" fill="var(--color-text-muted)">3</text>
+          <text x="234" y="124" font-size="12" fill="var(--color-text-muted)">4</text>
+          <path d="M 355 60 L 322 96" stroke="var(--color-secondary)" stroke-width="1.6" fill="none"/>
+          <text x="330" y="52" font-size="12" fill="var(--color-secondary)">curve fitte = pendio ripido</text>
+          <text x="60" y="205" font-size="12" fill="var(--color-secondary)">curve larghe = quasi pianeggiante</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Le curve di livello di una "collina". Il picco è al centro; la distanza fra due curve consecutive misura quanto è ripido il terreno.</p>
+
+        <p><strong>Come si leggono le curve di livello</strong> — quattro regole pratiche che vale la pena memorizzare:</p>
+        <ul>
+          <li><strong>Curve chiuse concentriche che si stringono</strong>: c'è una cima (massimo) o una conca (minimo) al centro. Per capire quale dei due, guarda se le quote crescono o calano andando verso l'interno.</li>
+          <li><strong>Curve fitte</strong>: la funzione varia molto su poco spazio, pendenza forte. <strong>Curve larghe</strong>: variazione lenta, zona piatta.</li>
+          <li><strong>Curve che si incrociano formando una X</strong>: non è un errore di disegno, è un <span class="glossario-term" data-term="punto-di-sella">punto di sella</span> — sali in una direzione e scendi nell'altra (lo vedremo con $z=x^2-y^2$).</li>
+          <li><strong>Livello vuoto</strong>: se $L_c=\varnothing$ vuol dire semplicemente che la funzione quel valore non lo assume mai; l'insieme dei $c$ per cui $L_c \neq \varnothing$ è esattamente l'<span class="glossario-term" data-term="immagine-funzione">immagine</span> di $f$. È un modo rapidissimo per calcolarla.</li>
+        </ul>
+        <p>E una proprietà strutturale, che dimostreremo nella <a href="#dimostrazioni">sezione 5</a>: <strong>due curve di livello di quote diverse non si incontrano mai</strong>. Sulla carta escursionistica infatti la curva dei 1300 e quella dei 1400 non possono toccarsi: significherebbe che in uno stesso punto il terreno sta a due altezze diverse.</p>
+        <h3 id="teoria-superfici">4.5 Le superfici notevoli da riconoscere a memoria</h3>
+        <p>All'esame non ti verrà chiesto di disegnare superfici esotiche: circolano sempre le stesse sei o sette. Impararle a riconoscere dalla formula è un investimento che rende tantissimo.</p>
+
+        <p><strong>1) Il piano: $z = ax+by+c$.</strong> È la superficie più semplice, l'analogo della retta. Le curve di livello $ax+by+c=k$ sono <strong>rette parallele fra loro</strong>, equidistanti se le quote sono equidistanti: una "rampa" inclinata uniformemente, come un tetto spiovente. Caso particolare: $z=c$ costante è un piano orizzontale.</p>
+
+        <p><strong>2) Il paraboloide ellittico: $z = x^2+y^2$.</strong> È la conca per eccellenza. Per trovare i livelli pongo $f(x,y)=c$, cioè scrivo l'equazione $x^2+y^2=c$; la confronto con l'equazione della circonferenza di centro l'origine, $x^2+y^2=r^2$ (<span class="richiamo" data-sec="4.2">§4.2</span>), e vedo che le due coincidono se $r^2=c$, da cui $r=\sqrt c$. Le curve di livello $x^2+y^2=c$ sono dunque <strong>circonferenze</strong> di raggio $\sqrt{c}$ per $c &gt; 0$, un solo punto (l'origine) per $c=0$, e l'insieme vuoto per $c &lt; 0$ (una somma di quadrati non può essere negativa) — quindi l'immagine è $[0,+\infty)$. Il punto $(0,0)$ è un <strong>minimo assoluto</strong>: vale $0$, e altrove la funzione è positiva. <em>Immagine mentale</em>: una parabola $z=x^2$ fatta ruotare attorno all'asse $z$, cioè una coppa da champagne. Con coefficienti diversi, $z=\frac{x^2}{a^2}+\frac{y^2}{b^2}$, le circonferenze diventano ellissi (da cui il nome).</p>
+
+        <p><strong>3) Il paraboloide iperbolico (la sella): $z = x^2-y^2$.</strong> Il pezzo forte del capitolo. Il segno meno cambia tutto: lungo l'asse $x$ (cioè per $y=0$) la funzione vale $x^2$ e <em>sale</em>; lungo l'asse $y$ (cioè per $x=0$) vale $-y^2$ e <em>scende</em>. Nell'origine, quindi, la funzione ha un minimo se la guardi in una direzione e un massimo se la guardi nell'altra: non è né l'uno né l'altro, ed è il prototipo del <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>. Le curve di livello si trovano ponendo $f(x,y)=c$, cioè $x^2-y^2=c$: per $c\neq0$ divido entrambi i membri per $c$ e ottengo $\frac{x^2}{c}-\frac{y^2}{c}=1$, che è la forma canonica di un'<strong>iperbole</strong>. Per $c=0$ resta $x^2-y^2=0$, che si spezza con la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2) in $(x-y)(x+y)=0$: un prodotto è nullo se lo è un fattore, quindi $y=x$ oppure $y=-x$. Il livello zero degenera così nella coppia di rette $y=\pm x$, cioè nella famosa "X".</p>
+
+        <svg viewBox="0 0 420 250" style="max-width:470px;margin:1.4em auto;display:block;" role="img" aria-label="Schizzo prospettico della sella z uguale a x quadro meno y quadro, con le due sezioni principali a forma di U e di arco rovesciato">
+          <path d="M 40 170 Q 160 266 280 170" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <path d="M 140 110 Q 260 206 380 110" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <path d="M 40 170 Q 90 44 140 110" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <path d="M 280 170 Q 330 44 380 110" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <path d="M 90 92 Q 210 188 330 92" fill="none" stroke="var(--color-primary)" stroke-width="2.8"/>
+          <path d="M 160 218 Q 210 92 260 158" fill="none" stroke="var(--color-secondary)" stroke-width="2.8"/>
+          <circle cx="210" cy="140" r="5.5" fill="var(--color-danger)"/>
+          <text x="45" y="88" font-size="12" font-weight="700" fill="var(--color-primary)">lungo x: sale (U)</text>
+          <text x="258" y="212" font-size="12" font-weight="700" fill="var(--color-secondary)">lungo y: scende</text>
+          <text x="220" y="136" font-size="12" font-weight="700" fill="var(--color-danger)">sella</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">La sella $z=x^2-y^2$: nell'origine la funzione ha un minimo lungo una direzione e un massimo lungo l'altra. È la forma di una sella da cavallo — o di una patatina fritta arricciata.</p>
+
+        <p><strong>4) Il cono: $z = \sqrt{x^2+y^2}$.</strong> La quantità $\sqrt{x^2+y^2}$ è la <em>distanza del punto $(x,y)$ dall'origine</em> (fra un attimo lo vedremo per bene). Quindi questa funzione dice "quanto sei lontano dal centro": cresce in modo uniforme in tutte le direzioni. Per i livelli pongo $f(x,y)=c$, cioè $\sqrt{x^2+y^2}=c$ (che ha soluzioni solo se $c\geq0$, perché una radice quadrata non è mai negativa); elevo al quadrato entrambi i membri — lecito perché sono entrambi non negativi — e ottengo $x^2+y^2=c^2$. Confrontando con $x^2+y^2=r^2$ leggo $r^2=c^2$, cioè $r=c$. Le curve di livello sono dunque ancora circonferenze $x^2+y^2=c^2$, ma stavolta di raggio $c$ e non $\sqrt c$, quindi <strong>equidistanti</strong> per quote equidistanti (nel paraboloide invece si infittivano). La superficie è la metà superiore di un cono con vertice nell'origine: un cappello da mago. Nota bene: nel vertice la superficie ha una <em>punta</em>, non è liscia — sarà il nostro primo esempio di funzione continua ma non differenziabile (<a href="03-derivate-parziali.html">Capitolo 3</a>).</p>
+
+        <p><strong>5) La sfera: $x^2+y^2+z^2 = R^2$.</strong> È l'insieme dei punti dello spazio a distanza $R$ dall'origine. <strong>Non è il grafico di una funzione</strong> (fallisce il test della retta verticale), ma si spezza in due grafici: la semisfera superiore $z=\sqrt{R^2-x^2-y^2}$ e quella inferiore $z=-\sqrt{R^2-x^2-y^2}$, entrambe definite sul disco chiuso $x^2+y^2\leq R^2$. Le curve di livello della semisfera superiore sono circonferenze che si fanno <em>più fitte</em> avvicinandosi al bordo: infatti lì la calotta diventa quasi verticale.</p>
+
+        <p><strong>6) Il cilindro: $x^2+y^2 = R^2$ (in $\mathbb{R}^3$).</strong> Attenzione al tranello: nel piano questa equazione è una circonferenza, ma nello spazio la $z$ non compare, quindi <em>è libera</em>: prendi la circonferenza e la trascini su e giù lungo tutto l'asse $z$. Ottieni un tubo infinito. Anche questo non è il grafico di una funzione $z=f(x,y)$. Vale la regola generale: <strong>in $\mathbb{R}^3$, quando una variabile non compare nell'equazione, la superficie è un cilindro</strong> generato traslando la curva lungo l'asse della variabile mancante. Così $z=x^2$ (senza $y$) è un <em>cilindro parabolico</em>: una grondaia.</p>
+
+        <table class="tabella-comparativa">
+          <thead><tr><th>Equazione</th><th>Nome</th><th>Curve di livello</th><th>Immagine mentale</th></tr></thead>
+          <tbody>
+            <tr><td>$z=ax+by+c$</td><td>piano</td><td>rette parallele</td><td>tetto spiovente</td></tr>
+            <tr><td>$z=x^2+y^2$</td><td>paraboloide ellittico</td><td>circonferenze che si infittiscono</td><td>coppa, conca</td></tr>
+            <tr><td>$z=x^2-y^2$</td><td>paraboloide iperbolico</td><td>iperboli $+$ una X per $c=0$</td><td>sella, patatina</td></tr>
+            <tr><td>$z=\sqrt{x^2+y^2}$</td><td>cono (falda superiore)</td><td>circonferenze equidistanti</td><td>cappello da mago</td></tr>
+            <tr><td>$x^2+y^2+z^2=R^2$</td><td>sfera (non è un grafico)</td><td>—</td><td>pallone</td></tr>
+            <tr><td>$x^2+y^2=R^2$ in $\mathbb{R}^3$</td><td>cilindro (non è un grafico)</td><td>—</td><td>tubo infinito</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="teoria-sezioni">4.6 La tecnica delle sezioni</h3>
+        <p>Idea in una frase: <strong>se non riesci a immaginare una superficie intera, tagliala a fette e guarda le fette</strong>. È quello che fa il medico con una TAC, o il macellaio con il prosciutto. Ogni fetta è una curva in un piano, e le curve sappiamo disegnarle da Analisi 1.</p>
+        <p>I tre tagli standard, con i tre piani coordinati (e i loro paralleli):</p>
+        <ul>
+          <li><strong>Taglio orizzontale, $z=c$</strong>: ottieni l'equazione $f(x,y)=c$, cioè esattamente la <em>curva di livello</em> di quota $c$. Serve a capire la "pianta" della superficie.</li>
+          <li><strong>Taglio verticale, $y=k$</strong>: sostituisci $y=k$ nella formula e ottieni $z=f(x,k)$, che è una funzione della sola $x$ — una curva ordinaria, da studiare con gli strumenti di Analisi 1. Serve a capire il "profilo" visto di fronte.</li>
+          <li><strong>Taglio verticale, $x=k$</strong>: analogamente $z=f(k,y)$, curva nella sola $y$. È il profilo visto di lato.</li>
+        </ul>
+        <p><strong>Esempio guidato: capire $z=x^2-y^2$ senza vederla.</strong> Facciamo i tre tagli e mettiamo insieme i pezzi.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Taglio $y=0$: resta $z=x^2$, una parabola con la concavità verso l'alto. Attraversando la superficie in direzione $x$, quindi, <strong>si sale</strong> da entrambi i lati.</span>
+          <span class="esempio__passo">Taglio $x=0$: resta $z=-y^2$, una parabola con la concavità verso il basso. In direzione $y$, quindi, <strong>si scende</strong> da entrambi i lati.</span>
+          <span class="esempio__passo">Taglio $z=c$ con $c \neq 0$: resta $x^2-y^2=c$, un'iperbole. Per $c=0$ resta $x^2=y^2$, cioè $y=x$ oppure $y=-x$: due rette incrociate.</span>
+          <span class="esempio__passo">Conclusione: nell'origine la superficie sale in una direzione e scende nell'altra. È una sella, e l'origine è un punto di sella. Le due rette $y=\pm x$ sono lo "spartiacque" fra la zona positiva e quella negativa.</span>
+        </p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔪</span> Le sezioni sono l'anticamera delle derivate parziali</div>
+          <p>Tieni a mente questo passaggio, perché tornerà fra due capitoli: quando tagli con $y=k$ e ottieni la funzione di una sola variabile $z=f(x,k)$, puoi derivarla come in Analisi 1. Quella derivata ha un nome: <strong>derivata parziale rispetto a $x$</strong>. In altre parole, derivare parzialmente significa semplicemente <em>fare una sezione e poi derivare la curva ottenuta</em>. Non c'è nulla di nuovo, se non la scelta della fetta.</p>
+        </div>
+
+        <h3 id="teoria-distanza">4.7 Distanza euclidea, palle e intorni in $\mathbb{R}^n$</h3>
+        <p>Per parlare di limiti e continuità ci serve una sola cosa: <strong>saper misurare quanto sono vicini due punti</strong>. In $\mathbb{R}$ bastava $|x-y|$, il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span> della differenza. Nel piano si usa il teorema di Pitagora, ed è tutto qui.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Distanza euclidea.</em> Dati $P=(p_1,\dots,p_n)$ e $Q=(q_1,\dots,q_n)$ in $\mathbb{R}^n$, la loro distanza è</p>
+          <div class="formula-block">$$d(P,Q) \;=\; \sqrt{ \sum_{i=1}^{n} (p_i-q_i)^2 } \;=\; \sqrt{(p_1-q_1)^2+\cdots+(p_n-q_n)^2}$$</div>
+          <p>In particolare, per $n=2$: $\ d\big((x_1,y_1),(x_2,y_2)\big)=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}$, cioè l'ipotenusa del triangolo rettangolo che ha per cateti le differenze delle coordinate. Per $n=1$ si riduce a $\sqrt{(p-q)^2}=|p-q|$: la vecchia distanza sulla retta.</p>
+        </div>
+        <p>Il simbolo $\sum_{i=1}^{n}$ si legge "somma per $i$ che va da $1$ a $n$": è solo un modo compatto per non scrivere tutti gli addendi. La distanza ha tre proprietà, che sono esattamente quelle che ti aspetti da qualunque cosa meriti questo nome:</p>
+        <ul>
+          <li><strong>Positività</strong>: $d(P,Q)\geq 0$, e $d(P,Q)=0$ solo se $P=Q$ (distanza zero vuol dire stesso punto).</li>
+          <li><strong>Simmetria</strong>: $d(P,Q)=d(Q,P)$ (da Roma a Milano o da Milano a Roma, i chilometri sono gli stessi).</li>
+          <li><strong>Disuguaglianza triangolare</strong>: $d(P,R)\leq d(P,Q)+d(Q,R)$. In parole: passare da un punto intermedio non accorcia mai il viaggio. La useremo per dimostrare che le palle aperte sono insiemi aperti.</li>
+        </ul>
+        <p>Con la distanza in mano possiamo finalmente dire cosa vuol dire "lì attorno".</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Palle e <span class="glossario-term" data-term="intorno">intorni</span>.</em> Dato $P_0\in\mathbb{R}^n$ e un raggio $r &gt; 0$:</p>
+          <div class="formula-block">$$B_r(P_0)=\{P\in\mathbb{R}^n : d(P,P_0) &lt; r\} \quad \text{(palla aperta)}$$
+          $$\overline{B}_r(P_0)=\{P\in\mathbb{R}^n : d(P,P_0) \leq r\} \quad \text{(palla chiusa)}$$</div>
+          <p>Si chiama <strong>intorno</strong> di $P_0$ una qualunque palla aperta centrata in $P_0$ (alcuni testi chiamano intorno ogni insieme che ne contenga una: è equivalente per i nostri scopi).</p>
+        </div>
+        <p>La parola "palla" sembra strana in dimensione due, ma è solo un nome collettivo. Concretamente:</p>
+        <ul>
+          <li>in $\mathbb{R}$ la palla aperta $B_r(x_0)$ è l'<strong>intervallo</strong> $(x_0-r,\ x_0+r)$ — il vecchio intorno di Analisi 1;</li>
+          <li>in $\mathbb{R}^2$ è il <strong>disco</strong> di centro $P_0$ e raggio $r$, bordo escluso;</li>
+          <li>in $\mathbb{R}^3$ è la <strong>sfera piena</strong>, superficie esclusa.</li>
+        </ul>
+        <p>La differenza fra palla aperta e chiusa è <em>solo</em> il bordo: il $&lt;$ lo esclude, il $\leq$ lo include. Sembra un dettaglio pedante; è invece la distinzione da cui nasce tutta la topologia della prossima sezione.</p>
+
+        <h3 id="teoria-topologia">4.8 Aperti, chiusi, frontiera, compatti</h3>
+        <p>Prima l'intuizione. Pensa a un insieme come a uno <strong>Stato su una cartina</strong>. Alcuni punti sono chiaramente "dentro" (una città nell'entroterra: attorno a lei, per qualche chilometro, è tutto territorio nazionale). Altri sono "sul confine" (un paese di frontiera: per quanto tu zoomi, vedi sempre un po' di qua e un po' di là). Altri ancora sono chiaramente "fuori". Tutta la terminologia che segue formalizza questa immagine.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p>Sia $A\subseteq\mathbb{R}^n$ e $P\in\mathbb{R}^n$. Diciamo che:</p>
+          <ul>
+            <li>$P$ è <strong>punto interno</strong> ad $A$ se esiste $r &gt; 0$ tale che $B_r(P)\subseteq A$ (esiste un intorno tutto dentro $A$);</li>
+            <li>$P$ è <strong>punto esterno</strong> ad $A$ se è interno al complementare, cioè se esiste un intorno tutto fuori da $A$;</li>
+            <li>$P$ è <strong>punto di frontiera</strong> se non è né interno né esterno: <em>ogni</em> suo intorno contiene sia punti di $A$ sia punti non di $A$. L'insieme dei punti di frontiera si indica con $\partial A$;</li>
+            <li>$P$ è <strong><span class="glossario-term" data-term="punto-di-accumulazione">punto di accumulazione</span></strong> per $A$ se ogni suo intorno contiene <em>almeno un punto di $A$ diverso da $P$</em>;</li>
+            <li>$P\in A$ è <strong><span class="glossario-term" data-term="punto-isolato">punto isolato</span></strong> di $A$ se esiste un intorno di $P$ che non contiene altri punti di $A$ oltre a $P$ stesso.</li>
+          </ul>
+        </div>
+        <p>Due avvertenze che cadono spesso all'esame:</p>
+        <ul>
+          <li>Un punto di frontiera <strong>può appartenere o non appartenere</strong> ad $A$: il bordo di un disco appartiene al disco chiuso e non appartiene a quello aperto, ma in entrambi i casi è la frontiera.</li>
+          <li>Un punto di accumulazione <strong>non deve stare in $A$</strong>. Per $A=B_1(O)$ (disco aperto), il punto $(1,0)$ è di accumulazione pur non appartenendo ad $A$: ogni suo intorno, per quanto piccolo, pesca punti del disco.</li>
+        </ul>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p>Un insieme $A\subseteq\mathbb{R}^n$ si dice:</p>
+          <ul>
+            <li><strong><span class="glossario-term" data-term="insieme-aperto">aperto</span></strong> se ogni suo punto è interno (equivalentemente: $A$ non contiene nessun punto della propria frontiera);</li>
+            <li><strong><span class="glossario-term" data-term="insieme-chiuso">chiuso</span></strong> se il suo complementare $\mathbb{R}^n\setminus A$ è aperto (equivalentemente: $A$ contiene tutta la propria frontiera, ovvero tutti i propri punti di accumulazione);</li>
+            <li><strong>limitato</strong> se esiste $R &gt; 0$ tale che $A\subseteq B_R(O)$, cioè se sta tutto dentro una palla abbastanza grande;</li>
+            <li><strong>compatto</strong> se è <em>chiuso e limitato</em> insieme (in $\mathbb{R}^n$ le due cose bastano: è il teorema di Heine–Borel).</li>
+          </ul>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> "Aperto" e "chiuso" non sono opposti</div>
+          <p>Questa è la trappola linguistica più insidiosa del capitolo. "Chiuso" <strong>non</strong> significa "non aperto". Ci sono insiemi che sono <em>entrambe</em> le cose ($\varnothing$ e $\mathbb{R}^n$ stesso, gli unici due in $\mathbb{R}^n$) e insiemi che non sono <em>né</em> l'una <em>né</em> l'altra: per esempio la corona $\{1\leq x^2+y^2 &lt; 4\}$, che contiene una parte del bordo (la circonferenza interna) ma non l'altra. Un insieme non è una porta: può stare a metà.</p>
+        </div>
+        <p><strong>Perché tutto questo ci interessa davvero?</strong> Per un motivo molto concreto: <strong>i compatti sono gli insiemi su cui le funzioni continue si comportano bene</strong>. Il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, che in Analisi 1 richiedeva un intervallo $[a,b]$ chiuso e limitato, si estende parola per parola: <em>una funzione continua su un insieme compatto di $\mathbb{R}^n$ ammette massimo e minimo assoluti</em>. Togli "chiuso" o togli "limitato" e la garanzia salta — $f(x,y)=x$ sul disco aperto non ha massimo, $f(x,y)=x$ su tutto il piano nemmeno. È l'ipotesi che userai in ogni esercizio di <a href="05-hessiano-massimi-minimi.html">massimi e minimi vincolati</a>.</p>
+        <p>Un'ultima nozione che incontrerai di sfuggita: un insieme si dice <strong>connesso (per archi)</strong> se due suoi punti qualsiasi si possono unire con un cammino che resta dentro l'insieme — "è fatto di un pezzo solo". E si dice <strong>convesso</strong> se addirittura il <em>segmento</em> fra due punti qualsiasi resta dentro: un disco è convesso, una mezzaluna no. La convessità servirà quando parleremo di funzioni con gradiente nullo e di primitive.</p>
+      </section>
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+        <p>Tre risultati, tutti brevi, tutti utili. Per ciascuno spieghiamo <em>prima</em> l'idea in italiano e <em>poi</em> la scriviamo in simboli: se l'idea è chiara, la scrittura formale diventa una semplice traduzione.</p>
+
+        <h3>5.1 Ogni palla aperta è un insieme aperto</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧭</span> L'idea della strategia</div>
+          <p>Sembra ovvio ("si chiama aperta!"), ma i due usi della parola sono diversi: uno è un <em>nome</em>, l'altro una <em>proprietà</em> da verificare. L'idea è elementare: prendi un punto $P$ dentro il disco. Fra $P$ e il bordo c'è ancora un po' di spazio, precisamente $r - d(P,P_0)$ metri. Allora disegna attorno a $P$ un dischetto di raggio più piccolo di quello spazio: non può sbordare. Il fatto che "non sbordi" è esattamente ciò che garantisce la disuguaglianza triangolare.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Le palle aperte sono aperte.</em> Per ogni $P_0\in\mathbb{R}^n$ e ogni $r &gt; 0$, l'insieme $B_r(P_0)$ è un <span class="glossario-term" data-term="insieme-aperto">insieme aperto</span>.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Dobbiamo mostrare che ogni punto di $B_r(P_0)$ è interno, cioè che ammette un intorno tutto contenuto in $B_r(P_0)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Sia $P\in B_r(P_0)$. Per definizione di palla aperta, $d(P,P_0) &lt; r$. Poniamo allora $\rho = r - d(P,P_0)$: per quanto appena detto $\rho &gt; 0$, quindi è un raggio ammissibile. È lo "spazio che avanza" fino al bordo.</span>
+            <span class="esempio__passo">Prendiamo un punto qualunque $Q\in B_\rho(P)$, cioè $d(Q,P) &lt; \rho$. Vogliamo far vedere che $Q$ sta ancora dentro $B_r(P_0)$.</span>
+            <span class="esempio__passo">Applichiamo la disuguaglianza triangolare passando per $P$: $\ d(Q,P_0)\ \leq\ d(Q,P)+d(P,P_0)$.</span>
+            <span class="esempio__passo">Maggioriamo il primo addendo con $\rho$: $\ d(Q,P_0) &lt; \rho + d(P,P_0) = \big(r-d(P,P_0)\big)+d(P,P_0) = r$.</span>
+            <span class="esempio__passo">Dunque $d(Q,P_0) &lt; r$, cioè $Q\in B_r(P_0)$. Poiché $Q$ era arbitrario, abbiamo $B_\rho(P)\subseteq B_r(P_0)$.</span>
+          </p>
+          <p>Ogni punto di $B_r(P_0)$ possiede quindi un intorno interamente contenuto nell'insieme: $B_r(P_0)$ è aperto. <span class="qed">∎</span></p>
+          <p><strong>Dove serve davvero.</strong> Questo risultato è il mattone con cui si dimostra che gli insiemi definiti da disuguaglianze <em>strette</em> sono aperti: è il motivo per cui, negli esercizi, potrai dire "$&gt;$ oppure $&lt;$ dappertutto, quindi aperto" senza rifare ogni volta il conto.</p>
+        </div>
+
+        <h3>5.2 Insiemi di livello di quote diverse sono disgiunti</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧭</span> L'idea della strategia</div>
+          <p>Sulla carta escursionistica, la curva dei 1300 m e quella dei 1400 m non si toccano mai. Perché? Perché in un punto di incontro il terreno dovrebbe stare <em>contemporaneamente</em> a 1300 e a 1400 metri. Assurdo. La dimostrazione non fa altro che dire questo usando la definizione di funzione: <strong>a ogni punto corrisponde un solo valore</strong>. Tecnicamente si procede per assurdo: si suppone che un punto comune esista e si arriva a una contraddizione.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Disgiunzione dei livelli.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e siano $c_1\neq c_2$ due quote. Allora $L_{c_1}\cap L_{c_2}=\varnothing$: le due curve di livello non hanno alcun punto in comune.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per assurdo)</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Supponiamo, per assurdo, che esista un punto $P=(x_0,y_0)$ appartenente a entrambi gli insiemi, cioè $P\in L_{c_1}$ e $P\in L_{c_2}$.</span>
+            <span class="esempio__passo">Da $P\in L_{c_1}$, per definizione di insieme di livello, segue $f(x_0,y_0)=c_1$.</span>
+            <span class="esempio__passo">Da $P\in L_{c_2}$, analogamente, segue $f(x_0,y_0)=c_2$.</span>
+            <span class="esempio__passo">Ma $f(x_0,y_0)$ è <em>un solo</em> numero reale, perché $f$ è una funzione. Quindi $c_1=f(x_0,y_0)=c_2$, in contraddizione con l'ipotesi $c_1\neq c_2$.</span>
+          </p>
+          <p>L'assurdo nasce dall'aver supposto l'esistenza di $P$: tale punto non può esistere, e i due insiemi di livello sono disgiunti. <span class="qed">∎</span></p>
+          <p><strong>Conseguenza operativa.</strong> Al variare di $c$, gli insiemi di livello formano una <em>partizione</em> del dominio: ogni punto di $A$ sta in uno e un solo livello (quello di quota $f(x,y)$). È per questo che una famiglia di curve di livello "riempie" ordinatamente il dominio senza sovrapposizioni — proprio come le curve di quota su una carta.</p>
+        </div>
+
+        <h3>5.3 Il disco chiuso è un insieme chiuso</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧭</span> L'idea della strategia</div>
+          <p>Per definizione, "chiuso" significa "il complementare è aperto". Quindi non lavoriamo sul disco: lavoriamo su <em>ciò che gli sta fuori</em>. Un punto esterno dista dal centro più di $R$: gli avanza un margine, e in quel margine ci sta un dischetto tutto esterno. Stessa identica idea della dimostrazione 5.1, applicata "al rovescio".</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Chiusura del disco.</em> L'insieme $\overline{B}_R(O)=\{(x,y)\in\mathbb{R}^2 : x^2+y^2\leq R^2\}$ è un <span class="glossario-term" data-term="insieme-chiuso">insieme chiuso</span> ed è limitato; dunque è <strong>compatto</strong>.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Consideriamo il complementare $C=\{P : d(P,O) &gt; R\}$ e mostriamo che è aperto. Sia $P\in C$, dunque $d(P,O) &gt; R$.</span>
+            <span class="esempio__passo">Poniamo $\rho = d(P,O)-R &gt; 0$: è il margine di cui $P$ eccede il bordo.</span>
+            <span class="esempio__passo">Sia $Q\in B_\rho(P)$, cioè $d(Q,P) &lt; \rho$. Per la disuguaglianza triangolare (<span class="richiamo" data-sec="4.7">§4.7</span>) applicata al percorso $O\to Q\to P$ vale $d(P,O)\leq d(P,Q)+d(Q,O)$. Isolo $d(Q,O)$: sottraggo $d(P,Q)$ a entrambi i membri, ottenendo $d(P,O)-d(P,Q)\leq d(Q,O)$, che letto al contrario è $d(Q,O)\geq d(P,O)-d(P,Q)$.</span>
+            <span class="esempio__passo">Sostituiamo la maggiorazione $d(P,Q) &lt; \rho$: $\ d(Q,O) &gt; d(P,O)-\rho = d(P,O)-\big(d(P,O)-R\big)=R$.</span>
+            <span class="esempio__passo">Quindi $Q\in C$, e perciò $B_\rho(P)\subseteq C$: il complementare è aperto, cioè $\overline{B}_R(O)$ è chiuso.</span>
+            <span class="esempio__passo">La limitatezza è immediata: per costruzione $\overline{B}_R(O)\subseteq B_{R+1}(O)$, quindi l'insieme sta dentro una palla. Chiuso $+$ limitato $=$ compatto.</span>
+          </p>
+          <p><span class="qed">∎</span></p>
+          <p><strong>Perché è importante.</strong> Da questa proposizione discende, per esempio, che ogni funzione continua sul disco chiuso ammette massimo e minimo assoluti (Weierstrass). Sul disco <em>aperto</em> la stessa conclusione è falsa: la differenza di un solo bordo cambia completamente la teoria.</p>
+        </div>
+      </section>
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Leggere e valutare una funzione di due variabili</span><span class="badge badge--base">Base</span></div>
+          <p>Sia $f(x,y)=x^2y-3y+1$. Calcolare $f(2,1)$, $f(0,5)$, $f(-1,-2)$ e $f(t,t)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il meccanismo è sempre lo stesso: sostituisco il <em>primo</em> numero al posto di $x$ e il <em>secondo</em> al posto di $y$. L'ordine conta.</span>
+            <span class="esempio__passo">$f(2,1)=2^2\cdot 1-3\cdot 1+1=4-3+1=2$.</span>
+            <span class="esempio__passo">$f(0,5)=0^2\cdot 5-3\cdot 5+1=0-15+1=-14$.</span>
+            <span class="esempio__passo">$f(-1,-2)=(-1)^2\cdot(-2)-3\cdot(-2)+1=-2+6+1=5$.</span>
+            <span class="esempio__passo">$f(t,t)=t^2\cdot t-3t+1=t^3-3t+1$: sostituendo $y=x$ ottengo una funzione di <strong>una</strong> sola variabile. È la restrizione di $f$ alla bisettrice, cioè una sezione lungo il piano $y=x$.</span>
+          </p>
+          <div class="esempio__risultato">$f(2,1)=2$, &nbsp; $f(0,5)=-14$, &nbsp; $f(-1,-2)=5$, &nbsp; $f(t,t)=t^3-3t+1$. Il dominio è tutto $\mathbb{R}^2$ (è un polinomio: nessuna operazione proibita).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Dominio con una radice: disegnarlo</span><span class="badge badge--base">Base</span></div>
+          <p>Determinare e disegnare il dominio di $f(x,y)=\sqrt{9-x^2-y^2}$, e dire se è aperto, chiuso, limitato.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Condizione</strong>: radice di indice pari, quindi il radicando deve essere non negativo: $9-x^2-y^2\geq 0$.</span>
+            <span class="esempio__passo"><strong>Riscrivo</strong> la disuguaglianza in forma riconoscibile. Parto da $9-x^2-y^2\geq 0$ e sommo $x^2+y^2$ a <em>entrambi</em> i membri (sommare la stessa quantità non cambia il verso): $9\geq x^2+y^2$, che riscritto al contrario è $x^2+y^2\leq 9$. Riconosco la forma $x^2+y^2\leq r^2$ del <span class="richiamo" data-sec="4.2">§4.2</span> e, confrontando, $r^2=9$ quindi $r=3$.</span>
+            <span class="esempio__passo"><strong>Bordo</strong>: $x^2+y^2=9$ è la circonferenza di centro l'origine e raggio $3$. Essendo la condizione con $\leq$, il bordo è <em>incluso</em>: lo disegno con tratto pieno.</span>
+            <span class="esempio__passo"><strong>Test del punto</strong>: l'origine $(0,0)$ dà $0\leq 9$, vero. Quindi la regione buona è quella che contiene l'origine, cioè l'<em>interno</em> del cerchio.</span>
+            <span class="esempio__passo"><strong>Classificazione</strong>: contiene tutta la sua frontiera, quindi è chiuso; sta dentro la palla di raggio $4$, quindi è limitato; chiuso e limitato, quindi <strong>compatto</strong>.</span>
+          </p>
+          <div class="esempio__risultato">$\mathrm{dom}(f)=\{(x,y)\in\mathbb{R}^2 : x^2+y^2\leq 9\}$, il disco chiuso di raggio $3$ (vedi la figura della sezione 4.2). È compatto. Il grafico è la semisfera superiore di raggio $3$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Dominio con logaritmo e denominatore</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Determinare e disegnare il dominio di $\ f(x,y)=\dfrac{\ln(x+y-1)}{x-y}$, classificandolo.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Condizioni</strong>: il logaritmo richiede argomento strettamente positivo, $x+y-1 &gt; 0$; il denominatore richiede $x-y\neq 0$. Le due condizioni valgono <em>insieme</em>.</span>
+            <span class="esempio__passo"><strong>Prima condizione</strong>: $x+y &gt; 1$. Il bordo $x+y=1$ è la retta passante per $(1,0)$ e $(0,1)$; la disuguaglianza è stretta, quindi la retta è esclusa (tratteggiata).</span>
+            <span class="esempio__passo"><strong>Test del punto</strong> con l'origine: $0+0=0 &gt; 1$ è falso, quindi l'origine <em>non</em> va bene: la regione buona è il semipiano <em>opposto</em> all'origine, quello in alto a destra.</span>
+            <span class="esempio__passo"><strong>Seconda condizione</strong>: $x\neq y$, cioè va tolta la bisettrice del primo e terzo quadrante. Attenzione: non un semipiano, ma proprio una <em>linea da bucare</em>.</span>
+            <span class="esempio__passo"><strong>Intersezione</strong>: il semipiano aperto $x+y &gt; 1$ privato dei punti della retta $y=x$ (che lo attraversa a partire dal punto $(\tfrac12,\tfrac12)$, dividendolo in due pezzi).</span>
+            <span class="esempio__passo"><strong>Classificazione</strong>: tutte le condizioni sono di tipo "stretto" o di esclusione, quindi l'insieme è <strong>aperto</strong>; non è limitato (contiene punti arbitrariamente lontani, per esempio $(n,0)$ con $n$ grande); non è chiuso; non è connesso, perché la bisettrice lo taglia in due parti separate.</span>
+          </p>
+          <div class="esempio__risultato">$\mathrm{dom}(f)=\{(x,y)\in\mathbb{R}^2 : x+y &gt; 1,\ x\neq y\}$: aperto, illimitato, non connesso.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Curve di livello del paraboloide</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Descrivere le curve di livello di $f(x,y)=x^2+y^2$ e dedurne la forma del grafico e l'immagine.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Applico la definizione di insieme di livello del <span class="richiamo" data-sec="4.4">§4.4</span>, $L_c=\{(x,y):f(x,y)=c\}$: <em>sostituisco l'espressione di $f$</em> al posto di $f(x,y)$ e ottengo l'equazione $x^2+y^2=c$. Da qui in poi il lavoro è riconoscere che curva è, e dipende dal segno di $c$.</span>
+            <span class="esempio__passo"><strong>Caso $c &lt; 0$</strong>: nessuna soluzione, perché una somma di quadrati non è mai negativa. Quindi $L_c=\varnothing$ e la funzione non assume valori negativi.</span>
+            <span class="esempio__passo"><strong>Caso $c=0$</strong>: $x^2+y^2=0$ obbliga $x=0$ e $y=0$. Il livello si riduce al <em>singolo punto</em> $(0,0)$: è la "cima" — anzi, qui il fondo della conca.</span>
+            <span class="esempio__passo"><strong>Caso $c &gt; 0$</strong>: confronto $x^2+y^2=c$ con l'equazione della circonferenza di centro l'origine, $x^2+y^2=r^2$ (<span class="richiamo" data-sec="4.2">§4.2</span>). Le due coincidono se $r^2=c$; estraendo la radice (il raggio è positivo) ottengo $r=\sqrt c$. Dunque è una circonferenza di centro l'origine e raggio $\sqrt{c}$.</span>
+            <span class="esempio__passo"><strong>Spaziatura</strong>: per $c=1,4,9,16$ i raggi sono $1,2,3,4$. Le quote crescono come i <em>quadrati</em> dei raggi: allontanandosi, la funzione sale sempre più in fretta, quindi le curve di livello <em>si infittiscono</em> verso l'esterno. Pendio via via più ripido.</span>
+            <span class="esempio__passo"><strong>Immagine</strong>: $L_c\neq\varnothing$ esattamente per $c\geq 0$, dunque $\mathrm{Im}(f)=[0,+\infty)$.</span>
+          </p>
+          <div class="esempio__risultato">Livelli: circonferenze di raggio $\sqrt{c}$ per $c &gt; 0$, un punto per $c=0$, vuoti per $c &lt; 0$. Il grafico è un <strong>paraboloide ellittico</strong> (una coppa) con minimo assoluto $0$ nell'origine; $\mathrm{Im}(f)=[0,+\infty)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — La sella: livelli e sezioni</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Studiare $f(x,y)=x^2-y^2$: curve di livello, sezioni con i piani coordinati, natura dell'origine, immagine.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Livelli</strong>: pongo $f(x,y)=c$, cioè $x^2-y^2=c$. Per $c\neq0$ divido entrambi i membri per $c$ e ottengo la forma canonica $\frac{x^2}{c}-\frac{y^2}{c}=1$: è un'iperbole. Per $c &gt; 0$ i rami sono "aperti" verso destra e sinistra (se pongo $y=0$ trovo $x=\pm\sqrt c$, cioè l'iperbole taglia l'asse $x$: l'asse trasverso è l'asse $x$); per $c &lt; 0$ invece è $y=0$ a non dare soluzioni mentre $x=0$ dà $y=\pm\sqrt{-c}$, quindi i rami puntano verso l'alto e il basso.</span>
+            <span class="esempio__passo"><strong>Livello zero</strong>: $x^2-y^2=0$. Uso la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2) con $a=x$ e $b=y$, che la fattorizza come $(x-y)(x+y)=0$; un prodotto si annulla quando si annulla un fattore, quindi $x-y=0$ oppure $x+y=0$, cioè $y=x$ oppure $y=-x$: due rette incrociate, la "X". È il caso degenere dell'iperbole e segna il confine fra la zona in cui $f &gt; 0$ e quella in cui $f &lt; 0$.</span>
+            <span class="esempio__passo"><strong>Sezione $y=0$</strong>: $z=x^2$, parabola verso l'alto. Muovendosi lungo l'asse $x$ l'origine è un <em>minimo</em>.</span>
+            <span class="esempio__passo"><strong>Sezione $x=0$</strong>: $z=-y^2$, parabola verso il basso. Muovendosi lungo l'asse $y$ l'origine è un <em>massimo</em>.</span>
+            <span class="esempio__passo"><strong>Conclusione sull'origine</strong>: in ogni intorno dell'origine esistono punti in cui $f &gt; 0$ (sull'asse $x$) e punti in cui $f &lt; 0$ (sull'asse $y$), mentre $f(0,0)=0$. Quindi l'origine non è né massimo né minimo, nemmeno locale: è un <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>.</span>
+            <span class="esempio__passo"><strong>Immagine</strong>: per ogni $c\in\mathbb{R}$ il livello è non vuoto (basta prendere $y=0$ e $x=\sqrt{c}$ se $c\geq 0$, oppure $x=0$ e $y=\sqrt{-c}$ se $c &lt; 0$), quindi $\mathrm{Im}(f)=\mathbb{R}$.</span>
+          </p>
+          <div class="esempio__risultato">Grafico: <strong>paraboloide iperbolico</strong>. Livelli: iperboli, degeneri nelle rette $y=\pm x$ per $c=0$. L'origine è un punto di sella; $\mathrm{Im}(f)=\mathbb{R}$. Questo esempio è il controesempio classico al ragionamento "se lungo ogni asse c'è un minimo, allora c'è un minimo": qui il comportamento dipende dalla direzione.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Dominio misto: né aperto né chiuso</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determinare, disegnare e classificare il dominio di $\ f(x,y)=\sqrt{y-x^2}\,\cdot\,\ln\!\big(4-x^2-y^2\big)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Condizioni</strong>: la radice impone $y-x^2\geq 0$ (larga!), il logaritmo impone $4-x^2-y^2 &gt; 0$ (stretta!). Il prodotto esiste dove esistono entrambi i fattori.</span>
+            <span class="esempio__passo"><strong>Prima regione</strong>: $y\geq x^2$. Il bordo è la parabola $y=x^2$, disegnata piena perché inclusa. Test con il punto $(0,1)$: $1\geq 0$ vero, quindi si prende la parte <em>sopra</em> la parabola (quella che contiene l'asse $y$ positivo).</span>
+            <span class="esempio__passo"><strong>Seconda regione</strong>: $x^2+y^2 &lt; 4$, disco aperto di raggio $2$. Bordo tratteggiato perché escluso. Test con l'origine: $0 &lt; 4$ vero, la regione buona è l'interno.</span>
+            <span class="esempio__passo"><strong>Intersezione</strong>: la porzione di piano compresa <em>sopra</em> la parabola e <em>dentro</em> il disco: una specie di "lente" o "petalo".</span>
+            <span class="esempio__passo"><strong>Dove si incontrano i due bordi.</strong> Metto a sistema le due equazioni, $y=x^2$ e $x^2+y^2=4$. Dalla prima ricavo che $x^2$ vale $y$; <em>sostituisco $y$ al posto di $x^2$</em> nella seconda: $y+y^2=4$, cioè $y^2+y-4=0$. È un'equazione di secondo grado in $y$: applico la formula risolutiva $y=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ con $a=1$, $b=1$, $c=-4$, ottenendo $y=\frac{-1\pm\sqrt{1+16}}{2}=\frac{-1\pm\sqrt{17}}{2}$. La soluzione con il meno è negativa, ma su una parabola $y=x^2$ deve essere $y\geq0$: la scarto. Resta $y=\frac{-1+\sqrt{17}}{2}\approx 1{,}56$ (e quindi $x=\pm\sqrt y\approx\pm1{,}25$).</span>
+            <span class="esempio__passo"><strong>Classificazione</strong>: contiene una parte della propria frontiera (l'arco di parabola) ma non l'altra (l'arco di circonferenza). Quindi <strong>non è aperto</strong> (i punti della parabola non sono interni) e <strong>non è chiuso</strong> (mancano punti di frontiera). È limitato, perché contenuto nel disco di raggio $2$. Non essendo chiuso, <strong>non è compatto</strong>: Weierstrass non si applica.</span>
+          </p>
+          <div class="esempio__risultato">$\mathrm{dom}(f)=\{(x,y) : y\geq x^2 \ \text{ e }\ x^2+y^2 &lt; 4\}$: limitato, né aperto né chiuso, non compatto. È l'esempio-tipo da esame in cui la classificazione "a occhio" fallisce e bisogna guardare <em>ogni</em> pezzo di frontiera.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Topologia di una corona circolare</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Sia $A=\{(x,y)\in\mathbb{R}^2 : 1\leq x^2+y^2 &lt; 4\}$. Determinare punti interni, frontiera, e stabilire se $A$ è aperto, chiuso, limitato, compatto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che insieme è</strong>: la <em>corona circolare</em> fra i raggi $1$ e $2$ — la ciambella. Il bordo interno (raggio $1$) è incluso perché la condizione è $\geq$ scritta come $1\leq\dots$; quello esterno (raggio $2$) è escluso perché la condizione è stretta.</span>
+            <span class="esempio__passo"><strong>Punti interni</strong>: sono quelli con $1 &lt; x^2+y^2 &lt; 4$. Un punto sulla circonferenza interna, per esempio $(1,0)$, non è interno: ogni suo intorno contiene punti con raggio minore di $1$, che stanno fuori da $A$.</span>
+            <span class="esempio__passo"><strong>Frontiera</strong>: $\partial A=\{x^2+y^2=1\}\cup\{x^2+y^2=4\}$, cioè le <em>due</em> circonferenze. Si noti che la seconda non appartiene ad $A$, pur essendone frontiera.</span>
+            <span class="esempio__passo"><strong>Aperto?</strong> No: contiene i punti della circonferenza interna, che non sono interni.</span>
+            <span class="esempio__passo"><strong>Chiuso?</strong> No: non contiene la circonferenza esterna, che fa parte della sua frontiera (equivalentemente, $(2,0)$ è punto di accumulazione di $A$ ma non appartiene ad $A$).</span>
+            <span class="esempio__passo"><strong>Limitato?</strong> Sì: $A\subseteq B_3(O)$. <strong>Compatto?</strong> No, perché manca la chiusura.</span>
+          </p>
+          <div class="esempio__risultato">$A$ è limitato ma <strong>né aperto né chiuso</strong>, quindi non compatto. Morale da incorniciare: basta un solo pezzo di frontiera "di segno sbagliato" per far cadere entrambe le proprietà.</div>
+        </div>
+      </section>
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere la curva di livello con il grafico</div>
+          <p>È l'errore numero uno. La <strong>curva di livello sta nel piano $\mathbb{R}^2$</strong> (è disegnata sul dominio, come sulla carta geografica), il <strong>grafico sta nello spazio $\mathbb{R}^3$</strong> (è la montagna vera). Scrivere "il grafico di $f(x,y)=x^2+y^2$ è una circonferenza" è sbagliato due volte: la circonferenza è <em>un</em> livello, e il grafico è un paraboloide. <em>Come evitarlo</em>: prima di rispondere, conta le dimensioni. Grafico $=$ ingressi $+\,1$; livello $=$ ingressi. Se la risposta ha il numero sbagliato di variabili, è sbagliata.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Trovare le condizioni del dominio ma non disegnare la regione</div>
+          <p>Molti si fermano al sistema di disequazioni e scrivono "dominio: $x+y &gt; 1$ e $x\neq y$". In due variabili la risposta è incompleta: la domanda d'esame è quasi sempre "determinare <em>e rappresentare</em>". Peggio ancora è disegnare il bordo (retta, circonferenza, parabola) e dimenticare di <strong>decidere da che parte</strong> sta la regione. <em>Come evitarlo</em>: applica sempre il <strong>test del punto</strong> (sezione 4.2, mossa 3) e <em>ombreggia</em>. Bordo tratteggiato se escluso, pieno se incluso: è una convenzione che i correttori guardano.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che "non aperto" significhi "chiuso"</div>
+          <p>In italiano corrente sono opposti; in matematica no. Un insieme può essere <em>entrambe</em> le cose ($\varnothing$ e $\mathbb{R}^n$) o <em>nessuna delle due</em> (la corona $1\leq x^2+y^2 &lt; 4$, il dominio dell'Esempio 6, la striscia $0 &lt; x\leq 1$). <em>Come evitarlo</em>: non dedurre mai una proprietà dall'assenza dell'altra. Verifica <strong>separatamente</strong> due cose: "tutti i punti sono interni?" (aperto) e "c'è tutta la frontiera dentro?" (chiuso). Due domande, due risposte indipendenti.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare la disuguaglianza del logaritmo (o della radice)</div>
+          <p>Scrivere $\ln(g)$ con la condizione $g\geq 0$ è un classico: il logaritmo di zero <em>non esiste</em>, la condizione è $g &gt; 0$, stretta. Simmetricamente, per $\sqrt{g}$ la condizione è $g\geq 0$, <em>larga</em>: lo zero è ammesso. La differenza non è un cavillo: decide se il bordo appartiene al dominio, e quindi se l'insieme è aperto, chiuso o nessuno dei due — cioè decide metà della risposta. <em>Come evitarlo</em>: memorizza la coppia "radice $\Rightarrow$ larga, logaritmo $\Rightarrow$ stretta" e ricontrollala prima di classificare.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere $\mathbb{R}^2\to\mathbb{R}$ con $\mathbb{R}\to\mathbb{R}^2$</div>
+          <p>Sono oggetti opposti. $f(x,y)=x^2+y^2$ prende <em>due</em> numeri e ne dà <em>uno</em>: è un campo scalare, il suo grafico è una superficie. $\gamma(t)=(\cos t,\sin t)$ prende <em>un</em> numero e ne dà <em>due</em>: è una curva, e la sua immagine è la circonferenza. <em>Come evitarlo</em>: guarda dove stanno le parentesi. Se le variabili sono <em>dentro</em> le parentesi di $f$, sono ingressi; se stanno <em>a destra</em> dell'uguale raggruppate in una coppia, sono uscite.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dire "non c'è massimo" senza controllare le ipotesi di Weierstrass</div>
+          <p>Weierstrass garantisce massimo e minimo solo su insiemi <strong>compatti</strong> (chiusi <em>e</em> limitati) e per funzioni <strong>continue</strong>. Se l'insieme non è compatto il teorema non dice nulla: non che il massimo manchi, ma che <em>non è garantito</em>. $f(x,y)=x^2+y^2$ sul disco aperto non ha massimo, ma $f(x,y)=\frac{1}{1+x^2+y^2}$ su tutto il piano (non compatto!) il massimo ce l'ha, in $(0,0)$. <em>Come evitarlo</em>: distingui sempre "il teorema non si applica" da "la tesi è falsa".</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il test del punto: mai più dubbi sul lato giusto</div>
+          <p>Davanti a una disequazione come $x+2y-3 &gt; 0$ non serve ragionare: disegna la retta $x+2y-3=0$, poi prendi un punto <em>comodo</em> fuori da essa — l'origine, se non ci passa sopra — e sostituisci. Se la disuguaglianza è vera, la regione è quella del punto; se è falsa, è l'altra. Funziona identicamente per circonferenze, parabole, iperboli: <strong>un solo conto numerico al posto di dieci righe di ragionamento</strong>.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconoscere la superficie dai segni, in tre secondi</div>
+          <p>Una micro-tabella che risolve la maggior parte delle domande "che superficie è?":</p>
+          <ul>
+            <li>$x$ e $y$ solo al <strong>primo grado</strong> $\Rightarrow$ piano (livelli: rette parallele).</li>
+            <li>$x^2+y^2$ con <strong>segni concordi</strong> $\Rightarrow$ paraboloide, cioè conca o cupola (livelli: circonferenze/ellissi).</li>
+            <li>$x^2-y^2$ con <strong>segni discordi</strong> $\Rightarrow$ sella (livelli: iperboli $+$ una X).</li>
+            <li>$\sqrt{x^2+y^2}$, cioè il <strong>primo grado nella distanza</strong> $\Rightarrow$ cono (livelli: circonferenze equidistanti).</li>
+            <li><strong>Manca una variabile</strong> nell'equazione $\Rightarrow$ cilindro lungo l'asse di quella variabile.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Funzioni radiali: riducile a una variabile sola</div>
+          <p>Se nella formula $x$ e $y$ compaiono <em>solo</em> nel blocco $x^2+y^2$ (per esempio $f(x,y)=e^{-(x^2+y^2)}$, oppure $\frac{1}{1+x^2+y^2}$, oppure $\ln(1+x^2+y^2)$), poni $t=x^2+y^2\geq 0$ e studia la funzione di una variabile $g(t)$ con gli strumenti di Analisi 1. Poi <strong>fai ruotare il grafico attorno all'asse $z$</strong>. I livelli sono automaticamente circonferenze e l'immagine di $f$ è l'immagine di $g$ ristretta a $t\geq 0$. Questo trucco trasforma un esercizio di Analisi 2 in uno di Analisi 1.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Checklist topologica da 30 secondi</div>
+          <p>All'esame, dopo aver trovato il dominio, rispondi in quest'ordine:</p>
+          <ul>
+            <li><strong>Tutte</strong> le condizioni sono strette ($&gt;$, $&lt;$, $\neq$)? $\Rightarrow$ insieme <strong>aperto</strong>.</li>
+            <li><strong>Tutte</strong> larghe ($\geq$, $\leq$, $=$)? $\Rightarrow$ insieme <strong>chiuso</strong>.</li>
+            <li><strong>Miste</strong>? $\Rightarrow$ quasi sempre <strong>né aperto né chiuso</strong> (controlla che i due bordi coinvolti facciano davvero parte della frontiera).</li>
+            <li><strong>Limitato</strong>? Prova a incastrarlo in un disco: se compare $x^2+y^2\leq R^2$ o una condizione analoga, sì; se le variabili possono andare all'infinito, no.</li>
+            <li><strong>Compatto</strong> $=$ chiuso $+$ limitato. Se manca una delle due, scrivi esplicitamente <em>quale</em> manca: è la parte che dà punti.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Immagine e livelli: due facce della stessa medaglia</div>
+          <p>Per calcolare l'immagine di $f$ senza fatica, chiediti <strong>per quali $c$ l'equazione $f(x,y)=c$ ha almeno una soluzione nel dominio</strong>. L'insieme di quei $c$ <em>è</em> l'immagine. Esempio lampo: per $f(x,y)=x^2+y^2$ l'equazione ha soluzioni se e solo se $c\geq 0$, dunque $\mathrm{Im}(f)=[0,+\infty)$ — in una riga, senza studiare la superficie.</p>
+        </div>
+
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Perché "palla" e non "disco"?</div>
+          <p>Perché la stessa definizione, con la stessa formula, funziona in ogni dimensione: in $\mathbb{R}$ dà un intervallo, in $\mathbb{R}^2$ un disco, in $\mathbb{R}^3$ una sfera piena, in $\mathbb{R}^{10}$ qualcosa che nessuno vede ma che si comporta allo stesso modo. Usare un solo nome permette di scrivere <em>una volta sola</em> teoremi validi per ogni $n$. È la stessa ragione per cui si dice "insieme di livello" e non "curva": in $\mathbb{R}^3$ i livelli sono superfici, in $\mathbb{R}^n$ ipersuperfici, ma la definizione non cambia di una virgola.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Funzioni di più variabili $f(x,y)$</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Definizione</strong>
+              <ul>
+                <li>$f:A\subseteq\mathbb{R}^2\to\mathbb{R}$</li>
+                <li>punto dentro, numero fuori</li>
+                <li>campo scalare</li>
+                <li>caso generale $\mathbb{R}^n\to\mathbb{R}^m$</li>
+              </ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Dominio</strong>
+              <ul>
+                <li>radice pari: $\geq 0$</li>
+                <li>logaritmo: $&gt; 0$</li>
+                <li>denominatore: $\neq 0$</li>
+                <li>è una <em>regione</em>: va disegnata</li>
+                <li>test del punto per il lato</li>
+              </ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Grafico e livelli</strong>
+              <ul>
+                <li>grafico: superficie in $\mathbb{R}^3$</li>
+                <li>livello $L_c$: nel piano</li>
+                <li>carta escursionistica</li>
+                <li>fitte $=$ ripido</li>
+                <li>livelli diversi $\Rightarrow$ disgiunti</li>
+              </ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Superfici notevoli</strong>
+              <ul>
+                <li>piano $z=ax+by+c$</li>
+                <li>paraboloide $x^2+y^2$</li>
+                <li>sella $x^2-y^2$</li>
+                <li>cono $\sqrt{x^2+y^2}$</li>
+                <li>sfera, cilindro (non grafici)</li>
+              </ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Sezioni</strong>
+              <ul>
+                <li>$z=c$: curva di livello</li>
+                <li>$y=k$: profilo in $x$</li>
+                <li>$x=k$: profilo in $y$</li>
+                <li>anticipa le derivate parziali</li>
+              </ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Topologia di $\mathbb{R}^n$</strong>
+              <ul>
+                <li>$d(P,Q)$ euclidea (Pitagora)</li>
+                <li>palle $=$ intorni</li>
+                <li>interno, frontiera $\partial A$</li>
+                <li>aperto / chiuso / né l'uno né l'altro</li>
+                <li>compatto $=$ chiuso $+$ limitato</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Definizione</strong>: $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ associa a ogni punto $(x,y)$ del dominio uno e un solo numero $z=f(x,y)$. In generale $f:\mathbb{R}^n\to\mathbb{R}^m$, e il caso $m\geq 2$ si spezza nelle $m$ componenti scalari.</li>
+            <li><strong>Dominio</strong>: stesse condizioni di Analisi 1 (radice pari $\geq 0$, logaritmo $&gt; 0$, denominatore $\neq 0$), ma il risultato è una <em>regione del piano</em> da disegnare, usando il test del punto per scegliere il lato giusto.</li>
+            <li><strong>Grafico</strong>: superficie in $\mathbb{R}^3$, $\ \mathrm{graf}(f)=\{(x,y,z): z=f(x,y)\}$. Regola delle dimensioni: $n$ ingressi $\Rightarrow$ grafico in $\mathbb{R}^{n+1}$.</li>
+            <li><strong>Insiemi di livello</strong>: $L_c=\{(x,y)\in A : f(x,y)=c\}$, vivono nel <em>piano</em>. Sono le curve di quota della carta escursionistica; curve fitte $=$ pendenza forte. Livelli di quote diverse sono sempre disgiunti.</li>
+            <li><strong>Superfici notevoli</strong>: piano ($z=ax+by+c$), paraboloide ellittico ($x^2+y^2$, conca), paraboloide iperbolico o sella ($x^2-y^2$), cono ($\sqrt{x^2+y^2}$), sfera e cilindro (che <em>non</em> sono grafici di funzioni).</li>
+            <li><strong>Sezioni</strong>: tagliando con $z=c$ si ottengono i livelli, con $y=k$ o $x=k$ si ottengono curve di una sola variabile, studiabili con Analisi 1. È la tecnica base per "vedere" una superficie — e l'anticamera delle derivate parziali.</li>
+            <li><strong>Distanza</strong>: $d(P,Q)=\sqrt{\sum_i (p_i-q_i)^2}$, cioè Pitagora. Palla aperta $B_r(P_0)$: $d &lt; r$; palla chiusa: $d\leq r$. Un intorno è una palla aperta centrata nel punto.</li>
+            <li><strong>Topologia</strong>: punto interno (ha un intorno tutto dentro), di frontiera (ogni intorno ha punti dentro e fuori), di accumulazione (ogni intorno pesca punti dell'insieme diversi da esso). <em>Aperto</em> $=$ tutti interni; <em>chiuso</em> $=$ complementare aperto $=$ contiene la frontiera. Non sono opposti!</li>
+            <li><strong>Compatto</strong> $=$ chiuso $+$ limitato. È l'ipotesi del teorema di Weierstrass in più variabili: continua su un compatto $\Rightarrow$ esistono massimo e minimo assoluti.</li>
+            <li><strong>Immagine</strong>: l'insieme dei $c$ per cui $L_c\neq\varnothing$. Il modo più rapido di calcolarla.</li>
+          </ul>
+        </div>
+      </section>
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione — e per i domini, <strong>fai sempre il disegno</strong>.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Data $f(x,y)=x^2-2xy+y$, calcola $f(1,2)$, $f(0,-3)$, $f(-2,1)$ e $f(t,t)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f(1,2)=1^2-2\cdot1\cdot2+2=1-4+2=-1$.</span>
+                <span class="esempio__passo">$f(0,-3)=0-2\cdot0\cdot(-3)+(-3)=-3$.</span>
+                <span class="esempio__passo">$f(-2,1)=(-2)^2-2\cdot(-2)\cdot1+1=4+4+1=9$.</span>
+                <span class="esempio__passo">$f(t,t)=t^2-2t\cdot t+t=t^2-2t^2+t=-t^2+t$.</span>
+              </p>
+              <p><strong>$f(1,2)=-1$, &nbsp; $f(0,-3)=-3$, &nbsp; $f(-2,1)=9$, &nbsp; $f(t,t)=t-t^2$.</strong> Il dominio è $\mathbb{R}^2$: è un polinomio, non ci sono condizioni.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina e descrivi il dominio di $f(x,y)=\dfrac{1}{x-y}$. È aperto? È limitato?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Unica condizione: denominatore diverso da zero, cioè $x-y\neq 0$, ovvero $y\neq x$.</p>
+              <p>Il dominio è il piano <strong>privato della bisettrice del primo e terzo quadrante</strong>. Nel disegno: la retta $y=x$ tratteggiata (esclusa), tutto il resto colorato.</p>
+              <p><strong>È aperto</strong> (togliere una retta lascia ogni punto rimasto con un dischetto attorno che non tocca la retta), <strong>non è limitato</strong> (contiene punti lontani quanto si vuole) e <strong>non è connesso</strong>: i due semipiani $y &lt; x$ e $y &gt; x$ sono separati.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina e disegna il dominio di $f(x,y)=\sqrt{x+y}$, e classificalo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Radice di indice pari: condizione $x+y\geq 0$, cioè $y\geq -x$.</span>
+                <span class="esempio__passo">Bordo: la retta $y=-x$ (bisettrice del secondo e quarto quadrante), disegnata <em>piena</em> perché la disuguaglianza è larga.</span>
+                <span class="esempio__passo">Test del punto con $(1,1)$: $1+1=2\geq 0$ vero. La regione buona è quella che contiene $(1,1)$, cioè il semipiano <em>sopra</em> la retta.</span>
+              </p>
+              <p><strong>$\mathrm{dom}(f)=\{(x,y): x+y\geq 0\}$: semipiano chiuso, illimitato.</strong> Essendo illimitato non è compatto, pur essendo chiuso.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina le curve di livello di $f(x,y)=2x+3y$ per $c=0$, $c=6$, $c=-6$. Che superficie è il grafico?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Applico la definizione di livello (<span class="richiamo" data-sec="4.4">§4.4</span>) ponendo $f(x,y)=c$, cioè $2x+3y=c$. Con $c=0$: $2x+3y=0$; isolo $y$ portando $2x$ a destra, $3y=-2x$, e divido entrambi i membri per $3$: $y=-\frac{2}{3}x$, retta per l'origine.</span>
+                <span class="esempio__passo">$c=6$: $2x+3y=6$. Per disegnarla trovo le intersezioni con gli assi: <em>sostituisco $y=0$</em> e ottengo $2x=6$, cioè $x=3$, quindi il punto $(3,0)$; <em>sostituisco $x=0$</em> e ottengo $3y=6$, cioè $y=2$, quindi il punto $(0,2)$.</span>
+                <span class="esempio__passo">$c=-6$: $2x+3y=-6$. Stesso procedimento: con $y=0$ viene $x=-3$, con $x=0$ viene $y=-2$; retta per $(-3,0)$ e $(0,-2)$.</span>
+                <span class="esempio__passo">Tutte hanno lo stesso coefficiente angolare $-\frac23$: sono <strong>parallele</strong>, e a quote equidistanti corrispondono rette equidistanti.</span>
+              </p>
+              <p><strong>Livelli: rette parallele di pendenza $-\tfrac23$. Il grafico è un piano</strong> (una rampa a pendenza costante). L'immagine è tutto $\mathbb{R}$, perché ogni $c$ dà una retta non vuota.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina, disegna e classifica il dominio di $f(x,y)=\ln\!\big(9-x^2-y^2\big)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Logaritmo: argomento strettamente positivo, $9-x^2-y^2 &gt; 0$.</span>
+                <span class="esempio__passo">Riscrivo: sommo $x^2+y^2$ a entrambi i membri di $9-x^2-y^2 &gt; 0$ e ottengo $9 &gt; x^2+y^2$, cioè $x^2+y^2 &lt; 9$. Confrontando con $x^2+y^2 &lt; r^2$ leggo $r^2=9$, quindi $r=3$. Bordo: circonferenza di raggio $3$, <em>tratteggiata</em> perché esclusa (la disuguaglianza è stretta).</span>
+                <span class="esempio__passo">Test del punto con l'origine: $0 &lt; 9$ vero, quindi la regione è l'interno.</span>
+                <span class="esempio__passo">Classificazione: unica condizione stretta $\Rightarrow$ <strong>aperto</strong>; contenuto in $B_4(O)$ $\Rightarrow$ <strong>limitato</strong>; non chiuso, quindi <strong>non compatto</strong>.</span>
+              </p>
+              <p><strong>$\mathrm{dom}(f)=\{x^2+y^2 &lt; 9\}$: disco aperto di raggio $3$.</strong> Confronta con l'Esempio 2: stessa circonferenza, condizione diversa, classificazione opposta. È il bordo a decidere tutto.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina e classifica il dominio di $f(x,y)=\sqrt{x^2+y^2-1}$. Qual è la sua frontiera?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Radice di indice pari: il radicando deve essere non negativo, $x^2+y^2-1\geq 0$; sommo $1$ a entrambi i membri e ottengo $x^2+y^2\geq 1$, cioè (confrontando con $x^2+y^2\geq r^2$) i punti a distanza almeno $1$ dall'origine.</span>
+                <span class="esempio__passo">Test del punto con l'origine: $0\geq 1$ è <em>falso</em>. Quindi la regione buona è quella che <strong>non</strong> contiene l'origine: l'esterno del cerchio unitario, bordo incluso.</span>
+                <span class="esempio__passo">Frontiera: la circonferenza $x^2+y^2=1$, che appartiene al dominio.</span>
+              </p>
+              <p><strong>$\mathrm{dom}(f)=\{x^2+y^2\geq 1\}$: chiuso, illimitato, non compatto; $\partial\,\mathrm{dom}(f)=\{x^2+y^2=1\}$.</strong> Attenzione: qui il test del punto con l'origine dà "falso", ed è proprio l'informazione che serve.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina le curve di livello di $f(x,y)=y-x^2$ per $c=-1,0,1$ e descrivi il grafico.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Pongo $f(x,y)=c$ (<span class="richiamo" data-sec="4.4">§4.4</span>), cioè $y-x^2=c$; isolo $y$ sommando $x^2$ a entrambi i membri e ottengo $y=x^2+c$: sono <strong>parabole</strong> tutte uguali a $y=x^2$, traslate verticalmente di $c$ (il termine noto sposta il vertice in alto o in basso: Parte 0, cap. 7 di geometria analitica).</span>
+                <span class="esempio__passo">$c=-1$: $y=x^2-1$ (vertice in $(0,-1)$); $c=0$: $y=x^2$ (vertice nell'origine); $c=1$: $y=x^2+1$ (vertice in $(0,1)$).</span>
+                <span class="esempio__passo">Sezione $x=0$: $z=y$, una retta che sale. Sezione $y=0$: $z=-x^2$, parabola verso il basso.</span>
+                <span class="esempio__passo">Immagine: ogni $c$ dà una parabola non vuota, quindi $\mathrm{Im}(f)=\mathbb{R}$.</span>
+              </p>
+              <p><strong>Livelli: parabole $y=x^2+c$, traslate verticalmente.</strong> Il grafico è una superficie a sella "deformata": sale linearmente in $y$ e scende quadraticamente in $x$. Nessun massimo né minimo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Sia $A=\{(x,y): x^2+y^2\leq 4,\ y &gt; 0\}$. Determina $\partial A$ e stabilisci se $A$ è aperto, chiuso, limitato, compatto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$A$ è il <strong>semidisco superiore</strong> di raggio $2$: l'arco di circonferenza è incluso ($\leq$), il diametro sull'asse $x$ è escluso ($y &gt; 0$ stretto).</span>
+                <span class="esempio__passo">Frontiera: la semicirconferenza superiore $\{x^2+y^2=4,\ y\geq 0\}$ <em>unita</em> al segmento $\{-2\leq x\leq 2,\ y=0\}$.</span>
+                <span class="esempio__passo">Aperto? No: i punti della semicirconferenza appartengono ad $A$ ma non sono interni.</span>
+                <span class="esempio__passo">Chiuso? No: i punti del diametro sono di frontiera (anzi, di accumulazione) ma non appartengono ad $A$.</span>
+              </p>
+              <p><strong>$A$ è limitato ma né aperto né chiuso, quindi non compatto.</strong> Su $A$ il teorema di Weierstrass non è applicabile.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina e disegna il dominio di $\ f(x,y)=\dfrac{\sqrt{4-x^2-y^2}}{\ln x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Tre condizioni, non due: (a) radicando non negativo $4-x^2-y^2\geq 0$; (b) esistenza del logaritmo $x &gt; 0$; (c) denominatore non nullo $\ln x\neq 0$. Quest'ultima si scioglie ricordando che $\ln t=0$ solo per $t=1$ (Parte 0, cap. 4 sui logaritmi): quindi la condizione diventa $x\neq 1$.</span>
+                <span class="esempio__passo">(a) Sommo $x^2+y^2$ a entrambi i membri: $4\geq x^2+y^2$, cioè $x^2+y^2\leq 4$; confrontando con $x^2+y^2\leq r^2$ leggo $r=2$. È il disco chiuso di raggio $2$, bordo incluso perché la disuguaglianza è larga.</span>
+                <span class="esempio__passo">(b) dà il semipiano aperto a destra dell'asse $y$: l'asse $y$ stesso è escluso.</span>
+                <span class="esempio__passo">(c) toglie la retta verticale $x=1$, che taglia il disco lungo una corda.</span>
+                <span class="esempio__passo">Intersezione: la metà destra del disco chiuso, senza il segmento sull'asse $y$ e senza la corda $x=1$. Contiene l'arco di circonferenza con $x &gt; 0$.</span>
+              </p>
+              <p><strong>$\mathrm{dom}(f)=\{(x,y): x^2+y^2\leq 4,\ x &gt; 0,\ x\neq 1\}$.</strong> Limitato; <strong>né aperto né chiuso</strong> (contiene l'arco di bordo ma non il segmento sull'asse $y$); non connesso, perché la corda $x=1$ lo divide in due pezzi.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Studia il cono $f(x,y)=\sqrt{x^2+y^2}$ con la tecnica delle sezioni: taglia con $y=0$, con $x=0$ e con $z=2$. Che differenza c'è con il paraboloide?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sezione $y=0$: $z=\sqrt{x^2}=|x|$, cioè una <strong>V</strong>. Non è una parabola: nell'origine c'è uno spigolo.</span>
+                <span class="esempio__passo">Sezione $x=0$: $z=|y|$, stessa V ruotata di $90°$.</span>
+                <span class="esempio__passo">Sezione $z=2$: sostituisco $2$ al posto di $z$ e ottengo $\sqrt{x^2+y^2}=2$; elevo al quadrato entrambi i membri (sono entrambi non negativi, quindi l'operazione non introduce soluzioni false) e ottengo $x^2+y^2=2^2=4$, cioè una circonferenza di raggio $2$. In generale, per il livello $c &gt; 0$ lo stesso conto dà $x^2+y^2=c^2$, circonferenza di raggio <em>esattamente</em> $c$.</span>
+                <span class="esempio__passo">Confronto: nel cono il raggio cresce come $c$ (livelli <strong>equidistanti</strong>), nel paraboloide come $\sqrt{c}$ (livelli che <strong>si infittiscono</strong>). Il cono ha pendenza costante, il paraboloide pendenza crescente.</span>
+              </p>
+              <p><strong>Il cono è "la distanza dall'origine": pendenza costante $1$ in ogni direzione, livelli equidistanti, vertice a punta.</strong> Quello spigolo nell'origine sarà il primo esempio di funzione continua ma non differenziabile del <a href="03-derivate-parziali.html">Capitolo 3</a>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Sia $f(x,y)=x^2-y^2$. Dimostra che in ogni intorno dell'origine ci sono punti con $f &gt; 0$ e punti con $f &lt; 0$, e deduci che l'origine non è né massimo né minimo locale.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sia $B_r(O)$ un intorno qualsiasi dell'origine, con $r &gt; 0$ arbitrariamente piccolo. Osserviamo che $f(0,0)=0$.</span>
+                <span class="esempio__passo">Prendiamo il punto $P=\big(\tfrac r2,0\big)$: dista $\tfrac r2 &lt; r$ dall'origine, quindi sta nell'intorno. Vale $f(P)=\tfrac{r^2}{4} &gt; 0$.</span>
+                <span class="esempio__passo">Prendiamo il punto $Q=\big(0,\tfrac r2\big)$: anch'esso sta nell'intorno, e $f(Q)=-\tfrac{r^2}{4} &lt; 0$.</span>
+                <span class="esempio__passo">Quindi in <em>ogni</em> intorno dell'origine la funzione assume sia valori maggiori sia valori minori di $f(0,0)=0$.</span>
+              </p>
+              <p><strong>L'origine non può essere massimo locale (esistono punti vicini con valore maggiore) né minimo locale (esistono punti vicini con valore minore): è un punto di sella. ∎</strong> È il modello di ragionamento che userai per riconoscere le selle nel <a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina e classifica il dominio di $f(x,y)=\arcsin(x+y)$, e descrivine le curve di livello.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">L'arcoseno è definito solo per argomenti in $[-1,1]$: condizione $-1\leq x+y\leq 1$.</span>
+                <span class="esempio__passo">È una <strong>doppia</strong> disequazione: la spezzo in due condizioni da soddisfare insieme, $x+y\geq -1$ e $x+y\leq 1$, cioè l'intersezione di due semipiani. I bordi si ottengono sostituendo l'uguale: da $x+y=-1$, isolando $y$, viene la retta $y=-x-1$; da $x+y=1$ viene $y=-x+1$. Hanno lo stesso coefficiente angolare $-1$, quindi sono parallele: geometricamente la regione è la <strong>striscia</strong> compresa fra esse, bordi inclusi perché le disuguaglianze sono larghe.</span>
+                <span class="esempio__passo">Classificazione: entrambe le condizioni sono larghe $\Rightarrow$ <strong>chiuso</strong>; la striscia si estende all'infinito lungo la sua direzione $\Rightarrow$ <strong>non limitato</strong>, quindi non compatto.</span>
+                <span class="esempio__passo">Livelli: pongo $f(x,y)=c$, cioè $\arcsin(x+y)=c$, che ha senso solo per $c\in[-\frac\pi2,\frac\pi2]$ (è l'immagine dell'arcoseno). Per sciogliere l'arcoseno applico il seno a entrambi i membri: poiché seno e arcoseno sono una l'inversa dell'altra, a sinistra resta l'argomento, quindi $x+y=\sin c$. Per ogni $c$ fissato, $\sin c$ è un numero: è l'equazione di una retta, parallela a $y=-x$ perché il coefficiente angolare è sempre $-1$. Poiché tutti questi livelli sono non vuoti, l'immagine è $[-\frac\pi2,\frac\pi2]$.</span>
+              </p>
+              <p><strong>$\mathrm{dom}(f)=\{-1\leq x+y\leq 1\}$: striscia chiusa e illimitata. Livelli: rette parallele; $\mathrm{Im}(f)=\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare e rappresentare graficamente il dominio di $\ f(x,y)=\dfrac{\ln\!\big(y-x^2\big)}{\sqrt{4-x^2-y^2}}$, stabilendo se è aperto, chiuso, limitato, compatto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Condizioni.</strong> Logaritmo: $y-x^2 &gt; 0$ (stretta). Radice <em>al denominatore</em>: non basta $\geq 0$, serve $&gt; 0$ perché la radice non deve annullarsi. Quindi $4-x^2-y^2 &gt; 0$.</span>
+                <span class="esempio__passo"><strong>Prima regione.</strong> $y &gt; x^2$: la parte strettamente sopra la parabola $y=x^2$, bordo tratteggiato. Test con $(0,1)$: $1 &gt; 0$ vero.</span>
+                <span class="esempio__passo"><strong>Seconda regione.</strong> $x^2+y^2 &lt; 4$: disco aperto di raggio $2$, bordo tratteggiato. Test con l'origine: $0 &lt; 4$ vero.</span>
+                <span class="esempio__passo"><strong>Intersezione.</strong> La "lente" fra la parabola e la circonferenza, con entrambi i bordi esclusi. Per trovare dove i bordi si incrociano metto a sistema $y=x^2$ e $x^2+y^2=4$: dalla prima ricavo che $x^2$ vale $y$ e <em>sostituisco $y$ al posto di $x^2$</em> nella seconda, ottenendo $y+y^2=4$, cioè $y^2+y-4=0$. Uso la formula risolutiva $y=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$ con $a=1$, $b=1$, $c=-4$: $y=\frac{-1\pm\sqrt{1+16}}{2}=\frac{-1\pm\sqrt{17}}{2}$. Tengo solo la radice con $y &gt; 0$ (su $y=x^2$ l'ordinata non può essere negativa): $y=\frac{-1+\sqrt{17}}{2}\approx 1{,}56$; infine da $y=x^2$ segue $x=\pm\sqrt{y}\approx\pm 1{,}25$.</span>
+                <span class="esempio__passo"><strong>Classificazione.</strong> Tutte le condizioni sono strette: l'insieme è <strong>aperto</strong>. È contenuto nel disco di raggio $2$: <strong>limitato</strong>. Non è chiuso (manca tutta la frontiera), quindi <strong>non compatto</strong>.</span>
+              </p>
+              <p><strong>$\mathrm{dom}(f)=\{(x,y): y &gt; x^2 \text{ e } x^2+y^2 &lt; 4\}$: aperto e limitato, non chiuso, non compatto.</strong> Il tranello dell'esercizio è la radice al denominatore: chi scrive $\geq$ include per errore la circonferenza e sbaglia anche la classificazione finale.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data $f(x,y)=e^{-(x^2+y^2)}$: determinare dominio, curve di livello, immagine, ed eventuali massimi assoluti. Descrivere il grafico.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Dominio</strong>: l'esponenziale è definito ovunque, quindi $\mathrm{dom}(f)=\mathbb{R}^2$ (aperto, chiuso, illimitato: è tutto lo spazio!).</span>
+                <span class="esempio__passo"><strong>È una funzione radiale</strong>: pongo $t=x^2+y^2\geq 0$ e studio $g(t)=e^{-t}$, che è decrescente, vale $1$ in $t=0$ e tende a $0$ per $t\to+\infty$.</span>
+                <span class="esempio__passo"><strong>Livelli</strong>: pongo $f(x,y)=c$, cioè $e^{-(x^2+y^2)}=c$. Un esponenziale è sempre positivo, quindi serve $c &gt; 0$, altrimenti nessuna soluzione. Applico il logaritmo a entrambi i membri e uso $\ln(e^A)=A$: a sinistra resta l'esponente, $-(x^2+y^2)=\ln c$; moltiplico entrambi i membri per $-1$ (o, che è lo stesso, cambio segno) ottenendo $x^2+y^2=-\ln c$, e ricordando che $-\ln c=\ln\frac1c$ scrivo $x^2+y^2=\ln\frac1c$.</span>
+                <span class="esempio__passo">Ora discuto: il membro di sinistra è una somma di quadrati, quindi $\geq0$; serve perciò $\ln\frac1c\geq 0$, cioè $\frac1c\geq1$, cioè $c\leq 1$. Per $0 &lt; c &lt; 1$ confronto con $x^2+y^2=r^2$ e leggo $r=\sqrt{\ln(1/c)}$: circonferenze. Per $c=1$ il secondo membro è $\ln1=0$ e resta solo il punto $(0,0)$; per $c\leq 0$ o $c &gt; 1$ l'insieme è vuoto.</span>
+                <span class="esempio__passo"><strong>Immagine</strong>: i livelli sono non vuoti esattamente per $c\in(0,1]$, dunque $\mathrm{Im}(f)=(0,1]$.</span>
+                <span class="esempio__passo"><strong>Massimo</strong>: il valore $1$ è assunto (in $(0,0)$) ed è il più grande dell'immagine: massimo assoluto $=1$ in $(0,0)$. Il valore $0$ invece <em>non</em> è assunto: l'estremo inferiore è $0$ ma il minimo non esiste — coerente col fatto che $\mathbb{R}^2$ non è compatto.</span>
+              </p>
+              <p><strong>Grafico: una "campana" (gaussiana bidimensionale) con vertice in $(0,0,1)$ che si appiattisce verso il piano $z=0$ senza mai toccarlo.</strong> $\mathrm{Im}(f)=(0,1]$, massimo assoluto $1$, nessun minimo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $A=\{(x,y)\in\mathbb{R}^2 : 1\leq x^2+y^2\leq 4,\ y\geq 0\}$. Stabilire se $A$ è chiuso, limitato, compatto; determinarne la frontiera; giustificare che ogni funzione continua su $A$ ammette massimo e minimo assoluti.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Che insieme è</strong>: la metà superiore di una corona circolare fra i raggi $1$ e $2$ — un "arcobaleno" spesso. Tutte le condizioni sono larghe.</span>
+                <span class="esempio__passo"><strong>Chiuso</strong>: sì. Tutte le disuguaglianze sono larghe, quindi $A$ contiene tutta la propria frontiera (equivalentemente: è intersezione di tre insiemi chiusi, e l'intersezione di chiusi è chiusa).</span>
+                <span class="esempio__passo"><strong>Limitato</strong>: sì, perché $A\subseteq\overline{B}_2(O)\subseteq B_3(O)$.</span>
+                <span class="esempio__passo"><strong>Compatto</strong>: sì, per Heine–Borel (chiuso $+$ limitato in $\mathbb{R}^n$).</span>
+                <span class="esempio__passo"><strong>Frontiera</strong>: quattro pezzi — la semicirconferenza interna $\{x^2+y^2=1,\ y\geq 0\}$, quella esterna $\{x^2+y^2=4,\ y\geq 0\}$, e i due segmenti sull'asse $x$: $\{1\leq x\leq 2,\ y=0\}$ e $\{-2\leq x\leq -1,\ y=0\}$. Tutti appartengono ad $A$.</span>
+                <span class="esempio__passo"><strong>Weierstrass</strong>: $A$ è compatto e non vuoto; per il teorema di Weierstrass in più variabili, ogni $f$ continua su $A$ assume in $A$ un valore massimo e un valore minimo assoluti.</span>
+              </p>
+              <p><strong>$A$ è compatto; $\partial A$ è formata dalle due semicirconferenze e dai due segmenti sull'asse $x$; Weierstrass si applica.</strong> Confronta con l'Esempio 7: bastava cambiare un $\leq$ in $&lt;$ per perdere la compattezza e con essa la garanzia di massimo e minimo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Studiare $f(x,y)=xy$: curve di livello, sezioni con i piani coordinati e con i piani $y=\pm x$, natura dell'origine. Che superficie è il grafico?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Livelli</strong>: pongo $f(x,y)=c$, cioè $xy=c$. Per $c\neq 0$ divido entrambi i membri per $x$ (che non può essere nullo, altrimenti il prodotto sarebbe $0$) e ottengo $y=c/x$: sono <strong>iperboli equilatere</strong>. Il segno decide i quadranti: se $c &gt; 0$ i due fattori devono essere concordi, quindi primo e terzo quadrante; se $c &lt; 0$ devono essere discordi, quindi secondo e quarto. Per $c=0$: $xy=0$ è un prodotto nullo, quindi $x=0$ oppure $y=0$, cioè i <strong>due assi</strong> — di nuovo una X (ruotata di $45°$).</span>
+                <span class="esempio__passo"><strong>Sezioni con i piani coordinati</strong>: $y=0$ dà $z=0$, e $x=0$ dà $z=0$. Lungo gli assi la funzione è <em>costantemente nulla</em>: piatta. Guardando solo queste due sezioni si potrebbe erroneamente concludere che l'origine sia banale.</span>
+                <span class="esempio__passo"><strong>Sezioni diagonali</strong>: lungo $y=x$ si ottiene $z=x^2$, parabola verso l'alto (si <em>sale</em>); lungo $y=-x$ si ottiene $z=-x^2$, parabola verso il basso (si <em>scende</em>).</span>
+                <span class="esempio__passo"><strong>Natura dell'origine</strong>: $f(0,0)=0$, ma in ogni intorno ci sono punti con $f &gt; 0$ (sulla bisettrice $y=x$) e punti con $f &lt; 0$ (sulla bisettrice $y=-x$). Quindi è un <strong>punto di sella</strong>.</span>
+                <span class="esempio__passo"><strong>Identificazione</strong>: <em>pongo</em> $u=\frac{x+y}{\sqrt2}$ e $v=\frac{x-y}{\sqrt2}$ (è il cambio di coordinate che corrisponde a una rotazione di $45°$). Calcolo $u^2-v^2$: elevando al quadrato, $u^2=\frac{(x+y)^2}{2}$ e $v^2=\frac{(x-y)^2}{2}$, quindi $u^2-v^2=\frac{(x+y)^2-(x-y)^2}{2}$. Sviluppo i due quadrati con i prodotti notevoli $(a+b)^2=a^2+2ab+b^2$ e $(a-b)^2=a^2-2ab+b^2$ (Parte 0, cap. 2): il numeratore diventa $(x^2+2xy+y^2)-(x^2-2xy+y^2)=4xy$, perché $x^2$ e $y^2$ si elidono e i due termini $2xy$ si sommano. Resta $u^2-v^2=\frac{4xy}{2}=2xy$, cioè $xy=\frac{u^2-v^2}{2}$. È dunque la stessa superficie di $z=x^2-y^2$, ruotata.</span>
+              </p>
+              <p><strong>$z=xy$ è un paraboloide iperbolico (una sella) ruotato di $45°$; livelli: iperboli equilatere, degeneri negli assi per $c=0$; l'origine è un punto di sella; $\mathrm{Im}(f)=\mathbb{R}$.</strong> Lezione da portare a casa: <em>le sezioni con i soli piani coordinati non bastano</em> a classificare un punto — qui sarebbero entrambe piatte. Bisogna guardare anche le direzioni oblique.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Il grafico di una funzione $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ è un sottoinsieme di:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\mathbb{R}$</button>
+              <button class="quiz-option" data-correct="false">$\mathbb{R}^2$</button>
+              <button class="quiz-option" data-correct="true">$\mathbb{R}^3$</button>
+              <button class="quiz-option" data-correct="false">$\mathbb{R}^4$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Regola delle dimensioni: $n$ variabili indipendenti $+\,1$ valore $=$ grafico in $\mathbb{R}^{n+1}$. Con $n=2$ il grafico è una <strong>superficie in $\mathbb{R}^3$</strong>. Le curve di livello, invece, vivono in $\mathbb{R}^2$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Il dominio di $f(x,y)=\ln(x-y)$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">il semipiano chiuso $x-y\geq 0$</button>
+              <button class="quiz-option" data-correct="true">il semipiano aperto $x &gt; y$</button>
+              <button class="quiz-option" data-correct="false">tutto il piano privato della retta $y=x$</button>
+              <button class="quiz-option" data-correct="false">il disco di centro l'origine</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il logaritmo richiede argomento <strong>strettamente positivo</strong>: $x-y &gt; 0$, cioè $x &gt; y$. La retta $y=x$ è esclusa, e l'insieme è un semipiano <em>aperto</em>. Scrivere $\geq$ è l'errore tipico.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Le curve di livello di $f(x,y)=x^2+y^2$ sono:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">rette parallele</button>
+              <button class="quiz-option" data-correct="false">iperboli</button>
+              <button class="quiz-option" data-correct="true">circonferenze di raggio $\sqrt{c}$, per $c &gt; 0$</button>
+              <button class="quiz-option" data-correct="false">parabole con vertice nell'origine</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$x^2+y^2=c$ è una circonferenza di raggio $\sqrt{c}$ per $c &gt; 0$, si riduce al punto $(0,0)$ per $c=0$ ed è vuota per $c &lt; 0$ (da cui $\mathrm{Im}(f)=[0,+\infty)$). Il grafico è il paraboloide ellittico.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) La superficie di equazione $z=x^2-y^2$ si chiama:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">cono</button>
+              <button class="quiz-option" data-correct="false">paraboloide ellittico</button>
+              <button class="quiz-option" data-correct="true">paraboloide iperbolico (sella)</button>
+              <button class="quiz-option" data-correct="false">cilindro parabolico</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>I segni discordi dei due quadrati sono la firma della <strong>sella</strong>: lungo $y=0$ si ha $z=x^2$ e si sale, lungo $x=0$ si ha $z=-y^2$ e si scende. I livelli sono iperboli, degeneri nelle rette $y=\pm x$ per $c=0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Un insieme che non è aperto è necessariamente chiuso.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: "aperto" e "chiuso" non sono opposti. La corona $\{1\leq x^2+y^2 &lt; 4\}$ non è né aperta né chiusa; $\varnothing$ e $\mathbb{R}^n$ sono invece entrambe le cose.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Due curve di livello di quote diverse possono intersecarsi in almeno un punto.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, ed è la Proposizione 5.2: in un punto comune la funzione dovrebbe valere $c_1$ e $c_2$ contemporaneamente, contro la definizione di funzione. Sulla carta escursionistica la curva dei 1300 m e quella dei 1400 m non si toccano mai.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) In $\mathbb{R}^n$ un insieme è compatto se e solo se è chiuso e limitato.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il teorema di Heine–Borel, valido in $\mathbb{R}^n$. La compattezza è l'ipotesi che permette di applicare il teorema di Weierstrass e garantire l'esistenza di massimo e minimo assoluti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) L'insieme $\{(x,y)\in\mathbb{R}^2 : x^2+y^2 &lt; 1\}$ è aperto e limitato, ma non compatto.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il disco aperto. È aperto (disuguaglianza stretta) e limitato (sta in $B_2(O)$), ma <strong>non è chiuso</strong>, perché non contiene la circonferenza $x^2+y^2=1$ che ne è la frontiera. Senza chiusura non c'è compattezza.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="curva di livello|curva|insieme di livello|livello">
+            <p class="quiz-question__testo">9. (Completamento) L'insieme dei punti del piano in cui $f$ assume un valore costante $c$ si chiama ______ (due parole: è la curva di quota della carta escursionistica).</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>$L_c=\{(x,y)\in A : f(x,y)=c\}$. Attenzione: vive nel <strong>piano</strong> del dominio, non nello spazio del grafico. In tre variabili si parla di superficie di livello.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="compatto">
+            <p class="quiz-question__testo">10. (Completamento) Un sottoinsieme di $\mathbb{R}^n$ che sia contemporaneamente chiuso e limitato si dice ______ .</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Teorema di Heine–Borel: in $\mathbb{R}^n$ compatto $=$ chiuso $+$ limitato. È l'ipotesi chiave del teorema di Weierstrass in più variabili.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="distanza|distanza euclidea">
+            <p class="quiz-question__testo">11. (Completamento) La ______ euclidea fra due punti di $\mathbb{R}^2$ si calcola con il teorema di Pitagora ed è ciò che permette di definire le palle e gli intorni.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>$d(P,Q)=\sqrt{(p_1-q_1)^2+(p_2-q_2)^2}$: l'ipotenusa del triangolo rettangolo formato dalle differenze delle coordinate. Per $n=1$ si riduce al valore assoluto $|p-q|$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue l'analogia fra le curve di livello di una funzione $f(x,y)$ e le curve di quota di una carta escursionistica. Che cosa corrisponde al grafico, che cosa alla carta, e come si legge la pendenza?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: la funzione $h(x,y)$ che dà la quota del terreno nel punto di coordinate $(x,y)$ è una funzione di due variabili. Il suo <strong>grafico</strong> è la montagna vera, una superficie in $\mathbb{R}^3$: due coordinate per dire dove sei sulla mappa, una terza, verticale, per l'altezza. La <strong>carta escursionistica</strong> corrisponde invece all'insieme delle curve di livello: ogni curva unisce i punti in cui $h$ vale una costante fissata (1200 m, 1300 m...), ed è disegnata nel piano del dominio, cioè su un foglio piatto. Si ottiene tagliando il grafico con un piano orizzontale $z=c$ e proiettando la curva di intersezione sul pavimento. La <strong>pendenza</strong> si legge dalla distanza fra due curve consecutive: se sono fitte, per guadagnare 100 metri di quota basta fare pochi metri in orizzontale, quindi il pendio è ripido; se sono larghe, il terreno è quasi pianeggiante. Infine, due curve di quota diversa non possono mai incrociarsi, perché in un punto il terreno ha una sola altezza: è la proprietà di disgiunzione dei livelli, conseguenza diretta del fatto che $h$ è una funzione.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Descrivi la procedura completa per determinare, disegnare e classificare il dominio di una funzione di due variabili, usando come esempio $f(x,y)=\sqrt{y-x^2}\cdot\ln(4-x^2-y^2)$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: (1) <strong>Elenco delle condizioni</strong>: si legge la formula pezzo per pezzo. La radice di indice pari impone il radicando non negativo, $y-x^2\geq 0$ (disuguaglianza <em>larga</em>); il logaritmo impone l'argomento strettamente positivo, $4-x^2-y^2 &gt; 0$ (disuguaglianza <em>stretta</em>). Le condizioni valgono simultaneamente. (2) <strong>Disegno dei bordi</strong>: si sostituisce ogni disuguaglianza con un'uguaglianza. Si ottengono la parabola $y=x^2$, tracciata piena perché inclusa, e la circonferenza $x^2+y^2=4$ di raggio 2, tratteggiata perché esclusa. (3) <strong>Scelta del lato con il test del punto</strong>: per la prima condizione si prova $(0,1)$, che dà $1\geq 0$ vero, quindi si prende la regione sopra la parabola; per la seconda si prova l'origine, che dà $0 &lt; 4$ vero, quindi si prende l'interno del disco. (4) <strong>Intersezione e ombreggiatura</strong>: il dominio è la "lente" compresa sopra la parabola e dentro il disco. (5) <strong>Classificazione</strong>: contiene l'arco di parabola (parte della frontiera) ma non l'arco di circonferenza (altra parte della frontiera), quindi <strong>non è aperto</strong> — i punti della parabola non sono interni — e <strong>non è chiuso</strong>, perché manca un pezzo di frontiera. È limitato, essendo contenuto nel disco di raggio 2, ma non essendo chiuso <strong>non è compatto</strong>: il teorema di Weierstrass non è applicabile.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="../parte1-analisi1/15-applicazioni-integrali.html"><span class="dir">← Capitolo precedente</span><strong>Applicazioni degli integrali</strong></a>
+        <a class="next" href="02-limiti-continuita-piu-variabili.html"><span class="dir">Capitolo successivo →</span><strong>Limiti e continuità in più variabili</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>6. Disequazioni — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 6</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html" class="is-active">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 6 di 9</span>
+        </div>
+        <h1>Disequazioni: trovare tutti i valori che funzionano</h1>
+        <p class="subtitle">Un'equazione chiede "quale valore esatto?"; una disequazione chiede "quali valori vanno bene?". La risposta non è più un punto, ma un intero intervallo (o un'unione di intervalli). Imparare a trovarlo con sicurezza è la competenza che regge tutto lo studio di funzione dell'Analisi 1.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Nel capitolo precedente hai imparato a risolvere le <a href="05-equazioni.html">equazioni</a>: espressioni in cui un segno di uguale ($=$) ti chiede di trovare i (pochi) valori dell'incognita che rendono <em>esattamente</em> vera l'uguaglianza. Un'equazione è come chiedere: <em>"A che ora precisa parte il treno?"</em>. La risposta è un istante ben definito.</p>
+        <p>Una <strong><span class="glossario-term" data-term="disequazione">disequazione</span></strong> sostituisce l'uguale con un segno di <strong>ordine</strong> — "minore" ($&lt;$), "maggiore" ($&gt;$), "minore o uguale" ($\leq$), "maggiore o uguale" ($\geq$) — e cambia radicalmente la domanda: <em>"Durante quali ore la stazione è aperta?"</em>. Qui la risposta non è un istante, ma un <strong>intervallo di tempo</strong>: tutte le ore comprese, per esempio, tra le 5:00 e la mezzanotte.</p>
+        <p>Questa è l'idea centrale da portare a casa fin da subito:</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Equazione vs disequazione, in una frase</div>
+          <p>Risolvere un'<strong>equazione</strong> significa trovare i <em>punti</em> in cui due espressioni coincidono. Risolvere una <strong>disequazione</strong> significa trovare <em>tutta la regione</em> in cui una espressione sta sopra (o sotto) l'altra. Per questo la soluzione di una disequazione è quasi sempre un <span class="glossario-term" data-term="intervallo">intervallo</span> o un'unione di intervalli, e la scriveremo con simboli come $x &gt; 3$, oppure $-2 \leq x &lt; 5$, oppure $(-\infty,\,-1)\cup(4,\,+\infty)$.</p>
+        </div>
+        <p>Immagina la retta dei numeri reali come una lunga strada. Un'equazione pianta un paletto in uno o due punti precisi. Una disequazione, invece, <strong>colora un tratto di strada</strong>: tutti i punti "che funzionano". Tutto il lavoro di questo capitolo consiste nell'imparare, per ogni tipo di disequazione, <em>quale tratto colorare</em> — e a non colorare per errore un centimetro di troppo o di meno.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>la stragrande maggioranza delle domande interessanti non riguarda un valore esatto, ma un range di valori ammissibili</strong>. "Quanto posso spendere restando entro il budget?", "per quali dosi il farmaco è efficace ma non tossico?", "per quali velocità non prendo la multa?": nessuna di queste è un'equazione. Sono tutte disequazioni. La matematica ha bisogno di uno strumento sistematico per rispondere a domande di questo tipo, e quello strumento sono proprio le disequazioni.</p>
+        </div>
+        <p><strong>Quale problema risolve, dentro l'Analisi?</strong> Le disequazioni sono l'ossatura nascosta di quasi tutto ciò che farai in Analisi 1. Guarda questi tre esempi che incontrerai presto:</p>
+        <ul>
+          <li>Il <strong>dominio</strong> di una <a href="../parte1-analisi1/03-funzioni.html">funzione</a> si trova risolvendo disequazioni: sotto una radice pari il radicando deve essere $\geq 0$, in un <span class="glossario-term" data-term="logaritmo">logaritmo</span> l'argomento deve essere $&gt; 0$, un denominatore deve essere $\neq 0$. Ogni "condizione di esistenza" è una disequazione (o un'equazione da escludere).</li>
+          <li>Lo studio della <strong>crescenza</strong> di una funzione, nel completo <a href="../parte1-analisi1/09-studio-di-funzione.html">studio di funzione</a>, si fa risolvendo la disequazione $f'(x) &gt; 0$: dove la derivata è positiva, la funzione sale; dove è negativa, scende. Senza saper risolvere disequazioni non si va da nessuna parte.</li>
+          <li>Persino la definizione rigorosa di <a href="../parte1-analisi1/04-limiti.html">limite</a> è, in fondo, una disequazione: "$|f(x)-\ell| &lt; \varepsilon$ non appena $|x-x_0| &lt; \delta$". Imparare oggi a maneggiare $|A| &lt; k$ ti farà sembrare naturale una delle definizioni che spaventano di più le matricole.</li>
+        </ul>
+        <p><strong>Perché è importante impararlo bene ora?</strong> Perché è un argomento in cui gli errori sono <em>sistematici</em>: chi dimentica di cambiare verso moltiplicando per un negativo lo dimentica sempre; chi sbaglia il quadro dei segni lo sbaglia a ogni esercizio. Fissare i meccanismi corretti adesso, su esempi semplici, ti eviterà di trascinarli fino al giorno dell'esame.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Vivi immerso nelle disequazioni</div>
+          <p>Un <strong>limite di velocità</strong> è una disequazione bell'e pronta: $v \leq 130$ km/h. La cartellonistica non ti dice "vai esattamente a 130", ti dice "sta' sotto o al più uguale a 130": una relazione d'ordine. Il tuo <strong>budget mensile</strong> è un vincolo di disequazione: $\text{spesa} \leq \text{reddito}$, e l'insieme delle spese ammissibili è tutto l'intervallo da zero fino al reddito. Il <strong>range terapeutico</strong> di un farmaco è addirittura un <em>sistema</em> di due disequazioni contemporanee: la dose deve stare sopra la soglia minima efficace e sotto la soglia massima tollerabile, cioè $\text{dose}_{\min} \leq \text{dose} \leq \text{dose}_{\max}$. Fuori da quell'intervallo il farmaco o è inutile o è pericoloso.</p>
+        </div>
+        <p>Nota una cosa importante: in tutti questi esempi la risposta "giusta" non è un numero, è un <strong>insieme di numeri</strong>. Non esiste "la" velocità corretta: esistono <em>tutte</em> le velocità legali. Non esiste "la" spesa giusta: esistono <em>tutte</em> le spese sostenibili. Le disequazioni sono il linguaggio con cui la matematica descrive i <strong>vincoli</strong> e le <strong>tolleranze</strong>, ed è per questo che compaiono ovunque: in economia (vincoli di bilancio), in ingegneria (margini di sicurezza), in medicina (dosaggi), in informatica (complessità $\leq$ soglia accettabile).</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizione">4.1 Che cos'è una disequazione e cosa vuol dire risolverla</h3>
+        <p>Una <strong>disequazione</strong> è una disuguaglianza tra due espressioni contenenti un'incognita (di solito $x$), collegate da uno dei quattro simboli d'ordine: $&lt;$, $&gt;$, $\leq$, $\geq$. <strong>Risolverla</strong> significa determinare l'<em>insieme delle soluzioni</em>: tutti e soli i valori reali di $x$ che, sostituiti, rendono vera la disuguaglianza.</p>
+        <p>Come per le equazioni, ci muoviamo trasformando la disequazione in altre <strong>equivalenti</strong> (cioè con lo stesso identico insieme di soluzioni), più semplici. Le regole del gioco — i <em>principi di equivalenza</em> — sono due, e sono quasi come quelli delle equazioni... con una fondamentale eccezione:</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Principi di equivalenza</span>
+          <p><em class="nome">1) Somma.</em> Aggiungere (o togliere) la stessa quantità a entrambi i membri non cambia le soluzioni né il verso: $A &lt; B \iff A + c &lt; B + c$.</p>
+          <p><em class="nome">2) Prodotto.</em> Moltiplicare (o dividere) entrambi i membri per uno stesso numero $c \neq 0$:</p>
+          <p>• se $c &gt; 0$, il verso <strong>resta uguale</strong>: $A &lt; B \iff cA &lt; cB$;</p>
+          <p>• se $c &lt; 0$, il verso si <strong>inverte</strong>: $A &lt; B \iff cA &gt; cB$.</p>
+        </div>
+        <p>Quella riga in grassetto — "se moltiplichi per un negativo, gira il verso" — è la regola più importante e più dimenticata di tutto il capitolo. La dimostreremo rigorosamente nella sezione 5, ma vediamola subito "tradire" un esempio numerico.</p>
+
+        <h3 id="teoria-primo-grado">4.2 Disequazioni di primo grado e la regola del cambio di verso</h3>
+        <p>Una disequazione di <strong>primo grado</strong> ha la forma $ax + b &gt; 0$ (o con $&lt;, \leq, \geq$), con $a \neq 0$. Si risolve isolando la $x$, esattamente come un'equazione, ma tenendo l'occhio fisso sul verso. Prima, però, la dimostrazione intuitiva del perché il verso deve girare.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'esempio che "tradisce" la disuguaglianza</div>
+          <p>Parti da una disuguaglianza vera e innocente: $$2 &lt; 3.$$ Ora moltiplica entrambi i membri per $-1$, ma <strong>senza</strong> girare il verso. Otterresti $-2 &lt; -3$. Ma è <em>falso</em>! Sulla retta dei numeri $-2$ è a destra di $-3$, quindi $-2$ è il più grande: $-2 &gt; -3$. La moltiplicazione per un numero negativo <strong>ribalta la retta come uno specchio</strong>: ciò che era "più a sinistra" diventa "più a destra". Per riportare la verità, il verso <em>deve</em> invertirsi: $$2 &lt; 3 \quad\xrightarrow{\ \times(-1)\ }\quad -2 &gt; -3. \quad\checkmark$$ Questo è il motivo profondo per cui si cambia verso: non è una regola arbitraria da memorizzare, è una necessità geometrica.</p>
+        </div>
+        <p>Vediamo la procedura su un caso con il coefficiente della $x$ negativo, dove la regola entra in gioco:</p>
+        <div class="formula-block">
+          $$-2x + 4 &lt; 0 \;\Longrightarrow\; -2x &lt; -4 \;\xrightarrow{\ :\,(-2),\ \text{verso invertito}\ }\; x &gt; 2.$$
+        </div>
+        <p>Dividendo per $-2$ (numero negativo) il $&lt;$ è diventato $&gt;$. La soluzione è l'intervallo $x &gt; 2$, cioè $(2,\,+\infty)$. Se avessi dimenticato di girare il verso avresti scritto $x &lt; 2$: l'insieme <em>opposto</em>, quindi completamente sbagliato.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Scorciatoia per non sbagliare mai il verso</div>
+          <p>Porta sempre l'incognita dalla parte in cui il suo coefficiente risulta <strong>positivo</strong>. Invece di dividere $-2x &lt; -4$ per $-2$, sposta i termini: $-2x &lt; -4 \iff 4 &lt; 2x \iff 2 &lt; x$, cioè $x &gt; 2$. Non hai mai diviso per un negativo, quindi non hai dovuto ricordarti di girare il verso: il verso si è sistemato da solo. È il modo più sicuro di procedere sotto stress d'esame.</p>
+        </div>
+
+        <h3 id="teoria-secondo-grado">4.3 Disequazioni di secondo grado: il metodo della parabola</h3>
+        <p>Una disequazione di <strong>secondo grado</strong> ha la forma $ax^2 + bx + c &gt; 0$ (o $&lt;, \leq, \geq$), con $a \neq 0$. Qui non basta "isolare la $x$": serve un'idea geometrica potente. Il trinomio $y = ax^2 + bx + c$ è l'equazione di una <span class="glossario-term" data-term="parabola">parabola</span>, e chiedersi <em>dove il trinomio è positivo</em> equivale a chiedersi <em>dove la parabola sta sopra l'asse $x$</em> (e viceversa per il negativo).</p>
+        <p>Due sole informazioni governano tutto:</p>
+        <ul>
+          <li>il segno di $a$ decide la <strong>concavità</strong>: se $a &gt; 0$ la parabola "sorride" (concavità verso l'alto), se $a &lt; 0$ "è triste" (concavità verso il basso);</li>
+          <li>il <span class="glossario-term" data-term="discriminante">discriminante</span> $\Delta = b^2 - 4ac$ decide <strong>quante volte</strong> la parabola tocca o attraversa l'asse $x$: due punti se $\Delta &gt; 0$, uno solo (tangenza) se $\Delta = 0$, nessuno se $\Delta &lt; 0$.</li>
+        </ul>
+
+        <svg viewBox="0 0 440 230" style="max-width:460px;margin:1.2em auto;display:block;" role="img" aria-label="Parabola con concavità verso l'alto che interseca l'asse x in due punti x1 e x2; è positiva all'esterno delle radici e negativa tra di esse">
+          <line x1="55" y1="150" x2="405" y2="150" stroke="currentColor" stroke-width="1.5"/>
+          <text x="392" y="143" font-size="12" fill="currentColor">x</text>
+          <path d="M 100 45 Q 215 300 330 45" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <circle cx="167" cy="150" r="4.5" fill="var(--color-primary)"/>
+          <circle cx="263" cy="150" r="4.5" fill="var(--color-primary)"/>
+          <text x="150" y="172" font-size="13" fill="currentColor">x₁</text>
+          <text x="258" y="172" font-size="13" fill="currentColor">x₂</text>
+          <text x="105" y="120" font-size="15" font-weight="700" fill="var(--color-success)">+</text>
+          <text x="322" y="120" font-size="15" font-weight="700" fill="var(--color-success)">+</text>
+          <text x="212" y="145" font-size="15" font-weight="700" fill="var(--color-danger)">−</text>
+          <text x="90" y="35" font-size="12" fill="var(--color-text-muted)">a &gt; 0</text>
+        </svg>
+
+        <p>Osserva la figura (caso $a &gt; 0$, $\Delta &gt; 0$): il trinomio è <strong>positivo all'esterno delle radici</strong> (dove la parabola sta sopra l'asse) e <strong>negativo tra le radici</strong> (dove sta sotto). Da qui la regola mnemonica italiana per eccellenza: <em>"segno concorde con $a$ per valori esterni all'intervallo delle radici, segno discorde da $a$ per valori interni"</em>. La tabella seguente riassume tutti i casi con $a &gt; 0$ (per $a &lt; 0$ vedi il trucco subito dopo):</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Caso ($a &gt; 0$)</th><th>Radici di $ax^2+bx+c=0$</th><th>$ax^2+bx+c &gt; 0$</th><th>$ax^2+bx+c &lt; 0$</th></tr></thead>
+          <tbody>
+            <tr><td>$\Delta &gt; 0$</td><td>due distinte $x_1 &lt; x_2$</td><td>$x &lt; x_1 \ \lor\ x &gt; x_2$ (esterni)</td><td>$x_1 &lt; x &lt; x_2$ (interni)</td></tr>
+            <tr><td>$\Delta = 0$</td><td>una doppia $x_0 = -\frac{b}{2a}$</td><td>$\forall x \neq x_0$</td><td>mai (nessuna soluzione)</td></tr>
+            <tr><td>$\Delta &lt; 0$</td><td>nessuna reale</td><td>$\forall x \in \mathbb{R}$ (sempre vera)</td><td>mai (nessuna soluzione)</td></tr>
+          </tbody>
+        </table>
+        <p>Attenzione ai casi con l'uguale ($\geq, \leq$): includono anche i punti in cui il trinomio vale $0$, cioè le radici stesse. Per esempio, se $\Delta = 0$, la disequazione $ax^2+bx+c \geq 0$ (con $a &gt; 0$) è vera <em>per ogni</em> $x$ reale, perché la parabola tocca l'asse in $x_0$ (dove vale esattamente $0$, ammesso dall'uguale) e sta sopra ovunque altrove.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Se $a &lt; 0$, ribalta subito</div>
+          <p>Non imparare a memoria anche i casi con $a &lt; 0$: sono la fonte principale di errori. Se il coefficiente di $x^2$ è negativo, <strong>moltiplica tutta la disequazione per $-1$ girando il verso</strong>, così ti riconduci al caso $a &gt; 0$ della tabella. Esempio: parto da $-x^2 + 4 &gt; 0$; moltiplico ogni termine per $-1$ (quindi $-x^2$ diventa $x^2$ e $+4$ diventa $-4$) e giro il verso, ottenendo $x^2 - 4 &lt; 0$. Ora $a=1&gt;0$: le radici di $x^2-4=0$ sono $x=\pm2$, e poiché chiedo il segno negativo prendo i valori <em>interni</em>, cioè $-2 &lt; x &lt; 2$. Un unico schema da ricordare, meno errori.</p>
+        </div>
+
+        <h3 id="teoria-sistemi">4.4 Sistemi di disequazioni: l'intersezione delle soluzioni</h3>
+        <p>Un <strong>sistema di disequazioni</strong> è un insieme di due o più disequazioni che devono valere <strong>tutte contemporaneamente</strong>. La parola chiave è "e": la soluzione del sistema è l'<strong>intersezione</strong> delle soluzioni delle singole disequazioni, cioè i valori di $x$ che le soddisfano <em>tutte insieme</em>.</p>
+        <div class="formula-block">
+          $$\begin{cases} x - 1 &gt; 0 \\ 3 - x \geq 0 \end{cases} \;\Longrightarrow\; \begin{cases} x &gt; 1 \\ x \leq 3 \end{cases}$$
+        </div>
+        <p>La prima dà $x &gt; 1$, la seconda dà $x \leq 3$. L'intersezione — i valori che stanno sia in $(1,+\infty)$ sia in $(-\infty,3]$ — è l'intervallo $1 &lt; x \leq 3$, cioè $(1,\,3]$. Il metodo pratico è disegnare uno <strong>schema a barrette</strong>: una riga per ogni condizione, si tracciano le semirette-soluzione, e si prende la fascia verticale coperta da <em>tutte</em>:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Condizione</th><th>Insieme soluzione</th></tr></thead>
+          <tbody>
+            <tr><td>$x - 1 &gt; 0$</td><td>$x &gt; 1$</td></tr>
+            <tr><td>$3 - x \geq 0$</td><td>$x \leq 3$</td></tr>
+            <tr><td><strong>Sistema (intersezione)</strong></td><td>$1 &lt; x \leq 3$</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Non confondere</strong> il sistema (intersezione, "e") con la disequazione doppia o con l'unione ("o"). Se il testo dice "trova gli $x$ per cui vale l'una <em>oppure</em> l'altra", devi fare l'<strong>unione</strong>, non l'intersezione. Il connettivo logico nel testo è la tua bussola.</p>
+
+        <h3 id="teoria-fratte">4.5 Disequazioni fratte: il quadro dei segni</h3>
+        <p>Una disequazione <strong>fratta</strong> ha l'incognita anche al denominatore, per esempio $\dfrac{x-1}{x+2} \geq 0$. La tentazione (sbagliata!) è "moltiplicare a croce" per far sparire il denominatore: <strong>non farlo mai</strong>, perché il denominatore contiene $x$ e potrebbe essere positivo o negativo a seconda del valore di $x$ — e quindi non sai se girare il verso o no.</p>
+        <p>Il metodo corretto è lo <strong>studio del segno separato</strong>. Si porta tutto a un unico rapporto confrontato con lo zero, poi si studiano <em>separatamente</em> il segno del numeratore $N(x)$ e del denominatore $D(x)$, e infine si combinano con la regola dei segni (il classico "meno per meno fa più"). Non dimenticare mai la condizione di esistenza: il denominatore deve essere $\neq 0$, quindi i valori che lo annullano vanno <strong>esclusi</strong>. Ecco il <strong>quadro dei segni</strong> per $\dfrac{x-1}{x+2} \geq 0$:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Fattore</th><th>$x &lt; -2$</th><th>$x = -2$</th><th>$-2 &lt; x &lt; 1$</th><th>$x = 1$</th><th>$x &gt; 1$</th></tr></thead>
+          <tbody>
+            <tr><td>$N = x-1$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$0$</td><td>$+$</td></tr>
+            <tr><td>$D = x+2$</td><td>$-$</td><td>$0$ (escl.)</td><td>$+$</td><td>$+$</td><td>$+$</td></tr>
+            <tr><td>$\dfrac{N}{D}$</td><td>$+$</td><td>non def.</td><td>$-$</td><td>$0$</td><td>$+$</td></tr>
+          </tbody>
+        </table>
+        <p>Cerchiamo dove il rapporto è $\geq 0$: le colonne con segno $+$ o con valore $0$. Sono la prima ($x &lt; -2$) e le ultime due ($x \geq 1$, con l'uguale che <em>include</em> $x=1$ perché lì il numeratore si annulla e $0 \geq 0$ è vero). Il punto $x = -2$ è <strong>escluso</strong> perché annulla il denominatore. Soluzione:</p>
+        <div class="formula-block">$$x &lt; -2 \ \lor\ x \geq 1, \qquad \text{cioè}\qquad (-\infty,\,-2)\ \cup\ [1,\,+\infty).$$</div>
+        <p>Nota la differenza tra le parentesi: il $-2$ è escluso (tonda), l'$1$ è incluso (quadra). Questa attenzione agli estremi è ciò che distingue una soluzione corretta da una "quasi giusta".</p>
+
+        <h3 id="teoria-valore-assoluto">4.6 Disequazioni con il valore assoluto</h3>
+        <p>Il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span> $|A|$ misura la distanza di $A$ da zero, quindi è sempre $\geq 0$. Sfruttando questo significato geometrico, le disequazioni con valore assoluto si sciolgono in due schemi da ricordare (validi quando $k &gt; 0$):</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Forma</th><th>Si traduce in</th><th>Intuizione geometrica</th></tr></thead>
+          <tbody>
+            <tr><td>$|A| &lt; k$</td><td>$-k &lt; A &lt; k$ (sistema, "e")</td><td>punti a distanza da $0$ <em>minore</em> di $k$: la fascia centrale</td></tr>
+            <tr><td>$|A| &gt; k$</td><td>$A &lt; -k \ \lor\ A &gt; k$ (unione, "o")</td><td>punti a distanza da $0$ <em>maggiore</em> di $k$: le due code esterne</td></tr>
+          </tbody>
+        </table>
+        <p>Regola d'oro: <strong>"minore" apre un intervallo unico e limitato (la fascia dentro), "maggiore" apre due semirette (le code fuori)</strong>. Con l'uguale ($\leq, \geq$) valgono gli stessi schemi, includendo gli estremi.</p>
+        <p>Restano i <strong>casi limite con $k$ negativo o nullo</strong>, che spaventano ma si risolvono ragionando sul significato di distanza (mai negativa):</p>
+        <ul>
+          <li>$|A| &lt; k$ con $k \leq 0$: <strong>impossibile</strong>, nessuna soluzione. Una distanza non può essere minore di un numero negativo (né minore di $0$).</li>
+          <li>$|A| &gt; k$ con $k &lt; 0$: <strong>sempre vera</strong>, l'insieme soluzione è tutto $\mathbb{R}$. Una distanza è sempre $\geq 0 &gt; k$.</li>
+          <li>$|A| &gt; 0$: vera per ogni $A \neq 0$ (basta escludere il punto in cui $A = 0$).</li>
+        </ul>
+        <p>Esempio guida: $|2x - 1| &lt; 3$. Uso il primo schema della tabella, $|A| &lt; k \iff -k &lt; A &lt; k$, con $A = 2x-1$ e $k = 3$: ottengo $-3 &lt; 2x - 1 &lt; 3$. Ora sommo $1$ a <em>tutti e tre</em> i membri (il principio di somma vale anche nelle disequazioni doppie): $-3+1 &lt; 2x &lt; 3+1$, cioè $-2 &lt; 2x &lt; 4$. Infine divido tutti e tre i membri per $2$, che è positivo, quindi i versi restano: $-1 &lt; x &lt; 2$.</p>
+
+        <h3 id="teoria-esp-log">4.7 Disequazioni esponenziali e logaritmiche elementari</h3>
+        <p>Per le disequazioni con <span class="glossario-term" data-term="esponenziale">esponenziali</span> e logaritmi la chiave è la <strong>monotonia</strong> della funzione, cioè il fatto che sia sempre crescente o sempre decrescente. E qui la <strong>base</strong> comanda tutto:</p>
+        <ul>
+          <li>se la base è $&gt; 1$, la funzione è <strong>crescente</strong>: ordina i numeri come i loro "livelli", quindi <strong>il verso si mantiene</strong>;</li>
+          <li>se la base è compresa tra $0$ e $1$, la funzione è <strong>decrescente</strong>: capovolge l'ordine, quindi <strong>il verso si inverte</strong>.</li>
+        </ul>
+        <p>In simboli, per l'esponenziale (dopo aver scritto entrambi i membri come potenze della stessa base $a$):</p>
+        <div class="formula-block">
+          $$a^{f(x)} &lt; a^{g(x)} \iff \begin{cases} f(x) &lt; g(x) &amp; \text{se } a &gt; 1 \quad(\text{verso invariato})\\[4pt] f(x) &gt; g(x) &amp; \text{se } 0 &lt; a &lt; 1 \quad(\text{verso invertito}) \end{cases}$$
+        </div>
+        <p>Esempio con base $&gt; 1$: $\ 2^{x} &gt; 8$. Il primo passo è sempre lo stesso: <strong>riscrivo il numero a destra come potenza della stessa base che ho a sinistra</strong>. Qui $8 = 2^3$, quindi $2^{x} &gt; 2^{3}$; adesso posso confrontare gli esponenti, e siccome la base $2$ è maggiore di $1$ il verso non cambia: $x &gt; 3$. Esempio con base $&lt; 1$: $\ \left(\tfrac12\right)^{x} &gt; \tfrac18$. Riscrivo $\tfrac18 = \left(\tfrac12\right)^{3}$ (perché $\tfrac12$ moltiplicato per sé stesso tre volte fa $\tfrac18$), quindi $\left(\tfrac12\right)^{x} &gt; \left(\tfrac12\right)^{3}$; qui la base sta tra $0$ e $1$, la funzione decresce e il verso si inverte: $x &lt; 3$ (verso invertito!).</p>
+        <p>Stessa logica per il logaritmo, con in più la <strong>condizione di esistenza</strong>: l'argomento del logaritmo deve essere sempre $&gt; 0$. Per $\log_a$:</p>
+        <div class="formula-block">
+          $$\log_a f(x) &lt; \log_a g(x) \iff \begin{cases} 0 &lt; f(x) &lt; g(x) &amp; \text{se } a &gt; 1 \\[4pt] f(x) &gt; g(x) &gt; 0 &amp; \text{se } 0 &lt; a &lt; 1 \end{cases}$$
+        </div>
+        <p>Esempio: $\log_2 x &lt; 3$. Per poter confrontare gli argomenti mi servono due logaritmi con la stessa base, quindi riscrivo anche il numero a destra come logaritmo: $3 = \log_2 8$, perché $2^3 = 8$. La disequazione diventa $\log_2 x &lt; \log_2 8$. Base $2 &gt; 1$, quindi verso invariato: $x &lt; 8$; unito alla condizione di esistenza $x &gt; 0$ (l'argomento del logaritmo di sinistra deve essere positivo), si ottiene $0 &lt; x &lt; 8$. Dimenticare la condizione $x &gt; 0$ è uno degli errori più penalizzati all'esame: rileggi la sezione errori comuni.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Cambio di verso per moltiplicazione negativa.</em> Siano $a, b \in \mathbb{R}$ con $a &lt; b$, e sia $c &lt; 0$. Allora $\ ca &gt; cb$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (dagli assiomi d'ordine)</span>
+          <p>Usiamo due proprietà fondamentali dei numeri reali ordinati: (i) sommando la stessa quantità a entrambi i membri la disuguaglianza si conserva; (ii) moltiplicando entrambi i membri per un numero <em>positivo</em> la disuguaglianza si conserva.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Poiché $c &lt; 0$, il suo opposto è positivo: $-c &gt; 0$.</span>
+            <span class="esempio__passo">Applichiamo la proprietà (ii) con il fattore positivo $-c$ alla disuguaglianza $a &lt; b$: otteniamo $(-c)\,a &lt; (-c)\,b$, cioè $-ca &lt; -cb$.</span>
+            <span class="esempio__passo">Ora sommiamo a entrambi i membri la quantità $ca + cb$ (proprietà (i)): $-ca + ca + cb &lt; -cb + ca + cb$.</span>
+            <span class="esempio__passo">Semplificando: $cb &lt; ca$, cioè, letta al contrario, $ca &gt; cb$.</span>
+          </p>
+          <p>Abbiamo dimostrato che $a &lt; b$ implica $ca &gt; cb$ ogni volta che $c &lt; 0$: il verso si è invertito. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché non è una convenzione arbitraria</div>
+          <p>La dimostrazione mostra che il cambio di verso <strong>non è una regola inventata dagli insegnanti per farti sbagliare</strong>: discende necessariamente dalle proprietà di base dei numeri reali. Geometricamente, moltiplicare per un negativo riflette la retta rispetto allo zero, e una riflessione scambia "sinistra" e "destra", cioè scambia "minore" e "maggiore".</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Segno del trinomio con discriminante negativo.</em> Se $\Delta = b^2 - 4ac &lt; 0$, il trinomio $ax^2+bx+c$ ha sempre lo stesso segno di $a$, per ogni $x \in \mathbb{R}$. In particolare, se $a &gt; 0$ è sempre positivo; se $a &lt; 0$ è sempre negativo.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (completamento del quadrato)</span>
+          <p>Raccogliamo $a$ e completiamo il quadrato, una tecnica che riutilizzerai spessissimo:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Raccolgo $a$ nei soli primi due termini (il termine noto $c$ resta fuori): $ax^2+bx+c = a\left(x^2 + \dfrac{b}{a}x\right) + c$. Controllo: se rimoltiplico, $a\cdot x^2 = ax^2$ ✓ e $a\cdot\frac{b}{a}x = bx$ ✓.</span>
+            <span class="esempio__passo">Dentro la parentesi <em>completo il quadrato</em>: aggiungo e tolgo la stessa quantità $\left(\dfrac{b}{2a}\right)^2 = \dfrac{b^2}{4a^2}$ (aggiungere e togliere lo stesso numero non cambia nulla). Ottengo $a\left(x^2+\dfrac{b}{a}x+\dfrac{b^2}{4a^2}-\dfrac{b^2}{4a^2}\right)+c$. I primi tre termini sono il prodotto notevole $(A+B)^2 = A^2+2AB+B^2$ con $A=x$ e $B=\dfrac{b}{2a}$, quindi valgono $\left(x+\dfrac{b}{2a}\right)^2$.</span>
+            <span class="esempio__passo">Porto fuori dalla parentesi il pezzo avanzato, moltiplicandolo per $a$: $a\cdot\left(-\dfrac{b^2}{4a^2}\right) = -\dfrac{b^2}{4a}$. Arrivo a $ax^2+bx+c = a\left(x + \dfrac{b}{2a}\right)^2 - \dfrac{b^2}{4a} + c$.</span>
+            <span class="esempio__passo">Metto a denominatore comune gli ultimi due termini; il denominatore comune è $4a$, quindi $c = \dfrac{4ac}{4a}$: $-\dfrac{b^2}{4a}+\dfrac{4ac}{4a} = -\dfrac{b^2-4ac}{4a} = -\dfrac{\Delta}{4a}$ (ho riconosciuto la definizione $\Delta=b^2-4ac$).</span>
+            <span class="esempio__passo">Raccolgo di nuovo $a$ a fattore in tutta l'espressione: il secondo pezzo diventa $-\dfrac{\Delta}{4a} = a\cdot\left(-\dfrac{\Delta}{4a^2}\right)$. Dunque $ax^2+bx+c = a\left[\left(x+\dfrac{b}{2a}\right)^2 - \dfrac{\Delta}{4a^2}\right]$.</span>
+            <span class="esempio__passo">Se $\Delta &lt; 0$, allora $-\dfrac{\Delta}{4a^2} &gt; 0$ (numeratore positivo perché $-\Delta$ è l'opposto di un negativo, denominatore $4a^2$ positivo perché è un quadrato). Dentro la parentesi quadra c'è quindi un quadrato (sempre $\geq 0$) sommato a una quantità strettamente positiva. La parentesi è quindi $&gt; 0$ per <em>ogni</em> $x$.</span>
+          </p>
+          <p>Poiché la parentesi quadra è sempre positiva, il segno dell'intera espressione coincide con il segno del fattore $a$ che la moltiplica. Questo prova che per $\Delta &lt; 0$ il trinomio non cambia mai segno ed è concorde con $a$. <span class="qed">∎</span></p>
+        </div>
+        <p>Questa proposizione giustifica rigorosamente la riga "$\Delta &lt; 0$" della tabella della sezione 4.3: quando la parabola non tocca l'asse $x$, resta tutta da una parte, e da quale parte lo dice la concavità (cioè il segno di $a$). Quando invece $\Delta \geq 0$ si può scomporre $ax^2+bx+c = a(x-x_1)(x-x_2)$ e studiare il segno del prodotto, ritrovando la regola "esterni/interni".</p>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Primo grado, verso invariato</span><span class="badge badge--base">Base</span></div>
+          <p>Risolvere $3x - 6 \leq 9$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Isolo il termine con la $x$: $3x \leq 9 + 6 = 15$.</span>
+            <span class="esempio__passo">Divido per $3$, che è <strong>positivo</strong>: il verso resta uguale.</span>
+          </p>
+          <div class="esempio__risultato">$x \leq 5$, cioè l'intervallo $(-\infty,\,5]$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Primo grado con cambio di verso</span><span class="badge badge--base">Base</span></div>
+          <p>Risolvere $4 - 3x &gt; 13$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Porto $4$ a destra: $-3x &gt; 13 - 4 = 9$.</span>
+            <span class="esempio__passo">Divido per $-3$ (numero <strong>negativo</strong>): giro il verso, da $&gt;$ a $&lt;$.</span>
+            <span class="esempio__passo">$x &lt; \dfrac{9}{-3} = -3$.</span>
+          </p>
+          <div class="esempio__risultato">$x &lt; -3$, cioè $(-\infty,\,-3)$. (Verifica: con $x=-4$, $\ 4-3(-4)=16 &gt; 13$. ✓)</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Secondo grado con Δ &gt; 0</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere $x^2 - x - 6 &gt; 0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Identifico i coefficienti confrontando con $ax^2+bx+c$: $a=1$, $b=-1$, $c=-6$. Calcolo il discriminante con $\Delta = b^2-4ac$ (<span class="richiamo" data-sec="4.3">§4.3</span>): $\Delta = (-1)^2 - 4(1)(-6) = 1 + 24 = 25 &gt; 0$, quindi due radici distinte.</span>
+            <span class="esempio__passo">Radici con la formula $x = \dfrac{-b\pm\sqrt\Delta}{2a}$ (cap. 5), sostituendo $-b = 1$, $\sqrt{25}=5$, $2a=2$: $x = \dfrac{1 \pm 5}{2}$, cioè $x_1 = \dfrac{1-5}{2} = -2$ e $x_2 = \dfrac{1+5}{2} = 3$.</span>
+            <span class="esempio__passo">Qui $a = 1 &gt; 0$ e il segno richiesto è $&gt; 0$: prendo i valori <strong>esterni</strong> all'intervallo delle radici.</span>
+          </p>
+          <div class="esempio__risultato">$x &lt; -2 \ \lor\ x &gt; 3$, cioè $(-\infty,\,-2)\cup(3,\,+\infty)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Secondo grado con Δ &lt; 0 e con Δ = 0</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere (a) $x^2 + x + 1 &gt; 0$ e (b) $x^2 - 6x + 9 \leq 0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) Coefficienti: $a=1$, $b=1$, $c=1$. Sostituisco in $\Delta = b^2-4ac$: $\Delta = 1^2 - 4\cdot1\cdot1 = 1 - 4 = -3 &lt; 0$, e $a = 1 &gt; 0$: per la Proposizione dimostrata nella sezione 5, il trinomio è sempre positivo. La disequazione $&gt; 0$ è verificata sempre.</span>
+            <span class="esempio__passo">(b) Coefficienti: $a=1$, $b=-6$, $c=9$; $\Delta = (-6)^2 - 4\cdot1\cdot9 = 36 - 36 = 0$: una radice doppia $x_0 = -\dfrac{b}{2a} = \dfrac{6}{2} = 3$. Infatti riconosco il prodotto notevole $A^2-2AB+B^2 = (A-B)^2$ (cap. 2) con $A=x$ e $B=3$ (controllo: $2AB = 2\cdot x\cdot3 = 6x$ ✓): $x^2-6x+9 = (x-3)^2$, un quadrato, quindi sempre $\geq 0$.</span>
+            <span class="esempio__passo">(b) La richiesta $\leq 0$ è soddisfatta solo dove il quadrato vale $0$, cioè in $x = 3$.</span>
+          </p>
+          <div class="esempio__risultato">(a) $\forall x \in \mathbb{R}$;&nbsp;&nbsp; (b) solo $x = 3$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Sistema di disequazioni</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere il sistema $\begin{cases} x^2 - 4 &lt; 0 \\ 2x + 1 &gt; 0 \end{cases}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Prima disequazione, $x^2-4 &lt; 0$: porto il $-4$ a destra cambiandogli segno, $x^2 &lt; 4$. Le radici dell'equazione associata $x^2-4=0$ sono $x=\pm2$; poiché $a = 1 &gt; 0$ e il segno richiesto è $&lt; 0$, prendo i valori <strong>interni</strong> (<span class="richiamo" data-sec="4.3">§4.3</span>): $-2 &lt; x &lt; 2$.</span>
+            <span class="esempio__passo">Seconda disequazione, $2x+1 &gt; 0$: porto $1$ a destra cambiandogli segno, $2x &gt; -1$; divido entrambi i membri per $2$, che è positivo, quindi il verso resta: $x &gt; -\tfrac12$.</span>
+            <span class="esempio__passo">Intersezione: devono valere entrambe. Interseco $(-2,\,2)$ con $\left(-\tfrac12,\,+\infty\right)$.</span>
+          </p>
+          <div class="esempio__risultato">$-\dfrac12 &lt; x &lt; 2$, cioè $\left(-\dfrac12,\,2\right)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Disequazione fratta con quadro dei segni</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere $\dfrac{2x + 4}{x - 3} \leq 0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Studio separatamente il segno dei due pezzi (<span class="richiamo" data-sec="4.5">§4.5</span>). Numeratore: risolvo $2x+4 \geq 0$ portando $4$ a destra, $2x \geq -4$, e dividendo per $2$ (positivo, verso invariato), $x \geq -2$; quindi $N$ si annulla in $x=-2$ ed è positivo a destra di quel punto. Denominatore: $x-3 &gt; 0$ dà $x &gt; 3$; quindi $D$ si annulla in $x=3$, valore da <strong>escludere</strong> perché renderebbe la frazione priva di significato.</span>
+            <span class="esempio__passo">Costruisco il quadro dei segni sugli intervalli individuati dai punti $-2$ e $3$.</span>
+          </p>
+          <table class="tabella-comparativa">
+            <thead><tr><th></th><th>$x &lt; -2$</th><th>$x=-2$</th><th>$-2 &lt; x &lt; 3$</th><th>$x=3$</th><th>$x &gt; 3$</th></tr></thead>
+            <tbody>
+              <tr><td>$N=2x+4$</td><td>$-$</td><td>$0$</td><td>$+$</td><td>$+$</td><td>$+$</td></tr>
+              <tr><td>$D=x-3$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$0$ (escl.)</td><td>$+$</td></tr>
+              <tr><td>$N/D$</td><td>$+$</td><td>$0$</td><td>$-$</td><td>non def.</td><td>$+$</td></tr>
+            </tbody>
+          </table>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Cerco dove $N/D \leq 0$: le colonne con segno $-$ o valore $0$, cioè $x=-2$ (incluso) e $-2 &lt; x &lt; 3$. Il punto $x=3$ resta escluso.</span>
+          </p>
+          <div class="esempio__risultato">$-2 \leq x &lt; 3$, cioè $[-2,\,3)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Valore assoluto, entrambi i tipi</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere (a) $|3x - 2| &lt; 4$ e (b) $|x + 1| \geq 5$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) È del tipo $|A| &lt; k$ con $A = 3x-2$ e $k = 4$: applico lo schema "minore" del <span class="richiamo" data-sec="4.6">§4.6</span>, $-k &lt; A &lt; k$, cioè fascia interna: $-4 &lt; 3x - 2 &lt; 4$. Sommo $2$ a tutti e tre i membri: $-4+2 &lt; 3x &lt; 4+2$, cioè $-2 &lt; 3x &lt; 6$. Divido tutti e tre per $3$, che è positivo, quindi i versi restano: $-\tfrac23 &lt; x &lt; 2$.</span>
+            <span class="esempio__passo">(b) È del tipo $|A| \geq k$ con $A = x+1$ e $k = 5$: applico lo schema "maggiore" del <span class="richiamo" data-sec="4.6">§4.6</span>, $A \leq -k \ \lor\ A \geq k$, cioè le due code: $x + 1 \leq -5 \ \lor\ x + 1 \geq 5$.</span>
+            <span class="esempio__passo">(b) Risolvo le due separatamente sottraendo $1$ da entrambi i membri: dalla prima $x \leq -5-1 = -6$, dalla seconda $x \geq 5-1 = 4$. Le due soluzioni vanno <em>unite</em> (il collegamento è "oppure"): $x \leq -6 \ \lor\ x \geq 4$.</span>
+          </p>
+          <div class="esempio__risultato">(a) $-\dfrac23 &lt; x &lt; 2$;&nbsp;&nbsp; (b) $x \leq -6 \ \lor\ x \geq 4$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Esponenziale e logaritmica con base &lt; 1</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere (a) $\left(\dfrac13\right)^{x} \leq 9$ e (b) $\log_{1/2}(x) \geq -1$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) Per confrontare gli esponenti servono le stesse basi, quindi riscrivo il $9$ come potenza di $\tfrac13$. Un esponente negativo capovolge la frazione (cap. 3): $\left(\tfrac13\right)^{-2} = 3^{2} = 9$. Sostituisco $9$ con $\left(\tfrac13\right)^{-2}$: la disequazione diventa $\left(\tfrac13\right)^{x} \leq \left(\tfrac13\right)^{-2}$.</span>
+            <span class="esempio__passo">(a) Ora confronto gli esponenti con lo schema del <span class="richiamo" data-sec="4.7">§4.7</span>. La base è $\tfrac13$, compresa tra $0$ e $1$: la funzione è decrescente, quindi <strong>giro il verso</strong> passando dagli esponenti. Da $\leq$ ottengo $\geq$: $x \geq -2$.</span>
+            <span class="esempio__passo">(b) Condizione di esistenza: l'argomento del logaritmo deve essere positivo, quindi $x &gt; 0$. Poi riscrivo il numero $-1$ come logaritmo nella stessa base $\tfrac12$: mi serve il numero il cui logaritmo in base $\tfrac12$ vale $-1$, cioè $\left(\tfrac12\right)^{-1} = 2$. Quindi $-1 = \log_{1/2} 2$ e la disequazione diventa $\log_{1/2}(x) \geq \log_{1/2} 2$.</span>
+            <span class="esempio__passo">(b) Base $\tfrac12 \in (0,1)$: togliendo i logaritmi il verso si inverte (<span class="richiamo" data-sec="4.7">§4.7</span>), da $\geq$ a $\leq$, quindi $x \leq 2$.</span>
+            <span class="esempio__passo">(b) Metto insieme le due condizioni, $x &gt; 0$ (esistenza) e $x \leq 2$ (dalla disequazione): devono valere entrambe, quindi $0 &lt; x \leq 2$.</span>
+          </p>
+          <div class="esempio__risultato">(a) $x \geq -2$;&nbsp;&nbsp; (b) $0 &lt; x \leq 2$.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare di cambiare verso con il negativo</div>
+          <p>L'errore numero uno in assoluto. Da $-2x &lt; 6$ si scrive frettolosamente $x &lt; -3$: <strong>sbagliato</strong>, la divisione per $-2$ inverte il verso, quindi $x &gt; -3$. <em>Come evitarlo</em>: adotta l'abitudine di spostare l'incognita dalla parte in cui il coefficiente è positivo (trucco della sezione 4.2), così non dividi mai per un negativo e il problema svanisce.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare la combinazione dei segni nel quadro</div>
+          <p>Nel quadro dei segni di una fratta, molti scrivono il segno di $N/D$ senza applicare correttamente la regola dei segni, oppure leggono la riga sbagliata. <em>Come evitarlo</em>: costruisci il quadro <strong>una riga per fattore</strong>, segna con cura $+$, $-$ e $0$ in ogni intervallo, e solo alla fine moltiplica i segni colonna per colonna ("$-$ per $-$ fa $+$"). Riporta i punti di frontiera in ordine crescente sull'asse: se li scrivi disordinati, gli intervalli si confondono.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Non escludere gli zeri del denominatore</div>
+          <p>Nella fratta $\dfrac{x-1}{x+2}\geq 0$ il valore $x=-2$ annulla il denominatore: lì la frazione <strong>non esiste</strong>, quindi va escluso <em>sempre</em>, anche quando la disequazione ha l'uguale ($\geq, \leq$). Scrivere $[-2,\,+\infty)$ includendo $-2$ è un errore grave. <em>Come evitarlo</em>: prima ancora di risolvere, annota le condizioni di esistenza (denominatore $\neq 0$) e tienile da parte come "punti proibiti".</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Ignorare la base in esponenziali e logaritmi</div>
+          <p>Risolvere $\left(\tfrac12\right)^x &gt; \left(\tfrac12\right)^5$ concludendo $x &gt; 5$ è <strong>sbagliato</strong>: la base è minore di $1$, la funzione decresce, quindi il verso si inverte e la risposta è $x &lt; 5$. <em>Come evitarlo</em>: prima di togliere le potenze o i logaritmi, <strong>guarda la base</strong> e chiediti "crescente o decrescente?". Se è tra $0$ e $1$, il verso gira. E nei logaritmi non dimenticare mai la condizione argomento $&gt; 0$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scrivere l'insieme soluzione in modo incoerente</div>
+          <p>Errori tipici: usare "$\lor$" (unione) quando serviva "$\wedge$" (intersezione, tipico dei sistemi); scrivere intervalli che si sovrappongono come $x &lt; 3 \ \lor\ x &gt; 1$ (che è in realtà <em>tutto</em> $\mathbb{R}$, non due pezzi separati!); confondere parentesi tonde e quadre. <em>Come evitarlo</em>: dopo aver trovato la soluzione, <strong>disegnala sulla retta reale</strong> e rileggila; se due intervalli si toccano o si sovrappongono, uniscili in uno solo. E verifica sempre con un valore di prova.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il quadro dei segni, riga per riga</div>
+          <p>Costruiscilo sempre con lo stesso rito, così diventa automatico: (1) trova gli <strong>zeri</strong> di ogni fattore e mettili in ordine crescente sull'asse; (2) una <strong>riga per fattore</strong>, segnando $+$/$-$/$0$ in ogni intervallo (per un fattore lineare $x - r$ basta ricordare che è negativo prima di $r$ e positivo dopo); (3) una riga finale in cui <strong>moltiplichi i segni colonna per colonna</strong>; (4) leggi gli intervalli che rispettano il verso richiesto, curando estremi inclusi/esclusi.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> "Meno per meno fa più", visto sul quadro</div>
+          <p>La regola dei segni dell'algebra è la stessa che governa l'ultima riga del quadro. Colonna per colonna: due $-$ danno $+$, due $+$ danno $+$, un $+$ e un $-$ danno $-$. Se hai <em>tre</em> fattori, conta quanti segni $-$ ci sono in colonna: numero <strong>pari</strong> di meno → risultato $+$; numero <strong>dispari</strong> → risultato $-$. È un contatore di segni negativi, niente di più.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Quando NON cambiare verso (esp./log)</div>
+          <p>Nelle disequazioni esponenziali e logaritmiche il verso <strong>NON</strong> cambia se e solo se la base è $&gt; 1$. Frase da ripetere: <em>"base grande, tutto normale; base piccola (tra 0 e 1), verso ribaltato"</em>. È il duale della regola del cambio di verso per moltiplicazione: lì contava il segno del fattore, qui conta se la base sta sopra o sotto $1$.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Secondo grado: leggi solo concavità e radici</div>
+          <p>Per una disequazione di secondo grado non serve disegnare la parabola per bene: bastano due dati. <strong>Concavità</strong> (segno di $a$) e <strong>radici</strong> (dal $\Delta$). Fai uno schizzo mentale di U (se $a &gt; 0$) o di ∩ (se $a &lt; 0$) che taglia l'asse nelle radici, e leggi dove sta sopra/sotto. E se $a &lt; 0$, ribalta subito con $\times(-1)$ per lavorare sempre sul caso "sorridente".</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Disequazioni</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Primo grado</strong>
+              <ul><li>Isolo la $x$</li><li>× o ÷ per negativo → gira il verso</li><li>Soluzione: una semiretta</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Secondo grado</strong>
+              <ul><li>Parabola: concavità = segno di $a$</li><li>Δ → 2 / 1 / 0 radici</li><li>Esterni concordi ad $a$, interni discordi</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Sistemi</strong>
+              <ul><li>Tutte vere insieme ("e")</li><li>Intersezione delle soluzioni</li><li>Schema a barrette</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Fratte</strong>
+              <ul><li>Segno di $N$ e $D$ separati</li><li>Quadro dei segni</li><li>Escludo gli zeri di $D$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Valore assoluto</strong>
+              <ul><li>$|A|&lt;k$: $-k&lt;A&lt;k$ (dentro)</li><li>$|A|&gt;k$: $A&lt;-k \lor A&gt;k$ (fuori)</li><li>$k&lt;0$: casi impossibili / sempre veri</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Esp. e log.</strong>
+              <ul><li>Monotonia della base</li><li>base $&gt;1$: verso invariato</li><li>base in $(0,1)$: verso invertito</li><li>log: argomento $&gt;0$</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Cosa è una soluzione</strong>: non un punto, ma un intervallo (o un'unione di intervalli). Curare sempre estremi inclusi (quadra) o esclusi (tonda).</li>
+            <li><strong>Cambio di verso</strong>: moltiplicando o dividendo per un numero <em>negativo</em>, la disuguaglianza si inverte ($&lt; \leftrightarrow &gt;$). Dimostrato dagli assiomi d'ordine, non è arbitrario.</li>
+            <li><strong>Secondo grado</strong>: metodo della parabola. Concavità dal segno di $a$, numero di radici dal $\Delta$; "esterni concordi ad $a$, interni discordi". Se $a &lt; 0$, ribalta con $\times(-1)$.</li>
+            <li><strong>Sistemi</strong> = intersezione (tutte vere contemporaneamente); da non confondere con l'unione.</li>
+            <li><strong>Fratte</strong>: studio separato del segno di $N$ e $D$, quadro dei segni, e sempre esclusione degli zeri del denominatore.</li>
+            <li><strong>Valore assoluto</strong>: $|A|&lt;k \Rightarrow -k&lt;A&lt;k$ (fascia interna); $|A|&gt;k \Rightarrow A&lt;-k \lor A&gt;k$ (code esterne); attenzione ai casi $k \leq 0$.</li>
+            <li><strong>Esponenziali/logaritmiche</strong>: la base comanda il verso. Base $&gt;1$ lo mantiene, base in $(0,1)$ lo inverte; nei logaritmi l'argomento deve essere $&gt;0$.</li>
+          </ul>
+        </div>
+        <p>Con questi strumenti sei pronto a trovare domini, studiare segni e affrontare le condizioni che compaiono ovunque nell'<a href="../parte1-analisi1/09-studio-di-funzione.html">studio di funzione</a>. Nel prossimo capitolo passeremo dalla retta al piano con la <a href="07-geometria-analitica.html">geometria analitica</a>.</p>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi $2x + 5 &gt; 11$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$2x &gt; 6 \Rightarrow x &gt; 3$ (diviso per $2 &gt; 0$, verso invariato).</p>
+              <p><strong>$x &gt; 3$, cioè $(3,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi $-x + 4 \geq 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Porto il $4$ a destra cambiandogli segno (1° principio, <span class="richiamo" data-sec="4.1">§4.1</span>): $-x \geq -4$. Poi divido entrambi i membri per $-1$, che è <strong>negativo</strong>, quindi giro il verso da $\geq$ a $\leq$: $x \leq 4$.</p>
+              <p><strong>$x \leq 4$, cioè $(-\infty,\,4]$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi $x^2 - 4 &lt; 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Trovo prima le radici dell'equazione associata $x^2-4=0$: porto il $-4$ a destra, $x^2 = 4$, quindi $x = \pm 2$ (due numeri opposti hanno lo stesso quadrato). Poi applico la regola del <span class="richiamo" data-sec="4.3">§4.3</span>: qui $a = 1 &gt; 0$ e il segno richiesto è $&lt; 0$, quindi prendo i valori <strong>interni</strong> all'intervallo delle radici.</p>
+              <p><strong>$-2 &lt; x &lt; 2$, cioè $(-2,\,2)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi la disequazione fratta $\dfrac{1}{x} &gt; 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Il numeratore è $1 &gt; 0$ (costante positivo), quindi la frazione è positiva esattamente quando il denominatore è positivo. Ricorda di escludere $x = 0$.</p>
+              <p><strong>$x &gt; 0$, cioè $(0,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $-3x + 2 &lt; x - 6$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Porto le $x$ a sinistra e i numeri a destra: $-3x - x &lt; -6 - 2 \Rightarrow -4x &lt; -8$.</span>
+                <span class="esempio__passo">Divido per $-4$ (negativo), giro il verso: $x &gt; 2$.</span>
+              </p>
+              <p><strong>$x &gt; 2$, cioè $(2,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $x^2 - 5x + 6 \geq 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Coefficienti: $a=1$, $b=-5$, $c=6$. Sostituisco in $\Delta=b^2-4ac$: $\Delta = (-5)^2 - 4\cdot1\cdot6 = 25 - 24 = 1$. Radici con $x=\dfrac{-b\pm\sqrt\Delta}{2a}$, cioè $x = \dfrac{5 \pm 1}{2}$: vengono $\dfrac{4}{2}=2$ e $\dfrac{6}{2}=3$. Con $a &gt; 0$ e segno richiesto $\geq 0$ prendo i valori esterni all'intervallo delle radici (<span class="richiamo" data-sec="4.3">§4.3</span>), e l'uguale include anche le radici stesse, dove il trinomio vale $0$.</p>
+              <p><strong>$x \leq 2 \ \lor\ x \geq 3$, cioè $(-\infty,\,2]\cup[3,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi il sistema $\begin{cases} 2x - 1 &gt; 0 \\ x - 3 \leq 0 \end{cases}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Prima: da $2x-1&gt;0$ porto $-1$ a destra cambiandogli segno, $2x &gt; 1$, e divido per $2$ (positivo, verso invariato): $x &gt; \tfrac12$. Seconda: da $x-3\leq0$ porto $-3$ a destra, $x \leq 3$. Essendo un sistema le due condizioni devono valere insieme, quindi faccio l'<strong>intersezione</strong> (<span class="richiamo" data-sec="4.4">§4.4</span>): i valori più grandi di $\tfrac12$ e allo stesso tempo minori o uguali a $3$.</p>
+              <p><strong>$\dfrac12 &lt; x \leq 3$, cioè $\left(\dfrac12,\,3\right]$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $|x - 2| &lt; 5$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>È del tipo $|A| &lt; k$ con $A = x-2$ e $k = 5$: applico lo schema "minore" del <span class="richiamo" data-sec="4.6">§4.6</span>, $-k &lt; A &lt; k$, cioè fascia interna: $-5 &lt; x - 2 &lt; 5$. Sommo $2$ a tutti e tre i membri: $-5+2 &lt; x &lt; 5+2$, cioè $-3 &lt; x &lt; 7$.</p>
+              <p><strong>$-3 &lt; x &lt; 7$, cioè $(-3,\,7)$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi $\dfrac{x - 3}{x + 1} \leq 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Zeri: $N=x-3$ si annulla in $x=3$ ed è positivo per $x&gt;3$; $D=x+1$ si annulla in $x=-1$ (valore da escludere, annulla il denominatore) ed è positivo per $x&gt;-1$. Questi due punti spezzano la retta in tre zone.</span>
+                <span class="esempio__passo">Quadro dei segni, zona per zona, applicando la regola dei segni della divisione: per $x&lt;-1$ sono entrambi negativi e $\tfrac{-}{-}=+$; per $-1&lt;x&lt;3$ il numeratore è ancora negativo ma il denominatore è diventato positivo, $\tfrac{-}{+}=-$; per $x&gt;3$ sono entrambi positivi, $\tfrac{+}{+}=+$.</span>
+                <span class="esempio__passo">Cerco $\leq 0$: la fascia centrale, con $x=3$ incluso (numeratore nullo) e $x=-1$ escluso.</span>
+              </p>
+              <p><strong>$-1 &lt; x \leq 3$, cioè $(-1,\,3]$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi $x^2 + x + 1 &gt; 0$ e $x^2 + x + 1 &lt; 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$\Delta = 1 - 4 = -3 &lt; 0$ e $a = 1 &gt; 0$: il trinomio è sempre positivo (Proposizione della sezione 5).</p>
+              <p><strong>$x^2+x+1 &gt; 0$ è vera $\forall x \in \mathbb{R}$; $\ x^2+x+1 &lt; 0$ non ha soluzioni.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi $|2x + 1| \geq 3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>È del tipo $|A| \geq k$ con $A = 2x+1$ e $k = 3$: schema "maggiore" del <span class="richiamo" data-sec="4.6">§4.6</span>, $A \leq -k \ \lor\ A \geq k$, cioè due code: $2x+1 \leq -3 \ \lor\ 2x+1 \geq 3$. In entrambe sottraggo $1$ da ogni membro: $2x \leq -4 \ \lor\ 2x \geq 2$; poi divido per $2$, che è positivo, quindi i versi restano: $x \leq -2 \ \lor\ x \geq 1$. Le due soluzioni si <em>uniscono</em>, perché il collegamento è "oppure".</p>
+              <p><strong>$x \leq -2 \ \lor\ x \geq 1$, cioè $(-\infty,\,-2]\cup[1,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi $\left(\dfrac13\right)^{x} &lt; 9$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Per confrontare gli esponenti servono le stesse basi: riscrivo il $9$ come potenza di $\tfrac13$, ricordando che un esponente negativo capovolge la frazione (cap. 3), quindi $\left(\tfrac13\right)^{-2} = 3^2 = 9$. Sostituisco $9$ con $\left(\tfrac13\right)^{-2}$: la disequazione diventa $\left(\tfrac13\right)^{x} &lt; \left(\tfrac13\right)^{-2}$. Base $\tfrac13 \in (0,1)$, funzione decrescente, quindi passando agli esponenti il verso si inverte (<span class="richiamo" data-sec="4.7">§4.7</span>), da $&lt;$ a $&gt;$: $x &gt; -2$.</p>
+              <p><strong>$x &gt; -2$, cioè $(-2,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvi la disequazione fratta $\dfrac{x^2 - 1}{x - 2} \geq 0$, indicando esplicitamente le condizioni di esistenza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Condizione di esistenza: $x - 2 \neq 0 \Rightarrow x \neq 2$.</span>
+                <span class="esempio__passo">Numeratore: lo scompongo con il prodotto notevole $A^2-B^2 = (A-B)(A+B)$ (cap. 2), con $A = x$ e $B = 1$, ottenendo $N = x^2 - 1 = (x-1)(x+1)$. Le sue radici sono $\pm1$ e il coefficiente di $x^2$ è positivo, quindi (regola "esterni/interni" del <span class="richiamo" data-sec="4.3">§4.3</span>) $N$ è positivo per $x &lt; -1 \lor x &gt; 1$, negativo per $-1 &lt; x &lt; 1$, nullo in $\pm 1$.</span>
+                <span class="esempio__passo">Denominatore $D = x - 2$: negativo per $x &lt; 2$, positivo per $x &gt; 2$.</span>
+                <span class="esempio__passo">Quadro dei segni sui punti $-1, 1, 2$: per $x&lt;-1$ è $\tfrac{+}{-}=-$; per $-1&lt;x&lt;1$ è $\tfrac{-}{-}=+$; per $1&lt;x&lt;2$ è $\tfrac{+}{-}=-$; per $x&gt;2$ è $\tfrac{+}{+}=+$.</span>
+                <span class="esempio__passo">Cerco $\geq 0$: intervallo $[-1,1]$ (estremi inclusi, $N=0$) e $x &gt; 2$ ($x=2$ escluso).</span>
+              </p>
+              <p><strong>$-1 \leq x \leq 1 \ \lor\ x &gt; 2$, cioè $[-1,\,1]\cup(2,\,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvi $|x - 1| &lt; 2x$, discutendo la condizione sul secondo membro.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Poiché $|x-1| \geq 0$, perché la disequazione possa valere serve $2x &gt; 0$, cioè $x &gt; 0$: fuori da qui, nessuna soluzione.</span>
+                <span class="esempio__passo">Per $x &gt; 0$ il secondo membro è positivo, quindi posso applicare lo schema "minore" del <span class="richiamo" data-sec="4.6">§4.6</span>, $|A| &lt; k \iff -k &lt; A &lt; k$, con $A = x-1$ e $k = 2x$: $-2x &lt; x - 1 &lt; 2x$. È una disequazione doppia, cioè due disequazioni da risolvere separatamente.</span>
+                <span class="esempio__passo">Lato sinistro, $-2x &lt; x - 1$: porto le $x$ a sinistra e i numeri a destra cambiando segno a chi trasloca, $-2x - x &lt; -1$, cioè $-3x &lt; -1$; divido entrambi i membri per $-3$, che è <strong>negativo</strong>, quindi giro il verso: $x &gt; \tfrac13$. Lato destro, $x - 1 &lt; 2x$: porto $x$ a destra, $-1 &lt; 2x - x$, cioè $-1 &lt; x$, condizione già garantita da $x &gt; 0$.</span>
+                <span class="esempio__passo">Interseco $x &gt; 0$, $x &gt; \tfrac13$ e $x &gt; -1$: prevale la più restrittiva.</span>
+              </p>
+              <p><strong>$x &gt; \dfrac13$, cioè $\left(\dfrac13,\,+\infty\right)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvi la disequazione logaritmica $\log_{1/2}(x - 1) \geq -2$, con relative condizioni di esistenza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Esistenza: l'argomento deve essere positivo, $x - 1 &gt; 0 \Rightarrow x &gt; 1$.</span>
+                <span class="esempio__passo">Per poter confrontare gli argomenti mi servono due logaritmi con la stessa base, quindi riscrivo il numero $-2$ come logaritmo in base $\tfrac12$. Per la definizione di logaritmo (cap. 4) devo cercare il numero che si ottiene facendo $\left(\tfrac12\right)^{-2}$: l'esponente negativo capovolge la frazione, $\left(\tfrac12\right)^{-2} = 2^2 = 4$. Quindi $-2 = \log_{1/2}(4)$ e la disequazione diventa $\log_{1/2}(x-1) \geq \log_{1/2}(4)$.</span>
+                <span class="esempio__passo">Base $\tfrac12 \in (0,1)$: il logaritmo è decrescente, quindi eliminando i logaritmi giro il verso (<span class="richiamo" data-sec="4.7">§4.7</span>), da $\geq$ a $\leq$: $x - 1 \leq 4$. Sommo $1$ a entrambi i membri: $x \leq 5$.</span>
+                <span class="esempio__passo">Interseco con l'esistenza $x &gt; 1$.</span>
+              </p>
+              <p><strong>$1 &lt; x \leq 5$, cioè $(1,\,5]$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 6.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determina per quali valori del parametro reale $k$ la disequazione $x^2 + kx + 1 &gt; 0$ è verificata per <strong>ogni</strong> $x \in \mathbb{R}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il coefficiente di $x^2$ è $1 &gt; 0$ (parabola concava verso l'alto): perché stia sempre sopra l'asse (mai toccarlo) serve che non abbia radici reali.</span>
+                <span class="esempio__passo">Condizione: discriminante negativo. Confrontando $x^2+kx+1$ con $ax^2+bx+c$ leggo $a=1$, $b=k$, $c=1$; sostituisco in $\Delta = b^2-4ac$ e ottengo $\Delta = k^2 - 4\cdot1\cdot1 = k^2-4$. Impongo quindi $k^2 - 4 &lt; 0$.</span>
+                <span class="esempio__passo">Questa è a sua volta una disequazione di secondo grado, ma nell'incognita $k$: porto il $-4$ a destra, $k^2 &lt; 4$. Le radici di $k^2-4=0$ sono $k=\pm2$; il coefficiente di $k^2$ è positivo e il segno richiesto è $&lt;$, quindi prendo i valori interni (<span class="richiamo" data-sec="4.3">§4.3</span>): $-2 &lt; k &lt; 2$.</span>
+              </p>
+              <p><strong>La disequazione vale per ogni $x$ reale se e solo se $-2 &lt; k &lt; 2$.</strong> (Ai valori $k = \pm 2$ si ha $\Delta = 0$: la parabola tocca l'asse e la disequazione stretta $&gt; 0$ non vale in quel punto.)</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Qual è la soluzione di $-2x &gt; 6$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$x &gt; -3$</button>
+              <button class="quiz-option" data-correct="true">$x &lt; -3$</button>
+              <button class="quiz-option" data-correct="false">$x &gt; 3$</button>
+              <button class="quiz-option" data-correct="false">$x &lt; 3$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Dividendo per $-2$ (negativo) il verso si inverte: da $&gt;$ si passa a $&lt;$, e $6/(-2) = -3$, quindi $x &lt; -3$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) La soluzione di $x^2 - 9 &lt; 0$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">$-3 &lt; x &lt; 3$</button>
+              <button class="quiz-option" data-correct="false">$x &lt; -3 \ \lor\ x &gt; 3$</button>
+              <button class="quiz-option" data-correct="false">$x &lt; 3$</button>
+              <button class="quiz-option" data-correct="false">nessuna soluzione</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Radici $\pm 3$, $a = 1 &gt; 0$, segno $&lt; 0$: si prendono i valori interni all'intervallo delle radici.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) La soluzione di $\dfrac{x + 1}{x - 2} \geq 0$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">$x \leq -1 \ \lor\ x &gt; 2$</button>
+              <button class="quiz-option" data-correct="false">$-1 \leq x \leq 2$</button>
+              <button class="quiz-option" data-correct="false">$x \geq -1$</button>
+              <button class="quiz-option" data-correct="false">$x &gt; 2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Zeri in $-1$ (incluso, $N=0$) e $2$ (escluso, annulla $D$). Il rapporto è positivo per $x &lt; -1$ e per $x &gt; 2$, e vale $0$ in $x=-1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) La soluzione di $\left(\dfrac12\right)^{x} &gt; \left(\dfrac12\right)^{5}$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$x &gt; 5$</button>
+              <button class="quiz-option" data-correct="true">$x &lt; 5$</button>
+              <button class="quiz-option" data-correct="false">$x &gt; \tfrac{1}{32}$</button>
+              <button class="quiz-option" data-correct="false">$x &lt; \tfrac{1}{32}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La base $\tfrac12$ è compresa tra $0$ e $1$: la funzione esponenziale è decrescente, quindi il verso si inverte e si ottiene $x &lt; 5$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Moltiplicando entrambi i membri di una disequazione per $-2$, il verso non cambia.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: $-2$ è negativo, quindi il verso della disequazione si inverte. È l'errore più comune del capitolo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se $\Delta &lt; 0$ e $a &gt; 0$, allora $ax^2 + bx + c &gt; 0$ per ogni $x$ reale.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: senza radici reali la parabola non tocca l'asse, e con concavità verso l'alto resta tutta sopra. Lo abbiamo dimostrato con il completamento del quadrato.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) La disequazione $|x| &lt; -3$ non ha soluzioni.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: il valore assoluto è sempre $\geq 0$, quindi non può mai essere minore di un numero negativo. Insieme soluzione vuoto.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Un sistema di disequazioni si risolve facendo l'unione delle soluzioni delle singole disequazioni.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: in un sistema le condizioni devono valere <em>tutte insieme</em>, quindi si fa l'<strong>intersezione</strong>, non l'unione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="inverte|cambia|si inverte|inverte il verso|gira">
+            <p class="quiz-question__testo">9. (Completamento) Moltiplicando entrambi i membri di una disequazione per un numero negativo, il verso si ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il verso si inverte: $&lt;$ diventa $&gt;$ e viceversa. Deriva dagli assiomi d'ordine dei numeri reali.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="parabola|una parabola">
+            <p class="quiz-question__testo">10. (Completamento) Il metodo grafico per risolvere una disequazione di secondo grado si basa sullo studio del grafico di una ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>La parabola $y = ax^2+bx+c$: la concavità dipende dal segno di $a$, le intersezioni con l'asse $x$ dal discriminante.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="denominatore|il denominatore">
+            <p class="quiz-question__testo">11. (Completamento) In una disequazione fratta bisogna sempre escludere i valori che annullano il ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il denominatore: dove si annulla, la frazione non esiste, quindi quei punti vanno esclusi anche in presenza dell'uguale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché, moltiplicando per un numero negativo, il verso di una disequazione si inverte. Usa l'esempio $2 &lt; 3$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: partendo da $2 &lt; 3$ (vera) e moltiplicando per $-1$ senza cambiare verso si otterrebbe $-2 &lt; -3$, che è falsa perché sulla retta $-2$ sta a destra di $-3$, quindi $-2 &gt; -3$. Moltiplicare per un negativo equivale a riflettere la retta rispetto allo zero: la riflessione scambia "sinistra" e "destra", cioè scambia "minore" e "maggiore". Per mantenere vera la relazione bisogna quindi invertire il verso. Rigorosamente, ciò discende dagli assiomi d'ordine dei reali (come dimostrato nella sezione 5).</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Descrivi la procedura per risolvere una disequazione fratta con il quadro dei segni, e spiega perché gli zeri del denominatore vanno esclusi.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si porta tutto a un unico rapporto confrontato con lo zero, poi si studiano separatamente il segno del numeratore $N(x)$ e del denominatore $D(x)$, trovando i loro zeri e ordinandoli sull'asse reale. Si costruisce un quadro dei segni con una riga per $N$, una per $D$ e una riga finale ottenuta moltiplicando i segni colonna per colonna (regola dei segni). Si scelgono infine gli intervalli che rispettano il verso richiesto, curando estremi inclusi/esclusi. Gli zeri del denominatore vanno esclusi perché in quei punti la frazione non è definita (divisione per zero): non possono mai far parte dell'insieme soluzione, nemmeno quando la disequazione contiene l'uguale.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="05-equazioni.html"><span class="dir">← Capitolo precedente</span><strong>Equazioni</strong></a>
+        <a class="next" href="07-geometria-analitica.html"><span class="dir">Capitolo successivo →</span><strong>Geometria analitica</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

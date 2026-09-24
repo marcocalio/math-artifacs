@@ -1,0 +1,1207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>13. Equazioni differenziali ordinarie — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 13</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html" class="is-active">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 13 di 14</span>
+        </div>
+        <h1>Equazioni differenziali ordinarie</h1>
+        <p class="subtitle">Fino a oggi le equazioni che hai risolto avevano per incognita un <em>numero</em>: trova quella $x$ che rende vera l'uguaglianza. Qui cambia tutto. L'incognita diventa una <strong>funzione</strong>, e l'equazione non ti dice quanto vale: ti dice <strong>come cambia</strong>. È il linguaggio con cui la scienza scrive le sue leggi — dal caffè che si raffredda alla popolazione che cresce, dalla molla che oscilla al circuito che si carica.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~75 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Cinque cose, in parole poverissime. Una immagine mentale ciascuna. Se le hai in testa, il capitolo scorre da solo.</p>
+          <p><strong>1) La <a href="../parte1-analisi1/07-derivate.html"><span class="glossario-term" data-term="derivata">derivata</span></a> è una velocità di cambiamento.</strong> Hai una quantità che cambia. La derivata dice quanto cambia in fretta <em>adesso</em>. <br><em>Immagine: il tachimetro.</em> Non la media del viaggio: il numero di questo secondo. Se $y$ cresce, $y'$ è positiva; se cala, $y'$ è negativa; se sta ferma, $y'=0$.</p>
+          <p><strong>2) La <a href="../parte1-analisi1/13-integrali-indefiniti.html"><span class="glossario-term" data-term="primitiva">primitiva</span></a> è il viaggio all'indietro.</strong> Ti do la velocità, tu mi ridai la posizione. L'<a href="../parte1-analisi1/13-integrali-indefiniti.html"><span class="glossario-term" data-term="integrale-indefinito">integrale indefinito</span></a> è l'insieme di tutte le primitive, e porta sempre con sé un <strong>$+C$</strong>. <br><em>Immagine: il contachilometri senza sapere da dove sei partito.</em> Sai quanta strada hai fatto, ma non da quale casa: quella "casa di partenza" sconosciuta è la costante $C$.</p>
+          <p><strong>3) L'<a href="../parte0-prerequisiti/03-potenze-radicali-esponenziali.html"><span class="glossario-term" data-term="esponenziale">esponenziale</span></a> $e^{x}$ è la funzione che è la derivata di sé stessa.</strong> Cioè: $\left(e^{x}\right)'=e^{x}$, e più in generale $\left(e^{kx}\right)'=k\,e^{kx}$. <br><em>Immagine: il conto in banca con l'interesse.</em> Più soldi hai, più interessi maturi; più interessi maturi, più soldi hai. Il <a href="../parte0-prerequisiti/03-potenze-radicali-esponenziali.html"><span class="glossario-term" data-term="logaritmo">logaritmo</span></a> $\ln$ è il tasto "indietro": $\ln\left(e^{a}\right)=a$ e $e^{\ln a}=a$. Serve ogni volta che l'incognita è nascosta in un esponente.</p>
+          <p><strong>4) Le equazioni di secondo grado le sai già.</strong> $a\lambda^{2}+b\lambda+c=0$ si risolve con $\lambda=\dfrac{-b\pm\sqrt{\Delta}}{2a}$, dove $\Delta=b^{2}-4ac$. Tre scenari: $\Delta\gt 0$ due radici reali diverse, $\Delta=0$ una radice doppia, $\Delta\lt 0$ nessuna radice reale. <br><em>Immagine: la parabola che taglia l'asse in due punti, lo sfiora, o vola sopra senza toccarlo.</em></p>
+          <p><strong>5) I numeri complessi, il minimo indispensabile.</strong> Si inventa un simbolo $i$ con $i^{2}=-1$, così anche $\Delta\lt 0$ ha radici: vengono in coppia, $\alpha+i\beta$ e $\alpha-i\beta$ (coniugate). L'unica formula che useremo è quella di Eulero, $e^{i\theta}=\cos\theta+i\sin\theta$. <br><em>Immagine: un numero reale spinge in avanti, un numero immaginario fa girare.</em> Ecco perché, quando il $\Delta$ è negativo, nelle soluzioni compaiono <strong>seno e coseno</strong>: la parte reale $\alpha$ decide se la cosa cresce o si spegne, la parte immaginaria $\beta$ decide quanto in fretta oscilla.</p>
+        </div>
+
+        <p>Adesso l'idea centrale, in una frase sola: <strong>«dimmi come cresci e ti dirò chi sei»</strong>.</p>
+        <p>Pensa a una popolazione di batteri in una piastra. Nessuno ti dice quanti sono al tempo $t$. Però sai una cosa ragionevolissima: <strong>più batteri ci sono, più figli nascono</strong>. Cioè la velocità con cui la popolazione cresce è proporzionale alla popolazione stessa. In simboli, chiamando $P(t)$ il numero di batteri:</p>
+        <div class="formula-block">$$P'(t)=k\,P(t).$$</div>
+        <p>Guarda bene questa scrittura: non è un'equazione che chiede «quanto vale $P$?». È un'equazione che <strong>lega la funzione alla sua stessa velocità di cambiamento</strong>. L'incognita non è un numero: è tutta la funzione $P(t)$, la sua storia intera. Una relazione di questo tipo si chiama <strong><span class="glossario-term" data-term="equazione-differenziale">equazione differenziale</span></strong>.</p>
+        <p>Secondo esempio, ancora più quotidiano: il <strong>caffè che si raffredda</strong>. Se la tazza è bollente e il tavolo è freddo, il calore scappa veloce. Se la tazza è quasi tiepida, il calore scappa piano. Cioè: <em>la velocità con cui la temperatura cala è proporzionale a quanto il caffè è più caldo dell'ambiente</em>. Chiamando $T(t)$ la temperatura del caffè e $T_a$ quella della stanza:</p>
+        <div class="formula-block">$$T'(t)=-k\,\big(T(t)-T_a\big).$$</div>
+        <p>Di nuovo la stessa struttura: una frase in italiano sulla <em>velocità</em> diventa una formula che contiene $T$ e $T'$ insieme. Il segno meno c'è perché la temperatura <strong>scende</strong>.</p>
+        <p>E allora, che vuol dire «risolvere»? Vuol dire <strong>trovare la funzione</strong> (o meglio: tutte le funzioni) che, sostituita nell'equazione, la rende un'identità vera per ogni valore della variabile. Nel primo caso scopriremo che la risposta è $P(t)=P_0e^{kt}$: la crescita esponenziale. Nel secondo che è $T(t)=T_a+(T_0-T_a)e^{-kt}$: il raffreddamento esponenziale. In entrambi i casi la <strong>legge locale</strong> («come cambio, istante per istante») si è trasformata in una <strong>storia globale</strong> («chi sono, da sempre e per sempre»).</p>
+        <p>Questo è, in fondo, tutto il capitolo: un dizionario che traduce frasi sul <em>cambiamento</em> in funzioni esplicite. E come ogni dizionario, va imparato per famiglie: ci sono equazioni che si risolvono separando le variabili, altre con un trucco di moltiplicazione, altre ancora indovinando la forma della risposta. Le vedremo una per una, con la ricetta passo-passo.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>la natura non ci dà mai le formule: ci dà le regole del cambiamento</strong>. Nessun esperimento ti consegna «la posizione del pianeta in funzione del tempo». Ti consegna una legge locale: $F=ma$, cioè «l'accelerazione è la forza diviso la massa». E l'accelerazione è la derivata seconda della posizione. Quindi la legge fisica <em>è</em> un'equazione differenziale, e la traiettoria del pianeta è la sua soluzione. Lo stesso vale per la corrente in un circuito, per il decadimento di un isotopo, per la diffusione di un'epidemia, per il prezzo di un'opzione finanziaria. Le equazioni differenziali sono la grammatica con cui il mondo scrive le sue leggi: <strong>senza di esse la scienza saprebbe dire come le cose cambiano, ma non saprebbe prevedere nulla</strong>.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema della <em>previsione</em>. Conosco la regola del cambiamento e lo stato di adesso: dove sarò fra un'ora? Newton, nei <em>Principia</em> (1687), fu il primo a formulare esplicitamente questo programma: scrivere le leggi come relazioni fra una grandezza e le sue derivate, e poi integrarle. Nel Settecento Eulero, i Bernoulli e Lagrange costruirono la cassetta degli attrezzi che stai per imparare — separazione delle variabili, fattore integrante, equazione caratteristica, variazione delle costanti — e nell'Ottocento Cauchy e Lipschitz chiarirono <em>quando</em> una previsione è legittima, cioè quando la soluzione esiste ed è unica.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo capitolo è il punto in cui tutta l'Analisi che hai studiato <strong>si mette al lavoro insieme</strong>. Per risolvere un'equazione differenziale ti servono le <a href="../parte1-analisi1/07-derivate.html">derivate</a> (per scrivere l'equazione), gli <a href="../parte1-analisi1/13-integrali-indefiniti.html">integrali indefiniti</a> (per risolverla), gli <a href="../parte1-analisi1/14-integrali-definiti.html">integrali definiti</a> (per imporre le condizioni iniziali), l'<a href="../parte0-prerequisiti/03-potenze-radicali-esponenziali.html">esponenziale</a> e il logaritmo (perché le risposte hanno quasi sempre quella forma), le equazioni di secondo grado e i numeri complessi (per il secondo ordine). È il capitolo-cerniera fra la matematica che hai imparato e le sue <a href="14-applicazioni-analisi2.html">applicazioni</a>.</p>
+        <p>Un'ultima parola sul nome. <strong>Ordinarie</strong> significa che c'è una sola variabile indipendente (di solito il tempo $t$ o la posizione $x$), quindi compaiono derivate normali. Quando le variabili indipendenti sono più di una compaiono le <a href="03-derivate-parziali.html">derivate parziali</a>, e si parla di <em>equazioni alle derivate parziali</em>: sono il capitolo successivo della storia (equazione del calore, delle onde, di Laplace) e non le tratteremo qui, ma ora sai che esistono e da dove nascono.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">☕</span> Il caffè sul tavolo: la prima equazione differenziale della giornata</div>
+          <p>Versi il caffè a $90$ gradi. La cucina è a $20$. Metti la tazza sul tavolo e vai a lavarti i denti. Quando torni, quanto è caldo?</p>
+          <p>La risposta <em>non</em> è «cala di tot gradi al minuto». Se fosse così, dopo abbastanza tempo il caffè arriverebbe a zero gradi e poi sottozero, il che è assurdo. Quello che succede davvero lo sai per esperienza: <strong>all'inizio si raffredda in fretta, poi sempre più lentamente</strong>, e alla fine si adagia sulla temperatura della stanza senza mai scendere sotto. La velocità di raffreddamento non è costante: <strong>dipende da quanto il caffè è più caldo dell'ambiente</strong>. Tanto caldo di differenza, tanta fretta di raffreddarsi; poca differenza, poca fretta.</p>
+          <p>Metti in formula quella frase e hai la <strong>legge di raffreddamento di Newton</strong>:</p>
+          <div class="formula-block">$$\frac{dT}{dt}=-k\,(T-T_a),\qquad k\gt 0.$$</div>
+          <p>È un'equazione differenziale del primo ordine, e la risolveremo (variabili separabili) ottenendo $T(t)=T_a+(T_0-T_a)e^{-kt}$: il famoso «adagiarsi» esponenziale sull'ambiente. Nota che la stessa identica equazione descrive il forno che si scalda, la bibita che si intiepidisce, il motore che si raffredda dopo lo spegnimento e — con un altro vocabolario — il condensatore che si scarica. <strong>Una sola equazione, mille fenomeni</strong>: è questa la ragione per cui vale la pena studiarle per tipi e non caso per caso.</p>
+        </div>
+
+        <p>Ma il campionario è molto più ampio, e vale la pena scorrerlo per capire quanto sia pervasivo questo linguaggio.</p>
+        <ul>
+          <li><strong>Archeologia e datazione.</strong> Un nucleo radioattivo decade con probabilità costante nel tempo: se ce ne sono tanti, tanti ne decadono. Ecco $N'=-\lambda N$, e da lì la datazione al <strong>carbonio-14</strong> di una mummia o di un dipinto contestato.</li>
+          <li><strong>Epidemiologia.</strong> All'inizio di un'epidemia ogni contagiato ne contagia altri: crescita esponenziale. Poi i suscettibili finiscono e la curva si piega: nasce la <strong>logistica</strong>, la celebre «curva a S» che tutti abbiamo visto nei grafici dei telegiornali.</li>
+          <li><strong>Ingegneria e comfort.</strong> Gli ammortizzatori dell'auto sono progettati risolvendo $m x''+h x'+k x=0$: si sceglie lo smorzamento in modo che la macchina, dopo una buca, torni a posto <em>il più in fretta possibile senza rimbalzare</em>. Quel caso limite si chiama smorzamento critico ed è esattamente il caso «radice doppia» dell'equazione caratteristica.</li>
+          <li><strong>Musica e distruzione.</strong> Spingere un'altalena al momento giusto la fa salire sempre di più: è la <strong>risonanza</strong>. Lo stesso fenomeno fa cantare un bicchiere di cristallo, fa funzionare la radio (che «risuona» solo sulla frequenza scelta) e obbliga i soldati a rompere il passo quando attraversano un ponte.</li>
+          <li><strong>Elettronica.</strong> Accendi un circuito con una resistenza e un condensatore: la carica non arriva di colpo, sale con $q(t)=CV\left(1-e^{-t/RC}\right)$. Quel $RC$ è il «tempo caratteristico» che trovi scritto su mille schede tecniche, ed esce da un'equazione differenziale del primo ordine.</li>
+          <li><strong>Finanza ed economia.</strong> Il capitale con interesse composto continuo obbedisce a $C'=rC$; i modelli di diffusione di un prodotto sul mercato sono logistiche; i modelli di prezzo delle opzioni sono equazioni differenziali (stocastiche, ma pur sempre differenziali).</li>
+        </ul>
+        <p>Il filo comune è sempre lo stesso: <strong>qualcuno ti racconta come una cosa cambia, e tu vuoi sapere che cosa quella cosa è</strong>. Nel resto del capitolo impareremo a farlo per davvero.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizioni">4.1 Che cos'è un'equazione differenziale</h3>
+        <p>Mettiamo ordine nel vocabolario, perché qui ogni parola conta.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Equazione differenziale ordinaria.</em> È una relazione del tipo</p>
+          <div class="formula-block">$$F\big(x,\;y(x),\;y'(x),\;y''(x),\;\dots,\;y^{(n)}(x)\big)=0$$</div>
+          <p>fra la variabile indipendente $x$, una funzione incognita $y(x)$ e alcune sue derivate. Si dice <strong>ordinaria</strong> perché la variabile indipendente è una sola. L'<strong>ordine</strong> dell'equazione è il massimo ordine di derivazione che vi compare.</p>
+        </div>
+        <p>Qualche esempio, per fissare il concetto di ordine:</p>
+        <ul>
+          <li>$y'=3y$ &nbsp;→&nbsp; ordine <strong>1</strong> (compare solo $y'$);</li>
+          <li>$y''+4y=\sin x$ &nbsp;→&nbsp; ordine <strong>2</strong>;</li>
+          <li>$y'''-\left(y'\right)^{5}+xy=0$ &nbsp;→&nbsp; ordine <strong>3</strong> (l'esponente $5$ non c'entra nulla con l'ordine: riguarda il <em>grado</em>, non l'ordine di derivazione).</li>
+        </ul>
+        <p>Un'equazione del primo ordine si dice in <strong>forma normale</strong> quando è risolta rispetto alla derivata più alta, cioè scritta come $y'=f(x,y)$. Portarla in forma normale è quasi sempre il primo passo operativo.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Soluzione (o integrale) di un'equazione differenziale.</em> Una funzione $y=\varphi(x)$, derivabile il numero di volte necessario su un <strong>intervallo</strong> $I$, tale che sostituendola nell'equazione si ottenga un'identità vera per ogni $x\in I$.</p>
+        </div>
+        <p>Attenzione a quella parola: <strong>intervallo</strong>. Una soluzione non è solo una formula, è una formula <em>insieme al suo intervallo di validità</em>. Ci torneremo: è una delle cose che gli esami amano chiedere.</p>
+        <p><strong>Verifica al volo.</strong> La funzione $y=Ce^{3x}$ è soluzione di $y'=3y$? Deriviamo: $y'=3Ce^{3x}$. E $3y=3Ce^{3x}$. I due membri coincidono per ogni $x$ e per ogni valore della costante $C$: sì, è soluzione. <strong>E non è una sola funzione: è un'intera famiglia</strong>, una per ogni $C$.</p>
+
+        <h3 id="teoria-generale-particolare">4.2 Integrale generale, integrale particolare, famiglia di curve</h3>
+        <p>Qui sta la differenza più importante da capire subito, perché è la stessa che c'era fra integrale indefinito e definito, ma travestita.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Integrale generale e integrale particolare.</em> L'<strong><span class="glossario-term" data-term="integrale-generale">integrale generale</span></strong> di un'equazione di ordine $n$ è l'insieme di <em>tutte</em> le sue soluzioni, e dipende da <strong>$n$ costanti arbitrarie</strong> $C_1,\dots,C_n$. Un <strong>integrale particolare</strong> è una singola soluzione, ottenuta fissando quelle costanti.</p>
+        </div>
+        <p>La regola pratica da tatuarsi sul polso: <strong>ordine $n$ ⟹ $n$ costanti</strong>. Primo ordine, una costante; secondo ordine, due. Se alla fine del compito la tua risposta a un'equazione del secondo ordine contiene una sola costante, hai perso per strada metà delle soluzioni.</p>
+        <p>Perché tante costanti? Perché risolvere significa, in ultima analisi, <strong>integrare</strong>, e ogni integrazione porta con sé un $+C$. Il caso più semplice lo vedi a occhio nudo: l'equazione $y''=0$ si integra una volta ($y'=C_1$) e poi un'altra ($y=C_1x+C_2$), e infatti le soluzioni sono tutte e sole le rette.</p>
+        <p>Geometricamente, l'integrale generale è una <strong>famiglia di curve</strong> nel piano, dette <em>curve integrali</em>. Per $y'=3y$ la famiglia è $y=Ce^{3x}$: tante esponenziali, una per ogni $C$, che riempiono il piano senza mai toccarsi. Scegliere un integrale particolare vuol dire scegliere <strong>una</strong> curva della famiglia — e il modo naturale per farlo è dire da quale punto deve passare.</p>
+
+        <h3 id="teoria-campo-direzioni">4.3 Il campo di direzioni: vedere le soluzioni senza calcolarle</h3>
+        <p>C'è un modo bellissimo di <em>guardare</em> un'equazione del primo ordine in forma normale, $y'=f(x,y)$, prima ancora di risolverla. L'equazione, letta in un punto $(x,y)$ del piano, non dice quanto vale la soluzione: dice <strong>con che pendenza deve passare di lì</strong> una eventuale soluzione. Se in ogni punto disegniamo un trattino con quella pendenza otteniamo il <strong>campo di direzioni</strong>.</p>
+        <p>A quel punto, risolvere l'equazione significa <strong>disegnare le curve che in ogni punto sono tangenti al trattino</strong>: come seguire la corrente in un fiume, o come la limatura di ferro che si dispone lungo le linee del campo magnetico.</p>
+
+        <svg viewBox="0 0 480 300" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Campo di direzioni di una equazione del primo ordine, con due curve soluzione che seguono i trattini">
+          <line x1="45" y1="150" x2="460" y2="150" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="60" y1="25" x2="60" y2="285" stroke="var(--color-border)" stroke-width="1.5"/>
+          <g stroke="var(--color-text-muted)" stroke-width="1.7" opacity="0.75">
+            <line x1="77" y1="96" x2="103" y2="44"/><line x1="137" y1="96" x2="163" y2="44"/><line x1="197" y1="96" x2="223" y2="44"/>
+            <line x1="257" y1="96" x2="283" y2="44"/><line x1="317" y1="96" x2="343" y2="44"/><line x1="377" y1="96" x2="403" y2="44"/>
+            <line x1="77" y1="123" x2="103" y2="97"/><line x1="137" y1="123" x2="163" y2="97"/><line x1="197" y1="123" x2="223" y2="97"/>
+            <line x1="257" y1="123" x2="283" y2="97"/><line x1="317" y1="123" x2="343" y2="97"/><line x1="377" y1="123" x2="403" y2="97"/>
+            <line x1="77" y1="150" x2="103" y2="150"/><line x1="137" y1="150" x2="163" y2="150"/><line x1="197" y1="150" x2="223" y2="150"/>
+            <line x1="257" y1="150" x2="283" y2="150"/><line x1="317" y1="150" x2="343" y2="150"/><line x1="377" y1="150" x2="403" y2="150"/>
+            <line x1="77" y1="177" x2="103" y2="203"/><line x1="137" y1="177" x2="163" y2="203"/><line x1="197" y1="177" x2="223" y2="203"/>
+            <line x1="257" y1="177" x2="283" y2="203"/><line x1="317" y1="177" x2="343" y2="203"/><line x1="377" y1="177" x2="403" y2="203"/>
+            <line x1="77" y1="204" x2="103" y2="256"/><line x1="137" y1="204" x2="163" y2="256"/><line x1="197" y1="204" x2="223" y2="256"/>
+            <line x1="257" y1="204" x2="283" y2="256"/><line x1="317" y1="204" x2="343" y2="256"/><line x1="377" y1="204" x2="403" y2="256"/>
+          </g>
+          <path d="M 70 147 C 190 141, 300 118, 410 38" fill="none" stroke="var(--color-primary)" stroke-width="2.8"/>
+          <path d="M 70 153 C 190 159, 300 182, 410 262" fill="none" stroke="var(--color-secondary)" stroke-width="2.8"/>
+          <line x1="62" y1="150" x2="450" y2="150" stroke="var(--color-accent)" stroke-width="2.4" stroke-dasharray="7 5"/>
+          <text x="416" y="36" font-size="12" font-weight="700" fill="var(--color-primary)">C ﹥ 0</text>
+          <text x="416" y="268" font-size="12" font-weight="700" fill="var(--color-secondary)">C ﹤ 0</text>
+          <text x="300" y="142" font-size="12" font-weight="700" fill="var(--color-accent)">soluzione costante</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Il campo di direzioni di $y'=y$: i trattini dicono la pendenza, le curve integrali li seguono. La retta $y=0$ è la soluzione costante che nessuna altra curva può attraversare.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché è un'immagine così utile</div>
+          <p>Il campo di direzioni ti fa capire il <strong>comportamento qualitativo</strong> delle soluzioni anche quando non sai (o non puoi) risolvere. Vedi subito se le curve scappano all'infinito o si adagiano su un valore, dove crescono e dove calano, se ci sono <strong>rette orizzontali</strong> (le soluzioni costanti, dove $f(x,y)=0$) che fanno da «muri» invalicabili. Ed è esattamente così che lavorano i metodi numerici: il metodo di Eulero, il più semplice di tutti, parte da $(x_0,y_0)$ e avanza a piccoli passi seguendo il trattino, $y_{n+1}=y_n+h\,f(x_n,y_n)$. Sta letteralmente camminando nel campo di direzioni.</p>
+        </div>
+
+        <h3 id="teoria-cauchy">4.4 Il problema di Cauchy: l'equazione più la condizione iniziale</h3>
+        <p>Una legge di cambiamento, da sola, non basta a prevedere il futuro: serve sapere anche <strong>da dove si parte</strong>. «Cresco del 3% all'anno» non dice quanto avrò fra dieci anni, se non mi dici quanto ho oggi.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="problema-di-cauchy">Problema di Cauchy</span> (o problema ai valori iniziali).</em> È il sistema formato da un'equazione differenziale e da tante condizioni iniziali quanto è il suo ordine:</p>
+          <div class="formula-block">$$\begin{cases} y'=f(x,y)\\[2pt] y(x_0)=y_0 \end{cases} \qquad\qquad \begin{cases} y''=f(x,y,y')\\[2pt] y(x_0)=y_0\\[2pt] y'(x_0)=y_0' \end{cases}$$</div>
+        </div>
+        <p>Nel linguaggio della fisica: per il primo ordine basta la <em>posizione</em> iniziale; per il secondo servono <em>posizione e velocità</em> iniziali. Se lanci un sasso, per sapere dove finirà devi sapere da dove parte <strong>e</strong> con che velocità: due dati, due costanti da fissare, ordine due. Tutto torna.</p>
+        <p>Geometricamente: l'integrale generale è la famiglia di curve, la condizione iniziale è il <strong>punto</strong> $(x_0,y_0)$ per cui la curva deve passare. Risolvere il problema di Cauchy significa selezionare, dentro la famiglia, l'unica curva che passa di lì.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (esistenza e unicità locale, Cauchy–Lipschitz)</span>
+          <p>Sia $f(x,y)$ definita su un rettangolo $R$ che contiene il punto $(x_0,y_0)$ nel suo interno. Se</p>
+          <ul>
+            <li>$f$ è <strong>continua</strong> in $R$;</li>
+            <li>$f$ è <strong>lipschitziana rispetto a $y$</strong> in $R$, cioè esiste $L\gt 0$ tale che $\ \big|f(x,y_1)-f(x,y_2)\big|\leq L\,\big|y_1-y_2\big|\ $ per ogni $(x,y_1),(x,y_2)\in R$;</li>
+          </ul>
+          <p>allora esiste $\delta\gt 0$ tale che il problema di Cauchy $\ y'=f(x,y),\ y(x_0)=y_0\ $ ammette <strong>una e una sola</strong> soluzione nell'intervallo $(x_0-\delta,\,x_0+\delta)$.</p>
+        </div>
+        <p><strong>Come si usa in pratica.</strong> Verificare la condizione di Lipschitz a mano è scomodo; nella stragrande maggioranza dei casi basta questo criterio comodissimo: <strong>se $f$ e la sua derivata parziale $\dfrac{\partial f}{\partial y}$ sono continue in un intorno di $(x_0,y_0)$, le ipotesi sono soddisfatte</strong> (una derivata parziale continua su un rettangolo è limitata, e questo dà la costante $L$).</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Che cosa significa davvero l'unicità</div>
+          <p>Significa: <strong>da ogni punto del piano parte una sola traiettoria</strong>. Le curve integrali non si incrociano mai, non si biforcano, non si toccano. Il campo di direzioni, in ogni punto, dà <em>una</em> pendenza sola, e chi la segue non ha scelte.</p>
+          <p>La condizione di Lipschitz è la traduzione tecnica di «il campo di direzioni non cambia troppo bruscamente quando ti sposti in verticale». Se $f$ varia in modo controllato al variare di $y$, due traiettorie vicine non possono allontanarsi o fondersi all'improvviso. Se invece la pendenza «esplode», il controllo salta e possono nascere biforcazioni: è esattamente il controesempio qui sotto.</p>
+          <p>Nella pratica, l'unicità è ciò che rende sensata la parola <em>previsione</em>. Se da uno stato iniziale partissero due futuri diversi, il modello non predirebbe nulla.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Controesempio: quando l'unicità salta</div>
+          <p>Consideriamo il problema $\ y'=3\,y^{2/3},\ \ y(0)=0$. La funzione $f(y)=3y^{2/3}$ è continua ovunque, quindi una soluzione <strong>esiste</strong>. Ma quante?</p>
+          <p>Prima soluzione: $y\equiv 0$. Infatti $y'=0$ e $3\cdot 0^{2/3}=0$. ✔</p>
+          <p>Seconda soluzione: $y=x^{3}$. Infatti $y'=3x^{2}$ e $3\left(x^{3}\right)^{2/3}=3x^{2}$. ✔</p>
+          <p>Due soluzioni diverse che partono dallo stesso punto: <strong>l'unicità è persa</strong>. Anzi, ce ne sono infinite: per ogni $a\geq 0$ la funzione che vale $0$ per $x\leq a$ e $(x-a)^{3}$ per $x\gt a$ è ancora soluzione (si «stacca» da zero quando vuole). Dov'è il problema? Nella derivata $\dfrac{\partial f}{\partial y}=2\,y^{-1/3}$, che <strong>esplode</strong> per $y\to 0$: niente costante di Lipschitz vicino a $y=0$, niente unicità.</p>
+        </div>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> «Locale» vuol dire locale davvero</div>
+          <p>Il teorema garantisce la soluzione solo in un <em>intorno</em> di $x_0$, e non è una timidezza: è necessario. Prendi $y'=y^{2}$ con $y(0)=1$. Qui $f$ e $\partial f/\partial y=2y$ sono continue ovunque, quindi tutte le ipotesi valgono. Separando le variabili si trova $y=\dfrac{1}{1-x}$, che però <strong>esplode</strong> per $x\to 1^{-}$: la soluzione esiste ed è unica solo su $(-\infty,1)$. Morale: anche con dati perfetti, una soluzione può avere vita breve. Si chiama <em>blow-up</em> in tempo finito.</p>
+        </div>
+        <h3 id="teoria-separabili">4.5 Metodo 1: equazioni a variabili separabili</h3>
+        <p>È la famiglia più semplice e la più diffusa nei modelli. Un'equazione si dice a <strong><span class="glossario-term" data-term="variabili-separabili">variabili separabili</span></strong> se il secondo membro si spezza nel prodotto di una funzione della sola $x$ per una funzione della sola $y$:</p>
+        <div class="formula-block">$$y'=g(x)\cdot h(y).$$</div>
+        <p>L'idea è tanto sfacciata quanto efficace: scriviamo $y'=\dfrac{dy}{dx}$ e trattiamo $dy$ e $dx$ come se fossero fattori, portando tutte le $y$ da una parte e tutte le $x$ dall'altra. Il conto si giustifica rigorosamente con il teorema di integrazione per sostituzione, ma operativamente si fa così.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Ricetta passo-passo</span>
+          <ol>
+            <li><strong>Cerca le soluzioni costanti.</strong> Ogni $y_0$ con $h(y_0)=0$ dà la soluzione costante $y\equiv y_0$ (infatti allora $y'=0$ e anche $g(x)h(y_0)=0$). <em>Annotale subito</em>: tra un passo dividerai proprio per $h(y)$ e le perderesti.</li>
+            <li><strong>Separa.</strong> Dove $h(y)\neq 0$ scrivi $\ \dfrac{dy}{h(y)}=g(x)\,dx$.</li>
+            <li><strong>Integra i due membri</strong>, ciascuno nella propria variabile: $\ \displaystyle\int\frac{dy}{h(y)}=\int g(x)\,dx$. Una sola costante $C$ (le due si fondono in una).</li>
+            <li><strong>Esplicita $y$</strong>, se possibile. Altrimenti lascia la soluzione in <em>forma implicita</em>: è legittimo.</li>
+            <li><strong>Imponi la condizione iniziale</strong> (se c'è) e <strong>determina l'intervallo</strong> su cui la soluzione vive.</li>
+          </ol>
+        </div>
+        <p><strong>Esempio guida.</strong> Risolviamo $y'=xy$.</p>
+        <p>Passo 1: confrontando $y'=xy$ con la forma $y'=g(x)h(y)$ leggo $g(x)=x$ e $h(y)=y$; $h(y)=y$ si annulla in $y=0$, quindi $y\equiv 0$ è soluzione. Passo 2: per $y\neq 0$ scrivo $y'=\dfrac{dy}{dx}$, cioè $\dfrac{dy}{dx}=xy$, poi divido entrambi i membri per $y$ e moltiplico entrambi per $dx$: $\dfrac{dy}{y}=x\,dx$. Passo 3: integro i due membri, ciascuno nella propria variabile, $\displaystyle\int\frac{dy}{y}=\int x\,dx$, usando due primitive notevoli (Analisi 1, cap. 13): $\int\frac{dt}{t}=\ln|t|$ e $\int t\,dt=\frac{t^{2}}{2}$. Ottengo $\ln|y|=\dfrac{x^{2}}{2}+c$, con una sola costante $c$. Passo 4: applico l'esponenziale a entrambi i membri e uso $e^{\ln|y|}=|y|$ e $e^{a+b}=e^{a}e^{b}$ (Parte 0, cap. 3): $|y|=e^{x^{2}/2+c}=e^{c}e^{x^{2}/2}$; tolgo il valore assoluto con un doppio segno, $y=\pm e^{c}e^{x^{2}/2}$. Ponendo $C=\pm e^{c}$ (un qualunque numero diverso da zero) si ottiene</p>
+        <div class="formula-block">$$y=C\,e^{x^{2}/2}.$$</div>
+        <p>E qui accade una cosa elegante: la soluzione costante $y\equiv 0$, che sembrava un caso a parte, si riottiene ponendo $C=0$. Quindi la formula con $C\in\mathbb{R}$ <strong>contiene davvero tutte</strong> le soluzioni. Succede spesso, ma <strong>non sempre</strong>: perciò il passo 1 va fatto comunque e il recupero va verificato, non dato per scontato.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il valore assoluto e la fusione delle costanti</div>
+          <p>Il passaggio $\int\frac{dy}{y}=\ln|y|$ porta un valore assoluto che dà fastidio. Il modo pulito di liberarsene è proprio quello visto sopra: esponenziare, osservare che $\pm e^{c}$ percorre tutti i reali non nulli, e ribattezzare il tutto $C$. Da quel momento in poi <strong>la costante $C$ può essere negativa</strong>, ed è giusto così. Sbagliare qui (tenendosi solo le $C$ positive) significa buttare via metà delle soluzioni.</p>
+        </div>
+
+        <h3 id="teoria-lineari1">4.6 Metodo 2: equazioni lineari del primo ordine</h3>
+        <p>Una <strong><span class="glossario-term" data-term="equazione-differenziale-lineare">equazione differenziale lineare</span></strong> del primo ordine è un'equazione in cui $y$ e $y'$ compaiono solo al primo grado, senza prodotti fra loro e senza finire dentro funzioni. La <strong>forma normale</strong> è</p>
+        <div class="formula-block">$$y'+a(x)\,y=b(x),$$</div>
+        <p>con $a,b$ funzioni continue su un intervallo $I$. Se $b\equiv 0$ l'equazione si dice <strong>omogenea</strong> (ed è a variabili separabili); altrimenti <strong>completa</strong>.</p>
+        <p>Il trucco che le risolve tutte si chiama <strong>fattore integrante</strong> e nasce da un'osservazione: il primo membro <em>quasi</em> assomiglia alla derivata di un prodotto. Moltiplichiamo tutto per una funzione $\mu(x)$ scelta apposta perché il primo membro diventi <strong>esattamente</strong> $\left(\mu y\right)'$. La scelta giusta è</p>
+        <div class="formula-block">$$\mu(x)=e^{A(x)},\qquad A(x)=\int a(x)\,dx \quad(\text{una qualunque primitiva di } a).$$</div>
+        <p>Con questa scelta l'equazione diventa $\left(\mu y\right)'=\mu\, b$, che si integra a vista. Ne segue la formula risolutiva.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Formula risolutiva (lineari del primo ordine)</span>
+          <p>L'integrale generale di $\ y'+a(x)y=b(x)\ $ è</p>
+          <div class="formula-block">$$y(x)=e^{-A(x)}\left(\int e^{A(x)}\,b(x)\,dx+C\right),\qquad A(x)=\int a(x)\,dx .$$</div>
+          <p>In particolare, per l'omogenea associata ($b\equiv 0$) si ha $\ y_{\text{om}}=C\,e^{-A(x)}$.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Ricetta passo-passo</span>
+          <ol>
+            <li><strong>Porta in forma normale</strong>: il coefficiente di $y'$ deve essere $1$ (se c'è un $\alpha(x)$ davanti, dividi tutto per $\alpha(x)$, ricordando dove $\alpha$ si annulla).</li>
+            <li><strong>Individua $a(x)$</strong> e calcola $A(x)=\int a\,dx$ (senza costante: una primitiva qualsiasi va bene).</li>
+            <li><strong>Scrivi $\mu=e^{A(x)}$</strong> e moltiplica l'equazione per $\mu$.</li>
+            <li><strong>Riconosci la derivata del prodotto</strong>: $\left(\mu y\right)'=\mu\,b$.</li>
+            <li><strong>Integra</strong>: $\mu y=\int \mu\,b\,dx+C$, poi <strong>dividi per $\mu$</strong>.</li>
+            <li><strong>Imponi la condizione iniziale</strong>, se presente.</li>
+          </ol>
+        </div>
+        <p><strong>Esempio guida.</strong> Risolviamo $y'+2y=e^{x}$. Confronto con la forma normale $y'+a(x)y=b(x)$: al posto di $a(x)$ c'è la costante $2$, al posto di $b(x)$ c'è $e^{x}$. Dunque $A(x)=\int a(x)\,dx=\int 2\,dx=2x$ e $\mu=e^{A(x)}=e^{2x}$. Moltiplico <em>ogni</em> termine per $\mu=e^{2x}$; a destra uso $e^{2x}e^{x}=e^{2x+x}=e^{3x}$ (prodotto di potenze con la stessa base, Parte 0, cap. 3), il primo membro è $\left(\mu y\right)'$ per come è stato scelto $\mu$, e infine integro con $\int e^{3x}dx=\frac{e^{3x}}{3}$ (primitiva notevole $\int e^{kx}dx=\frac{e^{kx}}{k}$):</p>
+        <div class="formula-block">$$e^{2x}y'+2e^{2x}y=e^{2x}e^{x}\ \Longrightarrow\ \left(e^{2x}y\right)'=e^{3x}\ \Longrightarrow\ e^{2x}y=\frac{e^{3x}}{3}+C.$$</div>
+        <p>Divido entrambi i membri per $e^{2x}$, cioè moltiplico per $e^{-2x}$: il primo termine dà $\frac{e^{3x}}{3}e^{-2x}=\frac{e^{3x-2x}}{3}=\frac{e^{x}}{3}$, il secondo dà $C\,e^{-2x}$. Quindi $\ y=\dfrac{e^{x}}{3}+C\,e^{-2x}$. Osserva la struttura del risultato: <strong>una soluzione particolare della completa</strong> ($\frac{e^x}{3}$) <strong>più l'integrale generale dell'omogenea</strong> ($Ce^{-2x}$). Non è un caso: è la struttura di <em>tutte</em> le equazioni lineari, e la ritroveremo identica al secondo ordine.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Perché «lineare» e perché la struttura è sempre quella</div>
+          <p>Chiamiamo $L[y]=y'+a(x)y$. Questo oggetto è <strong>lineare</strong> nel senso dell'algebra: $L[\alpha y_1+\beta y_2]=\alpha L[y_1]+\beta L[y_2]$. Da qui tutto segue in modo automatico. Se $y_p$ risolve $L[y]=b$ e $y_{\text{om}}$ risolve $L[y]=0$, allora $L[y_p+y_{\text{om}}]=b+0=b$: la somma è ancora soluzione. E viceversa, se $y$ e $y_p$ risolvono entrambe la completa, la loro differenza risolve l'omogenea. Ecco perché <strong>integrale generale della completa = integrale generale dell'omogenea + una particolare</strong>. Vale al primo ordine, al secondo, all'ennesimo: è sempre lo stesso teorema di algebra lineare travestito.</p>
+        </div>
+        <h3 id="teoria-lineari2">4.7 Metodo 3: equazioni lineari del secondo ordine a coefficienti costanti</h3>
+        <p>Arriviamo alla famiglia più importante della fisica. Si tratta di</p>
+        <div class="formula-block">$$a\,y''+b\,y'+c\,y=f(x),\qquad a,b,c\in\mathbb{R},\ a\neq 0,$$</div>
+        <p>con $f$ continua. Se $f\equiv 0$ l'equazione è <strong>omogenea</strong>, altrimenti <strong>completa</strong>. Dentro questa formula ci sono la molla, il pendolo per piccole oscillazioni, il circuito RLC, l'ammortizzatore e mezza ingegneria.</p>
+
+        <h4>La struttura dell'integrale generale</h4>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di struttura</span>
+          <p>L'insieme delle soluzioni dell'omogenea $\,ay''+by'+cy=0\,$ è uno <strong>spazio vettoriale di dimensione 2</strong>: esistono due soluzioni $y_1,y_2$ linearmente indipendenti tali che</p>
+          <div class="formula-block">$$y_{\text{om}}=C_1y_1(x)+C_2y_2(x).$$</div>
+          <p>L'integrale generale della <strong>completa</strong> si ottiene sommando una qualunque soluzione particolare $y_p$ della completa:</p>
+          <div class="formula-block">$$\boxed{\;y=\underbrace{C_1y_1+C_2y_2}_{\text{generale dell'omogenea}}+\underbrace{y_p}_{\text{una particolare}}\;}$$</div>
+        </div>
+        <p>Tradotto in strategia operativa: <strong>ogni esercizio del secondo ordine si fa in due tempi</strong>. Prima si risolve l'omogenea (sempre allo stesso modo, con l'equazione caratteristica). Poi si caccia una particolare della completa (con il metodo di somiglianza). Si somma. Solo alla fine, se richiesto, si impongono le condizioni iniziali.</p>
+
+        <h4>L'equazione caratteristica e i suoi tre casi</h4>
+        <p>Perché cercare soluzioni della forma $y=e^{\lambda x}$? Perché l'esponenziale, derivando, <em>riproduce sé stesso moltiplicato per un numero</em>: $\left(e^{\lambda x}\right)'=\lambda e^{\lambda x}$ e $\left(e^{\lambda x}\right)''=\lambda^{2}e^{\lambda x}$. Sostituendo, ogni derivata diventa una potenza di $\lambda$ e l'equazione differenziale si trasforma in una banale equazione algebrica.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="equazione-caratteristica">Equazione caratteristica</span>.</em> È l'equazione algebrica di secondo grado associata a $ay''+by'+cy=0$:</p>
+          <div class="formula-block">$$a\lambda^{2}+b\lambda+c=0,\qquad \Delta=b^{2}-4ac.$$</div>
+        </div>
+        <p>Il segno di $\Delta$ decide la forma delle soluzioni, e sono tre casi da imparare a memoria.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">I tre casi</span>
+          <p><strong>Caso 1 — $\Delta\gt 0$: due radici reali distinte $\lambda_1\neq\lambda_2$.</strong></p>
+          <div class="formula-block">$$y_{\text{om}}=C_1e^{\lambda_1x}+C_2e^{\lambda_2x}$$</div>
+          <p><strong>Caso 2 — $\Delta=0$: una radice reale doppia $\lambda_0=-\dfrac{b}{2a}$.</strong> Una sola esponenziale non basta (ci serve una seconda soluzione indipendente): si moltiplica per $x$.</p>
+          <div class="formula-block">$$y_{\text{om}}=\left(C_1+C_2x\right)e^{\lambda_0 x}$$</div>
+          <p><strong>Caso 3 — $\Delta\lt 0$: due radici complesse coniugate $\lambda=\alpha\pm i\beta$</strong>, con $\alpha=-\dfrac{b}{2a}$ e $\beta=\dfrac{\sqrt{-\Delta}}{2a}\gt 0$. Grazie alla formula di Eulero le esponenziali complesse si ricombinano in <strong>seno e coseno reali</strong>:</p>
+          <div class="formula-block">$$y_{\text{om}}=e^{\alpha x}\Big(C_1\cos\left(\beta x\right)+C_2\sin\left(\beta x\right)\Big)$$</div>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Come leggere i tre casi con gli occhi della fisica</div>
+          <p>Immagina una molla con un ammortizzatore. Il coefficiente $b$ misura l'attrito.</p>
+          <p><strong>$\Delta\gt 0$ (attrito forte, «sovrasmorzato»):</strong> due esponenziali decrescenti, la massa torna a riposo <em>strisciando</em>, senza mai oltrepassare il punto di equilibrio. Come una porta con il chiudiporta pneumatico regolato lento.</p>
+          <p><strong>$\Delta=0$ (attrito critico):</strong> il confine esatto tra i due mondi, il ritorno all'equilibrio più rapido possibile <em>senza</em> oscillare. È come sono tarati gli ammortizzatori di un'auto: una buca non deve farti rimbalzare, ma nemmeno lasciarti la macchina molle.</p>
+          <p><strong>$\Delta\lt 0$ (attrito debole, «sottosmorzato»):</strong> compaiono seno e coseno, cioè <strong>oscillazioni</strong>, dentro un involucro $e^{\alpha x}$ che le spegne (se $\alpha\lt 0$) o le amplifica (se $\alpha\gt 0$). Il pendolo che oscilla sempre più piano fino a fermarsi.</p>
+          <p>Sintesi da tenere in testa: <strong>la parte reale $\alpha$ decide se cresce o si spegne; la parte immaginaria $\beta$ decide quanto in fretta oscilla</strong>. Se $\beta=0$ non c'è nessuna oscillazione.</p>
+        </div>
+
+        <svg viewBox="0 0 480 250" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Tre regimi di smorzamento: sottosmorzato oscillante, criticamente smorzato e sovrasmorzato">
+          <line x1="45" y1="170" x2="462" y2="170" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="60" y1="20" x2="60" y2="230" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 60 50 Q 96 50 116 170 Q 134 272 158 205 Q 178 152 198 170 Q 220 190 240 178 Q 262 166 284 172 Q 310 178 330 169 Q 360 162 390 170 L 455 170" fill="none" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <path d="M 60 50 C 96 66, 116 150, 150 164 C 200 173, 280 170, 455 170" fill="none" stroke="var(--color-danger)" stroke-width="2.6"/>
+          <path d="M 60 50 C 130 78, 200 122, 280 150 C 350 164, 400 168, 455 170" fill="none" stroke="var(--color-secondary)" stroke-width="2.6" stroke-dasharray="8 5"/>
+          <text x="300" y="128" font-size="12" font-weight="700" fill="var(--color-primary)">sottosmorzato (Δ ﹤ 0)</text>
+          <text x="180" y="196" font-size="12" font-weight="700" fill="var(--color-danger)">critico (Δ = 0)</text>
+          <text x="300" y="216" font-size="12" font-weight="700" fill="var(--color-secondary)">sovrasmorzato (Δ ﹥ 0)</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Stessa condizione iniziale, tre attriti diversi. Solo con $\Delta\lt 0$ il sistema oscilla; con $\Delta=0$ torna a riposo il più in fretta possibile.</p>
+
+        <h4>Il metodo di somiglianza (coefficienti indeterminati)</h4>
+        <p>Per la soluzione particolare $y_p$ della completa, quando il termine noto $f(x)$ è di tipo «buono» (polinomi, esponenziali, seni e coseni, e loro prodotti) si usa il <strong>metodo di somiglianza</strong>: si indovina che $y_p$ abbia la <em>stessa forma</em> del termine noto, con coefficienti da determinare imponendo l'equazione.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Tabella delle forme da provare</span>
+          <p>Sia $m$ la <strong>molteplicità</strong> del numero indicato come radice dell'equazione caratteristica (vale $m=0$ se non è radice).</p>
+          <ul>
+            <li><strong>$f(x)=P_n(x)$ polinomio di grado $n$</strong> → prova $y_p=x^{m}\,Q_n(x)$, con $Q_n$ polinomio <em>completo</em> di grado $n$ a coefficienti incogniti; qui $m$ è la molteplicità di $\lambda=0$.</li>
+            <li><strong>$f(x)=e^{\gamma x}P_n(x)$</strong> → prova $y_p=x^{m}\,e^{\gamma x}Q_n(x)$; qui $m$ è la molteplicità di $\lambda=\gamma$.</li>
+            <li><strong>$f(x)=e^{\gamma x}\big(P\cos(\omega x)+Q\sin(\omega x)\big)$</strong> → prova $y_p=x^{m}e^{\gamma x}\big(A\cos(\omega x)+B\sin(\omega x)\big)$; qui $m$ è la molteplicità di $\lambda=\gamma\pm i\omega$. <strong>Vanno messi sempre entrambi</strong>, seno e coseno, anche se nel termine noto ce n'è uno solo.</li>
+            <li><strong>Somma di termini noti</strong> → <em>principio di sovrapposizione</em>: risolvi separatamente per ciascun pezzo e somma le particolari trovate.</li>
+          </ul>
+        </div>
+        <p>Il fattore $x^{m}$ è la <strong>regola della risonanza</strong> ed è il punto in cui si sbaglia più spesso. Quando il termine noto «assomiglia» a una soluzione dell'omogenea, provare quella forma non può funzionare: sostituendola nel primo membro si ottiene $0$, e $0$ non sarà mai uguale a $f(x)$. Il rimedio è <strong>moltiplicare per $x$</strong> tante volte quanto è la molteplicità.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Risonanza: il test di due secondi</div>
+          <p>Prima di scrivere $y_p$, fatti questa domanda: <em>«il termine noto è già, da solo, una soluzione dell'omogenea?»</em>. Guarda le radici $\lambda$ che hai appena trovato e confrontale con il termine noto: se $f(x)=e^{2x}$ e $2$ è radice semplice, moltiplica per $x$; se è radice doppia, per $x^{2}$. Se $f(x)=\cos(3x)$ e le radici sono $\pm 3i$, moltiplica per $x$. Fatto questo controllo, il resto è solo algebra.</p>
+        </div>
+        <p><strong>Esempio di risonanza.</strong> $y''-4y=e^{2x}$. L'equazione caratteristica è $\lambda^{2}-4=0$, cioè $\lambda^{2}=4$ e quindi $\lambda=\pm 2$; nel termine noto, scritto come $e^{\gamma x}$, si legge $\gamma=2$, che <em>è</em> radice semplice ($m=1$): la forma corretta è perciò $y_p=Axe^{2x}$ (non $Ae^{2x}$!). Derivo con la regola del prodotto $(uv)'=u'v+uv'$, ponendo $u=Ax$ e $v=e^{2x}$ (ricorda $\left(e^{2x}\right)'=2e^{2x}$): $y_p'=A\,e^{2x}+Ax\cdot 2e^{2x}=A(1+2x)e^{2x}$. Derivo una seconda volta, stavolta con $u=A(1+2x)$ e $v=e^{2x}$: $y_p''=2A\,e^{2x}+A(1+2x)\cdot 2e^{2x}=A\left(2+2+4x\right)e^{2x}=A(4+4x)e^{2x}$. Sostituisco $y_p''$ e $y_p$ nel primo membro $y''-4y$ e raccolgo $e^{2x}$:</p>
+        <div class="formula-block">$$y_p''-4y_p=A(4+4x)e^{2x}-4Axe^{2x}=4A\,e^{2x}\;\overset{!}{=}\;e^{2x}\ \Longrightarrow\ A=\frac14 .$$</div>
+        <p>Integrale generale: $\ y=C_1e^{2x}+C_2e^{-2x}+\dfrac{x}{4}e^{2x}$.</p>
+
+        <h4>Variazione delle costanti e wronskiano (cenno)</h4>
+        <p>Il metodo di somiglianza fallisce se il termine noto non è di tipo «buono»: per esempio $f(x)=\tan x$ oppure $f(x)=\dfrac{1}{x}$. In quel caso esiste un metodo generale, la <strong>variazione delle costanti</strong> di Lagrange: si parte dall'integrale dell'omogenea $C_1y_1+C_2y_2$ e si <em>lasciano variare le costanti</em>, cercando la particolare nella forma $y_p=v_1(x)y_1+v_2(x)y_2$.</p>
+        <p>Perché il sistema che ne nasce sia risolubile serve che $y_1$ e $y_2$ siano davvero indipendenti, e questo si misura con un determinante.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="wronskiano">Wronskiano</span>.</em> Date due soluzioni $y_1,y_2$, si chiama wronskiano il determinante</p>
+          <div class="formula-block">$$W(x)=\begin{vmatrix} y_1 &amp; y_2\\ y_1' &amp; y_2'\end{vmatrix}=y_1y_2'-y_2y_1'.$$</div>
+          <p>Le due soluzioni sono <strong>linearmente indipendenti</strong> (cioè formano una base) se e solo se $W(x)\neq 0$. Per le equazioni lineari vale un fatto notevole: $W$ o è sempre nullo, o non si annulla mai; basta quindi controllarlo in <em>un solo</em> punto comodo.</p>
+        </div>
+        <p>Con $W$ in mano, la formula della variazione delle costanti per $\ y''+p(x)y'+q(x)y=g(x)\ $ (attenzione: coefficiente di $y''$ uguale a $1$) è</p>
+        <div class="formula-block">$$y_p=-\,y_1\int\frac{y_2\,g}{W}\,dx\;+\;y_2\int\frac{y_1\,g}{W}\,dx .$$</div>
+        <p>È più laboriosa della somiglianza, ma ha il pregio di funzionare <strong>sempre</strong>, anche a coefficienti non costanti (purché si conosca una base dell'omogenea). Per un primo corso è sufficiente saperla riconoscere e saperla applicare in casi semplici.</p>
+        <h3 id="teoria-modelli">4.8 Applicazioni modellistiche, svolte per intero</h3>
+        <p>Ora mettiamo la cassetta degli attrezzi al lavoro. Ogni modello segue lo stesso schema: <strong>(1)</strong> una frase in italiano sul cambiamento, <strong>(2)</strong> l'equazione, <strong>(3)</strong> il metodo, <strong>(4)</strong> la soluzione, <strong>(5)</strong> che cosa ci dice.</p>
+
+        <h4>A. Decadimento radioattivo e datazione al carbonio-14</h4>
+        <p><em>La frase:</em> ogni nucleo ha la stessa probabilità di decadere nell'unità di tempo, quindi il numero di decadimenti al secondo è proporzionale al numero di nuclei presenti. <em>L'equazione:</em></p>
+        <div class="formula-block">$$N'(t)=-\lambda\,N(t),\qquad \lambda\gt 0,\qquad N(0)=N_0 .$$</div>
+        <p><em>Il metodo:</em> variabili separabili (<span class="richiamo" data-sec="4.5">§4.5</span>). Scrivo $N'=\dfrac{dN}{dt}$, divido entrambi i membri per $N$ e moltiplico entrambi per $dt$: $\dfrac{dN}{N}=-\lambda\,dt$. Integro i due membri, ciascuno nella sua variabile ($\int\frac{dN}{N}=\ln|N|$ e $\int(-\lambda)\,dt=-\lambda t$): $\ln|N|=-\lambda t+c$. Esponenzio entrambi i membri, usando $e^{\ln|N|}=|N|$ e $e^{-\lambda t+c}=e^{c}e^{-\lambda t}$; poiché il numero di nuclei è positivo posso togliere il valore assoluto e scrivere $N(t)=C\,e^{-\lambda t}$ con $C=e^{c}$. Impongo infine la condizione iniziale sostituendo $t=0$: $N(0)=C\,e^{0}=C$, e siccome $N(0)=N_0$ si ha $C=N_0$:</p>
+        <div class="formula-block">$$N(t)=N_0\,e^{-\lambda t}.$$</div>
+        <p><em>Che cosa ci dice:</em> il tempo di <strong>dimezzamento</strong> $T_{1/2}$ è quello per cui $N=N_0/2$. Sostituisco $t=T_{1/2}$ nella soluzione e uguaglio: $N_0e^{-\lambda T_{1/2}}=\tfrac{N_0}{2}$; divido entrambi i membri per $N_0$ e resta $e^{-\lambda T_{1/2}}=\tfrac12$. Applico il logaritmo naturale a entrambi i membri ($\ln e^{a}=a$ e $\ln\frac12=-\ln 2$): $-\lambda T_{1/2}=-\ln 2$, e dividendo entrambi per $-\lambda$</p>
+        <div class="formula-block">$$T_{1/2}=\frac{\ln 2}{\lambda}\qquad\Longleftrightarrow\qquad \lambda=\frac{\ln 2}{T_{1/2}} .$$</div>
+        <p>Notevole: il dimezzamento non dipende da quanto materiale c'è. Da $1000$ grammi o da $1$ grammo, ci vuole lo stesso tempo per arrivare a metà.</p>
+        <p><strong>Datazione al carbonio-14.</strong> Gli organismi viventi scambiano carbonio con l'atmosfera e mantengono una proporzione fissa di $^{14}$C; alla morte lo scambio si ferma e il $^{14}$C comincia a decadere, con $T_{1/2}=5730$ anni, cioè $\lambda=\dfrac{\ln 2}{5730}\approx 1{,}21\cdot 10^{-4}$ anni$^{-1}$. Invertendo la formula (parto da $N=N_0e^{-\lambda t}$, divido entrambi i membri per $N_0$ ottenendo $e^{-\lambda t}=\frac{N}{N_0}$, applico il logaritmo a entrambi, $-\lambda t=\ln\frac{N}{N_0}=-\ln\frac{N_0}{N}$ perché $\ln\frac1u=-\ln u$, e infine divido per $-\lambda$):</p>
+        <div class="formula-block">$$t=\frac{1}{\lambda}\ln\!\frac{N_0}{N}=\frac{T_{1/2}}{\ln 2}\,\ln\!\frac{N_0}{N}.$$</div>
+        <p><em>Conto concreto.</em> Un reperto contiene il $25\%$ del $^{14}$C iniziale. Allora $N_0/N=4$ e $t=\dfrac{5730}{\ln 2}\ln 4=5730\cdot\dfrac{2\ln 2}{\ln 2}=2\cdot 5730=11\,460$ anni. Se invece il residuo fosse il $70\%$: $t=\dfrac{-\ln 0{,}70}{1{,}21\cdot10^{-4}}=\dfrac{0{,}3567}{1{,}21\cdot10^{-4}}\approx 2950$ anni.</p>
+
+        <h4>B. Crescita di una popolazione: esponenziale e logistica</h4>
+        <p><em>Modello di Malthus.</em> Se le risorse sono illimitate, ogni individuo contribuisce alla natalità e $P'=kP$, la stessa equazione di prima con il segno opposto:</p>
+        <div class="formula-block">$$P(t)=P_0\,e^{kt},\qquad k\gt 0 .$$</div>
+        <p>Cresce senza freni, e questo è chiaramente irrealistico sul lungo periodo: nessuna popolazione può raddoppiare all'infinito. Il difetto sta nell'ipotesi: le risorse <em>non</em> sono illimitate.</p>
+        <p><em>Modello logistico (Verhulst).</em> Introduciamo una <strong>capacità portante</strong> $K$: il tasso di crescita pro capite non è costante ma cala man mano che la popolazione si avvicina a $K$, fino ad annullarsi.</p>
+        <div class="formula-block">$$P'=k\,P\left(1-\frac{P}{K}\right).$$</div>
+        <p><em>Il metodo:</em> variabili separabili (<span class="richiamo" data-sec="4.5">§4.5</span>). Soluzioni costanti: annullo il secondo membro, $kP\left(1-\frac{P}{K}\right)=0$, che dà $P\equiv 0$ e $P\equiv K$. Per tutte le altre conviene prima riscrivere la parentesi con il denominatore comune, $1-\dfrac{P}{K}=\dfrac{K-P}{K}$, così il secondo membro diventa $\dfrac{k}{K}P(K-P)$. Ora scrivo $P'=\dfrac{dP}{dt}$, divido entrambi i membri per $P(K-P)$, moltiplico per $K\,dt$ e uso le frazioni parziali:</p>
+        <div class="formula-block">$$\frac{K\,dP}{P(K-P)}=k\,dt,\qquad \frac{K}{P(K-P)}=\frac1P+\frac{1}{K-P},$$</div>
+        <p>La seconda uguaglianza è la decomposizione in <strong>fratti semplici</strong> (Analisi 1, cap. 13) e si verifica a vista rimettendo tutto a denominatore comune: $\frac1P+\frac{1}{K-P}=\frac{(K-P)+P}{P(K-P)}=\frac{K}{P(K-P)}$. Integro adesso i due membri: a sinistra $\int\frac{dP}{P}=\ln|P|$ e $\int\frac{dP}{K-P}=-\ln|K-P|$ (il segno meno arriva dalla derivata interna di $K-P$, che vale $-1$); a destra $\int k\,dt=kt$. Ottengo $\ln|P|-\ln|K-P|=kt+c$ e, per la proprietà $\ln a-\ln b=\ln\frac ab$ (Parte 0, cap. 3), nel caso interessante $0\lt P\lt K$ (dove entrambe le quantità sono positive e i valori assoluti si possono togliere):</p>
+        <div class="formula-block">$$\ln\frac{P}{K-P}=kt+c\ \Longrightarrow\ \frac{P}{K-P}=B\,e^{kt},\qquad B=\frac{P_0}{K-P_0}.$$</div>
+        <p>L'implicazione è l'esponenziale applicato a entrambi i membri, con $B=e^{c}$; il valore di $B$ si legge sostituendo $t=0$, perché allora $e^{k\cdot 0}=1$ e resta $B=\frac{P_0}{K-P_0}$. Ora esplicito $P$: moltiplico in croce, $P=Be^{kt}(K-P)$; sviluppo, $P=BKe^{kt}-BPe^{kt}$; porto a sinistra i termini con $P$, $P+BPe^{kt}=BKe^{kt}$; raccolgo $P$, $P\left(1+Be^{kt}\right)=BKe^{kt}$; divido entrambi i membri per la parentesi, $P=\dfrac{BKe^{kt}}{1+Be^{kt}}$. Infine divido numeratore e denominatore per $Be^{kt}$ (una frazione non cambia) e pongo $A=\dfrac{1}{B}=\dfrac{K-P_0}{P_0}$:</p>
+        <div class="formula-block">$$\boxed{\;P(t)=\frac{K}{1+A\,e^{-kt}},\qquad A=\frac{K-P_0}{P_0}\;}$$</div>
+        <p><em>Che cosa ci dice:</em> è la celebre <strong>curva a S</strong>. All'inizio, quando $P$ è molto minore di $K$, il fattore $\left(1-P/K\right)$ vale quasi $1$ e la crescita è praticamente esponenziale. Poi rallenta e si adagia: $P(t)\to K$ per $t\to+\infty$. La crescita è <strong>massima</strong> quando $P=K/2$ (lì $P''=0$: è il punto di flesso), e da quel momento in poi il fenomeno «decelera» pur continuando a crescere — la distinzione che i grafici delle epidemie hanno reso familiare a tutti.</p>
+
+        <svg viewBox="0 0 460 240" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Curva logistica a S che tende alla capacità portante K, con flesso a metà">
+          <line x1="40" y1="200" x2="445" y2="200" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="55" y1="20" x2="55" y2="220" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="55" y1="48" x2="440" y2="48" stroke="var(--color-danger)" stroke-width="1.8" stroke-dasharray="7 5"/>
+          <line x1="55" y1="124" x2="215" y2="124" stroke="var(--color-text-muted)" stroke-width="1.2" stroke-dasharray="4 4"/>
+          <path d="M 55 192 C 130 188, 172 176, 212 124 C 252 72, 300 54, 430 50" fill="none" stroke="var(--color-primary)" stroke-width="2.8"/>
+          <circle cx="212" cy="124" r="4.5" fill="var(--color-accent)"/>
+          <text x="20" y="52" font-size="13" font-weight="700" fill="var(--color-danger)">K</text>
+          <text x="12" y="128" font-size="12" font-weight="700" fill="var(--color-text-muted)">K/2</text>
+          <text x="222" y="146" font-size="11" fill="var(--color-accent)">flesso: crescita massima</text>
+          <text x="410" y="216" font-size="12" font-style="italic" fill="currentColor">t</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">La logistica: parte quasi esponenziale, accelera fino a $K/2$, poi frena e si appoggia alla capacità portante $K$.</p>
+
+        <h4>C. Legge di raffreddamento di Newton, con i numeri</h4>
+        <p><em>L'equazione</em> è quella incontrata nella sezione «vita reale»: $\ T'=-k\left(T-T_a\right)$. <em>Il metodo:</em> variabili separabili sulla funzione ausiliaria $u=T-T_a$, cioè <strong>lo scarto dall'ambiente</strong>. Sostituisco: siccome $T_a$ è una costante, derivando si ha $u'=T'-0=T'$; e il secondo membro $-k(T-T_a)$ è esattamente $-ku$. L'equazione diventa quindi $u'=-ku$, la cui soluzione la conosciamo (proposizione <span class="richiamo" data-sec="5.3">§5.3</span>, con $-k$ al posto di $k$): $u(t)=u_0e^{-kt}$. Torno alla variabile di partenza rimettendo $u=T-T_a$ e $u_0=u(0)=T_0-T_a$: da $T-T_a=\left(T_0-T_a\right)e^{-kt}$, sommando $T_a$ a entrambi i membri,</p>
+        <div class="formula-block">$$T(t)=T_a+\left(T_0-T_a\right)e^{-kt}.$$</div>
+        <p><strong>Problema concreto.</strong> Caffè a $T_0=90\,^{\circ}$C, cucina a $T_a=20\,^{\circ}$C. Dopo $5$ minuti il caffè è a $70\,^{\circ}$C. Quando sarà bevibile a $40\,^{\circ}$C?</p>
+        <p><em>Passo 1 — trovo $k$.</em> La differenza iniziale è $T_0-T_a=90-20=70$, quindi la formula è $T(t)=20+70e^{-kt}$. Sostituisco il dato sperimentale $t=5$, $T=70$: $\ 70=20+70\,e^{-5k}$. Sottraggo $20$ da entrambi i membri ($50=70e^{-5k}$) e divido entrambi per $70$: $e^{-5k}=\dfrac{50}{70}=\dfrac57$. Applico il logaritmo a entrambi i membri, $-5k=\ln\frac57=-\ln\frac75$ (perché $\ln\frac1u=-\ln u$), e divido per $-5$:</p>
+        <div class="formula-block">$$k=\frac{1}{5}\ln\frac{7}{5}=\frac{0{,}3365}{5}\approx 0{,}0673\ \text{min}^{-1}.$$</div>
+        <p><em>Passo 2 — impongo $T=40$.</em> Sostituisco $T=40$ nella formula: $\ 40=20+70\,e^{-kt}$; sottraggo $20$ e divido per $70$: $e^{-kt}=\dfrac{20}{70}=\dfrac27$. Applico di nuovo il logaritmo, $-kt=\ln\frac27=-\ln\frac72$, e divido per $-k$ usando il valore di $k$ appena trovato:</p>
+        <div class="formula-block">$$t=\frac{1}{k}\ln\frac72=\frac{1{,}2528}{0{,}0673}\approx 18{,}6\ \text{minuti}.$$</div>
+        <p>Poco meno di venti minuti. Nota che la temperatura <strong>non</strong> raggiunge mai esattamente i $20\,^{\circ}$C: ci si avvicina asintoticamente, perché $e^{-kt}$ è sempre positivo. La formula è coerente con l'esperienza.</p>
+
+        <h4>D. L'oscillatore armonico: libero, smorzato, forzato</h4>
+        <p>Una massa $m$ attaccata a una molla di costante elastica $\kappa$, con attrito viscoso di coefficiente $h$ e forza esterna $F(t)$. La seconda legge della dinamica dà</p>
+        <div class="formula-block">$$m\,x''+h\,x'+\kappa\,x=F(t).$$</div>
+        <p><strong>D1. Libero non smorzato ($h=0$, $F=0$).</strong> L'equazione si riduce a $mx''+\kappa x=0$; divido ogni termine per $m$ e ottengo $x''+\frac{\kappa}{m}x=0$, cioè $x''+\omega_0^{2}x=0$ una volta posto $\omega_0=\sqrt{\kappa/m}$ (la <em>pulsazione propria</em>). Caratteristica: $\lambda^{2}+\omega_0^{2}=0$, cioè $\lambda^{2}=-\omega_0^{2}$ e, ricordando $i^{2}=-1$, $\lambda=\pm i\omega_0$. Siamo nel caso 3 con $\alpha=0$ e $\beta=\omega_0$: sostituendo nella formula del caso 3, e osservando che $e^{\alpha t}=e^{0}=1$,</p>
+        <div class="formula-block">$$x(t)=C_1\cos\left(\omega_0 t\right)+C_2\sin\left(\omega_0 t\right)=R\cos\left(\omega_0 t-\varphi\right),$$</div>
+        <p>La seconda scrittura è la stessa funzione riscritta in modo compatto: applicando la formula di sottrazione del coseno (Parte 0, cap. 8) si ha $R\cos\left(\omega_0t-\varphi\right)=R\cos\varphi\,\cos\left(\omega_0t\right)+R\sin\varphi\,\sin\left(\omega_0t\right)$, quindi basta porre $C_1=R\cos\varphi$ e $C_2=R\sin\varphi$; da queste due, elevando al quadrato e sommando, esce $R=\sqrt{C_1^{2}+C_2^{2}}$ (l'ampiezza) mentre $\varphi$ è la fase. Oscillazione perpetua di periodo $T=\dfrac{2\pi}{\omega_0}=2\pi\sqrt{\dfrac{m}{\kappa}}$: <strong>il periodo non dipende dall'ampiezza</strong> (è il principio dell'orologio a pendolo).</p>
+        <p><strong>D2. Smorzato ($h\gt 0$, $F=0$).</strong> Caratteristica $m\lambda^{2}+h\lambda+\kappa=0$, con $\Delta=h^{2}-4m\kappa$. I tre casi diventano i tre regimi fisici:</p>
+        <ul>
+          <li>$h^{2}\gt 4m\kappa$ — <strong>sovrasmorzato</strong>: $x=C_1e^{\lambda_1t}+C_2e^{\lambda_2t}$ con $\lambda_1,\lambda_2\lt 0$. Ritorno lento, senza oscillazioni.</li>
+          <li>$h^{2}=4m\kappa$ — <strong>criticamente smorzato</strong>: $x=\left(C_1+C_2t\right)e^{-\frac{h}{2m}t}$. Ritorno all'equilibrio il più rapido possibile senza oltrepassarlo.</li>
+          <li>$h^{2}\lt 4m\kappa$ — <strong>sottosmorzato</strong>: $x=e^{-\frac{h}{2m}t}\left(C_1\cos\omega t+C_2\sin\omega t\right)$ con $\omega=\dfrac{\sqrt{4m\kappa-h^{2}}}{2m}$. Oscilla con ampiezza che decade esponenzialmente.</li>
+        </ul>
+        <p><strong>D3. Forzato e risonanza ($F(t)=F_0\cos(\omega t)$).</strong> Prendiamo il caso senza attrito, $x''+\omega_0^{2}x=F_0\cos(\omega t)$, e usiamo il metodo di somiglianza.</p>
+        <p><em>Se $\omega\neq\omega_0$ (nessuna risonanza):</em> le radici dell'omogenea sono $\pm i\omega_0$, mentre il termine noto corrisponde a $\gamma\pm i\omega=\pm i\omega$: sono numeri diversi, quindi $m=0$ e si prova $x_p=A\cos(\omega t)$ (qui il solo coseno basta perché manca il termine in $x'$, che è l'unico capace di generare un seno). Derivo due volte: $x_p'=-A\omega\sin(\omega t)$ e $x_p''=-A\omega^{2}\cos(\omega t)$. Sostituisco $x_p''$ e $x_p$ nel primo membro: $-A\omega^{2}\cos(\omega t)+\omega_0^{2}A\cos(\omega t)=A\left(\omega_0^{2}-\omega^{2}\right)\cos(\omega t)$, che deve valere $F_0\cos(\omega t)$; semplifico $\cos(\omega t)$ da entrambi i membri e resta $A\left(\omega_0^{2}-\omega^{2}\right)=F_0$, da cui dividendo</p>
+        <div class="formula-block">$$x_p(t)=\frac{F_0}{\omega_0^{2}-\omega^{2}}\cos\left(\omega t\right).$$</div>
+        <p>L'ampiezza cresce man mano che $\omega$ si avvicina a $\omega_0$ e <strong>tende all'infinito</strong> quando $\omega\to\omega_0$: il denominatore si annulla. Il che è il segnale che, sul bordo, il metodo va cambiato.</p>
+        <p><em>Se $\omega=\omega_0$ (risonanza):</em> il termine noto <strong>è</strong> una soluzione dell'omogenea; le radici $\pm i\omega_0$ coincidono con $\gamma\pm i\omega$, quindi $m=1$ e la forma corretta è $x_p=t\left(A\cos\omega_0t+B\sin\omega_0t\right)$. Faccio il conto: derivo con la regola del prodotto, $x_p'=\left(A\cos\omega_0t+B\sin\omega_0t\right)+t\,\omega_0\left(-A\sin\omega_0t+B\cos\omega_0t\right)$, e derivo di nuovo, $x_p''=2\omega_0\left(-A\sin\omega_0t+B\cos\omega_0t\right)-t\,\omega_0^{2}\left(A\cos\omega_0t+B\sin\omega_0t\right)$. Sommo $\omega_0^{2}x_p=t\,\omega_0^{2}\left(A\cos\omega_0t+B\sin\omega_0t\right)$: i due termini con la $t$ davanti si elidono e resta $x_p''+\omega_0^{2}x_p=-2A\omega_0\sin\omega_0t+2B\omega_0\cos\omega_0t$. Uguaglio a $F_0\cos(\omega_0t)$ e identifico separatamente i coefficienti del coseno e del seno: $2B\omega_0=F_0$ dà $B=\frac{F_0}{2\omega_0}$, mentre $-2A\omega_0=0$ dà $A=0$. Dunque</p>
+        <div class="formula-block">$$x_p(t)=\frac{F_0}{2\omega_0}\;t\,\sin\left(\omega_0 t\right).$$</div>
+        <p>Guarda quel $t$ davanti: <strong>l'ampiezza cresce linearmente nel tempo, senza limite</strong>. È la risonanza: spingere l'altalena sempre al momento giusto, o il bicchiere di cristallo che si rompe alla nota esatta. Nella realtà un po' di attrito c'è sempre, e l'ampiezza non diventa infinita ma si stabilizza su un valore massimo — che però può essere enorme, ed è il motivo per cui alle strutture (ponti, edifici, ali) si progetta sempre lontano dalle frequenze proprie.</p>
+
+        <svg viewBox="0 0 480 250" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Risonanza: oscillazione la cui ampiezza cresce linearmente, racchiusa fra due rette inviluppo">
+          <line x1="45" y1="125" x2="462" y2="125" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="60" y1="15" x2="60" y2="240" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="60" y1="125" x2="445" y2="56" stroke="var(--color-danger)" stroke-width="1.6" stroke-dasharray="7 5"/>
+          <line x1="60" y1="125" x2="445" y2="194" stroke="var(--color-danger)" stroke-width="1.6" stroke-dasharray="7 5"/>
+          <path d="M 60 125 Q 79 118 98 125 Q 117 146 136 125 Q 155 91 174 125 Q 193 173 212 125 Q 231 63 250 125 Q 269 200 288 125 Q 307 36 326 125 Q 345 228 364 125 Q 383 9 402 125 Q 421 255 440 125" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <text x="330" y="50" font-size="12" font-weight="700" fill="var(--color-danger)">inviluppo ∝ t</text>
+          <text x="410" y="240" font-size="12" font-style="italic" fill="currentColor">t</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Risonanza: la soluzione particolare contiene il fattore $t$ e l'ampiezza cresce senza limite.</p>
+
+        <h4>E. Circuiti RC e RL</h4>
+        <p><strong>Circuito RC</strong> (resistenza $R$ e condensatore $C$ in serie con un generatore $V$ costante). La legge di Kirchhoff, con $i=q'$, dà</p>
+        <div class="formula-block">$$R\,q'+\frac{q}{C}=V\qquad\Longleftrightarrow\qquad q'+\frac{1}{RC}\,q=\frac{V}{R}.$$</div>
+        <p>(l'equivalenza è la divisione di <em>tutti</em> i termini per $R$). È lineare del primo ordine nella forma $q'+a\,q=b$ con $a=\dfrac{1}{RC}$ e $b=\dfrac{V}{R}$, entrambe costanti: seguo la ricetta del <span class="richiamo" data-sec="4.6">§4.6</span>. Calcolo $A(t)=\int\frac{dt}{RC}=\frac{t}{RC}$, quindi $\mu=e^{t/RC}$; moltiplicando l'equazione per $\mu$ il primo membro diventa $\left(e^{t/RC}q\right)'$ e il secondo $\frac{V}{R}e^{t/RC}$. Integro ($\int e^{t/RC}dt=RC\,e^{t/RC}$): $e^{t/RC}q=\frac{V}{R}\cdot RC\,e^{t/RC}+C_1=CV\,e^{t/RC}+C_1$; divido per $e^{t/RC}$ e ottengo $q(t)=CV+C_1e^{-t/RC}$. Con condensatore inizialmente scarico sostituisco $t=0$ e $q=0$: $0=CV+C_1$, cioè $C_1=-CV$, e raccogliendo $CV$</p>
+        <div class="formula-block">$$q(t)=CV\left(1-e^{-t/RC}\right),\qquad i(t)=q'(t)=\frac{V}{R}\,e^{-t/RC}.$$</div>
+        <p><strong>Circuito RL</strong> (resistenza e induttanza in serie): $\ L\,i'+R\,i=V$, cioè $i'+\dfrac{R}{L}i=\dfrac{V}{L}$ dividendo ogni termine per $L$. Stesso identico schema: $A(t)=\int\frac RL\,dt=\frac{Rt}{L}$ e $\mu=e^{Rt/L}$, quindi $\left(e^{Rt/L}i\right)'=\frac{V}{L}e^{Rt/L}$; integrando, $e^{Rt/L}i=\frac{V}{L}\cdot\frac{L}{R}e^{Rt/L}+C_1=\frac{V}{R}e^{Rt/L}+C_1$, e dividendo per $e^{Rt/L}$ si ha $i=\frac VR+C_1e^{-Rt/L}$. Con $i(0)=0$ si ottiene $0=\frac VR+C_1$, cioè $C_1=-\frac VR$, e raccogliendo $\frac VR$</p>
+        <div class="formula-block">$$i(t)=\frac{V}{R}\left(1-e^{-Rt/L}\right).$$</div>
+        <p>In entrambi i casi compare un <strong>tempo caratteristico</strong> $\tau$ (vale $\tau=RC$ per l'RC e $\tau=L/R$ per l'RL) che misura «quanto è pigro» il circuito: dopo $\tau$ si è raggiunto il $63\%$ del valore finale, dopo $3\tau$ il $95\%$, dopo $5\tau$ più del $99\%$. Le tre costanti $k$, $\lambda$, $1/\tau$ dei modelli visti finora sono lo stesso oggetto con tre nomi diversi: <strong>il reciproco di un tempo</strong>.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <h3>5.1 La formula risolutiva delle lineari del primo ordine</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea prima dei conti</div>
+          <p>Guarda $y'+a(x)y$. Ti ricorda qualcosa? Assomiglia moltissimo alla derivata di un prodotto, $\left(\mu y\right)'=\mu y'+\mu' y$: c'è una derivata di $y$ e un pezzo con $y$ liscia. L'unica cosa che non torna è il coefficiente davanti a $y'$, che è $1$ invece di $\mu$. <strong>Allora moltiplichiamo tutta l'equazione per un $\mu(x)$ da scegliere</strong>: otteniamo $\mu y'+\mu a y$, e perché questo sia <em>esattamente</em> $\left(\mu y\right)'$ basta che il coefficiente di $y$ coincida, cioè $\mu'=a\mu$. Ma quella è un'equazione che sappiamo già risolvere! Una volta impacchettato il primo membro dentro una derivata sola, il resto è una semplice integrazione. Tutto il metodo sta in questa frase: <strong>trasformare il primo membro nella derivata di un prodotto</strong>.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p>Siano $a,b$ continue su un intervallo $I$ e sia $A$ una primitiva di $a$ su $I$. Allora le soluzioni di $\,y'+a(x)y=b(x)\,$ sono tutte e sole le funzioni</p>
+          <div class="formula-block">$$y(x)=e^{-A(x)}\left(\int e^{A(x)}b(x)\,dx+C\right),\qquad C\in\mathbb{R}.$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Passo 1 — costruzione del fattore integrante.</strong> Cerchiamo $\mu(x)\gt 0$ tale che $\mu\left(y'+ay\right)=\left(\mu y\right)'$. Sviluppando il secondo membro:</p>
+          <div class="formula-block">$$\left(\mu y\right)'=\mu y'+\mu' y,\qquad \mu\left(y'+ay\right)=\mu y'+\mu a\,y.$$</div>
+          <p>Confrontando i due sviluppi, il termine $\mu y'$ è già uguale in entrambi; restano $\mu'y$ e $\mu a\,y$, che coincidono per ogni $y$ se e solo se $\mu'=a\,\mu$. Questa è un'equazione a variabili separabili in $\mu$ (<span class="richiamo" data-sec="4.5">§4.5</span>): scrivo $\mu'=\dfrac{d\mu}{dx}$, divido entrambi i membri per $\mu$ e moltiplico per $dx$, ottenendo $\dfrac{d\mu}{\mu}=a\,dx$; integro i due membri, $\int\frac{d\mu}{\mu}=\ln\mu$ (cerchiamo $\mu\gt 0$, quindi niente valore assoluto) e $\int a\,dx=A(x)$, cioè $\ln\mu=A(x)$; esponenzio entrambi i membri e uso $e^{\ln\mu}=\mu$:</p>
+          <div class="formula-block">$$\mu(x)=e^{A(x)}\;(\gt 0\ \text{sempre, quindi si può dividere per } \mu).$$</div>
+          <p><strong>Passo 2 — integrazione.</strong> Moltiplicando l'equazione di partenza per $\mu$ e usando il Passo 1:</p>
+          <div class="formula-block">$$\left(e^{A(x)}y\right)'=e^{A(x)}b(x).$$</div>
+          <p>Il primo membro è la derivata di una funzione: per il <a href="../parte1-analisi1/14-integrali-definiti.html">Teorema Fondamentale del Calcolo</a>, due funzioni con la stessa derivata su un intervallo differiscono per una costante. Dunque</p>
+          <div class="formula-block">$$e^{A(x)}y=\int e^{A(x)}b(x)\,dx+C .$$</div>
+          <p><strong>Passo 3 — conclusione.</strong> Dividendo per $e^{A(x)}$, che non si annulla mai, si ottiene la formula dell'enunciato. Il ragionamento è una catena di <em>equivalenze</em> (ogni passo è reversibile, perché $\mu\neq 0$): perciò la formula non dà solo <em>alcune</em> soluzioni, ma <strong>tutte</strong>. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Non imparare la formula: impara il passaggio</div>
+          <p>La formula finale è difficile da ricordare e facile da sbagliare (quel segno meno all'esponente esterno!). Molto meglio memorizzare il <strong>meccanismo</strong>: calcolo $\mu=e^{\int a}$, moltiplico, scrivo $\left(\mu y\right)'=\mu b$, integro, divido. Tre righe, nessuna formula da ricordare, e in più vedi subito se hai sbagliato un segno.</p>
+        </div>
+
+        <h3>5.2 Perché l'equazione caratteristica funziona (e perché nel caso doppio compare la $x$)</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea prima dei conti</div>
+          <p>Un'equazione lineare a coefficienti costanti chiede una funzione che, derivata, <em>somigli a sé stessa</em>: solo così i vari pezzi possono sommarsi a zero. L'unica funzione con questa proprietà è l'esponenziale, che derivando si riproduce moltiplicata per un numero. Quindi proviamo $y=e^{\lambda x}$: ogni derivata diventa una potenza di $\lambda$, l'esponenziale si raccoglie e resta un'equazione algebrica. <strong>Il problema differenziale si è trasformato in un problema di secondo grado.</strong></p>
+          <p>Nel caso $\Delta=0$ però le radici distinte sono una sola, e una sola esponenziale non può generare uno spazio di dimensione 2. Serve una seconda soluzione. L'intuizione: quando $\lambda_1$ e $\lambda_2$ si avvicinano, la combinazione $\dfrac{e^{\lambda_2x}-e^{\lambda_1x}}{\lambda_2-\lambda_1}$ è ancora una soluzione (è una combinazione lineare delle due), ed è un rapporto incrementale: al limite $\lambda_2\to\lambda_1$ diventa la <strong>derivata rispetto a $\lambda$</strong> dell'esponenziale, cioè $x\,e^{\lambda_1x}$. Ecco da dove esce quella $x$ apparentemente magica.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p>Si consideri $\,ay''+by'+cy=0\,$ con $a\neq 0$ e sia $a\lambda^{2}+b\lambda+c=0$ la sua equazione caratteristica.</p>
+          <p><strong>(i)</strong> $y=e^{\lambda x}$ è soluzione se e solo se $\lambda$ è radice dell'equazione caratteristica.<br>
+          <strong>(ii)</strong> Se $\lambda_0$ è radice <em>doppia</em>, anche $y=x\,e^{\lambda_0x}$ è soluzione, e $\left\{e^{\lambda_0x},\,xe^{\lambda_0x}\right\}$ è una base.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>(i)</strong> Posto $y=e^{\lambda x}$ si ha $y'=\lambda e^{\lambda x}$ e $y''=\lambda^{2}e^{\lambda x}$. Sostituendo:</p>
+          <div class="formula-block">$$a\lambda^{2}e^{\lambda x}+b\lambda e^{\lambda x}+c\,e^{\lambda x}=e^{\lambda x}\left(a\lambda^{2}+b\lambda+c\right).$$</div>
+          <p>Poiché $e^{\lambda x}\neq 0$ per ogni $x$, l'espressione è identicamente nulla <strong>se e solo se</strong> $a\lambda^{2}+b\lambda+c=0$.</p>
+          <p><strong>(ii)</strong> Sia $\Delta=0$, cioè $\lambda_0=-\dfrac{b}{2a}$ radice doppia; in particolare valgono <em>due</em> relazioni:</p>
+          <div class="formula-block">$$a\lambda_0^{2}+b\lambda_0+c=0\qquad\text{e}\qquad 2a\lambda_0+b=0 .$$</div>
+          <p>(La seconda è la derivata del polinomio caratteristico in $\lambda_0$, nulla perché la radice è doppia; equivale a $\lambda_0=-b/2a$.) Poniamo $y=x\,e^{\lambda_0x}$ e deriviamo con la regola del prodotto $(uv)'=u'v+uv'$. Prima derivata, con $u=x$ e $v=e^{\lambda_0x}$: $y'=1\cdot e^{\lambda_0x}+x\cdot\lambda_0e^{\lambda_0x}$, e raccogliendo $e^{\lambda_0x}$ si ottiene la prima formula qui sotto. Seconda derivata, ora con $u=1+\lambda_0x$ e $v=e^{\lambda_0x}$: $y''=\lambda_0e^{\lambda_0x}+\left(1+\lambda_0x\right)\lambda_0e^{\lambda_0x}=e^{\lambda_0x}\left(\lambda_0+\lambda_0+\lambda_0^{2}x\right)$, cioè la seconda:</p>
+          <div class="formula-block">$$y'=e^{\lambda_0x}\left(1+\lambda_0 x\right),\qquad y''=e^{\lambda_0x}\left(2\lambda_0+\lambda_0^{2}x\right).$$</div>
+          <p>Sostituiamo nell'equazione e raccogliamo $e^{\lambda_0x}$, separando i termini con $x$ da quelli senza:</p>
+          <div class="formula-block">$$ay''+by'+cy=e^{\lambda_0x}\Big[\underbrace{\left(2a\lambda_0+b\right)}_{=\,0}+x\underbrace{\left(a\lambda_0^{2}+b\lambda_0+c\right)}_{=\,0}\Big]=0 .$$</div>
+          <p>Entrambe le parentesi si annullano proprio per le due relazioni scritte sopra: dunque $xe^{\lambda_0x}$ è soluzione.</p>
+          <p>Resta l'indipendenza. Calcoliamo il <span class="glossario-term" data-term="wronskiano">wronskiano</span> di $y_1=e^{\lambda_0x}$ e $y_2=xe^{\lambda_0x}$:</p>
+          <div class="formula-block">$$W=y_1y_2'-y_2y_1'=e^{\lambda_0x}\,e^{\lambda_0x}\left(1+\lambda_0x\right)-x e^{\lambda_0x}\,\lambda_0e^{\lambda_0x}=e^{2\lambda_0x}\left(1+\lambda_0x-\lambda_0x\right)=e^{2\lambda_0x}\neq 0 .$$</div>
+          <p>Il wronskiano non si annulla mai: le due soluzioni sono indipendenti e, essendo lo spazio delle soluzioni di dimensione $2$, ne formano una base. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> E il caso complesso? Ci pensa Eulero</div>
+          <p>Se $\Delta\lt 0$ le radici sono $\lambda=\alpha\pm i\beta$ e le soluzioni «formali» sono $e^{(\alpha+i\beta)x}$ ed $e^{(\alpha-i\beta)x}$, che però sono complesse. La formula di Eulero $e^{i\theta}=\cos\theta+i\sin\theta$ le riporta nel mondo reale:</p>
+          <div class="formula-block">$$e^{(\alpha\pm i\beta)x}=e^{\alpha x}\big(\cos(\beta x)\pm i\sin(\beta x)\big).$$</div>
+          <p>Poiché lo spazio delle soluzioni è chiuso per combinazioni lineari, semisomma e semidifferenza delle due danno due soluzioni <strong>reali</strong> e indipendenti:</p>
+          <div class="formula-block">$$\frac{e^{(\alpha+i\beta)x}+e^{(\alpha-i\beta)x}}{2}=e^{\alpha x}\cos(\beta x),\qquad \frac{e^{(\alpha+i\beta)x}-e^{(\alpha-i\beta)x}}{2i}=e^{\alpha x}\sin(\beta x).$$</div>
+          <p>Ecco perché nel terzo caso compaiono seno e coseno moltiplicati per $e^{\alpha x}$: non è una regola calata dall'alto, è Eulero al lavoro.</p>
+        </div>
+
+        <h3>5.3 Tutte le soluzioni di $y'=ky$ sono esponenziali</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea prima dei conti</div>
+          <p>Sappiamo che $Ce^{kx}$ risolve $y'=ky$. Ma <em>chi ci assicura che non ce ne siano altre</em>, magari strane? Il trucco è elegante: se $y$ è una soluzione qualsiasi, «dividiamola» per l'esponenziale e guardiamo il quoziente. Se il quoziente è costante, allora $y$ era davvero un multiplo dell'esponenziale. E per dimostrare che una funzione è costante su un intervallo basta far vedere che la sua derivata è nulla (corollario del <a href="../parte1-analisi1/08-teoremi-fondamentali.html">teorema di Lagrange</a>).</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione (unicità della forma esponenziale)</span>
+          <p>Sia $y$ derivabile su un intervallo $I$ con $y'(x)=k\,y(x)$ per ogni $x\in I$. Allora esiste $C\in\mathbb{R}$ tale che $y(x)=C\,e^{kx}$ su tutto $I$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Definiamo la funzione ausiliaria $\ u(x)=y(x)\,e^{-kx}$, derivabile su $I$. Deriviamo con la regola del prodotto:</p>
+          <div class="formula-block">$$u'(x)=y'(x)e^{-kx}-k\,y(x)e^{-kx}=e^{-kx}\Big(\underbrace{y'(x)-k\,y(x)}_{=\,0\ \text{per ipotesi}}\Big)=0 .$$</div>
+          <p>La derivata di $u$ è identicamente nulla su un <strong>intervallo</strong>: per il corollario del teorema di Lagrange, $u$ è costante, diciamo $u\equiv C$. Ma allora</p>
+          <div class="formula-block">$$y(x)e^{-kx}=C\ \Longrightarrow\ y(x)=C\,e^{kx}. \qquad$$</div>
+          <p>Osserva dove è stata usata l'ipotesi «intervallo»: su un insieme fatto di due pezzi separati, una funzione con derivata nulla potrebbe valere due costanti diverse, e la conclusione cadrebbe. È lo stesso motivo per cui, nel definire una soluzione, abbiamo insistito sull'intervallo. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Verifica e problema di Cauchy elementare</span><span class="badge badge--base">Base</span></div>
+          <p>Verificare che $y=Ce^{3x}$ è l'integrale generale di $y'=3y$ e determinare la soluzione con $y(0)=5$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo: $y'=3Ce^{3x}$. Calcolo il secondo membro: $3y=3Ce^{3x}$. I due coincidono per ogni $x$: è soluzione, qualunque sia $C$.</span>
+            <span class="esempio__passo">L'equazione è del <strong>primo ordine</strong>, quindi l'integrale generale deve contenere <strong>una</strong> costante: il conto dei parametri torna.</span>
+            <span class="esempio__passo">Impongo la condizione iniziale: $y(0)=Ce^{0}=C=5$.</span>
+          </p>
+          <div class="esempio__risultato">Integrale generale $y=Ce^{3x}$; integrale particolare cercato $y=5e^{3x}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Variabili separabili con condizione iniziale</span><span class="badge badge--base">Base</span></div>
+          <p>Risolvere il problema di Cauchy $\ y'=xy,\ \ y(0)=2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Soluzioni costanti:</strong> $h(y)=y$ si annulla in $y=0$, quindi $y\equiv 0$ è soluzione (ma non soddisfa $y(0)=2$).</span>
+            <span class="esempio__passo"><strong>Separo:</strong> scrivo $y'=\dfrac{dy}{dx}$, cioè $\dfrac{dy}{dx}=xy$; divido entrambi i membri per $y$ (lecito perché qui $y\neq 0$) e moltiplico entrambi per $dx$: $\dfrac{dy}{y}=x\,dx$.</span>
+            <span class="esempio__passo"><strong>Integro</strong> ciascun membro nella propria variabile, $\displaystyle\int\frac{dy}{y}=\int x\,dx$, con le primitive notevoli $\int\frac{dt}{t}=\ln|t|$ e $\int t\,dt=\frac{t^{2}}{2}$ (Analisi 1, cap. 13): $\ln|y|=\dfrac{x^{2}}{2}+c$.</span>
+            <span class="esempio__passo"><strong>Esplicito:</strong> applico l'esponenziale a entrambi i membri e uso $e^{\ln|y|}=|y|$ e $e^{a+b}=e^{a}e^{b}$, ottenendo $|y|=e^{c}e^{x^{2}/2}$; tolgo il valore assoluto con un doppio segno e ribattezzo $C=\pm e^{c}$, cioè $y=Ce^{x^{2}/2}$ con $C\in\mathbb{R}$ (il valore $C=0$ recupera la soluzione costante).</span>
+            <span class="esempio__passo"><strong>Condizione iniziale:</strong> $y(0)=Ce^{0}=C=2$.</span>
+          </p>
+          <div class="esempio__risultato">$y(x)=2\,e^{x^{2}/2}$, definita su tutto $\mathbb{R}$. Verifica: $y'=2x\,e^{x^{2}/2}=x\cdot y$. ✔</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Separabili: attenzione alle soluzioni costanti</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere $\ y'=y^{2}-y\ $ e poi il problema di Cauchy con $y(0)=\dfrac12$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Fattorizzo:</strong> $y'=y(y-1)$. Le soluzioni costanti sono $y\equiv 0$ e $y\equiv 1$: <em>due</em>, e vanno annotate subito perché stiamo per dividere proprio per $y(y-1)$.</span>
+            <span class="esempio__passo"><strong>Separo:</strong> scrivo $\dfrac{dy}{dx}=y(y-1)$, divido entrambi i membri per $y(y-1)$ e moltiplico per $dx$: $\dfrac{dy}{y(y-1)}=dx$. Uso le frazioni parziali (Analisi 1, cap. 13): $\dfrac{1}{y(y-1)}=\dfrac{1}{y-1}-\dfrac{1}{y}$, che si verifica a vista rimettendo a denominatore comune, $\dfrac{y-(y-1)}{y(y-1)}=\dfrac{1}{y(y-1)}$.</span>
+            <span class="esempio__passo"><strong>Integro</strong> i due membri: a sinistra le primitive $\int\frac{dy}{y-1}=\ln|y-1|$ e $\int\frac{dy}{y}=\ln|y|$, a destra $\int dx=x$. Ottengo $\ln|y-1|-\ln|y|=x+c$, e per la proprietà $\ln a-\ln b=\ln\frac ab$ (Parte 0, cap. 3) $\ \ln\left|\dfrac{y-1}{y}\right|=x+c$.</span>
+            <span class="esempio__passo"><strong>Esponenzio</strong> entrambi i membri e chiamo $K=\pm e^{c}$ (il doppio segno assorbe il valore assoluto): $\dfrac{y-1}{y}=Ke^{x}$. Esplicito $y$: spezzo la frazione a sinistra, $\dfrac{y-1}{y}=\dfrac yy-\dfrac1y=1-\dfrac1y$, quindi $1-\dfrac1y=Ke^{x}$; porto $\dfrac1y$ a destra e $Ke^{x}$ a sinistra cambiando segno a entrambi, $\dfrac1y=1-Ke^{x}$; faccio il reciproco dei due membri e ottengo $y=\dfrac{1}{1-Ke^{x}}$.</span>
+            <span class="esempio__passo"><strong>Cauchy:</strong> conviene usare la forma $\dfrac{y-1}{y}=Ke^{x}$ sostituendo $x=0$ (dove $e^{0}=1$) e $y=\frac12$: $\dfrac{1/2-1}{1/2}=\dfrac{-1/2}{1/2}=-1=K$. Rimetto $K=-1$ nella formula generale: $y=\dfrac{1}{1-(-1)e^{x}}=\dfrac{1}{1+e^{x}}$.</span>
+          </p>
+          <div class="esempio__risultato">Integrale generale $y=\dfrac{1}{1-Ke^{x}}$, <strong>più</strong> le due soluzioni costanti $y\equiv 0$ e $y\equiv 1$ (la prima non si ottiene per nessun $K$: è una soluzione realmente «persa» dalla formula). Soluzione del problema: $y=\dfrac{1}{1+e^{x}}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Lineare del primo ordine con fattore integrante</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere $\ y'+\dfrac{y}{x}=x^{2}\ $ per $x\gt 0$, con $y(1)=1$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Forma normale:</strong> è già a posto, con $a(x)=\dfrac1x$ e $b(x)=x^{2}$, entrambe continue su $(0,+\infty)$.</span>
+            <span class="esempio__passo"><strong>Fattore integrante:</strong> $A(x)=\displaystyle\int a(x)\,dx=\int\frac{dx}{x}=\ln x$ (niente valore assoluto perché stiamo su $x\gt 0$), quindi $\mu=e^{A(x)}=e^{\ln x}=x$, usando $e^{\ln t}=t$ (Parte 0, cap. 3).</span>
+            <span class="esempio__passo"><strong>Moltiplico e riconosco la derivata del prodotto:</strong> moltiplico ogni termine per $\mu=x$: il primo diventa $xy'$, il secondo $x\cdot\dfrac yx=y$, il terzo $x\cdot x^{2}=x^{3}$. Ottengo $x y'+y=x^{3}$; il primo membro è esattamente $\left(xy\right)'$, perché la regola del prodotto dà $\left(xy\right)'=1\cdot y+x\cdot y'$. Dunque $\left(xy\right)'=x^{3}$.</span>
+            <span class="esempio__passo"><strong>Integro</strong> entrambi i membri, con $\int x^{3}dx=\frac{x^{4}}{4}$ (regola della potenza): $xy=\dfrac{x^{4}}{4}+C$. Divido entrambi i membri per $x$: $y=\dfrac{x^{3}}{4}+\dfrac{C}{x}$.</span>
+            <span class="esempio__passo"><strong>Condizione iniziale:</strong> sostituisco $x=1$ e $y=1$ nella formula, $1=\dfrac{1^{3}}{4}+\dfrac{C}{1}=\dfrac14+C$, quindi $C=1-\dfrac14=\dfrac34$.</span>
+          </p>
+          <div class="esempio__risultato">$y(x)=\dfrac{x^{3}}{4}+\dfrac{3}{4x}$ su $(0,+\infty)$. Riconosci la struttura: $\dfrac{x^3}{4}$ è una particolare della completa, $\dfrac{C}{x}$ è l'integrale generale dell'omogenea.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Secondo ordine, radici reali distinte</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere $\ y''-y'-6y=0\ $ con $y(0)=1$ e $y'(0)=8$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Equazione caratteristica:</strong> sostituisco $y''\to\lambda^{2}$, $y'\to\lambda$, $y\to 1$ e ottengo $\lambda^{2}-\lambda-6=0$. La risolvo con la formula risolutiva $\lambda=\frac{-b\pm\sqrt{\Delta}}{2a}$, $\Delta=b^{2}-4ac$ (Parte 0, cap. 5), con $a=1$, $b=-1$, $c=-6$: $\Delta=(-1)^{2}-4\cdot 1\cdot(-6)=1+24=25\gt 0$, quindi $\lambda=\dfrac{1\pm\sqrt{25}}{2}=\dfrac{1\pm 5}{2}$, cioè $\lambda_1=\frac62=3$ e $\lambda_2=\frac{-4}{2}=-2$.</span>
+            <span class="esempio__passo"><strong>Caso 1:</strong> $y=C_1e^{3x}+C_2e^{-2x}$ (due costanti, come deve essere al secondo ordine).</span>
+            <span class="esempio__passo"><strong>Derivo:</strong> $y'=3C_1e^{3x}-2C_2e^{-2x}$.</span>
+            <span class="esempio__passo"><strong>Sistema:</strong> impongo le due condizioni sostituendo $x=0$ (dove $e^{0}=1$) in $y$ e in $y'$, e ottengo $\begin{cases}C_1+C_2=1\\ 3C_1-2C_2=8\end{cases}$ Lo risolvo per sostituzione: dalla prima ricavo $C_2=1-C_1$; la metto nella seconda al posto di $C_2$, $3C_1-2\left(1-C_1\right)=8$, cioè $3C_1-2+2C_1=8$, quindi $5C_1=10$ e $C_1=2$; risalgo alla prima: $C_2=1-2=-1$.</span>
+          </p>
+          <div class="esempio__risultato">$y(x)=2e^{3x}-e^{-2x}$. Verifica rapida: $y(0)=2-1=1$ ✔, $y'(0)=6+2=8$ ✔.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Secondo ordine, radici complesse coniugate</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere $\ y''+2y'+5y=0\ $ con $y(0)=1$ e $y'(0)=1$, e descrivere il comportamento della soluzione.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Caratteristica:</strong> $\lambda^{2}+2\lambda+5=0$. Applico la formula risolutiva (Parte 0, cap. 5) con $a=1$, $b=2$, $c=5$: $\Delta=2^{2}-4\cdot 1\cdot 5=4-20=-16\lt 0$. Poiché $i^{2}=-1$ si ha $\sqrt{-16}=\sqrt{16}\cdot\sqrt{-1}=4i$, quindi $\lambda=\dfrac{-2\pm 4i}{2}=-1\pm 2i$; confrontando con la scrittura $\alpha\pm i\beta$ leggo $\alpha=-1$ e $\beta=2$.</span>
+            <span class="esempio__passo"><strong>Caso 3:</strong> sostituisco $\alpha=-1$ e $\beta=2$ nella formula $y_{\text{om}}=e^{\alpha x}\left(C_1\cos\beta x+C_2\sin\beta x\right)$: $y=e^{-x}\left(C_1\cos 2x+C_2\sin 2x\right)$.</span>
+            <span class="esempio__passo"><strong>Prima condizione:</strong> sostituisco $x=0$, dove $e^{0}=1$, $\cos 0=1$ e $\sin 0=0$: $y(0)=1\cdot\left(C_1\cdot 1+C_2\cdot 0\right)=C_1=1$.</span>
+            <span class="esempio__passo"><strong>Derivo</strong> con la regola del prodotto, prendendo $e^{-x}$ come primo fattore e la parentesi come secondo: $y'=-e^{-x}\left(C_1\cos2x+C_2\sin2x\right)+e^{-x}\left(-2C_1\sin2x+2C_2\cos2x\right)$ (nella derivata della parentesi il $2$ viene dalla derivata interna di $2x$). Sostituisco $x=0$, ancora con $\cos 0=1$ e $\sin 0=0$: $y'(0)=-C_1+2C_2$.</span>
+            <span class="esempio__passo"><strong>Seconda condizione:</strong> $-1+2C_2=1\Rightarrow C_2=1$.</span>
+          </p>
+          <div class="esempio__risultato">$y(x)=e^{-x}\left(\cos 2x+\sin 2x\right)$: un'<strong>oscillazione smorzata</strong>. La parte reale $\alpha=-1$ spegne l'ampiezza, la parte immaginaria $\beta=2$ fissa la pulsazione (periodo $\pi$). Per $x\to+\infty$ la soluzione tende a $0$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Completa con risonanza e sovrapposizione</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Trovare l'integrale generale di $\ y''+y=2\cos x+3$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Omogenea:</strong> $\lambda^{2}+1=0$ dà $\lambda=\pm i$, quindi $y_{\text{om}}=C_1\cos x+C_2\sin x$.</span>
+            <span class="esempio__passo"><strong>Sovrapposizione:</strong> spezzo il termine noto in $2\cos x$ e $3$, e cerco una particolare per ciascuno.</span>
+            <span class="esempio__passo"><strong>Pezzo $2\cos x$ — test di risonanza:</strong> qui $\gamma\pm i\omega=\pm i$, che <em>sono</em> radici ($m=1$). Forma corretta: $y_{p1}=x\left(A\cos x+B\sin x\right)$, con entrambi i termini.</span>
+            <span class="esempio__passo">Derivo $y_{p1}=x\left(A\cos x+B\sin x\right)$ con la regola del prodotto: $y_{p1}'=\left(A\cos x+B\sin x\right)+x\left(-A\sin x+B\cos x\right)$. Derivo una seconda volta: $y_{p1}''=2\left(-A\sin x+B\cos x\right)+x\left(-A\cos x-B\sin x\right)$. Ora sommo $y_{p1}=x\left(A\cos x+B\sin x\right)$: i due termini con la $x$ davanti sono opposti e si elidono, e resta $y_{p1}''+y_{p1}=-2A\sin x+2B\cos x$. Uguaglio a $2\cos x$ e identifico separatamente i coefficienti di $\cos x$ e di $\sin x$: $2B=2$ dà $B=1$, $-2A=0$ dà $A=0$; quindi $y_{p1}=x\sin x$.</span>
+            <span class="esempio__passo"><strong>Pezzo $3$ — nessuna risonanza:</strong> $\lambda=0$ non è radice, provo $y_{p2}=D$ costante: $0+D=3\Rightarrow D=3$.</span>
+          </p>
+          <div class="esempio__risultato">$y=C_1\cos x+C_2\sin x+x\sin x+3$. Il termine $x\sin x$ cresce senza limite: è la firma della <strong>risonanza</strong>.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Modello logistico completo, con numeri</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Una colonia di batteri cresce secondo $\ P'=0{,}5\,P\left(1-\dfrac{P}{1000}\right)$, con $P(0)=100$. Trovare $P(t)$, il tempo in cui la colonia raggiunge $500$ individui e il limite per $t\to+\infty$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco:</strong> è la logistica con $k=0{,}5$ e capacità portante $K=1000$.</span>
+            <span class="esempio__passo"><strong>Applico la formula:</strong> $A=\dfrac{K-P_0}{P_0}=\dfrac{1000-100}{100}=9$, quindi $P(t)=\dfrac{1000}{1+9e^{-0{,}5t}}$.</span>
+            <span class="esempio__passo"><strong>Impongo $P=500$:</strong> $\dfrac{1000}{1+9e^{-0{,}5t}}=500$. Moltiplico in croce, $1000=500\left(1+9e^{-0{,}5t}\right)$, e divido entrambi i membri per $500$: $1+9e^{-0{,}5t}=2$. Sottraggo $1$ e divido per $9$: $e^{-0{,}5t}=\dfrac19$.</span>
+            <span class="esempio__passo"><strong>Logaritmo:</strong> applico $\ln$ a entrambi i membri, con $\ln e^{a}=a$ e $\ln\frac19=-\ln 9$: $-0{,}5\,t=-\ln 9$. Divido entrambi per $-0{,}5$ (cioè moltiplico per $-2$): $t=2\ln 9$; siccome $9=3^{2}$ si ha $\ln 9=2\ln 3$, quindi $t=4\ln 3\approx 4{,}39$ unità di tempo.</span>
+            <span class="esempio__passo"><strong>Limite:</strong> per $t\to+\infty$ si ha $e^{-0{,}5t}\to 0$, quindi $P\to 1000=K$.</span>
+          </p>
+          <div class="esempio__risultato">$P(t)=\dfrac{1000}{1+9e^{-0{,}5t}}$; raggiunge $500$ (cioè $K/2$, il punto di crescita massima) a $t\approx 4{,}4$; tende a $1000$ senza mai superarlo.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare la costante di integrazione (o sbagliarne il numero)</div>
+          <p>È l'errore numero uno, e ha due facce. La prima: integrare e non scrivere il $+C$, ottenendo <em>una</em> soluzione invece di tutte. La seconda, più insidiosa: scrivere una sola costante dove ne servono due. Se risolvi $y''+4y=0$ e consegni $y=C\cos 2x$, hai buttato via metà dello spazio delle soluzioni (manca $C_2\sin 2x$) e con quella risposta non potrai mai soddisfare una condizione del tipo $y(0)=0,\ y'(0)=6$.</p>
+          <p><em>Come evitarlo</em>: prima di consegnare, <strong>conta le costanti</strong> e confrontale con l'ordine dell'equazione. Ordine $1$ → una costante. Ordine $2$ → due costanti. Sempre, senza eccezioni.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Perdere le soluzioni costanti dividendo</div>
+          <p>Nella separazione delle variabili si divide per $h(y)$. Ma dividere per qualcosa significa <strong>assumere che non sia zero</strong>, e proprio gli zeri di $h$ sono soluzioni! Nell'equazione logistica $P'=kP\left(1-P/K\right)$, dividere fa sparire $P\equiv 0$ e $P\equiv K$ — cioè proprio l'estinzione e l'equilibrio, i due stati più interessanti del modello. Nell'esempio $y'=y^{2}-y$ la formula generale non contiene $y\equiv 0$ per nessun valore del parametro: è persa davvero.</p>
+          <p><em>Come evitarlo</em>: <strong>primo passo sempre uguale</strong> — risolvi $h(y)=0$ e scrivi le soluzioni costanti <em>prima</em> di separare. Alla fine controlla se la formula generale le recupera per qualche valore della costante: a volte sì, a volte no, e va detto esplicitamente.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare la forma della soluzione particolare</div>
+          <p>Tre varianti classiche, tutte nel metodo di somiglianza.</p>
+          <p><strong>(a) Dimenticare la risonanza.</strong> Per $y''-4y=e^{2x}$ provare $y_p=Ae^{2x}$ porta a $0=e^{2x}$, cioè a un assurdo: $e^{2x}$ è già soluzione dell'omogenea, serve il fattore $x$. Se nei conti «tutto si semplifica e resta $0=$ qualcosa», <strong>non hai sbagliato l'algebra: hai sbagliato la forma</strong>.</p>
+          <p><strong>(b) Mettere solo il coseno.</strong> Con $f(x)=\cos(3x)$ bisogna provare $A\cos 3x+B\sin 3x$, entrambi, perché derivando due volte il coseno può generare un seno. Con solo il coseno il sistema risulta incompatibile.</p>
+          <p><strong>(c) Troncare il polinomio.</strong> Con $f(x)=4x$ va provato $y_p=Ax+B$ <em>completo</em>, non il solo $Ax$: il termine noto costante nasce dalle derivate.</p>
+          <p><em>Come evitarlo</em>: prima di scrivere $y_p$, guarda le radici dell'equazione caratteristica e fai il test di risonanza; poi scrivi la forma <strong>completa</strong> della famiglia (polinomio di tutti i gradi fino a $n$, seno <em>e</em> coseno).</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere integrale generale e integrale particolare</div>
+          <p>Due errori gemelli. Il primo: consegnare l'integrale generale quando il testo chiedeva un problema di Cauchy — la risposta a un problema di Cauchy è <strong>una funzione sola</strong>, senza costanti libere. Il secondo, più grave: imporre le condizioni iniziali <strong>sulla sola omogenea</strong>, prima di aver aggiunto la particolare $y_p$. Le condizioni vanno imposte <em>alla fine</em>, sull'integrale generale completo $y=C_1y_1+C_2y_2+y_p$; farlo prima dà costanti sbagliate.</p>
+          <p><em>Come evitarlo</em>: ordine rigido delle operazioni — <strong>(1)</strong> omogenea, <strong>(2)</strong> particolare, <strong>(3)</strong> somma, <strong>(4)</strong> <em>solo ora</em> le condizioni iniziali.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Separare ciò che non è separabile (e altri abusi di notazione)</div>
+          <p>$y'=x+y$ <strong>non</strong> è a variabili separabili: una <em>somma</em> non è un prodotto, e non esiste modo di portare tutte le $y$ da una parte. (È però lineare: $y'-y=x$, e si risolve col fattore integrante.) Allo stesso modo $y'=\sin(x+y)$ non si separa. Un secondo abuso frequente è dimenticare che $\int\frac{dy}{y}=\ln|y|$ richiede il <strong>valore assoluto</strong>, con la conseguenza di perdere per strada le soluzioni negative.</p>
+          <p><em>Come evitarlo</em>: prima di applicare un metodo, <strong>classifica l'equazione</strong>. Il secondo membro è un <em>prodotto</em> di una funzione di $x$ per una di $y$? Allora è separabile. Compaiono $y$ e $y'$ solo al primo grado? Allora è lineare. Nessuna delle due? Serve un altro strumento.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Classifica in dieci secondi, prima di calcolare</div>
+          <p>Ogni esercizio comincia con la stessa domanda: <em>di che tipo è?</em> Segui questo albero mentale.</p>
+          <p><strong>1.</strong> Qual è l'<strong>ordine</strong>? (La derivata più alta.) <br>
+          <strong>2.</strong> Se è del primo ordine: il secondo membro è un <strong>prodotto</strong> $g(x)h(y)$? → variabili separabili. Altrimenti si scrive come $y'+a(x)y=b(x)$? → lineare, fattore integrante. <br>
+          <strong>3.</strong> Se è del secondo ordine a coefficienti costanti: scrivi subito l'<strong>equazione caratteristica</strong>, guarda il segno di $\Delta$, poi occupati del termine noto. <br>
+          <strong>4.</strong> Il termine noto è polinomio / esponenziale / seno-coseno? → somiglianza. È qualcosa di strano ($\tan x$, $1/x$)? → variazione delle costanti.</p>
+          <p>Scegliere il metodo giusto è metà del voto: un esercizio impostato bene si conclude quasi da solo.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La verifica finale costa trenta secondi e salva il compito</div>
+          <p>Una volta trovata la soluzione, <strong>sostituiscila nell'equazione</strong>. È l'unico argomento del programma in cui puoi controllare da solo la risposta con certezza assoluta: se i due membri coincidono, è giusta; se no, è sbagliata. Nel caso di un problema di Cauchy, verifica anche le condizioni iniziali (che costano due sostituzioni numeriche). Nessun altro capitolo ti regala un test così potente: usalo sempre.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sposta l'equilibrio e torna all'esponenziale pura</div>
+          <p>Tutte le equazioni del tipo $y'=-k\left(y-L\right)$ (raffreddamento, carica di un condensatore, riempimento di un serbatoio) si risolvono con lo stesso cambio di variabile: poni $u=y-L$, cioè <strong>misura lo scarto dall'equilibrio</strong>. Allora $u'=y'$ e l'equazione diventa $u'=-ku$, la cui soluzione la sai a memoria: $u=u_0e^{-kt}$. Tornando indietro, $y=L+\left(y_0-L\right)e^{-kt}$. Un solo modello, mille travestimenti: impara <em>quello</em> e non dovrai più rifare il conto.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Leggi il comportamento nelle radici, senza risolvere</div>
+          <p>Per il secondo ordine omogeneo puoi prevedere tutto guardando solo le radici $\lambda$. <strong>Parte reale negativa</strong> → la soluzione si spegne (sistema stabile). <strong>Parte reale positiva</strong> → esplode. <strong>Parte reale nulla</strong> → resta in equilibrio o oscilla per sempre. <strong>Parte immaginaria presente</strong> → oscilla; <strong>assente</strong> → non oscilla, al massimo attraversa lo zero una volta. Con queste quattro frasi rispondi a tutte le domande qualitative («il sistema è stabile?», «oscilla?») senza scrivere una riga di conti.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Tempo caratteristico ed emivita: due formule per tutte le esponenziali</div>
+          <p>Data una qualunque $y=y_0e^{-kt}$, le due domande tipiche hanno risposta immediata: il <strong>tempo di dimezzamento</strong> è $T_{1/2}=\dfrac{\ln 2}{k}$, il <strong>tempo caratteristico</strong> è $\tau=\dfrac{1}{k}$ (dopo $\tau$ resta il $37\%$, dopo $3\tau$ il $5\%$, dopo $5\tau$ meno dell'$1\%$). Sono le stesse due formule per decadimenti radioattivi, raffreddamenti, scariche di condensatori e farmaci nel sangue. Impararle una volta vale per tutta la vita.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Equazioni differenziali: «dimmi come cresci e ti dirò chi sei»</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Concetti base</strong>
+              <ul><li>Incognita = una FUNZIONE</li><li>Ordine = derivata più alta</li><li>Integrale generale: $n$ costanti</li><li>Particolare: costanti fissate</li><li>Famiglia di curve + campo di direzioni</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Problema di Cauchy</strong>
+              <ul><li>Equazione + condizioni iniziali</li><li>Ordine $n$ → $n$ condizioni</li><li>Esistenza e unicità: $f$ continua e lipschitziana in $y$</li><li>Basta $\partial f/\partial y$ continua</li><li>Da ogni punto una sola traiettoria</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Variabili separabili</strong>
+              <ul><li>$y'=g(x)h(y)$</li><li>1) soluzioni costanti $h(y)=0$</li><li>2) $\frac{dy}{h(y)}=g\,dx$</li><li>3) integro, 4) esplicito</li><li>Attenzione a ciò che si perde</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Lineari 1º ordine</strong>
+              <ul><li>$y'+a(x)y=b(x)$</li><li>$\mu=e^{\int a\,dx}$</li><li>$(\mu y)'=\mu b$</li><li>$y=e^{-A}\left(\int e^{A}b+C\right)$</li><li>Generale = omogenea + particolare</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Lineari 2º ordine</strong>
+              <ul><li>$a\lambda^2+b\lambda+c=0$</li><li>$\Delta\gt0$: $C_1e^{\lambda_1x}+C_2e^{\lambda_2x}$</li><li>$\Delta=0$: $(C_1+C_2x)e^{\lambda x}$</li><li>$\Delta\lt0$: $e^{\alpha x}(C_1\cos\beta x+C_2\sin\beta x)$</li><li>Somiglianza + fattore $x^m$ (risonanza)</li><li>Variazione costanti, wronskiano</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Modelli</strong>
+              <ul><li>$N'=-\lambda N$: decadimento, C-14</li><li>$P'=kP$: crescita esponenziale</li><li>Logistica: curva a S verso $K$</li><li>$T'=-k(T-T_a)$: raffreddamento</li><li>Molla: libera, smorzata, risonanza</li><li>RC e RL: tempo $\tau$</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Che cos'è</strong>: un'equazione la cui incognita è una <strong>funzione</strong> e che lega la funzione alle sue derivate. L'<strong>ordine</strong> è la derivata più alta; l'integrale generale contiene esattamente <strong>tante costanti quanto l'ordine</strong>.</li>
+            <li><strong>Problema di Cauchy</strong>: equazione + condizioni iniziali. Il teorema di esistenza e unicità (Cauchy–Lipschitz) richiede $f$ continua e lipschitziana rispetto a $y$ (in pratica: $\partial f/\partial y$ continua). Significato: <strong>da ogni punto parte una sola traiettoria</strong>. Senza Lipschitz l'unicità può saltare ($y'=3y^{2/3}$, $y(0)=0$ ha sia $y\equiv 0$ sia $y=x^{3}$).</li>
+            <li><strong>Variabili separabili</strong> $y'=g(x)h(y)$: cerca <em>prima</em> le soluzioni costanti ($h(y)=0$), poi scrivi $\frac{dy}{h(y)}=g(x)dx$ e integra. Dividendo si perdono le costanti: vanno recuperate a mano.</li>
+            <li><strong>Lineari del primo ordine</strong> $y'+a(x)y=b(x)$: fattore integrante $\mu=e^{\int a\,dx}$, poi $\left(\mu y\right)'=\mu b$ e si integra. Risultato: $y=e^{-A}\left(\int e^{A}b\,dx+C\right)$.</li>
+            <li><strong>Struttura delle lineari</strong> (ogni ordine): <strong>integrale generale della completa = integrale generale dell'omogenea + una particolare</strong>.</li>
+            <li><strong>Lineari del secondo ordine a coefficienti costanti</strong>: equazione caratteristica $a\lambda^{2}+b\lambda+c=0$. Tre casi: $\Delta\gt 0\Rightarrow C_1e^{\lambda_1x}+C_2e^{\lambda_2x}$; $\Delta=0\Rightarrow\left(C_1+C_2x\right)e^{\lambda_0x}$; $\Delta\lt 0\Rightarrow e^{\alpha x}\left(C_1\cos\beta x+C_2\sin\beta x\right)$.</li>
+            <li><strong>Metodo di somiglianza</strong>: $y_p$ ha la forma del termine noto, moltiplicata per $x^{m}$ dove $m$ è la molteplicità come radice caratteristica (<strong>risonanza</strong>). Seno e coseno sempre insieme; polinomi sempre completi. Termini noti «cattivi» → variazione delle costanti, con il <strong>wronskiano</strong> $W=y_1y_2'-y_2y_1'\neq 0$ a garantire l'indipendenza.</li>
+            <li><strong>Modelli da saper scrivere a memoria</strong>: $N'=-\lambda N\Rightarrow N_0e^{-\lambda t}$ con $T_{1/2}=\frac{\ln 2}{\lambda}$ (carbonio-14); $P'=kP\left(1-\frac{P}{K}\right)\Rightarrow P=\frac{K}{1+Ae^{-kt}}$ (logistica, flesso in $K/2$); $T'=-k\left(T-T_a\right)\Rightarrow T_a+\left(T_0-T_a\right)e^{-kt}$ (Newton); $mx''+hx'+\kappa x=F$ (molla: i tre regimi di smorzamento e la risonanza per $\omega=\omega_0$); RC e RL con tempo caratteristico $\tau$.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione: ricorda che qui puoi sempre verificare da te la risposta, sostituendola nell'equazione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Verifica che $y=3e^{-4x}$ è soluzione di $y'+4y=0$ e indica l'ordine dell'equazione e quante costanti deve contenere il suo integrale generale.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivo: $y'=3\cdot(-4)e^{-4x}=-12e^{-4x}$.</span>
+                <span class="esempio__passo">Sostituisco: $y'+4y=-12e^{-4x}+4\cdot 3e^{-4x}=-12e^{-4x}+12e^{-4x}=0$ per ogni $x$. ✔</span>
+                <span class="esempio__passo">La derivata più alta che compare è la prima: l'ordine è $1$, quindi l'integrale generale ha <strong>una</strong> costante.</span>
+              </p>
+              <p><strong>È soluzione; ordine $1$; integrale generale $y=Ce^{-4x}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi il problema di Cauchy $\ y'=5y,\ \ y(0)=2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Soluzione costante: $y\equiv 0$ (non compatibile con $y(0)=2$).</span>
+                <span class="esempio__passo">Separo: scrivo $y'=\dfrac{dy}{dx}$, divido entrambi i membri per $y$ e moltiplico per $dx$, ottenendo $\dfrac{dy}{y}=5\,dx$. Integro i due membri ($\int\frac{dy}{y}=\ln|y|$ e $\int 5\,dx=5x$): $\ln|y|=5x+c$. Esponenzio entrambi i membri, uso $e^{5x+c}=e^{c}e^{5x}$ e ribattezzo $C=\pm e^{c}$: $y=Ce^{5x}$.</span>
+                <span class="esempio__passo">Impongo: $y(0)=C=2$.</span>
+              </p>
+              <p><strong>$y(x)=2e^{5x}$</strong> — crescita esponenziale, definita su tutto $\mathbb{R}$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ y'=\dfrac{x}{y}\ $ e descrivi geometricamente la famiglia di curve soluzione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">È separabile: $y\,dy=x\,dx$ (nessuna soluzione costante, perché $y=0$ non è ammissibile: il secondo membro non è definito).</span>
+                <span class="esempio__passo">Integro entrambi i membri: $\dfrac{y^{2}}{2}=\dfrac{x^{2}}{2}+c$.</span>
+                <span class="esempio__passo">Moltiplico per $2$ e pongo $C=2c$: $y^{2}-x^{2}=C$.</span>
+              </p>
+              <p><strong>Soluzione in forma implicita: $y^{2}-x^{2}=C$</strong>, cioè una famiglia di <strong>iperboli equilatere</strong> (per $C=0$ le due bisettrici, private dell'origine). Esplicitando, $y=\pm\sqrt{x^{2}+C}$ sui rami in cui $y\neq 0$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Trova l'integrale generale di $\ y''-9y=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Equazione caratteristica: sostituisco $y''\to\lambda^{2}$ e $y\to 1$ in $y''-9y=0$, ottenendo $\lambda^{2}-9=0$.</span>
+                <span class="esempio__passo">Radici reali distinte: da $\lambda^{2}=9$ segue $\lambda=\pm\sqrt 9=\pm 3$, cioè $\lambda_1=3$ e $\lambda_2=-3$ (con la formula risolutiva, $a=1$, $b=0$, $c=-9$, sarebbe $\Delta=0-4\cdot 1\cdot(-9)=36\gt 0$ e $\lambda=\frac{0\pm 6}{2}$: stesso risultato).</span>
+                <span class="esempio__passo">Essendo $\Delta\gt 0$ siamo nel <strong>caso 1</strong> del <span class="richiamo" data-sec="4.7">§4.7</span>, $y=C_1e^{\lambda_1x}+C_2e^{\lambda_2x}$: sostituisco $\lambda_1=3$ e $\lambda_2=-3$.</span>
+              </p>
+              <p><strong>$y=C_1e^{3x}+C_2e^{-3x}$</strong> — due costanti, come richiede il secondo ordine. (Equivalente: $y=A\cosh 3x+B\sinh 3x$.)</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Data $\ y'=(y-2)(y+1)$, trova tutte le soluzioni costanti e spiega perché la soluzione con $y(0)=0$ resta per sempre nella striscia $-1\lt y\lt 2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Soluzioni costanti: annullo il secondo membro, $(y-2)(y+1)=0$, quindi $y\equiv 2$ e $y\equiv -1$.</span>
+                <span class="esempio__passo">Qui $f(y)=(y-2)(y+1)$ è un polinomio: $f$ e $\partial f/\partial y=2y-1$ sono continue ovunque, quindi vale il teorema di esistenza e unicità in ogni punto del piano.</span>
+                <span class="esempio__passo">Se la soluzione con $y(0)=0$ toccasse il livello $y=2$ in un certo punto, da lì passerebbero <strong>due</strong> soluzioni diverse (lei e la costante $y\equiv 2$): assurdo per l'unicità. Stesso ragionamento per $y=-1$.</span>
+                <span class="esempio__passo">Essendo continua e partendo da $0$, per il teorema dei valori intermedi non può «saltare» oltre senza attraversare: quindi resta intrappolata.</span>
+              </p>
+              <p><strong>Costanti: $y\equiv 2$ e $y\equiv -1$. La soluzione con $y(0)=0$ resta in $(-1,2)$</strong> perché le soluzioni costanti fanno da barriere invalicabili: è l'unicità a impedirne l'attraversamento. (In più, in quella striscia $f\lt 0$, quindi la soluzione decresce e tende a $-1$.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione lineare $\ y'-2y=e^{3x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Forma normale già a posto: $a(x)=-2$, $b(x)=e^{3x}$.</span>
+                <span class="esempio__passo">Fattore integrante: $A(x)=\int(-2)dx=-2x$, quindi $\mu=e^{-2x}$.</span>
+                <span class="esempio__passo">Moltiplico ogni termine per $\mu=e^{-2x}$: il primo membro diventa $e^{-2x}y'-2e^{-2x}y$, che è proprio $\left(e^{-2x}y\right)'$ per la regola del prodotto; a destra $e^{-2x}e^{3x}=e^{-2x+3x}=e^{x}$. Dunque $\left(e^{-2x}y\right)'=e^{x}$.</span>
+                <span class="esempio__passo">Integro entrambi i membri ($\int e^{x}dx=e^{x}$): $e^{-2x}y=e^{x}+C$. Divido per $e^{-2x}$, cioè moltiplico tutto per $e^{2x}$: il primo termine dà $e^{x}e^{2x}=e^{3x}$, il secondo $Ce^{2x}$. Quindi $y=e^{3x}+Ce^{2x}$.</span>
+              </p>
+              <p><strong>$y=e^{3x}+Ce^{2x}$.</strong> Verifica: $y'-2y=3e^{3x}+2Ce^{2x}-2e^{3x}-2Ce^{2x}=e^{3x}$ ✔</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ y''+4y=0\ $ con $y(0)=0$ e $y'(0)=6$, poi indica ampiezza e periodo dell'oscillazione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Caratteristica: $\lambda^{2}+4=0$, cioè $\lambda^{2}=-4$; poiché $i^{2}=-1$ le radici sono $\lambda=\pm 2i$, che confrontate con $\alpha\pm i\beta$ danno $\alpha=0$ e $\beta=2$.</span>
+                <span class="esempio__passo">Integrale generale: sostituisco $\alpha=0$ e $\beta=2$ nella formula del caso 3 (<span class="richiamo" data-sec="4.7">§4.7</span>); siccome $e^{0\cdot x}=1$ l'esponenziale sparisce e resta $y=C_1\cos 2x+C_2\sin 2x$.</span>
+                <span class="esempio__passo">Sostituisco $x=0$ ($\cos0=1$, $\sin0=0$): $y(0)=C_1=0$. Derivo (la derivata di $\cos 2x$ è $-2\sin 2x$ e quella di $\sin 2x$ è $2\cos 2x$, il $2$ è la derivata interna): $y'=-2C_1\sin2x+2C_2\cos2x$; sostituisco $x=0$: $y'(0)=2C_2=6$, quindi $C_2=3$.</span>
+              </p>
+              <p><strong>$y=3\sin 2x$</strong>: ampiezza $3$, pulsazione $\omega_0=2$, periodo $T=\dfrac{2\pi}{2}=\pi$. Essendo $\alpha=0$, l'oscillazione non si smorza mai.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ y'=-2xy^{2},\ \ y(0)=1$, e determina su quale intervallo la soluzione è definita.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Soluzione costante: $y\equiv 0$ (non compatibile con $y(0)=1$, quindi posso dividere).</span>
+                <span class="esempio__passo">Separo: $\dfrac{dy}{y^{2}}=-2x\,dx$, cioè $\displaystyle\int y^{-2}dy=\int(-2x)dx$.</span>
+                <span class="esempio__passo">Integro: a sinistra uso la regola della potenza $\int t^{n}dt=\frac{t^{n+1}}{n+1}$ con $n=-2$, cioè $\int y^{-2}dy=\frac{y^{-1}}{-1}=-\frac1y$; a destra $\int(-2x)dx=-x^{2}$. Ottengo $-\dfrac1y=-x^{2}+c$; cambio segno a entrambi i membri: $\dfrac1y=x^{2}-c$.</span>
+                <span class="esempio__passo">Impongo $y(0)=1$ sostituendo $x=0$ e $y=1$: $\dfrac11=0-c$, cioè $1=-c$ e $c=-1$. Rimetto $c=-1$: $\dfrac1y=x^{2}+1$, e facendo il reciproco di entrambi i membri $y=\dfrac{1}{x^{2}+1}$.</span>
+              </p>
+              <p><strong>$y(x)=\dfrac{1}{x^{2}+1}$, definita su tutto $\mathbb{R}$</strong> (il denominatore non si annulla mai). Verifica: $y'=\dfrac{-2x}{\left(x^{2}+1\right)^{2}}=-2x\,y^{2}$ ✔</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ y''-4y'+4y=0\ $ con $y(0)=1$, $y'(0)=5$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Caratteristica: $\lambda^{2}-4\lambda+4=0$, cioè $\left(\lambda-2\right)^{2}=0$: $\Delta=0$ e radice <strong>doppia</strong> $\lambda_0=2$.</span>
+                <span class="esempio__passo">Caso 2: $y=\left(C_1+C_2x\right)e^{2x}$ (il fattore $x$ fornisce la seconda soluzione indipendente).</span>
+                <span class="esempio__passo">$y(0)=C_1=1$.</span>
+                <span class="esempio__passo">Derivo con la regola del prodotto (derivata della parentesi per $e^{2x}$, più la parentesi per $\left(e^{2x}\right)'=2e^{2x}$): $y'=C_2e^{2x}+2\left(C_1+C_2x\right)e^{2x}$. Sostituisco $x=0$, dove $e^{0}=1$: $y'(0)=C_2+2C_1=5$; siccome $C_1=1$, resta $C_2=5-2=3$.</span>
+              </p>
+              <p><strong>$y=\left(1+3x\right)e^{2x}$.</strong> È il caso «criticamente smorzato» ma con esponente positivo: la soluzione cresce, e la $x$ davanti all'esponenziale è il marchio della radice doppia.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova l'integrale generale di $\ y''+y'-2y=4x$ con il metodo di somiglianza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Omogenea:</strong> $\lambda^{2}+\lambda-2=0$, $\Delta=9$, radici $\lambda_1=1$ e $\lambda_2=-2$. Quindi $y_{\text{om}}=C_1e^{x}+C_2e^{-2x}$.</span>
+                <span class="esempio__passo"><strong>Test di risonanza:</strong> il termine noto è un polinomio di grado $1$, cioè «$e^{0\cdot x}$ per un polinomio»; $\lambda=0$ <em>non</em> è radice, quindi $m=0$.</span>
+                <span class="esempio__passo"><strong>Provo</strong> $y_p=Ax+B$ (completo!): $y_p'=A$, $y_p''=0$.</span>
+                <span class="esempio__passo"><strong>Sostituisco:</strong> $0+A-2(Ax+B)=-2Ax+(A-2B)$, che deve valere $4x$.</span>
+                <span class="esempio__passo"><strong>Identifico:</strong> $-2A=4\Rightarrow A=-2$; $A-2B=0\Rightarrow B=-1$.</span>
+              </p>
+              <p><strong>$y=C_1e^{x}+C_2e^{-2x}-2x-1$.</strong> Se avessi provato il solo $Ax$ il sistema sarebbe stato impossibile: il polinomio va sempre scritto completo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova l'integrale generale di $\ y''+9y=\cos 3x$ e spiega che fenomeno fisico descrive.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Omogenea:</strong> $\lambda^{2}+9=0$, radici $\pm 3i$, quindi $y_{\text{om}}=C_1\cos3x+C_2\sin3x$.</span>
+                <span class="esempio__passo"><strong>Test di risonanza:</strong> il termine noto $\cos 3x$ corrisponde a $\gamma\pm i\omega=\pm 3i$, che <em>sono</em> radici: $m=1$. Forma corretta $y_p=x\left(A\cos3x+B\sin3x\right)$.</span>
+                <span class="esempio__passo"><strong>Derivo due volte</strong> con la regola del prodotto: $y_p'=\left(A\cos3x+B\sin3x\right)+3x\left(-A\sin3x+B\cos3x\right)$ e poi $y_p''=6\left(-A\sin3x+B\cos3x\right)-9x\left(A\cos3x+B\sin3x\right)$. Sommo $9y_p=9x\left(A\cos3x+B\sin3x\right)$: i termini con la $x$ davanti sono opposti e si cancellano, e resta $y_p''+9y_p=-6A\sin3x+6B\cos3x$.</span>
+                <span class="esempio__passo"><strong>Identifico con $\cos3x$:</strong> $6B=1\Rightarrow B=\dfrac16$; $-6A=0\Rightarrow A=0$.</span>
+              </p>
+              <p><strong>$y=C_1\cos3x+C_2\sin3x+\dfrac{x}{6}\sin3x$.</strong> È la <strong>risonanza</strong>: la forzante ha esattamente la pulsazione propria del sistema ($\omega=\omega_0=3$) e l'ampiezza dell'oscillazione cresce linearmente nel tempo, senza limite.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Verifica con il wronskiano che $y_1=e^{2x}$ e $y_2=xe^{2x}$ sono soluzioni linearmente indipendenti di $\ y''-4y'+4y=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Entrambe sono soluzioni: $\lambda=2$ è radice doppia dell'equazione caratteristica $\left(\lambda-2\right)^{2}=0$.</span>
+                <span class="esempio__passo">Derivate: $y_1'=2e^{2x}$ e $y_2'=e^{2x}\left(1+2x\right)$.</span>
+                <span class="esempio__passo">Wronskiano: $W=y_1y_2'-y_2y_1'=e^{2x}\cdot e^{2x}(1+2x)-xe^{2x}\cdot 2e^{2x}$.</span>
+                <span class="esempio__passo">Raccolgo: $W=e^{4x}\left(1+2x-2x\right)=e^{4x}$.</span>
+              </p>
+              <p><strong>$W(x)=e^{4x}\neq 0$ per ogni $x$: le due soluzioni sono indipendenti</strong> e formano una base dello spazio delle soluzioni, che ha dimensione $2$. Dunque $y=\left(C_1+C_2x\right)e^{2x}$ è l'integrale generale.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un corpo a $100\,^{\circ}$C viene posto in una stanza a $20\,^{\circ}$C; dopo $10$ minuti è a $60\,^{\circ}$C. (a) Scrivi e risolvi il modello. (b) Dopo quanto tempo il corpo sarà a $30\,^{\circ}$C? (c) Raggiungerà mai i $20\,^{\circ}$C esatti?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a) Modello:</strong> legge di Newton $T'=-k\left(T-20\right)$, con $T(0)=100$. Ponendo $u=T-20$ si ha $u'=-ku$, quindi $u=u_0e^{-kt}$ con $u_0=80$: $\ T(t)=20+80e^{-kt}$.</span>
+                <span class="esempio__passo"><strong>Trovo $k$:</strong> $60=20+80e^{-10k}\Rightarrow e^{-10k}=\dfrac{40}{80}=\dfrac12\Rightarrow 10k=\ln 2\Rightarrow k=\dfrac{\ln 2}{10}\approx 0{,}0693$ min$^{-1}$.</span>
+                <span class="esempio__passo"><strong>(b)</strong> $30=20+80e^{-kt}\Rightarrow e^{-kt}=\dfrac{10}{80}=\dfrac18\Rightarrow kt=\ln 8=3\ln 2$.</span>
+                <span class="esempio__passo">Ricavo $t$ dividendo per $k$ e sostituisco $k=\dfrac{\ln 2}{10}$: $\ t=\dfrac{3\ln 2}{\ln 2/10}$. Dividere per una frazione significa moltiplicare per il suo reciproco, quindi $t=3\ln 2\cdot\dfrac{10}{\ln 2}=30$ minuti (il $\ln 2$ si semplifica).</span>
+              </p>
+              <p><strong>(a) $T(t)=20+80e^{-t\ln 2/10}$, con $k=\frac{\ln 2}{10}$. (b) $t=30$ minuti.</strong> (Elegante: la differenza si dimezza ogni $10$ minuti, da $80$ a $40$ a $20$ a $10$: tre dimezzamenti, $30$ minuti.) <strong>(c)</strong> No: $e^{-kt}\gt 0$ sempre, quindi $T(t)\gt 20$ per ogni $t$; i $20\,^{\circ}$C sono un asintoto orizzontale, raggiunto solo al limite.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Una massa su una molla obbedisce a $\ x''+4x'+3x=0$ con $x(0)=0$, $x'(0)=2$. (a) Risolvi. (b) Classifica il regime di smorzamento. (c) Trova l'istante di massimo allontanamento dall'equilibrio.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> Caratteristica $\lambda^{2}+4\lambda+3=0$; formula risolutiva (Parte 0, cap. 5) con $a=1$, $b=4$, $c=3$: $\Delta=4^{2}-4\cdot 1\cdot 3=16-12=4\gt 0$, quindi $\lambda=\frac{-4\pm\sqrt4}{2}=\frac{-4\pm 2}{2}$, cioè $\lambda_1=-1$ e $\lambda_2=-3$. Caso 1: $x=C_1e^{-t}+C_2e^{-3t}$.</span>
+                <span class="esempio__passo">Condizioni: sostituisco $t=0$ (dove $e^{0}=1$), $x(0)=C_1+C_2=0$; derivo, $x'=-C_1e^{-t}-3C_2e^{-3t}$, e sostituisco di nuovo $t=0$: $x'(0)=-C_1-3C_2=2$.</span>
+                <span class="esempio__passo">Dalla prima equazione $C_1=-C_2$; la sostituisco nella seconda al posto di $C_1$: $-\left(-C_2\right)-3C_2=2$, cioè $C_2-3C_2=2$, quindi $-2C_2=2$, $C_2=-1$ e di conseguenza $C_1=1$.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Annullo la derivata: $-e^{-t}+3e^{-3t}=0\Rightarrow 3e^{-3t}=e^{-t}\Rightarrow e^{2t}=3\Rightarrow t=\dfrac{\ln 3}{2}$.</span>
+              </p>
+              <p><strong>(a) $x(t)=e^{-t}-e^{-3t}$. (b) $\Delta\gt 0$ con radici reali negative: regime <em>sovrasmorzato</em></strong>, nessuna oscillazione (la massa si allontana, raggiunge un massimo e torna all'equilibrio senza oltrepassarlo). <strong>(c) $t=\frac{\ln 3}{2}\approx 0{,}55$</strong>, con $x\approx 0{,}385$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvi il problema di Cauchy $\ y''-y=e^{x}+2,\ \ y(0)=0,\ y'(0)=0$, motivando la forma scelta per la soluzione particolare.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Omogenea:</strong> $\lambda^{2}-1=0$, radici $\pm 1$, quindi $y_{\text{om}}=C_1e^{x}+C_2e^{-x}$.</span>
+                <span class="esempio__passo"><strong>Sovrapposizione:</strong> tratto separatamente $e^{x}$ e $2$.</span>
+                <span class="esempio__passo"><strong>Pezzo $e^{x}$:</strong> $\gamma=1$ <em>è</em> radice semplice ($m=1$), quindi provo $y_{p1}=Axe^{x}$. Derivo con la regola del prodotto, ricordando $\left(e^{x}\right)'=e^{x}$: $y_{p1}'=Ae^{x}+Axe^{x}=A(1+x)e^{x}$; derivo ancora: $y_{p1}''=Ae^{x}+A(1+x)e^{x}=A(2+x)e^{x}$. Sostituisco nel primo membro: $y_{p1}''-y_{p1}=A(2+x)e^{x}-Axe^{x}=A(2+x-x)e^{x}=2Ae^{x}$. Uguaglio a $e^{x}$, semplifico $e^{x}$ da entrambi i membri e ottengo $2A=1$, cioè $A=\dfrac12$.</span>
+                <span class="esempio__passo"><strong>Pezzo $2$:</strong> $\lambda=0$ non è radice, provo $y_{p2}=B$: $0-B=2\Rightarrow B=-2$.</span>
+                <span class="esempio__passo"><strong>Generale:</strong> $y=C_1e^{x}+C_2e^{-x}+\dfrac{x}{2}e^{x}-2$.</span>
+                <span class="esempio__passo"><strong>Condizioni</strong> (imposte <em>sull'integrale completo</em>): $y(0)=C_1+C_2-2=0$; $y'=C_1e^{x}-C_2e^{-x}+\dfrac12 e^{x}+\dfrac{x}{2}e^{x}$, quindi $y'(0)=C_1-C_2+\dfrac12=0$.</span>
+                <span class="esempio__passo">Sistema: $C_1+C_2=2$ e $C_1-C_2=-\dfrac12$. Sommo membro a membro le due equazioni (le $C_2$ si elidono): $2C_1=2-\dfrac12=\dfrac32$, quindi $C_1=\dfrac34$; sostituisco nella prima: $C_2=2-\dfrac34=\dfrac54$.</span>
+              </p>
+              <p><strong>$y(x)=\dfrac34 e^{x}+\dfrac54 e^{-x}+\dfrac{x}{2}e^{x}-2$.</strong> La forma $Axe^{x}$ è obbligata dalla risonanza: $e^{x}$ è già soluzione dell'omogenea, quindi la prova $Ae^{x}$ avrebbe dato l'assurdo $0=e^{x}$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 13.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Si consideri $\ y'=3y^{2/3},\ \ y(0)=0$. (a) Mostra che ammette almeno due soluzioni distinte. (b) Quale ipotesi del teorema di esistenza e unicità viene a mancare? (c) Perché per $\ y'=3y^{2},\ y(0)=1$ l'unicità invece vale, e su quale intervallo?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> Prima soluzione: $y\equiv 0$, infatti $y'=0=3\cdot 0^{2/3}$. Seconda: $y=x^{3}$, infatti $y'=3x^{2}$ e $3\left(x^{3}\right)^{2/3}=3x^{2}$. Entrambe valgono $0$ in $x=0$: l'unicità è violata. (Ce ne sono infinite: per ogni $a\geq 0$ la funzione nulla fino ad $a$ e poi $(x-a)^{3}$.)</span>
+                <span class="esempio__passo"><strong>(b)</strong> $f(y)=3y^{2/3}$ è continua, quindi l'<em>esistenza</em> è garantita. Manca la <strong>lipschitzianità rispetto a $y$</strong>: $\dfrac{\partial f}{\partial y}=2y^{-1/3}$ diverge per $y\to 0$, quindi vicino a $y=0$ non esiste alcuna costante $L$.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Per $f(y)=3y^{2}$ si ha $\partial f/\partial y=6y$, continua ovunque: ipotesi soddisfatte, unicità garantita. Risolvo con le variabili separabili: $\dfrac{dy}{y^{2}}=3\,dx$, e integrando ($\int y^{-2}dy=-\frac1y$, $\int 3\,dx=3x$) ottengo $-\dfrac1y=3x+c$. Impongo $y(0)=1$ sostituendo $x=0$ e $y=1$: $-1=c$. Rimetto $c=-1$: $-\dfrac1y=3x-1$, cambio segno, $\dfrac1y=1-3x$, e faccio il reciproco: $y=\dfrac{1}{1-3x}$.</span>
+              </p>
+              <p><strong>(a) $y\equiv 0$ e $y=x^{3}$. (b) La condizione di Lipschitz rispetto a $y$ (la continuità di $f$ da sola garantisce l'esistenza, non l'unicità). (c) L'unicità vale, ma solo localmente: $y=\dfrac{1}{1-3x}$ esplode per $x\to\frac13^{-}$, quindi la soluzione vive su $\left(-\infty,\frac13\right)$</strong> — un esempio di <em>blow-up</em> in tempo finito.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) In un'equazione differenziale l'incognita da determinare è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un numero reale $x$ che soddisfa l'uguaglianza</button>
+              <button class="quiz-option" data-correct="true">una funzione $y(x)$, legata dall'equazione alle proprie derivate</button>
+              <button class="quiz-option" data-correct="false">la derivata $y'$, che si ricava isolandola</button>
+              <button class="quiz-option" data-correct="false">la costante di integrazione $C$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>L'incognita è una <strong>funzione</strong>: l'equazione descrive come cambia («dimmi come cresci e ti dirò chi sei»), e risolvere significa trovare tutte le funzioni che la soddisfano su un intervallo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quante costanti arbitrarie contiene l'integrale generale di $\,ay''+by'+cy=f(x)$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">nessuna, se il termine noto non è nullo</button>
+              <button class="quiz-option" data-correct="false">una sola, come per tutte le equazioni lineari</button>
+              <button class="quiz-option" data-correct="true">due, perché l'equazione è del secondo ordine</button>
+              <button class="quiz-option" data-correct="false">dipende dal segno di $\Delta$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Regola generale: <strong>ordine $n$ ⟹ $n$ costanti</strong>. Il termine noto influenza la soluzione particolare $y_p$, non il numero di costanti, che vengono dall'omogenea.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Se l'equazione caratteristica ha radici complesse coniugate $\lambda=\alpha\pm i\beta$, l'integrale generale dell'omogenea è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$C_1e^{\alpha x}+C_2e^{\beta x}$</button>
+              <button class="quiz-option" data-correct="true">$e^{\alpha x}\left(C_1\cos\left(\beta x\right)+C_2\sin\left(\beta x\right)\right)$</button>
+              <button class="quiz-option" data-correct="false">$\left(C_1+C_2x\right)e^{\alpha x}$</button>
+              <button class="quiz-option" data-correct="false">$C_1\cos\left(\alpha x\right)+C_2\sin\left(\alpha x\right)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La formula di Eulero trasforma le esponenziali complesse in seno e coseno: la <strong>parte reale $\alpha$</strong> finisce nell'esponenziale (decide se si spegne o cresce), la <strong>parte immaginaria $\beta$</strong> nella pulsazione dell'oscillazione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Per $\ y''-4y=e^{2x}$, la forma corretta della soluzione particolare da provare è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$y_p=Ae^{2x}$</button>
+              <button class="quiz-option" data-correct="true">$y_p=Axe^{2x}$</button>
+              <button class="quiz-option" data-correct="false">$y_p=Ax^{2}e^{2x}$</button>
+              <button class="quiz-option" data-correct="false">$y_p=Ae^{2x}+Be^{-2x}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Le radici sono $\pm 2$: il numero $\gamma=2$ è radice <strong>semplice</strong>, quindi c'è <strong>risonanza</strong> con molteplicità $m=1$ e si moltiplica per $x$. Con $Ae^{2x}$ si otterrebbe l'assurdo $0=e^{2x}$; con $x^{2}$ si moltiplicherebbe una volta di troppo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Ogni equazione differenziale del primo ordine è a variabili separabili.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso. Serve che il secondo membro sia un <em>prodotto</em> $g(x)h(y)$. Per esempio $y'=x+y$ è una somma e non si separa: è però lineare, e si risolve con il fattore integrante.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Dividendo per $h(y)$ durante la separazione delle variabili si rischia di perdere le soluzioni costanti.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: gli zeri di $h$ danno soluzioni costanti, e proprio per quei valori la divisione non è lecita. Vanno individuate <strong>prima</strong> di separare e poi eventualmente reinserite nella risposta finale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Il problema di Cauchy $\,y'=f(x,y),\ y(x_0)=y_0$ ha sempre una e una sola soluzione, qualunque sia $f$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso. La sola continuità di $f$ garantisce l'<em>esistenza</em>, non l'unicità: serve anche la condizione di <strong>Lipschitz</strong> rispetto a $y$. Controesempio: $y'=3y^{2/3}$, $y(0)=0$, che ha sia $y\equiv 0$ sia $y=x^{3}$. E anche quando l'unicità vale, la soluzione può essere solo <em>locale</em> (blow-up).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Per un'equazione lineare, l'integrale generale della completa è la somma dell'integrale generale dell'omogenea e di una qualunque soluzione particolare della completa.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il teorema di struttura, conseguenza della linearità dell'operatore $L[y]$. Vale al primo ordine, al secondo e in generale. Ricorda però di imporre le condizioni iniziali <strong>sulla somma</strong>, non sulla sola omogenea.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="integrante|fattore integrante">
+            <p class="quiz-question__testo">9. (Completamento) Nelle equazioni lineari del primo ordine si moltiplica per il fattore ______ $\mu=e^{\int a(x)dx}$, così che il primo membro diventi la derivata di un prodotto.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il fattore <strong>integrante</strong>: si sceglie $\mu$ in modo che $\mu'=a\mu$, e allora $\mu\left(y'+ay\right)=\left(\mu y\right)'$, che si integra direttamente.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="caratteristica|equazione caratteristica">
+            <p class="quiz-question__testo">10. (Completamento) L'equazione algebrica $a\lambda^{2}+b\lambda+c=0$ associata a $ay''+by'+cy=0$ si chiama equazione ______ .</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È l'equazione <strong>caratteristica</strong>: nasce sostituendo $y=e^{\lambda x}$, e il segno del suo $\Delta$ decide quale dei tre casi (esponenziali distinte, radice doppia con fattore $x$, oscillazioni con seno e coseno) si presenta.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="wronskiano|il wronskiano">
+            <p class="quiz-question__testo">11. (Completamento) Il determinante $y_1y_2'-y_2y_1'$, che è diverso da zero se e solo se due soluzioni sono linearmente indipendenti, si chiama ______ .</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il <strong>wronskiano</strong> $W(x)$. Per le equazioni lineari o è identicamente nullo o non si annulla mai: basta quindi calcolarlo in un punto comodo. Compare anche nella formula della variazione delle costanti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché «dimmi come cresci e ti dirò chi sei» descrive bene un'equazione differenziale, usando l'esempio della popolazione oppure quello del caffè che si raffredda.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: un'equazione differenziale non dice quanto vale una grandezza, dice <strong>con che velocità cambia</strong>, e lega quella velocità al valore attuale della grandezza stessa. Nel caso dei batteri l'osservazione è «più individui ci sono, più nascite ci sono», cioè $P'=kP$: la velocità di crescita è proporzionale alla popolazione. Nel caso del caffè l'osservazione è «più il caffè è caldo rispetto alla stanza, più in fretta si raffredda», cioè $T'=-k\left(T-T_a\right)$. In entrambi i casi si parte da una <em>legge locale</em> sul cambiamento e, risolvendo, si ottiene la <em>storia globale</em>: $P=P_0e^{kt}$ e $T=T_a+\left(T_0-T_a\right)e^{-kt}$. Serve però anche un dato iniziale: la regola del cambiamento da sola individua un'intera famiglia di funzioni (una per ogni costante), e la condizione iniziale sceglie quale.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Che cos'è la risonanza? Spiega perché, quando si presenta, la soluzione particolare deve contenere un fattore $x$, e che cosa significa fisicamente.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si ha risonanza quando il termine noto $f(x)$ è (o contiene) una soluzione dell'equazione omogenea associata — per esempio $f(x)=e^{2x}$ quando $2$ è radice caratteristica, oppure $f(x)=\cos\left(\omega_0 x\right)$ quando le radici sono $\pm i\omega_0$. In quel caso provare una $y_p$ della stessa forma non può funzionare: sostituendola nel primo membro si ottiene $0$, e $0$ non sarà mai uguale a $f(x)$. Il rimedio è moltiplicare la forma di prova per $x^{m}$, dove $m$ è la molteplicità della radice: la $x$ «rompe» la cancellazione e fa sopravvivere un termine non nullo. Fisicamente, il sistema viene sollecitato esattamente alla sua frequenza propria: ogni spinta arriva in fase con l'oscillazione e le trasferisce energia, così l'ampiezza cresce nel tempo (linearmente, in assenza di attrito: $x_p=\frac{F_0}{2\omega_0}t\sin\omega_0t$). È l'altalena spinta al momento giusto, il bicchiere di cristallo che si rompe alla nota esatta, la radio che seleziona una sola stazione. In presenza di attrito l'ampiezza non diventa infinita, ma può raggiungere valori molto grandi: per questo le strutture si progettano lontano dalle loro frequenze proprie.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="12-teoremi-green-gauss-stokes.html"><span class="dir">← Capitolo precedente</span><strong>Teoremi di Green, Gauss e Stokes</strong></a>
+        <a class="next" href="14-applicazioni-analisi2.html"><span class="dir">Capitolo successivo →</span><strong>Applicazioni e sintesi finale</strong></a>
+      </nav>
+
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

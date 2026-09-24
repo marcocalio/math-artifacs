@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4. Gradiente e derivata direzionale — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 4</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html" class="is-active">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 4 di 14</span>
+        </div>
+        <h1>Gradiente e derivata direzionale</h1>
+        <p class="subtitle">Le derivate parziali ti dicono la pendenza solo verso Est e verso Nord. Ma tu puoi camminare in qualunque direzione. Il gradiente raccoglie quelle due informazioni in un'unica freccia che risponde a tutte le domande: quanto è ripido da questa parte? Dove si sale di più? Da che parte scenderebbe l'acqua? È il vettore più importante di tutta l'Analisi 2.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p><strong>1) Derivata parziale</strong> (<a href="03-derivate-parziali.html">Capitolo 3</a>). Blocchi tutte le variabili tranne una e derivi come in Analisi 1. <em>Immagine</em>: sei su una collina e ti obblighi a camminare solo verso Est. $\dfrac{\partial f}{\partial x}$ è quanto sali facendo quel passo.</p>
+          <p><strong>2) Vettore e prodotto scalare.</strong> Un vettore è una freccia: ha una direzione e una lunghezza. Il prodotto scalare $\mathbf{a}\cdot\mathbf{b}=a_1b_1+a_2b_2$ misura quanto due frecce "vanno d'accordo". <em>Immagine</em>: è massimo se puntano nello stesso verso, è zero se sono perpendicolari, è negativo se puntano in versi opposti.</p>
+          <p><strong>3) Curve di livello</strong> (<a href="01-funzioni-piu-variabili.html">Capitolo 1</a>). Sono i punti dove la funzione vale sempre lo stesso numero. <em>Immagine</em>: le linee di quota di una mappa escursionistica. Se cammini lungo una di esse non sali e non scendi di un centimetro.</p>
+          <p><strong>4) Derivata = pendenza</strong> (<a href="../parte1-analisi1/07-derivate.html">Analisi 1, Capitolo 7</a>). In una variabile la derivata era la pendenza della retta tangente. <em>Immagine</em>: il numero sul cartello stradale "pendenza 10%", ma calcolato esattamente nel punto in cui sei.</p>
+          <p>Se questi quattro pezzi sono a posto, il gradiente è semplicemente il modo di <strong>metterli insieme</strong>. Andiamo.</p>
+        </div>
+
+        <p>Immagina questa scena. Sei in <strong>montagna</strong>, sei avvolto da una <strong>nebbia fittissima</strong> e non vedi nulla oltre la punta dei tuoi scarponi. Vuoi raggiungere la cima, e vuoi farlo nel modo più efficiente possibile: a ogni passo vuoi salire il più possibile. Non hai una mappa, non hai un panorama. Hai solo una cosa: <strong>i piedi</strong>, che sentono la pendenza del terreno intorno a te.</p>
+        <p>Cosa fai? Con la punta del piede tasti il terreno un po' a Est, un po' a Nord, un po' in diagonale, e cerchi la direzione in cui il suolo sale più ripidamente. Poi fai un passo in quella direzione. Poi ripeti.</p>
+        <p><strong>Quella direzione ha un nome: si chiama gradiente.</strong> E l'Analisi Matematica ti regala una scorciatoia formidabile: <em>non devi tastare tutte le direzioni</em>. Ti bastano <strong>due</strong> misure — la pendenza verso Est e la pendenza verso Nord, cioè le due derivate parziali — e da quelle due sole informazioni ricavi la pendenza in <em>tutte</em> le infinite direzioni possibili.</p>
+        <p>Il <span class="glossario-term" data-term="gradiente">gradiente</span> è il vettore che mette quelle due misure una accanto all'altra:</p>
+        <div class="formula-block">$$\nabla f=\left(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y}\right)$$</div>
+        <p>e ha due proprietà quasi magiche, che sono il cuore di questo capitolo:</p>
+        <ul>
+          <li>la sua <strong>direzione</strong> è quella di <strong>massima crescita</strong>: è la bussola che indica "di qua si sale più in fretta";</li>
+          <li>la sua <strong>lunghezza</strong> è la <strong>pendenza massima</strong>: è il numero che dice "e si sale così tanto".</li>
+        </ul>
+        <p>Il rovescio della medaglia è altrettanto intuitivo: se il gradiente indica dove <em>salire</em>, allora $-\nabla f$ indica dove <em>scendere</em> più rapidamente. È la direzione che prende l'acqua piovana quando cade sul pendio: l'acqua non consulta mappe, segue semplicemente $-\nabla f$. Ed è, come vedremo, la stessa direzione che segue un algoritmo di intelligenza artificiale quando "impara".</p>
+        <p>C'è infine una terza direzione speciale: quella <strong>perpendicolare</strong> al gradiente. Lì la funzione non cambia affatto: è il sentiero pianeggiante, la curva di livello. Da qui il fatto, sorprendente ma naturale, che <strong>il gradiente è sempre ortogonale alle curve di livello</strong> — lo dimostreremo.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché le <span class="glossario-term" data-term="derivata-parziale">derivate parziali</span>, da sole, sono <strong>miopi</strong>. Ti dicono cosa succede se ti muovi <em>esattamente</em> lungo l'asse $x$ o <em>esattamente</em> lungo l'asse $y$. Ma nella realtà nessuno cammina solo verso Est o solo verso Nord: si va in diagonale, si gira, si segue un sentiero. Serviva uno strumento capace di rispondere alla domanda "<strong>quanto cambia $f$ se mi muovo in <em>questa</em> direzione?</strong>", per qualunque direzione. Quello strumento è il gradiente, e la risposta è di una semplicità disarmante: un prodotto scalare.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema dell'<strong>orientamento</strong>. In una variabile c'erano solo due direzioni possibili (destra e sinistra) e il segno della derivata bastava a raccontare tutto. In due o tre variabili le direzioni sono <em>infinite</em>: un intero cerchio (o un'intera sfera) di scelte. Calcolare un limite del rapporto incrementale per ciascuna di esse sarebbe impossibile. Il gradiente comprime questa infinità di informazioni in <strong>un solo vettore</strong>, dal quale tutte le pendenze si ricavano con una moltiplicazione.</p>
+        <p><strong>Perché è importante ora?</strong> Perché il gradiente è la chiave che apre quasi tutto il resto dell'Analisi 2:</p>
+        <ul>
+          <li>i <strong>massimi e minimi liberi</strong> (<a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>) si cercano dove $\nabla f=\mathbf{0}$: è l'analogo esatto di $f'(x)=0$;</li>
+          <li>i <strong>moltiplicatori di Lagrange</strong> (<a href="06-moltiplicatori-lagrange.html">Capitolo 6</a>) sono tutta una storia di gradienti paralleli tra loro;</li>
+          <li>il <strong><span class="glossario-term" data-term="piano-tangente">piano tangente</span></strong> e il <span class="glossario-term" data-term="versore-normale">versore normale</span> a una superficie si scrivono con il gradiente;</li>
+          <li>i <strong><span class="glossario-term" data-term="campo-conservativo">campi conservativi</span></strong> (<a href="10-integrali-curvilinei.html">Capitolo 10</a>) sono esattamente i campi che "vengono da un gradiente";</li>
+          <li>fuori dalla matematica, la <strong>discesa del gradiente</strong> è l'algoritmo che allena praticamente ogni modello di machine learning esistente.</li>
+        </ul>
+        <p>In altre parole: se il Capitolo 3 ti ha dato i mattoni (le derivate parziali), questo capitolo ti insegna a costruirci sopra. Da qui in avanti, ogni volta che vedrai il simbolo $\nabla$ dovrai pensare immediatamente a <em>una freccia che punta in salita</em>.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🤖</span> La discesa del gradiente: come "impara" un'intelligenza artificiale</div>
+          <p>Un modello di machine learning (una rete neurale, un sistema di raccomandazione, un traduttore automatico) è governato da milioni di numeri chiamati <strong>parametri</strong>. Per ogni scelta di parametri il modello commette un certo <strong>errore</strong> sui dati di addestramento. L'errore è dunque una funzione $E$ di tutti quei parametri: una funzione di milioni di variabili. <strong>Allenare il modello significa una cosa sola: trovare il punto di minimo di $E$.</strong></p>
+          <p>Come si fa, senza poter "vedere" un paesaggio in milioni di dimensioni? Esattamente come l'escursionista nella nebbia, ma al contrario: invece di salire, si <strong>scende</strong>. Immagina una <strong>pallina posata su una superficie a conca</strong>: la pallina non ha bisogno di sapere dove sia il fondo, rotola semplicemente nella direzione in cui il terreno scende di più — cioè lungo $-\nabla E$. Un passo dopo l'altro, finisce sul fondo.</p>
+          <p>L'algoritmo, chiamato <strong>discesa del gradiente</strong> (<em>gradient descent</em>), è letteralmente questa formula ripetuta milioni di volte:</p>
+          <div class="formula-block">$$P_{k+1}=P_k-\eta\,\nabla E(P_k)$$</div>
+          <p>dove $\eta&gt;0$ è il <strong>learning rate</strong>, cioè la "lunghezza del passo". Passo troppo corto: si impiega un'eternità. Passo troppo lungo: si scavalca il fondo e si rimbalza da una parete all'altra. Ogni volta che usi un traduttore automatico o un assistente virtuale, stai usando un modello che è stato addestrato risolvendo, milioni di volte, il calcolo che imparerai in questo capitolo.</p>
+        </div>
+
+        <p><strong>Il calore va dal caldo al freddo — e lo fa lungo $-\nabla T$.</strong> Se $T(x,y,z)$ è la temperatura in ogni punto di una stanza, il calore non si sposta a caso: fluisce nella direzione in cui la temperatura <em>cala</em> più rapidamente. La legge di Fourier lo scrive proprio così: il flusso di calore vale $\mathbf{q}=-k\,\nabla T$, con $k&gt;0$. Il segno meno è tutta la fisica: il calore scende la "collina della temperatura". Se appoggi la mano su un termosifone, il calore entra nella tua pelle seguendo l'anti-gradiente. La stessa identica struttura governa la diffusione di un profumo nell'aria (legge di Fick) e la corrente elettrica in un conduttore.</p>
+
+        <p><strong>Il vento nasce da una mappa di pressione.</strong> Guarda una carta meteo: quelle curve chiuse etichettate 1012 hPa, 1008 hPa, 1004 hPa sono <span class="glossario-term" data-term="insieme-di-livello">curve di livello</span> della pressione atmosferica, e si chiamano <em>isobare</em>. L'aria si muove dalle zone di alta pressione a quelle di bassa pressione, cioè lungo $-\nabla p$: perpendicolarmente alle isobare. Ed ecco perché i meteorologi guardano <em>quanto sono fitte</em> le isobare: isobare ravvicinate significano gradiente grande, cioè vento forte. Isobare larghe: bidonville di calma piatta. (La rotazione terrestre poi devia il vento, ma il motore iniziale è il gradiente di pressione.)</p>
+
+        <p><strong>Il rover che sceglie dove non ribaltarsi.</strong> Un rover marziano — o un robot aspirapolvere, o un'auto a guida autonoma — costruisce una mappa digitale dell'altitudine del terreno, $h(x,y)$. Prima di muoversi, il software calcola $\nabla h$ nella posizione corrente: la lunghezza $\lVert\nabla h\rVert$ dice quanto è ripido il punto peggiore, e la direzione dice da che parte. Se la pendenza massima supera la soglia di sicurezza, il rover <strong>non va dritto</strong>: sceglie una direzione quasi perpendicolare al gradiente — un percorso "a mezza costa", quello che in montagna si chiama <em>traverso</em> — perché lì la quota cambia poco e il rischio di ribaltamento crolla. Lo stesso ragionamento fa un ciclista che affronta una salita a zig-zag invece che dritto per dritto: sta deliberatamente scegliendo direzioni lontane dal gradiente per ridurre la pendenza percepita.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizione">4.1 Il vettore gradiente e il simbolo ∇</h3>
+        <p>Partiamo dalla definizione, che è sorprendentemente povera: il gradiente non è altro che <strong>l'elenco ordinato delle derivate parziali</strong>, scritto come vettore.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Gradiente.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ una <span class="glossario-term" data-term="funzione-piu-variabili">funzione di più variabili</span> che ammette entrambe le derivate parziali nel punto $P_0=(x_0,y_0)$ interno ad $A$. Si chiama <strong>gradiente</strong> di $f$ in $P_0$ il vettore</p>
+          <div class="formula-block">$$\nabla f(P_0)=\Big(f_x(P_0),\ f_y(P_0)\Big)=\left(\frac{\partial f}{\partial x}(P_0),\ \frac{\partial f}{\partial y}(P_0)\right)$$</div>
+          <p>In tre variabili, del tutto analogamente, $\nabla f=(f_x,f_y,f_z)$; in $n$ variabili $\nabla f=(f_{x_1},\dots,f_{x_n})$.</p>
+        </div>
+        <p>Il simbolo $\nabla$ si chiama <strong>nabla</strong> (dal greco <em>nábla</em>, il nome di un'antica arpa a forma di triangolo rovesciato) ed è dovuto a Hamilton; si legge anche "del". Notazioni alternative che incontrerai: $\operatorname{grad} f$, oppure $Df(P_0)$ quando lo si guarda come <span class="glossario-term" data-term="matrice-jacobiana">matrice jacobiana</span> $1\times n$ (una sola riga).</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧭</span> Attenzione al salto concettuale</div>
+          <p>$f$ prende un <strong>punto</strong> e restituisce un <strong>numero</strong>. $\nabla f$ prende un <strong>punto</strong> e restituisce un <strong>vettore</strong>. Quindi $\nabla f$ non è una funzione "normale": è un <span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span>, cioè una freccia appiccicata a ogni punto del piano. Immagina il pendio di una collina con, piantata in ogni punto, una freccia che indica la salita: quella foresta di frecce <em>è</em> il campo gradiente.</p>
+        </div>
+        <p><strong>Esempio immediato.</strong> Per $f(x,y)=x^2+3xy$ si ha $f_x=2x+3y$ (congelo $y$: $x^2$ dà $2x$, e in $3xy$ il fattore $3y$ è costante) e $f_y=3x$ (congelo $x$: $x^2$ dà $0$, e in $3xy$ il fattore $3x$ è costante), quindi $\nabla f(x,y)=(2x+3y,\ 3x)$. Per avere il gradiente in un punto sostituisco le coordinate in <em>ciascuna</em> componente: in $(1,2)$ la prima dà $2\cdot1+3\cdot2=2+6=8$ e la seconda $3\cdot1=3$, cioè $\nabla f(1,2)=(8,3)$. Nient'altro: derivi due volte e impacchetti.</p>
+        <p>Due proprietà si ereditano subito dalla linearità delle derivate parziali, e tornano utilissime nei conti:</p>
+        <div class="formula-block">$$\nabla(af+bg)=a\,\nabla f+b\,\nabla g,\qquad \nabla(fg)=g\,\nabla f+f\,\nabla g$$</div>
+
+        <h3 id="teoria-direzionale">4.2 La derivata direzionale</h3>
+        <p>Ora la domanda vera: se dal punto $P_0$ mi muovo lungo una direzione qualsiasi, quanto cambia $f$? Formalizziamo "direzione" con un <strong>versore</strong>, cioè un vettore di lunghezza $1$: $\mathbf{u}=(u_1,u_2)$ con $u_1^2+u_2^2=1$. Muoversi di un tratto $t$ nella direzione $\mathbf{u}$ significa arrivare nel punto $P_0+t\,\mathbf{u}$.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="derivata-direzionale">Derivata direzionale</span>.</em> Sia $\mathbf{u}$ un versore. Si chiama derivata direzionale di $f$ in $P_0$ lungo $\mathbf{u}$ il limite (se esiste finito)</p>
+          <div class="formula-block">$$D_{\mathbf{u}}f(P_0)=\lim_{t\to 0}\frac{f(P_0+t\,\mathbf{u})-f(P_0)}{t}$$</div>
+          <p>Altre notazioni comuni: $\dfrac{\partial f}{\partial \mathbf{u}}(P_0)$ oppure $f'_{\mathbf u}(P_0)$.</p>
+        </div>
+        <p>È <em>esattamente</em> il rapporto incrementale di Analisi 1, con una sola differenza: invece di spostarci lungo la retta reale, ci spostiamo lungo la retta del piano che passa per $P_0$ con direzione $\mathbf{u}$. Infatti la funzione di una variabile $g(t)=f(P_0+t\,\mathbf u)$ descrive il <strong>profilo altimetrico</strong> del terreno lungo quel sentiero rettilineo, e $D_{\mathbf u}f(P_0)=g'(0)$: la pendenza del profilo nel punto di partenza.</p>
+        <p>Le derivate parziali sono casi particolarissimi di derivata direzionale: basta scegliere i versori degli assi.</p>
+        <div class="formula-block">$$D_{(1,0)}f=\frac{\partial f}{\partial x},\qquad D_{(0,1)}f=\frac{\partial f}{\partial y}$$</div>
+        <p>Calcolare quel limite per ogni $\mathbf u$ sarebbe un lavoro infinito. Il teorema seguente — il più importante del capitolo — lo rende inutile.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Formula del gradiente.</em> Se $f$ è <span class="glossario-term" data-term="differenziabilita">differenziabile</span> in $P_0$, allora $D_{\mathbf u}f(P_0)$ esiste per <strong>ogni</strong> versore $\mathbf u$ e vale</p>
+          <div class="formula-block">$$\boxed{\,D_{\mathbf u}f(P_0)=\nabla f(P_0)\cdot\mathbf u=f_x(P_0)\,u_1+f_y(P_0)\,u_2\,}$$</div>
+        </div>
+        <p>Un limite sostituito da una moltiplicazione: è un affare eccezionale. La dimostrazione è nella <a href="#dimostrazioni">sezione 5</a>. Tieni però bene a mente l'ipotesi: serve la <strong>differenziabilità</strong>, non basta l'esistenza delle derivate parziali (vedi gli <a href="#errori-comuni">errori comuni</a>).</p>
+
+        <h3 id="teoria-massima">4.3 Massima crescita, massima discesa, variazione nulla</h3>
+        <p>Applichiamo alla formula appena vista l'<strong>interpretazione geometrica del prodotto scalare</strong> (<a href="../parte0-prerequisiti/07-geometria-analitica.html">Prerequisiti, cap. 7</a>): per due vettori qualsiasi vale $\mathbf a\cdot\mathbf b=\lVert\mathbf a\rVert\,\lVert\mathbf b\rVert\cos\theta$, dove $\theta$ è l'angolo fra i due. Qui sostituisco $\mathbf a=\nabla f(P_0)$ e $\mathbf b=\mathbf u$; siccome $\mathbf u$ è un versore, $\lVert\mathbf u\rVert=1$ e quel fattore sparisce:</p>
+        <div class="formula-block">$$D_{\mathbf u}f(P_0)=\lVert\nabla f(P_0)\rVert\,\lVert\mathbf u\rVert\cos\theta=\lVert\nabla f(P_0)\rVert\,\cos\theta$$</div>
+        <p>Tutto il capitolo è racchiuso in questa riga. Fissato il punto, la quantità $\lVert\nabla f(P_0)\rVert$ è un numero <em>costante</em>: l'unica cosa che cambia, al variare della direzione, è $\cos\theta$, che oscilla tra $-1$ e $1$. Quindi:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Angolo $\theta$ fra $\mathbf u$ e $\nabla f$</th><th>$\cos\theta$</th><th>Derivata direzionale</th><th>Interpretazione</th></tr></thead>
+          <tbody>
+            <tr><td>$\theta=0$ ($\mathbf u$ concorde a $\nabla f$)</td><td>$1$</td><td>$+\lVert\nabla f\rVert$ (massima)</td><td>direzione di <strong>massima crescita</strong></td></tr>
+            <tr><td>$\theta=\pi$ ($\mathbf u$ opposto a $\nabla f$)</td><td>$-1$</td><td>$-\lVert\nabla f\rVert$ (minima)</td><td>direzione di <strong>massima discesa</strong></td></tr>
+            <tr><td>$\theta=\pi/2$ ($\mathbf u\perp\nabla f$)</td><td>$0$</td><td>$0$</td><td><strong>variazione nulla</strong>: si resta in quota</td></tr>
+            <tr><td>$0\le\theta&lt;\pi/2$</td><td>positivo</td><td>positiva</td><td>si sale, ma meno del massimo</td></tr>
+            <tr><td>$\pi/2&lt;\theta\le\pi$</td><td>negativo</td><td>negativa</td><td>si scende</td></tr>
+          </tbody>
+        </table>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Proprietà fondamentali del gradiente.</em> Sia $f$ differenziabile in $P_0$ con $\nabla f(P_0)\neq\mathbf 0$. Allora:</p>
+          <ul>
+            <li>la <strong>direzione di massima crescita</strong> è $\mathbf u_{\max}=\dfrac{\nabla f(P_0)}{\lVert\nabla f(P_0)\rVert}$, e il valore massimo della derivata direzionale è $\lVert\nabla f(P_0)\rVert$;</li>
+            <li>la <strong>direzione di massima decrescita</strong> è $-\mathbf u_{\max}$, con valore $-\lVert\nabla f(P_0)\rVert$;</li>
+            <li>le <strong>direzioni di variazione nulla</strong> sono le due perpendicolari a $\nabla f(P_0)$: se $\nabla f(P_0)=(a,b)$, sono $\pm\dfrac{(-b,a)}{\sqrt{a^2+b^2}}$.</li>
+          </ul>
+        </div>
+        <p>Traduzione escursionistica: <strong>il gradiente è la bussola della salita, il suo modulo è il cartello della pendenza</strong>. E se $\nabla f(P_0)=\mathbf 0$? Allora $D_{\mathbf u}f(P_0)=0$ in <em>ogni</em> direzione: il terreno è pianeggiante a livello di pendenze. Sei in un punto <strong>stazionario</strong> (o critico): una cima, una conca o una sella. Distinguerli è il compito del <a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>.</p>
+
+        <h3 id="teoria-ortogonalita">4.4 Ortogonalità alle curve e superfici di livello</h3>
+        <p>Abbiamo appena scoperto che nelle direzioni perpendicolari al gradiente la funzione <em>non varia</em>. Ma "non variare" è la definizione stessa di curva di livello. Il sospetto si trasforma in teorema.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Ortogonalità del gradiente.</em> Sia $f$ differenziabile e sia $P_0$ un punto della curva di livello $\{f(x,y)=k\}$ con $\nabla f(P_0)\neq\mathbf 0$. Allora $\nabla f(P_0)$ è <strong>ortogonale</strong> alla curva di livello in $P_0$, cioè è perpendicolare al vettore tangente alla curva in quel punto. Lo stesso vale in $\mathbb{R}^3$ per le <strong>superfici di livello</strong> $\{F(x,y,z)=k\}$.</p>
+        </div>
+        <p>La dimostrazione è nella <a href="#dimostrazioni">sezione 5</a> ed è una delle più eleganti del corso. L'immagine da fissare è questa: sulla mappa escursionistica, le frecce del gradiente <strong>tagliano le linee di quota ad angolo retto</strong>, sempre, ovunque. E sono più lunghe dove le linee di quota sono più fitte (pendio ripido), più corte dove sono rade (pianoro).</p>
+
+        <svg viewBox="0 0 470 300" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Curve di livello concentriche con frecce del gradiente perpendicolari e dirette verso la cima">
+          <defs>
+            <marker id="freccia-grad" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+              <path d="M0,0 L7,3.2 L0,6.4 z" fill="var(--color-primary)"/>
+            </marker>
+            <marker id="freccia-tan" markerWidth="9" markerHeight="9" refX="7" refY="3.2" orient="auto">
+              <path d="M0,0 L7,3.2 L0,6.4 z" fill="var(--color-secondary)"/>
+            </marker>
+          </defs>
+          <ellipse cx="230" cy="150" rx="38" ry="25" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <ellipse cx="230" cy="150" rx="78" ry="51" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <ellipse cx="230" cy="150" rx="118" ry="77" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <ellipse cx="230" cy="150" rx="158" ry="103" fill="none" stroke="var(--color-border)" stroke-width="2"/>
+          <circle cx="230" cy="150" r="4.5" fill="var(--color-danger)"/>
+          <text x="238" y="147" font-size="12" font-weight="700" fill="var(--color-danger)">cima</text>
+          <!-- gradienti perpendicolari alle curve, verso il centro -->
+          <line x1="348" y1="150" x2="312" y2="150" stroke="var(--color-primary)" stroke-width="2.6" marker-end="url(#freccia-grad)"/>
+          <line x1="230" y1="73" x2="230" y2="107" stroke="var(--color-primary)" stroke-width="2.6" marker-end="url(#freccia-grad)"/>
+          <line x1="230" y1="227" x2="230" y2="193" stroke="var(--color-primary)" stroke-width="2.6" marker-end="url(#freccia-grad)"/>
+          <line x1="112" y1="150" x2="148" y2="150" stroke="var(--color-primary)" stroke-width="2.6" marker-end="url(#freccia-grad)"/>
+          <!-- direzione tangente = variazione nulla -->
+          <line x1="348" y1="150" x2="348" y2="106" stroke="var(--color-secondary)" stroke-width="2.4" stroke-dasharray="5 4" marker-end="url(#freccia-tan)"/>
+          <text x="292" y="142" font-size="12" font-weight="700" fill="var(--color-primary)">∇f</text>
+          <text x="356" y="112" font-size="11.5" fill="var(--color-secondary)">variazione nulla</text>
+          <text x="26" y="272" font-size="12" fill="var(--color-text-muted)">le frecce tagliano le linee di quota ad angolo retto</text>
+        </svg>
+
+        <h3 id="teoria-tangente">4.5 Piano tangente e retta normale</h3>
+        <p>Con il gradiente in mano, due oggetti geometrici diventano immediati. Attenzione a non confonderli: sono <em>due situazioni diverse</em>.</p>
+        <p><strong>(a) Piano tangente al grafico di $z=f(x,y)$.</strong> È l'analogo esatto della retta tangente $y=f(x_0)+f'(x_0)(x-x_0)$: si sostituisce il numero $f'(x_0)$ con il vettore $\nabla f(P_0)$ e il prodotto con il prodotto scalare.</p>
+        <div class="formula-block">$$z=f(x_0,y_0)+\nabla f(x_0,y_0)\cdot(x-x_0,\ y-y_0)=f(P_0)+f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)$$</div>
+        <p><strong>(b) Piano tangente a una superficie di livello $F(x,y,z)=k$.</strong> Qui la superficie è definita implicitamente e il gradiente fa il ruolo di <em>direzione perpendicolare</em>. Il piano tangente in $P_0=(x_0,y_0,z_0)$ è l'insieme dei punti $P$ tali che il vettore $P-P_0$ sia ortogonale al gradiente:</p>
+        <div class="formula-block">$$\nabla F(P_0)\cdot(x-x_0,\ y-y_0,\ z-z_0)=0$$</div>
+        <p>cioè, per esteso, $F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0$. La <strong>retta normale</strong> è invece la retta che <em>segue</em> il gradiente:</p>
+        <div class="formula-block">$$\begin{cases}x=x_0+t\,F_x(P_0)\\ y=y_0+t\,F_y(P_0)\\ z=z_0+t\,F_z(P_0)\end{cases}\qquad t\in\mathbb{R}$$</div>
+        <p>e il <span class="glossario-term" data-term="versore-normale">versore normale</span> alla superficie è $\mathbf n=\dfrac{\nabla F(P_0)}{\lVert\nabla F(P_0)\rVert}$.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> I due casi sono lo stesso caso</div>
+          <p>Il grafico $z=f(x,y)$ <em>è</em> una superficie di livello! Basta porre $F(x,y,z)=f(x,y)-z$ e guardare l'insieme $F=0$ (infatti $f(x,y)-z=0$ equivale a $z=f(x,y)$). Calcolo il gradiente di questa $F$ nelle <em>tre</em> variabili: in $x$ e in $y$ il termine $-z$ è costante, quindi restano $f_x$ e $f_y$; in $z$ il termine $f(x,y)$ è costante e $-z$ dà $-1$. Dunque $\nabla F=(f_x,\,f_y,\,-1)$, e sostituendo queste tre componenti nella formula (b) si ottiene $f_x(x-x_0)+f_y(y-y_0)-(z-z_0)=0$; portando $z-z_0$ a destra e $z_0=f(x_0,y_0)$ a sinistra si ritrova esattamente la formula (a). <strong>Una sola idea, due vestiti diversi</strong>: e ti regala anche il vettore normale al grafico, che è $(f_x,f_y,-1)$.</p>
+        </div>
+
+        <h3 id="teoria-catena">4.6 La regola della catena in più variabili</h3>
+        <p>In Analisi 1 la regola della catena diceva: deriva l'esterna, moltiplica per la derivata dell'interna. In più variabili il principio è identico, ma i "canali" attraverso cui passa la dipendenza sono più di uno, e i contributi <strong>si sommano</strong>.</p>
+
+        <p><strong>Caso 1: una sola variabile indipendente.</strong> Immagina di camminare lungo un sentiero $\gamma(t)=(x(t),y(t))$ tracciato sul pendio. La quota che leggi sull'altimetro è $g(t)=f(x(t),y(t))$: una funzione di <em>una</em> sola variabile, il tempo. Quanto sale l'altimetro al secondo?</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Regola della catena (curva).</em> Se $x(t),y(t)$ sono derivabili e $f$ è differenziabile, allora $g(t)=f(x(t),y(t))$ è derivabile e</p>
+          <div class="formula-block">$$g'(t)=\frac{\partial f}{\partial x}\,\frac{dx}{dt}+\frac{\partial f}{\partial y}\,\frac{dy}{dt}=\nabla f(\gamma(t))\cdot\gamma'(t)$$</div>
+        </div>
+        <p>La scrittura compatta $\nabla f\cdot\gamma'$ è illuminante: <strong>la variazione di quota è il prodotto scalare fra il gradiente e la velocità con cui ci muoviamo</strong>. Se cammini perpendicolarmente al gradiente, il prodotto scalare è zero e la quota non cambia (stai seguendo una curva di livello). Se cammini "verso il gradiente", sali. Il modello mentale è sempre lo stesso.</p>
+
+        <p><strong>Caso 2: due variabili indipendenti.</strong> Ora le variabili intermedie dipendono a loro volta da due parametri: $x=x(u,v)$, $y=y(u,v)$. È la situazione tipica dei <em>cambi di coordinate</em> (per esempio le polari, che rivedrai negli <a href="09-integrali-tripli-cambi-variabile.html">integrali</a>). La <span class="glossario-term" data-term="funzione-composta">funzione composta</span> è $h(u,v)=f\big(x(u,v),\,y(u,v)\big)$, e si deriva così:</p>
+        <div class="formula-block">$$\frac{\partial h}{\partial u}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial u},\qquad
+        \frac{\partial h}{\partial v}=\frac{\partial f}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial f}{\partial y}\frac{\partial y}{\partial v}$$</div>
+        <p>In forma matriciale è semplicemente il prodotto del gradiente per la <span class="glossario-term" data-term="matrice-jacobiana">matrice jacobiana</span> del cambio di variabili:</p>
+        <div class="formula-block">$$\big(h_u,\ h_v\big)=\big(f_x,\ f_y\big)\begin{pmatrix}x_u &amp; x_v\\ y_u &amp; y_v\end{pmatrix}$$</div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🌳</span> Lo schema ad albero: la regola pratica infallibile</div>
+          <p>Disegna un albero: in alto $f$, sotto le variabili intermedie, sotto ancora quelle indipendenti. Poi applica due regole, e non sbaglierai mai:</p>
+          <p><strong>1) Lungo un ramo si MOLTIPLICA.</strong> &nbsp; <strong>2) Fra rami diversi che arrivano alla stessa variabile si SOMMA.</strong></p>
+          <p>Per $f(x(t),y(t))$ ci sono due percorsi da $f$ a $t$: uno passa per $x$ (contributo $f_x\cdot x'$), l'altro per $y$ (contributo $f_y\cdot y'$). Si sommano: $f_x x'+f_y y'$. Fine.</p>
+        </div>
+
+        <svg viewBox="0 0 420 220" style="max-width:430px;margin:1.2em auto;display:block;" role="img" aria-label="Schema ad albero della regola della catena: f in alto, x e y al centro, t in basso">
+          <rect x="180" y="12" width="52" height="34" rx="9" fill="var(--color-primary-light)" stroke="var(--color-primary)" stroke-width="1.6"/>
+          <text x="206" y="35" font-size="17" font-weight="700" text-anchor="middle" fill="var(--color-primary-dark)">f</text>
+          <rect x="76" y="93" width="52" height="34" rx="9" fill="var(--color-bg-alt)" stroke="var(--color-border)" stroke-width="1.6"/>
+          <text x="102" y="116" font-size="16" font-weight="700" text-anchor="middle" fill="currentColor">x</text>
+          <rect x="284" y="93" width="52" height="34" rx="9" fill="var(--color-bg-alt)" stroke="var(--color-border)" stroke-width="1.6"/>
+          <text x="310" y="116" font-size="16" font-weight="700" text-anchor="middle" fill="currentColor">y</text>
+          <rect x="180" y="172" width="52" height="34" rx="9" fill="var(--color-accent-light)" stroke="var(--color-accent)" stroke-width="1.6"/>
+          <text x="206" y="195" font-size="16" font-weight="700" text-anchor="middle" fill="var(--color-accent)">t</text>
+          <line x1="188" y1="46" x2="118" y2="93" stroke="var(--color-text-muted)" stroke-width="1.8"/>
+          <line x1="224" y1="46" x2="294" y2="93" stroke="var(--color-text-muted)" stroke-width="1.8"/>
+          <line x1="112" y1="127" x2="186" y2="172" stroke="var(--color-text-muted)" stroke-width="1.8"/>
+          <line x1="300" y1="127" x2="226" y2="172" stroke="var(--color-text-muted)" stroke-width="1.8"/>
+          <text x="120" y="68" font-size="12.5" fill="var(--color-primary-dark)">∂f/∂x</text>
+          <text x="252" y="68" font-size="12.5" fill="var(--color-primary-dark)">∂f/∂y</text>
+          <text x="112" y="162" font-size="12.5" fill="var(--color-accent)">dx/dt</text>
+          <text x="252" y="162" font-size="12.5" fill="var(--color-accent)">dy/dt</text>
+        </svg>
+
+        <h3 id="teoria-dini">4.7 Cenno al teorema delle funzioni implicite (Dini)</h3>
+        <p>A volte una curva non è data come $y=\varphi(x)$, ma come equazione "mescolata": $x^2+y^2=1$, oppure $x^3+y^3-3xy=0$. Domanda: possiamo comunque parlare della pendenza della curva? E come la calcoliamo, se ricavare $y$ è difficile o impossibile?</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Funzioni implicite (Dini), forma essenziale.</em> Sia $F$ di classe $C^1$ in un intorno di $(x_0,y_0)$ con</p>
+          <div class="formula-block">$$F(x_0,y_0)=0\qquad\text{e}\qquad F_y(x_0,y_0)\neq 0$$</div>
+          <p>Allora vicino a $(x_0,y_0)$ l'equazione $F(x,y)=0$ definisce implicitamente <strong>una e una sola</strong> funzione derivabile $y=\varphi(x)$ con $\varphi(x_0)=y_0$, e la sua derivata vale</p>
+          <div class="formula-block">$$\varphi'(x)=-\frac{F_x(x,y)}{F_y(x,y)}$$</div>
+        </div>
+        <p><strong>Da dove salta fuori quella formula?</strong> Dalla regola della catena, in due righe. Se $F(x,\varphi(x))=0$ per ogni $x$ vicino a $x_0$, derivo rispetto a $x$ trattando il primo membro come una composta $F(x(t),y(t))$ con $x(t)=t$ e $y(t)=\varphi(t)$:</p>
+        <div class="formula-block">$$F_x\cdot 1+F_y\cdot\varphi'(x)=0\ \Longrightarrow\ \varphi'(x)=-\frac{F_x}{F_y}\quad(F_y\neq 0)$$</div>
+        <p>La condizione $F_y\neq 0$ dice esattamente che <strong>il gradiente non è orizzontale</strong>, cioè che la curva di livello non ha tangente verticale lì: se l'avesse, non potresti scrivere $y$ in funzione di $x$ (il grafico "tornerebbe indietro"). Esempio classico: sulla circonferenza $x^2+y^2=1$ si ha $F_y=2y$, che si annulla in $(\pm1,0)$ — proprio i due punti dove la circonferenza ha tangente verticale e non è un grafico. In tre variabili il teorema è analogo: da $F(x,y,z)=0$ con $F_z\neq0$ si ricava $z=\varphi(x,y)$ e $\ \varphi_x=-F_x/F_z$, $\ \varphi_y=-F_y/F_z$.</p>
+
+        <h3 id="teoria-campi">4.8 Campi gradiente: un ponte verso i campi conservativi</h3>
+        <p>Abbiamo detto che $\nabla f$ associa un vettore a ogni punto: è un <span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span>. I campi vettoriali che si ottengono in questo modo — cioè i campi $\mathbf F$ per cui esiste una funzione scalare $U$ con $\mathbf F=\nabla U$ — sono speciali e si chiamano <strong>campi gradiente</strong> o, nel linguaggio della fisica, <strong><span class="glossario-term" data-term="campo-conservativo">campi conservativi</span></strong>; $U$ si chiama <em>potenziale</em>.</p>
+        <p>Perché "conservativi"? Perché per essi il lavoro lungo un cammino <strong>non dipende dal percorso</strong>, ma solo dagli estremi. L'intuizione è già tutta nel nostro pendio: la differenza di quota fra il rifugio in valle e la vetta è la stessa qualunque sentiero tu scelga. La formula è la regola della catena integrata:</p>
+        <div class="formula-block">$$\int_{\gamma}\nabla U\cdot d\mathbf s=U(\text{arrivo})-U(\text{partenza})$$</div>
+        <p>È il <em>teorema fondamentale del calcolo</em> trasportato nel piano, e lo incontrerai per esteso nel <a href="10-integrali-curvilinei.html">Capitolo 10</a>. Per ora tieniti un solo criterio pratico, che segue dal teorema di Schwarz sull'uguaglianza delle derivate miste: se $\mathbf F=(F_1,F_2)$ è un campo gradiente di classe $C^1$, allora necessariamente</p>
+        <div class="formula-block">$$\frac{\partial F_1}{\partial y}=\frac{\partial F_2}{\partial x}$$</div>
+        <p>perché entrambe valgono $U_{xy}=U_{yx}$. È una condizione <em>necessaria</em>: se non è soddisfatta, il campo di sicuro non è un gradiente. Esempio: $\mathbf F=(y,\,2x)$ non può essere un gradiente, perché $\partial_y(y)=1$ mentre $\partial_x(2x)=2$. Gravità ed elettrostatica sono conservative; l'attrito no, e infatti "consuma" energia lungo il percorso.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <h3>5.1 La formula della derivata direzionale</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea, prima dei conti</div>
+          <p>Essere differenziabili significa una cosa sola: <strong>vicino a $P_0$ la funzione si comporta come un piano</strong>. E su un piano la pendenza in una direzione qualsiasi si ottiene mescolando linearmente le due pendenze lungo gli assi, con pesi $u_1$ e $u_2$. Se avanzo di un passo con componenti $u_1$ verso Est e $u_2$ verso Nord, salgo $u_1$ volte la pendenza Est più $u_2$ volte la pendenza Nord. Ecco il prodotto scalare. Tutto il resto è scrivere questa frase in simboli e controllare che l'errore sia trascurabile.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Formula del gradiente.</em> Se $f$ è differenziabile in $P_0$, allora per ogni versore $\mathbf u=(u_1,u_2)$ esiste $D_{\mathbf u}f(P_0)$ e vale $D_{\mathbf u}f(P_0)=\nabla f(P_0)\cdot\mathbf u$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Per definizione, $f$ differenziabile in $P_0$ significa che l'incremento si scrive come una parte lineare più un errore che tende a zero <em>più in fretta</em> dello spostamento. Posto $\mathbf h=(h_1,h_2)$:</p>
+          <div class="formula-block">$$f(P_0+\mathbf h)-f(P_0)=\nabla f(P_0)\cdot\mathbf h+o(\lVert\mathbf h\rVert)\qquad\text{per }\mathbf h\to\mathbf 0$$</div>
+          <p>Scegliamo ora lo spostamento particolare $\mathbf h=t\,\mathbf u$, cioè muoviamoci lungo la direzione $\mathbf u$ di un tratto $t$. Poiché $\mathbf u$ è un versore, $\lVert t\,\mathbf u\rVert=|t|$. Sostituendo:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$f(P_0+t\mathbf u)-f(P_0)=\nabla f(P_0)\cdot(t\,\mathbf u)+o(|t|)$.</span>
+            <span class="esempio__passo">Per la linearità del prodotto scalare, $\nabla f(P_0)\cdot(t\,\mathbf u)=t\,\big(\nabla f(P_0)\cdot\mathbf u\big)$.</span>
+            <span class="esempio__passo">Divido tutto per $t\neq 0$: $\ \dfrac{f(P_0+t\mathbf u)-f(P_0)}{t}=\nabla f(P_0)\cdot\mathbf u+\dfrac{o(|t|)}{t}$.</span>
+            <span class="esempio__passo">Per definizione di $o$-piccolo, $\dfrac{o(|t|)}{t}\to 0$ quando $t\to 0$.</span>
+          </p>
+          <p>Passando al limite per $t\to 0$, il primo membro è per definizione $D_{\mathbf u}f(P_0)$ (che dunque <em>esiste</em>), mentre il secondo membro tende a $\nabla f(P_0)\cdot\mathbf u$, che non dipende da $t$. Dunque</p>
+          <div class="formula-block">$$D_{\mathbf u}f(P_0)=\nabla f(P_0)\cdot\mathbf u$$</div>
+          <p><span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Dove si usa <em>davvero</em> l'ipotesi</div>
+          <p>L'ipotesi di <span class="glossario-term" data-term="differenziabilita">differenziabilità</span> è stata usata nel primissimo passaggio, e non è decorativa. Se $f$ ha solo le derivate parziali (senza essere differenziabile), quella formula di sviluppo non vale, e la conclusione può essere <strong>falsa</strong>: esistono funzioni con $f_x=f_y=0$ in un punto — quindi $\nabla f=\mathbf 0$ — ma con derivate direzionali diverse da zero in direzioni oblique. Il controesempio classico è $f(x,y)=\dfrac{x^2y}{x^4+y^2}$ (prolungata con $f(0,0)=0$), vista nel <a href="03-derivate-parziali.html">Capitolo 3</a>.</p>
+        </div>
+
+        <h3>5.2 Il gradiente indica la direzione di massima crescita</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea, prima dei conti</div>
+          <p>Il prodotto scalare fra due frecce è massimo quando puntano <strong>nello stesso verso</strong>. Poiché una delle due frecce (il gradiente) è fissata e l'altra ha lunghezza obbligata $1$, l'unico modo per rendere il prodotto più grande possibile è <em>allineare</em> il versore al gradiente. Allora la risposta alla domanda "da che parte salgo di più?" non può che essere: "nella direzione del gradiente".</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Massima crescita.</em> Sia $f$ differenziabile in $P_0$ con $\nabla f(P_0)\neq\mathbf 0$. Allora la funzione $\mathbf u\mapsto D_{\mathbf u}f(P_0)$, al variare del versore $\mathbf u$, ha massimo $\lVert\nabla f(P_0)\rVert$ raggiunto per $\mathbf u=\nabla f(P_0)/\lVert\nabla f(P_0)\rVert$, e minimo $-\lVert\nabla f(P_0)\rVert$ per il versore opposto.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (disuguaglianza di Cauchy-Schwarz)</span>
+          <p>Per il teorema 5.1, $D_{\mathbf u}f(P_0)=\nabla f(P_0)\cdot\mathbf u$. Per la disuguaglianza di Cauchy-Schwarz, per ogni coppia di vettori vale $|\mathbf a\cdot\mathbf b|\le\lVert\mathbf a\rVert\,\lVert\mathbf b\rVert$; con $\mathbf a=\nabla f(P_0)$, $\mathbf b=\mathbf u$ e $\lVert\mathbf u\rVert=1$ otteniamo la stima</p>
+          <div class="formula-block">$$-\lVert\nabla f(P_0)\rVert\ \le\ D_{\mathbf u}f(P_0)\ \le\ \lVert\nabla f(P_0)\rVert$$</div>
+          <p>Quindi nessuna direzione può dare una pendenza maggiore di $\lVert\nabla f(P_0)\rVert$: resta da vedere che questo valore viene effettivamente raggiunto. Scegliamo il candidato naturale, il gradiente normalizzato:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Poniamo $\mathbf u^\ast=\dfrac{\nabla f(P_0)}{\lVert\nabla f(P_0)\rVert}$: è ben definito perché $\nabla f(P_0)\neq\mathbf 0$, ed è un versore perché $\lVert\mathbf u^\ast\rVert=\lVert\nabla f(P_0)\rVert/\lVert\nabla f(P_0)\rVert=1$.</span>
+            <span class="esempio__passo">Calcoliamo: $D_{\mathbf u^\ast}f(P_0)=\nabla f(P_0)\cdot\dfrac{\nabla f(P_0)}{\lVert\nabla f(P_0)\rVert}=\dfrac{\lVert\nabla f(P_0)\rVert^2}{\lVert\nabla f(P_0)\rVert}=\lVert\nabla f(P_0)\rVert$,</span>
+            <span class="esempio__passo">avendo usato $\mathbf a\cdot\mathbf a=\lVert\mathbf a\rVert^2$. Il massimo è dunque raggiunto.</span>
+            <span class="esempio__passo">Per $\mathbf u=-\mathbf u^\ast$ si ottiene, con lo stesso conto e un segno meno, $D_{-\mathbf u^\ast}f(P_0)=-\lVert\nabla f(P_0)\rVert$: il minimo.</span>
+          </p>
+          <p>Infine, l'uguaglianza in Cauchy-Schwarz vale <em>solo</em> per vettori paralleli: quindi il massimo si raggiunge <strong>unicamente</strong> nella direzione del gradiente. Equivalentemente, scrivendo $D_{\mathbf u}f=\lVert\nabla f\rVert\cos\theta$, si vede subito che il massimo si ha per $\cos\theta=1$, cioè $\theta=0$. <span class="qed">∎</span></p>
+        </div>
+
+        <h3>5.3 Il gradiente è ortogonale agli insiemi di livello</h3>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea, prima dei conti</div>
+          <p>Cammina lungo una curva di livello: per definizione la quota <strong>non cambia mai</strong>, quindi la sua derivata rispetto al tempo è zero. Ma la regola della catena dice che quella derivata è $\nabla f\cdot(\text{velocità})$. Un prodotto scalare nullo fra due vettori non nulli significa una cosa sola: sono <strong>perpendicolari</strong>. Ed è finita.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Ortogonalità.</em> Sia $f$ differenziabile, $k\in\mathbb{R}$, e sia $\gamma(t)=(x(t),y(t))$ una curva derivabile interamente contenuta nell'<span class="glossario-term" data-term="insieme-di-livello">insieme di livello</span> $\{f=k\}$, con $\gamma(t_0)=P_0$ e $\gamma'(t_0)\neq\mathbf 0$. Allora $\nabla f(P_0)\cdot\gamma'(t_0)=0$: il gradiente è ortogonale al vettore tangente alla curva di livello.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Per ipotesi la curva sta tutta nell'insieme di livello, quindi per ogni $t$ vale l'identità $f\big(x(t),y(t)\big)=k$, con $k$ costante.</span>
+            <span class="esempio__passo">Chiamiamo $g(t)=f(x(t),y(t))$. Poiché $g$ è costante, $g'(t)=0$ per ogni $t$; in particolare $g'(t_0)=0$.</span>
+            <span class="esempio__passo">D'altra parte la regola della catena (sezione 4.6) dà $g'(t)=f_x\,x'(t)+f_y\,y'(t)=\nabla f(\gamma(t))\cdot\gamma'(t)$.</span>
+            <span class="esempio__passo">Confrontando le due espressioni in $t=t_0$: $\ \nabla f(P_0)\cdot\gamma'(t_0)=0$.</span>
+          </p>
+          <p>Poiché per ipotesi $\gamma'(t_0)\neq\mathbf 0$, se anche $\nabla f(P_0)\neq\mathbf 0$ il prodotto scalare nullo significa esattamente che i due vettori formano un angolo di $90°$. Il vettore $\gamma'(t_0)$ è tangente alla curva di livello in $P_0$; dunque $\nabla f(P_0)$ è <strong>ortogonale alla curva di livello</strong>. <span class="qed">∎</span></p>
+          <p>La dimostrazione in $\mathbb{R}^3$ è identica parola per parola: presa una qualsiasi curva $\gamma$ tracciata sulla superficie $\{F=k\}$ e passante per $P_0$, si ottiene $\nabla F(P_0)\cdot\gamma'(t_0)=0$. Siccome ciò vale per <em>tutte</em> le curve sulla superficie, e i loro vettori tangenti riempiono il piano tangente, $\nabla F(P_0)$ è perpendicolare all'<strong>intero piano tangente</strong>: è il vettore normale alla superficie. Ecco da dove nasce la formula del piano tangente della sezione 4.5.</p>
+        </div>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Perché la regola della catena è vera (in breve)</div>
+          <p>Anche la catena discende dalla differenziabilità. Scrivendo $\mathbf h=\gamma(t_0+s)-\gamma(t_0)$ si ha $f(\gamma(t_0+s))-f(\gamma(t_0))=\nabla f(\gamma(t_0))\cdot\mathbf h+o(\lVert\mathbf h\rVert)$; dividendo per $s$ e osservando che $\mathbf h/s\to\gamma'(t_0)$ (derivabilità della curva) e che $\lVert\mathbf h\rVert/|s|$ resta limitata, si ottiene al limite $\nabla f(\gamma(t_0))\cdot\gamma'(t_0)$. È lo stesso schema della dimostrazione 5.1: <strong>tutte le formule di questo capitolo nascono dall'unica idea che "differenziabile = ben approssimato da un piano"</strong>.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Calcolare un gradiente</span><span class="badge badge--base">Base</span></div>
+          <p>Data $f(x,y)=x^2y+3y$, calcolare $\nabla f(x,y)$ e poi $\nabla f(1,2)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo rispetto a $x$ trattando $y$ come una costante: $f_x=2xy$ (il termine $3y$ è costante in $x$, quindi sparisce).</span>
+            <span class="esempio__passo">Derivo rispetto a $y$ trattando $x$ come una costante: $f_y=x^2+3$.</span>
+            <span class="esempio__passo">Impacchetto: $\nabla f(x,y)=(2xy,\ x^2+3)$.</span>
+            <span class="esempio__passo">Valuto in $(1,2)$: $f_x=2\cdot1\cdot2=4$ e $f_y=1+3=4$.</span>
+          </p>
+          <div class="esempio__risultato">$\nabla f(x,y)=(2xy,\ x^2+3)$ e $\nabla f(1,2)=(4,4)$: nel punto $(1,2)$ si sale al massimo andando in diagonale a $45°$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Derivata direzionale (ricetta completa)</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare la derivata direzionale di $f(x,y)=x^2+y^2$ nel punto $P_0=(1,2)$ lungo la direzione del vettore $\mathbf v=(3,4)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 0 — controllo le ipotesi.</strong> La formula del gradiente (<span class="richiamo" data-sec="4.2">§4.2</span>) vale solo se $f$ è differenziabile. Qui $f_x=2x$ e $f_y=2y$ sono polinomi, quindi continue: per il teorema del differenziale totale (<a href="03-derivate-parziali.html#teoria-catena">cap. 3 §4.9</a>) $f$ è differenziabile ovunque.</span>
+            <span class="esempio__passo"><strong>Passo 1 — normalizzo.</strong> Il vettore $\mathbf v=(3,4)$ dà solo la direzione, ma la definizione richiede lunghezza $1$. Calcolo $\lVert\mathbf v\rVert=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$ e divido ogni componente per $5$: $\mathbf u=\left(\tfrac35,\tfrac45\right)$.</span>
+            <span class="esempio__passo"><strong>Passo 2 — gradiente.</strong> $\nabla f=(f_x,f_y)=(2x,2y)$; sostituisco $x=1$ e $y=2$ in ciascuna componente: $2\cdot1=2$ e $2\cdot2=4$, dunque $\nabla f(1,2)=(2,4)$.</span>
+            <span class="esempio__passo"><strong>Passo 3 — prodotto scalare.</strong> Applico $D_{\mathbf u}f(P_0)=f_x(P_0)\,u_1+f_y(P_0)\,u_2$, sostituendo $f_x=2$, $u_1=\tfrac35$, $f_y=4$, $u_2=\tfrac45$: $\ D_{\mathbf u}f(1,2)=2\cdot\tfrac35+4\cdot\tfrac45=\tfrac{6}{5}+\tfrac{16}{5}$. Stesso denominatore, sommo i numeratori: $\tfrac{6+16}{5}=\tfrac{22}{5}$.</span>
+          </p>
+          <div class="esempio__risultato">$D_{\mathbf u}f(1,2)=\dfrac{22}{5}=4{,}4$. È positiva: muovendosi in quella direzione la funzione <strong>cresce</strong>. Nota che $4{,}4$ è minore di $\lVert\nabla f(1,2)\rVert=\sqrt{20}\approx 4{,}47$: come deve essere, nessuna direzione batte il gradiente.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Le tre direzioni notevoli</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Per $f(x,y)=x\,e^{y}$ nel punto $P_0=(2,0)$, determinare: (a) la direzione di massima crescita e la pendenza massima; (b) la direzione di massima discesa; (c) le direzioni lungo cui $f$ non varia.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Gradiente di $f(x,y)=x\,e^y$: in $x$ congelo $y$, quindi $e^y$ è una costante che moltiplica $x$ e resta $f_x=e^y$; in $y$ congelo $x$, e la derivata di $e^y$ è $e^y$, quindi $f_y=x\,e^y$. Sostituisco ora $x=2$, $y=0$ in ciascuna componente, ricordando che $e^0=1$: prima componente $e^0=1$, seconda $2\,e^0=2$. Quindi $\nabla f(2,0)=(1,2)$.</span>
+            <span class="esempio__passo">Modulo (lunghezza del vettore, Prerequisiti cap. 7): $\lVert\nabla f(2,0)\rVert=\sqrt{1^2+2^2}=\sqrt{1+4}=\sqrt5$.</span>
+            <span class="esempio__passo">(a) Direzione di massima crescita: $\mathbf u_{\max}=\dfrac{(1,2)}{\sqrt5}=\left(\tfrac{1}{\sqrt5},\tfrac{2}{\sqrt5}\right)$, con pendenza massima $\sqrt5\approx 2{,}24$.</span>
+            <span class="esempio__passo">(b) Direzione di massima discesa: l'opposta, $-\mathbf u_{\max}=\left(-\tfrac{1}{\sqrt5},-\tfrac{2}{\sqrt5}\right)$, con valore $-\sqrt5$.</span>
+            <span class="esempio__passo">(c) Variazione nulla: servono i versori perpendicolari al gradiente. Uso la regola della proposizione del <span class="richiamo" data-sec="4.3">§4.3</span>: se $\nabla f=(a,b)$, un vettore perpendicolare è $(-b,a)$ (si scambiano le due componenti e si cambia segno alla prima). Con $a=1$, $b=2$ ottengo $(-2,1)$; lo normalizzo dividendo per la sua lunghezza $\sqrt{(-2)^2+1^2}=\sqrt5$, e prendo anche l'opposto: $\pm\dfrac{(-2,1)}{\sqrt5}$. Verifica con il prodotto scalare: $(1,2)\cdot(-2,1)=1\cdot(-2)+2\cdot1=-2+2=0$. ✓</span>
+          </p>
+          <div class="esempio__risultato">Salita: $\frac{1}{\sqrt5}(1,2)$ con pendenza $\sqrt5$; discesa: $-\frac{1}{\sqrt5}(1,2)$; quota costante: $\pm\frac{1}{\sqrt5}(-2,1)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Tangente a una curva di livello</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Scrivere l'equazione della retta tangente alla curva di livello di $f(x,y)=x^2+y^2$ passante per $P_0=(1,2)$, e verificare l'ortogonalità con il gradiente.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Livello: $k=f(1,2)=1+4=5$. La curva è $x^2+y^2=5$, una circonferenza di raggio $\sqrt5$.</span>
+            <span class="esempio__passo">Gradiente: $\nabla f(1,2)=(2,4)$, parallelo al raggio $(1,2)$. Già sappiamo dalla geometria elementare che il raggio è perpendicolare alla tangente: ottimo segnale.</span>
+            <span class="esempio__passo">Per il teorema di ortogonalità (<span class="richiamo" data-sec="4.4">§4.4</span>) il gradiente è perpendicolare alla curva di livello, quindi la tangente è il luogo dei punti $P=(x,y)$ per cui $\nabla f(P_0)\cdot(P-P_0)=0$. Svolgo il prodotto scalare componente per componente, con $\nabla f(P_0)=(2,4)$ e $P-P_0=(x-1,\ y-2)$: $\ 2\cdot(x-1)+4\cdot(y-2)=0$.</span>
+            <span class="esempio__passo">Semplifico dividendo entrambi i membri per $2$: $\ (x-1)+2(y-2)=0$. Svolgo le parentesi: $x-1+2y-4=0$, cioè $x+2y-5=0$, ossia $\ x+2y=5$.</span>
+          </p>
+          <div class="esempio__risultato">Retta tangente: $x+2y=5$. Il suo vettore direttore è $(-2,1)$ e infatti $(2,4)\cdot(-2,1)=-4+4=0$: <strong>gradiente e curva di livello sono perpendicolari</strong>.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Piano tangente e retta normale a una superficie</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Data la sfera $x^2+y^2+z^2=9$, determinare il piano tangente e la retta normale nel punto $P_0=(1,2,2)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Scrivo la superficie come insieme di livello: $F(x,y,z)=x^2+y^2+z^2$, livello $k=9$. Verifica: $1+4+4=9$ ✓, il punto appartiene alla sfera.</span>
+            <span class="esempio__passo">Gradiente: derivo $F$ in ciascuna delle tre variabili congelando le altre due, $\nabla F=(2x,2y,2z)$; sostituisco $x=1$, $y=2$, $z=2$ una componente alla volta: $2\cdot1=2$, $2\cdot2=4$, $2\cdot2=4$, cioè $\nabla F(1,2,2)=(2,4,4)$, che è diverso da $\mathbf 0$.</span>
+            <span class="esempio__passo">Ricopio la formula del piano tangente a una superficie di livello (<span class="richiamo" data-sec="4.5">§4.5</span>): $F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0$. Sostituisco $F_x=2$, $F_y=4$, $F_z=4$ e $x_0=1$, $y_0=2$, $z_0=2$: $\ 2(x-1)+4(y-2)+4(z-2)=0$.</span>
+            <span class="esempio__passo">Svolgo le parentesi: $2x-2+4y-8+4z-8=0$; porto i numeri a destra cambiando segno: $2x+4y+4z=2+8+8=18$.</span>
+            <span class="esempio__passo">Divido entrambi i membri per $2$: $\ x+2y+2z=9$.</span>
+            <span class="esempio__passo">Retta normale (parte da $P_0$ e segue il gradiente): $(x,y,z)=(1,2,2)+t\,(2,4,4)$, ovvero $(1+2t,\ 2+4t,\ 2+4t)$.</span>
+          </p>
+          <div class="esempio__risultato">Piano tangente $x+2y+2z=9$; retta normale $(1+2t,\,2+4t,\,2+4t)$. Il versore normale è $\mathbf n=\frac{(2,4,4)}{6}=\frac13(1,2,2)$: per una sfera è sempre il raggio, come ci aspettavamo.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Catena lungo una curva</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Sia $f(x,y)=x^2y$ e sia $\gamma(t)=(\cos t,\ \sin t)$. Calcolare $\dfrac{d}{dt}f(\gamma(t))$ e il suo valore in $t=\pi/4$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso la <strong>regola della catena lungo una curva</strong> (<span class="richiamo" data-sec="4.6">§4.6</span>): $g'(t)=f_x\,x'(t)+f_y\,y'(t)=\nabla f(\gamma(t))\cdot\gamma'(t)$. Mi servono quindi quattro ingredienti: $f_x$, $f_y$, $x'(t)$, $y'(t)$.</span>
+            <span class="esempio__passo">Gradiente: $f_x=2xy$ e $f_y=x^2$. Ora <strong>sostituisco</strong> $x=\cos t$ e $y=\sin t$ (le componenti della curva) dentro le due parziali: $f_x=2\cos t\,\sin t$ e $f_y=(\cos t)^2=\cos^2 t$. Quindi $\nabla f(\gamma(t))=(2\cos t\sin t,\ \cos^2 t)$.</span>
+            <span class="esempio__passo">Velocità della curva: derivo separatamente le due componenti rispetto a $t$, con $D(\cos t)=-\sin t$ e $D(\sin t)=\cos t$: $\gamma'(t)=(-\sin t,\ \cos t)$.</span>
+            <span class="esempio__passo">Prodotto scalare (prima componente per prima, più seconda per seconda): $g'(t)=\big(2\cos t\sin t\big)\cdot(-\sin t)+\big(\cos^2 t\big)\cdot\cos t=-2\cos t\sin^2 t+\cos^3 t$.</span>
+            <span class="esempio__passo">In $t=\pi/4$ sostituisco i valori notevoli $\cos\frac\pi4=\sin\frac\pi4=\frac{\sqrt2}{2}$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-notevoli">cap. 8 §4.3</a>). Calcolo i pezzi: $\sin^2 t=\left(\frac{\sqrt2}{2}\right)^2=\frac{2}{4}=\frac12$ e $\cos^3 t=\left(\frac{\sqrt2}{2}\right)^3=\frac{(\sqrt2)^3}{2^3}=\frac{2\sqrt2}{8}=\frac{\sqrt2}{4}$.</span>
+            <span class="esempio__passo">$g'\!\left(\tfrac{\pi}{4}\right)=-2\cdot\tfrac{\sqrt2}{2}\cdot\tfrac12+\tfrac{\sqrt2}{4}=-\tfrac{\sqrt2}{2}+\tfrac{\sqrt2}{4}=-\tfrac{\sqrt2}{4}$.</span>
+            <span class="esempio__passo"><strong>Controprova diretta:</strong> $g(t)=\cos^2t\,\sin t$; derivando col prodotto, $g'=-2\cos t\sin^2 t+\cos^3 t$. Identico. ✓</span>
+          </p>
+          <div class="esempio__risultato">$g'(t)=\cos^3 t-2\cos t\sin^2 t$ e $g'(\pi/4)=-\dfrac{\sqrt2}{4}\approx-0{,}35$: percorrendo la circonferenza in quel punto, $f$ sta <strong>calando</strong>.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Catena con due parametri: le coordinate polari</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Sia $f(x,y)$ differenziabile e si ponga $x=r\cos\theta$, $y=r\sin\theta$. Ricavare $f_r$ e $f_\theta$, poi applicare il risultato a $f(x,y)=x^2+y^2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivate del cambio di variabili: $x_r=\cos\theta$, $y_r=\sin\theta$, $x_\theta=-r\sin\theta$, $y_\theta=r\cos\theta$.</span>
+            <span class="esempio__passo">Albero: da $f$ a $r$ passo per $x$ e per $y$, quindi sommo i due percorsi: $f_r=f_x\cos\theta+f_y\sin\theta$.</span>
+            <span class="esempio__passo">Analogamente: $f_\theta=f_x\,(-r\sin\theta)+f_y\,(r\cos\theta)=r\,(-f_x\sin\theta+f_y\cos\theta)$.</span>
+            <span class="esempio__passo">Applico a $f=x^2+y^2$: le parziali sono $f_x=2x$ e $f_y=2y$, e dentro ciascuna <strong>sostituisco</strong> $x=r\cos\theta$ e $y=r\sin\theta$, ottenendo $f_x=2r\cos\theta$ e $f_y=2r\sin\theta$.</span>
+            <span class="esempio__passo">$f_r=f_x\cos\theta+f_y\sin\theta=2r\cos\theta\cdot\cos\theta+2r\sin\theta\cdot\sin\theta=2r\cos^2\theta+2r\sin^2\theta$. Raccolgo $2r$: $2r\,(\cos^2\theta+\sin^2\theta)$, e la parentesi vale $1$ per l'identità fondamentale (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">cap. 8 §4.4</a>). Quindi $f_r=2r$.</span>
+            <span class="esempio__passo">$f_\theta=r\big(-2r\cos\theta\sin\theta+2r\sin\theta\cos\theta\big)=0$.</span>
+          </p>
+          <div class="esempio__risultato">$f_r=2r$ e $f_\theta=0$. Coerente: in polari $f=r^2$, che non dipende da $\theta$ — la funzione è a simmetria circolare, quindi ruotando non cambia nulla, ed è per questo che $f_\theta=0$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Derivata implicita (Dini)</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>La curva $x^3+y^3-3xy=0$ (folium di Cartesio) passa per il punto $P_0=\left(\tfrac32,\tfrac32\right)$. Verificare le ipotesi del teorema di Dini e calcolare la pendenza della curva in quel punto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Pongo $F(x,y)=x^3+y^3-3xy$. Verifica di appartenenza: sostituisco $x=\frac32$ e $y=\frac32$. Calcolo un pezzo alla volta: $\left(\frac32\right)^3=\frac{27}{8}$ (due volte, per $x^3$ e per $y^3$) e $3xy=3\cdot\frac32\cdot\frac32=3\cdot\frac94=\frac{27}{4}$. In tutto $\frac{27}{8}+\frac{27}{8}-\frac{27}{4}=\frac{54}{8}-\frac{27}{4}=\frac{27}{4}-\frac{27}{4}=0$ ✓ (ho semplificato $\frac{54}{8}=\frac{27}{4}$).</span>
+            <span class="esempio__passo">Derivate parziali: $F_x=3x^2-3y$ e $F_y=3y^2-3x$; $F$ è un polinomio, quindi di classe $C^1$ ovunque.</span>
+            <span class="esempio__passo">In $P_0$: $F_x=3\cdot\frac94-3\cdot\frac32=\frac{27}{4}-\frac{18}{4}=\frac94$ e $F_y=\frac94$ (per simmetria). Poiché $F_y=\frac94\neq0$, Dini si applica: vicino a $P_0$ la curva è il grafico di una funzione $y=\varphi(x)$.</span>
+            <span class="esempio__passo">Derivata implicita: ricopio la formula di Dini (<span class="richiamo" data-sec="4.7">§4.7</span>) $\varphi'(x)=-\dfrac{F_x(x,y)}{F_y(x,y)}$ e sostituisco i due valori appena calcolati nel punto, $F_x=\frac94$ e $F_y=\frac94$: $\ \varphi'\left(\tfrac32\right)=-\dfrac{9/4}{9/4}=-1$ (numeratore e denominatore sono uguali, quindi il rapporto vale $1$ e resta il segno meno).</span>
+          </p>
+          <div class="esempio__risultato">$\varphi'\!\left(\frac32\right)=-1$: la tangente ha pendenza $-1$ ed equazione $y-\frac32=-\left(x-\frac32\right)$, cioè $x+y=3$. Nota che non abbiamo mai avuto bisogno di ricavare $y$ esplicitamente — sarebbe stata un'equazione di terzo grado.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare di normalizzare la direzione</div>
+          <p>È di gran lunga l'errore numero uno. Il testo dice "nella direzione di $\mathbf v=(3,4)$" e si calcola $\nabla f\cdot(3,4)$ senza dividere per $\lVert\mathbf v\rVert=5$: il risultato esce <strong>cinque volte più grande</strong> del vero. La formula $D_{\mathbf u}f=\nabla f\cdot\mathbf u$ vale solo se $\lVert\mathbf u\rVert=1$, altrimenti stai misurando la pendenza <em>e</em> la velocità con cui la percorri. <em>Come evitarlo</em>: prima di ogni prodotto scalare, chiediti "questo vettore ha modulo $1$?". Se il testo dà un punto di arrivo $Q$, la direzione è $\mathbf u=\frac{Q-P}{\lVert Q-P\rVert}$, mai $Q-P$ e basta.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere il gradiente (vettore) con la derivata direzionale (numero)</div>
+          <p>$\nabla f(P_0)$ è un <strong>vettore</strong>, ha componenti; $D_{\mathbf u}f(P_0)$ è uno <strong>scalare</strong>, è un solo numero. Scrivere "$D_{\mathbf u}f=(2,4)$" oppure "$\nabla f=4{,}4$" è un errore di tipo, come dire che una temperatura è un colore. Stessa famiglia di errori: rispondere alla domanda "qual è la pendenza massima?" dando il vettore $\nabla f$ invece del numero $\lVert\nabla f\rVert$, o rispondere a "qual è la direzione di massima crescita?" dando un numero. <em>Come evitarlo</em>: <strong>direzione ⇒ vettore (anzi, versore); pendenza ⇒ numero</strong>.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che il gradiente sia tangente alla curva di livello</div>
+          <p>È il contrario esatto: il gradiente è <strong>perpendicolare</strong> alle curve di livello. L'errore nasce dal disegnare le frecce "che seguono" le linee di quota, come se il gradiente indicasse il sentiero pianeggiante. Ma lungo la curva di livello la funzione <em>non cambia</em>, e il gradiente indica proprio dove cambia <em>di più</em>. <em>Come evitarlo</em>: memorizza l'immagine della mappa escursionistica, con le frecce che <strong>tagliano</strong> le linee di quota ad angolo retto. E ricorda: la direzione tangente alla curva di livello è quella a derivata direzionale <strong>nulla</strong>.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Usare la formula $\nabla f\cdot\mathbf u$ senza differenziabilità</div>
+          <p>La formula del gradiente è un <strong>teorema con ipotesi</strong>, non una definizione. Se $f$ ha solo le derivate parziali, può succedere che $\nabla f(P_0)=\mathbf 0$ e tuttavia esista una direzione obliqua con derivata direzionale diversa da zero: la formula darebbe $0$, sbagliando. All'esame, quando la funzione è definita a tratti o ha un quoziente che si annulla nell'origine, <strong>non applicare la formula al volo</strong>: torna alla definizione con il limite. <em>Come evitarlo</em>: per funzioni "normali" (polinomi, esponenziali, seni, composizioni di $C^1$) sei al sicuro; nei punti sospetti verifica prima la differenziabilità (<a href="03-derivate-parziali.html">Capitolo 3</a>).</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Mescolare piano tangente al grafico e piano tangente alla superficie di livello</div>
+          <p>Se il testo dà $z=f(x,y)$, la formula è $z=f(P_0)+\nabla f(P_0)\cdot(x-x_0,y-y_0)$, e il gradiente ha <strong>due</strong> componenti. Se il testo dà $F(x,y,z)=k$, la formula è $\nabla F(P_0)\cdot(x-x_0,y-y_0,z-z_0)=0$, e il gradiente ne ha <strong>tre</strong>. Usare la prima con una superficie implicita (o la seconda con un grafico, dimenticando il $-1$ della terza componente) produce piani sbagliati. <em>Come evitarlo</em>: conta le variabili. Tre variabili nella $F$ ⇒ usa la forma implicita; due variabili nella $f$ ⇒ usa la forma esplicita, oppure porta tutto a $F=f(x,y)-z=0$ e usa sempre la seconda.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare il segno nella discesa del gradiente e nella derivata implicita</div>
+          <p>Due segni meno che tutti dimenticano. Nella discesa del gradiente si scrive $P_{k+1}=P_k-\eta\nabla f(P_k)$: con il $+$ si <em>sale</em>, e l'algoritmo diverge invece di convergere. Nel teorema di Dini si ha $\varphi'=-\dfrac{F_x}{F_y}$: quel meno viene da $F_x+F_y\varphi'=0$ e sparisce sistematicamente nei compiti. <em>Come evitarlo</em>: entrambi i segni si ricostruiscono in tre secondi ripensando da dove vengono, invece di impararli a memoria.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La ricetta in 3 passi per ogni derivata direzionale</div>
+          <p><strong>N-G-P</strong>: <strong>N</strong>ormalizza, <strong>G</strong>radiente, <strong>P</strong>rodotto scalare.</p>
+          <p>1) Normalizza il vettore direzione: $\mathbf u=\mathbf v/\lVert\mathbf v\rVert$. &nbsp; 2) Calcola $\nabla f$ e valutalo <em>nel punto</em> (non lasciarlo simbolico!). &nbsp; 3) Moltiplica scalarmente. Se svolgi i tre passi sempre nello stesso ordine e in tre righe separate, l'errore di normalizzazione diventa impossibile.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Le tre risposte che l'esame chiede sempre</div>
+          <p>Calcolato $\nabla f(P_0)=(a,b)$, hai già in mano tutto:</p>
+          <ul>
+            <li><strong>Massima crescita</strong>: direzione $\frac{(a,b)}{\sqrt{a^2+b^2}}$, valore $\sqrt{a^2+b^2}$.</li>
+            <li><strong>Massima discesa</strong>: direzione $\frac{(-a,-b)}{\sqrt{a^2+b^2}}$, valore $-\sqrt{a^2+b^2}$.</li>
+            <li><strong>Variazione nulla</strong>: direzioni $\pm\frac{(-b,a)}{\sqrt{a^2+b^2}}$ (scambia le componenti e cambia un segno), valore $0$.</li>
+          </ul>
+          <p>Il trucco del "$(-b,a)$" è da imparare a memoria: ruotare un vettore di $90°$ costa uno scambio e un segno.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Controlli di sicurezza rapidi</div>
+          <p>Prima di consegnare, tre verifiche che costano dieci secondi:</p>
+          <ul>
+            <li>$|D_{\mathbf u}f(P_0)|\le\lVert\nabla f(P_0)\rVert$ <strong>sempre</strong>. Se ti viene un valore più grande del modulo del gradiente, hai quasi certamente dimenticato di normalizzare.</li>
+            <li>Nel piano tangente, <strong>sostituisci $P_0$</strong>: l'equazione deve essere soddisfatta. Se non lo è, hai sbagliato un segno.</li>
+            <li>Nella catena, quando è possibile sostituisci e deriva direttamente (come nell'Esempio 6): due strade diverse che danno lo stesso risultato sono una garanzia quasi assoluta.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il piano tangente in una riga sola</div>
+          <p>Non imparare due formule: imparane una. Porta <strong>sempre</strong> tutto nella forma $F=\text{costante}$ e scrivi</p>
+          <div class="formula-block">$$\nabla F(P_0)\cdot(P-P_0)=0$$</div>
+          <p>Per il grafico $z=f(x,y)$ basta porre $F(x,y,z)=f(x,y)-z$, da cui $\nabla F=(f_x,f_y,-1)$. Funziona per sfere, ellissoidi, paraboloidi, coni e grafici: una formula, tutti i casi. Bonus: ti dà gratis il vettore normale, che serve negli <a href="11-integrali-superficie-campi-vettoriali.html">integrali di superficie</a>.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Catena: conta i percorsi sull'albero</div>
+          <p>Prima di scrivere qualsiasi formula, disegna l'albero delle dipendenze e <strong>conta quanti percorsi</strong> collegano la funzione alla variabile che ti interessa: tanti percorsi, tanti addendi. Lungo ogni percorso moltiplichi le derivate incontrate. Con $f(x(u,v),y(u,v))$ ci sono due percorsi verso $u$ ⇒ due addendi; con $f(x(t),y(t),z(t))$ ce ne sono tre ⇒ tre addendi. Questo metodo non sbaglia mai, nemmeno con dipendenze annidate a più livelli.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il gradiente sa già dove cercare i massimi</div>
+          <p>Anticipazione utile per il <a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>: nei punti di massimo o minimo <em>interni</em>, il gradiente è nullo. Il motivo è immediato con quanto hai imparato: se $\nabla f(P_0)\neq\mathbf 0$, allora esiste una direzione in cui $f$ cresce ($\mathbf u_{\max}$) e una in cui cala ($-\mathbf u_{\max}$), quindi $P_0$ non può essere né un massimo né un minimo. <strong>Cercare gli estremi = risolvere il sistema $f_x=0,\ f_y=0$.</strong></p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Il gradiente $\nabla f$</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Definizione</strong>
+              <ul><li>$\nabla f=(f_x,f_y)$</li><li>Vettore, non numero</li><li>Campo vettoriale sul dominio</li><li>Simbolo nabla, o $\operatorname{grad}f$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Derivata direzionale</strong>
+              <ul><li>$D_{\mathbf u}f=\lim_{t\to0}\frac{f(P_0+t\mathbf u)-f(P_0)}{t}$</li><li>$=\nabla f\cdot\mathbf u$ (se differenziabile)</li><li>$\mathbf u$ deve essere un versore!</li><li>$=\lVert\nabla f\rVert\cos\theta$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Tre direzioni</strong>
+              <ul><li>Max crescita: $\nabla f/\lVert\nabla f\rVert$</li><li>Max discesa: $-\nabla f/\lVert\nabla f\rVert$</li><li>Variazione nulla: $\perp\nabla f$</li><li>Pendenza massima $=\lVert\nabla f\rVert$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Geometria</strong>
+              <ul><li>$\perp$ curve/superfici di livello</li><li>Piano tang.: $\nabla F\cdot(P-P_0)=0$</li><li>Grafico: $\nabla F=(f_x,f_y,-1)$</li><li>Retta normale: $P_0+t\nabla F$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Regola della catena</strong>
+              <ul><li>Curva: $\frac{df}{dt}=\nabla f\cdot\gamma'$</li><li>Due parametri: $f_u=f_xx_u+f_yy_u$</li><li>Albero: moltiplica lungo, somma fra</li><li>Forma matriciale: jacobiana</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Applicazioni</strong>
+              <ul><li>Dini: $\varphi'=-F_x/F_y$</li><li>Punti stazionari: $\nabla f=\mathbf 0$</li><li>Discesa del gradiente (ML)</li><li>Campi conservativi: $\mathbf F=\nabla U$</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Definizione</strong>: $\nabla f(P_0)=\big(f_x(P_0),f_y(P_0)\big)$ — il vettore delle derivate parziali. È un <em>vettore</em>, non un numero.</li>
+            <li><strong>Formula del gradiente</strong>: se $f$ è differenziabile, $D_{\mathbf u}f(P_0)=\nabla f(P_0)\cdot\mathbf u$ con $\lVert\mathbf u\rVert=1$. Un limite sostituito da un prodotto scalare.</li>
+            <li><strong>Interpretazione centrale</strong>: $D_{\mathbf u}f=\lVert\nabla f\rVert\cos\theta$. Il gradiente punta nella <strong>direzione di massima crescita</strong> e il suo modulo $\lVert\nabla f\rVert$ è la <strong>pendenza massima</strong>. La montagna nella nebbia: $\nabla f$ è la bussola della salita, $-\nabla f$ la strada dell'acqua.</li>
+            <li><strong>Ortogonalità</strong>: $\nabla f(P_0)$ è perpendicolare alla curva (o superficie) di livello passante per $P_0$. Dimostrazione in una riga: $f(\gamma(t))=k\Rightarrow\nabla f\cdot\gamma'=0$.</li>
+            <li><strong>Piano tangente</strong>: al grafico, $z=f(P_0)+\nabla f(P_0)\cdot(x-x_0,y-y_0)$; alla superficie di livello, $\nabla F(P_0)\cdot(P-P_0)=0$. Retta normale: $P_0+t\,\nabla F(P_0)$.</li>
+            <li><strong>Catena</strong>: $\dfrac{d}{dt}f(\gamma(t))=\nabla f\cdot\gamma'$; con due parametri $f_u=f_xx_u+f_yy_u$ e $f_v=f_xx_v+f_yy_v$. Regola dell'albero: si moltiplica lungo un ramo, si somma fra rami.</li>
+            <li><strong>Dini</strong>: se $F(x_0,y_0)=0$ e $F_y(x_0,y_0)\neq0$, allora $F=0$ definisce $y=\varphi(x)$ con $\varphi'=-F_x/F_y$.</li>
+            <li><strong>Punti stazionari</strong>: $\nabla f(P_0)=\mathbf 0$ significa pendenza nulla in ogni direzione — candidato a massimo, minimo o sella (Capitolo 5).</li>
+            <li><strong>Attenzione</strong>: la formula richiede la <em>differenziabilità</em>, non solo l'esistenza delle derivate parziali. E il vettore direzione va <em>sempre</em> normalizzato.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\nabla f$ per $f(x,y)=3x^2y-4y^3$ e valutalo nel punto $(1,-1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x$: derivo rispetto a $x$ con $y$ costante. Il termine $-4y^3$ è costante, quindi $f_x=6xy$.</span>
+                <span class="esempio__passo">$f_y$: derivo rispetto a $y$ con $x$ costante: $f_y=3x^2-12y^2$.</span>
+                <span class="esempio__passo">Sostituisco $x=1$ e $y=-1$ in ciascuna componente. Prima: $f_x=6xy=6\cdot1\cdot(-1)=-6$. Seconda: $f_y=3x^2-12y^2=3\cdot1^2-12\cdot(-1)^2=3\cdot1-12\cdot1=3-12=-9$ (attenzione: $(-1)^2=+1$, il quadrato cancella il segno meno).</span>
+              </p>
+              <p><strong>$\nabla f(x,y)=(6xy,\ 3x^2-12y^2)$ e $\nabla f(1,-1)=(-6,-9)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\nabla f$ per $f(x,y)=\ln(x^2+y^2)$ e valutalo in $(1,2)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Regola della catena: la derivata di $\ln(g)$ è $\dfrac{g'}{g}$, dove l'esterna è il logaritmo e l'interna è $g=x^2+y^2$. La derivata parziale dell'interna in $x$ (congelando $y$) è $2x$; in $y$ (congelando $x$) è $2y$.</p>
+              <p>$f_x=\dfrac{2x}{x^2+y^2}$, &nbsp; $f_y=\dfrac{2y}{x^2+y^2}$. Sostituisco $x=1$, $y=2$: il denominatore diventa $1^2+2^2=5$, i numeratori $2\cdot1=2$ e $2\cdot2=4$.</p>
+              <p><strong>$\nabla f(1,2)=\left(\dfrac{2}{5},\ \dfrac{4}{5}\right)$.</strong> Osserva che è parallelo a $(1,2)$: le curve di livello sono circonferenze e il gradiente è radiale.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Normalizza il vettore $\mathbf v=(1,-1)$ e calcola la derivata direzionale di $f(x,y)=x+2y$ lungo quella direzione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Normalizzo, perché la derivata direzionale richiede un versore: $\lVert\mathbf v\rVert=\sqrt{1^2+(-1)^2}=\sqrt{1+1}=\sqrt2$; divido ogni componente per $\sqrt2$ e ottengo $\mathbf u=\left(\frac{1}{\sqrt2},-\frac{1}{\sqrt2}\right)$.</span>
+                <span class="esempio__passo">$f_x=1$ e $f_y=2$, quindi $\nabla f=(1,2)$ in ogni punto: la funzione è un piano, la pendenza non dipende dal punto (ed essendo un polinomio è differenziabile, quindi la formula del gradiente si può usare).</span>
+                <span class="esempio__passo">Applico $D_{\mathbf u}f=f_x\,u_1+f_y\,u_2$ sostituendo $f_x=1$, $u_1=\frac{1}{\sqrt2}$, $f_y=2$, $u_2=-\frac{1}{\sqrt2}$: $\ 1\cdot\frac{1}{\sqrt2}+2\cdot\left(-\frac{1}{\sqrt2}\right)=\frac{1}{\sqrt2}-\frac{2}{\sqrt2}=\frac{1-2}{\sqrt2}=-\frac{1}{\sqrt2}$.</span>
+              </p>
+              <p><strong>$D_{\mathbf u}f=-\dfrac{1}{\sqrt2}=-\dfrac{\sqrt2}{2}\approx-0{,}71$</strong>: in quella direzione la funzione <em>cala</em>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola il gradiente di $f(x,y,z)=xyz$ nel punto $(1,2,3)$ e la pendenza massima in quel punto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>In tre variabili si deriva allo stesso modo, bloccando le altre due. In $f=xyz$, derivando in $x$ il blocco $yz$ è una costante che moltiplica $x$, quindi $f_x=yz$; analogamente $f_y=xz$ e $f_z=xy$.</p>
+              <p>Sostituisco $x=1$, $y=2$, $z=3$ in ciascuna componente: $f_x=2\cdot3=6$, $f_y=1\cdot3=3$, $f_z=1\cdot2=2$, quindi $\nabla f=(6,3,2)$.</p>
+              <p>Per la proposizione del <span class="richiamo" data-sec="4.3">§4.3</span> la pendenza massima è la lunghezza del gradiente: $\lVert\nabla f\rVert=\sqrt{6^2+3^2+2^2}=\sqrt{36+9+4}=\sqrt{49}=7$.</p>
+              <p><strong>$\nabla f(1,2,3)=(6,3,2)$, pendenza massima $=7$</strong> (nella direzione $\frac17(6,3,2)$).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola la derivata direzionale di $f(x,y)=x^2-y^2$ nel punto $P=(3,1)$ nella direzione che va da $P$ verso $Q=(6,5)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Vettore direzione: $\mathbf v=Q-P=(6-3,\ 5-1)=(3,4)$.</span>
+                <span class="esempio__passo">Normalizzo: $\lVert\mathbf v\rVert=\sqrt{3^2+4^2}=\sqrt{25}=5$; divido ogni componente per $5$ e ottengo $\mathbf u=\left(\frac35,\frac45\right)$.</span>
+                <span class="esempio__passo">$f_x=2x$ e $f_y=-2y$, quindi $\nabla f=(2x,-2y)$; sostituisco $x=3$, $y=1$: $2\cdot3=6$ e $-2\cdot1=-2$, cioè $\nabla f(3,1)=(6,-2)$.</span>
+                <span class="esempio__passo">Applico $D_{\mathbf u}f=f_x\,u_1+f_y\,u_2$ con $f_x=6$, $u_1=\frac35$, $f_y=-2$, $u_2=\frac45$: $\ 6\cdot\frac35+(-2)\cdot\frac45=\frac{18}{5}-\frac{8}{5}=\frac{18-8}{5}=\frac{10}{5}=2$.</span>
+              </p>
+              <p><strong>$D_{\mathbf u}f(3,1)=2$.</strong> Controllo di sicurezza: $\lVert\nabla f(3,1)\rVert=\sqrt{40}\approx6{,}3\ge 2$ ✓.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per $f(x,y)=e^{xy}$ nel punto $(1,0)$, determina la direzione di massima crescita, il valore della pendenza massima e le direzioni lungo cui $f$ non varia.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=y\,e^{xy}$ e $f_y=x\,e^{xy}$ (catena: la derivata dell'esponente rispetto a $x$ è $y$, rispetto a $y$ è $x$).</span>
+                <span class="esempio__passo">In $(1,0)$: $e^{xy}=e^0=1$, quindi $f_x=0\cdot1=0$ e $f_y=1\cdot1=1$. Dunque $\nabla f(1,0)=(0,1)$.</span>
+                <span class="esempio__passo">Modulo: $\lVert\nabla f\rVert=1$, ed è già un versore.</span>
+              </p>
+              <p><strong>Massima crescita: $(0,1)$, cioè verso Nord, con pendenza $1$. Variazione nulla: $\pm(1,0)$, cioè lungo l'asse $x$.</strong> Coerente: sulla retta $y=0$ la funzione vale costantemente $e^0=1$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scrivi l'equazione della retta tangente alla curva di livello di $f(x,y)=x^2+4y^2$ passante per $(2,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Livello: $k=f(2,1)=4+4=8$. La curva è l'ellisse $x^2+4y^2=8$.</span>
+                <span class="esempio__passo">$\nabla f=(2x,8y)$, quindi $\nabla f(2,1)=(4,8)$.</span>
+                <span class="esempio__passo">Per il teorema di ortogonalità (<span class="richiamo" data-sec="4.4">§4.4</span>) la tangente è data da $\nabla f(P_0)\cdot(P-P_0)=0$. Svolgo il prodotto scalare con $\nabla f(P_0)=(4,8)$ e $P-P_0=(x-2,\ y-1)$: $\ 4(x-2)+8(y-1)=0$.</span>
+                <span class="esempio__passo">Divido entrambi i membri per $4$: $(x-2)+2(y-1)=0$; svolgo le parentesi, $x-2+2y-2=0$, cioè $x+2y-4=0$.</span>
+              </p>
+              <p><strong>$x+2y=4$.</strong> Verifica: il punto $(2,1)$ soddisfa l'equazione ($2+2=4$ ✓).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Sia $f(x,y)=x^2+y^2$ con $x(t)=t$ e $y(t)=t^2$. Calcola $\dfrac{df}{dt}$ in due modi: con la regola della catena e per sostituzione diretta.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Catena.</strong> Uso la formula del <span class="richiamo" data-sec="4.6">§4.6</span>: $\dfrac{df}{dt}=f_x\,x'(t)+f_y\,y'(t)$. Ingredienti: $f_x=2x$ e $f_y=2y$, dentro cui <strong>sostituisco</strong> $x=t$ e $y=t^2$, ottenendo $\nabla f=(2t,\ 2t^2)$; e le derivate della curva, $x'(t)=1$, $y'(t)=2t$, cioè $\gamma'(t)=(1,\ 2t)$.</span>
+                <span class="esempio__passo">Prodotto scalare (prima per prima, più seconda per seconda): $\dfrac{df}{dt}=2t\cdot1+2t^2\cdot 2t=2t+4t^3$.</span>
+                <span class="esempio__passo"><strong>Sostituzione.</strong> $f(\gamma(t))=t^2+(t^2)^2=t^2+t^4$.</span>
+                <span class="esempio__passo">Derivando: $\dfrac{d}{dt}(t^2+t^4)=2t+4t^3$. Identico ✓.</span>
+              </p>
+              <p><strong>$\dfrac{df}{dt}=2t+4t^3$.</strong> Quando la sostituzione è facile conviene usarla come controprova; quando $f$ resta simbolica, la catena è l'unica via.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina piano tangente e retta normale al paraboloide $z=x^2+y^2$ nel punto $(1,1,2)$, usando la forma implicita.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Porto tutto a un lato: $F(x,y,z)=x^2+y^2-z$, superficie di livello $F=0$. Verifica: $1+1-2=0$ ✓.</span>
+                <span class="esempio__passo">Derivo $F$ nelle tre variabili: in $x$ resta $2x$, in $y$ resta $2y$, in $z$ il termine $-z$ dà $-1$ (e $x^2+y^2$ è costante). Quindi $\nabla F=(2x,\ 2y,\ -1)$; sostituisco $x=1$, $y=1$, $z=2$: $\nabla F(1,1,2)=(2,2,-1)$.</span>
+                <span class="esempio__passo">Piano tangente: ricopio $F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0$ (<span class="richiamo" data-sec="4.5">§4.5</span>) e sostituisco le tre componenti del gradiente e le tre coordinate del punto: $\ 2(x-1)+2(y-1)-1\,(z-2)=0$.</span>
+                <span class="esempio__passo">Sviluppo: $2x-2+2y-2-z+2=0\Rightarrow 2x+2y-z=2$.</span>
+                <span class="esempio__passo">Retta normale: $(x,y,z)=(1,1,2)+t(2,2,-1)=(1+2t,\ 1+2t,\ 2-t)$.</span>
+              </p>
+              <p><strong>Piano: $2x+2y-z=2$. &nbsp; Retta normale: $(1+2t,\ 1+2t,\ 2-t)$.</strong> Controprova con la forma esplicita: $z=f(1,1)+f_x(x-1)+f_y(y-1)=2+2(x-1)+2(y-1)=2x+2y-2$ ✓.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova tutti i punti in cui il gradiente di $f(x,y)=x^3-3x+y^2$ è il vettore nullo, e spiega che cosa significa geometricamente.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\nabla f=(3x^2-3,\ 2y)$. Impongo che entrambe le componenti si annullino.</span>
+                <span class="esempio__passo">$2y=0\Rightarrow y=0$.</span>
+                <span class="esempio__passo">$3x^2-3=0\Rightarrow x^2=1\Rightarrow x=\pm1$.</span>
+              </p>
+              <p><strong>Punti stazionari: $(1,0)$ e $(-1,0)$.</strong> In essi la derivata direzionale è nulla in <em>ogni</em> direzione: il piano tangente al grafico è orizzontale. Sono candidati a massimo, minimo o sella; la classificazione richiede la matrice hessiana (<a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>). Anticipazione: $(1,0)$ è un minimo locale, $(-1,0)$ è una sella.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Di una funzione differenziabile $f$ si sa che in $P_0$ vale $D_{(1,0)}f=3$ e $D_{(0,1)}f=5$. Calcola $D_{\mathbf u}f(P_0)$ per $\mathbf u=\left(\frac35,\frac45\right)$ e la pendenza massima in $P_0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Le derivate direzionali lungo i versori degli assi <em>sono</em> le derivate parziali: $f_x(P_0)=3$ e $f_y(P_0)=5$.</span>
+                <span class="esempio__passo">Quindi $\nabla f(P_0)=(3,5)$: due sole misure bastano a ricostruire tutto.</span>
+                <span class="esempio__passo">Applico la formula del gradiente $D_{\mathbf u}f(P_0)=f_x\,u_1+f_y\,u_2$ (lecito perché il testo dice che $f$ è differenziabile) sostituendo $f_x=3$, $u_1=\frac35$, $f_y=5$, $u_2=\frac45$: $\ 3\cdot\frac35+5\cdot\frac45=\frac{9}{5}+\frac{20}{5}=\frac{9+20}{5}=\frac{29}{5}=5{,}8$.</span>
+                <span class="esempio__passo">Pendenza massima: per la proposizione del <span class="richiamo" data-sec="4.3">§4.3</span> è la lunghezza del gradiente, $\lVert(3,5)\rVert=\sqrt{3^2+5^2}=\sqrt{9+25}=\sqrt{34}\approx5{,}83$.</span>
+              </p>
+              <p><strong>$D_{\mathbf u}f(P_0)=\dfrac{29}{5}=5{,}8$ e pendenza massima $\sqrt{34}\approx5{,}83$.</strong> I due valori sono quasi uguali perché $\mathbf u$ è quasi allineato al gradiente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Sia $f(x,y)=x^2y$ con $x=u+v$ e $y=uv$. Calcola $\dfrac{\partial f}{\partial u}$ e $\dfrac{\partial f}{\partial v}$ con la regola della catena.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Uso la regola della catena a due parametri (<span class="richiamo" data-sec="4.6">§4.6</span>): $f_u=f_x\,x_u+f_y\,y_u$ e $f_v=f_x\,x_v+f_y\,y_v$. Servono quattro derivate del cambio e due di $f$.</span>
+                <span class="esempio__passo">Derivate di $f$: $f_x=2xy$, $f_y=x^2$. Derivate del cambio $x=u+v$, $y=uv$: $x_u=1$, $x_v=1$, $y_u=v$ (con $v$ congelata), $y_v=u$ (con $u$ congelata).</span>
+                <span class="esempio__passo">$f_u=f_x\,x_u+f_y\,y_u=2xy\cdot1+x^2\cdot v$. Ora <strong>sostituisco</strong> $x=u+v$ e $y=uv$: il primo addendo diventa $2(u+v)(uv)$, il secondo $(u+v)^2v$.</span>
+                <span class="esempio__passo">Raccolgo il fattore comune $v(u+v)$, presente in entrambi gli addendi: $f_u=v(u+v)\big[2u+(u+v)\big]$; dentro la parentesi $2u+u+v=3u+v$, quindi $f_u=v(u+v)(3u+v)$.</span>
+                <span class="esempio__passo">$f_v=f_x\,x_v+f_y\,y_v=2(u+v)uv+(u+v)^2u=u(u+v)\big[2v+(u+v)\big]=u(u+v)(u+3v)$.</span>
+                <span class="esempio__passo">Controprova: $f=(u+v)^2uv$; derivando col prodotto rispetto a $u$ si ritrova $v(u+v)(3u+v)$ ✓.</span>
+              </p>
+              <p><strong>$f_u=v(u+v)(3u+v)$ &nbsp; e &nbsp; $f_v=u(u+v)(u+3v)$.</strong> Nota la simmetria: scambiando $u$ con $v$ le due formule si scambiano, come deve essere visto che $f$ è simmetrica in $u,v$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data $f(x,y)=x^2+xy+y^2$ e il punto $P_0=(1,1)$, determinare: (a) $\nabla f(P_0)$; (b) la pendenza massima; (c) le direzioni di variazione nulla; (d) l'equazione della retta tangente alla curva di livello per $P_0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) $f_x=2x+y$ e $f_y=x+2y$; in $(1,1)$ danno $3$ e $3$, quindi $\nabla f(1,1)=(3,3)$.</span>
+                <span class="esempio__passo">(b) $\lVert\nabla f\rVert=\sqrt{9+9}=3\sqrt2\approx4{,}24$, raggiunta nella direzione $\frac{(3,3)}{3\sqrt2}=\frac{1}{\sqrt2}(1,1)$.</span>
+                <span class="esempio__passo">(c) Perpendicolari a $\nabla f=(3,3)$: applico la regola del <span class="richiamo" data-sec="4.3">§4.3</span>, "se $\nabla f=(a,b)$ le direzioni di variazione nulla sono $\pm(-b,a)$", cioè scambio le componenti e cambio segno alla prima. Con $a=3$, $b=3$ ottengo $(-3,3)$; normalizzo dividendo per $\lVert(-3,3)\rVert=\sqrt{9+9}=3\sqrt2$, ottenendo $\pm\frac{1}{\sqrt2}(-1,1)$.</span>
+                <span class="esempio__passo">(d) Livello: sostituisco $x=1$, $y=1$ in $x^2+xy+y^2$, cioè $k=f(1,1)=1+1+1=3$. Tangente: $\nabla f(P_0)\cdot(P-P_0)=0$, cioè $3(x-1)+3(y-1)=0$; divido per $3$ e svolgo, $x-1+y-1=0\Rightarrow x+y=2$.</span>
+              </p>
+              <p><strong>(a) $(3,3)$ &nbsp; (b) $3\sqrt2$ nella direzione $\frac{1}{\sqrt2}(1,1)$ &nbsp; (c) $\pm\frac{1}{\sqrt2}(-1,1)$ &nbsp; (d) $x+y=2$.</strong> Coerenza: la retta $x+y=2$ ha direzione $(-1,1)$, esattamente la direzione di variazione nulla trovata in (c).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un'escursionista si trova nel punto $(3,2)$ di un versante la cui quota è $h(x,y)=100-x^2-2y^2$ (in metri). Determinare: (a) la direzione di massima salita e la relativa pendenza; (b) la pendenza camminando verso Est, cioè lungo $(1,0)$; (c) in che direzione deve muoversi per restare in quota.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivo $h(x,y)=100-x^2-2y^2$: in $x$ (congelo $y$) resta $-2x$, in $y$ (congelo $x$) resta $-4y$. Quindi $\nabla h=(-2x,\ -4y)$; sostituisco $x=3$, $y=2$: $-2\cdot3=-6$ e $-4\cdot2=-8$, cioè $\nabla h(3,2)=(-6,-8)$. Lunghezza: $\lVert\nabla h\rVert=\sqrt{(-6)^2+(-8)^2}=\sqrt{36+64}=\sqrt{100}=10$.</span>
+                <span class="esempio__passo">(a) Direzione di massima salita: per la proposizione del <span class="richiamo" data-sec="4.3">§4.3</span> è il gradiente normalizzato, cioè diviso per la sua lunghezza: $\frac{(-6,-8)}{10}=(-0{,}6,\ -0{,}8)$, cioè verso Sud-Ovest, con pendenza pari a $\lVert\nabla h\rVert=10$.</span>
+                <span class="esempio__passo">(b) Verso Est il versore è $(1,0)$ (una unità verso $x$, niente verso $y$). Applico la formula del gradiente sostituendo $h_x=-6$, $u_1=1$, $h_y=-8$, $u_2=0$: $\ D_{(1,0)}h=(-6)\cdot1+(-8)\cdot0=-6$. Negativa: andando a Est si <strong>scende</strong> di $6$ metri per metro percorso. (Coerente: $D_{(1,0)}h$ è per definizione $h_x$.)</span>
+                <span class="esempio__passo">(c) Direzioni perpendicolari a $\nabla h=(-6,-8)$: applico la regola "scambia le componenti e cambia segno a una", cioè da $(a,b)=(-6,-8)$ ottengo $(-b,a)=(8,-6)$ e il suo opposto $(-8,6)$. Normalizzo dividendo per la lunghezza $\sqrt{64+36}=10$: $\pm(0{,}8,\ -0{,}6)$.</span>
+              </p>
+              <p><strong>(a) $(-0{,}6,-0{,}8)$ con pendenza $10$; (b) $-6$ (si scende); (c) $\pm(0{,}8,-0{,}6)$.</strong> Interpretazione: il punto di massimo della quota è l'origine (la cima, quota $100$), e infatti il gradiente in $(3,2)$ punta proprio "all'indietro" verso di essa.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Verificare che l'equazione $e^{xy}+x-y=1$ definisce implicitamente una funzione $y=\varphi(x)$ in un intorno di $(0,0)$, e calcolare $\varphi'(0)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Porto tutto a sinistra: $F(x,y)=e^{xy}+x-y-1$, di classe $C^\infty$ perché composizione di funzioni elementari.</span>
+                <span class="esempio__passo"><strong>Appartenenza</strong>: $F(0,0)=e^0+0-0-1=1-1=0$ ✓.</span>
+                <span class="esempio__passo">Derivate parziali: $F_x=y\,e^{xy}+1$ e $F_y=x\,e^{xy}-1$.</span>
+                <span class="esempio__passo"><strong>Condizione di Dini</strong>: $F_y(0,0)=0\cdot1-1=-1\neq0$ ✓. Il teorema si applica.</span>
+                <span class="esempio__passo">Inoltre $F_x(0,0)=0\cdot1+1=1$.</span>
+                <span class="esempio__passo">$\varphi'(0)=-\dfrac{F_x(0,0)}{F_y(0,0)}=-\dfrac{1}{-1}=1$.</span>
+              </p>
+              <p><strong>Le ipotesi di Dini sono soddisfatte e $\varphi'(0)=1$.</strong> La curva, vicino all'origine, si comporta come la retta $y=x$: la tangente ha equazione $y=x$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Applicare due passi di discesa del gradiente alla funzione errore $f(x,y)=x^2+2y^2$ partendo da $P_0=(2,1)$ con passo $\eta=0{,}1$, e verificare che il valore di $f$ diminuisce.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivo $f(x,y)=x^2+2y^2$: $f_x=2x$ e $f_y=4y$, cioè $\nabla f=(2x,\ 4y)$. Sostituisco $x=2$, $y=1$: $2\cdot2=4$ e $4\cdot1=4$, quindi $\nabla f(2,1)=(4,4)$; e $f(P_0)=2^2+2\cdot1^2=4+2=6$.</span>
+                <span class="esempio__passo"><strong>Primo passo</strong>: la regola della discesa del gradiente è $P_{n+1}=P_n-\eta\,\nabla f(P_n)$ — ci si muove nella direzione <em>opposta</em> al gradiente, che è quella di massima discesa (<span class="richiamo" data-sec="4.3">§4.3</span>). Sostituisco $P_0=(2,1)$, $\eta=0{,}1$, $\nabla f(P_0)=(4,4)$: $P_1=(2,1)-0{,}1\,(4,4)=(2-0{,}4,\ 1-0{,}4)=(1{,}6,\ 0{,}6)$.</span>
+                <span class="esempio__passo">$f(P_1)=1{,}6^2+2\cdot0{,}6^2=2{,}56+0{,}72=3{,}28$. È sceso da $6$ ✓.</span>
+                <span class="esempio__passo"><strong>Secondo passo</strong>: ricalcolo il gradiente nel <em>nuovo</em> punto $P_1=(1{,}6;\,0{,}6)$, sostituendo in $(2x,4y)$: $2\cdot1{,}6=3{,}2$ e $4\cdot0{,}6=2{,}4$, cioè $\nabla f(P_1)=(3{,}2,\ 2{,}4)$. Moltiplico per $\eta=0{,}1$ ottenendo $(0{,}32;\ 0{,}24)$ e sottraggo da $P_1$: $P_2=(1{,}6-0{,}32,\ 0{,}6-0{,}24)=(1{,}28,\ 0{,}36)$.</span>
+                <span class="esempio__passo">$f(P_2)=1{,}28^2+2\cdot0{,}36^2=1{,}6384+0{,}2592\approx1{,}90$.</span>
+              </p>
+              <p><strong>$P_1=(1{,}6;\,0{,}6)$ con $f=3{,}28$; &nbsp; $P_2=(1{,}28;\,0{,}36)$ con $f\approx1{,}90$.</strong> I valori $6\to3{,}28\to1{,}90$ calano verso il minimo assoluto $f(0,0)=0$: è esattamente ciò che fa un algoritmo di machine learning mentre "impara". Nota che la coordinata $y$ scende più in fretta, perché lungo $y$ la conca è più ripida (coefficiente $2$).</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Il gradiente di una funzione $f(x,y)$ in un punto è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un numero che misura la pendenza media</button>
+              <button class="quiz-option" data-correct="true">il vettore $\big(f_x,\ f_y\big)$ delle derivate parziali</button>
+              <button class="quiz-option" data-correct="false">la somma $f_x+f_y$ delle derivate parziali</button>
+              <button class="quiz-option" data-correct="false">la matrice delle derivate seconde</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\nabla f=(f_x,f_y)$ è un <strong>vettore</strong>: le derivate parziali non si sommano, si affiancano. La matrice delle derivate seconde è invece l'hessiana, che vedrai nel Capitolo 5.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Se $f$ è differenziabile e $\mathbf u$ è un versore, la derivata direzionale vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\lVert\nabla f(P_0)\rVert\cdot\lVert\mathbf u\rVert$</button>
+              <button class="quiz-option" data-correct="true">$\nabla f(P_0)\cdot\mathbf u$</button>
+              <button class="quiz-option" data-correct="false">$\nabla f(P_0)+\mathbf u$</button>
+              <button class="quiz-option" data-correct="false">$f(P_0)\cdot\mathbf u$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È il <strong>prodotto scalare</strong> fra gradiente e versore: $D_{\mathbf u}f=f_xu_1+f_yu_2$. Equivalentemente $\lVert\nabla f\rVert\cos\theta$, dove $\theta$ è l'angolo fra i due vettori.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Il valore <em>massimo</em> della derivata direzionale in un punto $P_0$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$f(P_0)$</button>
+              <button class="quiz-option" data-correct="false">il vettore $\nabla f(P_0)$</button>
+              <button class="quiz-option" data-correct="true">$\lVert\nabla f(P_0)\rVert$, il modulo del gradiente</button>
+              <button class="quiz-option" data-correct="false">sempre $1$, perché il versore ha modulo $1$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Da $D_{\mathbf u}f=\lVert\nabla f\rVert\cos\theta$ con $\cos\theta\le1$: il massimo è $\lVert\nabla f\rVert$, raggiunto quando $\mathbf u$ è allineato al gradiente. Attenzione: la <em>direzione</em> è un vettore, la <em>pendenza</em> è un numero.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Per $f(x,y)=x^2y$, quanto vale $\nabla f(1,3)$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$(2,3)$</button>
+              <button class="quiz-option" data-correct="true">$(6,1)$</button>
+              <button class="quiz-option" data-correct="false">$(3,6)$</button>
+              <button class="quiz-option" data-correct="false">$(1,6)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$f_x=2xy$ dà $2\cdot1\cdot3=6$; $f_y=x^2$ dà $1$. Quindi $\nabla f(1,3)=(6,1)$. L'errore tipico è invertire le due componenti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Il gradiente è sempre tangente alla curva di livello che passa per il punto.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, ed è l'errore più insidioso: il gradiente è <strong>ortogonale</strong> alla curva di livello. Lungo la curva di livello la funzione non varia, quindi lì la derivata direzionale è nulla e il prodotto scalare con il gradiente è zero.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Il gradiente punta nella direzione lungo cui la funzione cresce più rapidamente.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, ed è la proprietà centrale del capitolo: è la bussola dell'escursionista nella nebbia. La direzione opposta, $-\nabla f$, è quella di massima discesa — la strada dell'acqua piovana e della discesa del gradiente.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Per applicare la formula $D_{\mathbf u}f=\nabla f\cdot\mathbf u$ il vettore $\mathbf u$ deve avere modulo $1$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: se non normalizzi, il risultato viene moltiplicato per $\lVert\mathbf v\rVert$ e non rappresenta più una pendenza. Se il testo dà "la direzione di $(3,4)$", devi usare $\left(\frac35,\frac45\right)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Se esistono entrambe le derivate parziali in un punto, allora la formula $D_{\mathbf u}f=\nabla f\cdot\mathbf u$ vale in ogni direzione.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: serve la <strong>differenziabilità</strong>, ipotesi più forte. Esistono funzioni con $\nabla f=\mathbf 0$ in un punto ma con derivate direzionali non nulle in direzioni oblique: la formula darebbe $0$, sbagliando.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="massima">
+            <p class="quiz-question__testo">9. (Completamento) Il modulo del gradiente $\lVert\nabla f(P_0)\rVert$ rappresenta la pendenza ______ raggiungibile nel punto $P_0$.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È la pendenza <strong>massima</strong>: nessuna direzione può dare una derivata direzionale maggiore, per la disuguaglianza di Cauchy-Schwarz.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="ortogonale|perpendicolare">
+            <p class="quiz-question__testo">10. (Completamento) In ogni punto, il gradiente è sempre ______ alla curva di livello che vi passa.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Ortogonale (perpendicolare). Dimostrazione lampo: se $\gamma$ sta nell'insieme di livello, $f(\gamma(t))=k$ è costante, quindi $\nabla f\cdot\gamma'=0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="versore|vettore unitario">
+            <p class="quiz-question__testo">11. (Completamento) Prima di calcolare una derivata direzionale bisogna trasformare il vettore direzione in un ______, cioè un vettore di modulo $1$.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Un <strong>versore</strong>: si ottiene dividendo il vettore per il proprio modulo, $\mathbf u=\mathbf v/\lVert\mathbf v\rVert$. È il passo 1 della ricetta N-G-P.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue l'analogia dell'escursionista nella nebbia: che cosa rappresentano la direzione e il modulo del gradiente, e che cosa rappresenta $-\nabla f$?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: un escursionista avvolto dalla nebbia non vede il paesaggio, ma con i piedi sente la pendenza del terreno tutto intorno. Se vuole salire il più rapidamente possibile deve individuare la direzione in cui il suolo sale di più: quella direzione è, punto per punto, quella del gradiente $\nabla f$. Il <strong>modulo</strong> $\lVert\nabla f\rVert$ è invece il numero che dice <em>quanto</em> è ripida quella salita: se è grande il pendio è scosceso, se è piccolo il terreno è quasi piano. Formalmente ciò segue da $D_{\mathbf u}f=\lVert\nabla f\rVert\cos\theta$: al variare della direzione cambia solo $\cos\theta$, che è massimo ($=1$) quando $\mathbf u$ è allineato al gradiente. Il vettore opposto $-\nabla f$ indica invece la direzione di massima discesa: è la strada che sceglie l'acqua piovana quando cade sul pendio, ed è la direzione lungo cui si muove l'algoritmo di discesa del gradiente per minimizzare l'errore di un modello. Infine, nelle direzioni perpendicolari al gradiente la quota non cambia: sono i sentieri in piano, cioè le curve di livello.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Dimostra che il gradiente è ortogonale alle curve di livello, e spiega perché questo fatto permette di scrivere l'equazione del piano tangente a una superficie $F(x,y,z)=k$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: sia $\gamma(t)=(x(t),y(t))$ una curva derivabile contenuta nella curva di livello $\{f=k\}$, con $\gamma(t_0)=P_0$. Poiché la curva sta tutta nell'insieme di livello, vale l'identità $f(\gamma(t))=k$ per ogni $t$. Il membro di sinistra è una funzione della sola $t$ e il membro di destra è costante, quindi la sua derivata è nulla. Ma per la regola della catena quella derivata vale $\nabla f(\gamma(t))\cdot\gamma'(t)$. Uguagliando in $t=t_0$ si ottiene $\nabla f(P_0)\cdot\gamma'(t_0)=0$: due vettori non nulli con prodotto scalare nullo sono perpendicolari, e poiché $\gamma'(t_0)$ è tangente alla curva di livello, il gradiente le è ortogonale. In $\mathbb{R}^3$ il ragionamento è identico per ogni curva tracciata sulla superficie $\{F=k\}$ e passante per $P_0$: il gradiente risulta perpendicolare a <em>tutti</em> i vettori tangenti in quel punto, cioè all'intero piano tangente. Ma un piano è completamente determinato da un punto e da un vettore normale: imponendo che $P-P_0$ sia ortogonale a $\nabla F(P_0)$ si ottiene subito l'equazione $\nabla F(P_0)\cdot(P-P_0)=0$, cioè $F_x(P_0)(x-x_0)+F_y(P_0)(y-y_0)+F_z(P_0)(z-z_0)=0$. La retta normale è invece quella che segue il gradiente: $P_0+t\,\nabla F(P_0)$.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="03-derivate-parziali.html"><span class="dir">← Capitolo precedente</span><strong>Derivate parziali</strong></a>
+        <a class="next" href="05-hessiano-massimi-minimi.html"><span class="dir">Capitolo successivo →</span><strong>Hessiano, massimi e minimi</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>
+
+
+
+
+
+

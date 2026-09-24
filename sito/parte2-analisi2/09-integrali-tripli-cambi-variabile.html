@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>9. Integrali tripli e cambi di variabile — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 9</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html" class="is-active">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 9 di 14</span>
+        </div>
+        <h1>Integrali tripli e cambi di variabile</h1>
+        <p class="subtitle">Con l'integrale doppio abbiamo imparato a sommare su una regione <em>piatta</em>. Ora saliamo di una dimensione: sommeremo su un <strong>solido</strong>, cubetto dopo cubetto. Serve per pesare una montagna di sabbia, per misurare quanta acqua c'è in un lago di profondità variabile, per trovare il baricentro di un pezzo meccanico. E scopriremo l'arma segreta dell'analisi in più variabili: il <strong>cambio di coordinate</strong>, con il suo indispensabile fattore di correzione, il determinante jacobiano.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~65 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Quattro cose. Te le rispieghiamo in parole poverissime, con una immagine mentale ciascuna. Se le hai in testa, questo capitolo scorre liscio.</p>
+          <p><strong>1) L'<a href="08-integrali-doppi.html">integrale doppio</a> è "taglio a mattonelle e sommo".</strong> Hai una regione piatta $D$ e una funzione $f(x,y)$. Tagli $D$ in tante mattonelle piccolissime. Su ogni mattonella moltiplichi il valore di $f$ per l'area della mattonella. Sommi tutto. <br><em>Immagine: il pavimento a piastrelle.</em> Ogni piastrella dà il suo contributo, tu li sommi.</p>
+          <p><strong>E la "riduzione a integrali semplici"?</strong> Non si sommano davvero infinite mattonelle: si fa <strong>un integrale alla volta</strong>. Prima si somma lungo una riga (tenendo l'altra variabile ferma, come una costante), poi si sommano tutte le righe. <br><em>Immagine: contare i posti di un cinema.</em> Prima conti quanti posti ha la fila 1, poi la fila 2, poi sommi tutte le file. Due conteggi facili al posto di uno difficile.</p>
+          <p><strong>2) Le <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span> sono "quanto lontano" + "in che direzione".</strong> Invece di dire "3 passi a destra e 4 in avanti" ($x$ e $y$), dici "5 passi in quella direzione lì" ($r$ e $\theta$). Le formule sono $x=r\cos\theta$, $y=r\sin\theta$. <br><em>Immagine: il radar.</em> Il radar non ti dà le coordinate cartesiane dell'aereo: ti dà la distanza e l'angolo. Per i cerchi è il linguaggio naturale, perché un cerchio è semplicemente "$r$ costante".</p>
+          <p><strong>3) Il determinante di una matrice è un fattore di ingrandimento.</strong> Una matrice prende una figura e la trasforma. Il determinante è <strong>un solo numero</strong> che dice di quanto è cambiata l'area (in $2$ dimensioni) o il volume (in $3$). <br><em>Immagine: la fotocopiatrice con lo zoom.</em> Se il determinante vale $3$, tutto diventa $3$ volte più grande; se vale $\tfrac12$, tutto si dimezza; se vale $0$, la figura si è schiacciata e non c'è più niente. Il segno dice solo se la figura si è anche "rovesciata" come allo specchio.</p>
+          <p><strong>4) La <a href="../parte1-analisi1/13-integrali-indefiniti.html">sostituzione</a> negli integrali di una variabile cambia il righello.</strong> Ponendo $x=g(t)$ non basta riscrivere la funzione: bisogna anche cambiare il "pezzettino di lunghezza", perché $dx=g'(t)\,dt$. Quel $g'(t)$ è il prezzo del cambio di variabile. <br><em>Immagine: passare da metri a piedi.</em> Non basta tradurre i numeri: bisogna moltiplicare per il fattore di conversione, altrimenti il risultato è sballato. <strong>Il jacobiano di questo capitolo è esattamente quel fattore di conversione, in tre dimensioni.</strong></p>
+        </div>
+
+        <p>Fatto il ripasso, ecco l'idea del capitolo in una frase: <strong>quello che abbiamo fatto con le piastrelle del pavimento, ora lo facciamo con i cubetti di un solido</strong>.</p>
+        <p>Immagina una montagna di sabbia, o meglio: immagina un sacco di sabbia in cui, per qualche motivo, il fondo è più compatto e la cima più soffice. Vuoi sapere <strong>quanto pesa</strong>. Non puoi moltiplicare "volume × densità", perché la densità non è la stessa dappertutto. Che fai?</p>
+        <p>Fai la solita cosa: <strong>se non so misurare la cosa vera, la spezzo in pezzettini che so misurare</strong>. Dividi idealmente il sacco in tantissimi <strong>cubetti</strong> minuscoli. Ogni cubetto è così piccolo che dentro di lui la densità è praticamente costante: il suo peso è quindi (densità nel cubetto) × (volume del cubetto). Sommi i pesi di tutti i cubetti e ottieni una stima del peso totale. Rimpicciolisci i cubetti, aumenta il loro numero, passa al limite: la stima diventa <strong>esatta</strong>.</p>
+        <p>Quel numero limite è l'<strong><span class="glossario-term" data-term="integrale-triplo">integrale triplo</span></strong> della densità sul solido, e si scrive con tre "S" allungate:</p>
+        <div class="formula-block">$$\iiint_E f(x,y,z)\,dV \;=\; \text{somma di } f \text{ su tutti i cubetti del solido } E.$$</div>
+        <p>Un secondo esempio, ancora più vicino all'esperienza: un <strong>lago di profondità variabile</strong>. Quanta acqua contiene? Spezzi il lago in cubetti d'acqua e li conti tutti. Qui la funzione è semplicemente $f=1$ (ogni cubetto conta per il suo volume e basta), e l'integrale triplo restituisce il <strong>volume</strong> del lago.</p>
+
+        <svg viewBox="0 0 500 260" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Un solido irregolare suddiviso in tanti cubetti: ogni cubetto contribuisce con il suo piccolo volume">
+          <path d="M 70 200 C 90 110, 180 60, 260 70 C 350 80, 420 130, 430 200 Z" fill="var(--color-primary)" opacity="0.16" stroke="var(--color-primary)" stroke-width="2"/>
+          <g stroke="var(--color-primary)" stroke-width="0.8" opacity="0.55">
+            <line x1="100" y1="70" x2="100" y2="200"/><line x1="130" y1="70" x2="130" y2="200"/>
+            <line x1="160" y1="66" x2="160" y2="200"/><line x1="190" y1="62" x2="190" y2="200"/>
+            <line x1="220" y1="60" x2="220" y2="200"/><line x1="250" y1="60" x2="250" y2="200"/>
+            <line x1="280" y1="62" x2="280" y2="200"/><line x1="310" y1="66" x2="310" y2="200"/>
+            <line x1="340" y1="72" x2="340" y2="200"/><line x1="370" y1="82" x2="370" y2="200"/>
+            <line x1="400" y1="100" x2="400" y2="200"/>
+            <line x1="70" y1="90" x2="430" y2="90"/><line x1="70" y1="120" x2="430" y2="120"/>
+            <line x1="70" y1="150" x2="430" y2="150"/><line x1="70" y1="180" x2="430" y2="180"/>
+          </g>
+          <rect x="250" y="120" width="30" height="30" fill="var(--color-accent)" opacity="0.75" stroke="var(--color-accent)" stroke-width="1.5"/>
+          <text x="290" y="138" font-size="13" font-weight="700" fill="var(--color-accent)">ΔV</text>
+          <text x="240" y="230" font-size="14" font-style="italic" fill="currentColor">E</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Ogni cubetto porta il contributo $f(P_i)\,\Delta V_i$. Rimpicciolendo i cubetti e sommandoli tutti si ottiene $\displaystyle\iiint_E f\,dV$.</p>
+
+        <p>La seconda metà del capitolo risponde a una domanda pratica: <strong>e se il solido è una sfera, o un cono, o un cilindro?</strong> Descriverlo con $x$, $y$, $z$ diventa un incubo di radici quadrate. La soluzione è <strong>cambiare linguaggio</strong>: usare coordinate su misura per quella forma. Ma cambiare linguaggio ha un prezzo, ed è il <span class="glossario-term" data-term="jacobiano">determinante jacobiano</span>. È il fattore di conversione fra i cubetti vecchi e quelli nuovi — la versione tridimensionale di quel $g'(t)$ della sostituzione.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>il mondo è tridimensionale e non è omogeneo</strong>. Un pezzo di motore ha zone di acciaio e zone cave; l'atmosfera è densa in basso e rarefatta in alto; un tumore ha densità diverse dal tessuto sano; un serbatoio ha una forma qualsiasi. Ogni volta che una grandezza è <em>distribuita nello spazio</em> e vuoi il <strong>totale</strong>, ti serve un integrale triplo. E poiché le forme che contano davvero in ingegneria e fisica sono sfere, cilindri, coni e solidi di rotazione, ti serve anche il modo di <strong>adattare le coordinate alla forma</strong>: da qui il teorema del cambio di variabili.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Tre problemi, in verità, che ricorrono ovunque. <strong>(a) Volumi</strong> di solidi che non hanno una formula elementare: il volume di una porzione di sfera tagliata da un cono, il volume tra un paraboloide e un piano. <strong>(b) Masse e cariche</strong> di corpi non omogenei: basta integrare la densità. <strong>(c) Grandezze medie o pesate</strong>: il <span class="glossario-term" data-term="baricentro">baricentro</span> (dove appoggiare il dito per tenere in equilibrio un oggetto) e il <span class="glossario-term" data-term="momento-inerzia">momento d'inerzia</span> (quanto è faticoso metterlo in rotazione) sono entrambi integrali tripli.</p>
+        <p><strong>Perché è importante ora?</strong> Perché è l'ultimo gradino del "calcolo integrale su regioni". Con l'<a href="08-integrali-doppi.html">integrale doppio</a> hai imparato a sommare su un pezzo di piano; qui impari a sommare su un pezzo di spazio, e la tecnica di riduzione è la stessa (un integrale alla volta), solo con un passaggio in più. Soprattutto, il <strong>teorema del cambio di variabili</strong> che vedremo qui non è un dettaglio tecnico: è lo strumento che rende <em>calcolabili</em> gli integrali multipli, ed è lo stesso principio che ritroverai negli <a href="11-integrali-superficie-campi-vettoriali.html">integrali di superficie</a> e nei <a href="12-teoremi-green-gauss-stokes.html">teoremi di Gauss e Stokes</a>.</p>
+        <p>C'è anche un motivo culturale. Il determinante jacobiano è uno dei punti in cui <strong>algebra lineare e analisi si danno la mano</strong>: un oggetto algebrico (il determinante di una matrice) risponde a una domanda geometrica e analitica (di quanto si deformano i volumi). Capirlo davvero, e non solo impararlo a memoria, è uno dei salti di maturità matematica del secondo anno.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏔️</span> Pesare una montagna di sabbia</div>
+          <p>Sei in un cantiere e hai davanti un cumulo di sabbia a forma di cono. Devi dire al camionista quanto pesa, perché il camion ha un limite di portata. Se la sabbia fosse perfettamente uniforme basterebbe "volume × densità": il volume del cono lo sai, $\tfrac13\pi R^2 h$, e la densità la leggi sulla scheda tecnica. Fine.</p>
+          <p>Ma la sabbia vera non è uniforme: <strong>in basso è compressa dal peso di quella sopra</strong>, quindi più densa; in cima è soffice. La densità è una funzione della quota, diciamo $\delta(z)$: più grande vicino a terra, più piccola vicino alla punta. Il conto "volume × densità" non ha più senso — <em>quale</em> densità useresti?</p>
+          <p>Allora fai così. Immagini di tagliare il cono in <strong>fette orizzontali sottilissime</strong>, come un salame. Ogni fetta è talmente sottile che al suo interno la densità è praticamente costante: il peso della fetta è $\delta(z)\cdot(\text{area della fetta})\cdot(\text{spessore})$. Sommi le fette e hai il peso totale:</p>
+          <div class="formula-block">$$\text{massa}=\iiint_E \delta(x,y,z)\,dV .$$</div>
+          <p>Questo è un integrale triplo, e il metodo di calcolo che hai appena inventato "a occhio" ha un nome preciso che vedremo fra poco: <strong>riduzione per strati</strong>. Se invece la densità dipendesse dalla distanza dall'asse del cono (succede, per esempio, in un tronco d'albero o in un cavo elettrico che si scalda al centro), converrebbe tagliare in <strong>gusci cilindrici</strong> concentrici, cioè usare le <span class="glossario-term" data-term="coordinate-cilindriche">coordinate cilindriche</span>. La forma del problema suggerisce le coordinate.</p>
+        </div>
+        <p>Gli usi quotidiani di questa macchina sono ovunque, spesso nascosti dentro un software.</p>
+        <ul>
+          <li><strong>TAC e risonanza magnetica.</strong> Una TAC misura la densità dei tessuti in ogni punto del corpo: è una funzione $\delta(x,y,z)$ campionata su una griglia di voxel (i "cubetti" digitali). Calcolare il volume di un organo, o la massa di un tumore, significa sommare i voxel: un integrale triplo, letteralmente svolto come somma di cubetti.</li>
+          <li><strong>Meteorologia e inquinamento.</strong> La quantità totale di vapore acqueo sopra una città, o di particolato in una valle, è l'integrale triplo della concentrazione sul volume d'aria considerato. La concentrazione varia con la quota e con la posizione: niente formula chiusa, si integra.</li>
+          <li><strong>Progettazione meccanica.</strong> Ogni software CAD, quando gli chiedi "massa" o "baricentro" o "momenti d'inerzia" di un pezzo, sta calcolando integrali tripli. Il momento d'inerzia decide se un albero motore vibra, se un volano accumula abbastanza energia, quanto è reattivo un drone.</li>
+          <li><strong>Batimetria e invasi.</strong> Quanta acqua c'è in una diga? Si conosce la profondità punto per punto (il fondale è una superficie $z=h(x,y)$) e si integra: il volume dell'acqua è un integrale triplo che si riduce immediatamente a un integrale doppio del profilo di profondità.</li>
+          <li><strong>Astrofisica e gravitazione.</strong> Il campo gravitazionale di un pianeta non omogeneo si ottiene integrando il contributo di ogni cubetto di materia. Newton stesso dovette dimostrare, con un conto di questo tipo, che una sfera omogenea attrae come se tutta la sua massa fosse concentrata nel centro.</li>
+        </ul>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌐</span> Latitudine e longitudine: le coordinate sferiche le usi già</div>
+          <p>Quando dici "Roma è a $41^\circ$ di latitudine nord e $12^\circ$ di longitudine est" stai usando <span class="glossario-term" data-term="coordinate-sferiche">coordinate sferiche</span>. Il raggio è fisso (il raggio terrestre) e due angoli bastano a individuare un punto sulla superficie. In matematica si aggiunge il raggio come terza coordinata, così si descrivono anche i punti <em>dentro</em> la sfera: la profondità di uno strato del mantello terrestre, per esempio. L'unica differenza tecnica è che i matematici misurano l'angolo $\varphi$ <strong>a partire dal Polo Nord</strong> (si chiama <em>colatitudine</em>) invece che dall'equatore: $\varphi=0$ al polo, $\varphi=\pi/2$ all'equatore, $\varphi=\pi$ al polo sud. Vedremo che questa scelta rende la formula del jacobiano più pulita.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizione">4.1 Definizione di integrale triplo</h3>
+        <p>Partiamo dal caso più semplice possibile: $E$ è un <strong>parallelepipedo</strong> (una "scatola") $[a,b]\times[c,d]\times[p,q]$ e $f$ è una <span class="glossario-term" data-term="funzione-piu-variabili">funzione di tre variabili</span> limitata su di esso.</p>
+        <p>Suddividiamo ciascun lato della scatola in tanti pezzetti. Le tre suddivisioni, incrociandosi, spezzano la scatola in $N$ piccoli parallelepipedi $E_1,\dots,E_N$, di volumi $\Delta V_1,\dots,\Delta V_N$. In ogni cubetto scegliamo un punto campione $P_i\in E_i$ e formiamo la <strong>somma di Riemann tridimensionale</strong>:</p>
+        <div class="formula-block">$$S_N=\sum_{i=1}^{N} f(P_i)\,\Delta V_i .$$</div>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Integrale triplo.</em> Se, facendo tendere a zero il diametro massimo dei cubetti, le somme $S_N$ tendono a un <strong>unico numero</strong> indipendente dalla scelta dei punti $P_i$, quel numero è l'<strong><span class="glossario-term" data-term="integrale-triplo">integrale triplo</span></strong> di $f$ su $E$:</p>
+          <div class="formula-block">$$\iiint_E f(x,y,z)\,dV \;=\; \lim_{N\to\infty}\ \sum_{i=1}^{N} f(P_i)\,\Delta V_i .$$</div>
+          <p>Si scrive anche $dV=dx\,dy\,dz$. Per un solido $E$ limitato e "ragionevole" (il bordo è fatto di superfici regolari a pezzi) e per $f$ continua, l'integrale esiste sempre: è il caso di tutti gli esercizi che incontrerai.</p>
+        </div>
+        <p>Per un solido $E$ qualsiasi (non una scatola) si procede come per gli integrali doppi: si racchiude $E$ in una scatola grande, si estende $f$ ponendola uguale a $0$ fuori da $E$, e si integra sulla scatola. I cubetti fuori da $E$ contribuiscono zero e tutto torna.</p>
+
+        <h3 id="teoria-significato">4.2 Che cosa significa il risultato</h3>
+        <p>Un integrale triplo è un <strong>numero</strong>, e il suo significato dipende da che cos'è $f$. Due letture coprono il $90\%$ dei casi.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Le due letture fondamentali</span>
+          <p><strong>Massa.</strong> Se $\delta(x,y,z)$ è la <strong>densità</strong> (massa per unità di volume) di un solido $E$, allora</p>
+          <div class="formula-block">$$m(E)=\iiint_E \delta(x,y,z)\,dV .$$</div>
+          <p><strong>Volume.</strong> Se $f\equiv 1$ (densità unitaria: ogni cubetto conta solo per il suo volume), allora</p>
+          <div class="formula-block">$$\operatorname{Vol}(E)=\iiint_E 1\,dV=\iiint_E dV .$$</div>
+        </div>
+        <p>Attenzione a una differenza rispetto all'integrale doppio, perché è fonte di confusione. Per l'integrale doppio, $\iint_D f\,dA$ con $f\geq 0$ si interpretava come il <strong>volume</strong> sotto il grafico di $f$: si "guadagnava" una dimensione, perché il grafico di una funzione di $2$ variabili vive in $\mathbb{R}^3$ e lo potevamo disegnare. Per l'integrale triplo <strong>non esiste un'interpretazione grafica analoga</strong>: il grafico di $f(x,y,z)$ vivrebbe in $\mathbb{R}^4$, e non lo possiamo disegnare. Perciò l'interpretazione buona, quella da tenere in testa, è <strong>"somma pesata sul solido"</strong>: massa, carica, energia, quantità totale.</p>
+        <p>Valgono, con le stesse dimostrazioni dell'integrale semplice, tutte le proprietà di sempre: linearità, additività rispetto al dominio ($E=E_1\cup E_2$ con interni disgiunti implica $\iiint_E=\iiint_{E_1}+\iiint_{E_2}$), monotonia. E vale anche la <strong>media integrale</strong>: il valore medio di $f$ su $E$ è</p>
+        <div class="formula-block">$$\bar f=\frac{1}{\operatorname{Vol}(E)}\iiint_E f\,dV,$$</div>
+        <p>che per la densità dà la densità media del solido. È esattamente l'idea di "spalmare uniformemente" il contenuto dell'integrale su tutto il volume.</p>
+
+        <h3 id="teoria-fili">4.3 Riduzione per fili (colonne verticali)</h3>
+        <p>Nessuno calcola davvero un limite di somme. Come per gli integrali doppi, si <strong>riduce</strong> l'integrale triplo a integrali semplici, uno alla volta. Il primo dei due metodi è la riduzione <strong>per fili</strong>, detta anche "per colonne".</p>
+        <p>L'idea in una frase: <strong>guardo il solido dall'alto, e per ogni punto della sua ombra mi chiedo dove comincia e dove finisce il solido in verticale.</strong> È come infilare tanti spaghetti verticali attraverso il solido: ogni spaghetto (il "filo") entra da sotto ed esce da sopra.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="dominio-normale">Dominio semplice</span> (normale) rispetto a $z$.</em> Un solido $E$ si dice semplice rispetto all'asse $z$ se si scrive come</p>
+          <div class="formula-block">$$E=\big\{(x,y,z)\ :\ (x,y)\in D,\quad \alpha(x,y)\leq z\leq \beta(x,y)\big\},$$</div>
+          <p>dove $D\subseteq\mathbb{R}^2$ è la <strong>proiezione</strong> (l'ombra) di $E$ sul piano $xy$, e $\alpha\leq\beta$ sono funzioni continue su $D$ (la superficie "pavimento" e la superficie "tetto").</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (formula di riduzione per fili)</span>
+          <p>Se $E$ è semplice rispetto a $z$ e $f$ è continua su $E$, allora</p>
+          <div class="formula-block">$$\iiint_E f(x,y,z)\,dV=\iint_{D}\left(\int_{\alpha(x,y)}^{\beta(x,y)} f(x,y,z)\,dz\right)dx\,dy .$$</div>
+        </div>
+        <p>Il conto si svolge dall'interno verso l'esterno. Nell'integrale più interno, $x$ e $y$ sono <strong>costanti</strong>: si integra solo in $dz$. Il risultato è una funzione delle sole $x,y$, e a quel punto si calcola un normale <span class="glossario-term" data-term="integrale-doppio">integrale doppio</span> su $D$ — che a sua volta si riduce a due integrali semplici, con le tecniche del <a href="08-integrali-doppi.html">Capitolo 8</a>.</p>
+        <p>Nel caso importante $f\equiv 1$ la formula dà una cosa che conosci già:</p>
+        <div class="formula-block">$$\operatorname{Vol}(E)=\iint_D\big(\beta(x,y)-\alpha(x,y)\big)\,dx\,dy,$$</div>
+        <p>cioè "l'integrale doppio dell'altezza della colonna". È la formula del volume fra due superfici che avevi incontrato con gli integrali doppi: qui la ritrovi come caso particolare.</p>
+
+        <h3 id="teoria-strati">4.4 Riduzione per strati (fette orizzontali)</h3>
+        <p>Il secondo metodo ribalta il punto di vista. Invece di infilare spaghetti verticali, <strong>affetto il solido come un salame</strong>, con tagli orizzontali. Per ogni quota $z$ fissata, la fetta è una regione piana $E_z$; ne calcolo l'"area pesata" con un integrale doppio, e poi sommo tutte le fette variando $z$.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (formula di riduzione per strati)</span>
+          <p>Sia $E\subseteq\mathbb{R}^3$ contenuto fra le quote $z=a$ e $z=b$, e per ogni $z\in[a,b]$ sia</p>
+          <div class="formula-block">$$E_z=\{(x,y)\ :\ (x,y,z)\in E\}$$</div>
+          <p>la <strong>sezione</strong> di $E$ alla quota $z$. Se $f$ è continua su $E$, allora</p>
+          <div class="formula-block">$$\iiint_E f(x,y,z)\,dV=\int_a^b\left(\iint_{E_z} f(x,y,z)\,dx\,dy\right)dz .$$</div>
+          <p>In particolare, con $f\equiv 1$, si ottiene la <strong>formula delle sezioni</strong> (o di Cavalieri):</p>
+          <div class="formula-block">$$\operatorname{Vol}(E)=\int_a^b \operatorname{Area}(E_z)\,dz .$$</div>
+        </div>
+
+        <svg viewBox="0 0 520 250" style="max-width:560px;margin:1.4em auto;display:block;" role="img" aria-label="A sinistra la riduzione per fili con una colonna verticale, a destra la riduzione per strati con una fetta orizzontale">
+          <path d="M 40 200 C 55 110, 120 70, 180 85 C 235 98, 250 150, 240 200 Z" fill="var(--color-primary)" opacity="0.15" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="120" y="78" width="20" height="122" fill="var(--color-accent)" opacity="0.65" stroke="var(--color-accent)" stroke-width="1.4"/>
+          <line x1="30" y1="212" x2="250" y2="212" stroke="var(--color-border)" stroke-width="1.5"/>
+          <text x="146" y="70" font-size="12" font-weight="700" fill="var(--color-accent)">filo</text>
+          <text x="95" y="232" font-size="12.5" fill="currentColor">ombra D sul piano xy</text>
+          <text x="100" y="250" font-size="13" font-weight="700" fill="currentColor">PER FILI</text>
+          <path d="M 300 200 C 315 110, 380 70, 440 85 C 495 98, 510 150, 500 200 Z" fill="var(--color-primary)" opacity="0.15" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="306" y="138" width="198" height="18" fill="var(--color-secondary)" opacity="0.6" stroke="var(--color-secondary)" stroke-width="1.4"/>
+          <line x1="290" y1="212" x2="512" y2="212" stroke="var(--color-border)" stroke-width="1.5"/>
+          <text x="418" y="132" font-size="12" font-weight="700" fill="var(--color-secondary)">strato</text>
+          <text x="285" y="152" font-size="12" font-weight="700" fill="currentColor">z</text>
+          <text x="358" y="250" font-size="13" font-weight="700" fill="currentColor">PER STRATI</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Due modi di spezzare lo stesso solido: colonne verticali (fili) oppure fette orizzontali (strati).</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🤔</span> Fili o strati? Come si sceglie</div>
+          <p>Non c'è un metodo "giusto" in assoluto: danno lo stesso risultato. Si sceglie quello che rende i conti più corti. Tre criteri pratici.</p>
+          <p><strong>Usa i FILI quando</strong> il solido è descritto come "compreso fra due superfici" del tipo $z=\alpha(x,y)$ e $z=\beta(x,y)$ — per esempio fra un paraboloide e un piano, o fra un piano inclinato e il pavimento — e l'ombra $D$ sul piano $xy$ è una regione semplice (un disco, un triangolo, un rettangolo).</p>
+          <p><strong>Usa gli STRATI quando</strong> le sezioni orizzontali sono figure facilissime di cui conosci l'area a memoria (dischi, quadrati, triangoli), e soprattutto quando <strong>la funzione dipende solo da $z$</strong>: in quel caso $f$ esce dall'integrale doppio interno, che si riduce alla sola area della fetta, e resta un unico integrale in $dz$. È il caso del cumulo di sabbia con densità $\delta(z)$.</p>
+          <p><strong>Regola-lampo:</strong> se il testo ti dà "$z$ compreso fra ... e ...", pensa ai fili; se il testo ti fa venire in mente un salame affettato, o se $f$ dipende solo dalla quota, pensa agli strati.</p>
+        </div>
+
+        <h3 id="teoria-cambio">4.5 Il teorema del cambio di variabili</h3>
+        <p>Arriviamo al cuore del capitolo. L'idea è la stessa della sostituzione in una variabile: <strong>se il dominio è scomodo nelle coordinate attuali, cambio coordinate</strong> e lo rendo comodo. Il prezzo da pagare è un fattore di correzione.</p>
+        <p>Una <strong>trasformazione di coordinate</strong> è una funzione</p>
+        <div class="formula-block">$$T:\ \Omega\subseteq\mathbb{R}^3\ \longrightarrow\ \mathbb{R}^3,\qquad T(u,v,w)=\big(x(u,v,w),\ y(u,v,w),\ z(u,v,w)\big),$$</div>
+        <p>che prende un solido $\Omega$ nel "mondo nuovo" (le variabili $u,v,w$) e lo manda sul solido $E$ nel "mondo vecchio" (le variabili $x,y,z$). Chiediamo che $T$ sia di classe $C^1$ e <strong>iniettiva</strong> (almeno all'interno): due punti diversi non devono finire nello stesso posto, altrimenti conteremmo due volte.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="matrice-jacobiana">Matrice jacobiana</span> e <span class="glossario-term" data-term="jacobiano">determinante jacobiano</span>.</em> La matrice jacobiana di $T$ è la matrice $3\times 3$ di tutte le derivate parziali:</p>
+          <div class="formula-block">$$J_T=\frac{\partial(x,y,z)}{\partial(u,v,w)}=\begin{pmatrix}\dfrac{\partial x}{\partial u} &amp; \dfrac{\partial x}{\partial v} &amp; \dfrac{\partial x}{\partial w}\\[8pt] \dfrac{\partial y}{\partial u} &amp; \dfrac{\partial y}{\partial v} &amp; \dfrac{\partial y}{\partial w}\\[8pt] \dfrac{\partial z}{\partial u} &amp; \dfrac{\partial z}{\partial v} &amp; \dfrac{\partial z}{\partial w}\end{pmatrix}$$</div>
+          <p>Il suo determinante $\det J_T(u,v,w)$ si chiama <strong>determinante jacobiano</strong> (o semplicemente "lo jacobiano").</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema del cambio di variabili</span>
+          <p>Sia $T:\Omega\to E$ di classe $C^1$, iniettiva con $\det J_T\neq 0$ all'interno di $\Omega$, e sia $f$ continua su $E$. Allora</p>
+          <div class="formula-block">$$\iiint_E f(x,y,z)\,dx\,dy\,dz \;=\; \iiint_{\Omega} f\big(T(u,v,w)\big)\ \big|\det J_T(u,v,w)\big|\ du\,dv\,dw .$$</div>
+          <p>In forma mnemonica: $\ dx\,dy\,dz=\big|\det J_T\big|\,du\,dv\,dw$.</p>
+        </div>
+        <p>Questa formula dice tre cose, che conviene tenere separate in testa quando si svolge un esercizio:</p>
+        <ol>
+          <li><strong>Cambia il dominio:</strong> non si integra più su $E$ ma su $\Omega$, che di solito è una scatola (e questo è tutto il vantaggio).</li>
+          <li><strong>Cambia la funzione:</strong> ovunque compaiano $x,y,z$ si sostituiscono le loro espressioni in $u,v,w$.</li>
+          <li><strong>Compare il jacobiano:</strong> si moltiplica per $|\det J_T|$. <strong>Questo è il passo che si dimentica più spesso, ed è l'errore più grave del capitolo.</strong></li>
+        </ol>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">📦</span> Perché compare il jacobiano: il cubetto deformato</div>
+          <p>Prendi un cubetto minuscolo nel mondo nuovo, di lati $du$, $dv$, $dw$: il suo volume è $du\,dv\,dw$. La trasformazione $T$ lo prende e lo sposta nel mondo vecchio, ma <strong>deformandolo</strong>: quel che era un cubetto diventa un piccolo <strong>parallelepipedo storto</strong>, un po' stirato in una direzione, un po' schiacciato in un'altra, e magari ruotato.</p>
+          <p>Quanto vale il volume del parallelepipedo storto? Qui interviene l'algebra lineare. Se il cubetto è abbastanza piccolo, $T$ si comporta come la sua <strong>approssimazione lineare</strong>, cioè come la matrice jacobiana (esattamente come, in una variabile, la funzione si comporta come la sua derivata). E l'algebra lineare dice che <strong>una matrice moltiplica i volumi per il valore assoluto del suo determinante</strong>. Quindi:</p>
+          <div class="formula-block">$$\underbrace{dx\,dy\,dz}_{\text{volume dopo}}=\big|\det J_T\big|\cdot\underbrace{du\,dv\,dw}_{\text{volume prima}}.$$</div>
+          <p>Il jacobiano è dunque il <strong>fattore locale di dilatazione dei volumi</strong>: "locale" perché in generale cambia da punto a punto (in un posto la trasformazione stira, in un altro comprime). È l'analogo tridimensionale del $g'(t)$ della sostituzione: lì un intervallino $dt$ diventava lungo $|g'(t)|\,dt$, qui un cubetto diventa grosso $|\det J_T|\,du\,dv\,dw$.</p>
+          <p><strong>E perché il valore assoluto?</strong> Perché il determinante porta con sé anche un'informazione di <em>orientazione</em>: è negativo quando la trasformazione "rovescia" lo spazio, come uno specchio che scambia destra e sinistra. Ma un volume è una quantità <strong>intrinsecamente positiva</strong>: non esistono cubetti con volume $-2$. Quindi dell'informazione sull'orientazione qui non ce ne facciamo niente e la buttiamo via prendendo il modulo. (Nell'integrale in una variabile non serviva il valore assoluto perché il segno veniva assorbito dallo scambio degli estremi; negli integrali multipli non c'è un "ordine" degli estremi, e allora il modulo va messo esplicitamente.)</p>
+        </div>
+
+        <svg viewBox="0 0 520 210" style="max-width:560px;margin:1.4em auto;display:block;" role="img" aria-label="Un cubetto viene trasformato in un parallelepipedo deformato: il volume si moltiplica per il modulo del determinante jacobiano">
+          <rect x="45" y="70" width="70" height="70" fill="var(--color-secondary)" opacity="0.25" stroke="var(--color-secondary)" stroke-width="2"/>
+          <path d="M 45 70 L 70 48 L 140 48 L 115 70 Z" fill="var(--color-secondary)" opacity="0.16" stroke="var(--color-secondary)" stroke-width="1.6"/>
+          <path d="M 115 70 L 140 48 L 140 118 L 115 140 Z" fill="var(--color-secondary)" opacity="0.10" stroke="var(--color-secondary)" stroke-width="1.6"/>
+          <text x="52" y="172" font-size="12.5" fill="currentColor">cubetto: du dv dw</text>
+          <path d="M 180 95 L 280 95" stroke="var(--color-primary)" stroke-width="2.4" marker-end="url(#fr)"/>
+          <defs><marker id="fr" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="var(--color-primary)"/></marker></defs>
+          <text x="188" y="84" font-size="13" font-weight="700" fill="var(--color-primary)">T</text>
+          <path d="M 320 140 L 400 128 L 430 78 L 350 90 Z" fill="var(--color-accent)" opacity="0.28" stroke="var(--color-accent)" stroke-width="2"/>
+          <path d="M 350 90 L 430 78 L 465 48 L 385 60 Z" fill="var(--color-accent)" opacity="0.18" stroke="var(--color-accent)" stroke-width="1.6"/>
+          <path d="M 430 78 L 465 48 L 465 98 L 430 128 Z" fill="var(--color-accent)" opacity="0.12" stroke="var(--color-accent)" stroke-width="1.6"/>
+          <text x="318" y="172" font-size="12.5" fill="currentColor">parallelepipedo deformato</text>
+          <text x="318" y="190" font-size="12.5" font-weight="700" fill="var(--color-accent)">volume = |det J| du dv dw</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Il determinante jacobiano misura di quanto la trasformazione gonfia o sgonfia i cubetti.</p>
+
+        <p>Un caso istruttivo, da tenere come pietra di paragone: la <strong>trasformazione lineare</strong> $x=au$, $y=bv$, $z=cw$ con $a,b,c\gt 0$. La matrice jacobiana è diagonale, $\operatorname{diag}(a,b,c)$, e il suo determinante vale $abc$, <strong>costante</strong>: questa trasformazione stira uniformemente di $a$ in una direzione, $b$ nell'altra, $c$ nella terza, e i volumi si moltiplicano per $abc$ ovunque. È il modo elegante per calcolare il volume di un ellissoide, come vedrai nell'Esercizio 9.12.</p>
+
+        <h3 id="teoria-cilindriche">4.6 Coordinate cilindriche</h3>
+        <p>Primo cambio di variabili su misura: prendi le coordinate polari del piano e <strong>aggiungici la quota $z$ così com'è</strong>. Nient'altro.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="coordinate-cilindriche">Coordinate cilindriche</span>.</em></p>
+          <div class="formula-block">$$\begin{cases}x=r\cos\theta\\ y=r\sin\theta\\ z=z\end{cases}\qquad r\geq 0,\quad \theta\in[0,2\pi),\quad z\in\mathbb{R}.$$</div>
+          <p>Significato: $r$ è la <strong>distanza dall'asse $z$</strong> (non dall'origine!), $\theta$ è l'angolo attorno all'asse $z$, $z$ è la quota. Il jacobiano vale</p>
+          <div class="formula-block">$$\big|\det J\big|=r,\qquad\text{quindi}\qquad dV=r\,dr\,d\theta\,dz .$$</div>
+          <p>Questo valore non è calato dall'alto: lo ricaviamo scrivendo la matrice $3\times3$ delle derivate parziali e calcolandone il determinante, nella <a href="#dimostrazioni">prima dimostrazione</a> della sezione 5.</p>
+        </div>
+        <p>Perché la combinazione $x^2+y^2$ si semplifica tanto? Facciamo il conto una volta per tutte, così potrai riusarlo: <strong>sostituisco $x=r\cos\theta$ e $y=r\sin\theta$</strong> e ottengo</p>
+        <div class="formula-block">$$x^2+y^2=(r\cos\theta)^2+(r\sin\theta)^2=r^2\cos^2\theta+r^2\sin^2\theta=r^2\big(\cos^2\theta+\sin^2\theta\big)=r^2,$$</div>
+        <p>dove nell'ultimo passaggio ho raccolto $r^2$ e usato l'identità fondamentale $\sin^2\theta+\cos^2\theta=1$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">Prerequisiti, cap. 8</a>). Da qui, per esempio, $\sqrt{x^2+y^2}=r$ (radice positiva, perché $r\geq0$).</p>
+        <div class="formula-block">$$\iiint_E f(x,y,z)\,dV=\iiint_{\Omega} f(r\cos\theta,\ r\sin\theta,\ z)\ \,r\,dr\,d\theta\,dz$$</div>
+        <p><strong>Quando usarle.</strong> Ogni volta che compare la combinazione $x^2+y^2$, perché diventa semplicemente $r^2$. In pratica:</p>
+        <ul>
+          <li><strong>cilindri</strong> ($x^2+y^2\leq R^2$ diventa $r\leq R$: un estremo costante!);</li>
+          <li><strong>coni</strong> ($z=\sqrt{x^2+y^2}$ diventa $z=r$, una retta);</li>
+          <li><strong>paraboloidi</strong> ($z=x^2+y^2$ diventa $z=r^2$);</li>
+          <li><strong>solidi di rotazione attorno all'asse $z$</strong> in generale, e situazioni in cui la densità dipende dalla distanza dall'asse (cavi, tronchi, tubi).</li>
+        </ul>
+        <p>Nota che il fattore $r$ ha un significato geometrico limpido: lontano dall'asse, uno "spicchio" di angolo $d\theta$ è più largo (la sua larghezza è $r\,d\theta$, come un arco di circonferenza). Perciò i cubetti di coordinate a grande $r$ sono più grossi, e il jacobiano lo tiene in conto. Sull'asse ($r=0$) il jacobiano si annulla: lì il sistema di coordinate degenera, perché $\theta$ non è definito — ma è un insieme di volume nullo e non crea problemi.</p>
+
+        <h3 id="teoria-sferiche">4.7 Coordinate sferiche</h3>
+        <p>Secondo cambio di variabili: il linguaggio del mappamondo. Un punto si individua con <strong>una distanza e due angoli</strong>, come "quanto sono lontano dal centro della Terra, a che latitudine, a che longitudine".</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="coordinate-sferiche">Coordinate sferiche</span>.</em></p>
+          <div class="formula-block">$$\begin{cases}x=\rho\,\sin\varphi\,\cos\theta\\ y=\rho\,\sin\varphi\,\sin\theta\\ z=\rho\,\cos\varphi\end{cases}\qquad \rho\geq 0,\quad \varphi\in[0,\pi],\quad \theta\in[0,2\pi).$$</div>
+          <p>Significato dei tre parametri:</p>
+          <ul>
+            <li>$\rho$ (rho) è la <strong>distanza dall'origine</strong>: $\rho=\sqrt{x^2+y^2+z^2}$;</li>
+            <li>$\varphi$ (phi) è l'angolo fra il semiasse $z$ positivo e il raggio: la <strong>colatitudine</strong>. Vale $0$ al "polo nord", $\pi/2$ all'"equatore", $\pi$ al "polo sud". <strong>Varia solo fra $0$ e $\pi$</strong>;</li>
+            <li>$\theta$ (theta) è l'angolo attorno all'asse $z$, esattamente come in polari e cilindriche: la <strong>longitudine</strong>. Varia fra $0$ e $2\pi$.</li>
+          </ul>
+          <p>Il jacobiano vale</p>
+          <div class="formula-block">$$\big|\det J\big|=\rho^2\sin\varphi,\qquad\text{quindi}\qquad dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta .$$</div>
+          <p>Anche questo si dimostra: il determinante della matrice $3\times3$ è calcolato passo per passo nella <a href="#dimostrazioni">seconda dimostrazione</a> della sezione 5.</p>
+        </div>
+        <p>Ecco perché la combinazione $x^2+y^2+z^2$ diventa così semplice. <strong>Sostituisco</strong> le tre espressioni e sviluppo:</p>
+        <div class="formula-block">$$x^2+y^2+z^2=\rho^2\sin^2\varphi\cos^2\theta+\rho^2\sin^2\varphi\sin^2\theta+\rho^2\cos^2\varphi .$$</div>
+        <p>Nei primi due addendi raccolgo $\rho^2\sin^2\varphi$: resta $\rho^2\sin^2\varphi(\cos^2\theta+\sin^2\theta)=\rho^2\sin^2\varphi$, perché la parentesi vale $1$ (identità fondamentale). Sommo il terzo addendo e raccolgo di nuovo: $\rho^2\sin^2\varphi+\rho^2\cos^2\varphi=\rho^2(\sin^2\varphi+\cos^2\varphi)=\rho^2$. In una riga:</p>
+        <div class="formula-block">$$x^2+y^2+z^2=\rho^2,\qquad\text{quindi}\qquad \sqrt{x^2+y^2+z^2}=\rho .$$</div>
+        <p>Con lo stesso conto, fermandosi al primo raccoglimento, si ottiene una formula che serve nei momenti d'inerzia: $x^2+y^2=\rho^2\sin^2\varphi$, cioè il quadrato della distanza dall'<em>asse</em> $z$ (non dall'origine).</p>
+        <div class="formula-block">$$\iiint_E f\,dV=\iiint_{\Omega} f\big(\rho\sin\varphi\cos\theta,\ \rho\sin\varphi\sin\theta,\ \rho\cos\varphi\big)\ \rho^2\sin\varphi\ d\rho\,d\varphi\,d\theta$$</div>
+
+        <svg viewBox="0 0 460 260" style="max-width:500px;margin:1.4em auto;display:block;" role="img" aria-label="Coordinate sferiche: il raggio rho, l'angolo phi misurato dall'asse verticale e l'angolo theta nel piano orizzontale">
+          <ellipse cx="215" cy="175" rx="130" ry="40" fill="none" stroke="var(--color-border)" stroke-width="1.4" stroke-dasharray="4 4"/>
+          <line x1="215" y1="30" x2="215" y2="230" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="75" y1="205" x2="355" y2="145" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="215" y1="175" x2="330" y2="65" stroke="var(--color-primary)" stroke-width="2.6"/>
+          <line x1="215" y1="175" x2="318" y2="152" stroke="var(--color-secondary)" stroke-width="1.8" stroke-dasharray="5 3"/>
+          <line x1="330" y1="65" x2="318" y2="152" stroke="var(--color-secondary)" stroke-width="1.4" stroke-dasharray="3 3"/>
+          <circle cx="330" cy="65" r="5.5" fill="var(--color-primary)"/>
+          <path d="M 215 115 A 60 60 0 0 1 258 133" fill="none" stroke="var(--color-accent)" stroke-width="2"/>
+          <path d="M 275 168 A 60 60 0 0 0 268 160" fill="none" stroke="var(--color-accent)" stroke-width="2"/>
+          <text x="338" y="58" font-size="14" font-weight="700" fill="var(--color-primary)">P</text>
+          <text x="262" y="112" font-size="14" font-weight="700" fill="var(--color-primary)">ρ</text>
+          <text x="232" y="132" font-size="14" font-weight="700" fill="var(--color-accent)">φ</text>
+          <text x="272" y="190" font-size="14" font-weight="700" fill="var(--color-accent)">θ</text>
+          <text x="204" y="26" font-size="13" font-weight="700" fill="currentColor">z</text>
+          <text x="360" y="142" font-size="13" font-weight="700" fill="currentColor">y</text>
+          <text x="64" y="216" font-size="13" font-weight="700" fill="currentColor">x</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">$\rho$ = quanto lontano dal centro; $\varphi$ = quanto "in giù" dal polo nord; $\theta$ = di quanto ho girato attorno all'asse.</p>
+
+        <p><strong>Quando usarle.</strong> Ogni volta che compare la combinazione $x^2+y^2+z^2$, perché diventa $\rho^2$. In pratica:</p>
+        <ul>
+          <li><strong>sfere e palle</strong> ($x^2+y^2+z^2\leq R^2$ diventa $\rho\leq R$);</li>
+          <li><strong>gusci sferici</strong> ($R_1\leq\rho\leq R_2$: due estremi costanti);</li>
+          <li><strong>settori sferici e "coni di gelato"</strong>, cioè porzioni di palla tagliate da un cono: il cono diventa "$\varphi$ costante";</li>
+          <li><strong>densità che dipendono dalla distanza dal centro</strong> (campi gravitazionali, atomi, stelle).</li>
+        </ul>
+        <p>Il fattore $\rho^2\sin\varphi$ ha anch'esso una lettura geometrica: il cubetto di coordinate sferiche ha lati circa $d\rho$ (in direzione radiale), $\rho\,d\varphi$ (arco lungo il meridiano) e $\rho\sin\varphi\,d\theta$ (arco lungo il parallelo — è più corto vicino ai poli, e infatti $\sin\varphi\to 0$ lì). Moltiplicando i tre: $\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$. È lo stesso motivo per cui, su un mappamondo, i meridiani si stringono verso i poli.</p>
+
+        <h3 id="teoria-tabella">4.8 I tre sistemi a confronto</h3>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Sistema</th><th>Trasformazione</th><th>Elemento di volume $dV$</th><th>Quando conviene</th><th>Estremi tipici</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><strong>Cartesiane</strong><br>$(x,y,z)$</td>
+              <td>nessuna trasformazione</td>
+              <td>$dx\,dy\,dz$ &nbsp;(jacobiano $=1$)</td>
+              <td>scatole, tetraedri, solidi delimitati da piani</td>
+              <td>tutti costanti, oppure funzioni polinomiali</td>
+            </tr>
+            <tr>
+              <td><strong>Cilindriche</strong><br>$(r,\theta,z)$</td>
+              <td>$x=r\cos\theta$<br>$y=r\sin\theta$<br>$z=z$</td>
+              <td>$\;r\,dr\,d\theta\,dz$</td>
+              <td>compare $x^2+y^2$: cilindri, coni, paraboloidi, solidi di rotazione attorno a $z$</td>
+              <td>$0\leq r\leq R$, $\ 0\leq\theta\leq 2\pi$, $\ z$ fra due superfici</td>
+            </tr>
+            <tr>
+              <td><strong>Sferiche</strong><br>$(\rho,\varphi,\theta)$</td>
+              <td>$x=\rho\sin\varphi\cos\theta$<br>$y=\rho\sin\varphi\sin\theta$<br>$z=\rho\cos\varphi$</td>
+              <td>$\;\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$</td>
+              <td>compare $x^2+y^2+z^2$: palle, gusci sferici, settori, densità radiali</td>
+              <td>$0\leq\rho\leq R$, $\ 0\leq\varphi\leq\pi$, $\ 0\leq\theta\leq 2\pi$</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Tre formule da mandare a memoria, e sono queste: jacobiano <strong>$1$</strong> in cartesiane, <strong>$r$</strong> in cilindriche, <strong>$\rho^2\sin\varphi$</strong> in sferiche. Vale la pena anche ricordare il caso piano: in <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span> il jacobiano è $r$ e $dA=r\,dr\,d\theta$ — le cilindriche non sono altro che quel caso con una $z$ attaccata dietro.</p>
+
+        <h3 id="teoria-applicazioni">4.9 Massa, baricentro, momento d'inerzia</h3>
+        <p>Chiudiamo la teoria con le tre applicazioni che gli esami chiedono sempre. Sia $E$ un solido di densità $\delta(x,y,z)$ (se il solido è <strong>omogeneo</strong>, $\delta$ è costante e spesso si pone $\delta=1$).</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Formule operative</span>
+          <p><strong>Massa:</strong></p>
+          <div class="formula-block">$$m=\iiint_E \delta\,dV$$</div>
+          <p><strong><span class="glossario-term" data-term="baricentro">Baricentro</span></strong> (centro di massa) $G=(x_G,y_G,z_G)$: ogni coordinata è la media pesata della corrispondente coordinata,</p>
+          <div class="formula-block">$$x_G=\frac1m\iiint_E x\,\delta\,dV,\qquad y_G=\frac1m\iiint_E y\,\delta\,dV,\qquad z_G=\frac1m\iiint_E z\,\delta\,dV .$$</div>
+          <p><strong><span class="glossario-term" data-term="momento-inerzia">Momento d'inerzia</span></strong> rispetto a un asse: si integra la distanza <em>al quadrato</em> dall'asse, pesata con la densità. Rispetto all'asse $z$:</p>
+          <div class="formula-block">$$I_z=\iiint_E \big(x^2+y^2\big)\,\delta\,dV .$$</div>
+        </div>
+        <p>Un paio di osservazioni che fanno risparmiare tempo e figuracce. Il baricentro è un <strong>punto</strong>, quindi servono tre integrali (ma le simmetrie ne uccidono quasi sempre due: se il solido è simmetrico rispetto all'asse $z$ e la densità pure, allora $x_G=y_G=0$ senza calcolare niente). Il momento d'inerzia dipende <strong>dall'asse scelto</strong>: $I_z$ usa $x^2+y^2$ perché quella è la distanza al quadrato dall'asse $z$; per l'asse $x$ si userebbe $y^2+z^2$. E in coordinate cilindriche $x^2+y^2=r^2$, il che rende $I_z$ un conto quasi automatico: è il motivo per cui i problemi di momento d'inerzia si fanno quasi sempre in cilindriche.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💭</span> Idea intuitiva prima della prima dimostrazione</div>
+          <p>Perché ci aspettiamo che il jacobiano delle cilindriche sia proprio $r$? Guarda un cubetto di coordinate cilindriche: uno spicchio sottile di ciambella. I suoi tre lati misurano $dr$ (verso l'esterno), $dz$ (in verticale) e — attenzione — <strong>$r\,d\theta$</strong> in direzione tangenziale, perché la lunghezza di un arco di angolo $d\theta$ a distanza $r$ dal centro è $r\,d\theta$. Il volumetto è quindi $dr\cdot dz\cdot r\,d\theta=r\,dr\,d\theta\,dz$. Lontano dall'asse gli spicchi sono più larghi, vicino all'asse sono più stretti: ecco da dove viene la $r$. La dimostrazione formale non fa che confermare questo ragionamento con il determinante.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Jacobiano delle coordinate cilindriche.</em> Per $T(r,\theta,z)=(r\cos\theta,\ r\sin\theta,\ z)$ si ha $\det J_T=r$, e quindi $dV=r\,dr\,d\theta\,dz$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Calcoliamo le nove derivate parziali. Con $x=r\cos\theta$, $y=r\sin\theta$, $z=z$:</p>
+          <div class="formula-block">$$J_T=\begin{pmatrix}\cos\theta &amp; -r\sin\theta &amp; 0\\ \sin\theta &amp; r\cos\theta &amp; 0\\ 0 &amp; 0 &amp; 1\end{pmatrix}$$</div>
+          <p>La terza riga è $(0,0,1)$: conviene sviluppare il determinante lungo di essa. L'unico contributo non nullo viene dall'elemento in posizione $(3,3)$, con segno $(-1)^{3+3}=+1$:</p>
+          <div class="formula-block">$$\det J_T=1\cdot\det\begin{pmatrix}\cos\theta &amp; -r\sin\theta\\ \sin\theta &amp; r\cos\theta\end{pmatrix}=r\cos^2\theta+r\sin^2\theta=r\big(\cos^2\theta+\sin^2\theta\big)=r.$$</div>
+          <p>Poiché $r\geq 0$ per definizione, il valore assoluto non cambia nulla: $|\det J_T|=r$. Sostituendo nel teorema del cambio di variabili si ottiene $dV=r\,dr\,d\theta\,dz$. Osserva che il blocco $2\times 2$ che è rimasto è esattamente il jacobiano delle <strong>coordinate polari</strong> nel piano: le cilindriche sono le polari con una dimensione "libera" aggiunta, e il determinante lo conferma. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💭</span> Idea intuitiva prima della seconda dimostrazione</div>
+          <p>Stessa strategia, un gradino più su. Il cubetto di coordinate sferiche ha per lati: $d\rho$ in direzione radiale; $\rho\,d\varphi$ lungo il meridiano (arco di raggio $\rho$); e lungo il parallelo un arco che <strong>non</strong> ha raggio $\rho$, bensì $\rho\sin\varphi$, perché il parallelo alla colatitudine $\varphi$ è una circonferenza più piccola — si stringe verso i poli. Quindi il terzo lato misura $\rho\sin\varphi\,d\theta$, e il volumetto è $d\rho\cdot\rho\,d\varphi\cdot\rho\sin\varphi\,d\theta=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$. Il fattore $\rho^2$ dice che i gusci lontani dal centro sono più capienti; il fattore $\sin\varphi$ dice che vicino ai poli i cubetti si assottigliano. Vediamo che il determinante conferma.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Jacobiano delle coordinate sferiche.</em> Per $T(\rho,\varphi,\theta)=(\rho\sin\varphi\cos\theta,\ \rho\sin\varphi\sin\theta,\ \rho\cos\varphi)$ si ha $\det J_T=\rho^2\sin\varphi$, e quindi $dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Deriviamo le tre componenti rispetto a $\rho$, $\varphi$, $\theta$ (nell'ordine delle colonne):</p>
+          <div class="formula-block">$$J_T=\begin{pmatrix}\sin\varphi\cos\theta &amp; \rho\cos\varphi\cos\theta &amp; -\rho\sin\varphi\sin\theta\\[2pt] \sin\varphi\sin\theta &amp; \rho\cos\varphi\sin\theta &amp; \rho\sin\varphi\cos\theta\\[2pt] \cos\varphi &amp; -\rho\sin\varphi &amp; 0\end{pmatrix}$$</div>
+          <p>Sviluppiamo lungo la <strong>terza riga</strong>, che contiene uno zero ed è la più comoda. I due contributi sono quelli delle posizioni $(3,1)$ e $(3,2)$.</p>
+          <p><strong>Contributo di $(3,1)$</strong>, con segno $(-1)^{3+1}=+1$. Il minore si ottiene cancellando terza riga e prima colonna:</p>
+          <div class="formula-block">$$M_{31}=\det\begin{pmatrix}\rho\cos\varphi\cos\theta &amp; -\rho\sin\varphi\sin\theta\\ \rho\cos\varphi\sin\theta &amp; \rho\sin\varphi\cos\theta\end{pmatrix}=\rho^2\sin\varphi\cos\varphi\cos^2\theta+\rho^2\sin\varphi\cos\varphi\sin^2\theta=\rho^2\sin\varphi\cos\varphi .$$</div>
+          <p>Moltiplicato per l'elemento $\cos\varphi$ dà $\ \rho^2\sin\varphi\cos^2\varphi$.</p>
+          <p><strong>Contributo di $(3,2)$</strong>, con segno $(-1)^{3+2}=-1$. Il minore, cancellando terza riga e seconda colonna, è:</p>
+          <div class="formula-block">$$M_{32}=\det\begin{pmatrix}\sin\varphi\cos\theta &amp; -\rho\sin\varphi\sin\theta\\ \sin\varphi\sin\theta &amp; \rho\sin\varphi\cos\theta\end{pmatrix}=\rho\sin^2\varphi\cos^2\theta+\rho\sin^2\varphi\sin^2\theta=\rho\sin^2\varphi .$$</div>
+          <p>L'elemento in posizione $(3,2)$ è $-\rho\sin\varphi$, quindi il contributo è $\ (-1)\cdot(-\rho\sin\varphi)\cdot\rho\sin^2\varphi=\rho^2\sin^3\varphi$.</p>
+          <p>Sommiamo i due contributi e usiamo l'identità fondamentale:</p>
+          <div class="formula-block">$$\det J_T=\rho^2\sin\varphi\cos^2\varphi+\rho^2\sin^3\varphi=\rho^2\sin\varphi\big(\cos^2\varphi+\sin^2\varphi\big)=\rho^2\sin\varphi .$$</div>
+          <p>Infine il valore assoluto: poiché $\varphi\in[0,\pi]$, si ha $\sin\varphi\geq 0$, e ovviamente $\rho^2\geq 0$; dunque $|\det J_T|=\rho^2\sin\varphi$ senza bisogno di cambiare segno. <strong>Ecco il vero motivo per cui $\varphi$ si fa variare solo in $[0,\pi]$</strong>: così il seno resta positivo e la formula si scrive senza moduli, e per di più ogni punto dello spazio viene descritto una volta sola. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💭</span> Idea intuitiva prima della terza dimostrazione</div>
+          <p>Archimede sapeva che il volume della sfera è $\tfrac43\pi R^3$ e ne era così fiero da farsi incidere la dimostrazione sulla tomba. A lui costò un ragionamento geniale sulle sezioni; a noi, con le coordinate sferiche, costerà tre righe. È una buona misura di quanta potenza ci consegna il cambio di variabili: <strong>nel linguaggio giusto, la palla è semplicemente la scatola $[0,R]\times[0,\pi]\times[0,2\pi]$</strong>, e integrare su una scatola è banale.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Volume della sfera.</em> La palla $B_R=\{x^2+y^2+z^2\leq R^2\}$ ha volume $\ \operatorname{Vol}(B_R)=\dfrac43\pi R^3$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>In coordinate sferiche la condizione $x^2+y^2+z^2\leq R^2$ diventa $\rho^2\leq R^2$, cioè $\rho\leq R$: nessun vincolo sugli angoli, che spazzano tutto. Il dominio nel mondo nuovo è quindi la scatola</p>
+          <div class="formula-block">$$\Omega=[0,R]\times[0,\pi]\times[0,2\pi]\quad\text{nelle variabili } (\rho,\varphi,\theta).$$</div>
+          <p>Applichiamo il teorema del cambio di variabili con $f\equiv 1$, ricordando il jacobiano $\rho^2\sin\varphi$:</p>
+          <div class="formula-block">$$\operatorname{Vol}(B_R)=\iiint_{B_R}dV=\int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^{R}\rho^2\sin\varphi\ d\rho\,d\varphi\,d\theta .$$</div>
+          <p>Gli estremi sono tutti costanti e la funzione integranda è un <strong>prodotto</strong> di funzioni di una sola variabile ciascuna: l'integrale triplo si spezza nel prodotto di tre integrali semplici.</p>
+          <div class="formula-block">$$=\left(\int_0^{2\pi}d\theta\right)\left(\int_0^{\pi}\sin\varphi\,d\varphi\right)\left(\int_0^{R}\rho^2\,d\rho\right)$$</div>
+          <p>Calcoliamo i tre pezzi separatamente: $\ \int_0^{2\pi}d\theta=2\pi$; $\ \int_0^{\pi}\sin\varphi\,d\varphi=\big[-\cos\varphi\big]_0^{\pi}=1+1=2$; $\ \int_0^{R}\rho^2\,d\rho=\dfrac{R^3}{3}$. Quindi</p>
+          <div class="formula-block">$$\operatorname{Vol}(B_R)=2\pi\cdot 2\cdot\frac{R^3}{3}=\frac43\pi R^3 .\qquad\text{∎}$$</div>
+          <p>Vale la pena notare dove è finito il jacobiano: se lo si dimenticasse, si otterrebbe $2\pi\cdot 2\cdot R=4\pi R$, una quantità che ha le dimensioni di una <em>lunghezza</em> e non di un volume. <strong>Il controllo dimensionale è il modo più rapido per accorgersi di aver perso il jacobiano per strada.</strong></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Integrale su un parallelepipedo</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\iiint_E xyz\,dV$ dove $E=[0,1]\times[0,2]\times[0,3]$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il dominio è una scatola: gli estremi sono tutti costanti e l'ordine di integrazione è indifferente.</span>
+            <span class="esempio__passo">L'integranda $xyz$ è un <strong>prodotto</strong> di funzioni di una variabile ciascuna: l'integrale triplo si spezza nel prodotto di tre integrali semplici.</span>
+            <span class="esempio__passo">$\displaystyle\int_0^1 x\,dx=\frac12$; &nbsp; $\displaystyle\int_0^2 y\,dy=\Big[\frac{y^2}{2}\Big]_0^2=2$; &nbsp; $\displaystyle\int_0^3 z\,dz=\Big[\frac{z^2}{2}\Big]_0^3=\frac92$.</span>
+            <span class="esempio__passo">Moltiplico: $\ \frac12\cdot 2\cdot\frac92=\frac92$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\iiint_E xyz\,dV=\frac92$. La scorciatoia "estremi costanti $+$ integranda fattorizzabile $\Rightarrow$ prodotto di integrali" fa risparmiare moltissimo tempo.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Volume del tetraedro, per fili</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare il volume del tetraedro $E=\{x\geq 0,\ y\geq 0,\ z\geq 0,\ x+y+z\leq 1\}$ con la riduzione per fili.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Estremi del filo.</strong> Fissati $x$ e $y$, la $z$ parte dal pavimento $z=0$ e arriva al piano inclinato $x+y+z=1$, cioè $z=1-x-y$. Quindi $0\leq z\leq 1-x-y$.</span>
+            <span class="esempio__passo"><strong>L'ombra.</strong> Il filo esiste solo se $1-x-y\geq 0$: l'ombra $D$ sul piano $xy$ è il triangolo $\{x\geq0,\ y\geq0,\ x+y\leq 1\}$, descritto da $0\leq x\leq 1$ e $0\leq y\leq 1-x$.</span>
+            <span class="esempio__passo"><strong>Integrale interno.</strong> $\displaystyle\int_0^{1-x-y}1\,dz=1-x-y$.</span>
+            <span class="esempio__passo"><strong>Integrale in $y$</strong> (con $x$ costante): $\displaystyle\int_0^{1-x}(1-x-y)\,dy=\Big[(1-x)y-\frac{y^2}{2}\Big]_0^{1-x}=(1-x)^2-\frac{(1-x)^2}{2}=\frac{(1-x)^2}{2}$.</span>
+            <span class="esempio__passo"><strong>Integrale in $x$:</strong> $\displaystyle\int_0^1\frac{(1-x)^2}{2}\,dx$. Uso la sostituzione $t=1-x$, da cui $dt=-dx$, cioè $dx=-dt$; gli estremi si invertono ($x=0\Rightarrow t=1$, $x=1\Rightarrow t=0$). Ottengo $\frac12\int_1^0 t^2(-dt)=\frac12\int_0^1t^2\,dt=\frac12\Big[\frac{t^3}{3}\Big]_0^1=\frac12\cdot\frac13=\frac16$. (Nella variabile originale è lo stesso di $\frac12\Big[-\frac{(1-x)^3}{3}\Big]_0^1$.)</span>
+          </p>
+          <div class="esempio__risultato">$\operatorname{Vol}(E)=\dfrac16$. Coerente con la formula elementare "area di base per altezza diviso $3$": base $=\frac12$, altezza $=1$, quindi $\frac12\cdot 1/3=\frac16$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Lo stesso tetraedro, per strati</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Ricalcolare il volume del tetraedro dell'Esempio 2 con la riduzione per strati, e confrontare la fatica.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Quote estreme.</strong> Il solido sta fra $z=0$ e $z=1$ (il vertice in alto è $(0,0,1)$).</span>
+            <span class="esempio__passo"><strong>Sezione a quota $z$.</strong> Tagliando con il piano orizzontale di quota $z$ ottengo $\{x\geq0,\ y\geq0,\ x+y\leq 1-z\}$: un triangolo rettangolo con i due cateti lunghi $1-z$.</span>
+            <span class="esempio__passo"><strong>Area della sezione:</strong> $\operatorname{Area}(E_z)=\dfrac{(1-z)^2}{2}$, nota a memoria senza calcolare integrali doppi.</span>
+            <span class="esempio__passo"><strong>Somma delle fette:</strong> $\displaystyle\operatorname{Vol}(E)=\int_0^1\frac{(1-z)^2}{2}\,dz=\frac12\cdot\frac13=\frac16$.</span>
+          </p>
+          <div class="esempio__risultato">Stesso risultato, $\dfrac16$, in <strong>un solo integrale</strong> invece di tre. Morale: quando riconosci a occhio l'area delle sezioni, gli strati sono imbattibili.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Volume del cono, in cilindriche</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il volume del cono di raggio di base $R$ e altezza $h$, con il vertice nell'origine e l'apertura verso l'alto: $E=\{(x,y,z):\ \sqrt{x^2+y^2}\leq \tfrac{R}{h}z,\ \ 0\leq z\leq h\}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Scelta delle coordinate.</strong> Compare $x^2+y^2$ e il solido ha simmetria di rotazione attorno all'asse $z$: cilindriche, senza esitazioni. La condizione diventa $r\leq\frac{R}{h}z$.</span>
+            <span class="esempio__passo"><strong>Estremi.</strong> $\theta\in[0,2\pi]$ (giro completo); conviene usare gli strati nel mondo cilindrico: fissato $z\in[0,h]$, il raggio va da $0$ a $\frac{R}{h}z$.</span>
+            <span class="esempio__passo"><strong>Non dimentico il jacobiano:</strong> $dV$ non è $dr\,d\theta\,dz$ ma $r\,dr\,d\theta\,dz$. Con $f\equiv1$ l'integranda complessiva è quindi solo $r$: $\displaystyle V=\int_0^{2\pi}\!\!\int_0^{h}\!\!\int_0^{Rz/h} r\,dr\,dz\,d\theta$.</span>
+            <span class="esempio__passo"><strong>Integrale più interno (in $dr$).</strong> La primitiva di $r$ è $\frac{r^2}{2}$, quindi $\displaystyle\int_0^{Rz/h}r\,dr=\Big[\frac{r^2}{2}\Big]_0^{Rz/h}$. <em>Sostituisco l'estremo superiore $r=\frac{R}{h}z$</em>: $\frac{1}{2}\left(\frac{R}{h}z\right)^2=\frac{R^2z^2}{2h^2}$ (elevo al quadrato sia il numero $\frac{R}{h}$ sia la $z$); in $r=0$ vale $0$.</span>
+            <span class="esempio__passo"><strong>Integrale in $\theta$.</strong> Quel che resta non dipende da $\theta$, quindi l'integrale su $[0,2\pi]$ si limita a moltiplicare per $2\pi$: $\displaystyle V=2\pi\int_0^h\frac{R^2z^2}{2h^2}\,dz$.</span>
+            <span class="esempio__passo"><strong>Integrale in $z$.</strong> Porto fuori le costanti: $2\pi\cdot\frac{R^2}{2h^2}=\frac{\pi R^2}{h^2}$, e resta $\displaystyle\frac{\pi R^2}{h^2}\int_0^h z^2\,dz=\frac{\pi R^2}{h^2}\Big[\frac{z^3}{3}\Big]_0^h=\frac{\pi R^2}{h^2}\cdot\frac{h^3}{3}$. Semplifico $h^2$ con $h^3$ e resta $\frac13\pi R^2h$.</span>
+          </p>
+          <div class="esempio__risultato">$V=\dfrac13\pi R^2 h$: la formula del cono che conosci dalle medie, ora <em>dimostrata</em>. Nota come il fattore $\frac13$ nasca dall'integrale $\int_0^h z^2\,dz$, cioè dal fatto che le sezioni crescono come il quadrato della quota.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Volume della sfera, in sferiche</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il volume della palla di raggio $R$ centrata nell'origine.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Traduzione del dominio.</strong> Sostituisco $x=\rho\sin\varphi\cos\theta$, $y=\rho\sin\varphi\sin\theta$, $z=\rho\cos\varphi$; come visto nel <span class="richiamo" data-sec="4.7">§4.7</span> la somma $x^2+y^2+z^2$ diventa $\rho^2$, quindi $x^2+y^2+z^2\leq R^2$ si riduce a $\rho^2\leq R^2$, cioè $\rho\leq R$. Gli angoli spaziano tutti: $\varphi\in[0,\pi]$, $\theta\in[0,2\pi]$. Il dominio è la scatola $[0,R]\times[0,\pi]\times[0,2\pi]$.</span>
+            <span class="esempio__passo"><strong>Jacobiano:</strong> $dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$. Con $f\equiv1$ l'integranda complessiva è quindi $\rho^2\sin\varphi$.</span>
+            <span class="esempio__passo"><strong>Fattorizzo:</strong> gli estremi sono tutti costanti e $\rho^2\sin\varphi$ è il prodotto di una funzione della sola $\rho$ per una funzione del solo $\varphi$ (e di nulla che dipenda da $\theta$), quindi l'integrale triplo si spezza nel prodotto di tre integrali semplici: $\displaystyle V=\left(\int_0^{2\pi}d\theta\right)\left(\int_0^{\pi}\sin\varphi\,d\varphi\right)\left(\int_0^{R}\rho^2\,d\rho\right)$.</span>
+            <span class="esempio__passo">Calcolo i tre pezzi. Primo: $\int_0^{2\pi}d\theta=2\pi-0=2\pi$. Secondo: $\big[-\cos\varphi\big]_0^{\pi}=-\cos\pi-(-\cos0)=-(-1)+1=2$. Terzo: $\int_0^R\rho^2d\rho=\Big[\frac{\rho^3}{3}\Big]_0^R=\frac{R^3}{3}$. Moltiplico: $2\pi\cdot 2\cdot\frac{R^3}{3}=\frac{4\pi R^3}{3}$.</span>
+          </p>
+          <div class="esempio__risultato">$V=\dfrac43\pi R^3$. Tieni a mente $\displaystyle\int_0^{\pi}\sin\varphi\,d\varphi=2$: compare in <em>quasi tutti</em> gli esercizi in sferiche con simmetria completa.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Massa con densità radiale</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Una palla di raggio $R$ ha densità proporzionale alla distanza dal centro: $\delta(x,y,z)=k\sqrt{x^2+y^2+z^2}$, con $k\gt 0$. Calcolarne la massa.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco la struttura.</strong> La densità dipende solo dalla distanza dall'origine: in sferiche diventa semplicemente $\delta=k\rho$. Dominio: $\rho\in[0,R]$, $\varphi\in[0,\pi]$, $\theta\in[0,2\pi]$.</span>
+            <span class="esempio__passo"><strong>Imposto l'integrale con il jacobiano:</strong> $\displaystyle m=\int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^{R}(k\rho)\cdot\rho^2\sin\varphi\ d\rho\,d\varphi\,d\theta$.</span>
+            <span class="esempio__passo"><strong>Unisco le potenze di $\rho$:</strong> $k\rho\cdot\rho^2=k\rho^3$. Ora fattorizzo.</span>
+            <span class="esempio__passo">$\displaystyle m=k\left(\int_0^{2\pi}d\theta\right)\left(\int_0^{\pi}\sin\varphi\,d\varphi\right)\left(\int_0^{R}\rho^3\,d\rho\right)$. I tre pezzi valgono rispettivamente $2\pi$, &nbsp;$\big[-\cos\varphi\big]_0^\pi=1+1=2$ &nbsp;e&nbsp; $\Big[\frac{\rho^4}{4}\Big]_0^R=\frac{R^4}{4}$.</span>
+            <span class="esempio__passo">Moltiplico tutto: $k\cdot 2\pi\cdot 2\cdot\frac{R^4}{4}=k\cdot\frac{4\pi R^4}{4}=k\pi R^4$ (il $4$ al numeratore si semplifica con quello al denominatore).</span>
+          </p>
+          <div class="esempio__risultato">$m=k\pi R^4$. Controllo di sensatezza: la densità media risulta $\dfrac{m}{V}=\dfrac{k\pi R^4}{\frac43\pi R^3}=\dfrac34 kR$, cioè $\frac34$ della densità massima $kR$ (raggiunta sulla superficie). È plausibile: la maggior parte del volume sta vicino al bordo, dove la densità è alta.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Baricentro di un emisfero</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Trovare il baricentro dell'emisfero omogeneo $E=\{x^2+y^2+z^2\leq R^2,\ z\geq 0\}$ (densità costante $\delta=1$).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Simmetria, prima di tutto.</strong> Il solido e la densità sono simmetrici rispetto all'asse $z$: per ogni punto ce n'è uno speculare con $x$ opposta e $y$ opposta. Quindi $x_G=0$ e $y_G=0$ <em>senza calcolare nulla</em>. Resta solo $z_G$.</span>
+            <span class="esempio__passo"><strong>Massa (qui $=$ volume).</strong> Metà palla: $m=\frac12\cdot\frac43\pi R^3=\frac23\pi R^3$.</span>
+            <span class="esempio__passo"><strong>Numeratore.</strong> In sferiche $z=\rho\cos\varphi$, e "metà superiore" significa $\varphi\in[0,\pi/2]$ (dal polo nord all'equatore). Quindi $\displaystyle\iiint_E z\,dV=\int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^{R}(\rho\cos\varphi)\,\rho^2\sin\varphi\ d\rho\,d\varphi\,d\theta$.</span>
+            <span class="esempio__passo"><strong>Fattorizzo:</strong> $\displaystyle=\left(\int_0^{2\pi}d\theta\right)\left(\int_0^{\pi/2}\cos\varphi\sin\varphi\,d\varphi\right)\left(\int_0^{R}\rho^3\,d\rho\right)$.</span>
+            <span class="esempio__passo">L'integrale angolare si fa con la <strong>sostituzione</strong> $u=\sin\varphi$, da cui $du=\cos\varphi\,d\varphi$: sostituisco $\sin\varphi$ con $u$ e il blocco $\cos\varphi\,d\varphi$ con $du$, e cambio gli estremi ($\varphi=0\Rightarrow u=\sin0=0$; $\varphi=\frac\pi2\Rightarrow u=\sin\frac\pi2=1$). Ottengo $\displaystyle\int_0^{\pi/2}\sin\varphi\cos\varphi\,d\varphi=\int_0^1 u\,du=\Big[\frac{u^2}{2}\Big]_0^1=\frac12$ (nella variabile originale è $\Big[\frac{\sin^2\varphi}{2}\Big]_0^{\pi/2}$).</span>
+            <span class="esempio__passo">Gli altri due pezzi valgono $\int_0^{2\pi}d\theta=2\pi$ e $\int_0^R\rho^3d\rho=\Big[\frac{\rho^4}{4}\Big]_0^R=\frac{R^4}{4}$. Quindi il numeratore vale $2\pi\cdot\frac12\cdot\frac{R^4}{4}=\frac{\pi R^4}{4}$.</span>
+            <span class="esempio__passo"><strong>Divido</strong> numeratore per massa. Dividere per una frazione equivale a moltiplicare per il suo reciproco: $\displaystyle z_G=\frac{\pi R^4/4}{\frac23\pi R^3}=\frac{\pi R^4}{4}\cdot\frac{3}{2\pi R^3}$. Semplifico $\pi$ con $\pi$ e $R^4$ con $R^3$ (resta una $R$): $\frac{R}{4}\cdot\frac32=\frac{3R}{8}$.</span>
+          </p>
+          <div class="esempio__risultato">$G=\left(0,\,0,\,\dfrac{3R}{8}\right)$. Il baricentro sta più in basso della metà dell'altezza ($\frac{3}{8}=0{,}375\lt 0{,}5$): giusto, perché la parte larga dell'emisfero è quella in basso.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Momento d'inerzia di un cilindro</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare il momento d'inerzia rispetto al proprio asse di un cilindro omogeneo di raggio $R$, altezza $h$ e densità costante $\delta$, ed esprimerlo in funzione della massa.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Imposto.</strong> L'asse del cilindro è l'asse $z$, quindi $\displaystyle I_z=\iiint_E (x^2+y^2)\,\delta\,dV$.</span>
+            <span class="esempio__passo"><strong>Cilindriche.</strong> Qui $x^2+y^2=r^2$, il dominio è $r\in[0,R]$, $\theta\in[0,2\pi]$, $z\in[0,h]$, e $dV=r\,dr\,d\theta\,dz$. L'integranda diventa $r^2\cdot r=r^3$.</span>
+            <span class="esempio__passo">$\displaystyle I_z=\delta\int_0^{2\pi}\!\!\int_0^{h}\!\!\int_0^{R} r^3\,dr\,dz\,d\theta$. Gli estremi sono tutti costanti e l'integranda $r^3$ dipende solo da $r$: spezzo nel prodotto di tre integrali semplici, $\displaystyle\delta\Big(\int_0^{2\pi}d\theta\Big)\Big(\int_0^{h}dz\Big)\Big(\int_0^{R}r^3dr\Big)$, che valgono rispettivamente $2\pi$, $h$ e $\Big[\frac{r^4}{4}\Big]_0^R=\frac{R^4}{4}$.</span>
+            <span class="esempio__passo">Moltiplico: $\delta\cdot 2\pi\cdot h\cdot\frac{R^4}{4}$. Semplifico $\frac{2}{4}=\frac12$ e ottengo $\displaystyle I_z=\frac{\pi\delta hR^4}{2}$.</span>
+            <span class="esempio__passo"><strong>Esprimo in funzione della massa.</strong> La massa è densità per volume, e il volume del cilindro è $\pi R^2h$: quindi $m=\delta\pi R^2h$. Nel risultato spezzo $R^4=R^2\cdot R^2$ in modo da far comparire proprio quel blocco: $\displaystyle I_z=\frac{\pi\delta hR^4}{2}=\frac{(\pi\delta R^2 h)\,R^2}{2}=\frac12 mR^2$.</span>
+          </p>
+          <div class="esempio__risultato">$I_z=\dfrac12 mR^2$: la formula che trovi su ogni tabella di fisica. Osserva che <strong>non dipende dall'altezza</strong>: allungare il cilindro aggiunge massa ma anche momento, e i due effetti si compensano esattamente nel rapporto $I/m$. Nota anche la potenza $R^4$ prima della semplificazione: è la firma del "distanza al quadrato" combinato con il jacobiano $r$.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare il jacobiano</div>
+          <p>È <strong>l'errore numero uno</strong> del capitolo, e costa sempre l'esercizio intero. Si passa in cilindriche o in sferiche, si traducono diligentemente dominio e funzione... e ci si dimenticano quel $r$ o quel $\rho^2\sin\varphi$. Il risultato non è "un po' impreciso": è semplicemente un altro numero, senza alcun significato.</p>
+          <p><em>Come evitarlo</em>: scrivi il $dV$ <strong>per primo</strong>, prima ancora di occuparti degli estremi. Appena scrivi "passo in sferiche", butta giù subito "$dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$". Secondo controllo, fulmineo: <strong>l'analisi dimensionale</strong>. Se stai calcolando un volume, il risultato deve contenere una lunghezza al cubo. Ottenere $4\pi R$ per il volume della sfera (invece di $\frac43\pi R^3$) grida "jacobiano dimenticato".</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere i due angoli delle coordinate sferiche</div>
+          <p>Due insidie in una. La prima è di <strong>notazione</strong>: molti testi di fisica scambiano i nomi, chiamando $\theta$ la colatitudine e $\varphi$ la longitudine — l'esatto contrario della convenzione matematica usata qui. La seconda è di <strong>significato</strong>: $\varphi$ non è la latitudine geografica (che si misura dall'equatore) ma la <em>colatitudine</em>, misurata dal polo nord.</p>
+          <p>Le conseguenze sono brutali: se scambi i ruoli, il jacobiano diventa $\rho^2\sin\theta$ e i domini si accavallano. <em>Come evitarlo</em>: fissa una regola e non cambiarla mai. In questo libro <strong>$\varphi$ parte dall'asse $z$ e vive in $[0,\pi]$; $\theta$ gira attorno all'asse $z$ e vive in $[0,2\pi]$</strong>. Mnemonic: il seno nel jacobiano accompagna sempre <em>l'angolo che si misura dal polo</em>, cioè quello che sta in $[0,\pi]$.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare gli estremi in coordinate sferiche</div>
+          <p>Gli sbagli tipici sono tre. <strong>(1)</strong> Far variare $\varphi$ in $[0,2\pi]$: così si percorre la sfera <em>due volte</em> e il risultato raddoppia (o si annulla, se l'integranda cambia segno). <strong>(2)</strong> Scrivere $\rho$ negativo: il raggio è per definizione $\geq 0$. <strong>(3)</strong> Confondere emisfero superiore e semispazio: "$z\geq 0$" significa $\varphi\in[0,\pi/2]$, non $\varphi\in[0,\pi]$; e "$z\leq 0$" significa $\varphi\in[\pi/2,\pi]$.</p>
+          <p><em>Come evitarlo</em>: traduci le condizioni una per una, a voce alta. "$z\geq 0$" equivale a "$\rho\cos\varphi\geq 0$", cioè "$\cos\varphi\geq 0$", cioè "$\varphi\leq\pi/2$". E fai sempre il <strong>test del caso noto</strong>: se la tua impostazione, con $f\equiv 1$, non restituisce $\frac43\pi R^3$ per la palla intera, gli estremi sono sbagliati.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scegliere il sistema di coordinate sbagliato</div>
+          <p>Non è un errore "di calcolo", ma di strategia — e all'esame costa il tempo che poi manca per gli altri esercizi. Usare le sferiche per un <strong>cilindro</strong> è una piccola tragedia: la superficie laterale $x^2+y^2=R^2$ diventa $\rho\sin\varphi=R$, cioè $\rho=R/\sin\varphi$, un estremo che dipende da $\varphi$ e produce integrali orribili. Viceversa, usare le cilindriche per una <strong>palla</strong> obbliga a estremi del tipo $-\sqrt{R^2-r^2}\leq z\leq\sqrt{R^2-r^2}$: fattibile, ma molto più lungo.</p>
+          <p><em>Come evitarlo</em>: guarda <strong>quale combinazione compare</strong> nel testo. Se vedi $x^2+y^2$, pensa cilindriche. Se vedi $x^2+y^2+z^2$, pensa sferiche. Se vedi solo piani, resta in cartesiane. E nel dubbio, scegli le coordinate che rendono <strong>costanti</strong> il maggior numero di estremi.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Mettere gli estremi nell'ordine sbagliato (o lasciare variabili "orfane")</div>
+          <p>Negli integrali iterati l'ordine conta: l'integrale <strong>più interno</strong> può avere estremi che dipendono dalle variabili più esterne, <strong>mai il contrario</strong>. Scrivere $\int_0^{y}\!\!\int_0^{1}f\,dy\,dx$ non ha senso: nell'estremo compare una $y$ che al momento del calcolo è già sparita. Alla fine di tutti i passaggi devi ottenere un <strong>numero</strong>: se ti resta una lettera, hai sbagliato l'ordine.</p>
+          <p><em>Come evitarlo</em>: procedi sempre dall'interno verso l'esterno e verifica che <strong>gli estremi dell'ultimo integrale siano numeri puri</strong>. E ricorda che il valore assoluto va sempre messo attorno al determinante, anche quando (come per $r$ e $\rho^2\sin\varphi$) il jacobiano risulta già positivo: costa un simbolo e ti salva quando il jacobiano cambia segno.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Estremi costanti $+$ integranda fattorizzabile $=$ prodotto di integrali</div>
+          <p>Se tutti e tre gli estremi sono numeri (non funzioni) <strong>e</strong> l'integranda si scrive come $g(u)\,h(v)\,k(w)$, allora l'integrale triplo si spezza:</p>
+          <div class="formula-block">$$\iiint_{[a_1,b_1]\times[a_2,b_2]\times[a_3,b_3]} g(u)h(v)k(w)\,du\,dv\,dw=\left(\int_{a_1}^{b_1}\!\!g\right)\left(\int_{a_2}^{b_2}\!\!h\right)\left(\int_{a_3}^{b_3}\!\!k\right)$$</div>
+          <p>È il motivo per cui le sferiche sono così efficienti sulle palle: il jacobiano $\rho^2\sin\varphi$ è <em>già</em> fattorizzato. Tieni pronti a memoria $\int_0^{2\pi}d\theta=2\pi$ e $\int_0^{\pi}\sin\varphi\,d\varphi=2$: insieme danno il fattore $4\pi$ che compare in ogni problema a simmetria sferica.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Usa le simmetrie: annullano interi integrali</div>
+          <p>Prima di calcolare, chiediti se il solido ha simmetrie. Se $E$ è simmetrico rispetto al piano $z=0$ e l'integranda è <strong>dispari</strong> in $z$ (per esempio $f=z$, o $f=z^3$, o $f=xz$), allora $\iiint_E f\,dV=0$: i contributi sopra e sotto si cancellano esattamente. Se invece $f$ è <strong>pari</strong> in $z$, puoi integrare sulla metà superiore e raddoppiare.</p>
+          <p>Nello stesso spirito: se solido e densità sono simmetrici rispetto all'asse $z$, il baricentro sta <strong>sull'asse</strong>, cioè $x_G=y_G=0$, e ti restano da calcolare due integrali invece di quattro. Riconoscere una simmetria vale spesso più di dieci minuti di conti.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Le tre domande da farsi prima di scrivere qualsiasi cosa</div>
+          <p><strong>(1) Che forma ha il solido?</strong> Disegnalo, anche male. Piani $\Rightarrow$ cartesiane; qualcosa che gira attorno a un asse $\Rightarrow$ cilindriche; qualcosa che si sviluppa attorno a un punto $\Rightarrow$ sferiche.</p>
+          <p><strong>(2) Da che cosa dipende la funzione?</strong> Se dipende solo dalla quota, gli strati sono la scelta naturale. Se dipende solo dalla distanza dall'asse, cilindriche. Se dipende solo dalla distanza dall'origine, sferiche. <em>La funzione vota quanto il dominio.</em></p>
+          <p><strong>(3) Quali estremi diventano costanti?</strong> A parità di tutto il resto, vince il sistema di coordinate che trasforma il dominio in una scatola. Una scatola significa integrali indipendenti, e integrali indipendenti significano conti brevi.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Verifica sempre con un caso noto</div>
+          <p>Dopo aver impostato l'integrale, prima di lanciarti nei conti, fai questo test da dieci secondi: <strong>sostituisci mentalmente $f\equiv 1$ e chiediti se ottieni il volume giusto</strong>. Se il tuo schema di estremi, integrato con $f=1$, dà $\frac43\pi R^3$ sulla palla o $\pi R^2h$ sul cilindro, l'impostazione è sana e puoi procedere. Se dà altro, gli estremi o il jacobiano sono sbagliati — e lo scopri prima di aver perso mezz'ora.</p>
+          <p>Coltiva anche le <strong>stime grossolane</strong>: il volume di un solido contenuto in un cubo di lato $2R$ non può superare $8R^3$; una massa non può essere negativa; un baricentro deve cadere <em>dentro</em> l'inviluppo convesso del solido. Un risultato che viola una di queste ovvietà è sbagliato, punto.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Integrali tripli $\displaystyle\iiint_E f\,dV$ e cambi di variabile</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Definizione</strong>
+              <ul><li>Limite di somme su cubetti</li><li>$\sum f(P_i)\Delta V_i$</li><li>$f=\delta\Rightarrow$ massa</li><li>$f=1\Rightarrow$ volume</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Riduzione per FILI</strong>
+              <ul><li>$E$: $(x,y)\in D$, $\alpha\leq z\leq\beta$</li><li>Prima $dz$, poi doppio su $D$</li><li>Serve l'ombra sul piano $xy$</li><li>Ideale fra due superfici</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Riduzione per STRATI</strong>
+              <ul><li>Sezione $E_z$ a quota $z$</li><li>$\int_a^b\big(\iint_{E_z}f\big)dz$</li><li>Volume $=\int\!\operatorname{Area}(E_z)\,dz$</li><li>Ideale se $f$ dipende solo da $z$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Cambio di variabili</strong>
+              <ul><li>Matrice jacobiana $J_T$</li><li>$dx\,dy\,dz=|\det J_T|\,du\,dv\,dw$</li><li>Fattore di dilatazione dei volumi</li><li>Modulo: i volumi sono positivi</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Cilindriche</strong>
+              <ul><li>$x=r\cos\theta$, $y=r\sin\theta$, $z=z$</li><li>$dV=r\,dr\,d\theta\,dz$</li><li>Compare $x^2+y^2$</li><li>Cilindri, coni, rotazione</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Sferiche</strong>
+              <ul><li>$\rho$, $\varphi\in[0,\pi]$, $\theta\in[0,2\pi]$</li><li>$dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$</li><li>Compare $x^2+y^2+z^2$</li><li>Palle, gusci, settori</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Applicazioni</strong>
+              <ul><li>Massa $=\iiint\delta\,dV$</li><li>Baricentro: media pesata</li><li>$I_z=\iiint(x^2+y^2)\delta\,dV$</li><li>Simmetrie: risparmio di conti</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Definizione</strong>: $\displaystyle\iiint_E f\,dV=\lim\sum_i f(P_i)\Delta V_i$, limite di somme su cubetti. È un <strong>numero</strong>. Con $f=\delta$ dà la <strong>massa</strong>, con $f=1$ dà il <strong>volume</strong>.</li>
+            <li><strong>Riduzione per fili</strong>: se $E=\{(x,y)\in D,\ \alpha(x,y)\leq z\leq\beta(x,y)\}$, allora $\displaystyle\iiint_E f\,dV=\iint_D\Big(\int_{\alpha}^{\beta}f\,dz\Big)dx\,dy$. Con $f=1$: $\operatorname{Vol}=\iint_D(\beta-\alpha)$.</li>
+            <li><strong>Riduzione per strati</strong>: $\displaystyle\iiint_E f\,dV=\int_a^b\Big(\iint_{E_z}f\,dx\,dy\Big)dz$; con $f=1$ diventa $\operatorname{Vol}(E)=\int_a^b\operatorname{Area}(E_z)\,dz$. Conviene quando le sezioni sono figure note o $f$ dipende solo da $z$.</li>
+            <li><strong>Cambio di variabili</strong>: $\displaystyle\iiint_E f\,dx\,dy\,dz=\iiint_{\Omega}f(T(u,v,w))\,|\det J_T|\,du\,dv\,dw$. Il <strong>determinante jacobiano</strong> è il fattore locale di dilatazione dei volumi; il <strong>valore assoluto</strong> c'è perché i volumi sono positivi mentre il determinante può essere negativo (orientazione).</li>
+            <li><strong>Cilindriche</strong>: $x=r\cos\theta,\ y=r\sin\theta,\ z=z$; jacobiano $\;r$; $\ dV=r\,dr\,d\theta\,dz$. Si usano quando compare $x^2+y^2$ (cilindri, coni, paraboloidi, solidi di rotazione).</li>
+            <li><strong>Sferiche</strong>: $x=\rho\sin\varphi\cos\theta,\ y=\rho\sin\varphi\sin\theta,\ z=\rho\cos\varphi$; jacobiano $\;\rho^2\sin\varphi$; $\ dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$. Attenzione: $\varphi\in[0,\pi]$ (colatitudine, dal polo), $\theta\in[0,2\pi]$ (longitudine). Si usano quando compare $x^2+y^2+z^2$.</li>
+            <li><strong>Formule da tenere a mente</strong>: $\displaystyle\int_0^{2\pi}d\theta=2\pi$, $\displaystyle\int_0^{\pi}\sin\varphi\,d\varphi=2$, volume della palla $\frac43\pi R^3$, del cono $\frac13\pi R^2h$, del cilindro $\pi R^2h$.</li>
+            <li><strong>Applicazioni</strong>: massa $m=\iiint_E\delta\,dV$; baricentro $z_G=\frac1m\iiint_E z\,\delta\,dV$ (e analoghe); momento d'inerzia $I_z=\iiint_E(x^2+y^2)\delta\,dV$. Casi notevoli: emisfero omogeneo $z_G=\frac38R$; cilindro $I_z=\frac12mR^2$; sfera $I_z=\frac25mR^2$.</li>
+            <li><strong>Errore capitale</strong>: dimenticare il jacobiano. Scrivi il $dV$ per primo e controlla sempre le dimensioni del risultato.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iiint_E (x+y+z)\,dV$ dove $E=[0,1]\times[0,1]\times[0,1]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Per linearità spezzo in tre integrali: $\iiint x\,dV+\iiint y\,dV+\iiint z\,dV$.</span>
+                <span class="esempio__passo">Il primo: $\big(\int_0^1x\,dx\big)\big(\int_0^1dy\big)\big(\int_0^1dz\big)=\frac12\cdot1\cdot1=\frac12$.</span>
+                <span class="esempio__passo">Per simmetria del cubo, anche gli altri due valgono $\frac12$ ciascuno.</span>
+              </p>
+              <p><strong>$\displaystyle\iiint_E (x+y+z)\,dV=\frac12+\frac12+\frac12=\frac32$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Verifica con un integrale triplo che il volume del parallelepipedo $[0,2]\times[0,3]\times[0,4]$ vale $24$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Con $f\equiv 1$ ed estremi costanti l'integrale si fattorizza:</p>
+              <p>$\displaystyle\operatorname{Vol}=\int_0^2\!\!\int_0^3\!\!\int_0^4 dz\,dy\,dx=\Big(\int_0^2dx\Big)\Big(\int_0^3dy\Big)\Big(\int_0^4dz\Big)=2\cdot3\cdot4$.</p>
+              <p><strong>$\operatorname{Vol}=24$</strong>, cioè "base per altezza" come ci si aspetta. In cartesiane il jacobiano vale $1$ e non compare nessun fattore extra.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Un solido occupa la scatola $[0,1]\times[0,1]\times[0,2]$ e ha densità $\delta(x,y,z)=z$. Calcolane la massa.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\displaystyle m=\iiint_E z\,dV$ con estremi costanti: fattorizzo.</span>
+                <span class="esempio__passo">$\displaystyle m=\Big(\int_0^1dx\Big)\Big(\int_0^1dy\Big)\Big(\int_0^2z\,dz\Big)=1\cdot 1\cdot\Big[\frac{z^2}{2}\Big]_0^2$.</span>
+              </p>
+              <p><strong>$m=2$.</strong> Controllo di sensatezza: il volume è $2$ e la densità media è $1$ (il valor medio di $z$ su $[0,2]$), quindi $m=2\cdot 1=2$. Coerente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scrivi la matrice jacobiana della trasformazione $x=2u$, $y=3v$, $z=4w$, calcolane il determinante e deduci il volume dell'immagine del cubo unitario $[0,1]^3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Le derivate parziali incrociate sono tutte nulle, quindi la matrice è diagonale: $J_T=\operatorname{diag}(2,3,4)$.</span>
+                <span class="esempio__passo">Il determinante di una matrice diagonale è il prodotto degli elementi: $\det J_T=2\cdot3\cdot4=24$, costante.</span>
+                <span class="esempio__passo">Per il teorema del cambio di variabili, $\operatorname{Vol}(E)=\iiint_{[0,1]^3}|\det J_T|\,du\,dv\,dw=24\cdot 1$.</span>
+              </p>
+              <p><strong>$\det J_T=24$ e il volume dell'immagine è $24$.</strong> Verifica diretta: l'immagine è la scatola $[0,2]\times[0,3]\times[0,4]$, di volume $24$ (Esercizio 9.2). Il jacobiano è davvero il fattore di ingrandimento dei volumi.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il volume del solido compreso fra il piano $z=0$ e il paraboloide $z=4-x^2-y^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Compare $x^2+y^2$: coordinate cilindriche, con $z=4-r^2$ e $dV=r\,dr\,d\theta\,dz$.</span>
+                <span class="esempio__passo">Il paraboloide incontra il piano $z=0$ quando $4-r^2=0$, cioè $r=2$: l'ombra è il disco di raggio $2$.</span>
+                <span class="esempio__passo">Riduzione per fili: $0\leq z\leq 4-r^2$, $\ 0\leq r\leq 2$, $\ 0\leq\theta\leq 2\pi$.</span>
+                <span class="esempio__passo">$\displaystyle V=\int_0^{2\pi}\!\!\int_0^{2}\!\!\int_0^{4-r^2}r\,dz\,dr\,d\theta$. Integrale più interno: $r$ è costante rispetto a $z$, quindi $\int_0^{4-r^2}r\,dz=r\big[z\big]_0^{4-r^2}=r(4-r^2)$, cioè "raggio per altezza del filo".</span>
+                <span class="esempio__passo">Nulla dipende da $\theta$, quindi l'integrale in $d\theta$ moltiplica per $2\pi$: $\displaystyle V=2\pi\int_0^2 r(4-r^2)\,dr$. Svolgo il prodotto: $r(4-r^2)=4r-r^3$.</span>
+                <span class="esempio__passo">$\displaystyle 2\pi\int_0^2(4r-r^3)\,dr=2\pi\Big[2r^2-\frac{r^4}{4}\Big]_0^2$. Sostituisco $r=2$: $2\cdot4-\frac{16}{4}=8-4=4$; in $r=0$ vale $0$. Quindi $V=2\pi\cdot 4=8\pi$.</span>
+              </p>
+              <p><strong>$V=8\pi$.</strong> Curiosità: è esattamente metà del volume del cilindro circoscritto ($\pi\cdot 2^2\cdot 4=16\pi$). Vale in generale per i paraboloidi.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola la massa del cilindro $E=\{x^2+y^2\leq 1,\ 0\leq z\leq 2\}$ con densità $\delta(x,y,z)=z$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Cilindriche: $r\in[0,1]$, $\theta\in[0,2\pi]$, $z\in[0,2]$. Il dominio è una scatola nelle nuove coordinate.</span>
+                <span class="esempio__passo">Integranda con jacobiano: $\delta\cdot r=z\,r$, già fattorizzata.</span>
+                <span class="esempio__passo">$\displaystyle m=\Big(\int_0^{2\pi}d\theta\Big)\Big(\int_0^1 r\,dr\Big)\Big(\int_0^2 z\,dz\Big)$. I tre pezzi: $2\pi$; &nbsp;$\Big[\frac{r^2}{2}\Big]_0^1=\frac12$; &nbsp;$\Big[\frac{z^2}{2}\Big]_0^2=\frac42=2$. Moltiplico: $2\pi\cdot\frac12\cdot 2=2\pi$.</span>
+              </p>
+              <p><strong>$m=2\pi$.</strong> Controllo: il volume è $\pi\cdot1^2\cdot2=2\pi$ e la densità media (valor medio di $z$ su $[0,2]$) è $1$, quindi $m=2\pi$. Coerente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il volume del guscio sferico $E=\{1\leq x^2+y^2+z^2\leq 4\}$ in due modi: con le sferiche e con la differenza di due palle.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Sferiche.</strong> La condizione diventa $1\leq\rho\leq 2$; gli angoli spaziano tutti. Dominio: scatola $[1,2]\times[0,\pi]\times[0,2\pi]$.</span>
+                <span class="esempio__passo">$\displaystyle V=\Big(\int_0^{2\pi}d\theta\Big)\Big(\int_0^{\pi}\sin\varphi\,d\varphi\Big)\Big(\int_1^{2}\rho^2\,d\rho\Big)$. I primi due valgono $2\pi$ e $\big[-\cos\varphi\big]_0^\pi=1+1=2$; il terzo è $\Big[\frac{\rho^3}{3}\Big]_1^2=\frac{2^3}{3}-\frac{1^3}{3}=\frac{8-1}{3}=\frac73$.</span>
+                <span class="esempio__passo">Moltiplico: $2\pi\cdot 2\cdot\frac73=4\pi\cdot\frac73=\frac{28\pi}{3}$.</span>
+                <span class="esempio__passo"><strong>Differenza di palle.</strong> $\frac43\pi\cdot 2^3-\frac43\pi\cdot 1^3=\frac43\pi(8-1)=\frac{28\pi}{3}$. Coincide.</span>
+              </p>
+              <p><strong>$V=\dfrac{28\pi}{3}$.</strong> Gli estremi costanti in $\rho$ sono il vantaggio decisivo delle sferiche sui gusci.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Con la riduzione <strong>per strati</strong>, calcola $\displaystyle\iiint_E z\,dV$ dove $E$ è l'emisfero $\{x^2+y^2+z^2\leq 1,\ z\geq 0\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Gli strati sono la scelta giusta perché l'integranda dipende <em>solo</em> da $z$: uscirà dall'integrale doppio interno.</span>
+                <span class="esempio__passo">Sezione a quota $z\in[0,1]$: nella disuguaglianza $x^2+y^2+z^2\leq1$ porto $z^2$ a destra cambiando segno e ottengo $x^2+y^2\leq 1-z^2$, cioè un disco di raggio $\sqrt{1-z^2}$. La sua area è $\pi(\text{raggio})^2=\pi\left(\sqrt{1-z^2}\right)^2=\pi(1-z^2)$.</span>
+                <span class="esempio__passo">$\displaystyle\iiint_E z\,dV=\int_0^1 z\cdot\operatorname{Area}(E_z)\,dz=\int_0^1 z\,\pi(1-z^2)\,dz$.</span>
+                <span class="esempio__passo">$\displaystyle=\pi\int_0^1(z-z^3)\,dz=\pi\Big[\frac{z^2}{2}-\frac{z^4}{4}\Big]_0^1=\pi\Big(\frac12-\frac14\Big)$.</span>
+              </p>
+              <p><strong>$\displaystyle\iiint_E z\,dV=\frac{\pi}{4}$.</strong> È lo stesso numero trovato in sferiche nell'Esempio 7 con $R=1$: due strade, un solo risultato.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il volume del "cono di gelato" $E=\{\rho\leq 2,\ 0\leq\varphi\leq\pi/4\}$, cioè la porzione di palla di raggio $2$ racchiusa dal cono di semiapertura $45^\circ$ attorno all'asse $z$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il dominio è già dato in sferiche ed è una scatola: $\rho\in[0,2]$, $\varphi\in[0,\pi/4]$, $\theta\in[0,2\pi]$. (In cartesiane sarebbe un incubo.)</span>
+                <span class="esempio__passo">$\displaystyle V=\Big(\int_0^{2\pi}d\theta\Big)\Big(\int_0^{\pi/4}\sin\varphi\,d\varphi\Big)\Big(\int_0^{2}\rho^2\,d\rho\Big)$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{\pi/4}\sin\varphi\,d\varphi=\big[-\cos\varphi\big]_0^{\pi/4}=-\cos\frac\pi4+\cos 0$. Dalla tabella dei valori notevoli, $\cos\frac\pi4=\frac{\sqrt2}{2}$ e $\cos0=1$, quindi il risultato è $1-\frac{\sqrt2}{2}$. L'altro: $\displaystyle\int_0^2\rho^2d\rho=\Big[\frac{\rho^3}{3}\Big]_0^2=\frac{8}{3}$.</span>
+                <span class="esempio__passo">Moltiplico i tre pezzi: $\displaystyle V=2\pi\cdot\Big(1-\frac{\sqrt2}{2}\Big)\cdot\frac83$. Raggruppo i fattori numerici, $2\pi\cdot\frac83=\frac{16\pi}{3}$, e resta $\displaystyle V=\frac{16\pi}{3}\Big(1-\frac{\sqrt2}{2}\Big)$.</span>
+              </p>
+              <p><strong>$V=\dfrac{16\pi}{3}\Big(1-\dfrac{\sqrt2}{2}\Big)\approx 4{,}91$.</strong> Controllo: la palla intera vale $\frac{32\pi}{3}\approx 33{,}5$, e il nostro settore ne è circa il $15\%$; plausibile per un cono di $45^\circ$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il momento d'inerzia rispetto all'asse $z$ di una palla omogenea di raggio $R$ e densità $\delta$, ed esprimilo in funzione della massa.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\displaystyle I_z=\iiint_E(x^2+y^2)\,\delta\,dV$. In sferiche $x^2+y^2=\rho^2\sin^2\varphi$ (è il quadrato della distanza dall'asse $z$).</span>
+                <span class="esempio__passo">Con il jacobiano: $\ \rho^2\sin^2\varphi\cdot\rho^2\sin\varphi=\rho^4\sin^3\varphi$.</span>
+                <span class="esempio__passo">$\displaystyle I_z=\delta\Big(\int_0^{2\pi}d\theta\Big)\Big(\int_0^{\pi}\sin^3\varphi\,d\varphi\Big)\Big(\int_0^{R}\rho^4\,d\rho\Big)$.</span>
+                <span class="esempio__passo">L'integrale angolare, un passo alla volta. Stacco un seno e uso l'identità fondamentale nella forma $\sin^2\varphi=1-\cos^2\varphi$: $\sin^3\varphi=\sin^2\varphi\cdot\sin\varphi=(1-\cos^2\varphi)\sin\varphi$. Ora <strong>sostituisco $u=\cos\varphi$</strong>, da cui $du=-\sin\varphi\,d\varphi$, cioè $\sin\varphi\,d\varphi=-du$; gli estremi diventano $\varphi=0\Rightarrow u=\cos0=1$ e $\varphi=\pi\Rightarrow u=\cos\pi=-1$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{\pi}\sin^3\varphi\,d\varphi=\int_{1}^{-1}(1-u^2)(-du)=\int_{-1}^{1}(1-u^2)\,du$ (il segno meno si riassorbe scambiando gli estremi). Calcolo: $\Big[u-\frac{u^3}{3}\Big]_{-1}^{1}=\left(1-\frac13\right)-\left(-1+\frac13\right)=\frac23+\frac23=\frac43$.</span>
+                <span class="esempio__passo">Gli altri due pezzi: $\int_0^{2\pi}d\theta=2\pi$ e $\int_0^R\rho^4d\rho=\Big[\frac{\rho^5}{5}\Big]_0^R=\frac{R^5}{5}$. Moltiplico tutto: $\displaystyle I_z=\delta\cdot 2\pi\cdot\frac43\cdot\frac{R^5}{5}=\frac{8\pi\delta R^5}{15}$ (al numeratore $2\cdot4=8$, al denominatore $3\cdot5=15$).</span>
+                <span class="esempio__passo">Poiché $m=\delta\cdot\frac43\pi R^3$ (densità per volume della palla), divido: $\displaystyle\frac{I_z}{m}=\frac{8\pi\delta R^5/15}{\frac43\pi\delta R^3}=\frac{8\pi\delta R^5}{15}\cdot\frac{3}{4\pi\delta R^3}$. Semplifico $\pi$, $\delta$ e $R^3$ (resta $R^2$), poi $\frac{8\cdot3}{15\cdot4}=\frac{24}{60}=\frac25$. Quindi $\frac{I_z}{m}=\frac{2R^2}{5}$.</span>
+              </p>
+              <p><strong>$I_z=\dfrac{8\pi\delta R^5}{15}=\dfrac25 mR^2$.</strong> Confronto utile: il cilindro ha $\frac12mR^2$ e la sfera $\frac25mR^2$; la sfera ha più massa concentrata vicino all'asse, quindi è più facile da far ruotare.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova il baricentro del cono omogeneo di raggio $R$ e altezza $h$ con vertice nell'origine e asse coincidente con l'asse $z$ (quindi $r\leq\frac{R}{h}z$, $0\leq z\leq h$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Simmetria.</strong> Il cono è simmetrico rispetto all'asse $z$: $x_G=y_G=0$. Resta $z_G$.</span>
+                <span class="esempio__passo"><strong>Denominatore</strong> (volume, con $\delta=1$): $V=\frac13\pi R^2h$, calcolato nell'Esempio 4.</span>
+                <span class="esempio__passo"><strong>Numeratore per strati.</strong> A quota $z$ la sezione è un disco di raggio $\frac{R}{h}z$, di area $\pi\frac{R^2}{h^2}z^2$. Poiché l'integranda dipende solo da $z$: $\displaystyle\iiint_E z\,dV=\int_0^h z\cdot\pi\frac{R^2}{h^2}z^2\,dz$.</span>
+                <span class="esempio__passo">$\displaystyle=\frac{\pi R^2}{h^2}\int_0^h z^3\,dz=\frac{\pi R^2}{h^2}\cdot\frac{h^4}{4}=\frac{\pi R^2h^2}{4}$.</span>
+                <span class="esempio__passo">$\displaystyle z_G=\frac{\pi R^2h^2/4}{\pi R^2h/3}=\frac{h^2}{4}\cdot\frac{3}{h}=\frac{3h}{4}$.</span>
+              </p>
+              <p><strong>$G=\left(0,\,0,\,\dfrac{3h}{4}\right)$.</strong> Cioè a $\frac34$ dell'altezza <em>partendo dal vertice</em>, ovvero a $\frac{h}{4}$ dalla base: il baricentro sta vicino alla parte larga, come deve essere.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Con un cambio di variabili lineare, dimostra che l'ellissoide $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}\leq 1$ ha volume $\dfrac43\pi abc$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Scelgo la trasformazione</strong> che raddrizza l'ellissoide: $x=au$, $y=bv$, $z=cw$. La condizione diventa $u^2+v^2+w^2\leq 1$, cioè la <strong>palla unitaria</strong> $B_1$.</span>
+                <span class="esempio__passo"><strong>Jacobiano:</strong> la matrice è $\operatorname{diag}(a,b,c)$, quindi $|\det J_T|=abc$ (costante, e positivo per $a,b,c\gt 0$).</span>
+                <span class="esempio__passo">$\displaystyle V=\iiint_{E}dx\,dy\,dz=\iiint_{B_1}abc\ du\,dv\,dw=abc\cdot\operatorname{Vol}(B_1)$.</span>
+                <span class="esempio__passo">Il volume della palla unitaria è $\frac43\pi$ (Dimostrazione 3 con $R=1$).</span>
+              </p>
+              <p><strong>$V=\dfrac43\pi abc$. ∎</strong> Verifica: se $a=b=c=R$ ritrovi $\frac43\pi R^3$. Questa è la potenza del cambio di variabili: un problema nuovo ridotto a uno già risolto, moltiplicando per un solo numero.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $E$ il solido compreso fra il paraboloide $z=x^2+y^2$ e il piano $z=4$. (a) Calcola il volume di $E$. (b) Calcola la massa di $E$ se la densità è $\delta(x,y,z)=z$. (c) Giustifica la scelta delle coordinate.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(c) Coordinate.</strong> Compare $x^2+y^2$ e il solido è di rotazione attorno all'asse $z$: cilindriche, con $dV=r\,dr\,d\theta\,dz$. Il paraboloide diventa $z=r^2$; l'intersezione con $z=4$ dà $r=2$, quindi l'ombra è il disco di raggio $2$.</span>
+                <span class="esempio__passo"><strong>(a) Volume, per fili:</strong> $r^2\leq z\leq 4$, $\ 0\leq r\leq 2$, $\ 0\leq\theta\leq2\pi$. $\displaystyle V=\int_0^{2\pi}\!\!\int_0^2\!\!\int_{r^2}^{4}r\,dz\,dr\,d\theta=2\pi\int_0^2 r(4-r^2)\,dr$.</span>
+                <span class="esempio__passo">$\displaystyle=2\pi\Big[2r^2-\frac{r^4}{4}\Big]_0^2=2\pi(8-4)=8\pi$.</span>
+                <span class="esempio__passo"><strong>(b) Massa:</strong> $\displaystyle m=\int_0^{2\pi}\!\!\int_0^2\!\!\int_{r^2}^{4}z\,r\,dz\,dr\,d\theta$. Integrale più interno in $dz$: $r$ è costante e la primitiva di $z$ è $\frac{z^2}{2}$, quindi $\int_{r^2}^{4}z\,r\,dz=r\Big[\frac{z^2}{2}\Big]_{r^2}^{4}$. <em>Sostituisco gli estremi</em>: in $z=4$ ottengo $\frac{16}{2}$, in $z=r^2$ ottengo $\frac{(r^2)^2}{2}=\frac{r^4}{2}$; la differenza è $\frac{16-r^4}{2}$.</span>
+                <span class="esempio__passo">Nulla dipende da $\theta$, quindi l'integrale esterno moltiplica per $2\pi$: $\displaystyle m=2\pi\int_0^2 r\,\frac{16-r^4}{2}\,dr=\pi\int_0^2 r(16-r^4)\,dr$ (ho semplificato il $2$ con il $2$ al denominatore). Svolgo il prodotto: $r(16-r^4)=16r-r^5$.</span>
+                <span class="esempio__passo">$\displaystyle\pi\int_0^2(16r-r^5)\,dr=\pi\Big[8r^2-\frac{r^6}{6}\Big]_0^2=\pi\Big(8\cdot4-\frac{64}{6}\Big)=\pi\Big(32-\frac{32}{3}\Big)=\pi\cdot\frac{96-32}{3}=\frac{64\pi}{3}$.</span>
+              </p>
+              <p><strong>(a) $V=8\pi$; &nbsp; (b) $m=\dfrac{64\pi}{3}$.</strong> Controllo di sensatezza: la densità varia fra $0$ e $4$, quindi la massa deve stare fra $0$ e $4V=32\pi$; e infatti $\frac{64\pi}{3}\approx 21{,}3\pi$. La densità media risulta $\frac{64\pi/3}{8\pi}=\frac83\approx 2{,}67$, spostata verso l'alto perché il solido è più largo in cima.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un compagno calcola il volume della palla di raggio $R$ così: $\displaystyle\int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^{R}d\rho\,d\varphi\,d\theta=2\pi^2R$. Individua l'errore, spiega perché il risultato è inaccettabile e correggilo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Il campanello d'allarme.</strong> Il risultato $2\pi^2R$ è proporzionale a $R$, cioè ha le dimensioni di una <em>lunghezza</em>. Un volume deve essere proporzionale a $R^3$. Quindi è certamente sbagliato, ancora prima di capire perché.</span>
+                <span class="esempio__passo"><strong>L'errore.</strong> Manca il <strong>jacobiano</strong>. Passando a coordinate sferiche non si può scrivere $dV=d\rho\,d\varphi\,d\theta$: il teorema del cambio di variabili impone $dV=|\det J_T|\,d\rho\,d\varphi\,d\theta=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$.</span>
+                <span class="esempio__passo"><strong>Perché c'è quel fattore.</strong> I "cubetti" di coordinate sferiche non hanno tutti lo stesso volume: quelli lontani dal centro sono più grossi (fattore $\rho^2$) e quelli vicini ai poli sono più sottili (fattore $\sin\varphi$). Ignorarlo significa contare tutti i cubetti come se fossero uguali.</span>
+                <span class="esempio__passo"><strong>Calcolo corretto:</strong> $\displaystyle V=\int_0^{2\pi}\!\!\int_0^{\pi}\!\!\int_0^{R}\rho^2\sin\varphi\ d\rho\,d\varphi\,d\theta=2\pi\cdot 2\cdot\frac{R^3}{3}$.</span>
+              </p>
+              <p><strong>$V=\dfrac43\pi R^3$.</strong> Regola d'oro da portare all'esame: <em>appena scrivi "passo in sferiche", scrivi subito il $dV$ completo</em>, e controlla le dimensioni del risultato finale.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iiint_E e^{\left(x^2+y^2+z^2\right)^{3/2}}\,dV$ dove $E$ è la palla unitaria $x^2+y^2+z^2\leq 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Riconoscere la struttura.</strong> In cartesiane l'integrale è disperato. Ma $(x^2+y^2+z^2)^{3/2}=(\rho^2)^{3/2}=\rho^3$: in sferiche l'integranda diventa semplicemente $e^{\rho^3}$.</span>
+                <span class="esempio__passo"><strong>Dominio e jacobiano:</strong> $\rho\in[0,1]$, $\varphi\in[0,\pi]$, $\theta\in[0,2\pi]$, $\ dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$.</span>
+                <span class="esempio__passo"><strong>Fattorizzo:</strong> $\displaystyle I=\Big(\int_0^{2\pi}d\theta\Big)\Big(\int_0^{\pi}\sin\varphi\,d\varphi\Big)\Big(\int_0^{1}e^{\rho^3}\rho^2\,d\rho\Big)=4\pi\int_0^1 e^{\rho^3}\rho^2\,d\rho$.</span>
+                <span class="esempio__passo"><strong>Sostituzione</strong> $u=\rho^3$ (l'esponente), da cui $du=3\rho^2\,d\rho$, cioè $\rho^2\,d\rho=\frac{du}{3}$: il $\rho^2$ del jacobiano è esattamente quello che serviva. Cambio gli estremi ($\rho=0\Rightarrow u=0$, $\rho=1\Rightarrow u=1$) e sostituisco $e^{\rho^3}$ con $e^u$: $\displaystyle\int_0^1 e^{\rho^3}\rho^2\,d\rho=\frac13\int_0^1 e^u\,du=\frac13\big[e^u\big]_0^1=\frac13(e-1)$.</span>
+                <span class="esempio__passo">$\displaystyle I=4\pi\cdot\frac{e-1}{3}$.</span>
+              </p>
+              <p><strong>$\displaystyle\iiint_E e^{(x^2+y^2+z^2)^{3/2}}dV=\frac{4\pi(e-1)}{3}\approx 7{,}20$.</strong> Morale: il jacobiano non è solo un fastidio da ricordare — a volte è proprio il fattore che <em>rende possibile</em> il calcolo, perché completa la derivata della sostituzione.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 9.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">L'emisfero $E=\{x^2+y^2+z^2\leq R^2,\ z\geq 0\}$ ha densità proporzionale alla quota, $\delta=kz$ con $k\gt 0$. (a) Calcola la massa. (b) Calcola la quota del baricentro. (c) Confronta con il caso omogeneo e commenta.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Impostazione.</strong> Sferiche con $z=\rho\cos\varphi$; "$z\geq 0$" significa $\varphi\in[0,\pi/2]$. Per simmetria attorno all'asse $z$ (il solido e la densità lo sono), $x_G=y_G=0$.</span>
+                <span class="esempio__passo"><strong>(a) Massa.</strong> $\displaystyle m=\int_0^{2\pi}\!\!\int_0^{\pi/2}\!\!\int_0^{R}k\rho\cos\varphi\cdot\rho^2\sin\varphi\ d\rho\,d\varphi\,d\theta=k\cdot 2\pi\cdot\Big(\int_0^{\pi/2}\!\!\sin\varphi\cos\varphi\,d\varphi\Big)\Big(\int_0^R\!\rho^3d\rho\Big)$.</span>
+                <span class="esempio__passo">Nell'integranda ho unito le potenze: $k\rho\cos\varphi\cdot\rho^2\sin\varphi=k\,\rho^3\sin\varphi\cos\varphi$, che è il prodotto di una funzione di $\rho$ per una di $\varphi$: da qui la fattorizzazione. Il pezzo angolare si calcola con $u=\sin\varphi$, $du=\cos\varphi\,d\varphi$ (estremi $0$ e $1$): $\displaystyle\int_0^{\pi/2}\sin\varphi\cos\varphi\,d\varphi=\int_0^1u\,du=\frac12$; l'altro è $\displaystyle\int_0^R\rho^3d\rho=\Big[\frac{\rho^4}{4}\Big]_0^R=\frac{R^4}{4}$.</span>
+                <span class="esempio__passo">Moltiplico: $m=k\cdot2\pi\cdot\frac12\cdot\frac{R^4}{4}$. Il $2\pi$ per $\frac12$ fa $\pi$, quindi $m=\frac{k\pi R^4}{4}$.</span>
+                <span class="esempio__passo"><strong>(b) Numeratore del baricentro:</strong> $\displaystyle\iiint_E z\,\delta\,dV=k\iiint_E z^2\,dV=k\cdot2\pi\Big(\int_0^{\pi/2}\!\!\cos^2\varphi\sin\varphi\,d\varphi\Big)\Big(\int_0^R\!\rho^4d\rho\Big)$.</span>
+                <span class="esempio__passo">Qui $z\cdot\delta=z\cdot kz=kz^2$, e in sferiche $z^2=(\rho\cos\varphi)^2=\rho^2\cos^2\varphi$; moltiplicando per il jacobiano $\rho^2\sin\varphi$ resta $k\,\rho^4\cos^2\varphi\sin\varphi$. Il pezzo angolare si fa con <strong>$u=\cos\varphi$</strong>, $du=-\sin\varphi\,d\varphi$ cioè $\sin\varphi\,d\varphi=-du$; gli estremi diventano $\varphi=0\Rightarrow u=1$ e $\varphi=\frac\pi2\Rightarrow u=0$: $\displaystyle\int_0^{\pi/2}\cos^2\varphi\sin\varphi\,d\varphi=-\int_1^0u^2du=\int_0^1u^2du=\Big[\frac{u^3}{3}\Big]_0^1=\frac13$.</span>
+                <span class="esempio__passo">Con $\int_0^R\rho^4d\rho=\frac{R^5}{5}$, il numeratore vale $k\cdot2\pi\cdot\frac13\cdot\frac{R^5}{5}=\frac{2k\pi R^5}{15}$ (denominatore $3\cdot5=15$).</span>
+                <span class="esempio__passo">$\displaystyle z_G=\frac{2k\pi R^5/15}{k\pi R^4/4}=\frac{2k\pi R^5}{15}\cdot\frac{4}{k\pi R^4}$: semplifico $k$, $\pi$ e $R^4$ (resta una $R$) e ottengo $\frac{2R}{15}\cdot 4=\frac{8R}{15}$.</span>
+              </p>
+              <p><strong>(a) $m=\dfrac{k\pi R^4}{4}$; &nbsp; (b) $G=\left(0,\,0,\,\dfrac{8R}{15}\right)$.</strong></p>
+              <p><strong>(c) Commento.</strong> Nel caso omogeneo si aveva $z_G=\frac38R=0{,}375\,R$; qui $z_G=\frac{8}{15}R\approx 0{,}533\,R$, sensibilmente più in alto. È esattamente quello che ci si aspetta: la densità cresce con la quota, quindi la materia "pesa di più" in alto e trascina su il baricentro. La costante $k$ si semplifica, come deve essere: il baricentro non dipende da quanto è densa la materia in assoluto, ma solo da <em>come</em> la densità è distribuita.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) In coordinate cilindriche, l'elemento di volume $dV$ si scrive:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$dr\,d\theta\,dz$</button>
+              <button class="quiz-option" data-correct="true">$r\,dr\,d\theta\,dz$</button>
+              <button class="quiz-option" data-correct="false">$r^2\,dr\,d\theta\,dz$</button>
+              <button class="quiz-option" data-correct="false">$r\sin\theta\,dr\,d\theta\,dz$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il jacobiano delle cilindriche vale $r$, quindi $dV=r\,dr\,d\theta\,dz$. Geometricamente: lo spicchio di angolo $d\theta$ a distanza $r$ dall'asse è largo $r\,d\theta$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) In coordinate sferiche $(\rho,\varphi,\theta)$, con $\varphi$ misurato dall'asse $z$, il determinante jacobiano vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\rho\sin\varphi$</button>
+              <button class="quiz-option" data-correct="false">$\rho^2\sin\theta$</button>
+              <button class="quiz-option" data-correct="true">$\rho^2\sin\varphi$</button>
+              <button class="quiz-option" data-correct="false">$\rho^2\cos\varphi$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$|\det J|=\rho^2\sin\varphi$. Il $\rho^2$ dice che i gusci lontani dal centro sono più capienti; il $\sin\varphi$ che i cubetti si assottigliano verso i poli. Il seno accompagna sempre l'angolo misurato <em>dal polo</em>, cioè quello che vive in $[0,\pi]$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Nel teorema del cambio di variabili compare $\big|\det J_T\big|$ in valore assoluto perché:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">il determinante di una matrice è sempre negativo</button>
+              <button class="quiz-option" data-correct="true">i volumi sono quantità positive, mentre il determinante può essere negativo se la trasformazione inverte l'orientazione</button>
+              <button class="quiz-option" data-correct="false">serve a garantire che la trasformazione sia iniettiva</button>
+              <button class="quiz-option" data-correct="false">è una convenzione senza alcun significato geometrico</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il determinante porta con sé l'informazione sull'orientazione (il segno): è negativo quando la trasformazione "specchia" lo spazio. Ma un volumetto non può essere negativo, quindi si prende il modulo e si butta via il segno.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Per calcolare la massa del cilindro $x^2+y^2\leq 4$, $0\leq z\leq 5$ con densità $\delta=x^2+y^2$, il sistema di coordinate più conveniente è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">cartesiane, perché il dominio è semplice</button>
+              <button class="quiz-option" data-correct="true">cilindriche, perché compare $x^2+y^2$ e il solido è di rotazione attorno all'asse $z$</button>
+              <button class="quiz-option" data-correct="false">sferiche, perché c'è una simmetria</button>
+              <button class="quiz-option" data-correct="false">è indifferente, i conti hanno la stessa lunghezza</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Cilindriche: il dominio diventa la scatola $r\in[0,2]$, $\theta\in[0,2\pi]$, $z\in[0,5]$ e la densità diventa $r^2$. In sferiche la superficie laterale darebbe $\rho=2/\sin\varphi$, con estremi variabili e conti molto più lunghi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se $f\equiv 1$, l'integrale triplo $\displaystyle\iiint_E 1\,dV$ restituisce il volume del solido $E$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: ogni cubetto contribuisce con il proprio volume $\Delta V_i$, e la somma di tutti i cubetti è il volume di $E$. È il caso particolare "densità unitaria" della lettura come massa.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) In coordinate sferiche l'angolo $\varphi$ (misurato dall'asse $z$) varia fra $0$ e $2\pi$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: $\varphi\in[0,\pi]$ (dal polo nord al polo sud). È $\theta$, la longitudine, a variare in $[0,2\pi]$. Far variare $\varphi$ fino a $2\pi$ significa percorrere la sfera due volte, e il risultato raddoppia. Inoltre in $[0,\pi]$ il $\sin\varphi$ resta positivo, così il jacobiano si scrive senza moduli.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Passando a coordinate cilindriche non serve alcun fattore di correzione, perché $z$ resta invariata.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: il jacobiano vale $r$, non $1$. La $z$ in effetti non contribuisce (la sua riga nella matrice è $(0,0,1)$), ma il passaggio da $(x,y)$ a $(r,\theta)$ nel piano porta con sé il fattore $r$ delle coordinate polari.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Se un solido è integrabile con entrambi i metodi, la riduzione per fili e quella per strati danno lo stesso risultato.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: sono due modi diversi di organizzare la <em>stessa</em> somma di cubetti. Cambia solo la lunghezza dei conti, non il risultato — come si vede confrontando gli Esempi 2 e 3 sul tetraedro.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="jacobiano|determinante jacobiano|lo jacobiano">
+            <p class="quiz-question__testo">9. (Completamento) Il fattore $\big|\det J_T\big|$ che compare nel cambio di variabili e che misura la dilatazione dei volumi si chiama determinante ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il determinante <strong>jacobiano</strong>, calcolato a partire dalla matrice jacobiana (la matrice di tutte le derivate parziali della trasformazione).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="r|erre">
+            <p class="quiz-question__testo">10. (Completamento) In coordinate cilindriche il determinante jacobiano vale ______ (scrivi la lettera che lo rappresenta).</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Vale $r$, la distanza dall'asse $z$: quindi $dV=r\,dr\,d\theta\,dz$. È lo stesso fattore delle coordinate polari nel piano.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="fili|per fili|colonne">
+            <p class="quiz-question__testo">11. (Completamento) Il metodo di riduzione che integra prima lungo colonne verticali, fra una superficie "pavimento" e una superficie "tetto", si chiama riduzione per ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Riduzione per <strong>fili</strong> (o per colonne): si integra prima in $dz$ fra $\alpha(x,y)$ e $\beta(x,y)$, poi si fa un integrale doppio sull'ombra $D$. L'alternativa è la riduzione per <em>strati</em>, che affetta il solido orizzontalmente.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché, cambiando variabili in un integrale triplo, bisogna moltiplicare per il determinante jacobiano, e perché lo si prende in valore assoluto.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: un integrale triplo è una somma di contributi del tipo "valore della funzione × volume del cubetto". Quando cambio coordinate, il dominio nuovo è fatto di cubetti di lati $du$, $dv$, $dw$, ma la trasformazione $T$ li <strong>deforma</strong>: quello che nel mondo nuovo è un cubetto, nel mondo vecchio diventa un piccolo parallelepipedo storto, stirato in certe direzioni e compresso in altre. Se non correggessi, starei attribuendo a ogni cubetto un volume sbagliato. Per un cubetto molto piccolo la trasformazione si comporta come la sua approssimazione lineare, cioè come la matrice jacobiana; e l'algebra lineare dice che una matrice moltiplica i volumi per il valore assoluto del suo determinante. Quindi $dx\,dy\,dz=|\det J_T|\,du\,dv\,dw$: il jacobiano è il fattore locale di dilatazione dei volumi, l'analogo tridimensionale del $g'(t)$ della sostituzione in una variabile. Il valore assoluto serve perché il determinante, oltre alla dilatazione, codifica anche l'<em>orientazione</em>: è negativo quando la trasformazione rovescia lo spazio come uno specchio. Ma un volume è per sua natura una quantità positiva — non esistono cubetti di volume negativo — quindi quell'informazione sul segno va scartata prendendo il modulo.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Ti viene chiesto di calcolare un integrale triplo su un solido che non conosci ancora. Descrivi la procedura che segui per decidere <em>quali coordinate</em> usare e <em>quale metodo di riduzione</em> (fili o strati) adottare, con almeno un esempio per ciascun caso.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: procedo con tre domande. <strong>(1) Che forma ha il solido?</strong> Se è delimitato solo da piani (scatole, tetraedri, prismi) resto in cartesiane, dove il jacobiano è $1$. Se compare la combinazione $x^2+y^2$ — cilindri, coni, paraboloidi, qualunque solido ottenuto ruotando una figura attorno all'asse $z$ — uso le cilindriche, perché quella combinazione diventa $r^2$ e gli estremi in $r$ si fanno costanti; ricordo $dV=r\,dr\,d\theta\,dz$. Se compare $x^2+y^2+z^2$ — palle, gusci sferici, settori tagliati da coni — uso le sferiche, perché diventa $\rho^2$; ricordo $dV=\rho^2\sin\varphi\,d\rho\,d\varphi\,d\theta$ con $\varphi\in[0,\pi]$. <strong>(2) Da che cosa dipende la funzione?</strong> La funzione "vota" quanto il dominio: se dipende solo dalla distanza dall'origine (per esempio $\delta=k\sqrt{x^2+y^2+z^2}$) le sferiche sono quasi obbligate; se dipende solo dalla distanza dall'asse, cilindriche; se dipende solo dalla quota, spesso conviene affettare. <strong>(3) Fili o strati?</strong> Uso i <em>fili</em> quando il solido è descritto come compreso fra due superfici $z=\alpha(x,y)$ e $z=\beta(x,y)$ e l'ombra sul piano $xy$ è semplice: per esempio il solido fra il paraboloide $z=x^2+y^2$ e il piano $z=4$, dove il filo va da $r^2$ a $4$ sopra il disco di raggio $2$. Uso gli <em>strati</em> quando le sezioni orizzontali hanno un'area che conosco a memoria e, soprattutto, quando la funzione dipende solo da $z$: per esempio il tetraedro $x+y+z\leq 1$, le cui sezioni sono triangoli di area $(1-z)^2/2$, risolto con un unico integrale invece di tre. Infine, qualunque sia la scelta, scrivo subito il $dV$ con il jacobiano, e alla fine controllo le dimensioni del risultato e lo confronto con un caso noto.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="08-integrali-doppi.html"><span class="dir">← Capitolo precedente</span><strong>Integrali doppi</strong></a>
+        <a class="next" href="10-integrali-curvilinei.html"><span class="dir">Capitolo successivo →</span><strong>Integrali curvilinei</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

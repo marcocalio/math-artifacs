@@ -1,0 +1,1459 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2. Valore Assoluto e Topologia della Retta — Parte 1 · Analisi Matematica 1</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1" class="is-active">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte1">Parte 1 · Analisi Matematica 1</a><span class="sep">/</span>Capitolo 2</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
+      <nav>
+        <ul>
+          <li><a href="01-numeri-reali-struttura.html">1. Numeri reali e struttura d'ordine</a></li>
+          <li><a href="02-valore-assoluto-topologia.html" class="is-active">2. Valore assoluto e topologia della retta</a></li>
+          <li><a href="03-funzioni.html">3. Funzioni</a></li>
+          <li><a href="04-limiti.html">4. Limiti di funzioni</a></li>
+          <li><a href="05-infinitesimi-infiniti.html">5. Infinitesimi, infiniti e confronti</a></li>
+          <li><a href="06-continuita.html">6. Continuità</a></li>
+          <li><a href="07-derivate.html">7. Derivate</a></li>
+          <li><a href="08-teoremi-fondamentali.html">8. Teoremi fondamentali del calcolo differenziale</a></li>
+          <li><a href="09-studio-di-funzione.html">9. Studio completo di funzione</a></li>
+          <li><a href="10-taylor-mclaurin.html">10. Sviluppi di Taylor e Mclaurin</a></li>
+          <li><a href="11-successioni.html">11. Successioni numeriche</a></li>
+          <li><a href="12-serie-numeriche.html">12. Serie numeriche</a></li>
+          <li><a href="13-integrali-indefiniti.html">13. Integrali indefiniti</a></li>
+          <li><a href="14-integrali-definiti.html">14. Integrali definiti</a></li>
+          <li><a href="15-applicazioni-integrali.html">15. Applicazioni degli integrali</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte1">Parte 1 · Analisi Matematica 1</span>
+          <span class="badge badge--base">Capitolo 2 di 15</span>
+        </div>
+        <h1>Valore Assoluto e Topologia della Retta</h1>
+        <p class="subtitle">Il valore assoluto misura le distanze; dalla distanza nasce l'idea di "vicinanza", e dalla vicinanza tutta la <em>topologia</em> della retta reale: intorni, intorni bucati, punti di accumulazione, insiemi aperti e chiusi. Sono i mattoni invisibili su cui, tra due capitoli, poggerà la definizione rigorosa di limite.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~45 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina di consegnare pacchi lungo una strada dritta, con le case numerate come su un righello: la casa 0, la casa 1, la casa 2… e anche le posizioni intermedie (la 2,5 sarebbe a metà strada tra la 2 e la 3). Se ti trovi al numero 7 e devi raggiungere il numero 3, quello che ti interessa <strong>non è la direzione</strong>, ma <strong>quanto sei lontano</strong>: sono 4 unità, punto. Non ha senso dire "meno 4 metri di distanza".</p>
+        <p>Questa idea semplicissima — "dimentica il segno, tienimi solo la distanza" — è il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span>. E una volta che sai misurare distanze, puoi rispondere a una domanda ancora più interessante: <em>quali case sono "vicine" alla casa 3?</em> Tutte quelle che distano meno di, diciamo, mezzo isolato. Quell'insieme di case vicine è un <span class="glossario-term" data-term="intorno">intorno</span>.</p>
+        <p>La <strong>topologia</strong> (dal greco <em>tópos</em>, "luogo") è esattamente questo: lo studio della <strong>vicinanza</strong>, del "chi sta vicino a chi", senza per forza guardare i numeri esatti. In questo capitolo impareremo a parlare con precisione di punti che si accalcano attorno a un altro punto (i <span class="glossario-term" data-term="punto-di-accumulazione">punti di accumulazione</span>), di punti solitari (i <span class="glossario-term" data-term="punto-isolato">punti isolati</span>) e di insiemi con "bordi aperti" o "bordi chiusi" (gli <span class="glossario-term" data-term="insieme-aperto">insiemi aperti</span> e <span class="glossario-term" data-term="insieme-chiuso">chiusi</span>).</p>
+        <p>Non ci sono calcoli spaventosi qui: ci sono le <strong>parole precise</strong> con cui, tra pochissimo, descriveremo cosa significa che una funzione "si avvicina a un valore". Chi impara bene questo vocabolario trova i <span class="glossario-term" data-term="limite">limiti</span> quasi ovvi; chi lo salta, li trova incomprensibili.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché tutta l'Analisi Matematica ruota attorno all'idea di <strong>avvicinarsi a qualcosa senza necessariamente raggiungerlo</strong>. "La funzione tende a 2 quando $x$ tende a 3", "la successione converge a 0", "la velocità istantanea è il limite delle velocità medie": ogni volta stiamo dicendo che <em>ci stiamo avvicinando</em>. Per rendere rigorosa questa frase servono strumenti che dicano con precisione cosa vuol dire "vicino": il valore assoluto (che misura la distanza) e l'intorno (che raccoglie i punti vicini).</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Fino all'Ottocento, l'Analisi era piena di ragionamenti intuitivi ma pericolosamente vaghi ("una quantità infinitamente piccola", "un punto che striscia verso un altro"). Matematici come Cauchy e Weierstrass hanno rifondato tutto sostituendo queste immagini con definizioni basate su <strong>disuguaglianze col valore assoluto</strong> e su <strong>intorni</strong>. Il risultato è che oggi possiamo <em>dimostrare</em> i teoremi invece di "sentirli" giusti. Questo capitolo ti consegna proprio quel linguaggio.</p>
+        <p><strong>Perché è importante ora?</strong> Perché è il ponte tra i <a href="01-numeri-reali-struttura.html">numeri reali e la loro struttura d'ordine</a> (capitolo precedente, dove hai incontrato <span class="glossario-term" data-term="maggiorante">maggioranti</span>, <span class="glossario-term" data-term="estremo-superiore">estremo superiore</span> e l'idea di completezza) e la <a href="04-limiti.html">definizione di limite</a> (capitolo 4). L'intorno che definiamo qui è, letteralmente, la scatola dentro cui faremo entrare i valori di una funzione quando scriveremo $\lim_{x\to x_0} f(x) = \ell$. Senza questo capitolo, quella definizione ti sembrerebbe piovuta dal cielo.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Vicinanza, ovunque</div>
+          <p>Il navigatore che dice <em>"sei a meno di 300 metri dalla destinazione"</em> sta descrivendo un <strong>intorno</strong> della destinazione. Il termostato che mantiene la stanza a $20°$ "con una tolleranza di $\pm 1°$" impone la condizione $|T - 20| \leq 1$: temperatura ammessa in un intorno di $20$. La tolleranza di lavorazione di un pezzo meccanico ("diametro $10\,\text{mm} \pm 0{,}05$") è ancora la disuguaglianza $|d - 10| \leq 0{,}05$. Ogni volta che nella vita usi la parola "circa", "attorno", "con un margine di", stai maneggiando un valore assoluto e un intorno.</p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🏠</span> L'intorno bucato: il vicinato, esclusa la casa</div>
+          <p>Immagina di voler capire com'è un quartiere <strong>senza entrare</strong> in una certa casa: parli con tutti i vicini, i più prossimi e quelli un po' più lontani, ma <em>quella</em> casa la salti. È esattamente l'<strong>intorno bucato</strong>: tutti i punti vicini a $x_0$, tranne $x_0$ stesso. Perché ci servirà? Perché nei limiti ci interessa il comportamento <em>attorno</em> a un punto, non <em>nel</em> punto: una funzione può fare qualcosa di strano proprio in $x_0$ (o non essere nemmeno definita lì), eppure "puntare" chiaramente verso un valore. Guardiamo i vicini, non la casa.</p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🦟</span> Punto di accumulazione: la folla al concerto, le zanzare alla lampada</div>
+          <p>Pensa a un concerto: più ti avvicini al palco, più la folla si infittisce. Comunque piccola sia la distanza dal palco che consideri, dentro quella distanza c'è <em>sempre</em> qualcuno. Il palco è un <strong>punto di accumulazione</strong> della folla — e nota bene: sul palco non c'è nessuno spettatore, eppure la gente si "accumula" attorno ad esso quanto vuoi. Oppure: le zanzare che d'estate si addensano sempre più vicino a una lampada, senza mai posarsi esattamente sul filamento. Il filamento è il loro punto di accumulazione, pur restando "vuoto". Vedremo che <strong>un punto di accumulazione non deve appartenere all'insieme</strong>: è l'idea più importante — e più fraintesa — del capitolo.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-valore-assoluto">4.1 Valore assoluto e distanza</h3>
+        <p><strong>Prima l'idea, poi la formula.</strong> Il valore assoluto è una macchinetta che prende un numero e <em>gli toglie il segno</em>: entra $-7$, esce $7$; entra $7$, esce $7$. Serve a rispondere alla domanda "quanto è grande questo numero?" senza preoccuparsi se sta a destra o a sinistra dello zero. Da questa macchinetta nascerà tutto il resto del capitolo, perché è con lei che misureremo le distanze.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚶</span> L'immagine da tenere in mente</div>
+          <p>Sei su una strada dritta, con i numeri civici disposti come su un righello, e lo zero è il punto in cui hai parcheggiato. Per arrivare al civico $7$ fai $7$ passi verso destra; per arrivare al civico $-7$ ne fai $7$ verso sinistra. Il contapassi che hai al polso non sa da che parte sei andato: in tutti e due i casi segna $7$. <strong>Il valore assoluto è il contapassi.</strong></p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Calcoliamo tre valori assoluti, uno alla volta, dicendo ogni volta cosa stiamo facendo.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>$|4|$.</strong> Il numero fra le sbarrette è $4$, che è positivo. Un numero positivo non ha nessun segno da togliere: si ricopia tale e quale. Risultato: $|4|=4$.</span>
+          <span class="esempio__passo"><strong>$|-4|$.</strong> Il numero fra le sbarrette è $-4$, che è negativo. Per togliergli il segno lo cambio di segno, cioè lo moltiplico per $-1$: $-(-4)=4$. Risultato: $|-4|=4$.</span>
+          <span class="esempio__passo"><strong>$|0|$.</strong> Lo zero non è né positivo né negativo, ma non ha nessun segno da togliere: resta com'è. Risultato: $|0|=0$.</span>
+        </p>
+        <p>Fin qui: il valore assoluto lascia intatti i numeri positivi e lo zero, e ribalta i negativi. Il risultato non è <strong>mai</strong> negativo.</p>
+
+        <p><strong>Ora la definizione, pezzo per pezzo.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Valore assoluto.</em> Il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span> (o modulo) di un numero reale $x$ è il numero, mai negativo, definito "per casi":</p>
+          <div class="formula-block">
+            $$|x| = \begin{cases} x &amp; \text{se } x \geq 0 \\[2pt] -x &amp; \text{se } x \lt 0 \end{cases}$$
+          </div>
+          <p>Cosa significa ogni pezzo:</p>
+          <ul>
+            <li><strong>le due sbarrette $|\ \cdot\ |$</strong> sono il simbolo dell'operazione; si leggono "valore assoluto di";</li>
+            <li><strong>la parentesi graffa</strong> vuol dire "la regola cambia a seconda dei casi": prima guardi com'è fatto $x$, poi scegli la riga giusta;</li>
+            <li><strong>prima riga — "$x$ se $x \geq 0$"</strong>: se il numero è positivo oppure zero, il risultato è il numero stesso;</li>
+            <li><strong>seconda riga — "$-x$ se $x \lt 0$"</strong>: se il numero è negativo, il risultato è il suo opposto.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Il non-esempio: "allora $-x$ è un risultato negativo"</div>
+          <p>Nella seconda riga compare $-x$, e sembra che il valore assoluto possa uscire negativo. <strong>Non può.</strong> Quella riga si usa <em>soltanto</em> quando $x$ è già negativo: se $x=-4$, allora $-x=-(-4)=4$, che è positivo. Il segno meno davanti a una lettera non significa "numero negativo": significa "l'opposto di quello che c'è scritto". E l'opposto di un numero negativo è positivo.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si calcola in pratica</div>
+          <p>Sempre le stesse tre mosse. <strong>1)</strong> Fai tutti i conti <em>dentro</em> le sbarrette, finché non resta un solo numero. <strong>2)</strong> Guarda il segno di quel numero. <strong>3)</strong> Se è positivo o zero lo ricopi; se è negativo gli togli il meno. Esempio lampo: $|3-8|$ → dentro viene $-5$ → è negativo → risultato $5$.</p>
+        </div>
+
+        <p><strong>Dal valore assoluto alla distanza.</strong> Ecco il motivo per cui questo strumento ci interessa. Se $x$ e $y$ sono due punti della retta, il numero $|x-y|$ è <strong>la distanza fra loro</strong>. L'idea: la sottrazione $x-y$ ti dice quanto sono lontani <em>e</em> da che parte; il valore assoluto butta via il "da che parte" e tiene solo il "quanto".</p>
+        <p>Proviamo con due numeri veri, $x=-2$ e $y=5$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        |x-y| &amp;= |-2-5| &amp;&amp;\text{(sostituisco: al posto di } x \text{ metto } -2 \text{, al posto di } y \text{ metto } 5)\\
+        &amp;= |-7| &amp;&amp;\text{(eseguo la sottrazione dentro le sbarrette)}\\
+        &amp;= 7 &amp;&amp;\text{(il numero dentro è negativo: gli tolgo il meno)}
+        \end{aligned}$$</div>
+        <p>Adesso scambiamo i ruoli, cioè partiamo da $5$ e andiamo verso $-2$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        |y-x| &amp;= |5-(-2)| &amp;&amp;\text{(sostituisco nell'ordine opposto)}\\
+        &amp;= |5+2| &amp;&amp;\text{(meno per meno fa più, Parte 0, cap. 1)}\\
+        &amp;= |7| = 7 &amp;&amp;\text{(il numero dentro è positivo: lo ricopio)}
+        \end{aligned}$$</div>
+        <p>Stesso risultato, come dev'essere: la distanza fra due case non cambia a seconda di chi va a trovare chi. Ricapitolando:</p>
+        <div class="formula-block">$$|x - y| = \text{distanza tra i punti } x \text{ e } y \text{ sulla retta reale.}$$</div>
+
+        <svg viewBox="0 0 520 96" style="max-width:560px;margin:1.2em auto;display:block;" role="img" aria-label="Sulla retta reale, la distanza tra i punti x e y è il valore assoluto della loro differenza">
+          <line x1="20" y1="58" x2="500" y2="58" stroke="currentColor" stroke-width="1.5"/>
+          <polygon points="500,58 490,53 490,63" fill="currentColor"/>
+          <circle cx="150" cy="58" r="5" fill="var(--color-secondary)"/>
+          <circle cx="380" cy="58" r="5" fill="var(--color-primary)"/>
+          <text x="150" y="80" font-size="13" text-anchor="middle" fill="currentColor">x</text>
+          <text x="380" y="80" font-size="13" text-anchor="middle" fill="currentColor">y</text>
+          <line x1="150" y1="34" x2="380" y2="34" stroke="var(--color-accent)" stroke-width="2"/>
+          <line x1="150" y1="30" x2="150" y2="38" stroke="var(--color-accent)" stroke-width="2"/>
+          <line x1="380" y1="30" x2="380" y2="38" stroke="var(--color-accent)" stroke-width="2"/>
+          <text x="265" y="24" font-size="13" text-anchor="middle" fill="var(--color-accent)">|x − y|</text>
+        </svg>
+
+        <p>Un caso particolare utile: ponendo $y=0$ si ottiene $|x-0|=|x|$. Cioè il valore assoluto di $x$, da solo, è la distanza di $x$ dall'origine — proprio il contapassi dell'immagine iniziale.</p>
+
+        <p>Adesso le proprietà. Non impararle a memoria: ognuna dice una cosa sensata <em>sulle distanze</em>, ed è per questo che si ricordano. Nell'ultima colonna trovi un controllo fatto con numeri veri, così vedi la proprietà "funzionare" prima di fidarti.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Proprietà</th><th>Enunciato</th><th>Come si legge</th><th>Controllo numerico</th></tr></thead>
+          <tbody>
+            <tr><td>Non negatività</td><td>$|x| \geq 0$, e $|x| = 0 \iff x = 0$</td><td>una distanza non è mai negativa, ed è nulla solo se i due punti coincidono</td><td>$|-3| = 3 \geq 0$. E per azzerarla bisogna proprio essere in $0$: già $|0{,}001| = 0{,}001$, che non è zero</td></tr>
+            <tr><td>Simmetria</td><td>$|-x| = |x|$</td><td>la distanza da $0$ non dipende dal verso in cui cammini</td><td>$|-5| = 5$ e $|5| = 5$: uguali</td></tr>
+            <tr><td>Radice del quadrato</td><td>$|x| = \sqrt{x^2}$, quindi $|x|^2 = x^2$</td><td>elevare al quadrato distrugge il segno, la radice quadrata restituisce solo il valore positivo: messe in fila fanno lo stesso lavoro del modulo</td><td>$\sqrt{(-3)^2} = \sqrt{9} = 3 = |-3|$</td></tr>
+            <tr><td>Moltiplicatività</td><td>$|x\,y| = |x|\,|y|$ e $\left|\dfrac{x}{y}\right| = \dfrac{|x|}{|y|}$ (con $y \neq 0$)</td><td>il modulo entra dentro prodotti e quozienti senza fare danni</td><td>$|(-2)\cdot 3| = |-6| = 6$, e $|-2|\cdot|3| = 2\cdot 3 = 6$: uguali</td></tr>
+            <tr><td>Incorniciamento</td><td>$-|x| \leq x \leq |x|$</td><td>ogni numero sta fra l'opposto del suo modulo e il suo modulo</td><td>con $x=-4$: $-4 \leq -4 \leq 4$, vero. Con $x=4$: $-4 \leq 4 \leq 4$, vero</td></tr>
+            <tr><td>Disequazione "$\leq$"</td><td>per $a &gt; 0$: $\ |x| \leq a \iff -a \leq x \leq a$</td><td>"disto da $0$ al più $a$" = sto in un unico intervallo <em>attorno</em> a $0$</td><td>$|x| \leq 3$ significa $-3 \leq x \leq 3$: dentro ci sono $-3$, $0$, $2{,}5$; fuori $4$</td></tr>
+            <tr><td>Disequazione "$\geq$"</td><td>per $a &gt; 0$: $\ |x| \geq a \iff x \leq -a \ \text{oppure}\ x \geq a$</td><td>"disto da $0$ almeno $a$" = sto in una delle due semirette esterne</td><td>$|x| \geq 3$ significa $x \leq -3$ oppure $x \geq 3$: dentro ci sono $-10$ e $7$; fuori $0$</td></tr>
+          </tbody>
+        </table>
+
+        <p><strong>Le ultime due righe meritano una frase in più</strong>, perché sono quelle che userai per risolvere le disequazioni. Guardale come domande sulla distanza da zero.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Con il minore.</strong> "$|x| \leq 3$" chiede: <em>quali punti distano da $0$ al massimo $3$?</em> Quelli che stanno fra $-3$ e $3$. Un solo pezzo, tutto attaccato, centrato sullo zero: si scrive con una <strong>catena sola</strong>, $-3 \leq x \leq 3$.</span>
+          <span class="esempio__passo"><strong>Con il maggiore.</strong> "$|x| \geq 3$" chiede: <em>quali punti distano da $0$ almeno $3$?</em> Quelli molto a destra e quelli molto a sinistra, e in mezzo niente. Due pezzi staccati: si scrivono con un <strong>"oppure"</strong>, $x \leq -3$ oppure $x \geq 3$. Attenzione: qui è dove ci si confonde. Scrivere $3 \leq x \leq -3$ non ha senso, perché non esiste nessun numero maggiore di $3$ e contemporaneamente minore di $-3$.</span>
+        </p>
+        <p>Le stesse due regole valgono identiche con il minore e il maggiore stretti ($\lt$ e $\gt$ al posto di $\leq$ e $\geq$): cambia solo che gli estremi vengono esclusi.</p>
+
+        <p><strong>E adesso il non-esempio più importante del paragrafo.</strong> Nella tabella hai visto che il modulo "entra" nei prodotti. Verrebbe voglia di credere che entri anche nelle somme, cioè che sia sempre $|x+y| = |x| + |y|$. <strong>È falso.</strong> Proviamo con $x=1$ e $y=-1$, calcolando separatamente i due lati.</p>
+        <div class="calcolo">$$\begin{aligned}
+        |x+y| &amp;= |1+(-1)| = |0| = 0 &amp;&amp;\text{(membro di sinistra)}\\
+        |x|+|y| &amp;= |1| + |-1| = 1+1 = 2 &amp;&amp;\text{(membro di destra)}\\
+        0 &amp;\neq 2 &amp;&amp;\text{(i due lati non coincidono)}
+        \end{aligned}$$</div>
+        <p>Perché succede? Perché $1$ e $-1$ "tirano" in direzioni opposte e si cancellano a vicenda, mentre i loro moduli, che hanno perso il segno, non si cancellano più e si sommano. Il lato destro, quindi, è il più grande dei due. Questa osservazione, resa precisa, è la disuguaglianza più usata di tutta l'Analisi:</p>
+        <div class="formula-block">$$\boxed{\;|x+y| \leq |x| + |y|\;} \qquad \text{(disuguaglianza triangolare)}$$</div>
+        <p>A parole: <em>il modulo di una somma non supera mai la somma dei moduli</em>. Il nome viene dalla geometria (in un triangolo un lato non supera la somma degli altri due); sulla retta il triangolo è schiacciato, ma l'idea è la stessa. La dimostrazione completa, con tutti i passaggi, è nella sezione <a href="#dimostrazioni">Dimostrazioni</a>.</p>
+        <p>Da essa discende una seconda disuguaglianza, chiamata <strong>triangolare inversa</strong>, che useremo quando dovremo stimare la <em>differenza</em> fra due moduli:</p>
+        <div class="formula-block">$$\big|\,|x| - |y|\,\big| \leq |x - y|.$$</div>
+        <p>A parole: la distanza fra le due distanze-da-zero non supera la distanza fra i due punti. Controllo veloce con $x=-6$ e $y=4$: a sinistra $\big|\,6-4\,\big| = 2$, a destra $|-6-4| = |-10| = 10$, e infatti $2 \leq 10$. Anche questa è dimostrata nella sezione <a href="#dimostrazioni">Dimostrazioni</a>.</p>
+
+        <h3 id="teoria-intorni">4.2 Intorni e intorni bucati</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Un <em>intorno</em> è semplicemente "l'insieme dei punti vicini a un punto scelto". Ma "vicini" è una parola vaga, e in matematica le parole vaghe non si possono usare. Quindi facciamo una cosa sola: decidiamo noi <strong>quanto vicini</strong>, cioè fissiamo una distanza massima, e chiamiamo intorno tutti i punti che stanno entro quella distanza.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">📍</span> L'immagine da tenere in mente</div>
+          <p>Sul telefono cerchi "farmacie entro 300 metri da casa mia". Hai dato due informazioni: un <strong>punto di partenza</strong> (casa tua) e una <strong>soglia di distanza</strong> ($300$ metri). Il risultato è una zona attorno a casa tua. Se cambi la soglia a $50$ metri la zona si stringe, se la porti a un chilometro si allarga, ma resta sempre una zona centrata su casa tua. In matematica il punto di partenza si chiama <strong>centro</strong> e si indica con $x_0$, la soglia si chiama <strong>raggio</strong> e si indica con $\delta$ (la lettera greca "delta", che si legge <em>delta</em>).</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo come centro $x_0=3$ e come raggio $\delta=0{,}5$. Quali sono i punti che distano da $3$ meno di $0{,}5$? Traduciamo la frase in una disuguaglianza e risolviamola.</p>
+        <div class="calcolo">$$\begin{aligned}
+        |x-3| &amp;\lt 0{,}5 &amp;&amp;\text{(la distanza fra } x \text{ e } 3 \text{ è minore di } 0{,}5\text{, §4.1)}\\
+        -0{,}5 \lt x-3 &amp;\lt 0{,}5 &amp;&amp;\text{(regola del minore: } |t|\lt a \text{ diventa } -a \lt t \lt a\text{, con } t=x-3 \text{ e } a=0{,}5)\\
+        -0{,}5+3 \lt x &amp;\lt 0{,}5+3 &amp;&amp;\text{(sommo } 3 \text{ a tutti e tre i membri, per lasciare la } x \text{ sola)}\\
+        2{,}5 \lt x &amp;\lt 3{,}5 &amp;&amp;\text{(eseguo le due somme)}
+        \end{aligned}$$</div>
+        <p>Abbiamo ottenuto l'intervallo $(2{,}5;\ 3{,}5)$. Nota come sono venuti fuori i due estremi: <strong>$2{,}5$ è $3-0{,}5$</strong>, cioè centro meno raggio, e <strong>$3{,}5$ è $3+0{,}5$</strong>, cioè centro più raggio. Vale sempre così, e ti risparmia di rifare il conto ogni volta.</p>
+        <p>Controlliamo due numeri, per essere sicuri di aver capito chi sta dentro e chi no.</p>
+        <div class="calcolo">$$\begin{aligned}
+        |3{,}2-3| &amp;= |0{,}2| = 0{,}2 \lt 0{,}5 &amp;&amp;\text{(} 3{,}2 \text{ dista } 0{,}2\text{: sta DENTRO)}\\
+        |3{,}7-3| &amp;= |0{,}7| = 0{,}7 \gt 0{,}5 &amp;&amp;\text{(} 3{,}7 \text{ dista } 0{,}7\text{: sta FUORI)}
+        \end{aligned}$$</div>
+
+        <p><strong>Ora la definizione, con la traduzione sotto ogni pezzo.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Intorno circolare.</em> Fissati un punto $x_0 \in \mathbb{R}$ (il centro) e un numero $\delta \gt 0$ (il raggio), l'<span class="glossario-term" data-term="intorno">intorno di centro $x_0$ e raggio $\delta$</span> è l'insieme dei punti che distano da $x_0$ meno di $\delta$:</p>
+          <div class="formula-block">$$I_\delta(x_0) = \underbrace{\{\, x \in \mathbb{R}}_{\text{i numeri reali } x}\ \underbrace{:}_{\text{tali che}}\ \underbrace{|x - x_0| \lt \delta \,\}}_{\text{distano da } x_0 \text{ meno di } \delta} = \underbrace{(x_0 - \delta,\ x_0 + \delta)}_{\text{da centro}-\text{raggio a centro}+\text{raggio, estremi esclusi}}$$</div>
+          <p>È dunque un <span class="glossario-term" data-term="intervallo">intervallo</span> aperto, simmetrico rispetto a $x_0$: da una parte e dall'altra del centro c'è esattamente la stessa quantità di spazio, cioè $\delta$.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Due non-esempi: cosa NON è un intorno di $3$</div>
+          <p><strong>L'intervallo $[2{,}5;\ 3{,}5]$ con le parentesi quadre non è l'intorno $I_{0{,}5}(3)$</strong>: la definizione usa il minore <em>stretto</em>, quindi gli estremi $2{,}5$ e $3{,}5$ sono esclusi (distano da $3$ esattamente $0{,}5$, non meno di $0{,}5$).</p>
+          <p><strong>L'intervallo $(2;\ 3{,}5)$ non è un intorno circolare di $3$</strong>: a sinistra del centro c'è uno spazio di $1$, a destra di $0{,}5$. Non è simmetrico, quindi non esiste nessun singolo raggio $\delta$ che lo produca. (Contiene però l'intorno $I_{0{,}5}(3)$, e questo ci basterà spesso: quando diremo "in un intorno di $3$ succede…", intenderemo "purché il raggio sia abbastanza piccolo".)</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si lavora con gli intorni in pratica</div>
+          <p><strong>Da centro e raggio all'intervallo:</strong> calcoli $x_0-\delta$ e $x_0+\delta$ e li scrivi fra parentesi tonde. Con $x_0=-1$ e $\delta=2$: $-1-2=-3$ e $-1+2=1$, quindi $I_2(-1)=(-3;\ 1)$.</p>
+          <p><strong>Dall'intervallo a centro e raggio:</strong> il centro è il punto di mezzo (somma gli estremi e dividi per $2$), il raggio è metà della lunghezza (sottrai gli estremi e dividi per $2$). Con l'intervallo $(1;\ 7)$: centro $\frac{1+7}{2}=4$, raggio $\frac{7-1}{2}=3$, quindi $(1;\ 7)=I_3(4)$.</p>
+        </div>
+
+        <p><strong>Adesso la variante che ci servirà davvero: l'intorno bucato.</strong> L'idea è togliere il centro e tenere solo i vicini. Perché mai? Perché nei limiti vorremo studiare come si comporta una funzione <em>avvicinandosi</em> a $x_0$, senza guardare cosa succede esattamente in $x_0$ — dove la funzione potrebbe fare qualcosa di strano, o non essere nemmeno definita.</p>
+        <p><strong>Esempio numerico.</strong> Riprendiamo $x_0=3$ e $\delta=0{,}5$. L'intorno pieno era $(2{,}5;\ 3{,}5)$. Se da questo intervallo tolgo il solo punto $3$, resta l'intervallo spezzato in due tronconi: quello a sinistra del buco, $(2{,}5;\ 3)$, e quello a destra, $(3;\ 3{,}5)$. Scritto tutto insieme: $(2{,}5;\ 3)\cup(3;\ 3{,}5)$, dove il simbolo $\cup$ si legge "unione" e vuol dire "prendi i punti dell'uno e anche quelli dell'altro".</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Intorno bucato.</em> L'intorno bucato (o "privato del centro") di centro $x_0$ e raggio $\delta$ è l'intorno $I_\delta(x_0)$ da cui si è tolto il punto $x_0$:</p>
+          <div class="formula-block">$$\dot{I}_\delta(x_0) = \underbrace{I_\delta(x_0) \setminus \{x_0\}}_{\text{l'intorno, meno il suo centro}} = \{\, x \in \mathbb{R} \;:\; \underbrace{0 \lt |x - x_0|}_{x \neq x_0} \ \text{e}\ \underbrace{|x - x_0| \lt \delta}_{x \text{ è vicino a } x_0} \,\}$$</div>
+          <p>Le due condizioni si scrivono di solito appiccicate, in una doppia disuguaglianza: $0 \lt |x-x_0| \lt \delta$. Il puntino sopra la lettera ($\dot{I}$) è il segno convenzionale del "buco".</p>
+        </div>
+        <p><strong>Perché "$0 \lt |x-x_0|$" significa proprio "$x \neq x_0$"?</strong> Perché una distanza è sempre maggiore o uguale a zero (<span class="richiamo" data-sec="4.1">§4.1</span>), e vale esattamente zero soltanto quando i due punti coincidono. Chiedere che sia <em>strettamente</em> maggiore di zero è quindi lo stesso che vietare a $x$ di coincidere con $x_0$. In italiano: "escludi la casa". La seconda parte, $|x-x_0| \lt \delta$, dice invece "resta nel vicinato". Come intervalli:</p>
+        <div class="formula-block">$$\dot{I}_\delta(x_0) = (x_0 - \delta,\ x_0) \cup (x_0,\ x_0 + \delta).$$</div>
+
+        <svg viewBox="0 0 520 90" style="max-width:560px;margin:1.3em auto;display:block;" role="img" aria-label="Retta reale con intorno bucato di x0: intervallo aperto attorno a x0 con il centro escluso">
+          <line x1="20" y1="55" x2="500" y2="55" stroke="currentColor" stroke-width="1.5"/>
+          <polygon points="500,55 490,50 490,60" fill="currentColor"/>
+          <line x1="150" y1="55" x2="370" y2="55" stroke="var(--color-primary)" stroke-width="6" opacity="0.35"/>
+          <circle cx="150" cy="55" r="6" fill="var(--color-bg-elevated)" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <circle cx="370" cy="55" r="6" fill="var(--color-bg-elevated)" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <circle cx="260" cy="55" r="6" fill="var(--color-bg-elevated)" stroke="var(--color-danger)" stroke-width="2.5"/>
+          <text x="150" y="80" font-size="13" text-anchor="middle" fill="currentColor">x₀−δ</text>
+          <text x="260" y="38" font-size="13" text-anchor="middle" fill="var(--color-danger)">x₀ (escluso)</text>
+          <text x="370" y="80" font-size="13" text-anchor="middle" fill="currentColor">x₀+δ</text>
+        </svg>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔭</span> Perché "bucato"? Anticipazione sui limiti</div>
+          <p>Quando scriveremo $\displaystyle\lim_{x \to x_0} f(x) = \ell$, chiederemo che $f(x)$ sia vicino a $\ell$ per ogni $x$ preso in un <em>intorno bucato</em> di $x_0$. Il "buco" è essenziale: il limite descrive la <strong>tendenza</strong> della funzione avvicinandosi a $x_0$, e non deve dipendere dal valore $f(x_0)$ (che potrebbe non esistere, o essere "sbagliato"). Ne riparliamo per esteso nel <a href="04-limiti.html">capitolo 4</a>.</p>
+        </div>
+        <p><strong>Un'ultima variante, da tenere sullo sfondo: gli intorni di $+\infty$ e di $-\infty$.</strong> L'infinito non è un numero, quindi non possiamo dire "i punti che distano da $+\infty$ meno di $\delta$". Cambiamo allora il criterio di vicinanza: essere "vicini a $+\infty$" significa <em>essere molto grandi</em>. Perciò un intorno di $+\infty$ è una semiretta $(M,\ +\infty)$, dove $M$ è una soglia che scegliamo noi; per esempio, con $M=1000$ l'intorno è l'insieme dei numeri maggiori di $1000$. Allo stesso modo, un intorno di $-\infty$ è $(-\infty,\ -M)$: con $M=1000$, i numeri minori di $-1000$. Il ruolo che prima aveva il raggio piccolo qui ce l'ha la soglia grande: più alzi $M$, più l'intorno si "stringe" verso l'infinito. Serviranno nel <a href="04-limiti.html">capitolo 4</a> per i limiti all'infinito.</p>
+
+        <h3 id="teoria-accumulazione">4.3 Punti di accumulazione</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Prendi un insieme di numeri $E$ e un punto $x_0$ sulla retta. La domanda è questa: <em>se mi avvicino a $x_0$ quanto voglio, trovo sempre numeri di $E$ lì vicino?</em> Se la risposta è sì, $x_0$ si chiama <strong>punto di accumulazione</strong> di $E$: i punti di $E$ "si accumulano", cioè si ammucchiano, attorno a $x_0$.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎤</span> L'immagine da tenere in mente</div>
+          <p>Immagina un palco in mezzo a una piazza e una folla che si accalca tutto intorno. Il palco è vuoto (nessuno ci sta sopra), eppure a qualunque distanza dal palco, anche un centimetro, trovi qualcuno. Il palco è un "punto di accumulazione" della folla: non fa parte della folla, ma la folla gli sta addosso da ogni lato. Invece una persona seduta da sola su una panchina a cento metri dagli altri non è un punto di accumulazione: intorno a lei, per un bel pezzo, non c'è nessuno.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo l'insieme</p>
+        <div class="formula-block">$$E=\left\{1,\ \tfrac12,\ \tfrac13,\ \tfrac14,\ \tfrac15,\ \dots\right\}=\left\{\tfrac1n : n=1,2,3,\dots\right\}$$</div>
+        <p>e chiediamoci se $0$ è un punto di accumulazione di $E$. Nota subito una cosa: $0$ <em>non</em> appartiene a $E$ (nessuna frazione $\frac1n$ vale zero). Però gli elementi di $E$ si avvicinano a $0$ sempre di più: $1$, poi $0{,}5$, poi $0{,}333\ldots$, poi $0{,}25$… Facciamo la verifica prima con un intorno concreto, poi con uno qualsiasi.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Scelgo un intorno di $0$</strong>, per esempio quello di raggio $\delta=0{,}1$. È l'intervallo $(-0{,}1;\ 0{,}1)$: tutti i numeri che distano da $0$ meno di $0{,}1$ (definizione di intorno, <span class="richiamo" data-sec="4.2">§4.2</span>).</span>
+          <span class="esempio__passo"><strong>Cerco un elemento di $E$ dentro questo intorno, diverso da $0$.</strong> Provo con $n=11$:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned} \tfrac{1}{11} &amp;\approx 0{,}0909 &amp;&amp;\text{(faccio la divisione)}\\ 0 \lt 0{,}0909 &amp;\lt 0{,}1 &amp;&amp;\text{(quindi sta dentro l'intorno)} \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Trovato: $\frac1{11}$ è un punto di $E$, è diverso da $0$ e sta nell'intorno.</span>
+          <span class="esempio__passo"><strong>Provo con un intorno molto più piccolo</strong>, $\delta=0{,}001$. Mi serve una frazione $\frac1n$ più piccola di $0{,}001$: basta $n=1001$, perché $\frac1{1001}\approx0{,}000999$. Trovato anche qui.</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Qualunque sia il raggio $\delta\gt0$, devo trovare un $n$ tale che $\frac1n\lt\delta$. Risolvo questa disuguaglianza rispetto a $n$:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned} \frac1n &amp;\lt \delta &amp;&amp;\text{(cosa voglio)}\\ n &amp;\gt \frac1\delta &amp;&amp;\text{(passo ai reciproci: sono entrambi positivi, quindi il verso si inverte — Parte 0, cap. 6)} \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Un numero naturale più grande di $\frac1\delta$ esiste sempre (è la proprietà di Archimede, cap. 1). Per esempio, se $\delta=0{,}001$ allora $\frac1\delta=1000$ e va bene $n=1001$, come avevamo trovato a mano.</span>
+        </p>
+        <p><strong>Conclusione:</strong> in <em>ogni</em> intorno di $0$, per quanto piccolo, c'è almeno un elemento $\frac1n$ di $E$. Quindi $0$ è un punto di accumulazione di $E$, anche se non appartiene a $E$. È esattamente il palco vuoto con la folla intorno.</p>
+
+        <p><strong>Ora la definizione, parola per parola.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Punto di accumulazione.</em> Sia $E\subseteq\mathbb{R}$ un insieme di numeri e $x_0$ un numero reale (può stare dentro o fuori $E$, non importa). Diciamo che $x_0$ è un <strong><span class="glossario-term" data-term="punto-di-accumulazione">punto di accumulazione</span></strong> di $E$ se, per quanto piccolo scelga il raggio dell'intorno, dentro l'intorno di $x_0$ c'è sempre almeno un elemento di $E$ diverso da $x_0$ stesso.</p>
+          <p>In simboli, con la traduzione sotto ogni pezzo:</p>
+          <div class="formula-block">$$\underbrace{\forall\,\delta\gt0}_{\text{per ogni raggio, anche piccolissimo}}\qquad \underbrace{\dot I_\delta(x_0)\cap E\neq\varnothing}_{\text{l'intorno bucato di } x_0 \text{ contiene almeno un punto di } E}$$</div>
+          <p>L'intorno è "bucato" ($\dot I$, vedi <span class="richiamo" data-sec="4.2">§4.2</span>) proprio per escludere $x_0$: non vale barare contando $x_0$ stesso come "punto vicino". L'insieme di tutti i punti di accumulazione di $E$ si indica con $E'$ e si chiama <em>derivato</em> di $E$.</p>
+        </div>
+
+        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Prendiamo $E=\mathbb{Z}$ (i numeri interi) e $x_0=3$. Scelgo l'intorno di raggio $\delta=\frac12$, cioè $(2{,}5;\ 3{,}5)$. Dentro c'è un solo intero, il $3$, che però è proprio $x_0$ e quindi non conta. In questo intorno bucato non c'è <em>nessun</em> punto di $E$. Basta un solo intorno "vuoto" per concludere: $3$ <strong>non</strong> è un punto di accumulazione di $\mathbb{Z}$. (È la persona sola sulla panchina: gli altri interi stanno tutti a distanza almeno $1$.)</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p><strong>Per dire SÌ</strong> (è di accumulazione) devi far vedere che, qualunque sia $\delta$, riesci a trovare un elemento $x$ di $E$ con $x\neq x_0$ e $|x-x_0|\lt\delta$: di solito si scrive questa disuguaglianza e si trova un $x$ che la soddisfa, come abbiamo fatto con $\frac1n\lt\delta$. <strong>Per dire NO</strong> basta invece trovare <em>un solo</em> intorno bucato di $x_0$ senza punti di $E$.</p>
+        </div>
+
+        <p><strong>Due fatti che chiariscono metà dei dubbi.</strong></p>
+        <p>1) <strong>$x_0$ può non stare in $E$.</strong> Lo abbiamo visto: $0\notin\{1/n\}$ ma è di accumulazione. Può anche starci: per $E=[0,1]$ il punto $\frac12\in E$ è di accumulazione, perché a qualunque distanza da $\frac12$ ci sono altri punti dell'intervallo.</p>
+        <p>2) <strong>Se $x_0$ è di accumulazione, ogni suo intorno contiene infiniti punti di $E$</strong>, non solo uno. Perché? Ragioniamo al contrario. Supponiamo che un intorno $I_\delta(x_0)$ contenga solo un numero finito di punti di $E$ diversi da $x_0$: chiamiamoli $e_1, e_2, \dots, e_k$. Misuro le loro distanze da $x_0$, cioè $|e_1-x_0|, \dots, |e_k-x_0|$, e chiamo $d$ la più piccola (è un numero positivo, perché nessuno degli $e_i$ coincide con $x_0$). Ora scelgo un raggio più piccolo di $d$: l'intorno $I_{d/2}(x_0)$ non contiene più nessuno degli $e_i$, e non contiene altri punti di $E$ (erano solo quei $k$). È un intorno bucato <em>vuoto</em> di punti di $E$: ma la definizione lo proibisce. Quindi l'ipotesi "finiti" era sbagliata: i punti devono essere infiniti.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🔮</span> Uno sguardo avanti: il teorema di Bolzano–Weierstrass</div>
+          <p>Uno dei risultati-cardine dell'Analisi 1 lega proprio i punti di accumulazione all'idea di insieme limitato: <em>ogni sottoinsieme di $\mathbb{R}$ che sia infinito e limitato possiede almeno un punto di accumulazione</em> (teorema di Bolzano–Weierstrass). L'insieme $\{1/n\}$ ne è l'esempio più pulito: è infinito, è contenuto in $(0,1]$ (quindi limitato) e infatti ha il punto di accumulazione $0$. Lo ritroverai, in versione "per successioni", nel <a href="04-limiti.html">capitolo sui limiti</a> e in quello sulle successioni.</p>
+        </div>
+
+        <h3 id="teoria-isolati">4.4 Punti isolati</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Un punto isolato è l'esatto contrario di un punto di accumulazione, con una differenza importante: <em>deve appartenere all'insieme</em>. Un punto $x_0$ di $E$ è isolato se, guardandosi attorno abbastanza da vicino, non vede nessun altro membro di $E$: è dentro l'insieme, ma ci sta da solo.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏝️</span> L'immagine da tenere in mente</div>
+          <p>Torniamo alla piazza del <span class="richiamo" data-sec="4.3">§4.3</span>. La folla si accalca attorno al palco, ma in fondo alla piazza c'è una persona seduta da sola su una panchina, a cento metri da tutti gli altri. Lei <em>fa parte</em> della gente in piazza — a differenza del palco, che è vuoto — però attorno a sé, per un raggio di cento metri, non ha nessuno. Quella persona è un <strong>punto isolato</strong>. Riassunto della differenza: il punto di accumulazione può essere vuoto ma ha tutti addosso; il punto isolato è pieno ma non ha nessuno vicino.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo $E=\mathbb{Z}$, l'insieme dei numeri interi $\dots,-2,-1,0,1,2,3,\dots$, e il punto $x_0=3$, che sta in $E$. Vogliamo far vedere che $3$ è isolato. Per riuscirci mi basta trovare <em>un solo</em> raggio che funzioni: cioè un $\delta$ tale che nell'intorno $I_\delta(3)$ non ci finisca nessun altro intero.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Guardo chi sono i vicini di $3$ dentro $E$.</strong> Gli interi più vicini a $3$ sono $2$ (a sinistra) e $4$ (a destra). Calcolo le loro distanze da $3$: $|2-3|=|-1|=1$ e $|4-3|=|1|=1$. Il vicino più prossimo dista quindi $1$.</span>
+          <span class="esempio__passo"><strong>Scelgo un raggio più piccolo di quella distanza</strong>, così i vicini restano fuori. Prendo $\delta=\frac12$, che è minore di $1$.</span>
+          <span class="esempio__passo"><strong>Scrivo l'intorno</strong> con la ricetta del <span class="richiamo" data-sec="4.2">§4.2</span> (centro meno raggio, centro più raggio):</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        I_{1/2}(3) &amp;= \left(3-\tfrac12,\ 3+\tfrac12\right) &amp;&amp;\text{(definizione di intorno, §4.2)}\\
+        &amp;= (2{,}5;\ 3{,}5) &amp;&amp;\text{(eseguo le due operazioni)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Conto quali interi stanno in $(2{,}5;\ 3{,}5)$.</strong> Fra $2{,}5$ e $3{,}5$ l'unico numero intero è $3$: il $2$ è troppo a sinistra ($2 \lt 2{,}5$) e il $4$ è troppo a destra ($4 \gt 3{,}5$). Quindi $I_{1/2}(3)\cap\mathbb{Z}=\{3\}$: dentro l'intorno c'è solo il centro stesso.</span>
+        </p>
+        <p><strong>Conclusione:</strong> $3$ è un punto isolato di $\mathbb{Z}$. E siccome lo stesso conto si rifà identico attorno a qualunque intero $k$ (i suoi vicini $k-1$ e $k+1$ distano sempre $1$), <strong>ogni intero è isolato</strong>: $\mathbb{Z}$ è fatto tutto di punti isolati.</p>
+
+        <p><strong>Ora la definizione, con la traduzione sotto ogni pezzo.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Punto isolato.</em> Sia $E\subseteq\mathbb{R}$ e sia $x_0$ un punto <strong>che appartiene a $E$</strong>. Diciamo che $x_0$ è un <strong><span class="glossario-term" data-term="punto-isolato">punto isolato</span></strong> di $E$ se si riesce a scegliere un raggio abbastanza piccolo da lasciare fuori tutti gli altri punti di $E$.</p>
+          <div class="formula-block">$$\underbrace{\exists\, \delta \gt 0}_{\text{esiste almeno un raggio}} \;:\; \underbrace{I_\delta(x_0) \cap E}_{\text{i punti di } E \text{ che stanno nell'intorno}} = \underbrace{\{x_0\}}_{\text{sono soltanto } x_0 \text{ stesso}}$$</div>
+          <p>Osserva la differenza con il <span class="richiamo" data-sec="4.3">§4.3</span>: là c'era $\forall\,\delta$ ("per <em>ogni</em> raggio"), qui c'è $\exists\,\delta$ ("<em>esiste</em> un raggio"). Là dovevi far funzionare la cosa sempre, qui ti basta trovare un caso che funzioni.</p>
+        </div>
+
+        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Prendiamo $E=[0,1]$ e il punto $x_0=\frac12$, che appartiene a $E$. È isolato? No, e non c'è verso di renderlo tale. Qualunque raggio io scelga, anche $\delta=0{,}000001$, l'intorno $\left(\frac12-\delta,\ \frac12+\delta\right)$ è un intervallino che sta tutto dentro $[0,1]$, e un intervallo — per quanto corto — contiene sempre infiniti numeri reali. Quindi $I_\delta\!\left(\frac12\right)\cap E$ non è mai il solo $\left\{\frac12\right\}$: contiene, per esempio, anche $\frac12+\frac{\delta}{2}$. Il punto $\frac12$ non è isolato; è invece di accumulazione.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p><strong>Per dire SÌ</strong> (è isolato): controlla prima che $x_0$ appartenga a $E$, poi cerca il punto di $E$ più vicino a $x_0$, misura quella distanza $d$ e scegli un raggio più piccolo, per esempio $\delta=\frac{d}{2}$. Se l'intorno con quel raggio contiene solo $x_0$, hai finito.</p>
+          <p><strong>Per dire NO</strong>: fa' vedere che, qualunque raggio si scelga, dentro l'intorno finisce sempre almeno un altro punto di $E$ — cioè fa' vedere che $x_0$ è di accumulazione.</p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Fin qui: la regola dei tre casi</div>
+          <p>Preso un punto $x_0$ e un insieme $E$, ci sono solo tre possibilità, e si escludono a vicenda:</p>
+          <p><strong>1)</strong> $x_0$ sta in $E$ ed è circondato da altri punti di $E$ → è di accumulazione <em>e</em> appartiene a $E$ (esempio: $\frac12$ in $[0,1]$).<br>
+          <strong>2)</strong> $x_0$ sta in $E$ ma è solo → è <strong>isolato</strong> (esempio: $3$ in $\mathbb{Z}$).<br>
+          <strong>3)</strong> $x_0$ non sta in $E$ ma i punti di $E$ gli si stringono attorno → è di accumulazione <em>senza</em> appartenere a $E$ (esempio: $0$ per $\{1/n\}$).</p>
+          <p>Detto in una riga: <em>ogni punto di $E$ è o di accumulazione o isolato</em>, mai tutti e due, mai nessuno dei due.</p>
+        </div>
+
+        <h3 id="teoria-aperti-chiusi">4.5 Insiemi aperti e insiemi chiusi</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Adesso non guardiamo più i singoli punti, ma l'insieme nel suo complesso, e ci chiediamo una cosa sola: <em>come si comporta sui suoi bordi?</em> Ci sono due modi di comportarsi, e danno le due parole più importanti del capitolo.</p>
+        <p>Un insieme è <strong>aperto</strong> se nessuno dei suoi punti sta proprio sul bordo: ognuno ha un po' di spazio libero tutto intorno, ancora dentro l'insieme. Un insieme è <strong>chiuso</strong> se invece si tiene i suoi bordi, cioè non lascia fuori nessun punto attorno al quale si accalca.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏡</span> L'immagine da tenere in mente</div>
+          <p>Un terreno è <strong>aperto</strong> se ogni casa costruita su di esso ha un giardinetto tutto suo, per quanto piccolo, ancora dentro il terreno: nessuno abita esattamente sulla linea di confine. Se una casa sta proprio sul confine, basta uscire di un centimetro per finire fuori, e il terreno non è aperto.</p>
+          <p>Un terreno è <strong>chiuso</strong> se la recinzione fa parte della proprietà: tutti i punti a cui il terreno "arriva addosso" sono compresi nell'atto di acquisto. Se il terreno arriva fino al fiume ma il fiume non è incluso, allora non è chiuso.</p>
+        </div>
+
+        <h4>4.5.1 Insiemi aperti</h4>
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo $A=(2,\ 7)$, cioè i numeri strettamente compresi fra $2$ e $7$ (estremi esclusi). Vogliamo capire se è aperto. La domanda da farsi, punto per punto, è: <em>riesco a costruire attorno a questo punto un intorno che resti tutto dentro $A$?</em></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Provo con un punto comodo, $x_0=4$.</strong> Quanto spazio ho? A sinistra, fino a $2$, ce n'è $4-2=2$; a destra, fino a $7$, ce n'è $7-4=3$. Posso quindi allargarmi tranquillamente di $1$ per parte. Con $\delta=1$ l'intorno è $(4-1,\ 4+1)=(3,\ 5)$, che sta tutto dentro $(2,7)$. Punto sistemato.</span>
+          <span class="esempio__passo"><strong>Provo con un punto scomodo, $x_0=6{,}9$</strong>, quasi appiccicato al bordo destro. Lo spazio a destra è pochissimo: $7-6{,}9=0{,}1$. Ma "pochissimo" non vuol dire "niente": basta scegliere un raggio più piccolo di $0{,}1$, per esempio $\delta=0{,}05$. Calcolo gli estremi:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        x_0-\delta &amp;= 6{,}9-0{,}05 = 6{,}85 &amp;&amp;\text{(estremo sinistro dell'intorno)}\\
+        x_0+\delta &amp;= 6{,}9+0{,}05 = 6{,}95 &amp;&amp;\text{(estremo destro dell'intorno)}\\
+        2 \lt 6{,}85 \ \text{e}\ 6{,}95 &amp;\lt 7 &amp;&amp;\text{(entrambi gli estremi sono dentro } (2,7))
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Quindi $I_{0{,}05}(6{,}9)=(6{,}85;\ 6{,}95)\subseteq(2,7)$: anche questo punto ha il suo giardinetto. Nota il meccanismo: <strong>più il punto è vicino al bordo, più devo scegliere il raggio piccolo</strong> — ma un raggio piccolo va benissimo, la definizione non chiede che sia grande, chiede solo che esista.</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Preso un $x_0$ qualunque con $2 \lt x_0 \lt 7$, misuro le due distanze dai bordi, $x_0-2$ e $7-x_0$, entrambe positive, e scelgo come raggio la più piccola delle due: $\delta=\min\{x_0-2,\ 7-x_0\}$. Così l'intorno non sborda né a sinistra né a destra. (I conti per esteso sono nell'Esercizio 2.9, fatto sull'intervallo generico $(a,b)$.)</span>
+        </p>
+        <p>Poiché la costruzione riesce per <em>ogni</em> punto di $A$, l'insieme $(2,7)$ è aperto.</p>
+
+        <p><strong>Ora la definizione, con la traduzione sotto ogni pezzo.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Insieme aperto.</em> Un insieme $A \subseteq \mathbb{R}$ è <strong><span class="glossario-term" data-term="insieme-aperto">aperto</span></strong> se ogni suo punto è "interno", cioè se attorno a ogni suo punto si può costruire un intorno che resta tutto dentro $A$:</p>
+          <div class="formula-block">$$\underbrace{\forall\, x \in A}_{\text{comunque scelga un punto di } A} \quad \underbrace{\exists\, \delta \gt 0}_{\text{esiste un raggio}} \;:\; \underbrace{I_\delta(x) \subseteq A}_{\text{con l'intorno tutto dentro } A}$$</div>
+          <p>Attenzione all'ordine dei due quantificatori: prima ti viene dato il punto, <em>poi</em> tu scegli il raggio. Il raggio può quindi essere diverso da punto a punto — e infatti, come hai visto, vicino al bordo va scelto più piccolo.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Il non-esempio: $[2,7]$ NON è aperto</div>
+          <p>Cambiamo una sola parentesi e prendiamo $B=[2,\ 7]$, che rispetto a prima contiene anche i due estremi. Adesso il punto $x_0=2$ appartiene a $B$, e per lui la costruzione fallisce. Proviamo con un raggio piccolissimo, $\delta=0{,}01$: l'intorno è $(2-0{,}01;\ 2+0{,}01)=(1{,}99;\ 2{,}01)$. Dentro c'è il numero $1{,}995$, che <strong>non appartiene a $B$</strong>, perché è minore di $2$.</p>
+          <p>E non è questione di aver scelto male il raggio: comunque io prenda $\delta \gt 0$, il numero $2-\frac{\delta}{2}$ sta nell'intorno (dista da $2$ meno di $\delta$) ed è minore di $2$, quindi sta fuori da $B$. <strong>Basta un solo punto che fallisce</strong> per far cadere tutta la definizione: $[2,7]$ non è aperto.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica se un insieme è aperto</div>
+          <p><strong>Per dire SÌ</strong> devi dare una ricetta che, preso un punto qualunque dell'insieme, produca il raggio giusto. Quasi sempre la ricetta è: "misuro la distanza dal bordo più vicino e prendo un raggio più piccolo di quella".</p>
+          <p><strong>Per dire NO</strong> ti basta esibire <em>un solo</em> punto dell'insieme per cui nessun raggio funziona: di solito è un estremo incluso, come il $2$ di $[2,7]$.</p>
+        </div>
+
+        <h4>4.5.2 Insiemi chiusi</h4>
+        <p><strong>L'idea.</strong> "Chiuso" non significa "non aperto" (lo vedremo fra poco, ed è la trappola numero uno). Significa un'altra cosa: <em>l'insieme non lascia fuori nessun punto a cui si accalca addosso</em>. Cioè: tutti i suoi punti di accumulazione (<span class="richiamo" data-sec="4.3">§4.3</span>) gli appartengono.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Insieme chiuso.</em> Un insieme $C \subseteq \mathbb{R}$ è <strong><span class="glossario-term" data-term="insieme-chiuso">chiuso</span></strong> se contiene <strong>tutti</strong> i suoi punti di accumulazione:</p>
+          <div class="formula-block">$$\underbrace{C'}_{\text{l'insieme dei punti di accumulazione di } C} \subseteq \underbrace{C}_{\text{è contenuto in } C \text{ stesso}}$$</div>
+          <p>Ricorda che $C'$ è il "derivato" introdotto nel <span class="richiamo" data-sec="4.3">§4.3</span>. La condizione $C'\subseteq C$ si legge: "nessun punto di accumulazione è rimasto fuori".</p>
+        </div>
+        <p><strong>Verifica su un esempio concreto.</strong> Riprendiamo $B=[2,7]$ e chiediamoci se è chiuso.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Trovo i punti di accumulazione di $B$.</strong> Ogni punto $x_0$ con $2\leq x_0\leq 7$ è di accumulazione: qualunque raggio $\delta$ io prenda, l'intorno di $x_0$ taglia $[2,7]$ in un intervallino, e un intervallino contiene infiniti reali, quindi ne contiene certamente almeno uno diverso da $x_0$ (<span class="richiamo" data-sec="4.3">§4.3</span>).</span>
+          <span class="esempio__passo"><strong>Controllo che non ce ne siano fuori.</strong> Prendo un punto esterno, per esempio $x_0=9$. La sua distanza da $B$ è almeno $9-7=2$, quindi scegliendo $\delta=1$ l'intorno $(8,10)$ non tocca $[2,7]$: un solo intorno vuoto basta per dire che $9$ non è di accumulazione (<span class="richiamo" data-sec="4.3">§4.3</span>). Lo stesso ragionamento vale per ogni punto fuori da $[2,7]$.</span>
+          <span class="esempio__passo"><strong>Confronto.</strong> Ho ottenuto $B'=[2,7]$, che è esattamente $B$. Dunque $B'\subseteq B$: la condizione della definizione è soddisfatta.</span>
+        </p>
+        <p><strong>Conclusione:</strong> $[2,7]$ è chiuso. E nota il contrasto con l'intervallo aperto: $(2,7)$ ha gli stessi punti di accumulazione, cioè tutto $[2,7]$, ma i due estremi $2$ e $7$ restano fuori dall'insieme. Quindi $(2,7)$ <strong>non</strong> è chiuso.</p>
+
+        <p>Il legame che in pratica userai più spesso è questo:</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Ponte aperto ↔ chiuso</div>
+          <p>Un insieme è <strong>chiuso se e solo se il suo complementare è aperto</strong> (e viceversa). Il complementare di $C$, che si scrive $C^{c}$, è ciò che resta della retta togliendo $C$: per esempio il complementare di $[2,7]$ è $(-\infty,2)\cup(7,+\infty)$.</p>
+          <p>Perché conviene? Perché dimostrare "è chiuso" con la definizione richiede di conoscere <em>tutti</em> i punti di accumulazione, mentre dimostrare "il complementare è aperto" richiede solo di costruire un raggio, cosa che sai già fare. L'Esempio 6 e l'Esercizio 2.11 usano proprio questa strada.</p>
+        </div>
+
+        <h4>4.5.3 Il caso che smonta tutto: $[0,1)$</h4>
+        <p>Questo è il controesempio da ricordare a memoria, perché dimostra che "aperto" e "chiuso" non sono uno il contrario dell'altro. Prendiamo $D=[0,\ 1)$: contiene lo $0$, non contiene l'$1$, e contiene tutto quello che sta in mezzo. Verifichiamo <strong>separatamente</strong> le due proprietà, senza dedurne una dall'altra.</p>
+
+        <p><strong>Primo fronte: $D$ è aperto?</strong> Devo controllare se ogni punto di $D$ ha un intorno tutto dentro $D$. Vado a cercare il punto sospetto, cioè l'estremo <em>incluso</em>: lo $0$.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Lo $0$ appartiene a $D$?</strong> Sì: la parentesi quadra a sinistra vuol dire "estremo compreso". Quindi la definizione di aperto va verificata anche su di lui.</span>
+          <span class="esempio__passo"><strong>Provo un raggio, per esempio $\delta=0{,}1$.</strong> L'intorno è $(0-0{,}1;\ 0+0{,}1)=(-0{,}1;\ 0{,}1)$. Dentro c'è il numero $-0{,}05$, che è negativo e quindi <em>non</em> sta in $[0,1)$.</span>
+          <span class="esempio__passo"><strong>Provo un raggio molto più piccolo, $\delta=0{,}000001$.</strong> L'intorno è $(-0{,}000001;\ 0{,}000001)$ e dentro c'è $-0{,}0000005$, ancora negativo, ancora fuori da $D$.</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Qualunque $\delta \gt 0$ io scelga, il numero $-\frac{\delta}{2}$ sta nell'intorno $(-\delta,\ \delta)$ ma è negativo, quindi non sta in $D$. Nessun raggio funziona.</span>
+        </p>
+        <p>Il punto $0$ non è interno, e basta lui a far fallire la definizione: <strong>$D$ non è aperto</strong>.</p>
+
+        <p><strong>Secondo fronte: $D$ è chiuso?</strong> Devo controllare se tutti i punti di accumulazione di $D$ appartengono a $D$. Vado a cercare il punto sospetto opposto, cioè l'estremo <em>escluso</em>: l'$1$.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>L'$1$ è di accumulazione per $D$?</strong> Devo far vedere che ogni intorno bucato di $1$ contiene punti di $D$ (<span class="richiamo" data-sec="4.3">§4.3</span>). Provo con $\delta=0{,}1$: l'intorno è $(0{,}9;\ 1{,}1)$, e dentro ci sono per esempio $0{,}95$ e $0{,}99$, che appartengono a $[0,1)$ e sono diversi da $1$.</span>
+          <span class="esempio__passo"><strong>Provo con un raggio molto più piccolo, $\delta=0{,}001$:</strong> l'intorno è $(0{,}999;\ 1{,}001)$, e dentro c'è $0{,}9995$, che sta in $[0,1)$ ed è diverso da $1$.</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Dato un raggio $\delta \gt 0$ qualunque, il numero $1-\frac{\delta}{2}$ funziona sempre come testimone. Verifichiamolo:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        \left|\left(1-\tfrac{\delta}{2}\right)-1\right| &amp;= \left|-\tfrac{\delta}{2}\right| = \tfrac{\delta}{2} &amp;&amp;\text{(calcolo la sua distanza da } 1)\\
+        0 \lt \tfrac{\delta}{2} &amp;\lt \delta &amp;&amp;\text{(metà di un numero positivo è positiva e minore dell'intero)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Quindi $1-\frac{\delta}{2}$ sta nell'intorno bucato di $1$. E sta anche in $D$, purché $\delta$ non sia enorme: è minore di $1$ e, se prendiamo $\delta \leq 2$, è anche maggiore o uguale a $0$. (Se qualcuno sceglie un $\delta$ gigantesco, va bene lo stesso: un intorno più grande contiene quello più piccolo, quindi contiene comunque punti di $D$.)</span>
+          <span class="esempio__passo"><strong>L'$1$ appartiene a $D$?</strong> No: la parentesi tonda a destra vuol dire "estremo escluso".</span>
+        </p>
+        <p>Abbiamo trovato un punto di accumulazione di $D$ che non appartiene a $D$, cioè $D'\not\subseteq D$: <strong>$D$ non è chiuso</strong>.</p>
+        <p><strong>Riassunto del doppio controllo:</strong> $[0,1)$ fallisce l'apertura nell'estremo incluso ($0$) e fallisce la chiusura nell'estremo escluso ($1$). Non è né aperto né chiuso. Le due proprietà sono indipendenti, e si verificano una alla volta.</p>
+
+        <p>Ecco il campionario completo, per fissare le idee. Sulla retta reale:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Insieme</th><th>Aperto?</th><th>Chiuso?</th><th>Motivo in breve</th></tr></thead>
+          <tbody>
+            <tr><td>$(a,b)$</td><td>Sì</td><td>No</td><td>ogni punto ha spazio libero attorno; però gli estremi $a,b$ sono di accumulazione e restano fuori</td></tr>
+            <tr><td>$[a,b]$</td><td>No</td><td>Sì</td><td>negli estremi nessun intorno sta tutto dentro; ma i punti di accumulazione sono tutti compresi</td></tr>
+            <tr><td>$[0,1)$</td><td>No</td><td>No</td><td>fallisce l'apertura in $0$ (estremo incluso) e la chiusura in $1$ (estremo escluso, ma di accumulazione)</td></tr>
+            <tr><td>$\varnothing$ e $\mathbb{R}$</td><td>Sì</td><td>Sì</td><td>il vuoto non ha punti, quindi entrambe le condizioni sono vere "a vuoto"; $\mathbb{R}$ contiene ogni intorno e ogni punto di accumulazione. Sono gli unici due insiemi con questa doppia proprietà</td></tr>
+            <tr><td>$\{1,2,3\}$ (finito)</td><td>No</td><td>Sì</td><td>nessun punto è interno (ogni intorno di $1$ contiene infiniti reali estranei); e non avendo punti di accumulazione li contiene tutti "a vuoto"</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> "Aperto" e "chiuso" NON sono opposti</div>
+          <p>Nel linguaggio comune "aperto" e "chiuso" sono contrari. In topologia <strong>no</strong>: un insieme può essere aperto, chiuso, <em>entrambi</em> ($\varnothing$ e $\mathbb{R}$) oppure <em>nessuno dei due</em> ($[0,1)$). "Non aperto" non significa "chiuso". Tienilo a mente: è la trappola numero uno di questo argomento.</p>
+        </div>
+
+        <h3 id="teoria-limitati">4.6 Insiemi limitati</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Un insieme è <em>limitato</em> se non scappa via: riesci a racchiuderlo tutto dentro un intervallo, per quanto grande. Non serve che l'intervallo sia stretto; serve che esista.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🐑</span> L'immagine da tenere in mente</div>
+          <p>Hai un gregge e vuoi sapere se puoi recintarlo. Se le pecore, per quanto sparpagliate, stanno tutte entro un chilometro dall'ovile, allora ti basta un recinto grande un chilometro e hai finito: il gregge è <strong>limitato</strong>. Se invece ce n'è sempre una più lontana di qualunque recinto tu costruisca, nessun recinto basta: il gregge è <strong>illimitato</strong>. Il "raggio del recinto" in matematica si chiama $M$.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo $E=\left\{-3,\ 0{,}5,\ 2,\ 4\right\}$. È limitato? Per rispondere devo trovare un numero $M$ che vada bene per <em>tutti</em> gli elementi contemporaneamente. Calcolo il valore assoluto di ciascuno, cioè la sua distanza da zero.</p>
+        <div class="calcolo">$$\begin{aligned}
+        |-3| &amp;= 3 &amp;&amp;\text{(il numero è negativo: gli tolgo il meno, §4.1)}\\
+        |0{,}5| &amp;= 0{,}5 &amp;&amp;\text{(già positivo: lo ricopio)}\\
+        |2| &amp;= 2 &amp;&amp;\text{(già positivo: lo ricopio)}\\
+        |4| &amp;= 4 &amp;&amp;\text{(già positivo: lo ricopio)}
+        \end{aligned}$$</div>
+        <p>La più grande di queste quattro distanze è $4$. Scelgo allora $M=4$: ogni elemento di $E$ soddisfa $|x|\leq 4$, cioè tutto $E$ sta dentro l'intervallo $[-4,\ 4]$. L'insieme è limitato. (Andrebbe benissimo anche $M=100$: la definizione chiede che <em>esista</em> un recinto, non che sia il più stretto possibile.)</p>
+
+        <p><strong>Ora la definizione, con la traduzione sotto ogni pezzo.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Insieme limitato.</em> Un insieme $E \subseteq \mathbb{R}$ è <strong>limitato</strong> se esiste un numero $M \gt 0$ che fa da recinto per tutti i suoi elementi:</p>
+          <div class="formula-block">$$\underbrace{\exists\, M \gt 0}_{\text{esiste un recinto}} \;:\; \underbrace{|x| \leq M}_{x \text{ dista da } 0 \text{ al più } M} \quad \underbrace{\forall\, x \in E}_{\text{per ogni elemento di } E}$$</div>
+          <p>Per la regola del minore del <span class="richiamo" data-sec="4.1">§4.1</span>, la condizione $|x|\leq M$ equivale a $-M\leq x\leq M$: detto altrimenti, tutto $E$ è contenuto nell'intervallo $[-M,\ M]$.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Il non-esempio: $\mathbb{N}$ non è limitato</div>
+          <p>Prendiamo l'insieme dei numeri naturali $\mathbb{N}=\{0,1,2,3,\dots\}$ e proviamo a recintarlo. Scelgo $M=1000$: funziona? No, perché il numero $1001$ è un naturale e $|1001|=1001 \gt 1000$. Scelgo allora $M=10^{6}$: neanche, perché c'è $10^{6}+1$. E così via: <strong>qualunque $M$ io proponga, il numero naturale $M+1$ ne esce fuori</strong> (è la proprietà di Archimede, cap. 1). Nessun recinto basta, quindi $\mathbb{N}$ è illimitato. Lo stesso vale per la semiretta $(0,+\infty)$.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p><strong>Per dire SÌ</strong> devi esibire un $M$ concreto e far vedere che vale per tutti. Se l'insieme è un intervallo, prendi come $M$ il più grande fra i valori assoluti dei due estremi: per $(-3,\ 7)$ scegli $M=7$; per $[-9,\ 2]$ scegli $M=9$.</p>
+          <p><strong>Per dire NO</strong> devi far vedere che, comunque venga scelto $M$, esiste un elemento dell'insieme con $|x| \gt M$: cioè devi saper costruire "quello che sfugge al recinto", come il $M+1$ dei naturali.</p>
+        </div>
+
+        <p><strong>Il ponte con il capitolo precedente.</strong> Nel <a href="01-numeri-reali-struttura.html">capitolo 1</a> hai incontrato <span class="glossario-term" data-term="maggiorante">maggioranti</span> e <span class="glossario-term" data-term="minorante">minoranti</span>. Dire "$|x|\leq M$ per ogni $x\in E$" è solo un modo compatto di dire due cose insieme: che $M$ è un maggiorante di $E$ (nessun elemento lo supera) e che $-M$ è un minorante (nessun elemento gli sta sotto). Quindi <em>limitato</em> significa esattamente <em>limitato sia superiormente sia inferiormente</em>. Da qui il collegamento con l'<span class="glossario-term" data-term="estremo-superiore">estremo superiore</span>: per la completezza di $\mathbb{R}$, un insieme non vuoto e limitato superiormente ha sempre un $\sup$ finito, e un insieme limitato ha sia $\sup$ sia <span class="glossario-term" data-term="estremo-inferiore">$\inf$</span> finiti.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Disuguaglianza triangolare.</em> Per ogni $x, y \in \mathbb{R}$ vale $\ |x + y| \leq |x| + |y|$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per incorniciamento)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che il valore assoluto di una somma non è mai più grande della somma dei due valori assoluti. In parole povere: se prima sommi e poi togli i segni, ottieni al massimo quanto ottieni togliendo prima i segni e sommando dopo.</p>
+          <p><strong>Idea della strategia.</strong> La strada diretta sarebbe distinguere i casi in base ai segni di $x$ e $y$: quattro casi da trattare separatamente, lunghi e noiosi. Facciamo invece un giro più corto: <em>incastriamo</em> il numero $x+y$ fra due valori opposti, cioè fra $-a$ e $+a$ per un opportuno $a$, e poi usiamo la regola del <span class="richiamo" data-sec="4.1">§4.1</span> che dice che "stare fra $-a$ e $a$" è esattamente la stessa cosa che "avere modulo minore o uguale ad $a$". Così il valore assoluto compare da solo alla fine, senza mai dover guardare i segni.</p>
+          <p><strong>Cosa ci servirà.</strong> Tre cose, tutte già viste: la proprietà di <em>incorniciamento</em> $-|t|\leq t\leq|t|$ (tabella del <span class="richiamo" data-sec="4.1">§4.1</span>); la <em>somma membro a membro</em> di due disuguaglianze con lo stesso verso (Parte 0, cap. 6); la regola <em>"Disequazione $\leq$"</em> del <span class="richiamo" data-sec="4.1">§4.1</span>, cioè "$-a\leq t\leq a$" equivale a "$|t|\leq a$", che useremo da destra verso sinistra.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Primo passo: incornicio $x$ e $y$ separatamente.</strong> Applico la proprietà di incorniciamento due volte: la prima volta al posto di $t$ metto $x$, la seconda volta al posto di $t$ metto $y$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          -|x| \leq\ &amp;x \leq |x| &amp;&amp;\text{(incorniciamento, §4.1, con } t=x)\\
+          -|y| \leq\ &amp;y \leq |y| &amp;&amp;\text{(incorniciamento, §4.1, con } t=y)
+          \end{aligned}$$</div>
+          <p>Abbiamo ottenuto due catene, una per ciascuna lettera. Adesso vogliamo una catena sola che parli di $x+y$: per averla basta sommarle.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Secondo passo: sommo membro a membro.</strong> Due disuguaglianze con lo stesso verso si possono sommare (Parte 0, cap. 6): sommo fra loro i membri di sinistra, fra loro quelli centrali, fra loro quelli di destra. Scrivo prima il risultato grezzo e poi lo semplifico.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          -|x|+\big(-|y|\big) \leq\ &amp;x+y \leq |x|+|y| &amp;&amp;\text{(somma delle due catene, prima di semplificare)}\\
+          -\big(|x|+|y|\big) \leq\ &amp;x+y \leq |x|+|y| &amp;&amp;\text{(a sinistra raccolgo il segno meno, Parte 0, cap. 2)}
+          \end{aligned}$$</div>
+          <p>Cosa abbiamo ottenuto: il numero $x+y$ è ora incastrato fra un numero e il suo opposto. È proprio la forma che ci serviva.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Terzo passo: do un nome corto al numero a destra.</strong> Pongo $a=|x|+|y|$. Questo $a$ non è negativo, perché è la somma di due valori assoluti e i valori assoluti non sono mai negativi (<span class="richiamo" data-sec="4.1">§4.1</span>). Con questo nome la catena diventa semplicemente $-a\leq x+y\leq a$.</span>
+          <span class="esempio__passo"><strong>Quarto passo: converto la catena in un valore assoluto.</strong> Attenzione: qui è dove ci si confonde. La regola del <span class="richiamo" data-sec="4.1">§4.1</span> di solito si usa da sinistra a destra, per <em>sciogliere</em> un modulo; qui la usiamo al contrario, per <em>farlo comparire</em>. Dice: "$-a\leq t\leq a$" equivale a "$|t|\leq a$". La applico mettendo al posto di $t$ tutto il blocco $x+y$, e al posto di $a$ il numero $|x|+|y|$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          -a \leq x+y &amp;\leq a &amp;&amp;\text{(quello che abbiamo)}\\
+          |x+y| &amp;\leq a &amp;&amp;\text{(regola del minore letta al contrario, §4.1, con } t=x+y)\\
+          |x+y| &amp;\leq |x|+|y| &amp;&amp;\text{(rimetto al posto di } a \text{ il suo valore)}
+          \end{aligned}$$</div>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo incorniciato $x$ e $y$ ciascuno fra il proprio modulo e il suo opposto; abbiamo sommato le due cornici ottenendo $-\big(|x|+|y|\big)\leq x+y\leq |x|+|y|$; abbiamo riconosciuto in questa catena la forma "$-a\leq t\leq a$" e l'abbiamo riscritta come "$|t|\leq a$". Quindi $|x+y|\leq|x|+|y|$.</p>
+          <p>Il nome "triangolare" viene dalla geometria: in un triangolo, la lunghezza di un lato non supera mai la somma degli altri due. Sulla retta il triangolo è schiacciato, ma l'idea è la stessa. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Quando vale l'uguaglianza?</div>
+          <p>$|x+y| = |x|+|y|$ vale esattamente quando $x$ e $y$ hanno lo <strong>stesso segno</strong> (o almeno uno è nullo): allora "puntano nella stessa direzione" e le distanze si sommano. Se hanno segni opposti si compensano in parte, e la somma dei moduli è strettamente maggiore.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Corollario</span>
+          <p><em class="nome">Disuguaglianza triangolare inversa.</em> Per ogni $x, y \in \mathbb{R}$: $\ \big|\,|x| - |y|\,\big| \leq |x - y|$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (aggiungo e tolgo la stessa quantità)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che la differenza fra due distanze-da-zero non supera mai la distanza fra i due punti. Immagine: se tu sei a $6$ passi dal lampione e io a $4$, la differenza fra le nostre distanze è $2$ passi; ma fra me e te ci possono essere anche $10$ passi, mai meno di $2$.</p>
+          <p><strong>Idea della strategia.</strong> L'unico attrezzo che abbiamo è la disuguaglianza triangolare appena dimostrata, che però parla di <em>somme</em>, mentre qui compaiono <em>differenze</em>. Il trucco è allora riscrivere $x$ come una somma che contiene il pezzo $x-y$ che ci interessa, aggiungendo e togliendo $y$. Poi, siccome il risultato che otteniamo riguarda $|x|-|y|$ e non il suo valore assoluto, ripetiamo tutto scambiando le lettere e mettiamo insieme le due informazioni.</p>
+          <p><strong>Cosa ci servirà.</strong> La disuguaglianza triangolare $|A+B|\leq|A|+|B|$ (appena dimostrata qui sopra); la simmetria $|-t|=|t|$ (<span class="richiamo" data-sec="4.1">§4.1</span>); la definizione di valore assoluto per casi (<span class="richiamo" data-sec="4.1">§4.1</span>); il fatto che sottrarre la stessa quantità a entrambi i membri non cambia il verso di una disuguaglianza (Parte 0, cap. 6).</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Primo passo: riscrivo $x$ come somma.</strong> Scrivo $x = x - y + y$. È lecito perché ho aggiunto $-y$ e poi $+y$, cioè in totale zero: il numero non è cambiato. Raggruppando i primi due termini ottengo $x=(x-y)+y$, che è una somma di due pezzi — ed è proprio la forma su cui la disuguaglianza triangolare sa lavorare.</span>
+          <span class="esempio__passo"><strong>Secondo passo: applico la triangolare.</strong> Nella formula $|A+B|\leq|A|+|B|$ metto al posto di $A$ il blocco $x-y$ e al posto di $B$ la lettera $y$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          |x| &amp;= \big|(x-y)+y\big| &amp;&amp;\text{(ho solo riscritto } x)\\
+          &amp;\leq |x-y|+|y| &amp;&amp;\text{(disuguaglianza triangolare con } A=x-y,\ B=y)
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Terzo passo: isolo la differenza dei moduli.</strong> Dalla disuguaglianza $|x|\leq|x-y|+|y|$ sottraggo $|y|$ a entrambi i membri; il verso non cambia perché sto togliendo la stessa quantità da tutte e due le parti.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          |x|-|y| &amp;\leq |x-y|+|y|-|y| &amp;&amp;\text{(sottraggo } |y| \text{ a entrambi i membri)}\\
+          |x|-|y| &amp;\leq |x-y| &amp;&amp;\text{(a destra } +|y|-|y| \text{ si cancella)} \qquad (1)
+          \end{aligned}$$</div>
+          <p>Cosa abbiamo ottenuto: la disuguaglianza (1) è già metà del risultato, ma parla di $|x|-|y|$ "nudo", non del suo valore assoluto. Ci serve la stessa cosa anche per il numero opposto.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Quarto passo: rifaccio tutto a lettere scambiate.</strong> Ripeto identici i passi uno, due e tre, ma scrivendo $y$ dove c'era $x$ e $x$ dove c'era $y$. Ottengo $|y|-|x|\leq|y-x|$. Resta da osservare che $|y-x|$ e $|x-y|$ sono lo stesso numero: infatti $y-x$ è l'opposto di $x-y$, e per la simmetria $|-t|=|t|$ del <span class="richiamo" data-sec="4.1">§4.1</span> (con $t=x-y$) il modulo non distingue un numero dal suo opposto.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          |y|-|x| &amp;\leq |y-x| &amp;&amp;\text{(stesso ragionamento a lettere scambiate)}\\
+          |y-x| &amp;= \big|-(x-y)\big| = |x-y| &amp;&amp;\text{(simmetria del modulo, §4.1)}\\
+          |y|-|x| &amp;\leq |x-y| &amp;&amp;\text{(metto insieme le due righe)} \qquad (2)
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Quinto passo: metto insieme (1) e (2).</strong> Chiamo $t=|x|-|y|$. La (1) dice $t\leq|x-y|$; la (2) dice $-t\leq|x-y|$, perché $|y|-|x|$ è proprio l'opposto di $t$. Quindi sia $t$ sia $-t$ stanno sotto la stessa soglia $|x-y|$.</span>
+          <span class="esempio__passo"><strong>Sesto passo: concludo.</strong> Per la definizione del <span class="richiamo" data-sec="4.1">§4.1</span>, il valore assoluto $|t|$ coincide con $t$ (se $t\geq0$) oppure con $-t$ (se $t\lt0$): in ogni caso è uno dei due numeri che abbiamo appena mostrato essere $\leq|x-y|$. Dunque anche $|t|\leq|x-y|$, cioè $\big|\,|x|-|y|\,\big|\leq|x-y|$.</span>
+          </p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo riscritto $x$ come $(x-y)+y$ per poter usare la triangolare; ne è uscito $|x|-|y|\leq|x-y|$; abbiamo ripetuto tutto a lettere scambiate ottenendo la stessa maggiorazione per il numero opposto; poiché il valore assoluto di un numero è sempre il numero stesso o il suo opposto, la maggiorazione vale anche per $\big|\,|x|-|y|\,\big|$. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Un insieme finito non ha punti di accumulazione</em> (e quindi è chiuso).</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (costruendo il raggio che isola)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che se un insieme ha solo un numero finito di elementi, allora non c'è nessun punto della retta attorno al quale quegli elementi si ammassino. Di conseguenza l'insieme si tiene tutti i suoi (zero) punti di accumulazione, cioè è chiuso.</p>
+          <p><strong>Idea della strategia.</strong> Ci serve una negazione. La definizione del <span class="richiamo" data-sec="4.3">§4.3</span> chiede che <em>ogni</em> intorno bucato incontri l'insieme; per smentirla basta esibire <strong>un solo</strong> raggio che non funziona. E come lo troviamo? Sfruttando il fatto che gli elementi sono pochi: un elenco finito di distanze positive ha una distanza minima, e scegliendo un raggio più corto di quella lasciamo fuori tutti quanti. Tutto il lavoro consiste nel costruire quel raggio.</p>
+          <p><strong>Cosa ci servirà.</strong> La definizione di punto di accumulazione (<span class="richiamo" data-sec="4.3">§4.3</span>) e quella di intorno bucato (<span class="richiamo" data-sec="4.2">§4.2</span>); l'interpretazione di $|x_0-a|$ come distanza e il fatto che una distanza è nulla solo fra punti coincidenti (<span class="richiamo" data-sec="4.1">§4.1</span>); il fatto che un elenco <em>finito</em> di numeri positivi ha sempre un minimo, ed è positivo (Parte 0, cap. 1).</p>
+          <p><strong>Prima con i numeri, per vedere come funziona.</strong> Prendiamo $E=\{1,\ 2,\ 5\}$ e il punto $x_0=2$, che appartiene a $E$. Le distanze di $x_0$ dagli <em>altri</em> elementi sono $|2-1|=1$ e $|2-5|=3$. La più piccola è $1$. Scelgo il raggio $\delta=\frac12$, che è minore di $1$: l'intorno è $(1{,}5;\ 2{,}5)$ e di $E$ contiene solo il $2$, cioè $x_0$ stesso. L'intorno bucato è quindi vuoto di punti di $E$, e $2$ non è di accumulazione. Ora rifacciamo lo stesso ragionamento in generale.</p>
+          <p>Sia dunque $E=\{a_1,a_2,\dots,a_n\}$ un insieme finito e sia $x_0\in\mathbb{R}$ un punto qualsiasi (dentro o fuori $E$, non importa).</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Primo passo: misuro tutte le distanze utili.</strong> Considero i numeri $|x_0-a_i|$ per tutti gli $a_i$ <em>diversi</em> da $x_0$. Sono al più $n$, quindi sono in numero finito, e sono tutti strettamente positivi: una distanza si annulla solo fra punti coincidenti (<span class="richiamo" data-sec="4.1">§4.1</span>), e il caso $a_i=x_0$ l'ho escluso apposta.</span>
+          <span class="esempio__passo"><strong>Secondo passo: prendo la più piccola.</strong> Un elenco finito di numeri positivi ha un minimo, e quel minimo è uno dei numeri dell'elenco, quindi è a sua volta positivo. Lo chiamo $d$, e so che $d \gt 0$. (Questo passaggio è il cuore della dimostrazione e funziona <em>solo</em> perché l'insieme è finito: con infiniti elementi il minimo potrebbe non esistere.)</span>
+          <span class="esempio__passo"><strong>Terzo passo: scelgo il raggio.</strong> Prendo $\delta=\dfrac{d}{2}$, cioè metà della distanza minima. È positivo, perché è la metà di un numero positivo.</span>
+          <span class="esempio__passo"><strong>Quarto passo: verifico che nessun elemento di $E$ entra nell'intorno.</strong> Confronto la distanza di un generico $a_i\neq x_0$ da $x_0$ con il raggio scelto.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          |x_0-a_i| &amp;\geq d &amp;&amp;\text{(} d \text{ è la PIÙ PICCOLA di quelle distanze)}\\
+          d &amp;\gt \frac{d}{2} &amp;&amp;\text{(metà di un numero positivo è minore dell'intero)}\\
+          |x_0-a_i| &amp;\gt \frac{d}{2} = \delta &amp;&amp;\text{(metto in fila le due righe precedenti)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Cosa abbiamo ottenuto: ogni $a_i$ diverso da $x_0$ dista da $x_0$ <em>più</em> del raggio $\delta$. Ma l'intorno bucato $\dot I_\delta(x_0)$ contiene, per definizione (<span class="richiamo" data-sec="4.2">§4.2</span>), solo i punti che distano da $x_0$ <em>meno</em> di $\delta$. Quindi nessun $a_i$ ci può stare: $\dot I_\delta(x_0)\cap E=\varnothing$.</span>
+          <span class="esempio__passo"><strong>Quinto passo: concludo sul singolo punto.</strong> Ho esibito un raggio per cui l'intorno bucato non incontra $E$. La definizione del <span class="richiamo" data-sec="4.3">§4.3</span> chiedeva che <em>tutti</em> i raggi funzionassero: uno solo che fallisce la manda a monte. Dunque $x_0$ non è di accumulazione per $E$.</span>
+          <span class="esempio__passo"><strong>Sesto passo: estendo a tutti i punti.</strong> Nel ragionamento non ho mai usato nulla di speciale su $x_0$: valeva per un punto qualunque della retta. Quindi <em>nessun</em> punto è di accumulazione per $E$, cioè $E'=\varnothing$.</span>
+          <span class="esempio__passo"><strong>Settimo passo: deduco che $E$ è chiuso.</strong> Essere chiusi significa $E'\subseteq E$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Qui $E'$ è l'insieme vuoto, e l'insieme vuoto è contenuto in qualunque insieme (non ha elementi da far rimanere fuori). Quindi la condizione è soddisfatta.</span>
+          </p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo preso un punto qualsiasi, misurato le sue distanze dai (pochi) elementi dell'insieme, scelto come raggio la metà della più piccola di quelle distanze, e verificato che con quel raggio l'intorno bucato resta vuoto. Quindi nessun punto è di accumulazione, $E'=\varnothing$, e la condizione di chiusura $E'\subseteq E$ è soddisfatta automaticamente. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Una disequazione col modulo come intorno</span><span class="badge badge--base">Base</span></div>
+          <p>Risolvere $|x - 3| &lt; 2$ e interpretare geometricamente il risultato.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Leggo la richiesta a parole.</strong> Il blocco $|x-3|$ è la distanza fra $x$ e $3$ (<span class="richiamo" data-sec="4.1">§4.1</span>). La disequazione chiede quindi: <em>quali punti distano da $3$ meno di $2$?</em> Me lo aspetto un intervallo centrato in $3$.</span>
+            <span class="esempio__passo"><strong>Scelgo la regola e dico chi è chi.</strong> Uso la riga "Disequazione $\leq$" della tabella del <span class="richiamo" data-sec="4.1">§4.1</span>, nella versione con il minore stretto: "$|t| \lt a$" (con $a \gt 0$) equivale a "$-a \lt t \lt a$". Confrontando $|x-3| \lt 2$ con $|t| \lt a$ vedo che <strong>al posto di $t$ va tutto il blocco $x-3$</strong> e <strong>al posto di $a$ va $2$</strong>.</span>
+            <span class="esempio__passo"><strong>Sostituisco e isolo la $x$.</strong> Per liberare la $x$ devo far sparire il $-3$: sommo $3$ a tutti e tre i membri (sommare la stessa quantità ovunque non altera le disuguaglianze, Parte 0, cap. 6).</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          |x-3| &amp;\lt 2 &amp;&amp;\text{(la disequazione di partenza)}\\
+          -2 \lt x-3 &amp;\lt 2 &amp;&amp;\text{(regola del minore, §4.1, con } t=x-3 \text{ e } a=2)\\
+          -2+3 \lt x-3+3 &amp;\lt 2+3 &amp;&amp;\text{(sommo } 3 \text{ a tutti e tre i membri)}\\
+          1 \lt x &amp;\lt 5 &amp;&amp;\text{(eseguo le somme)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Controllo che il risultato abbia senso.</strong> Il centro $3$ sta proprio in mezzo fra $1$ e $5$, e da ciascun estremo dista $2$, cioè il numero che compariva a destra. Tutto torna.</span>
+          </p>
+          <div class="esempio__risultato">$x \in (1, 5)$: è l'intorno $I_2(3)$, cioè "tutti i punti che distano da $3$ meno di $2$".</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Scrivere un intorno bucato</span><span class="badge badge--base">Base</span></div>
+          <p>Scrivere l'intorno bucato di $x_0 = 2$ di raggio $\delta = 0{,}1$, sia con il valore assoluto sia come unione di intervalli.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Ricopio la definizione</strong> del <span class="richiamo" data-sec="4.2">§4.2</span> tale e quale, senza ancora sostituire niente: $\dot{I}_\delta(x_0) = \{x : 0 \lt |x - x_0| \lt \delta\}$.</span>
+            <span class="esempio__passo"><strong>Sostituisco i dati dell'esercizio</strong>: al posto di $x_0$ scrivo $2$, al posto di $\delta$ scrivo $0{,}1$. La condizione diventa $0 \lt |x - 2| \lt 0{,}1$. Questa è già la risposta "con il valore assoluto"; ora la traduco in intervalli.</span>
+            <span class="esempio__passo"><strong>Sciolgo il pezzo di destra</strong>, cioè $|x-2| \lt 0{,}1$, con la regola del minore del <span class="richiamo" data-sec="4.1">§4.1</span> (al posto di $t$ metto $x-2$, al posto di $a$ metto $0{,}1$).</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          |x-2| &amp;\lt 0{,}1 &amp;&amp;\text{(il pezzo "resta nel vicinato")}\\
+          -0{,}1 \lt x-2 &amp;\lt 0{,}1 &amp;&amp;\text{(regola del minore, §4.1, con } t=x-2 \text{ e } a=0{,}1)\\
+          -0{,}1+2 \lt x &amp;\lt 0{,}1+2 &amp;&amp;\text{(sommo } 2 \text{ a tutti e tre i membri)}\\
+          1{,}9 \lt x &amp;\lt 2{,}1 &amp;&amp;\text{(eseguo le somme)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Leggo il pezzo di sinistra.</strong> La parte $0 \lt |x-2|$ dice che la distanza fra $x$ e $2$ non è zero, cioè vieta a $x$ di valere $2$ (<span class="richiamo" data-sec="4.2">§4.2</span>).</span>
+            <span class="esempio__passo"><strong>Metto insieme le due informazioni</strong>: $x$ sta fra $1{,}9$ e $2{,}1$, ma non può essere $2$. Togliere il punto $2$ dall'intervallo $(1{,}9;\ 2{,}1)$ lo spezza in due tronconi, quello a sinistra del buco e quello a destra: $(1{,}9;\ 2)$ e $(2;\ 2{,}1)$.</span>
+            <span class="esempio__passo"><strong>Controllo con due numeri.</strong> Il numero $1{,}95$ dista da $2$ esattamente $0{,}05$, che è fra $0$ e $0{,}1$: sta dentro. Il numero $2$ dista $0$: escluso dal buco. Il numero $2{,}5$ dista $0{,}5$, troppo: fuori.</span>
+          </p>
+          <div class="esempio__risultato">$\dot{I}_{0{,}1}(2) = \{x : 0 &lt; |x-2| &lt; 0{,}1\} = (1{,}9\,;\,2) \cup (2\,;\,2{,}1)$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — L'esempio chiave: $0$ è di accumulazione per $\{1/n\}$</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Sia $E = \left\{\dfrac{1}{n} : n \in \mathbb{N},\ n \geq 1\right\} = \left\{1, \tfrac12, \tfrac13, \tfrac14, \dots\right\}$. Dimostrare che $0$ è punto di accumulazione per $E$, benché $0 \notin E$, e osservare che ogni punto di $E$ è invece isolato.</p>
+
+          <svg viewBox="0 0 520 80" style="max-width:560px;margin:1.1em auto;display:block;" role="img" aria-label="I punti 1, un mezzo, un terzo, un quarto... si addensano verso lo zero">
+            <line x1="20" y1="50" x2="500" y2="50" stroke="currentColor" stroke-width="1.5"/>
+            <polygon points="500,50 490,45 490,55" fill="currentColor"/>
+            <circle cx="40" cy="50" r="5" fill="var(--color-danger)"/>
+            <text x="40" y="38" font-size="12" text-anchor="middle" fill="var(--color-danger)">0</text>
+            <circle cx="460" cy="50" r="5" fill="var(--color-primary)"/>
+            <text x="460" y="72" font-size="12" text-anchor="middle" fill="currentColor">1</text>
+            <circle cx="250" cy="50" r="5" fill="var(--color-primary)"/>
+            <text x="250" y="72" font-size="12" text-anchor="middle" fill="currentColor">1/2</text>
+            <circle cx="180" cy="50" r="5" fill="var(--color-primary)"/>
+            <text x="180" y="72" font-size="12" text-anchor="middle" fill="currentColor">1/3</text>
+            <circle cx="145" cy="50" r="4" fill="var(--color-primary)"/>
+            <circle cx="122" cy="50" r="4" fill="var(--color-primary)"/>
+            <circle cx="108" cy="50" r="3.5" fill="var(--color-primary)"/>
+            <circle cx="98" cy="50" r="3" fill="var(--color-primary)"/>
+            <circle cx="90" cy="50" r="2.5" fill="var(--color-primary)"/>
+            <circle cx="83" cy="50" r="2" fill="var(--color-primary)"/>
+            <circle cx="77" cy="50" r="2" fill="var(--color-primary)"/>
+          </svg>
+
+          <p><strong>Parte A: $0$ è di accumulazione.</strong> Nel <span class="richiamo" data-sec="4.3">§4.3</span> abbiamo già fatto la verifica con due raggi concreti ($\delta=0{,}1$ e $\delta=0{,}001$). Qui scriviamo la stessa cosa per un raggio qualunque, citando il risultato del capitolo 1 che la rende lecita.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Fisso un raggio qualunque.</strong> Sia $\delta \gt 0$ un numero positivo scelto da qualcun altro, comunque piccolo. Devo trovare un elemento di $E$, diverso da $0$, dentro l'intorno bucato $\dot{I}_\delta(0)$.</span>
+            <span class="esempio__passo"><strong>Traduco la richiesta in una disequazione.</strong> Gli elementi di $E$ sono i numeri $\frac1n$, tutti positivi. Un numero positivo ha valore assoluto uguale a se stesso (<span class="richiamo" data-sec="4.1">§4.1</span>), quindi la condizione $|\frac1n-0| \lt \delta$ diventa semplicemente $\frac1n \lt \delta$. La mia domanda è: <em>esiste un naturale $n$ che soddisfa questa disequazione?</em></span>
+            <span class="esempio__passo"><strong>Uso la proprietà di Archimede</strong> del <a href="01-numeri-reali-struttura.html">capitolo 1</a> ("per ogni numero reale esiste un naturale più grande di lui"), applicandola al numero $\frac{1}{\delta}$: esiste un naturale $n$ con $n \gt \frac{1}{\delta}$. Ora trasformo questa disuguaglianza in quella che mi serve.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          n &amp;\gt \frac{1}{\delta} &amp;&amp;\text{(proprietà di Archimede, cap. 1)}\\
+          \frac{1}{n} &amp;\lt \frac{1}{\,1/\delta\,} &amp;&amp;\text{(passo ai reciproci: sono entrambi positivi, quindi il verso si inverte — Parte 0, cap. 6)}\\
+          \frac{1}{n} &amp;\lt \delta &amp;&amp;\text{(il reciproco del reciproco è il numero di partenza)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Controllo che il numero trovato sia un testimone valido.</strong> Servono tre requisiti, e li verifico uno per uno. <em>Sta in $E$?</em> Sì, è della forma $\frac1n$ con $n$ naturale. <em>È diverso da $0$?</em> Sì, una frazione con numeratore $1$ non è mai nulla. <em>Sta nell'intorno?</em> Sì: abbiamo appena ottenuto $0 \lt \frac1n \lt \delta$, che è esattamente la condizione $0 \lt |x-0| \lt \delta$ della definizione di intorno bucato (<span class="richiamo" data-sec="4.2">§4.2</span>).</span>
+            <span class="esempio__passo"><strong>Concludo.</strong> Il raggio $\delta$ era arbitrario, quindi la costruzione funziona per <em>ogni</em> raggio: $0$ è punto di accumulazione di $E$ (<span class="richiamo" data-sec="4.3">§4.3</span>), pur non appartenendo a $E$.</span>
+          </p>
+          <p><strong>Parte B: ogni $\frac1n$ è invece isolato.</strong> Facciamolo prima su un elemento concreto, poi in generale.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Prendo $x_0=\frac13$</strong>, che appartiene a $E$. I suoi vicini dentro $E$ sono $\frac12$ a destra e $\frac14$ a sinistra. Calcolo le due distanze.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          \left|\tfrac12-\tfrac13\right| &amp;= \left|\tfrac{3-2}{6}\right| = \tfrac16 \approx 0{,}167 &amp;&amp;\text{(distanza dal vicino di destra)}\\
+          \left|\tfrac14-\tfrac13\right| &amp;= \left|\tfrac{3-4}{12}\right| = \tfrac1{12} \approx 0{,}083 &amp;&amp;\text{(distanza dal vicino di sinistra)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Scelgo un raggio più piccolo della minore delle due</strong>, cioè più piccolo di $\frac1{12}$: per esempio $\delta=0{,}01$. L'intorno è $\left(\tfrac13-0{,}01;\ \tfrac13+0{,}01\right)\approx(0{,}323;\ 0{,}343)$, e di $E$ contiene solo $\frac13\approx0{,}333$: tutti gli altri elementi sono più lontani. Quindi $\frac13$ è isolato (<span class="richiamo" data-sec="4.4">§4.4</span>).</span>
+            <span class="esempio__passo"><strong>In generale</strong>, attorno a un qualunque $\frac1n$ c'è sempre un po' di spazio vuoto verso i due vicini $\frac{1}{n+1}$ e $\frac{1}{n-1}$: basta prendere il raggio più piccolo della distanza dal vicino più prossimo e nell'intorno non resta nessun altro elemento di $E$. Ogni punto di $E$ è dunque isolato.</span>
+            <span class="esempio__passo"><strong>Attenzione: qui è dove ci si confonde.</strong> "Ogni punto di $E$ è isolato" e "$0$ è di accumulazione" non sono in contraddizione, perché $0$ <em>non è un punto di $E$</em>. L'unico punto attorno a cui $E$ si accumula sta fuori da $E$.</span>
+          </p>
+          <div class="esempio__risultato">$0$ è punto di accumulazione di $E$ pur non appartenendo a $E$; ogni $\tfrac1n$ è invece un punto isolato. Conclusione: $E' = \{0\}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Aperto, chiuso o né l'uno né l'altro?</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Stabilire se $A = [0, 1)$ è aperto, chiuso, entrambi o nessuno dei due.</p>
+          <p>Questo è l'insieme già smontato pezzo per pezzo nel <span class="richiamo" data-sec="4.5">§4.5</span>. Qui lo rifacciamo come si farebbe a un esame: due verifiche separate, ciascuna con la sua conclusione. <strong>Regola d'oro: non si deduce mai una risposta dall'altra.</strong></p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Prima verifica — è aperto?</strong> Devo controllare se ogni punto di $A$ ha un intorno tutto dentro $A$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Il punto sospetto è l'estremo <em>incluso</em>, cioè $0$, perché è attaccato al bordo. Prendo un raggio $\delta \gt 0$ qualsiasi e guardo il numero $-\frac{\delta}{2}$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          \left|-\tfrac{\delta}{2}-0\right| &amp;= \tfrac{\delta}{2} \lt \delta &amp;&amp;\text{(dista da } 0 \text{ meno di } \delta\text{: sta nell'intorno)}\\
+          -\tfrac{\delta}{2} &amp;\lt 0 &amp;&amp;\text{(è negativo, quindi NON sta in } [0,1))
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Qualunque raggio io scelga, l'intorno di $0$ sborda a sinistra: $0$ non è un punto interno. Basta questo singolo punto per far fallire la definizione, quindi $A$ <strong>non è aperto</strong>.</span>
+            <span class="esempio__passo"><strong>Seconda verifica — è chiuso?</strong> Devo controllare se tutti i punti di accumulazione di $A$ appartengono ad $A$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Il punto sospetto è ora l'estremo <em>escluso</em>, cioè $1$. Faccio vedere che è di accumulazione: preso un raggio $\delta \gt 0$ qualsiasi, il numero $1-\frac{\delta}{2}$ dista da $1$ esattamente $\frac{\delta}{2}$, quindi sta nell'intorno bucato; ed è minore di $1$, quindi (se $\delta$ non è enorme) sta in $A$. Ogni intorno bucato di $1$ pesca dunque punti di $A$: $1$ è di accumulazione (<span class="richiamo" data-sec="4.3">§4.3</span>).</span>
+            <span class="esempio__passo">Ma $1 \notin A$, perché la parentesi tonda esclude l'estremo. C'è quindi un punto di accumulazione rimasto fuori: $A$ <strong>non è chiuso</strong>.</span>
+          </p>
+          <p>Per fissare bene le idee, ecco le quattro varianti dello stesso intervallo, ciascuna con il suo punto critico:</p>
+          <table class="tabella-comparativa">
+            <thead><tr><th>Insieme</th><th>Aperto?</th><th>Chiuso?</th><th>Il punto che decide</th></tr></thead>
+            <tbody>
+              <tr><td>$(0,1)$</td><td>Sì</td><td>No</td><td>nessun estremo è incluso (aperto); ma $0$ e $1$ sono di accumulazione e restano fuori (non chiuso)</td></tr>
+              <tr><td>$[0,1]$</td><td>No</td><td>Sì</td><td>in $0$ l'intorno sborda (non aperto); tutti i punti di accumulazione, estremi compresi, sono dentro (chiuso)</td></tr>
+              <tr><td>$[0,1)$</td><td>No</td><td>No</td><td>fallisce in $0$ (incluso e di bordo) e in $1$ (di accumulazione ma escluso)</td></tr>
+              <tr><td>$(0,1]$</td><td>No</td><td>No</td><td>specularmente: fallisce in $1$ (incluso e di bordo) e in $0$ (di accumulazione ma escluso)</td></tr>
+            </tbody>
+          </table>
+          <div class="esempio__risultato">$[0,1)$ non è né aperto né chiuso: è l'esempio classico che smonta l'idea "se non è aperto allora è chiuso".</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Punti isolati di $\mathbb{Z}$</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Mostrare che ogni intero è un punto isolato di $\mathbb{Z}$ e dedurne che $\mathbb{Z}$ è chiuso.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Fisso un intero qualunque</strong> e lo chiamo $k$. Per la definizione di punto isolato (<span class="richiamo" data-sec="4.4">§4.4</span>) devo esibire <em>un solo</em> raggio che lasci fuori tutti gli altri interi.</span>
+            <span class="esempio__passo"><strong>Guardo i vicini di $k$ dentro $\mathbb{Z}$.</strong> Sono $k-1$ e $k+1$, e le loro distanze da $k$ valgono entrambe $1$: infatti $|(k-1)-k|=|-1|=1$ e $|(k+1)-k|=|1|=1$. Tutti gli altri interi sono ancora più lontani. La distanza minima è quindi $1$.</span>
+            <span class="esempio__passo"><strong>Scelgo un raggio più corto di quella distanza</strong>, cioè $\delta=\frac12$, e scrivo l'intorno con la ricetta del <span class="richiamo" data-sec="4.2">§4.2</span>:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          I_{1/2}(k) &amp;= \left(k-\tfrac12,\ k+\tfrac12\right) &amp;&amp;\text{(centro} - \text{raggio, centro} + \text{raggio)}\\
+          |(k\pm1)-k| = 1 &amp;\gt \tfrac12 &amp;&amp;\text{(i vicini distano più del raggio: restano fuori)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Nell'intervallo $\left(k-\frac12,\ k+\frac12\right)$ l'unico intero è dunque $k$: si ha $I_{1/2}(k)\cap\mathbb{Z}=\{k\}$, che è esattamente la condizione del <span class="richiamo" data-sec="4.4">§4.4</span>. Quindi $k$ è isolato, e poiché $k$ era un intero qualunque, <strong>ogni</strong> intero è isolato.</span>
+            <span class="esempio__passo"><strong>Nessun reale è di accumulazione per $\mathbb{Z}$.</strong> Preso un punto qualsiasi $x_0$ della retta, la sua distanza dall'intero più vicino è al massimo $\frac12$; se $x_0$ non è intero quella distanza è un numero $d \gt 0$, e scegliendo il raggio $\frac{d}{2}$ l'intorno bucato non contiene alcun intero. Se invece $x_0$ è intero, abbiamo appena visto che il raggio $\frac12$ lo isola. In tutti i casi troviamo un intorno bucato vuoto di punti di $\mathbb{Z}$, quindi $\mathbb{Z}'=\varnothing$ (<span class="richiamo" data-sec="4.3">§4.3</span>).</span>
+            <span class="esempio__passo"><strong>Deduco la chiusura.</strong> Essere chiuso significa $\mathbb{Z}'\subseteq\mathbb{Z}$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Qui $\mathbb{Z}'$ è vuoto, e l'insieme vuoto è contenuto in qualsiasi insieme: la condizione è soddisfatta senza dover verificare nulla.</span>
+          </p>
+          <div class="esempio__risultato">$\mathbb{Z}' = \varnothing \subseteq \mathbb{Z}$: l'insieme $\mathbb{Z}$ è <strong>chiuso</strong>, pur essendo infinito e "tutto a puntini". Non è aperto: attorno a un intero ogni intorno contiene numeri con la virgola, che interi non sono.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Chiusura via complementare</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Verificare che $C = [2, +\infty)$ è chiuso, usando il trucco del complementare.</p>
+          <p><strong>Il piano di lavoro, prima di partire.</strong> Dimostrare direttamente che $C$ è chiuso vorrebbe dire elencare tutti i suoi punti di accumulazione e controllarli. Prendiamo invece la scorciatoia del <span class="richiamo" data-sec="4.5">§4.5</span>: <em>un insieme è chiuso se e solo se il suo complementare è aperto</em>. Quindi dimostreremo che $C^{c}$ è aperto, cosa che sappiamo fare (basta costruire un raggio per ogni punto).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Scrivo il complementare.</strong> È ciò che resta della retta togliendo $C$: siccome $C$ contiene tutti i numeri da $2$ in su (con il $2$ compreso), fuori restano tutti i numeri minori di $2$. Dunque $C^{c}=(-\infty,\ 2)$.</span>
+            <span class="esempio__passo"><strong>Provo prima con un punto concreto, $x_0=1{,}9$.</strong> La sua distanza dal bordo $2$ è $2-1{,}9=0{,}1$. Prendo come raggio la metà, cioè $\delta=0{,}05$: l'intorno è $(1{,}85;\ 1{,}95)$, e tutti i suoi punti sono minori di $2$, quindi stanno in $C^{c}$. Funziona. Ora rifaccio lo stesso conto con una lettera al posto di $1{,}9$.</span>
+            <span class="esempio__passo"><strong>Caso generale: scelgo il raggio.</strong> Sia $x_0$ un punto qualunque di $C^{c}$, cioè con $x_0 \lt 2$. Prendo $\delta=\dfrac{2-x_0}{2}$, cioè metà della distanza fra $x_0$ e $2$. È positivo: da $x_0 \lt 2$ segue $2-x_0 \gt 0$, e la metà di un numero positivo è positiva.</span>
+            <span class="esempio__passo"><strong>Calcolo l'estremo destro dell'intorno</strong> e verifico che sia ancora minore di $2$. Per sommare $x_0$ con la frazione lo riscrivo a denominatore $2$, cioè come $\frac{2x_0}{2}$ (Parte 0, cap. 2).</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          x_0+\delta &amp;= x_0+\frac{2-x_0}{2} &amp;&amp;\text{(sostituisco il } \delta \text{ scelto)}\\
+          &amp;= \frac{2x_0}{2}+\frac{2-x_0}{2} &amp;&amp;\text{(porto } x_0 \text{ a denominatore comune } 2)\\
+          &amp;= \frac{2x_0+2-x_0}{2} &amp;&amp;\text{(sommo i numeratori)}\\
+          &amp;= \frac{x_0+2}{2} &amp;&amp;\text{(riduco: } 2x_0-x_0=x_0)
+          \end{aligned}$$</div>
+          <p>Ora dimostro che questo numero è davvero minore di $2$, partendo dall'unica cosa che so su $x_0$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          x_0 &amp;\lt 2 &amp;&amp;\text{(ipotesi: } x_0 \text{ sta nel complementare)}\\
+          x_0+2 &amp;\lt 4 &amp;&amp;\text{(sommo } 2 \text{ a entrambi i membri)}\\
+          \frac{x_0+2}{2} &amp;\lt \frac{4}{2}=2 &amp;&amp;\text{(divido per } 2\text{, che è positivo: il verso NON cambia)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Traggo la conclusione sull'intorno.</strong> L'estremo destro di $I_\delta(x_0)$ è minore di $2$; a maggior ragione lo sono tutti i punti dell'intorno, che gli stanno a sinistra. Dunque $I_\delta(x_0)\subseteq(-\infty,2)=C^{c}$: il punto $x_0$ è interno.</span>
+            <span class="esempio__passo"><strong>Chiudo il ragionamento.</strong> Poiché $x_0$ era un punto qualunque di $C^{c}$, ogni punto di $C^{c}$ è interno, cioè $C^{c}$ è aperto (<span class="richiamo" data-sec="4.5">§4.5</span>). Per il ponte aperto ↔ chiuso, $C$ è chiuso.</span>
+          </p>
+          <div class="esempio__risultato">Poiché il complementare $C^{c} = (-\infty,2)$ è aperto, $C = [2, +\infty)$ è <strong>chiuso</strong>. (Controllo coerente per via diretta: l'unico "bordo" è $2$, che è di accumulazione e appartiene a $C$.)</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "Il punto di accumulazione deve stare nell'insieme"</div>
+          <p><strong>Falso.</strong> Il caso simbolo è $0$ per $E = \{1/n\}$: è di accumulazione ma $0 \notin E$. La definizione chiede punti di $E$ <em>diversi</em> da $x_0$ in ogni intorno, e non dice nulla sull'appartenenza di $x_0$. <em>Come evitarlo</em>: ricorda il palco (vuoto) e la folla, oppure le zanzare e il filamento. Il punto attorno a cui ci si accumula può benissimo essere "vuoto".</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "Se non è aperto, allora è chiuso"</div>
+          <p><strong>Falso.</strong> Aperto e chiuso non sono complementari logici. Controesempio decisivo: $[0,1)$ non è né aperto (fallisce in $0$) né chiuso (manca il punto di accumulazione $1$). E c'è pure chi è <em>entrambi</em>: $\varnothing$ e $\mathbb{R}$. <em>Come evitarlo</em>: verifica <strong>separatamente</strong> le due proprietà, ogni volta, senza dedurre una dall'altra.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare che un insieme finito è chiuso (mai aperto, se non vuoto)</div>
+          <p>Un insieme finito come $\{1, 2, 3\}$ <strong>è chiuso</strong>: non avendo punti di accumulazione, li contiene tutti "a vuoto". Ma <strong>non è aperto</strong>: nessuno dei suoi punti ha un intorno tutto contenuto nell'insieme (ogni intorno di $1$ contiene infiniti reali che non sono $1,2,3$). L'unico insieme finito e aperto è $\varnothing$. <em>Come evitarlo</em>: "finito ⇒ chiuso" è una scorciatoia sicura; "finito ⇒ aperto" è sempre sbagliato (tranne il vuoto).</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Trattare il modulo come "distributivo" sulle somme</div>
+          <p>Scrivere $|x + y| = |x| + |y|$ <strong>sempre</strong> è un errore: vale solo con $x,y$ concordi in segno. In generale $|x+y| \leq |x|+|y|$, e la disuguaglianza è stretta quando i segni sono opposti (es. $|3 + (-5)| = 2$ mentre $|3| + |-5| = 8$). <em>Come evitarlo</em>: al posto dell'uguale, riflesso automatico "$\leq$" (triangolare).</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Per la chiusura, passa al complementare</div>
+          <p>Dimostrare "$C$ è chiuso" direttamente (elencare i punti di accumulazione e verificare che stanno tutti dentro) può essere noioso. Spesso è più rapido mostrare che $C^{c}$ è aperto: preso un punto fuori da $C$, costruisci un intorno che resti tutto fuori. Se ci riesci per ogni punto, $C^{c}$ è aperto e quindi $C$ è chiuso.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Leggi aperto/chiuso dalla notazione degli intervalli</div>
+          <p>Tonda = estremo <strong>escluso</strong>, quadra = estremo <strong>incluso</strong> (ripasso dalla Parte 0). Regola pratica: tutte tonde (compreso $\pm\infty$, che è <em>sempre</em> tondo) ⇒ intervallo <strong>aperto</strong>; tutte quadre sugli estremi finiti ⇒ <strong>chiuso</strong>; una tonda e una quadra ⇒ <strong>né</strong> aperto <strong>né</strong> chiuso. Così $(a,b)$ aperto, $[a,b]$ chiuso, $[a,b)$ e $(a,b]$ né-né, $(-\infty,b]$ chiuso, $(a,+\infty)$ aperto.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sciogliere il modulo nelle disequazioni</div>
+          <p>Con $a &gt; 0$: $\ |f(x)| &lt; a \iff -a &lt; f(x) &lt; a$ (una sola catena, "verso l'interno"); $\ |f(x)| &gt; a \iff f(x) &lt; -a \ \text{oppure}\ f(x) &gt; a$ (due pezzi, "verso l'esterno"). Memorizza: <em>minore</em> = intervallo unico attorno allo zero; <em>maggiore</em> = due semirette.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconoscere un punto di accumulazione "a occhio"</div>
+          <p>$x_0$ è di accumulazione per $E$ se riesci a esibire una sequenza di punti di $E$, tutti diversi da $x_0$, che si avvicina indefinitamente a $x_0$. Per $\{1/n\}$ basta la sequenza $\tfrac1n \to 0$. Questo "test della sequenza" è spesso il modo più veloce, ed è proprio il ponte con le successioni e i <a href="04-limiti.html">limiti</a> che studieremo a breve.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Valore assoluto e topologia della retta</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Valore assoluto</strong>
+              <ul><li>|x| = distanza da 0</li><li>|x−y| = distanza x,y</li><li>|x+y| ≤ |x|+|y| (triangolare)</li><li>‖x|−|y‖ ≤ |x−y| (inversa)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Intorni</strong>
+              <ul><li>I<sub>δ</sub>(x₀) = (x₀−δ, x₀+δ)</li><li>bucato: 0 &lt; |x−x₀| &lt; δ</li><li>escludi "la casa", guarda i vicini</li><li>base della def. di limite</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Punti speciali</strong>
+              <ul><li>accumulazione: ogni intorno pesca punti di E ≠ x₀</li><li>può NON stare in E</li><li>isolato: sta in E, ma è solo</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Insiemi</strong>
+              <ul><li>aperto: ogni punto interno</li><li>chiuso: contiene E′ (compl. aperto)</li><li>né-né: [0,1); entrambi: ∅, ℝ</li><li>limitato: ∃M, |x| ≤ M</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Valore assoluto</strong>: $|x|$ = distanza da $0$, $|x-y|$ = distanza tra $x$ e $y$; proprietà chiave $|x+y| \leq |x|+|y|$ (triangolare) e $\big||x|-|y|\big| \leq |x-y|$ (inversa).</li>
+            <li><strong>Intorno</strong> $I_\delta(x_0) = (x_0-\delta, x_0+\delta)$; <strong>intorno bucato</strong> $\dot{I}_\delta(x_0)$: $0 &lt; |x-x_0| &lt; \delta$, cioè "escludi il centro". Serve perché nei limiti conta cosa succede <em>attorno</em> a $x_0$, non <em>in</em> $x_0$.</li>
+            <li><strong>Punto di accumulazione</strong>: ogni intorno bucato contiene punti di $E$. <em>Non</em> deve appartenere a $E$ (es. $0$ per $\{1/n\}$).</li>
+            <li><strong>Punto isolato</strong>: sta in $E$ ma ha un intorno privo di altri punti di $E$ (es. ogni intero in $\mathbb{Z}$).</li>
+            <li><strong>Aperto</strong> = ogni punto interno; <strong>chiuso</strong> = contiene tutti i punti di accumulazione = complementare aperto. Non sono opposti: $[0,1)$ è né-né, $\varnothing$ e $\mathbb{R}$ sono entrambi.</li>
+            <li><strong>Insieme finito</strong>: sempre chiuso, mai aperto (tranne $\varnothing$). <strong>Limitato</strong>: $\exists M &gt; 0$ con $|x| \leq M$ per ogni $x \in E$.</li>
+            <li><strong>Trucco</strong>: per la chiusura, mostra che il complementare è aperto.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $|{-7}|$, $\ |3 - 8|$, $\ |5 - 5|$ e $\ \big|\,|{-2}| - |6|\,\big|$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Applico ogni volta le tre mosse del <span class="richiamo" data-sec="4.1">§4.1</span>: faccio i conti dentro le sbarrette, guardo il segno del risultato, e tolgo il meno se serve.</p>
+              <div class="calcolo">$$\begin{aligned}
+              |{-7}| &amp;= 7 &amp;&amp;\text{(dentro c'è un numero negativo: gli tolgo il meno)}\\
+              |3-8| &amp;= |{-5}| = 5 &amp;&amp;\text{(prima la sottrazione, poi tolgo il meno)}\\
+              |5-5| &amp;= |0| = 0 &amp;&amp;\text{(dentro viene zero, che resta zero)}
+              \end{aligned}$$</div>
+              <p>L'ultima ha due valori assoluti annidati: si lavora <strong>da dentro verso fuori</strong>, prima quelli interni e solo alla fine quello esterno.</p>
+              <div class="calcolo">$$\begin{aligned}
+              \big|\,|{-2}|-|6|\,\big| &amp;= \big|\,2-|6|\,\big| &amp;&amp;\text{(sciolgo il primo modulo interno: } |{-2}|=2)\\
+              &amp;= |\,2-6\,| &amp;&amp;\text{(sciolgo il secondo modulo interno: } |6|=6)\\
+              &amp;= |{-4}| &amp;&amp;\text{(eseguo la sottrazione)}\\
+              &amp;= 4 &amp;&amp;\text{(tolgo il meno)}
+              \end{aligned}$$</div>
+              <p><strong>$|{-7}| = 7$, $\ |3-8| = 5$, $\ |5-5| = 0$, $\ \big|\,|{-2}|-|6|\,\big| = 4$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi la disequazione $|x - 4| \leq 3$ e scrivi l'insieme delle soluzioni come intervallo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>A parole la richiesta è: <em>quali punti distano da $4$ al massimo $3$?</em> Uso la regola del minore della tabella del <span class="richiamo" data-sec="4.1">§4.1</span>, "$|t| \leq a \iff -a \leq t \leq a$", mettendo al posto di $t$ tutto il blocco $x-4$ e al posto di $a$ il numero $3$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              |x-4| &amp;\leq 3 &amp;&amp;\text{(la disequazione di partenza)}\\
+              -3 \leq x-4 &amp;\leq 3 &amp;&amp;\text{(regola del minore, §4.1, con } t=x-4 \text{ e } a=3)\\
+              -3+4 \leq x &amp;\leq 3+4 &amp;&amp;\text{(sommo } 4 \text{ a tutti e tre i membri per isolare la } x)\\
+              1 \leq x &amp;\leq 7 &amp;&amp;\text{(eseguo le somme)}
+              \end{aligned}$$</div>
+              <p>Controllo: il centro $4$ sta a metà fra $1$ e $7$, e da ciascuno dista $3$. Gli estremi sono inclusi perché la disequazione aveva il $\leq$, non il minore stretto.</p>
+              <p><strong>$x \in [1, 7]$</strong> (è l'intorno "chiuso" di centro $4$ e raggio $3$).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scrivi l'intorno $I_\delta(x_0)$ di centro $x_0 = -1$ e raggio $\delta = 2$ come intervallo, e la condizione col valore assoluto che lo definisce.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Prima la condizione con il valore assoluto.</strong> Ricopio la definizione del <span class="richiamo" data-sec="4.2">§4.2</span> senza toccarla, $I_\delta(x_0) = \{x : |x - x_0| \lt \delta\}$, e poi sostituisco $x_0=-1$ e $\delta=2$. Attenzione: qui è dove ci si confonde. Al posto di $x_0$ va $-1$ <em>con il suo segno</em>, quindi il blocco $x-x_0$ diventa $x-(-1)$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              |x-x_0| &amp;\lt \delta &amp;&amp;\text{(definizione di intorno, §4.2)}\\
+              |x-(-1)| &amp;\lt 2 &amp;&amp;\text{(sostituisco } x_0=-1 \text{ e } \delta=2)\\
+              |x+1| &amp;\lt 2 &amp;&amp;\text{(meno per meno fa più, Parte 0, cap. 1)}
+              \end{aligned}$$</div>
+              <p><strong>Poi l'intervallo.</strong> Uso l'altra scrittura della stessa definizione, $I_\delta(x_0)=(x_0-\delta,\ x_0+\delta)$, cioè "centro meno raggio, centro più raggio".</p>
+              <div class="calcolo">$$\begin{aligned}
+              x_0-\delta &amp;= -1-2 = -3 &amp;&amp;\text{(estremo sinistro)}\\
+              x_0+\delta &amp;= -1+2 = 1 &amp;&amp;\text{(estremo destro)}
+              \end{aligned}$$</div>
+              <p>Controllo veloce: il punto di mezzo fra $-3$ e $1$ è $\frac{-3+1}{2}=-1$, cioè il centro richiesto, e la semilunghezza è $\frac{1-(-3)}{2}=2$, cioè il raggio richiesto.</p>
+              <p><strong>$I_2(-1) = (-3, 1) = \{x : |x+1| &lt; 2\}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Per ciascuno di questi intervalli di' se è aperto, chiuso, entrambi o nessuno dei due: $(2,7)$, $\ [0,4]$, $\ (1,5]$, $\ (-\infty, 3)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Uso la regola pratica della sezione <a href="#trucchi">Trucchi</a> (tutte tonde ⇒ aperto; tutte quadre sugli estremi finiti ⇒ chiuso; una tonda e una quadra ⇒ né l'uno né l'altro), ma per ciascuno dico anche <em>quale punto</em> decide la risposta.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>$(2,7)$: aperto.</strong> Entrambi gli estremi sono esclusi, quindi nessun punto dell'insieme sta sul bordo: attorno a ognuno c'è spazio libero. Non è chiuso, perché $2$ e $7$ sono di accumulazione ma non appartengono.</span>
+                <span class="esempio__passo"><strong>$[0,4]$: chiuso.</strong> Contiene entrambi gli estremi, cioè tutti i suoi punti di accumulazione. Non è aperto: in $0$ ogni intorno sborda a sinistra.</span>
+                <span class="esempio__passo"><strong>$(1,5]$: né aperto né chiuso.</strong> Non è aperto per colpa del $5$, che è incluso e sta sul bordo (ogni intorno di $5$ contiene numeri maggiori di $5$). Non è chiuso per colpa dell'$1$, che è di accumulazione ma è escluso. È la situazione speculare a quella di $[0,1)$ dell'Esempio 4.</span>
+                <span class="esempio__passo"><strong>$(-\infty,3)$: aperto.</strong> Dalla parte dell'infinito non c'è nessun bordo (il simbolo $\infty$ vuole <em>sempre</em> la parentesi tonda, perché non è un numero e non può essere incluso), e il $3$ è escluso. Non è chiuso, perché $3$ è di accumulazione e resta fuori.</span>
+              </p>
+              <p><strong>$(2,7)$ aperto; $[0,4]$ chiuso; $(1,5]$ né aperto né chiuso; $(-\infty,3)$ aperto.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $|2x - 1| &gt; 3$ ed esprimi le soluzioni come unione di intervalli.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Leggo la richiesta a parole.</strong> Il blocco $|2x-1|$ è la distanza fra il numero $2x-1$ e lo zero. La disequazione chiede che questa distanza sia <em>maggiore</em> di $3$: siamo nel caso "lontano da zero", che dà <strong>due</strong> pezzi separati (<span class="richiamo" data-sec="4.1">§4.1</span>).</span>
+                <span class="esempio__passo"><strong>Scelgo la regola e dico chi è chi.</strong> Uso la riga "Disequazione $\geq$" della tabella del <span class="richiamo" data-sec="4.1">§4.1</span>, nella versione stretta: "$|t| \gt a$" (con $a \gt 0$) equivale a "$t \lt -a$ oppure $t \gt a$". Al posto di $t$ metto tutto il blocco $2x-1$, al posto di $a$ metto $3$. Ottengo due disequazioni da risolvere separatamente.</span>
+                <span class="esempio__passo"><strong>Primo caso: $2x-1 \lt -3$.</strong></span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              2x-1 &amp;\lt -3 &amp;&amp;\text{(primo pezzo)}\\
+              2x &amp;\lt -3+1 = -2 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}\\
+              x &amp;\lt -1 &amp;&amp;\text{(divido per } 2\text{, che è positivo: il verso NON cambia)}
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Secondo caso: $2x-1 \gt 3$.</strong></span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              2x-1 &amp;\gt 3 &amp;&amp;\text{(secondo pezzo)}\\
+              2x &amp;\gt 3+1 = 4 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}\\
+              x &amp;\gt 2 &amp;&amp;\text{(divido per } 2\text{, che è positivo: il verso NON cambia)}
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Metto insieme.</strong> Le due condizioni erano legate da "oppure", quindi il risultato è l'<strong>unione</strong> dei due pezzi, non l'intersezione. Attenzione: qui è dove ci si confonde — scrivere "$x \lt -1$ e $x \gt 2$" non darebbe nessuna soluzione, perché nessun numero può essere contemporaneamente minore di $-1$ e maggiore di $2$.</span>
+                <span class="esempio__passo"><strong>Controllo con un numero.</strong> Provo $x=3$, che sta nel secondo pezzo: $|2\cdot3-1|=|5|=5$, e in effetti $5 \gt 3$. Provo $x=0$, che non sta in nessuno dei due: $|2\cdot0-1|=|-1|=1$, e in effetti $1$ non è maggiore di $3$.</span>
+              </p>
+              <p><strong>$x \in (-\infty, -1) \cup (2, +\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina l'insieme dei punti di accumulazione $E'$ dell'insieme $E = (0, 1] \cup \{3\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>L'insieme è fatto di due parti molto diverse: un intervallo, $(0,1]$, e un punto solitario, il $3$. Le esamino separatamente con la definizione del <span class="richiamo" data-sec="4.3">§4.3</span>.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>I punti interni all'intervallo.</strong> Prendo un $x_0$ con $0 \lt x_0 \lt 1$, per esempio $x_0=\frac12$. Qualunque raggio $\delta$ io scelga, l'intorno $I_\delta(x_0)$ taglia $(0,1]$ in un intervallino; e un intervallo, per quanto corto, contiene infiniti numeri reali, quindi ne contiene certamente almeno uno diverso da $x_0$. Dunque ogni punto interno è di accumulazione.</span>
+                <span class="esempio__passo"><strong>L'estremo $1$, che appartiene a $E$.</strong> Preso un raggio $\delta \gt 0$, il numero $1-\frac{\delta}{2}$ dista da $1$ esattamente $\frac{\delta}{2} \lt \delta$, è diverso da $1$ e (per $\delta$ abbastanza piccolo) sta in $(0,1]$. Quindi ogni intorno bucato di $1$ incontra $E$: anche $1$ è di accumulazione.</span>
+                <span class="esempio__passo"><strong>L'estremo $0$, che NON appartiene a $E$.</strong> Qui vale lo stesso ragionamento, specchiato: il numero $\frac{\delta}{2}$ dista da $0$ esattamente $\frac{\delta}{2} \lt \delta$ ed è positivo, quindi sta in $(0,1]$. Anche $0$ è di accumulazione. Che non appartenga a $E$ è irrilevante: la definizione del <span class="richiamo" data-sec="4.3">§4.3</span> non chiede l'appartenenza (è il caso del palco vuoto).</span>
+                <span class="esempio__passo"><strong>Il punto $3$.</strong> Provo il raggio $\delta=1$: l'intorno è $I_1(3)=(2,\ 4)$, e di $E$ contiene solo il $3$ stesso, perché tutto $(0,1]$ sta a sinistra del $2$. L'intorno <em>bucato</em> è quindi privo di punti di $E$, e basta un solo raggio che fallisce per concludere: $3$ non è di accumulazione. È invece un punto isolato di $E$ (<span class="richiamo" data-sec="4.4">§4.4</span>).</span>
+                <span class="esempio__passo"><strong>I punti fuori.</strong> Un punto come $x_0=2$ dista almeno $1$ da tutto $E$, quindi con $\delta=\frac12$ si ottiene un intorno vuoto di punti di $E$: non è di accumulazione. Lo stesso per ogni altro punto esterno.</span>
+              </p>
+              <p>Raccogliendo: sono di accumulazione tutti e soli i punti da $0$ a $1$, estremi compresi.</p>
+              <p><strong>$E' = [0, 1]$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Stabilisci se $A = \left\{\dfrac{1}{n} : n \geq 1\right\}$ è chiuso. Motiva.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Ricordo cosa devo verificare.</strong> "Chiuso" significa $A'\subseteq A$, cioè: tutti i punti di accumulazione di $A$ appartengono ad $A$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Quindi il lavoro è in due mosse: trovare $A'$, poi controllare se sta dentro $A$.</span>
+                <span class="esempio__passo"><strong>Trovo $A'$.</strong> Nell'Esempio 3 abbiamo dimostrato due cose: che $0$ è di accumulazione per $A$, e che ogni elemento $\frac1n$ è invece isolato. Non ci sono altri candidati, perché un punto $x_0$ diverso da $0$ e non appartenente ad $A$ ha sempre un po' di spazio vuoto attorno. Quindi $A'=\{0\}$.</span>
+                <span class="esempio__passo"><strong>Controllo l'appartenenza.</strong> Lo zero appartiene ad $A$? No: gli elementi di $A$ sono le frazioni $\frac1n$, e una frazione con numeratore $1$ non vale mai zero. Quindi $0\notin A$.</span>
+                <span class="esempio__passo"><strong>Concludo.</strong> C'è un punto di accumulazione che resta fuori dall'insieme, cioè $A'\not\subseteq A$: la condizione di chiusura non è soddisfatta.</span>
+              </p>
+              <p><strong>$A$ non è chiuso.</strong> Nota però quanto poco manca: basta aggiungere il punto che mancava. L'insieme $A\cup\{0\}$ ha lo stesso derivato $\{0\}$, che ora gli appartiene, quindi è chiuso.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Verifica su un esempio numerico la disuguaglianza triangolare con $x = -6$ e $y = 4$, e di' se è stretta o un'uguaglianza.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La disuguaglianza da controllare è $|x+y| \leq |x|+|y|$ (<span class="richiamo" data-sec="4.1">§4.1</span>). Calcolo <strong>separatamente</strong> i due membri e solo alla fine li confronto: è l'unico modo per non fare confusione.</p>
+              <div class="calcolo">$$\begin{aligned}
+              |x+y| &amp;= |-6+4| &amp;&amp;\text{(membro di sinistra: prima sommo, poi tolgo il segno)}\\
+              &amp;= |-2| = 2 &amp;&amp;\text{(la somma vale } -2\text{, il suo modulo è } 2)\\
+              |x|+|y| &amp;= |-6|+|4| &amp;&amp;\text{(membro di destra: prima tolgo i segni, poi sommo)}\\
+              &amp;= 6+4 = 10 &amp;&amp;\text{(eseguo la somma)}
+              \end{aligned}$$</div>
+              <p>Confronto: $2 \leq 10$, quindi la disuguaglianza è verificata. Ed è <strong>stretta</strong>, cioè vale il minore vero e proprio ($2 \lt 10$), non l'uguaglianza.</p>
+              <p><strong>Perché è stretta?</strong> Perché $x=-6$ e $y=4$ hanno segni opposti: nella somma si compensano in parte ($-6$ tira a sinistra, $4$ tira a destra), mentre i moduli hanno perso il segno e non si compensano più. L'uguaglianza si avrebbe solo con due numeri dello stesso segno: per esempio con $x=-6$ e $y=-4$ si ottiene $|-10|=10$ a sinistra e $6+4=10$ a destra.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che l'insieme $A = (a, b)$ è aperto, per ogni $a &lt; b$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Cosa vogliamo dimostrare.</strong> Che in un intervallo con gli estremi esclusi nessun punto è "appiccicato al bordo": attorno a ciascuno c'è sempre un po' di spazio libero ancora dentro l'intervallo.</p>
+              <p><strong>Idea della strategia.</strong> La definizione di aperto (<span class="richiamo" data-sec="4.5">§4.5</span>) ci dà un punto e ci chiede di costruire un raggio. Il raggio giusto è suggerito dal disegno: guardo quanto dista il punto dal bordo sinistro e quanto dal bordo destro, e prendo la <em>più piccola</em> delle due distanze — così l'intorno non sborda né da una parte né dall'altra.</p>
+              <p><strong>Cosa ci servirà.</strong> La definizione di aperto e quella di intorno (<span class="richiamo" data-sec="4.5">§4.5</span> e <span class="richiamo" data-sec="4.2">§4.2</span>); il fatto che il minimo fra due numeri positivi è positivo; e la regola che cambiando segno a entrambi i membri di una disuguaglianza il verso si inverte (Parte 0, cap. 6).</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Primo passo: prendo il punto e scelgo il raggio.</strong> Sia $x_0$ un punto qualsiasi di $(a,b)$, cioè con $a \lt x_0 \lt b$. Pongo $\delta=\min\{x_0-a,\ b-x_0\}$. È positivo, perché da $a \lt x_0$ segue $x_0-a \gt 0$, da $x_0 \lt b$ segue $b-x_0 \gt 0$, e il minimo fra due numeri positivi è positivo.</span>
+                <span class="esempio__passo"><strong>Secondo passo: controllo che l'intorno non sbordi a sinistra.</strong> Essendo $\delta$ il minimo dei due numeri, in particolare non supera il primo: $\delta\leq x_0-a$. Da qui ricavo dove finisce l'estremo sinistro dell'intorno.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              \delta &amp;\leq x_0-a &amp;&amp;\text{(il minimo non supera nessuno dei due)}\\
+              -\delta &amp;\geq -(x_0-a) = a-x_0 &amp;&amp;\text{(cambio segno a entrambi i membri: il verso si inverte)}\\
+              x_0-\delta &amp;\geq a &amp;&amp;\text{(sommo } x_0 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Terzo passo: stesso controllo a destra</strong>, con il secondo dei due numeri.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              \delta &amp;\leq b-x_0 &amp;&amp;\text{(il minimo non supera nessuno dei due)}\\
+              x_0+\delta &amp;\leq b &amp;&amp;\text{(sommo } x_0 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Quarto passo: metto insieme.</strong> L'intorno è $I_\delta(x_0)=(x_0-\delta,\ x_0+\delta)$, e i suoi punti $x$ soddisfano $x_0-\delta \lt x \lt x_0+\delta$. Incollando le due disuguaglianze appena ottenute ricavo $a \leq x_0-\delta \lt x \lt x_0+\delta \leq b$, cioè $a \lt x \lt b$ per ogni $x$ dell'intorno.</span>
+                <span class="esempio__passo"><strong>Attenzione: qui è dove ci si confonde.</strong> Le disuguaglianze con gli estremi sono larghe ($\leq$), ma quelle con $x$ sono strette ($\lt$): è proprio questo che garantisce $a \lt x$ e non solo $a \leq x$, cioè che l'intorno non contiene mai gli estremi $a$ e $b$, che infatti non appartengono all'insieme.</span>
+                <span class="esempio__passo"><strong>Quinto passo: concludo.</strong> $I_\delta(x_0)\subseteq(a,b)$, e $x_0$ era un punto qualunque. Quindi ogni punto è interno.</span>
+              </p>
+              <p><strong>Riassunto:</strong> abbiamo preso un punto qualsiasi, misurato le sue due distanze dai bordi, scelto come raggio la minore delle due, e verificato che con quel raggio l'intorno resta tutto dentro. Ogni punto è interno ⇒ $(a,b)$ è aperto. ∎</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova l'insieme dei punti di accumulazione di $\mathbb{Q}$ (i razionali) in $\mathbb{R}$. Sorprenditi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Lo strumento che useremo.</strong> Nel <a href="01-numeri-reali-struttura.html">capitolo 1</a> hai visto la <em>densità</em> di $\mathbb{Q}$ in $\mathbb{R}$: fra due numeri reali distinti, per quanto vicini, c'è sempre almeno un numero razionale. È questo il fatto che fa tutto il lavoro.</span>
+                <span class="esempio__passo"><strong>Prendo un reale qualunque $x_0$ e un raggio qualunque $\delta \gt 0$.</strong> L'intorno è $(x_0-\delta,\ x_0+\delta)$. Voglio trovarci dentro un razionale diverso da $x_0$.</span>
+                <span class="esempio__passo"><strong>Applico la densità alla metà destra dell'intorno</strong>, cioè all'intervallo $\left(x_0,\ x_0+\delta\right)$, i cui estremi sono due reali distinti. Esiste quindi un razionale $q$ con $x_0 \lt q \lt x_0+\delta$. Questo $q$ è diverso da $x_0$ (gli sta strettamente a destra) e dista da $x_0$ meno di $\delta$: è esattamente il testimone richiesto dalla definizione del <span class="richiamo" data-sec="4.3">§4.3</span>.</span>
+                <span class="esempio__passo"><strong>Concludo che ogni reale è di accumulazione.</strong> Il ragionamento vale per qualunque $x_0$ e qualunque $\delta$, quindi $\mathbb{Q}'=\mathbb{R}$. La sorpresa è doppia: sono di accumulazione anche i razionali stessi (nessun razionale è isolato) <em>e</em> tutti gli irrazionali, come $\sqrt2$ o $\pi$, che in $\mathbb{Q}$ non ci stanno affatto.</span>
+                <span class="esempio__passo"><strong>Ne deduco che $\mathbb{Q}$ non è chiuso.</strong> Chiuso significherebbe $\mathbb{Q}'\subseteq\mathbb{Q}$, cioè $\mathbb{R}\subseteq\mathbb{Q}$: falso, perché $\sqrt2$ è reale ma non razionale (cap. 1).</span>
+              </p>
+              <p><strong>$\mathbb{Q}' = \mathbb{R}$, e $\mathbb{Q}$ non è chiuso.</strong> (Non è nemmeno aperto: ogni intorno di un razionale contiene irrazionali, quindi nessun punto di $\mathbb{Q}$ è interno.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che l'unione di due insiemi chiusi $C_1, C_2$ è ancora un insieme chiuso, usando i complementari.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Cosa vogliamo dimostrare.</strong> Che mettendo insieme due insiemi che si tengono i propri bordi, l'insieme risultante se li tiene ancora.</p>
+              <p><strong>Idea della strategia.</strong> Lavorare direttamente con i punti di accumulazione dell'unione sarebbe scomodo. Passiamo allora "dall'altra parte": il ponte del §4.5 dice che chiuso equivale a "complementare aperto", e il complementare di un'unione è un'<em>intersezione</em> (De Morgan). Ci resta quindi da dimostrare una cosa sola e facile: che l'intersezione di due aperti è aperta.</p>
+              <p><strong>Cosa ci servirà.</strong> Il ponte aperto ↔ chiuso (<span class="richiamo" data-sec="4.5">§4.5</span>); le leggi di De Morgan (Parte 0, cap. 1); la definizione di insieme aperto (<span class="richiamo" data-sec="4.5">§4.5</span>); il fatto che il minimo fra due numeri positivi è positivo.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Primo passo: traduco l'ipotesi.</strong> $C_1$ e $C_2$ sono chiusi, quindi per il ponte del <span class="richiamo" data-sec="4.5">§4.5</span> i loro complementari $C_1^{c}$ e $C_2^{c}$ sono aperti.</span>
+                <span class="esempio__passo"><strong>Secondo passo: decido cosa dimostrare.</strong> Sempre per il ponte, letto al contrario, mi basterà far vedere che $(C_1\cup C_2)^{c}$ è aperto: ne seguirà che $C_1\cup C_2$ è chiuso.</span>
+                <span class="esempio__passo"><strong>Terzo passo: riscrivo quel complementare.</strong> Per le leggi di De Morgan il complementare di un'unione è l'intersezione dei complementari: $(C_1\cup C_2)^{c}=C_1^{c}\cap C_2^{c}$. A parole: stare fuori da "$C_1$ oppure $C_2$" significa stare fuori da $C_1$ <em>e</em> fuori da $C_2$.</span>
+                <span class="esempio__passo"><strong>Quarto passo: dimostro che l'intersezione di due aperti è aperta.</strong> Prendo un punto $x$ in $C_1^{c}\cap C_2^{c}$. Poiché $x$ sta in $C_1^{c}$, che è aperto, esiste un raggio $\delta_1 \gt 0$ con $I_{\delta_1}(x)\subseteq C_1^{c}$. Poiché $x$ sta anche in $C_2^{c}$, esiste un raggio $\delta_2 \gt 0$ con $I_{\delta_2}(x)\subseteq C_2^{c}$. Ho due raggi, ma me ne serve uno solo che vada bene per tutti e due: prendo il più piccolo.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              \delta &amp;= \min\{\delta_1,\ \delta_2\} \gt 0 &amp;&amp;\text{(il minimo fra due numeri positivi è positivo)}\\
+              I_\delta(x) &amp;\subseteq I_{\delta_1}(x) \subseteq C_1^{c} &amp;&amp;\text{(un intorno più stretto è contenuto in uno più largo)}\\
+              I_\delta(x) &amp;\subseteq I_{\delta_2}(x) \subseteq C_2^{c} &amp;&amp;\text{(stesso motivo, con l'altro raggio)}\\
+              I_\delta(x) &amp;\subseteq C_1^{c}\cap C_2^{c} &amp;&amp;\text{(sta in entrambi, quindi nella loro intersezione)}
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Quinto passo: concludo.</strong> Ogni punto di $C_1^{c}\cap C_2^{c}$ è interno, quindi quell'insieme è aperto. Ma quell'insieme è proprio $(C_1\cup C_2)^{c}$, e un insieme con complementare aperto è chiuso.</span>
+              </p>
+              <p><strong>Riassunto:</strong> chiusi ⇒ complementari aperti ⇒ (De Morgan) il complementare dell'unione è l'intersezione di due aperti ⇒ prendendo il minimo dei due raggi si vede che è aperta ⇒ $C_1\cup C_2$ è chiuso. ∎</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Usando la disuguaglianza triangolare, dimostra che per ogni $x,y,z$ vale $|x - z| \leq |x - y| + |y - z|$ (disuguaglianza triangolare per le distanze).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Cosa vogliamo dimostrare.</strong> Che andare da $x$ a $z$ direttamente non è mai più lungo che passare da un terzo punto $y$. È la versione "distanze" della triangolare.</p>
+              <p><strong>Idea della strategia.</strong> La triangolare parla di somme, qui c'è una differenza. Usiamo lo stesso trucco della triangolare inversa: <em>aggiungo e tolgo</em> la stessa quantità $y$, così la differenza $x-z$ si spezza nei due pezzi che mi interessano.</p>
+              <p><strong>Cosa ci servirà.</strong> Solo la disuguaglianza triangolare $|A+B|\leq|A|+|B|$ della sezione <a href="#dimostrazioni">Dimostrazioni</a>, e l'interpretazione di $|x-y|$ come distanza (<span class="richiamo" data-sec="4.1">§4.1</span>).</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Primo passo: riscrivo la differenza.</strong> Scrivo $x-z=x-y+y-z$: ho inserito $-y+y$, che vale zero, quindi il numero non è cambiato. Raggruppo poi in due blocchi: $x-z=(x-y)+(y-z)$.</span>
+                <span class="esempio__passo"><strong>Secondo passo: applico la triangolare.</strong> Nella formula $|A+B|\leq|A|+|B|$ metto al posto di $A$ il blocco $x-y$ e al posto di $B$ il blocco $y-z$.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              |x-z| &amp;= \big|(x-y)+(y-z)\big| &amp;&amp;\text{(ho solo riscritto } x-z)\\
+              &amp;\leq |x-y|+|y-z| &amp;&amp;\text{(disuguaglianza triangolare con } A=x-y,\ B=y-z)
+              \end{aligned}$$</div>
+              <p><strong>Controllo numerico:</strong> con $x=1$, $y=8$, $z=3$ si ha a sinistra $|1-3|=2$ e a destra $|1-8|+|8-3|=7+5=12$; in effetti $2\leq12$. Il percorso che passa per $8$ è molto più lungo di quello diretto.</p>
+              <p><strong>Interpretazione:</strong> la distanza diretta fra $x$ e $z$ non supera la distanza fatta passando per un punto intermedio $y$. Se $y$ sta fra $x$ e $z$ le due quantità coincidono; altrimenti il giro è più lungo. ∎</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $E = \left\{(-1)^n \dfrac{n}{n+1} : n \in \mathbb{N},\ n \geq 1\right\}$. Determina i punti di accumulazione di $E$ e stabilisci se $E$ è chiuso.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Primo passo: capisco com'è fatto l'insieme, scrivendo i primi elementi.</strong> Non si può ragionare su una formula senza sapere che numeri produce.</p>
+              <div class="calcolo">$$\begin{aligned}
+              n=1:\quad &amp;(-1)^1\cdot\tfrac{1}{2} = -\tfrac12 &amp;&amp;\text{(esponente dispari: segno meno)}\\
+              n=2:\quad &amp;(-1)^2\cdot\tfrac{2}{3} = +\tfrac23 &amp;&amp;\text{(esponente pari: segno più)}\\
+              n=3:\quad &amp;(-1)^3\cdot\tfrac{3}{4} = -\tfrac34 &amp;&amp;\text{(segno meno)}\\
+              n=4:\quad &amp;(-1)^4\cdot\tfrac{4}{5} = +\tfrac45 &amp;&amp;\text{(segno più)}
+              \end{aligned}$$</div>
+              <p>Si vede già la struttura: i termini saltano da una parte all'altra dello zero, e in valore assoluto si avvicinano sempre di più a $1$. Sospettiamo quindi due punti di accumulazione, $+1$ e $-1$.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Secondo passo: riscrivo la parte senza segno in modo più parlante.</strong> Il fattore $(-1)^n$ decide solo il segno. La frazione $\frac{n}{n+1}$ la spezzo aggiungendo e togliendo $1$ al numeratore, così da far comparire la distanza da $1$.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              \frac{n}{n+1} &amp;= \frac{(n+1)-1}{n+1} &amp;&amp;\text{(riscrivo } n \text{ come } (n+1)-1)\\
+              &amp;= \frac{n+1}{n+1}-\frac{1}{n+1} &amp;&amp;\text{(spezzo la frazione, Parte 0, cap. 2)}\\
+              &amp;= 1-\frac{1}{n+1} &amp;&amp;\text{(la prima frazione vale } 1)
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Terzo passo: i termini con $n$ pari.</strong> Il segno è $+$, quindi valgono $1-\frac{1}{n+1}$, cioè poco meno di $1$. Calcolo la loro distanza dal candidato $1$.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              \left|1-\left(1-\tfrac{1}{n+1}\right)\right| &amp;= \left|\tfrac{1}{n+1}\right| = \frac{1}{n+1} &amp;&amp;\text{(distanza dal punto } 1\text{, §4.1)}\\
+              \frac{1}{n+1} &amp;\lt \delta \iff n+1 \gt \frac{1}{\delta} &amp;&amp;\text{(passo ai reciproci: il verso si inverte, Parte 0, cap. 6)}
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Un naturale $n+1$ più grande di $\frac1\delta$ esiste sempre (proprietà di Archimede, cap. 1), e possiamo sceglierlo con $n$ pari (se il primo che troviamo è dispari, basta prendere il successivo: la distanza diventa solo più piccola). Quindi ogni intorno di $1$ contiene elementi di $E$ diversi da $1$: <strong>$1$ è di accumulazione</strong>.</span>
+                <span class="esempio__passo"><strong>Quarto passo: i termini con $n$ dispari.</strong> Il segno è $-$, quindi valgono $-\left(1-\frac{1}{n+1}\right)=-1+\frac{1}{n+1}$. La loro distanza da $-1$ è $\left|-1+\frac{1}{n+1}-(-1)\right|=\frac{1}{n+1}$: esattamente la stessa quantità di prima, che si rende piccola a piacere con lo stesso ragionamento. Quindi <strong>$-1$ è di accumulazione</strong>.</span>
+                <span class="esempio__passo"><strong>Quinto passo: non ci sono altri punti di accumulazione.</strong> Ogni elemento di $E$ è isolato, perché fra un termine e il successivo dello stesso segno c'è sempre un po' di spazio vuoto, e i termini di segno opposto stanno dall'altra parte dello zero. E un punto che non sia $1$, $-1$ o un elemento di $E$ ha sempre attorno a sé un intorno libero.</span>
+                <span class="esempio__passo"><strong>Sesto passo: rispondo sulla chiusura.</strong> Nessun elemento di $E$ vale esattamente $1$ o $-1$: infatti $1-\frac{1}{n+1}$ è sempre strettamente minore di $1$, perché gli si sottrae una quantità positiva. Quindi $1\notin E$ e $-1\notin E$.</span>
+              </p>
+              <p><strong>$E' = \{-1, 1\}$.</strong> Poiché $\{-1,1\} \not\subseteq E$ (né $1$ né $-1$ appartengono a $E$), l'insieme <strong>non è chiuso</strong>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dato $A = \{x \in \mathbb{R} : |x - 2| \geq 1\}$: (a) scrivi $A$ come unione di intervalli; (b) di' se è aperto o chiuso; (c) determina i suoi punti di accumulazione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>(a) Scrivo $A$ come unione di intervalli.</strong> A parole, $A$ è l'insieme dei punti che distano da $2$ <em>almeno</em> $1$: siamo nel caso "lontano", che dà due pezzi separati (<span class="richiamo" data-sec="4.1">§4.1</span>). Uso la riga "Disequazione $\geq$" della tabella del <span class="richiamo" data-sec="4.1">§4.1</span>, mettendo al posto di $t$ il blocco $x-2$ e al posto di $a$ il numero $1$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x-2 &amp;\leq -1 &amp;&amp;\text{(primo pezzo)}\\
+              x &amp;\leq -1+2 = 1 &amp;&amp;\text{(sommo } 2 \text{ a entrambi i membri)}\\[4pt]
+              x-2 &amp;\geq 1 &amp;&amp;\text{(secondo pezzo)}\\
+              x &amp;\geq 1+2 = 3 &amp;&amp;\text{(sommo } 2 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p>Le due condizioni erano legate da "oppure", quindi $A$ è l'unione dei due pezzi. Gli estremi $1$ e $3$ sono <em>inclusi</em>, perché la disequazione di partenza aveva il $\geq$ e non il maggiore stretto: $A = (-\infty,\ 1]\cup[3,\ +\infty)$. Controllo con un numero: $x=1$ dà $|1-2|=1$, che soddisfa $\geq1$, quindi $1$ ci sta davvero; $x=2$ dà $|2-2|=0$, che non soddisfa, e infatti $2$ è nel buco centrale.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(b) Aperto o chiuso?</strong> Verifico le due cose separatamente, come sempre. <em>Non è aperto</em>: il punto $1$ appartiene ad $A$, ma qualunque intorno $(1-\delta,\ 1+\delta)$ contiene il numero $1+\frac{\delta}{2}$, che è maggiore di $1$ e minore di $3$ (per $\delta$ piccolo), quindi sta nel buco e non in $A$. Stesso problema in $3$.</span>
+                <span class="esempio__passo"><em>È chiuso</em>: la via rapida è il ponte del <span class="richiamo" data-sec="4.5">§4.5</span>. Il complementare di $A$ è l'intervallo aperto $(1,\ 3)$, che sappiamo essere aperto (Esercizio 2.9). Un insieme con complementare aperto è chiuso.</span>
+                <span class="esempio__passo"><strong>(c) Punti di accumulazione.</strong> $A$ è formato da due semirette, cioè contiene interi intervalli: ogni suo punto ha, in ogni intorno, infiniti altri punti di $A$, quindi è di accumulazione. E fuori da $A$ non ce ne sono: un punto del buco, per esempio $2$, dista almeno $1$ da tutto $A$, quindi con $\delta=\frac12$ si ottiene un intorno vuoto di punti di $A$. Dunque $A'=A$ — il che, per la definizione del <span class="richiamo" data-sec="4.5">§4.5</span>, conferma una seconda volta che $A$ è chiuso.</span>
+              </p>
+              <p><strong>$A = (-\infty,1]\cup[3,+\infty)$, chiuso (non aperto), $A' = A$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostra la disuguaglianza triangolare inversa $\big|\,|x|-|y|\,\big| \leq |x-y|$ partendo dalla disuguaglianza triangolare, e stabilisci se l'insieme $B = \{x \in \mathbb{R} : |x| &lt; 5\}$ è limitato.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Parte 1 — la disuguaglianza inversa.</strong> L'unico attrezzo disponibile è la triangolare, che però parla di somme; il trucco è far comparire una somma aggiungendo e togliendo $y$.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Riscrivo $x$ come somma:</strong> $x=(x-y)+y$. È lecito perché ho aggiunto $-y$ e $+y$, cioè zero in totale.</span>
+                <span class="esempio__passo"><strong>Applico la triangolare</strong> $|A+B|\leq|A|+|B|$ con $A=x-y$ al posto di $A$ e $B=y$ al posto di $B$, poi sottraggo $|y|$ a entrambi i membri.</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+              |x| &amp;= \big|(x-y)+y\big| \leq |x-y|+|y| &amp;&amp;\text{(triangolare con } A=x-y,\ B=y)\\
+              |x|-|y| &amp;\leq |x-y| &amp;&amp;\text{(sottraggo } |y| \text{ a entrambi i membri)} \qquad (1)
+              \end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Ripeto a lettere scambiate</strong> ($y$ dove c'era $x$ e viceversa): ottengo $|y|-|x|\leq|y-x|$. E $|y-x|=|x-y|$, perché $y-x$ è l'opposto di $x-y$ e il modulo non distingue un numero dal suo opposto (simmetria $|-t|=|t|$, <span class="richiamo" data-sec="4.1">§4.1</span>). Chiamo (2) la disuguaglianza $|y|-|x|\leq|x-y|$.</span>
+                <span class="esempio__passo"><strong>Metto insieme (1) e (2).</strong> Posto $t=|x|-|y|$, la (1) dice $t\leq|x-y|$ e la (2) dice $-t\leq|x-y|$. Ma per la definizione del <span class="richiamo" data-sec="4.1">§4.1</span> il valore assoluto $|t|$ coincide con $t$ oppure con $-t$: in entrambi i casi è uno dei due numeri che stanno sotto la soglia. Quindi $\big|\,|x|-|y|\,\big|\leq|x-y|$.</span>
+              </p>
+              <p><strong>Parte 2 — la limitatezza di $B$.</strong> Prima scrivo $B$ in forma di intervallo, poi esibisco il recinto.</p>
+              <div class="calcolo">$$\begin{aligned}
+              |x| &amp;\lt 5 &amp;&amp;\text{(la condizione che definisce } B)\\
+              -5 \lt x &amp;\lt 5 &amp;&amp;\text{(regola del minore, §4.1, con } t=x \text{ e } a=5)\\
+              B &amp;= (-5,\ 5) &amp;&amp;\text{(scrivo l'insieme come intervallo)}
+              \end{aligned}$$</div>
+              <p>Per la definizione del <span class="richiamo" data-sec="4.6">§4.6</span> devo trovare un $M \gt 0$ con $|x|\leq M$ per ogni $x\in B$. Scelgo $M=5$: ogni elemento di $B$ soddisfa $|x| \lt 5$, e a maggior ragione $|x|\leq5$. Il recinto esiste, quindi <strong>$B$ è limitato</strong>. ∎</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 2.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Fornisci, motivando, un esempio di: (a) insieme infinito ma chiuso; (b) insieme limitato ma non chiuso; (c) insieme illimitato e aperto; (d) insieme né aperto né chiuso.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>In esercizi come questo non basta nominare l'insieme: bisogna dire <em>perché</em> soddisfa la richiesta, citando la definizione usata. Ecco una risposta per ciascun punto.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a) Infinito ma chiuso: $\mathbb{Z}$.</strong> È infinito perché gli interi non finiscono mai. È chiuso perché ogni intero è isolato (Esempio 5), quindi $\mathbb{Z}'=\varnothing$, e l'insieme vuoto è contenuto in qualunque insieme: la condizione $\mathbb{Z}'\subseteq\mathbb{Z}$ del <span class="richiamo" data-sec="4.5">§4.5</span> è soddisfatta. Va bene anche $[0,+\infty)$, che è infinito e ha come derivato se stesso.</span>
+                <span class="esempio__passo"><strong>(b) Limitato ma non chiuso: $(0,1)$.</strong> È limitato perché con $M=1$ si ha $|x|\leq1$ per ogni suo elemento (<span class="richiamo" data-sec="4.6">§4.6</span>). Non è chiuso perché $0$ e $1$ sono di accumulazione (ogni loro intorno pesca punti dell'intervallo) ma non gli appartengono. Va bene anche $\left\{\frac1n\right\}$, limitato da $M=1$ e privo del suo unico punto di accumulazione $0$ (Esercizio 2.7).</span>
+                <span class="esempio__passo"><strong>(c) Illimitato e aperto: $(0,+\infty)$.</strong> È illimitato perché, comunque si scelga $M$, il numero $M+1$ appartiene all'insieme e ha modulo maggiore di $M$. È aperto perché ogni suo punto $x_0$ ha spazio libero attorno: basta prendere $\delta=\frac{x_0}{2}$ e l'intorno $\left(\frac{x_0}{2},\ \frac{3x_0}{2}\right)$ resta fatto di numeri positivi. Va bene anche $\mathbb{R}$ stesso.</span>
+                <span class="esempio__passo"><strong>(d) Né aperto né chiuso: $[0,1)$.</strong> Non è aperto perché lo $0$, che gli appartiene, non ha nessun intorno tutto dentro (ogni intorno contiene numeri negativi). Non è chiuso perché $1$ è di accumulazione ma non gli appartiene. I dettagli sono nel <span class="richiamo" data-sec="4.5">§4.5</span> e nell'Esempio 4.</span>
+              </p>
+              <p><strong>Nota finale</strong>: questi quattro casi mostrano che "limitato/illimitato" e "aperto/chiuso" sono classificazioni <em>indipendenti</em>. Sapere che un insieme è limitato non dice nulla sul fatto che sia aperto o chiuso, e viceversa: ogni combinazione è possibile.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) La disequazione $|x - 5| &lt; 2$ ha come soluzioni:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$x &lt; 3$ oppure $x &gt; 7$</button>
+              <button class="quiz-option" data-correct="true">$3 &lt; x &lt; 7$</button>
+              <button class="quiz-option" data-correct="false">$x = 5$</button>
+              <button class="quiz-option" data-correct="false">$-2 &lt; x &lt; 2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>"$|t| &lt; a$" equivale a "$-a &lt; t &lt; a$": qui $-2 &lt; x-5 &lt; 2$, cioè $3 &lt; x &lt; 7$. È l'intorno $I_2(5)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Per l'insieme $E = \{1/n : n \geq 1\}$, il punto $0$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un punto isolato di $E$</button>
+              <button class="quiz-option" data-correct="true">un punto di accumulazione di $E$ che non appartiene a $E$</button>
+              <button class="quiz-option" data-correct="false">un punto interno di $E$</button>
+              <button class="quiz-option" data-correct="false">né di accumulazione né isolato, perché $0 \notin E$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Ogni intorno di $0$ contiene infiniti $1/n$ (basta $n &gt; 1/\delta$), quindi $0$ è di accumulazione; ma $0 \notin E$. Un punto di accumulazione non deve appartenere all'insieme.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Quale insieme è sia aperto sia chiuso in $\mathbb{R}$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$[0, 1]$</button>
+              <button class="quiz-option" data-correct="false">$(0, 1)$</button>
+              <button class="quiz-option" data-correct="true">$\mathbb{R}$</button>
+              <button class="quiz-option" data-correct="false">$[0, 1)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Gli unici sottoinsiemi di $\mathbb{R}$ contemporaneamente aperti e chiusi sono $\varnothing$ e $\mathbb{R}$. $[0,1]$ è solo chiuso, $(0,1)$ solo aperto, $[0,1)$ nessuno dei due.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) L'intorno bucato $\dot{I}_\delta(x_0)$ è definito dalla condizione:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$|x - x_0| &lt; \delta$</button>
+              <button class="quiz-option" data-correct="true">$0 &lt; |x - x_0| &lt; \delta$</button>
+              <button class="quiz-option" data-correct="false">$|x - x_0| &gt; \delta$</button>
+              <button class="quiz-option" data-correct="false">$|x - x_0| \leq \delta$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La condizione $0 &lt; |x-x_0|$ esclude il centro $x_0$ (il "buco"), mentre $|x-x_0| &lt; \delta$ mantiene i punti vicini. Serve nei limiti, dove non guardiamo il valore in $x_0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se un insieme non è aperto, allora è chiuso.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: aperto e chiuso non sono complementari. $[0,1)$ non è né aperto né chiuso. Le due proprietà vanno verificate separatamente.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Ogni insieme finito di punti è chiuso.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: un insieme finito non ha punti di accumulazione ($E' = \varnothing$), quindi li contiene tutti "a vuoto". È dunque chiuso (ma non aperto, se non è vuoto).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Per ogni $x, y \in \mathbb{R}$ vale sempre $|x + y| = |x| + |y|$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: vale solo la disuguaglianza $|x+y| \leq |x|+|y|$. L'uguaglianza si ha solo con $x,y$ concordi. Controesempio: $|3 + (-5)| = 2 \neq 8 = |3| + |-5|$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Ogni punto di $\mathbb{Z}$ è un punto isolato di $\mathbb{Z}$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: l'intorno $I_{1/2}(k) = (k-\tfrac12, k+\tfrac12)$ contiene solo l'intero $k$. Quindi ogni intero è isolato e $\mathbb{Z}$ non ha punti di accumulazione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="triangolare|disuguaglianza triangolare">
+            <p class="quiz-question__testo">9. (Completamento) La disuguaglianza $|x + y| \leq |x| + |y|$ si chiama disuguaglianza ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il nome richiama il fatto geometrico che un lato di un triangolo non supera la somma degli altri due.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="accumulazione|di accumulazione|punto di accumulazione">
+            <p class="quiz-question__testo">10. (Completamento) Un punto tale che ogni suo intorno contiene almeno un punto dell'insieme diverso da esso si dice punto di ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Un punto di accumulazione: l'insieme si "accumula" attorno ad esso, che vi appartenga o no.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="complementare|il complementare">
+            <p class="quiz-question__testo">11. (Completamento) Un insieme è chiuso se e solo se il suo ______ è aperto.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il "ponte" più usato: per dimostrare la chiusura, spesso conviene mostrare che il complementare è aperto.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché nei limiti si usa l'intorno bucato e non l'intorno "pieno", usando l'analogia della casa e dei vicini.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: il limite descrive verso quale valore "punta" una funzione quando la variabile si avvicina a $x_0$, cioè guardando il comportamento dei punti vicini (i "vicini di casa") e ignorando cosa accade esattamente in $x_0$ (la "casa" stessa). In $x_0$ la funzione potrebbe non essere definita, oppure avere un valore che non riflette la tendenza. Escludendo il centro con l'intorno bucato ($0 &lt; |x - x_0| &lt; \delta$) rendiamo la definizione indipendente da $f(x_0)$: contano solo i vicini, non la casa.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché un insieme finito è sempre chiuso ma (se non vuoto) mai aperto? Argomenta usando le definizioni.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: <strong>chiuso</strong> perché un insieme finito non ha punti di accumulazione (attorno a ogni punto esiste un intorno bucato privo di altri punti dell'insieme, scegliendo il raggio più piccolo della distanza minima dagli altri elementi); quindi $E' = \varnothing$, e la condizione $E' \subseteq E$ è soddisfatta senza dover verificare nulla: l'insieme vuoto è contenuto in qualunque insieme. <strong>Non aperto</strong> (se non vuoto) perché nessun punto è interno: un intorno di un qualsiasi punto contiene infiniti reali che non appartengono all'insieme finito, quindi non esiste un intorno interamente contenuto in $E$. L'unico insieme finito e aperto è dunque $\varnothing$.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="01-numeri-reali-struttura.html"><span class="dir">← Capitolo precedente</span><strong>Numeri reali e struttura d'ordine</strong></a>
+        <a class="next" href="03-funzioni.html"><span class="dir">Capitolo successivo →</span><strong>Funzioni</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

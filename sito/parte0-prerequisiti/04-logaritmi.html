@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4. Logaritmi — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 4</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html" class="is-active">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 4 di 9</span>
+        </div>
+        <h1>Logaritmi: l'operazione che doma le crescite esplosive</h1>
+        <p class="subtitle">L'esponenziale fa esplodere i numeri: 2, 4, 8, 16, 32... Il logaritmo fa l'esatto contrario. È l'operazione che, dato un risultato gigantesco, ci restituisce l'esponente che l'ha prodotto — un numero piccolo e maneggevole. In questo capitolo impareremo a "leggere gli esponenti nascosti" dentro i numeri.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~40 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina di piegare in due un foglio di carta. Poi ancora in due, e ancora. Dopo una piega hai 2 strati, dopo due pieghe 4, dopo tre pieghe 8... Il numero di strati <strong>raddoppia</strong> ogni volta: è una crescita esplosiva. Dopo 10 pieghe avresti $2^{10} = 1024$ strati; dopo 42 pieghe (in teoria) supereresti la distanza Terra–Luna.</p>
+        <p>Ora ribalta la domanda. Non "quanti strati ottengo dopo $n$ pieghe?", ma: <strong>"quante pieghe mi servono per arrivare a 1024 strati?"</strong>. La risposta — 10 — è esattamente il <span class="glossario-term" data-term="logaritmo">logaritmo</span> in base 2 di 1024. Il logaritmo è la domanda invertita: dato il risultato di una crescita esponenziale, ci dice <em>quante volte</em> abbiamo raddoppiato (o triplicato, o moltiplicato per una qualunque base).</p>
+        <p>In una frase sola:</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea in una riga</div>
+          <p>Il logaritmo risponde alla domanda: <strong>"a quale esponente devo elevare la base per ottenere questo numero?"</strong>. Se l'elevamento a <span class="glossario-term" data-term="potenza">potenza</span> ti dice <em>"quanto diventa"</em>, il logaritmo ti dice <em>"quante volte"</em>.</p>
+        </div>
+        <p>Ecco perché il titolo parla di <em>domare</em> le crescite esplosive: l'esponenziale trasforma un piccolo esponente ($10$) in un numero enorme ($1024$); il logaritmo fa il viaggio contrario, comprimendo quel numero enorme di nuovo nel suo esponente. Prende quantità che vanno da "microscopiche" a "astronomiche" e le riporta su una scala tranquilla, fatta di numeri piccoli. Questa capacità di <strong>comprimere</strong> è il superpotere che incontreremo ovunque, dalla scala dei terremoti alla matematica dei limiti.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché fino ad ora sapevamo calcolare $a^x$ conoscendo l'esponente $x$, ma non sapevamo fare l'operazione contraria: <strong>trovare l'esponente sapendo il risultato</strong>. Domande come "$2^x = 10$: quanto vale $x$?" non hanno risposta con gli strumenti visti finora. Il logaritmo nasce esattamente per rispondere a questo tipo di domanda, dove l'incognita si trova <em>all'esponente</em>.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Ogni operazione in matematica arriva in coppia con la sua inversa: la sottrazione disfa l'addizione, la divisione disfa la moltiplicazione. La potenza $a^x = b$ ha però <em>due</em> inverse diverse, a seconda di quale sia l'incognita:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Se l'incognita è...</th><th>Uso...</th><th>Esempio</th></tr></thead>
+          <tbody>
+            <tr><td>la base $a$ (con esponente noto)</td><td>il <span class="glossario-term" data-term="radicale">radicale</span></td><td>$a^3 = 8 \Rightarrow a = \sqrt[3]{8} = 2$</td></tr>
+            <tr><td>l'esponente $x$ (con base nota)</td><td>il <strong>logaritmo</strong></td><td>$2^x = 8 \Rightarrow x = \log_2 8 = 3$</td></tr>
+          </tbody>
+        </table>
+        <p>Distinguere questi due casi è il primo grande passo: <strong>la radice cerca la base, il logaritmo cerca l'esponente</strong>. Confonderli è uno degli errori concettuali più comuni.</p>
+        <p><strong>Perché fu una rivoluzione storica?</strong> All'inizio del Seicento, John Napier (Nepero) introdusse i logaritmi per un motivo molto pratico: trasformano le moltiplicazioni difficili in addizioni facili. Astronomi e navigatori, che dovevano moltiplicare numeri con molte cifre a mano, guadagnarono un'efficienza tale che l'astronomo Laplace disse che i logaritmi "raddoppiarono la vita degli astronomi". I regoli calcolatori, usati fino agli anni '70, funzionavano tutti su questo principio.</p>
+        <p><strong>Perché è importante ora?</strong> Perché in Analisi 1 il logaritmo naturale $\ln x$ e il numero $e$ sono ovunque: la <a href="../parte1-analisi1/07-derivate.html">derivata</a> di $\ln x$ è $1/x$ (una delle formule più eleganti del calcolo), i <a href="../parte1-analisi1/04-limiti.html">limiti</a> notevoli con $\ln$ ed $e$ compaiono in ogni compito, e il confronto tra "velocità di crescita" (logaritmo &lt; potenza &lt; esponenziale) è un classico d'esame. Padroneggiare ora le proprietà dei logaritmi ti eviterà di rimanere bloccato lì.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Le scale logaritmiche: comprimere l'incomprimibile</div>
+          <p>Molte grandezze del mondo reale variano su scale enormi: dal sussurro al motore di un jet, da un terremoto impercettibile a uno devastante. Rappresentarle su una scala lineare sarebbe impossibile. La soluzione, usata da fisici e chimici, è misurarne il <strong>logaritmo</strong>: numeri che spaziano da $0{,}000001$ a $1\,000\,000$ diventano, in scala logaritmica, un tranquillo intervallo da $-6$ a $6$.</p>
+        </div>
+        <p>Tre esempi celebri, tutti costruiti sul logaritmo in base 10:</p>
+        <ul>
+          <li><strong>Scala Richter (terremoti).</strong> La magnitudo è definita come $M = \log_{10}\!\big(A/A_0\big)$, dove $A$ è l'ampiezza delle onde sismiche. Ogni unità in più significa un'ampiezza <strong>10 volte maggiore</strong>: un terremoto di magnitudo 7 produce onde 10 volte più ampie di uno di magnitudo 6, e 100 volte più di uno di magnitudo 5. In termini di <em>energia rilasciata</em> il fattore è ancora più impressionante, circa $\times 31{,}6$ per ogni unità (cioè circa $\times 1000$ ogni due gradi).</li>
+          <li><strong>Decibel (suono).</strong> Il livello sonoro è $L = 10\,\log_{10}\!\big(I/I_0\big)$ decibel. Aggiungere $10$ dB significa un'intensità $10$ volte maggiore; aggiungerne $20$ significa $\times 100$. Ecco perché $90$ dB di traffico non sono "poco più" di $60$ dB di conversazione: sono mille volte più intensi.</li>
+          <li><strong>pH (chimica).</strong> L'acidità è $\text{pH} = -\log_{10}[\mathrm{H}^+]$, dove $[\mathrm{H}^+]$ è la concentrazione di ioni idrogeno. Ogni unità di pH in meno significa una concentrazione $10$ volte maggiore: un succo di limone a pH 2 è cento volte più acido di un caffè a pH 4.</li>
+        </ul>
+        <p>C'è poi un'applicazione dove il logaritmo entra "dal lato del tempo": il <strong>tempo di dimezzamento</strong>. Una sostanza radioattiva, o un farmaco nel sangue, decade seguendo una legge $N(t) = N_0 \cdot \big(\tfrac12\big)^{t/T}$, dove $T$ è il tempo di dimezzamento. Se vuoi sapere <em>quando</em> ne rimarrà solo il 10%, l'incognita $t$ è all'esponente: l'unico modo per liberarla è applicare un logaritmo. Lo faremo negli esempi svolti.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizione">4.1 La definizione e le sue condizioni di esistenza</h3>
+        <p>Il <span class="glossario-term" data-term="logaritmo">logaritmo</span> in base $a$ di un numero $x$ è l'esponente a cui bisogna elevare $a$ per ottenere $x$. In simboli:</p>
+        <div class="formula-block">
+          $$\log_a x = y \quad \Longleftrightarrow \quad a^y = x$$
+        </div>
+        <p>Le due scritture dicono <em>esattamente la stessa cosa</em>, viste da due angolazioni: la sinistra è "la domanda" (quale esponente?), la destra è "la verifica" (l'esponente $y$ funziona). Questa equivalenza è lo strumento numero uno per risolvere qualunque esercizio: ogni volta che vedi un logaritmo, puoi tradurlo in una <span class="glossario-term" data-term="esponenziale">forma esponenziale</span>, e viceversa.</p>
+        <p>Perché la definizione abbia senso, però, servono tre condizioni. Non sono capricci: ognuna nasce da un problema concreto.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché $a &gt; 0$?</div>
+          <p>La base deve essere positiva perché vogliamo che $a^y$ sia definito per <em>ogni</em> esponente reale $y$. Con una base negativa il disastro è immediato: $(-2)^{1/2} = \sqrt{-2}$ non è un <span class="glossario-term" data-term="numero-reale">numero reale</span>. Una base positiva, invece, elevata a qualunque potenza reale dà sempre un risultato ben definito.</p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché $a \neq 1$?</div>
+          <p>Perché $1$ elevato a qualsiasi cosa fa sempre $1$: $1^y = 1$ per ogni $y$. Allora l'equazione $1^y = x$ sarebbe <strong>impossibile</strong> se $x \neq 1$ (non esiste alcun esponente che porti $1$ a diventare $7$) e <strong>indeterminata</strong> se $x = 1$ (andrebbe bene <em>qualunque</em> $y$). In nessuno dei due casi il logaritmo sarebbe un numero ben definito. Per questo la base $1$ è vietata.</p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché $x &gt; 0$?</div>
+          <p>Perché una base positiva elevata a qualunque esponente reale dà <strong>sempre un risultato positivo</strong>: $a^y &gt; 0$ per ogni $y$. Quindi l'unico tipo di numero che possiamo ottenere — e di cui possiamo perciò cercare l'esponente — è un numero positivo. <strong>Il logaritmo di $0$ o di un numero negativo non esiste.</strong> Questa è la condizione da cui nasce il famigerato "dominio" da controllare in ogni equazione logaritmica.</p>
+        </div>
+        <p>Dalla definizione discendono immediatamente quattro identità che vale la pena imparare a memoria:</p>
+        <div class="formula-block">
+          $$\log_a 1 = 0 \quad (\text{perché } a^0 = 1) \qquad\qquad \log_a a = 1 \quad (\text{perché } a^1 = a)$$
+          $$\log_a\!\big(a^k\big) = k \qquad\qquad a^{\,\log_a x} = x \quad (\text{per } x &gt; 0)$$
+        </div>
+        <p>Le ultime due dicono la stessa verità profonda: <strong>logaritmo ed esponenziale con la stessa base sono operazioni inverse</strong>, si annullano a vicenda, esattamente come "sommare 3" e "sottrarre 3".</p>
+
+        <h3 id="teoria-basi">4.2 Le basi più usate: $\ln$ ed il logaritmo decimale</h3>
+        <p>In teoria la base può essere qualsiasi numero positivo diverso da 1, ma nella pratica se ne usano quasi solo due.</p>
+        <ul>
+          <li><strong>Logaritmo naturale</strong>, base $e$: si scrive $\ln x$ (oppure $\log_e x$). Il numero $e \approx 2{,}71828\ldots$ è una costante <span class="glossario-term" data-term="numero-irrazionale">irrazionale</span> (come $\pi$) che nasce spontaneamente nei fenomeni di crescita continua e in tutto il calcolo differenziale. In Analisi Matematica, quando trovi scritto "$\log$" senza base indicata, quasi sempre si intende il logaritmo <em>naturale</em>: è la convenzione di questo libro.</li>
+          <li><strong>Logaritmo decimale</strong>, base $10$: si scrive $\log_{10} x$ o, nelle scienze applicate, semplicemente $\log x$ o $\mathrm{Log}\,x$. È quello delle scale Richter, decibel e pH.</li>
+        </ul>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Attenzione alla notazione "log"</div>
+          <p>La scrittura $\log$ senza base è ambigua tra i vari contesti: per un chimico è base 10, per un analista matematico è base $e$. Nel dubbio, in questo manuale $\log$ senza pedice significa $\ln$. Quando la base conta davvero, scriviamola sempre esplicitamente.</p>
+        </div>
+
+        <h3 id="teoria-proprieta">4.3 Le proprietà fondamentali</h3>
+        <p>Ecco il cuore operativo del capitolo. Tutte le proprietà seguono dal fatto che il logaritmo "eredita al contrario" le regole delle potenze. Valgono per $a &gt; 0$, $a \neq 1$ e per argomenti $x, y &gt; 0$.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Nome</th><th>Formula</th><th>In parole</th></tr></thead>
+          <tbody>
+            <tr><td>Logaritmo del prodotto</td><td>$\log_a(x\cdot y) = \log_a x + \log_a y$</td><td>un prodotto diventa una somma</td></tr>
+            <tr><td>Logaritmo del quoziente</td><td>$\log_a\!\dfrac{x}{y} = \log_a x - \log_a y$</td><td>un quoziente diventa una differenza</td></tr>
+            <tr><td>Logaritmo della potenza</td><td>$\log_a\!\big(x^{k}\big) = k \cdot \log_a x$</td><td>una potenza diventa un prodotto</td></tr>
+            <tr><td>Cambio di base</td><td>$\log_a x = \dfrac{\log_b x}{\log_b a}$</td><td>si passa da una base a un'altra qualsiasi</td></tr>
+          </tbody>
+        </table>
+        <p>Due utilissimi corollari, che si ottengono in un attimo dalle regole precedenti:</p>
+        <div class="formula-block">
+          $$\log_a \frac{1}{x} = -\log_a x \qquad\qquad \log_a b = \frac{1}{\log_b a}$$
+        </div>
+        <p><strong>Da dove vengono, passo per passo.</strong> Il primo: riscrivo $\dfrac{1}{x}$ come potenza a esponente negativo, $\dfrac{1}{x} = x^{-1}$ (regola delle potenze, cap. 3), poi applico il <em>logaritmo della potenza</em> della tabella qui sopra, $\log_a\!\big(X^{k}\big) = k\log_a X$, mettendo $X = x$ e $k = -1$: ottengo $\log_a\!\big(x^{-1}\big) = (-1)\cdot\log_a x = -\log_a x$. Il secondo: nella formula del cambio di base sostituisco $x = b$, cioè metto $b$ al posto dell'argomento ovunque compaia $x$; viene $\log_a b = \dfrac{\log_b b}{\log_b a}$. Al numeratore $\log_b b = 1$ (è una delle quattro identità del <span class="richiamo" data-sec="4.1">§4.1</span>), quindi resta $\dfrac{1}{\log_b a}$. La formula del cambio di base è preziosissima nella pratica: le calcolatrici hanno solo i tasti $\ln$ e $\log_{10}$, quindi per calcolare, poniamo, $\log_2 7$ si scrive $\dfrac{\ln 7}{\ln 2}$ (è il cambio di base con base di partenza $a = 2$, argomento $x = 7$ e nuova base $b = e$).</p>
+
+        <h3 id="teoria-grafico">4.4 Il grafico della funzione logaritmica</h3>
+        <p>Fissata una base $a &gt; 0$, $a \neq 1$, la funzione $f(x) = \log_a x$ ha caratteristiche precise:</p>
+        <ul>
+          <li><strong>Dominio:</strong> l'<span class="glossario-term" data-term="intervallo">intervallo</span> $(0, +\infty)$ — solo argomenti positivi, come impone la definizione. L'immagine, invece, è tutto $\mathbb{R}$.</li>
+          <li><strong>Punto fisso:</strong> passa <em>sempre</em> per $(1, 0)$, perché $\log_a 1 = 0$ qualunque sia la base. Passa inoltre per $(a, 1)$.</li>
+          <li><strong>Asintoto verticale:</strong> la retta $x = 0$ (l'asse $y$). Avvicinandosi a $0$ da destra, il logaritmo precipita verso $-\infty$ (se $a &gt; 1$) o schizza verso $+\infty$ (se $0 &lt; a &lt; 1$).</li>
+          <li><strong>Monotonia:</strong> se $a &gt; 1$ la funzione è <strong>crescente</strong>; se $0 &lt; a &lt; 1$ è <strong>decrescente</strong>. Questo dettaglio sarà decisivo nelle disequazioni.</li>
+        </ul>
+        <p>Il fatto più elegante è la relazione con l'esponenziale. Poiché $\log_a x$ ed $a^x$ sono funzioni <strong>inverse</strong>, i loro grafici sono <strong>simmetrici rispetto alla bisettrice $y = x$</strong>: se pieghi il foglio lungo quella retta, una curva si sovrappone perfettamente all'altra. È lo stesso motivo per cui il punto $(0,1)$ dell'esponenziale diventa il punto $(1,0)$ del logaritmo (le coordinate si scambiano).</p>
+
+        <svg viewBox="0 0 340 300" style="max-width:440px;margin:1.4em auto;display:block;" role="img" aria-label="Grafici simmetrici della funzione esponenziale e logaritmica rispetto alla bisettrice y uguale x">
+          <line x1="10" y1="210" x2="330" y2="210" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+          <line x1="70" y1="15" x2="70" y2="290" stroke="currentColor" stroke-width="1.5" opacity="0.6"/>
+          <line x1="36" y1="244" x2="190" y2="90" stroke="currentColor" stroke-width="1.2" stroke-dasharray="5 4" opacity="0.7"/>
+          <polyline points="13,197 32,191 51,183 70,172 89,156 108,134 127,102 146,58 157,23" fill="none" stroke="var(--color-secondary)" stroke-width="2.4"/>
+          <polyline points="83,267 89,248 97,229 108,210 124,191 146,172 177,153 222,134 257,123 298,112" fill="none" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <circle cx="108" cy="210" r="3.5" fill="var(--color-primary)"/>
+          <circle cx="70" cy="172" r="3.5" fill="var(--color-secondary)"/>
+          <text x="150" y="40" font-size="12" font-weight="700" fill="var(--color-secondary)">y = a&#8203;ˣ</text>
+          <text x="255" y="105" font-size="12" font-weight="700" fill="var(--color-primary)">y = logₐ x</text>
+          <text x="150" y="128" font-size="11" fill="currentColor" opacity="0.7">y = x</text>
+          <text x="112" y="226" font-size="10.5" fill="currentColor">(1, 0)</text>
+          <text x="22" y="168" font-size="10.5" fill="currentColor">(0, 1)</text>
+        </svg>
+
+        <h3 id="teoria-equazioni">4.5 Equazioni e disequazioni logaritmiche elementari</h3>
+        <p>La strategia di base è sempre la stessa: <strong>usare l'iniettività</strong> del logaritmo (cioè il fatto che a input diversi corrispondono output diversi) per "togliere" i logaritmi, senza mai dimenticare il dominio.</p>
+        <p><strong>Equazioni.</strong> I due schemi fondamentali sono:</p>
+        <div class="formula-block">
+          $$\log_a f(x) = \log_a g(x) \;\Longleftrightarrow\; \begin{cases} f(x) = g(x) \\ f(x) &gt; 0,\ g(x) &gt; 0 \end{cases}$$
+          $$\log_a f(x) = c \;\Longleftrightarrow\; \begin{cases} f(x) = a^{c} \\ f(x) &gt; 0 \end{cases}$$
+        </div>
+        <p>Nel secondo caso si dice che si "esponenzia": si porta tutto a esponente della base per liberarsi del logaritmo. In entrambi i casi le condizioni di esistenza vanno imposte <em>prima</em> di risolvere, e le soluzioni trovate vanno confrontate con esse.</p>
+        <p><strong>Disequazioni.</strong> Qui entra in gioco la monotonia della base:</p>
+        <div class="formula-block">
+          $$\text{se } a &gt; 1:\quad \log_a f(x) &lt; \log_a g(x) \;\Longleftrightarrow\; 0 &lt; f(x) &lt; g(x)$$
+          $$\text{se } 0 &lt; a &lt; 1:\quad \log_a f(x) &lt; \log_a g(x) \;\Longleftrightarrow\; f(x) &gt; g(x) &gt; 0$$
+        </div>
+        <p>Con base maggiore di 1 il verso si conserva; con base tra 0 e 1 il verso <strong>si ribalta</strong> (la funzione è decrescente). Qui ci fermiamo al livello introduttivo: la trattazione sistematica delle disequazioni logaritmiche, con tutti i casi e lo studio del segno, la trovi nel <a href="06-disequazioni.html">capitolo dedicato alle disequazioni</a>.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Logaritmo del prodotto.</em> Per ogni $a &gt; 0$, $a \neq 1$ e per ogni $x, y &gt; 0$ vale $\ \log_a(x\cdot y) = \log_a x + \log_a y$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (dalla definizione)</span>
+          <p>L'idea è tradurre i logaritmi in forma esponenziale, usare le proprietà delle potenze e ritradurre indietro.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Poniamo $m = \log_a x$ e $n = \log_a y$. Per la <strong>definizione stessa di logaritmo</strong>, questo significa $a^m = x$ e $a^n = y$.</span>
+          <span class="esempio__passo">Moltiplichiamo membro a membro: $x \cdot y = a^m \cdot a^n$.</span>
+          <span class="esempio__passo">Applichiamo la proprietà delle potenze con la stessa base (vista nel <a href="03-potenze-radicali-esponenziali.html">capitolo precedente</a>), $a^m \cdot a^n = a^{m+n}$. Dunque $x\cdot y = a^{m+n}$.</span>
+          <span class="esempio__passo">Rileggiamo quest'ultima uguaglianza con gli occhi del logaritmo: "l'esponente da dare ad $a$ per ottenere $xy$ è $m+n$", cioè $\log_a(xy) = m+n$.</span>
+          <span class="esempio__passo">Ma $m + n = \log_a x + \log_a y$, per come li avevamo definiti.</span>
+          </p>
+          <p>Quindi $\log_a(xy) = \log_a x + \log_a y$. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché funziona</div>
+          <p>Il logaritmo "eredita al contrario" la regola delle potenze: là un <em>prodotto</em> di potenze diventava una <em>somma</em> di esponenti; qui il logaritmo di un prodotto diventa una somma di logaritmi. È il meccanismo che rendeva possibili i calcoli con i regoli: moltiplicare due numeri equivaleva a sommare le loro "lunghezze logaritmiche". La proprietà del quoziente si dimostra in modo identico partendo da $x/y = a^{m-n}$, e quella della potenza da $x^k = (a^m)^k = a^{km}$.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Formula del cambio di base.</em> Per basi $a, b &gt; 0$ diverse da 1 e per $x &gt; 0$: $\ \log_a x = \dfrac{\log_b x}{\log_b a}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Poniamo $y = \log_a x$. Per definizione, $a^{y} = x$.</span>
+            <span class="esempio__passo">Applichiamo il logaritmo in base $b$ a entrambi i membri (operazione lecita: sono numeri positivi uguali): $\log_b\!\big(a^{y}\big) = \log_b x$.</span>
+            <span class="esempio__passo">Al membro di sinistra applico il <strong>logaritmo della potenza</strong> (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_b\!\big(X^{k}\big) = k \cdot \log_b X$, mettendo $X = a$ e $k = y$: diventa $\log_b\!\big(a^{y}\big) = y \cdot \log_b a$. L'uguaglianza del passo precedente si legge quindi $y \cdot \log_b a = \log_b x$.</span>
+            <span class="esempio__passo">Poiché $a \neq 1$ si ha $\log_b a \neq 0$ (l'unico argomento che dà logaritmo nullo è $1$, <span class="richiamo" data-sec="4.1">§4.1</span>), quindi posso dividere entrambi i membri per $\log_b a$: a sinistra resta $y$, a destra compare la frazione $y = \dfrac{\log_b x}{\log_b a}$.</span>
+          </p>
+          <p>Ricordando che $y = \log_a x$, otteniamo la formula cercata. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Da qui il corollario dei "reciproci"</div>
+          <p>Ponendo $x = b$ nella formula si ottiene $\log_a b = \dfrac{\log_b b}{\log_b a} = \dfrac{1}{\log_b a}$. Quindi $\log_2 8 = 3$ e $\log_8 2 = \tfrac13$ sono uno il reciproco dell'altro: scambiando base e argomento, il logaritmo si "capovolge".</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Logaritmi immediati (per definizione)</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare, usando solo la definizione: (a) $\log_2 8$; (b) $\log_5 \tfrac{1}{25}$; (c) $\log_{10} 0{,}001$; (d) $\ln e$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) "A quale esponente elevo 2 per avere 8?" $2^3 = 8 \Rightarrow \log_2 8 = 3$.</span>
+            <span class="esempio__passo">(b) $\tfrac{1}{25} = 5^{-2} \Rightarrow \log_5 \tfrac{1}{25} = -2$ (gli esponenti negativi danno i reciproci).</span>
+            <span class="esempio__passo">(c) $0{,}001 = 10^{-3} \Rightarrow \log_{10} 0{,}001 = -3$.</span>
+            <span class="esempio__passo">(d) $\ln e = \log_e e = 1$, perché $e^1 = e$.</span>
+          </p>
+          <div class="esempio__risultato">$\log_2 8 = 3,\quad \log_5 \tfrac1{25} = -2,\quad \log_{10} 0{,}001 = -3,\quad \ln e = 1$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Le identità inverse</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare senza fare conti pesanti: (a) $2^{\log_2 7}$; (b) $\log_3\!\big(3^{5}\big)$; (c) $e^{\ln 4}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Sfruttiamo il fatto che logaritmo ed esponenziale con la stessa base si annullano a vicenda.</span>
+            <span class="esempio__passo">(a) $2^{\log_2 7} = 7$: l'esponente $\log_2 7$ è "l'esponente giusto per fare 7", quindi elevando 2 a quell'esponente si torna a 7.</span>
+            <span class="esempio__passo">(b) $\log_3(3^5) = 5$: cerchiamo l'esponente da dare a 3 per ottenere $3^5$; è ovviamente 5.</span>
+            <span class="esempio__passo">(c) $e^{\ln 4} = 4$, stessa logica con base $e$.</span>
+          </p>
+          <div class="esempio__risultato">$2^{\log_2 7} = 7,\qquad \log_3(3^5) = 5,\qquad e^{\ln 4} = 4$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Espandere con le proprietà</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Scrivere come somma/differenza di logaritmi più semplici: $\ \log_a\!\dfrac{x^{3}\sqrt{y}}{z^{2}}$ (con $x,y,z &gt; 0$).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Guardo prima di tutto che cosa c'è dentro il logaritmo:</strong> una frazione. Allora la regola giusta da usare per prima è il <em>logaritmo del quoziente</em> (<span class="richiamo" data-sec="4.3">§4.3</span>): $\log_a\dfrac{X}{Y} = \log_a X - \log_a Y$. Qui il numeratore è $X = x^3\sqrt y$ e il denominatore è $Y = z^2$; sostituisco questi due al posto di $X$ e $Y$ e ottengo $\log_a\!\big(x^3\sqrt y\big) - \log_a\!\big(z^2\big)$.</span>
+            <span class="esempio__passo">Adesso il primo logaritmo ha dentro un <em>prodotto</em>, $x^3 \cdot \sqrt y$. Uso il <em>logaritmo del prodotto</em> (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_a(X\cdot Y) = \log_a X + \log_a Y$, questa volta con $X = x^3$ e $Y = \sqrt y$: $\log_a\!\big(x^3\big) + \log_a\!\big(\sqrt y\big) - \log_a\!\big(z^2\big)$.</span>
+            <span class="esempio__passo">Prima dell'ultimo passo riscrivo la radice come potenza a esponente frazionario, $\sqrt y = y^{1/2}$ (cap. 3): così tutti e tre i logaritmi hanno dentro una potenza, ed è esattamente la forma che serve alla regola successiva.</span>
+            <span class="esempio__passo">Applico tre volte il <em>logaritmo della potenza</em> (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_a\!\big(X^{k}\big) = k\log_a X$: la prima con $X = x$ e $k = 3$, la seconda con $X = y$ e $k = \tfrac12$, la terza con $X = z$ e $k = 2$. Ogni esponente scende davanti al logaritmo come coefficiente e resta $3\log_a x + \tfrac12 \log_a y - 2\log_a z$ (il segno meno davanti all'ultimo termine era già lì dal primo passo).</span>
+          </p>
+          <div class="esempio__risultato">$\log_a\!\dfrac{x^{3}\sqrt{y}}{z^{2}} = 3\log_a x + \tfrac{1}{2}\log_a y - 2\log_a z$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Condensare e cambiare base</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>(a) Condensare in un solo logaritmo: $2\log x + \log 3 - \log 5$. (b) Calcolare $\log_2 10$ con la calcolatrice.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) "Condensare" vuol dire leggere le proprietà del <span class="richiamo" data-sec="4.3">§4.3</span> <em>al contrario</em>, da destra verso sinistra. Primo passo: il coefficiente $2$ davanti a $\log x$ torna a essere un esponente, perché $k\log_a X = \log_a\!\big(X^{k}\big)$ con $X = x$ e $k = 2$. L'espressione diventa $\log x^2 + \log 3 - \log 5$.</span>
+            <span class="esempio__passo">Unisco i primi due addendi con il logaritmo del prodotto letto al contrario, $\log X + \log Y = \log(X\cdot Y)$, con $X = x^2$ e $Y = 3$: ottengo $\log\!\big(3x^2\big) - \log 5$.</span>
+            <span class="esempio__passo">Resta una differenza di due logaritmi, che diventa un quoziente: $\log X - \log Y = \log\dfrac{X}{Y}$ con $X = 3x^2$ e $Y = 5$. Risultato: $\log\dfrac{3x^2}{5}$.</span>
+            <span class="esempio__passo">(b) La calcolatrice non ha il tasto "base 2", ma c'è la formula del cambio di base (<span class="richiamo" data-sec="4.3">§4.3</span>): $\log_a x = \dfrac{\log_b x}{\log_b a}$. Qui la base di partenza è $a = 2$, l'argomento è $x = 10$, e come nuova base scelgo $b = e$ perché è quella del tasto $\ln$. Sostituisco: $\log_2 10 = \dfrac{\ln 10}{\ln 2} = \dfrac{2{,}3026}{0{,}6931} \approx 3{,}32$.</span>
+            <span class="esempio__passo">Verifica di plausibilità: $2^3 = 8 &lt; 10 &lt; 16 = 2^4$, quindi $\log_2 10$ deve stare tra 3 e 4. Il valore $3{,}32$ è coerente.</span>
+          </p>
+          <div class="esempio__risultato">(a) $\log\dfrac{3x^2}{5}$; (b) $\log_2 10 \approx 3{,}32$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Equazione logaritmica con dominio</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere $\ \log_2 x + \log_2 (x - 2) = 3$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Dominio:</strong> la definizione (<span class="richiamo" data-sec="4.1">§4.1</span>) impone che <em>ogni</em> argomento di logaritmo sia positivo. Qui gli argomenti sono due, $x$ e $x-2$, quindi servono contemporaneamente $x &gt; 0$ e $x - 2 &gt; 0$; la seconda, portando $-2$ a destra, si legge $x &gt; 2$. Devono valere entrambe: chi è maggiore di $2$ è già maggiore di $0$, perciò la condizione che comanda è $x &gt; 2$. Teniamolo da parte: sarà il giudice finale.</span>
+            <span class="esempio__passo">A sinistra c'è una <em>somma</em> di due logaritmi con la stessa base. Uso il logaritmo del prodotto (<span class="richiamo" data-sec="4.3">§4.3</span>) letto al contrario, $\log_a X + \log_a Y = \log_a(X\cdot Y)$, con $X = x$ e $Y = x-2$: l'equazione diventa $\log_2\big(x(x-2)\big) = 3$.</span>
+            <span class="esempio__passo">Ora ho la forma $\log_a f(x) = c$ dello schema del <span class="richiamo" data-sec="4.5">§4.5</span>, con $a = 2$, $f(x) = x(x-2)$ e $c = 3$. Quello schema dice $f(x) = a^{c}$: sostituendo i tre ingredienti ottengo $x(x-2) = 2^3 = 8$.</span>
+            <span class="esempio__passo">Svolgo il prodotto a sinistra: $x\cdot x - x\cdot 2 = x^2 - 2x$. Poi porto $8$ a sinistra cambiandogli segno, per avere zero a destra: $x^2 - 2x - 8 = 0$. È un'equazione di secondo grado (cap. 5).</span>
+            <span class="esempio__passo">La scompongo cercando due numeri la cui <em>somma</em> sia $-2$ (il coefficiente di $x$) e il cui <em>prodotto</em> sia $-8$ (il termine noto): sono $-4$ e $+2$. Quindi $x^2 - 2x - 8 = (x-4)(x+2)$, e un prodotto è nullo solo se lo è uno dei due fattori: $x - 4 = 0$ oppure $x + 2 = 0$, cioè $x = 4$ oppure $x = -2$.</span>
+            <span class="esempio__passo"><strong>Verifica nel dominio:</strong> $x = 4 &gt; 2$ è accettabile; $x = -2$ NON rispetta $x &gt; 2$ (e renderebbe negativi gli argomenti) → si scarta.</span>
+          </p>
+          <div class="esempio__risultato">$x = 4$ (l'unica soluzione; $x=-2$ è da rifiutare per il dominio)</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Liberare un'incognita dall'esponente</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere l'equazione esponenziale $\ 3^{x} = 20$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">L'incognita è all'esponente: l'operazione che la libera è il logaritmo. Applichiamo $\log$ (naturale) a entrambi i membri: $\ln(3^x) = \ln 20$.</span>
+            <span class="esempio__passo">Al membro di sinistra applico il <strong>logaritmo della potenza</strong> (<span class="richiamo" data-sec="4.3">§4.3</span>), $\ln\!\big(X^{k}\big) = k\ln X$, mettendo $X = 3$ e $k = x$ (l'incognita fa da esponente): $\ln(3^x)$ diventa $x\ln 3$. L'equazione è quindi $x \ln 3 = \ln 20$, e adesso $x$ è un semplice fattore, non più un esponente.</span>
+            <span class="esempio__passo">Isoliamo $x$ dividendo entrambi i membri per $\ln 3$ (che è un numero diverso da zero): $x = \dfrac{\ln 20}{\ln 3}$. Questa frazione è esattamente il cambio di base (<span class="richiamo" data-sec="4.3">§4.3</span>) letto al contrario, con $a = 3$, $x = 20$, $b = e$: perciò $\dfrac{\ln 20}{\ln 3} = \log_3 20$.</span>
+            <span class="esempio__passo">Numericamente: $\dfrac{2{,}996}{1{,}099} \approx 2{,}73$. Controllo: $3^{2{,}73}$ è tra $3^2 = 9$ e $3^3 = 27$, coerente con 20.</span>
+          </p>
+          <div class="esempio__risultato">$x = \log_3 20 = \dfrac{\ln 20}{\ln 3} \approx 2{,}73$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Tempo di dimezzamento (applicato)</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Un farmaco si dimezza nel sangue ogni $6$ ore. Dopo quanto tempo ne rimane esattamente il $25\%$? E dopo quanto il $10\%$?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Da dove viene il modello.</strong> "Si dimezza ogni 6 ore" significa: ogni volta che passano $6$ ore la quantità viene moltiplicata per $\tfrac12$. In $t$ ore i blocchi da $6$ ore trascorsi sono $t/6$, quindi ho moltiplicato per $\tfrac12$ esattamente $t/6$ volte: $N(t) = N_0 \big(\tfrac12\big)^{t/6}$. Chiamiamo $N_0$ la quantità iniziale; cerchiamo il $t$ per cui il rapporto $N(t)/N_0 = \big(\tfrac12\big)^{t/6}$ vale la frazione richiesta.</span>
+            <span class="esempio__passo">Al $25\%$: $\big(\tfrac12\big)^{t/6} = 0{,}25 = \tfrac14$. Riscrivo anche il membro di destra come potenza di $\tfrac12$, così le due basi coincidono: $\tfrac14 = \tfrac12\cdot\tfrac12 = \big(\tfrac12\big)^{2}$. Se due potenze con la stessa base (positiva e diversa da $1$) sono uguali, devono avere lo stesso esponente: $t/6 = 2$. Moltiplico entrambi i membri per $6$ e ottengo $t = 12$ ore (cioè due dimezzamenti, come ci si aspetta).</span>
+            <span class="esempio__passo">Al $10\%$: $\big(\tfrac12\big)^{t/6} = 0{,}1$. Qui $0{,}1$ non è una potenza "pulita" di $\tfrac12$, quindi serve il logaritmo. Leggo l'uguaglianza con la definizione del <span class="richiamo" data-sec="4.1">§4.1</span>, $a^{y} = x \Longleftrightarrow y = \log_a x$, con $a = \tfrac12$, $y = t/6$ e $x = 0{,}1$: ricavo $\dfrac{t}{6} = \log_{1/2} 0{,}1$.</span>
+            <span class="esempio__passo">Per calcolarlo con la calcolatrice uso il cambio di base (<span class="richiamo" data-sec="4.3">§4.3</span>) con $a = \tfrac12$, $x = 0{,}1$ e nuova base $b = e$: $\log_{1/2} 0{,}1 = \dfrac{\ln 0{,}1}{\ln 0{,}5} = \dfrac{-2{,}303}{-0{,}693} \approx 3{,}32$ (due numeri negativi divisi fra loro danno un risultato positivo).</span>
+            <span class="esempio__passo">Quindi $t \approx 6 \cdot 3{,}32 \approx 19{,}9$ ore.</span>
+          </p>
+          <div class="esempio__risultato">Al $25\%$: $t = 12$ h. Al $10\%$: $t \approx 19{,}9$ h.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> $\log(a+b) \neq \log a + \log b$</div>
+          <p>Questo è <strong>l'errore numero uno</strong>. Le proprietà riguardano il logaritmo di un <em>prodotto</em>, non di una <em>somma</em>: non esiste alcuna formula semplice per $\log(a+b)$. <em>Controesempio</em>: $\log_2(4+4) = \log_2 8 = 3$, ma $\log_2 4 + \log_2 4 = 2 + 2 = 4$. Poiché $3 \neq 4$, la "regola" è falsa. <em>Come evitarlo</em>: prima di spezzare un logaritmo, chiediti se dentro c'è un prodotto/quoziente/potenza — se c'è un $+$ o un $-$, fermati.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare il dominio e accettare soluzioni fasulle</div>
+          <p>Risolvendo $\log(x) + \log(x-3) = 1$ (base 10) si arriva a $x^2 - 3x - 10 = 0$, cioè $x = 5$ oppure $x = -2$. Chi non controlla il dominio scrive "due soluzioni". <strong>Sbagliato</strong>: con $x = -2$ si avrebbe $\log(-2)$, che non esiste! Il dominio richiede $x &gt; 3$, quindi l'unica soluzione valida è $x = 5$. <em>Come evitarlo</em>: imponi $x &gt; 0$ su <em>ogni</em> argomento <strong>prima</strong> di risolvere, e scarta all'ostacolo tutte le soluzioni che lo violano.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere $(\log x)^k$, $\log(x^k)$ e $\log(\log x)$</div>
+          <p>Sono tre oggetti diversi! Con $x = 1000$ in base 10 (quindi $\log x = 3$): $(\log x)^2 = 3^2 = 9$; invece $\log(x^2) = \log 10^6 = 6$; e ancora $\log(\log x) = \log 3 \approx 0{,}48$. Tre risultati completamente diversi. <em>Come evitarlo</em>: $\log(x^k) = k\log x$ (l'esponente <strong>dentro</strong> l'argomento esce come fattore), mentre $(\log x)^k$ eleva tutto il logaritmo già calcolato — le parentesi contano tutto.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Capovolgere il cambio di base</div>
+          <p>La formula è $\log_a x = \dfrac{\log_b x}{\log_b a}$: la <strong>base desiderata va al denominatore</strong>. Scriverla al contrario è un errore frequente. <em>Controesempio</em>: $\log_2 8 = 3$; con base 10, $\dfrac{\log 8}{\log 2} = \dfrac{0{,}903}{0{,}301} = 3$ ✓. Se avessi capovolto, $\dfrac{\log 2}{\log 8} = \dfrac13$, che è invece $\log_8 2$! <em>Come evitarlo</em>: ricorda che $\log_a a = 1$; se sostituisci $x=a$ la formula giusta deve dare 1, e solo con la base al denominatore ci riesce.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scambiare quoziente con divisione di logaritmi</div>
+          <p>$\log\dfrac{x}{y} = \log x - \log y$ (una <strong>differenza</strong>), NON $\dfrac{\log x}{\log y}$. Quel rapporto, semmai, è tutt'altra cosa (è legato al cambio di base). <em>Controesempio</em>: $\log_{10}\tfrac{100}{10} = \log 10 = 1$, che è $\log 100 - \log 10 = 2 - 1 = 1$ ✓; invece $\dfrac{\log 100}{\log 10} = \dfrac{2}{1} = 2 \neq 1$.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il mnemonico delle proprietà</div>
+          <p>"Il logaritmo <strong>declassa</strong> ogni operazione di un livello": il <em>prodotto</em> diventa <em>somma</em>, il <em>quoziente</em> diventa <em>differenza</em>, la <em>potenza</em> diventa <em>prodotto</em> (l'esponente scende davanti). In sintesi: $\times \to +$, $\div \to -$, $x^k \to k\,\times$. Se ricordi solo questa frase, riderivi tutte e tre le proprietà a mente.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il dominio "a colpo d'occhio"</div>
+          <p>In un'espressione con logaritmi, <strong>tutto ciò che sta dentro un $\log$ deve essere $&gt; 0$</strong>: impostalo subito, prima di ogni calcolo. Per logaritmi annidati vai dall'interno verso l'esterno: per $\log(\log x)$ serve $\log x &gt; 0$, cioè $x &gt; 1$ (più forte del semplice $x &gt; 0$). Quando l'argomento è una frazione o un prodotto di fattori, il dominio diventa uno studio del segno: lo affronti con gli strumenti del <a href="06-disequazioni.html">capitolo sulle disequazioni</a>.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Verifica lampo delle soluzioni</div>
+          <p>Dopo aver risolto un'equazione logaritmica, <strong>rimetti ogni candidata dentro gli argomenti originali</strong>: se anche uno solo diventa $\leq 0$, la soluzione è da buttare. È un controllo di dieci secondi che salva punti preziosi all'esame e smaschera le soluzioni "fasulle" introdotte dall'esponenziazione.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Cambio di base al volo con la calcolatrice</div>
+          <p>Qualunque $\log_a x$ si calcola come $\dfrac{\ln x}{\ln a}$ (o $\dfrac{\log x}{\log a}$): entrambe le basi "esotiche" spariscono e restano solo i tasti che la calcolatrice possiede davvero. Esempio: $\log_7 100 = \dfrac{\ln 100}{\ln 7} \approx \dfrac{4{,}605}{1{,}946} \approx 2{,}37$.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Stima dell'ordine di grandezza</div>
+          <p>Per un intero positivo, $\log_{10} N$ è circa (numero di cifre di $N$) $-\,1$. Così $\log_{10} 50\,000$ sta tra 4 e 5 (il numero ha 5 cifre): utilissimo per controllare al volo se un risultato è plausibile o assurdo.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Logaritmi</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Definizione</strong>
+              <ul><li>logₐx = y ⟺ aʸ = x</li><li>Condizioni: a&gt;0, a≠1, x&gt;0</li><li>logₐ1 = 0, logₐa = 1</li><li>Inversa dell'esponenziale</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Proprietà</strong>
+              <ul><li>Prodotto → somma</li><li>Quoziente → differenza</li><li>Potenza → prodotto (k·log)</li><li>Cambio base: logₐx = log_b x / log_b a</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Grafico</strong>
+              <ul><li>Dominio (0, +∞)</li><li>Asintoto verticale x = 0</li><li>Passa per (1, 0)</li><li>Simmetrico ad aˣ rispetto a y = x</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Basi &amp; usi</strong>
+              <ul><li>ln (base e ≈ 2,718)</li><li>log₁₀ (Richter, dB, pH)</li><li>Equazioni: esponenziare</li><li>Dimezzamenti e crescite</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Definizione</strong>: $\log_a x = y \Leftrightarrow a^y = x$. Il logaritmo è "l'esponente che cerchi". La radice cerca la base, il logaritmo cerca l'esponente.</li>
+            <li><strong>Condizioni di esistenza</strong>: base $a &gt; 0$ e $a \neq 1$; argomento $x &gt; 0$ (non esiste il log di zero o di un negativo).</li>
+            <li><strong>Proprietà</strong>: $\log(xy)=\log x+\log y$; $\log\tfrac{x}{y}=\log x-\log y$; $\log(x^k)=k\log x$; cambio base $\log_a x = \tfrac{\log_b x}{\log_b a}$.</li>
+            <li><strong>Basi speciali</strong>: $\ln$ = base $e\approx 2{,}718$ (regina dell'Analisi); $\log_{10}$ = base 10 (Richter, decibel, pH).</li>
+            <li><strong>Grafico</strong>: dominio $(0,+\infty)$, asintoto verticale $x=0$, passa per $(1,0)$, inverso dell'esponenziale (simmetria rispetto a $y=x$).</li>
+            <li><strong>Equazioni</strong>: imponi sempre il dominio, poi esponenzia, infine <em>verifica</em> ogni soluzione negli argomenti originali.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola per definizione: (a) $\log_3 81$; (b) $\log_2 \tfrac{1}{8}$; (c) $\log_{10} 0{,}0001$; (d) $\ln e^{4}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Ogni volta la domanda è la stessa (<span class="richiamo" data-sec="4.1">§4.1</span>): "a quale esponente devo elevare la base per ottenere l'argomento?".</p>
+              <p>(a) $3^4 = 81 \Rightarrow \mathbf{4}$. (b) $\tfrac18 = 2^{-3}$ (l'esponente negativo dà il reciproco, cap. 3) $\Rightarrow \mathbf{-3}$. (c) $0{,}0001 = 10^{-4}$, perché ci sono quattro posti dopo la virgola $\Rightarrow \mathbf{-4}$. (d) Applico il logaritmo della potenza (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_a\!\big(X^{k}\big) = k\log_a X$, con $X = e$ e $k = 4$: $\ln e^4 = 4\ln e$; poi $\ln e = 1$ perché $e^1 = e$, quindi $4\cdot 1 = \mathbf{4}$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina il dominio della funzione $f(x) = \log_2(x - 4)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>L'argomento deve essere positivo: $x - 4 &gt; 0 \Rightarrow x &gt; 4$.</p>
+              <p><strong>Dominio: $(4, +\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Usa le proprietà per scrivere in forma "spezzata": (a) $\log_a(5xy)$; (b) $\log_a \tfrac{x}{7}$ (con $x,y&gt;0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>(a) prodotto → somma: $\log_a 5 + \log_a x + \log_a y$. (b) quoziente → differenza: $\log_a x - \log_a 7$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola con le identità inverse: (a) $2^{\log_2 7}$; (b) $\log_5(5^3)$; (c) $e^{\ln 4}$; (d) $10^{\log_{10} 100}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>(a) $\mathbf{7}$; (b) $\mathbf{3}$; (c) $\mathbf{4}$; (d) $\mathbf{100}$ (poiché $\log_{10}100 = 2$ e $10^2 = 100$). In tutti i casi log ed esponenziale con la stessa base si annullano.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Espandi completamente: $\log_a \dfrac{x^{3}\sqrt{y}}{z^{2}}$ (con $x,y,z &gt; 0$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dentro c'è una frazione: uso il <em>logaritmo del quoziente</em> (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_a\frac{X}{Y} = \log_a X - \log_a Y$, con $X = x^3\sqrt y$ (il numeratore) e $Y = z^2$ (il denominatore): $\log_a\!\big(x^3\sqrt y\big) - \log_a\!\big(z^2\big)$.</span>
+                <span class="esempio__passo">Nel primo logaritmo c'è un prodotto: uso il <em>logaritmo del prodotto</em>, $\log_a(XY) = \log_a X + \log_a Y$, con $X = x^3$ e $Y = \sqrt y$: $\log_a\!\big(x^3\big) + \log_a\!\big(\sqrt y\big) - \log_a\!\big(z^2\big)$.</span>
+                <span class="esempio__passo">Riscrivo la radice come potenza, $\sqrt y = y^{1/2}$ (cap. 3), e applico tre volte il <em>logaritmo della potenza</em>, $\log_a\!\big(X^{k}\big) = k\log_a X$: con $k=3$ sul primo, $k=\tfrac12$ sul secondo, $k=2$ sul terzo.</span>
+              </p>
+              <p><strong>$3\log_a x + \tfrac{1}{2}\log_a y - 2\log_a z$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Condensa in un unico logaritmo: $3\log x - \tfrac{1}{2}\log y + \log 2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Leggo il <em>logaritmo della potenza</em> (<span class="richiamo" data-sec="4.3">§4.3</span>) al contrario, $k\log X = \log\!\big(X^{k}\big)$: il $3$ rientra come esponente ($X = x$, $k = 3$) dando $\log x^3$, e il $\tfrac12$ rientra allo stesso modo ($X = y$, $k = \tfrac12$) dando $\log y^{1/2} = \log\sqrt y$. Ottengo $\log x^3 - \log \sqrt{y} + \log 2$.</span>
+                <span class="esempio__passo">Unisco i due termini con il segno $+$ usando il logaritmo del prodotto al contrario, $\log X + \log Y = \log(XY)$ con $X = x^3$ e $Y = 2$: $\log\!\big(2x^3\big) - \log\sqrt y$.</span>
+                <span class="esempio__passo">Infine la differenza diventa un quoziente, $\log X - \log Y = \log\frac{X}{Y}$ con $X = 2x^3$ e $Y = \sqrt y$.</span>
+              </p>
+              <p><strong>$\log \dfrac{2x^{3}}{\sqrt{y}}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Esprimi $\log_4 30$ con logaritmi naturali e stimane il valore.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Uso il cambio di base (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_a x = \dfrac{\log_b x}{\log_b a}$, con base di partenza $a = 4$, argomento $x = 30$ e nuova base $b = e$ (quella del tasto $\ln$): $\log_4 30 = \dfrac{\ln 30}{\ln 4} = \dfrac{3{,}401}{1{,}386} \approx \mathbf{2{,}45}$.</p>
+              <p>Plausibilità: $4^2 = 16 &lt; 30 &lt; 64 = 4^3$, quindi il risultato deve stare tra 2 e 3. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi: (a) $\log_3 x = 4$; (b) $10^{x} = 250$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>(a) È la forma $\log_a f(x) = c$ del <span class="richiamo" data-sec="4.5">§4.5</span> con $a = 3$, $f(x) = x$, $c = 4$; quello schema dice $f(x) = a^{c}$, quindi $x = 3^4 = \mathbf{81}$ (accettabile, perché deve essere $x &gt; 0$).</p>
+              <p>(b) L'incognita è all'esponente, quindi applico $\log_{10}$ a entrambi i membri e uso l'identità $\log_{10}\!\big(10^{x}\big) = x$ (<span class="richiamo" data-sec="4.1">§4.1</span>): resta $x = \log_{10} 250$. Per stimarlo spezzo $250 = 2{,}5\cdot 100$ e uso il logaritmo del prodotto (<span class="richiamo" data-sec="4.3">§4.3</span>) con $X = 2{,}5$ e $Y = 100$: $\log_{10} 250 = \log_{10}100 + \log_{10}2{,}5$. Ma $\log_{10}100 = 2$ perché $10^2 = 100$, quindi $x = 2 + \log_{10} 2{,}5 \approx 2 + 0{,}40 = \mathbf{2{,}40}$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi, discutendo il dominio: $\log_2 x + \log_2(x - 6) = 4$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dominio: entrambi gli argomenti devono essere positivi (<span class="richiamo" data-sec="4.1">§4.1</span>), cioè $x &gt; 0$ <em>e</em> $x - 6 &gt; 0$; la seconda dà $x &gt; 6$, che è la più restrittiva, quindi il dominio è $x &gt; 6$.</span>
+                <span class="esempio__passo">Somma di logaritmi con la stessa base: uso il logaritmo del prodotto (<span class="richiamo" data-sec="4.3">§4.3</span>) al contrario, $\log_a X + \log_a Y = \log_a(XY)$, con $X = x$ e $Y = x-6$: $\log_2\big(x(x-6)\big) = 4$.</span>
+                <span class="esempio__passo">Ora è la forma $\log_a f(x) = c$ del <span class="richiamo" data-sec="4.5">§4.5</span> con $a = 2$, $f(x) = x(x-6)$, $c = 4$, quindi $f(x) = a^{c}$: $x(x-6) = 2^4 = 16$. Svolgo il prodotto ($x^2 - 6x$) e porto $16$ a sinistra cambiandogli segno: $x^2 - 6x - 16 = 0$.</span>
+                <span class="esempio__passo">Scompongo cercando due numeri con somma $-6$ e prodotto $-16$: sono $-8$ e $+2$. Quindi $(x-8)(x+2) = 0$, e un prodotto si annulla solo se si annulla un fattore: $x = 8$ oppure $x = -2$.</span>
+              </p>
+              <p><strong>Solo $x = 8$ rispetta $x &gt; 6$; $x = -2$ si scarta. Soluzione: $x = 8$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi (base 10): $\log x + \log(x - 3) = 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dominio: gli argomenti devono essere entrambi positivi (<span class="richiamo" data-sec="4.1">§4.1</span>), cioè $x &gt; 0$ e $x - 3 &gt; 0$; la seconda dà $x &gt; 3$, che comprende già la prima. Dominio: $x &gt; 3$.</span>
+                <span class="esempio__passo">Logaritmo del prodotto (<span class="richiamo" data-sec="4.3">§4.3</span>) al contrario, con $X = x$ e $Y = x-3$: $\log\big(x(x-3)\big) = 1$. Poi lo schema $\log_a f(x) = c \Rightarrow f(x) = a^{c}$ del <span class="richiamo" data-sec="4.5">§4.5</span>, qui con base $a = 10$ e $c = 1$: $x(x-3) = 10^1 = 10$. Svolgo il prodotto ($x^2 - 3x$) e porto $10$ a sinistra: $x^2 - 3x - 10 = 0$.</span>
+                <span class="esempio__passo">Scompongo cercando due numeri con somma $-3$ e prodotto $-10$: sono $-5$ e $+2$. Quindi $(x-5)(x+2) = 0$, da cui $x = 5$ oppure $x = -2$.</span>
+              </p>
+              <p><strong>$x = -2$ viola il dominio → scartata. Soluzione: $x = 5$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione esponenziale $5^{2x} = 7^{\,x+1}$ (lascia il risultato in forma logaritmica e poi stimalo).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Applico $\ln$ a entrambi i membri (sono numeri positivi uguali): $\ln\!\big(5^{2x}\big) = \ln\!\big(7^{\,x+1}\big)$.</span>
+                <span class="esempio__passo">Uso il logaritmo della potenza (<span class="richiamo" data-sec="4.3">§4.3</span>), $\ln\!\big(X^{k}\big) = k\ln X$, due volte: a sinistra con $X = 5$ e $k = 2x$, a destra con $X = 7$ e $k = x+1$. Ottengo $2x\ln 5 = (x+1)\ln 7$. Ora l'incognita non è più a esponente.</span>
+                <span class="esempio__passo">Svolgo la moltiplicazione a destra: $(x+1)\ln 7 = x\ln 7 + \ln 7$. L'equazione è $2x\ln 5 = x\ln 7 + \ln 7$.</span>
+                <span class="esempio__passo">Porto a sinistra tutti i termini che contengono $x$ (cambiando segno a quello che sposto): $2x\ln 5 - x\ln 7 = \ln 7$. Raccolgo $x$ a fattore comune: $x(2\ln 5 - \ln 7) = \ln 7$.</span>
+                <span class="esempio__passo">Divido entrambi i membri per la parentesi $(2\ln 5 - \ln 7)$, che è un numero diverso da zero: $x = \dfrac{\ln 7}{2\ln 5 - \ln 7}$.</span>
+              </p>
+              <p><strong>$x = \dfrac{\ln 7}{2\ln 5 - \ln 7} = \dfrac{1{,}946}{3{,}219 - 1{,}946} \approx 1{,}53$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Una sostanza radioattiva ha tempo di dimezzamento di 8 giorni. Dopo quanti giorni ne rimane il 10%?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Modello: ogni $8$ giorni la quantità viene moltiplicata per $\tfrac12$, quindi in $t$ giorni i dimezzamenti sono $t/8$ e resta la frazione $\big(\tfrac12\big)^{t/8}$. "Rimane il 10%" significa $\big(\tfrac12\big)^{t/8} = 0{,}1$.</span>
+                <span class="esempio__passo">Leggo l'uguaglianza con la definizione di logaritmo (<span class="richiamo" data-sec="4.1">§4.1</span>), $a^{y} = x \Longleftrightarrow y = \log_a x$, ponendo $a = \tfrac12$, $y = t/8$, $x = 0{,}1$: ottengo $\dfrac{t}{8} = \log_{1/2} 0{,}1$.</span>
+                <span class="esempio__passo">Per il valore numerico uso il cambio di base (<span class="richiamo" data-sec="4.3">§4.3</span>) con $a = \tfrac12$, $x = 0{,}1$, nuova base $b = e$: $\log_{1/2} 0{,}1 = \dfrac{\ln 0{,}1}{\ln 0{,}5} = \dfrac{-2{,}303}{-0{,}693} \approx 3{,}32$. Infine moltiplico entrambi i membri per $8$.</span>
+              </p>
+              <p><strong>$t \approx 8 \cdot 3{,}32 \approx 26{,}6$ giorni.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvere e discutere il dominio dell'<span class="glossario-term" data-term="equazione">equazione</span> $\log_3(x + 2) + \log_3(x - 2) = \log_3 5$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dominio: entrambi gli argomenti positivi (<span class="richiamo" data-sec="4.1">§4.1</span>), cioè $x + 2 &gt; 0$ (che dà $x &gt; -2$) e $x - 2 &gt; 0$ (che dà $x &gt; 2$). Devono valere insieme: vince la più restrittiva, $x &gt; 2$.</span>
+                <span class="esempio__passo">A sinistra c'è una somma di logaritmi in base $3$: la condenso con il logaritmo del prodotto (<span class="richiamo" data-sec="4.3">§4.3</span>), $\log_a X + \log_a Y = \log_a(XY)$, con $X = x+2$ e $Y = x-2$. L'equazione diventa $\log_3\big((x+2)(x-2)\big) = \log_3 5$.</span>
+                <span class="esempio__passo">Ora ho la forma $\log_a f(x) = \log_a g(x)$ del <span class="richiamo" data-sec="4.5">§4.5</span>: stessa base a destra e a sinistra, quindi gli argomenti devono essere uguali. Scrivo $(x+2)(x-2) = 5$.</span>
+                <span class="esempio__passo">Svolgo il prodotto con il prodotto notevole $(a+b)(a-b) = a^2 - b^2$ (cap. 2), qui con $a = x$ e $b = 2$: $(x+2)(x-2) = x^2 - 4$. L'equazione è $x^2 - 4 = 5$; sommo $4$ a entrambi i membri e ottengo $x^2 = 9$.</span>
+                <span class="esempio__passo">I numeri il cui quadrato fa $9$ sono due: $x = 3$ oppure $x = -3$.</span>
+              </p>
+              <p><strong>$x = -3$ non è nel dominio → scartata. Soluzione: $x = 3$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare il dominio di (a) $f(x) = \ln(\ln x)$ e (b) $g(x) = \log_2 \dfrac{x-1}{x+3}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>(a) Il logaritmo esterno ha per argomento $\ln x$, e ogni argomento deve essere positivo (<span class="richiamo" data-sec="4.1">§4.1</span>): serve $\ln x &gt; 0$. Leggo questa condizione con la definizione: $\ln x &gt; 0 = \ln 1$, e poiché il logaritmo in base $e &gt; 1$ è crescente (<span class="richiamo" data-sec="4.4">§4.4</span>), equivale a $x &gt; 1$. Questa condizione implica già $x &gt; 0$, che serviva al logaritmo interno. <strong>Dominio: $(1, +\infty)$.</strong></p>
+              <p>(b) Serve che l'argomento sia positivo: $\dfrac{x-1}{x+3} &gt; 0$. È una <span class="glossario-term" data-term="disequazione">disequazione</span> fratta, quindi studio il segno dei due pezzi separatamente: il numeratore $x-1$ è positivo per $x &gt; 1$, il denominatore $x+3$ è positivo per $x &gt; -3$. Una frazione è positiva quando numeratore e denominatore hanno lo <em>stesso</em> segno: entrambi negativi quando $x &lt; -3$, entrambi positivi quando $x &gt; 1$. <strong>Dominio: $(-\infty, -3) \cup (1, +\infty)$.</strong> Il metodo sistematico per queste disequazioni è nel <a href="06-disequazioni.html">capitolo 6</a>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Il pH è definito da $\text{pH} = -\log_{10}[\mathrm{H}^+]$. Una soluzione A ha $[\mathrm{H}^+] = 10^{-4}$ mol/L, una soluzione B ha $[\mathrm{H}^+] = 10^{-6}$ mol/L. (a) Calcola i due pH. (b) Di quante volte A è più concentrata di B in ioni $\mathrm{H}^+$?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>(a) $\text{pH}_A = -\log_{10}(10^{-4}) = 4$; $\text{pH}_B = -\log_{10}(10^{-6}) = 6$.</p>
+              <p>(b) Rapporto delle concentrazioni: $\dfrac{10^{-4}}{10^{-6}} = 10^{2} = \mathbf{100}$ volte. Nota: <strong>2 unità di pH in meno equivalgono a una concentrazione 100 volte maggiore</strong> — è il senso di una scala logaritmica.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvere l'equazione con basi diverse: $\log_2 x + \log_4 x = 3$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dominio: l'argomento è $x$ in entrambi i logaritmi, quindi basta $x &gt; 0$ (<span class="richiamo" data-sec="4.1">§4.1</span>).</span>
+                <span class="esempio__passo">Il problema è che le basi sono diverse ($2$ e $4$) e le proprietà del <span class="richiamo" data-sec="4.3">§4.3</span> funzionano solo tra logaritmi con la <em>stessa</em> base. Riporto allora il secondo in base 2 con il cambio di base, $\log_a x = \dfrac{\log_b x}{\log_b a}$, usando $a = 4$ (la base da eliminare) e $b = 2$ (la base che voglio): $\log_4 x = \dfrac{\log_2 x}{\log_2 4}$. Il denominatore vale $\log_2 4 = 2$, perché $2^2 = 4$. Quindi $\log_4 x = \dfrac{\log_2 x}{2} = \tfrac12\log_2 x$.</span>
+                <span class="esempio__passo">Sostituisco questa espressione al posto di $\log_4 x$ nell'equazione di partenza: $\log_2 x + \tfrac{1}{2}\log_2 x = 3$. Le due quantità a sinistra sono "una volta" e "mezza volta" lo stesso oggetto $\log_2 x$, quindi le sommo come termini simili: $1 + \tfrac12 = \tfrac32$, cioè $\tfrac{3}{2}\log_2 x = 3$.</span>
+                <span class="esempio__passo">Moltiplico entrambi i membri per $\tfrac23$ (cioè divido per $\tfrac32$): $\log_2 x = 3\cdot\tfrac23 = 2$. Infine uso la definizione (<span class="richiamo" data-sec="4.1">§4.1</span>), $\log_a x = c \Rightarrow x = a^{c}$, con $a = 2$ e $c = 2$: $x = 2^2 = 4$, che rispetta il dominio $x &gt; 0$.</span>
+              </p>
+              <p><strong>Soluzione: $x = 4$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Quanto vale $\log_2 32$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">4</button>
+              <button class="quiz-option" data-correct="true">5</button>
+              <button class="quiz-option" data-correct="false">6</button>
+              <button class="quiz-option" data-correct="false">16</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Cerchiamo l'esponente da dare a 2 per ottenere 32: $2^5 = 32$, quindi $\log_2 32 = 5$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Qual è il dominio della funzione $f(x) = \log_a x$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Tutto $\mathbb{R}$</button>
+              <button class="quiz-option" data-correct="false">$x \geq 0$</button>
+              <button class="quiz-option" data-correct="true">$x &gt; 0$</button>
+              <button class="quiz-option" data-correct="false">$x \neq 0$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Una base positiva elevata a qualunque esponente dà sempre un risultato positivo, quindi l'argomento del logaritmo può essere solo un numero strettamente positivo (nemmeno lo zero).</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) A cosa è uguale $\log_a(x\cdot y)$ (con $x,y&gt;0$)?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\log_a x \cdot \log_a y$</button>
+              <button class="quiz-option" data-correct="true">$\log_a x + \log_a y$</button>
+              <button class="quiz-option" data-correct="false">$\log_a x - \log_a y$</button>
+              <button class="quiz-option" data-correct="false">$\dfrac{\log_a x}{\log_a y}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il logaritmo di un prodotto è la somma dei logaritmi: prodotto → somma. È la proprietà dimostrata partendo dalla definizione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Con la formula del cambio di base, $\log_2 7$ è uguale a:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\dfrac{\ln 2}{\ln 7}$</button>
+              <button class="quiz-option" data-correct="true">$\dfrac{\ln 7}{\ln 2}$</button>
+              <button class="quiz-option" data-correct="false">$\ln 7 \cdot \ln 2$</button>
+              <button class="quiz-option" data-correct="false">$\dfrac{7}{2}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La base desiderata (2) va al denominatore: $\log_2 7 = \dfrac{\ln 7}{\ln 2}$. Capovolgere darebbe $\log_7 2$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Per ogni $a, b &gt; 0$ vale $\log(a+b) = \log a + \log b$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: la proprietà riguarda il prodotto, non la somma. Controesempio: $\log_2(4+4)=3$ ma $\log_2 4 + \log_2 4 = 4$. Non esiste una formula semplice per il log di una somma.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Il grafico di $y = \log_a x$ passa sempre per il punto $(1, 0)$, qualunque sia la base $a$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: $\log_a 1 = 0$ per ogni base, perché $a^0 = 1$. È il "punto fisso" comune a tutte le curve logaritmiche.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Il logaritmo naturale $\ln$ ha come base il numero $e \approx 2{,}718$, ed è $\ln e = 1$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: $\ln = \log_e$, e $\log_e e = 1$ perché $e^1 = e$. È la base "naturale" di tutta l'Analisi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Se $0 &lt; a &lt; 1$, la funzione $\log_a x$ è crescente.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: con base tra 0 e 1 il logaritmo è decrescente. È crescente solo quando $a &gt; 1$. Questo cambia il verso nelle disequazioni logaritmiche.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="logaritmo|il logaritmo">
+            <p class="quiz-question__testo">9. (Completamento) L'operazione inversa dell'elevamento a potenza, quando l'incognita è l'esponente, si chiama ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Quando invece l'incognita è la base, l'operazione inversa è il radicale (la radice).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="ln|logaritmo naturale">
+            <p class="quiz-question__testo">10. (Completamento) Il logaritmo in base $e$ si indica con il simbolo ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si scrive $\ln x$ (dal latino <em>logarithmus naturalis</em>); equivale a $\log_e x$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="0|zero">
+            <p class="quiz-question__testo">11. (Completamento) Per qualunque base valida $a$, il valore di $\log_a 1$ è ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Vale 0, perché $a^0 = 1$ per ogni base. Da qui il punto fisso $(1,0)$ del grafico.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché l'argomento di un logaritmo deve essere strettamente positivo.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: il logaritmo $\log_a x$ è l'esponente $y$ tale che $a^y = x$. Ma una base positiva $a$ elevata a qualunque esponente reale $y$ produce sempre un risultato positivo ($a^y &gt; 0$). Quindi gli unici numeri $x$ per cui esiste un esponente che li genera sono i numeri positivi: non esiste alcun $y$ per cui $a^y$ dia $0$ o un numero negativo. Per questo il dominio del logaritmo è $(0, +\infty)$ e, nelle equazioni, va sempre imposto che ogni argomento sia $&gt; 0$.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché i grafici di $y = a^x$ e $y = \log_a x$ sono simmetrici rispetto alla retta $y = x$?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: le due funzioni sono una l'inversa dell'altra, perché il logaritmo "disfa" ciò che fa l'esponenziale ($a^{\log_a x} = x$ e $\log_a(a^x) = x$). Per una funzione e la sua inversa, ogni punto $(p, q)$ del grafico della prima corrisponde al punto $(q, p)$ del grafico della seconda (le coordinate si scambiano). Scambiare $x$ e $y$ è esattamente una riflessione rispetto alla bisettrice $y = x$. Ecco perché il punto $(0,1)$ dell'esponenziale diventa $(1,0)$ del logaritmo, e l'asintoto orizzontale $y=0$ dell'uno diventa l'asintoto verticale $x=0$ dell'altro.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="03-potenze-radicali-esponenziali.html"><span class="dir">← Capitolo precedente</span><strong>Potenze, radicali ed esponenziali</strong></a>
+        <a class="next" href="05-equazioni.html"><span class="dir">Capitolo successivo →</span><strong>Equazioni</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

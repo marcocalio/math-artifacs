@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1. Insiemi, Logica e Numeri — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 1</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html" class="is-active">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 1 di 9</span>
+        </div>
+        <h1>Insiemi, Logica e Numeri: il linguaggio della matematica</h1>
+        <p class="subtitle">Prima di calcolare qualunque cosa, dobbiamo metterci d'accordo su cosa significano le parole che usiamo. Questo capitolo costruisce da zero l'alfabeto con cui è scritta tutta l'Analisi Matematica: insiemi, logica e numeri.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~45 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina di dover riordinare una libreria enorme. La prima cosa che fai non è leggere ogni libro: è <strong>creare delle categorie</strong> — narrativa, saggistica, fumetti — e decidere delle <strong>regole chiare</strong> per capire dove va ogni libro. Solo dopo aver fatto ordine puoi iniziare a ragionare seriamente sulla collezione.</p>
+        <p>La matematica funziona allo stesso modo. Prima di poter parlare di funzioni, limiti o derivate, serve:</p>
+        <p>1) un modo per <strong>raggruppare oggetti</strong> in collezioni precise (gli <span class="glossario-term" data-term="insieme">insiemi</span>); 2) un modo per <strong>collegare frasi vere o false</strong> senza ambiguità (la <strong>logica</strong>); 3) una <strong>famiglia di numeri</strong> via via più ricca, costruita apposta per risolvere problemi che la famiglia precedente non riusciva a risolvere.</p>
+        <p>Questo primo capitolo non contiene "calcoli difficili": contiene gli <strong>attrezzi concettuali</strong> che userai, spesso senza accorgertene, in ogni singola pagina successiva di questo libro.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>ogni disciplina rigorosa ha bisogno di un linguaggio privo di ambiguità</strong>. Se dico "il numero più grande vicino a 3", non è chiaro cosa intendo: 3.001? 3.00001? La matematica risolve questo problema definendo con precisione assoluta insiemi, relazioni e numeri, così che due persone in punti diversi del mondo, leggendo la stessa definizione, capiscano esattamente la stessa cosa.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Storicamente, i numeri sono nati per problemi concreti: contare greggi (naturali), rappresentare debiti (interi), dividere terreni o raccolti (razionali). Ma già nell'antica Grecia i pitagorici scoprirono con sgomento che <strong>la diagonale di un quadrato di lato 1 non è esprimibile come frazione</strong>: le frazioni, da sole, non bastano nemmeno per misurare una figura semplicissima! Questo "buco" nei numeri razionali è il motivo per cui esistono i numeri reali, ed è esattamente il tipo di problema che risolveremo con una dimostrazione rigorosa in questo capitolo.</p>
+        <p><strong>Perché è importante ora?</strong> Perché il 90% degli errori che gli studenti commettono nei primi compiti di Analisi 1 non sono errori di calcolo, ma errori di <em>linguaggio</em>: confondere "per ogni" con "esiste", scrivere il dominio sbagliato, non sapere se un numero è razionale o meno. Sistemare queste basi ora ti farà risparmiare moltissimi punti in futuro.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Gli insiemi sono ovunque, anche se non li chiami così</div>
+          <p>Ogni volta che filtri un e-commerce per <em>"taglia M"</em> <strong>e</strong> <em>"colore rosso"</em>, stai calcolando un'<strong>intersezione di insiemi</strong>. La tua playlist preferita è un <strong>insieme</strong> di canzoni. Quando il navigatore GPS ti dice "sei a meno di 500 metri dalla destinazione", sta descrivendo un <strong>intorno</strong> — esattamente il concetto che useremo tra pochi capitoli per definire i limiti. Il conto in banca, che può andare in negativo, esiste solo perché qualcuno ha inventato i numeri interi <span class="glossario-term" data-term="numero-intero">ℤ</span>; dividere una pizza in parti uguali richiede i razionali <span class="glossario-term" data-term="numero-razionale">ℚ</span>; ma per costruire un righello preciso al millimetro (e oltre) servono i numeri reali <span class="glossario-term" data-term="numero-reale">ℝ</span>, capaci di rappresentare <em>ogni</em> punto di una riga senza lasciare buchi.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-insiemi">4.1 Insiemi: definizioni e notazioni</h3>
+        <p>Un <strong><span class="glossario-term" data-term="insieme">insieme</span></strong> è una collezione di oggetti distinti, detti <em>elementi</em>, considerata come un unico ente. Si indicano solitamente con lettere maiuscole ($A$, $B$, $X$...) e si possono descrivere in due modi equivalenti:</p>
+        <div class="formula-block">
+          $$A = \{1, 2, 3, 4\} \quad \text{(elencazione: si elencano tutti gli elementi)}$$
+          $$A = \{\, x \in \mathbb{N} \;:\; 1 \leq x \leq 4 \,\} \quad \text{(caratteristica: si indica la proprietà che li definisce)}$$
+        </div>
+        <p>Il simbolo $x \in A$ si legge "<em>x appartiene ad A</em>" e significa che $x$ è uno degli elementi di $A$; $x \notin A$ significa il contrario. <strong>Attenzione</strong>: l'appartenenza ($\in$) riguarda un <em>elemento</em> rispetto a un insieme, mentre l'inclusione riguarda due <em>insiemi</em> tra loro (vedi la sezione errori comuni).</p>
+        <p>Diciamo che $A$ è <strong>sottoinsieme</strong> di $B$, e scriviamo $A \subseteq B$, se ogni elemento di $A$ appartiene anche a $B$. Se in più $A \neq B$, scriviamo $A \subset B$ (sottoinsieme proprio). L'<strong>insieme vuoto</strong> $\emptyset$ (che non contiene alcun elemento) è sottoinsieme di qualunque insieme.</p>
+        <p>Le operazioni fondamentali tra due insiemi $A$ e $B$, entrambi sottoinsiemi di un "insieme universo" $U$, sono:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Operazione</th><th>Simbolo</th><th>Significato</th><th>Esempio con $A=\{1,2,3\}$, $B=\{2,3,4\}$</th></tr></thead>
+          <tbody>
+            <tr><td>Unione</td><td>$A \cup B$</td><td>elementi che stanno in $A$ <em>oppure</em> in $B$ (o entrambi)</td><td>$\{1,2,3,4\}$</td></tr>
+            <tr><td>Intersezione</td><td>$A \cap B$</td><td>elementi che stanno <em>sia</em> in $A$ <em>sia</em> in $B$</td><td>$\{2,3\}$</td></tr>
+            <tr><td>Differenza</td><td>$A \setminus B$</td><td>elementi di $A$ che non stanno in $B$</td><td>$\{1\}$</td></tr>
+            <tr><td>Complementare</td><td>$A^{c}$ o $\overline{A}$</td><td>elementi dell'universo $U$ che non stanno in $A$</td><td>dipende da $U$</td></tr>
+          </tbody>
+        </table>
+        <p>Una rappresentazione grafica molto utile è il <strong>diagramma di Venn</strong>, dove ogni insieme è un cerchio e le operazioni corrispondono a regioni:</p>
+
+        <svg viewBox="0 0 360 200" style="max-width:420px;margin:1.2em auto;display:block;" role="img" aria-label="Diagramma di Venn di due insiemi A e B che si intersecano">
+          <circle cx="150" cy="100" r="80" fill="var(--color-primary)" opacity="0.35" stroke="var(--color-primary)" stroke-width="2"/>
+          <circle cx="230" cy="100" r="80" fill="var(--color-secondary)" opacity="0.35" stroke="var(--color-secondary)" stroke-width="2"/>
+          <text x="105" y="60" font-size="18" font-weight="700" fill="currentColor">A</text>
+          <text x="270" y="60" font-size="18" font-weight="700" fill="currentColor">B</text>
+          <text x="188" y="105" font-size="13" fill="currentColor">A∩B</text>
+        </svg>
+
+        <p>Un'altra costruzione essenziale è il <strong>prodotto cartesiano</strong>: dati due insiemi $A$ e $B$, il prodotto cartesiano $A \times B$ è l'insieme di tutte le coppie ordinate $(a,b)$ con $a \in A$ e $b \in B$:</p>
+        <div class="formula-block">$$A \times B = \{\, (a,b) \;:\; a \in A,\ b \in B \,\}$$</div>
+        <p>Questa nozione, apparentemente astratta, è esattamente ciò che userai per definire il <strong>piano cartesiano</strong> ($\mathbb{R} \times \mathbb{R}$) su cui disegnerai ogni grafico di questo libro.</p>
+
+        <h3 id="teoria-logica">4.2 Logica elementare</h3>
+        <p>Una <strong>proposizione</strong> è un'affermazione a cui si può assegnare senza ambiguità un valore di verità: <em>vero</em> (V) o <em>falso</em> (F), mai entrambi. "$7$ è un numero primo" è una proposizione (vera); "che ore sono?" non lo è (non è né vera né falsa).</p>
+        <p>I <strong>connettivi logici</strong> combinano proposizioni:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Connettivo</th><th>Simbolo</th><th>Si legge</th><th>Vero quando...</th></tr></thead>
+          <tbody>
+            <tr><td>Negazione</td><td>$\neg p$</td><td>"non $p$"</td><td>$p$ è falsa</td></tr>
+            <tr><td>Congiunzione</td><td>$p \wedge q$</td><td>"$p$ e $q$"</td><td>entrambe vere</td></tr>
+            <tr><td>Disgiunzione</td><td>$p \vee q$</td><td>"$p$ o $q$"</td><td>almeno una vera</td></tr>
+            <tr><td>Implicazione</td><td>$p \Rightarrow q$</td><td>"se $p$ allora $q$"</td><td>sempre, tranne quando $p$ è vera e $q$ falsa</td></tr>
+            <tr><td>Doppia implicazione</td><td>$p \Leftrightarrow q$</td><td>"$p$ se e solo se $q$"</td><td>$p$ e $q$ hanno lo stesso valore di verità</td></tr>
+          </tbody>
+        </table>
+        <p>I <strong>quantificatori</strong> permettono di parlare di intere collezioni di oggetti senza elencarli:</p>
+        <div class="formula-block">
+          $$\forall x \in A,\ P(x) \quad \text{"per ogni $x$ in $A$, vale la proprietà $P(x)$"}$$
+          $$\exists x \in A \;:\; P(x) \quad \text{"esiste (almeno) un $x$ in $A$ tale che vale $P(x)$"}$$
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Regola d'oro per negare i quantificatori</div>
+          <p>Negare $\forall x,\ P(x)$ dà $\exists x \;:\; \neg P(x)$ (per dire che <em>non</em> vale per tutti, basta un controesempio). Negare $\exists x,\ P(x)$ dà $\forall x,\ \neg P(x)$ (se non esiste nessuno che verifica $P$, allora nessuno la verifica). <strong>Questa regola tornerà, identica, quando dovrai negare la definizione di limite o di continuità.</strong></p>
+        </div>
+
+        <h3 id="teoria-numeri">4.3 Gli insiemi numerici: una costruzione progressiva</h3>
+        <p>I numeri non sono nati tutti insieme: sono stati <strong>inventati uno strato sopra l'altro</strong>, ogni volta per risolvere un problema che lo strato precedente non riusciva a risolvere.</p>
+
+        <div class="timeline">
+          <div class="timeline-step">
+            <strong>ℕ — Numeri naturali</strong>
+            $\mathbb{N} = \{0, 1, 2, 3, \dots\}$. Nascono per <strong>contare</strong>. Somma e prodotto restano sempre dentro ℕ, ma la sottrazione no: $3 - 5$ non ha soluzione in ℕ.
+          </div>
+          <div class="timeline-step">
+            <strong>ℤ — Numeri interi</strong>
+            $\mathbb{Z} = \{\dots, -2,-1,0,1,2,\dots\}$. Aggiungendo gli opposti si risolve <strong>ogni</strong> sottrazione. Ma la divisione ancora no: $3 \div 5$ non ha soluzione intera.
+          </div>
+          <div class="timeline-step">
+            <strong>ℚ — Numeri razionali</strong>
+            $\mathbb{Q} = \left\{ \dfrac{p}{q} : p,q \in \mathbb{Z},\ q \neq 0 \right\}$. Aggiungendo le frazioni si risolve ogni divisione (tranne per zero). Sembra che ora "tutti i numeri" siano coperti...
+          </div>
+          <div class="timeline-step">
+            <strong>ℝ \ ℚ — Numeri irrazionali</strong>
+            Ma la diagonale di un quadrato di lato 1 misura $\sqrt{2}$, e (lo dimostriamo tra poco) $\sqrt{2}$ <strong>non</strong> è una frazione. Servono nuovi numeri, con infinite cifre decimali non periodiche.
+          </div>
+          <div class="timeline-step">
+            <strong>ℝ — Numeri reali</strong>
+            $\mathbb{R} = \mathbb{Q} \cup (\mathbb{R}\setminus\mathbb{Q})$. Corrispondono a <strong>ogni singolo punto</strong> della retta numerica, senza alcun buco. È l'insieme su cui costruiremo tutta l'Analisi Matematica 1.
+          </div>
+        </div>
+
+        <p>Vale la catena di inclusioni $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$, rappresentabile come una serie di scatole via via più grandi, ciascuna contenuta nella successiva.</p>
+
+        <h3 id="teoria-valore-assoluto">4.4 Valore assoluto (anteprima)</h3>
+        <p>Per misurare "quanto è lontano" un numero da un altro, serve il concetto di <strong>distanza</strong>, che sulla retta reale si costruisce con il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span>:</p>
+        <div class="formula-block">
+          $$|x| = \begin{cases} x & \text{se } x \geq 0 \\ -x & \text{se } x &lt; 0 \end{cases}$$
+        </div>
+        <p>Geometricamente, $|x|$ è la distanza di $x$ da $0$; più in generale, $|x-y|$ è la distanza tra i punti $x$ e $y$ sulla retta reale. Due proprietà che userai costantemente:</p>
+        <div class="formula-block">
+          $$|x \cdot y| = |x|\cdot|y| \qquad \qquad |x+y| \leq |x|+|y| \ \text{(disuguaglianza triangolare)}$$
+        </div>
+        <p>La prima si controlla guardando i segni: il prodotto $x\cdot y$ può cambiare segno, ma il valore assoluto lo butta via comunque, quindi a destra e a sinistra resta lo stesso numero positivo. La seconda dice che "il percorso diretto non è mai più lungo della somma dei due pezzi": se $x$ e $y$ hanno lo stesso segno vale l'uguaglianza, se hanno segni opposti si compensano in parte e il primo membro diventa più piccolo (prova con $x=3$ e $y=-2$: a sinistra $|3-2|=1$, a destra $3+2=5$).</p>
+        <p>Da qui ricaviamo una regola che useremo di continuo negli esempi e negli esercizi. Dire $|x| &lt; c$ (con $c &gt; 0$) significa "$x$ dista da $0$ meno di $c$"; i punti che distano da $0$ meno di $c$ sono tutti e soli quelli compresi tra $-c$ e $c$. In simboli:</p>
+        <div class="formula-block">$$|x| &lt; c \iff -c &lt; x &lt; c \qquad\qquad \text{(la chiameremo regola VA)}$$</div>
+        <p>Vale identica con $\leq$ al posto di $&lt;$ da entrambe le parti. Nota bene lo scambio: a sinistra c'è <em>una sola</em> disequazione con il valore assoluto, a destra ce ne sono <em>due</em> che devono valere insieme. È esattamente così che "si toglie" un valore assoluto.</p>
+        <p>Approfondiremo il valore assoluto (equazioni, disequazioni, grafici) nella Parte 1; qui ci serve già per il prossimo concetto.</p>
+
+        <h3 id="teoria-intervalli">4.5 Intervalli e intorni</h3>
+        <p>Un <strong>intervallo</strong> è un sottoinsieme "continuo" di $\mathbb{R}$ compreso tra due estremi:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Notazione</th><th>Nome</th><th>Significato</th></tr></thead>
+          <tbody>
+            <tr><td>$[a,b]$</td><td>chiuso</td><td>$a \leq x \leq b$ (estremi inclusi)</td></tr>
+            <tr><td>$(a,b)$</td><td>aperto</td><td>$a &lt; x &lt; b$ (estremi esclusi)</td></tr>
+            <tr><td>$[a,b)$</td><td>semiaperto a destra</td><td>$a \leq x &lt; b$</td></tr>
+            <tr><td>$(a,+\infty)$</td><td>illimitato superiormente</td><td>$x &gt; a$</td></tr>
+          </tbody>
+        </table>
+        <p>Un <strong><span class="glossario-term" data-term="intorno">intorno</span></strong> di un punto $x_0$ è, intuitivamente, "l'insieme di tutti i punti abbastanza vicini a $x_0$". Formalmente, l'intorno di $x_0$ di raggio $\delta &gt; 0$ è:</p>
+        <div class="formula-block">$$I_\delta(x_0) = \{\, x \in \mathbb{R} \;:\; |x - x_0| &lt; \delta \,\} = (x_0-\delta,\ x_0+\delta)$$</div>
+        <p><strong>Perché l'insieme scritto a sinistra è proprio l'intervallo scritto a destra?</strong> Applico la regola VA del <span class="richiamo" data-sec="4.4">§4.4</span>, cioè $|A| &lt; c \iff -c &lt; A &lt; c$, sostituendo $A = x-x_0$ (al posto della lettera $A$ scrivo tutta l'espressione $x-x_0$) e $c=\delta$. Ottengo prima di tutto $-\delta &lt; x-x_0 &lt; \delta$. Ora sommo $x_0$ a tutti e tre i membri (aggiungere la stessa quantità ovunque non altera le disuguaglianze): a sinistra $-\delta+x_0$, in mezzo $x-x_0+x_0=x$, a destra $\delta+x_0$. Resta $x_0-\delta &lt; x &lt; x_0+\delta$, che è per definizione l'intervallo aperto $(x_0-\delta,\ x_0+\delta)$.</p>
+        <p>Questa definizione, che oggi sembra solo un intervallo con un nome diverso, sarà il mattone fondamentale della definizione rigorosa di <span class="glossario-term" data-term="limite">limite</span> tra qualche capitolo: "avvicinarsi a un punto" significherà esattamente "entrare in ogni intorno di quel punto".</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">√2 non è un numero razionale.</em></p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per assurdo)</span>
+          <p>L'idea è: <strong>supponiamo vero il contrario</strong> di ciò che vogliamo dimostrare, e mostriamo che questo porta a una contraddizione logica. Se il "contrario" è impossibile, allora la tesi originale deve essere vera.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Supponiamo per assurdo che $\sqrt{2}$ sia razionale. Allora esistono due interi $p, q$ senza fattori comuni (frazione già ridotta ai minimi termini) tali che $\sqrt{2} = \dfrac{p}{q}$.</span>
+          <span class="esempio__passo">Elevo al quadrato <em>entrambi</em> i membri (se due numeri sono uguali, anche i loro quadrati lo sono). A sinistra $(\sqrt2)^2=2$, perché elevare al quadrato annulla la radice quadrata; a destra $\left(\dfrac{p}{q}\right)^2=\dfrac{p^2}{q^2}$, perché una frazione si eleva a potenza elevando separatamente numeratore e denominatore. Resta $2 = \dfrac{p^2}{q^2}$.</span>
+          <span class="esempio__passo">Moltiplico entrambi i membri per $q^2$ per togliere il denominatore: a sinistra viene $2q^2$, a destra $\dfrac{p^2}{q^2}\cdot q^2 = p^2$ (il $q^2$ si semplifica). Ottengo $p^2 = 2q^2$.</span>
+          <span class="esempio__passo">Questo significa che $p^2$ è <strong>pari</strong>: infatti è scritto nella forma $2\cdot(\text{un intero})$, che è proprio la definizione di numero pari. Ma se $p^2$ è pari, anche $p$ deve esserlo. Perché? Se $p$ fosse dispari, cioè della forma $p=2h+1$, allora $p^2=(2h+1)^2=4h^2+4h+1=2(2h^2+2h)+1$, cioè "un pari più uno", quindi dispari: il quadrato di un dispari è sempre dispari. Essendo $p$ pari, posso scriverlo come $p = 2k$ con $k$ intero.</span>
+          <span class="esempio__passo">Sostituisco $p=2k$ nell'uguaglianza $p^2=2q^2$, cioè ovunque compare $p$ scrivo $2k$: diventa $(2k)^2 = 2q^2$. Sviluppo il quadrato del prodotto: $(2k)^2=2^2\cdot k^2=4k^2$. Quindi $4k^2 = 2q^2$.</span>
+          <span class="esempio__passo">Divido entrambi i membri per $2$: a sinistra $2k^2$, a destra $q^2$, cioè $q^2 = 2k^2$. Anche $q^2$ è dunque $2$ per un intero, quindi è pari; e per lo stesso ragionamento del passo precedente anche $q$ è pari.</span>
+          <span class="esempio__passo">Ma allora sia $p$ sia $q$ sono pari, cioè hanno il fattore comune 2. <strong>Questo contraddice l'ipotesi iniziale</strong> che $p/q$ fosse già ridotta ai minimi termini!</span>
+          </p>
+          <p>Essendo arrivati a una contraddizione partendo dall'ipotesi "$\sqrt 2$ è razionale", quell'ipotesi deve essere falsa. Dunque $\sqrt{2}$ è irrazionale. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché funziona questa strategia?</div>
+          <p>La dimostrazione per assurdo è come disinnescare una bomba mostrando che "se il filo rosso fosse quello giusto, il timer arriverebbe a un numero impossibile": non serve sapere subito qual è il filo giusto, basta dimostrare che l'ipotesi sbagliata produce una contraddizione logica interna. La rincontrerai spessissimo in Analisi (ad esempio per dimostrare l'unicità del limite).</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Leggi di De Morgan.</em> Per ogni coppia di proposizioni $p, q$: $\ \neg(p \wedge q) = (\neg p) \vee (\neg q)$ e $\ \neg(p \vee q) = (\neg p) \wedge (\neg q)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Verifica per casi (tavola di verità)</span>
+          <p>Con solo due proposizioni ci sono 4 combinazioni possibili di vero/falso ($p$ vera o falsa, e per ciascun caso $q$ vera o falsa: $2\times2=4$): basta controllarle tutte. Nella tabella, ogni riga è una di queste combinazioni; le colonne si costruiscono da sinistra a destra applicando le definizioni dei connettivi della tabella del <span class="richiamo" data-sec="4.2">§4.2</span> ($p\wedge q$ è vera solo se entrambe sono vere; $\neg$ ribalta il valore; $\vee$ è vera se almeno una è vera).</p>
+          <table class="tabella-comparativa">
+            <thead><tr><th>$p$</th><th>$q$</th><th>$p \wedge q$</th><th>$\neg(p\wedge q)$</th><th>$\neg p \vee \neg q$</th></tr></thead>
+            <tbody>
+              <tr><td>V</td><td>V</td><td>V</td><td>F</td><td>F</td></tr>
+              <tr><td>V</td><td>F</td><td>F</td><td>V</td><td>V</td></tr>
+              <tr><td>F</td><td>V</td><td>F</td><td>V</td><td>V</td></tr>
+              <tr><td>F</td><td>F</td><td>F</td><td>V</td><td>V</td></tr>
+            </tbody>
+          </table>
+          <p>Le ultime due colonne coincidono riga per riga (F, V, V, V): le due proposizioni sono logicamente equivalenti, ed è dimostrata la prima legge. La seconda legge, $\neg(p\vee q)=(\neg p)\wedge(\neg q)$, si verifica con una tabella costruita nello stesso identico modo: si sostituisce la colonna $p\wedge q$ con $p\vee q$ (vera nelle prime tre righe) e la colonna $\neg p\vee\neg q$ con $\neg p\wedge\neg q$; entrambe risultano vere solo nell'ultima riga, dove $p$ e $q$ sono entrambe false. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Da elencazione a caratteristica</span><span class="badge badge--base">Base</span></div>
+          <p>Scrivere per caratteristica l'insieme $A = \{2,4,6,8,10\}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Osserviamo che sono tutti numeri pari, da 2 a 10.</span>
+            <span class="esempio__passo">Un numero pari si scrive come $2k$ con $k$ intero.</span>
+          </p>
+          <div class="esempio__risultato">$A = \{\, x \in \mathbb{N} : x = 2k,\ k \in \{1,2,3,4,5\} \,\} = \{\, x \in \mathbb{N} : x \text{ pari},\ 2 \leq x \leq 10 \,\}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Operazioni tra insiemi</span><span class="badge badge--base">Base</span></div>
+          <p>Dati $A = \{1,2,3,4,5\}$ e $B = \{3,4,5,6,7\}$, calcolare $A \cup B$, $A \cap B$, $A \setminus B$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$A \cup B$: prendo tutti gli elementi che stanno in almeno uno dei due, senza ripetizioni → $\{1,2,3,4,5,6,7\}$.</span>
+            <span class="esempio__passo">$A \cap B$: prendo solo ciò che compare in entrambi → $\{3,4,5\}$.</span>
+            <span class="esempio__passo">$A \setminus B$: da $A$ tolgo ciò che sta anche in $B$ → resta $\{1,2\}$.</span>
+          </p>
+          <div class="esempio__risultato">$A\cup B=\{1,\dots,7\}$, $\ A\cap B=\{3,4,5\}$, $\ A\setminus B=\{1,2\}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Prodotto cartesiano</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Dati $A=\{1,2\}$ e $B=\{x,y,z\}$, elencare $A \times B$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Per ogni elemento di $A$, lo abbino a turno con ciascun elemento di $B$.</span>
+            <span class="esempio__passo">Con $1$: $(1,x), (1,y), (1,z)$. Con $2$: $(2,x), (2,y), (2,z)$.</span>
+          </p>
+          <div class="esempio__risultato">$A\times B = \{(1,x),(1,y),(1,z),(2,x),(2,y),(2,z)\}$, in tutto $2 \times 3 = 6$ coppie.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Negare un enunciato con i quantificatori</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Negare: "Per ogni studente, esiste un esame che ha superato al primo tentativo".</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">In simboli: $\forall s,\ \exists e \;:\; P(s,e)$.</span>
+            <span class="esempio__passo">Uso la regola d'oro del <span class="richiamo" data-sec="4.2">§4.2</span>: negando un $\forall$ si ottiene un $\exists$ con <em>tutto</em> ciò che segue negato. Qui ciò che segue il $\forall s$ è l'intera scrittura $\exists e : P(s,e)$, quindi ottengo $\exists s \;:\; \neg\big(\exists e : P(s,e)\big)$.</span>
+            <span class="esempio__passo">Applico la stessa regola una seconda volta, ora al $\exists e$ rimasto dentro la parentesi: negando un $\exists$ si ottiene un $\forall$ con la proprietà interna negata, cioè $\neg\big(\exists e : P(s,e)\big)$ diventa $\forall e,\ \neg P(s,e)$. Rimettendo tutto insieme: $\exists s \;:\; \forall e,\ \neg P(s,e)$.</span>
+          </p>
+          <div class="esempio__risultato">"Esiste (almeno) uno studente che non ha superato nessun esame al primo tentativo."</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Classificare numeri (con trappole)</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Classificare come $\mathbb{N}$, $\mathbb{Z}$, $\mathbb{Q}$ o $\mathbb{R}\setminus\mathbb{Q}$ i numeri: $-4$, $\ 0.75$, $\ \sqrt{9}$, $\ \sqrt{2}$, $\ \pi$, $\ 0.\overline{3}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$-4$: è intero negativo → $\mathbb{Z}$ (non $\mathbb{N}$, perché è negativo).</span>
+            <span class="esempio__passo">$0.75 = 3/4$: decimale finito, quindi frazione → $\mathbb{Q}$.</span>
+            <span class="esempio__passo">$\sqrt{9} = 3$: attenzione, la radice si semplifica! È un numero naturale → $\mathbb{N}$ (quindi anche $\mathbb{Z}$ e $\mathbb{Q}$).</span>
+            <span class="esempio__passo">$\sqrt{2}$: dimostrato irrazionale sopra → $\mathbb{R}\setminus\mathbb{Q}$.</span>
+            <span class="esempio__passo">$\pi$: decimale infinito non periodico (dimostrazione non elementare, ma noto) → $\mathbb{R}\setminus\mathbb{Q}$.</span>
+            <span class="esempio__passo">$0.\overline{3} = 0.3333\ldots$: decimale infinito ma <strong>periodico</strong>, e ogni decimale periodico è una frazione. Ecco come si trova quale: chiamo $x=0.\overline3$, moltiplico entrambi i membri per $10$ ottenendo $10x=3.\overline3$, poi sottraggo membro a membro la prima uguaglianza dalla seconda. A sinistra $10x-x=9x$; a destra $3.\overline3-0.\overline3=3$, perché le infinite cifre dopo la virgola sono identiche e si cancellano. Resta $9x=3$, e dividendo entrambi i membri per $9$ ottengo $x=\frac{3}{9}=\frac13$ → $\mathbb{Q}$.</span>
+          </p>
+          <div class="esempio__risultato">La "trappola" più comune è pensare che ogni numero con infinite cifre decimali sia irrazionale: falso, conta se il decimale è periodico o no.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Determinare un intorno</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determinare l'intorno di $x_0 = 3$ di raggio $\delta = 0.5$, ed esprimerlo come intervallo e con il valore assoluto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Riscrivo la definizione del <span class="richiamo" data-sec="4.5">§4.5</span>: $I_\delta(x_0) = \{x \in \mathbb{R} : |x-x_0|&lt;\delta\}$.</span>
+            <span class="esempio__passo">Sostituisco i dati dell'esercizio: al posto di $x_0$ scrivo $3$, al posto di $\delta$ scrivo $0.5$. La condizione diventa $|x - 3| &lt; 0.5$.</span>
+            <span class="esempio__passo">Tolgo il valore assoluto con la regola VA del <span class="richiamo" data-sec="4.4">§4.4</span>, $|A| &lt; c \iff -c &lt; A &lt; c$, applicata con $A=x-3$ e $c=0.5$: ottengo $-0.5 &lt; x-3 &lt; 0.5$.</span>
+            <span class="esempio__passo">Sommo $3$ a tutti e tre i membri per isolare la $x$: a sinistra $-0.5+3=2.5$, in mezzo $x-3+3=x$, a destra $0.5+3=3.5$. Quindi $2.5 &lt; x &lt; 3.5$.</span>
+          </p>
+          <div class="esempio__risultato">$I_{0.5}(3) = (2.5,\ 3.5)$</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere ∈ con ⊆</div>
+          <p>Scrivere $2 \subseteq \mathbb{N}$ è <strong>sbagliato</strong>: $2$ è un elemento, non un insieme, quindi la relazione corretta è $2 \in \mathbb{N}$. Si scrive $\subseteq$ solo tra due insiemi, es. $\{2\} \subseteq \mathbb{N}$. <em>Perché capita</em>: nel linguaggio comune "appartenere" ed "essere contenuto" sembrano sinonimi, ma in matematica descrivono relazioni di tipo diverso (elemento-insieme vs insieme-insieme).</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "Ha la virgola quindi è irrazionale"</div>
+          <p>Falso: $0.75$, $0.\overline{6}$, $-3.5$ sono tutti <strong>razionali</strong> (decimali finiti o periodici). Solo i decimali <strong>infiniti e non periodici</strong> sono irrazionali. <em>Come evitarlo</em>: prima di concludere, prova a scrivere il numero come frazione; se ci riesci (anche con un decimale periodico), è razionale.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare la negazione di "e" / "o"</div>
+          <p>La negazione di "$x&gt;0$ <strong>e</strong> $x&lt;5$" NON è "$x&lt;0$ e $x&gt;5$", ma, per le leggi di De Morgan, "$x \leq 0$ <strong>oppure</strong> $x \geq 5$". <em>Come evitarlo</em>: nega ogni condizione singolarmente E cambia "e" con "o" (e viceversa) — mai una cosa senza l'altra.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Estremi inclusi/esclusi scambiati</div>
+          <p>Scrivere $(a,b]$ pensando che sia "tutto aperto" è un errore frequente in fase di studio del segno di disequazioni: la quadra <strong>include</strong> sempre l'estremo, la tonda lo <strong>esclude</strong> sempre, indipendentemente da quale lato.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconoscere razionali al volo</div>
+          <p>Se un numero decimale <strong>termina</strong> (es. $1.25$) o si <strong>ripete</strong> periodicamente (es. $0.181818\ldots$), è razionale. Se ha comparso da un $\sqrt{\ }$, $\pi$, $e$ senza semplificarsi in un numero "pulito", sospetta l'irrazionalità.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Mnemonico per De Morgan</div>
+          <p>Pensa alla negazione come a un "meno" che entra nella parentesi e cambia i segni: $\neg$ "entra", trasforma ogni proposizione nella sua negata, e scambia $\wedge \leftrightarrow \vee$. Esattamente come $-(a+b) = -a-b$ in algebra.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Leggere intervalli a colpo d'occhio</div>
+          <p>Quadra = "porta chiusa" (punto incluso). Tonda = "porta aperta" (punto escluso). $\pm\infty$ ha <strong>sempre</strong> la tonda, perché l'infinito non è un numero che si possa "includere".</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Tradurre frasi in simboli</div>
+          <p>"Per ogni" / "qualunque sia" → $\forall$. "Esiste" / "c'è almeno un" → $\exists$. "Esiste unico" → $\exists!$. Individua prima il quantificatore nella frase italiana: il resto della traduzione viene quasi da solo.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Insiemi, Logica e Numeri</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Insiemi</strong>
+              <ul><li>∈, ⊆, ∅</li><li>∪, ∩, \, complementare</li><li>Prodotto cartesiano A×B</li><li>Diagrammi di Venn</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Logica</strong>
+              <ul><li>Proposizioni V/F</li><li>¬, ∧, ∨, ⇒, ⇔</li><li>∀ (per ogni), ∃ (esiste)</li><li>Negazione di De Morgan</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Insiemi numerici</strong>
+              <ul><li>ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ</li><li>√2 irrazionale (dim.)</li><li>Retta reale</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Verso l'Analisi 1</strong>
+              <ul><li>Valore assoluto |x|</li><li>Intervalli (a,b), [a,b]</li><li>Intorno I<sub>δ</sub>(x₀)</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Insieme</strong>: collezione di elementi; $\in$ tra elemento e insieme, $\subseteq$ tra insiemi; operazioni $\cup, \cap, \setminus$.</li>
+            <li><strong>Logica</strong>: proposizioni V/F, connettivi $\neg,\wedge,\vee,\Rightarrow,\Leftrightarrow$; negare $\forall$ dà $\exists$ (e viceversa) con la proprietà negata.</li>
+            <li><strong>Catena numerica</strong>: $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$, ognuno nato per risolvere un limite del precedente.</li>
+            <li><strong>√2 è irrazionale</strong>: dimostrazione per assurdo, tecnica che rivedrai in tutta l'Analisi.</li>
+            <li><strong>Valore assoluto</strong> $|x|$ = distanza di $x$ da $0$; $|x-y|$ = distanza tra $x$ e $y$.</li>
+            <li><strong>Intorno</strong> $I_\delta(x_0)=(x_0-\delta, x_0+\delta)$: il concetto-chiave per capire i limiti tra pochi capitoli.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scrivi per elencazione l'insieme $A = \{x \in \mathbb{N} : 2 &lt; x \leq 7\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>I numeri naturali strettamente maggiori di 2 e minori o uguali a 7 sono $3,4,5,6,7$.</p>
+              <p><strong>$A = \{3,4,5,6,7\}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Dati $A=\{1,3,5,7\}$ e $B=\{2,3,4,5\}$, calcola $A\cap B$ e $A\cup B$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Elementi comuni: 3 e 5. Unione: tutti senza ripetizioni.</p>
+              <p><strong>$A\cap B = \{3,5\}$, $\quad A\cup B = \{1,2,3,4,5,7\}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Classifica ciascuno dei seguenti numeri nel più piccolo insieme numerico a cui appartiene tra ℕ, ℤ, ℚ, ℝ\ℚ: $-7$; $\ \sqrt{16}$; $\ 2/3$; $\ \sqrt{5}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$-7$ è intero negativo → ℤ. $\sqrt{16}=4$ è naturale → ℕ. $2/3$ è già una frazione → ℚ. $\sqrt5$ non si semplifica ed è irrazionale (5 non è un quadrato perfetto) → ℝ\ℚ.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Traduci in simboli: "Esiste un numero naturale che sommato a 3 fa 10".</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>$\exists\, x \in \mathbb{N} \;:\; x+3=10$</strong> (ed è vera, perché $x=7$ funziona).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Dati $A=\{1,2,3\}$, calcola $A \times A$ ed elenca tutte le coppie.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Ogni elemento va abbinato a ciascun elemento (se stesso incluso): $9$ coppie in tutto.</p>
+              <p><strong>$A\times A = \{(1,1),(1,2),(1,3),(2,1),(2,2),(2,3),(3,1),(3,2),(3,3)\}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Nega la proposizione: "Tutti gli studenti hanno superato l'esame".</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>In simboli: $\forall s,\ P(s)$. Negando: $\exists s : \neg P(s)$.</p>
+              <p><strong>"Esiste almeno uno studente che non ha superato l'esame."</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina $\delta$ in modo che l'intorno $I_\delta(5)$ sia interamente contenuto nell'intervallo $(3,8)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Scrivo l'intorno come intervallo usando la definizione del <span class="richiamo" data-sec="4.5">§4.5</span> con $x_0=5$: $I_\delta(5) = (5-\delta,\ 5+\delta)$.</span>
+                <span class="esempio__passo">"Contenuto in $(3,8)$" significa che l'estremo sinistro non deve cadere prima di $3$ e quello destro non deve andare oltre $8$. Traduco in due condizioni: $5-\delta \geq 3$ <em>e</em> $5+\delta \leq 8$.</span>
+                <span class="esempio__passo">Risolvo la prima: porto $5$ a destra cambiando segno, $-\delta \geq 3-5 = -2$; moltiplico entrambi i membri per $-1$ e <strong>giro il verso della disuguaglianza</strong> (moltiplicare per un numero negativo inverte il verso), ottenendo $\delta \leq 2$.</span>
+                <span class="esempio__passo">Risolvo la seconda: sottraggo $5$ da entrambi i membri, $\delta \leq 8-5 = 3$.</span>
+                <span class="esempio__passo">Le due condizioni devono valere <em>insieme</em>, quindi tengo la più restrittiva: $\delta\leq2$ implica già $\delta\leq3$, mentre il viceversa è falso. Aggiungo $\delta &gt; 0$, che è richiesto dalla definizione stessa di raggio.</span>
+              </p>
+              <p><strong>Ogni $\delta$ con $0 &lt; \delta \leq 2$ funziona (es. $\delta=2$ dà esattamente $(3,7)\subset(3,8)$).</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Verifica con una tavola di verità che $p \Rightarrow q$ equivale a $\neg p \vee q$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Costruisco la tavola per tutte e 4 le combinazioni di $p,q$, calcolando ogni colonna con le definizioni dei connettivi del <span class="richiamo" data-sec="4.2">§4.2</span>. Riga per riga:</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">$p$=V, $q$=V: $p\Rightarrow q$ è V (non siamo nel caso "premessa vera e conclusione falsa"); $\neg p$=F, quindi $\neg p\vee q$ = F $\vee$ V = V. Coincidono.</span>
+                <span class="esempio__passo">$p$=V, $q$=F: $p\Rightarrow q$ è F (è l'unico caso in cui l'implicazione è falsa); $\neg p$=F, quindi $\neg p\vee q$ = F $\vee$ F = F. Coincidono.</span>
+                <span class="esempio__passo">$p$=F, $q$=V: $p\Rightarrow q$ è V (con premessa falsa l'implicazione è sempre vera); $\neg p$=V, quindi $\neg p\vee q$ = V $\vee$ V = V. Coincidono.</span>
+                <span class="esempio__passo">$p$=F, $q$=F: $p\Rightarrow q$ è V (premessa falsa); $\neg p$=V, quindi $\neg p\vee q$ = V $\vee$ F = V. Coincidono.</span>
+              </p>
+              <p>Le due colonne sono identiche in tutte e quattro le righe (V, F, V, V): entrambe sono false solo quando $p$=V e $q$=F. Le due proposizioni sono quindi logicamente equivalenti.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che la somma di un numero razionale e di un numero irrazionale è sempre irrazionale.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sia $q \in \mathbb{Q}$ e $i \in \mathbb{R}\setminus\mathbb{Q}$. Supponiamo per assurdo che $q+i$ sia razionale, chiamiamolo $r$.</span>
+                <span class="esempio__passo">Ho quindi $q+i=r$; sottraggo $q$ da entrambi i membri per isolare $i$ e ottengo $i = r - q$.</span>
+                <span class="esempio__passo">Ma $r$ e $q$ sono entrambi razionali, e la differenza di due razionali è ancora razionale. Perché? Scrivo $r=\dfrac{a}{b}$ e $q=\dfrac{c}{d}$ con $a,b,c,d$ interi, $b,d\neq0$; per sottrarre porto le due frazioni al denominatore comune $bd$, cioè $\dfrac{a}{b}=\dfrac{ad}{bd}$ e $\dfrac{c}{d}=\dfrac{cb}{bd}$, e ottengo $\dfrac{ad-bc}{bd}$: numeratore e denominatore sono interi (somme e prodotti di interi restano interi) e il denominatore non è zero, quindi è di nuovo una frazione, cioè un razionale.</span>
+                <span class="esempio__passo">Quindi $i$ sarebbe razionale. Contraddizione, perché avevamo posto $i$ irrazionale.</span>
+              </p>
+              <p><strong>L'ipotesi era assurda, quindi $q+i$ è necessariamente irrazionale. ∎</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che $\sqrt{3}$ è irrazionale, adattando la dimostrazione vista per $\sqrt 2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Si ripete la dimostrazione della sezione 5 sostituendo ovunque il numero $2$ con il numero $3$. Passo per passo:</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Suppongo per assurdo $\sqrt3=\dfrac{p}{q}$ con $p,q$ interi e frazione già ridotta ai minimi termini (cioè senza fattori comuni).</span>
+                <span class="esempio__passo">Elevo al quadrato entrambi i membri: $3=\dfrac{p^2}{q^2}$. Moltiplico entrambi i membri per $q^2$: $p^2=3q^2$.</span>
+                <span class="esempio__passo">Dunque $p^2$ è multiplo di $3$ (in simboli $3 \mid p^2$, che si legge "$3$ divide $p^2$"). Qui uso un fatto sui numeri primi: se un primo divide un prodotto, divide almeno uno dei fattori; siccome $p^2=p\cdot p$ e $3$ è primo, allora $3$ divide $p$. Posso quindi scrivere $p=3k$ con $k$ intero.</span>
+                <span class="esempio__passo">Sostituisco $p=3k$ in $p^2=3q^2$: viene $(3k)^2=3q^2$, cioè $3^2k^2=9k^2=3q^2$. Divido entrambi i membri per $3$: $3k^2=q^2$, cioè $q^2=3k^2$.</span>
+                <span class="esempio__passo">Con lo stesso ragionamento di prima, $3$ divide $q^2$ e quindi divide $q$. Ma allora $p$ e $q$ hanno il fattore comune $3$, e questo contraddice l'ipotesi che la frazione fosse ridotta ai minimi termini.</span>
+              </p>
+              <p>L'assurdo nasce dall'aver supposto $\sqrt3$ razionale: dunque $\sqrt3$ è irrazionale.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Sia $P$ l'insieme dei numeri pari minori di 20 e $M$ l'insieme dei multipli di 3 minori di 20 (con $P,M\subset\mathbb{N}$). Determina $P\cap M$ e descrivi a parole cosa rappresenta.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>$P=\{0,2,4,6,8,10,12,14,16,18\}$, $M=\{0,3,6,9,12,15,18\}$. L'intersezione contiene i numeri che sono <em>sia</em> pari <em>sia</em> multipli di 3. Un numero di questo tipo ha nella sua scomposizione sia il fattore $2$ sia il fattore $3$, quindi è multiplo di $2\cdot3=6$; e viceversa ogni multiplo di 6 è sia pari sia multiplo di 3. I due insiemi coincidono: si tratta esattamente dei multipli di 6.</p>
+              <p><strong>$P \cap M = \{0,6,12,18\}$</strong> — i multipli di 6 minori di 20.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che tra due numeri razionali distinti $a &lt; b$ esiste sempre un altro numero razionale (proprietà di densità di ℚ).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Basta esibire un candidato: la media aritmetica $c = \dfrac{a+b}{2}$. È razionale perché somma di due razionali divisa per $2$, e somme e quozienti di razionali restano razionali (stesso conto con i denominatori comuni visto nell'Esercizio 1.9). Resta da verificare che stia davvero <em>in mezzo</em>, e questo si controlla con due passaggi simmetrici:</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Parto dall'ipotesi $a &lt; b$ e sommo $a$ a entrambi i membri: $a+a &lt; a+b$, cioè $2a &lt; a+b$. Divido entrambi i membri per $2$ (positivo, quindi il verso non cambia): $a &lt; \dfrac{a+b}{2}=c$.</span>
+                <span class="esempio__passo">Riparto da $a &lt; b$ e ora sommo $b$ a entrambi i membri: $a+b &lt; b+b = 2b$. Divido entrambi i membri per $2$: $c=\dfrac{a+b}{2} &lt; b$.</span>
+              </p>
+              <p>Mettendo insieme le due righe ottengo $a &lt; c &lt; b$. Quindi tra $a$ e $b$ c'è sempre almeno un razionale — e ripetendo il procedimento, infiniti.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dati gli insiemi $A = \{x \in \mathbb{R} : x^2 \leq 9\}$ e $B = \{x \in \mathbb{R} : x &gt; 1\}$: (a) descrivi $A$ e $B$ come intervalli; (b) calcola $A \cap B$; (c) calcola $A \setminus B$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) Risolvo $x^2 \leq 9$. Estraggo la radice quadrata da entrambi i membri ricordando che $\sqrt{x^2}=|x|$ (la radice di un quadrato restituisce il valore assoluto, non $x$: il segno viene perso): ottengo $|x| \leq 3$, perché $\sqrt9=3$.</span>
+                <span class="esempio__passo">Tolgo il valore assoluto con la regola VA del <span class="richiamo" data-sec="4.4">§4.4</span>, $|A|\leq c \iff -c\leq A\leq c$, con $A=x$ e $c=3$: viene $-3\leq x\leq 3$, cioè l'intervallo chiuso $A=[-3,3]$. Per $B$ la condizione $x&gt;1$ è già un intervallo: $B=(1,+\infty)$, aperto in $1$ perché $1$ stesso non soddisfa $x&gt;1$.</span>
+                <span class="esempio__passo">(b) $A\cap B$ contiene i valori che soddisfano <em>entrambe</em> le condizioni: servono $x&gt;1$ (da $B$) e $x\leq3$ (da $A$; l'altra condizione $x\geq-3$ è automaticamente vera se $x&gt;1$). Quindi $1&lt;x\leq3$, cioè $(1,3]$.</span>
+                <span class="esempio__passo">(c) $A\setminus B$: da $A=[-3,3]$ tolgo gli elementi che stanno anche in $B$, cioè tolgo il pezzo $(1,3]$ appena trovato. Restano i punti di $A$ da $-3$ fino a $1$ <em>incluso</em> (il numero $1$ resta perché non appartiene a $B$): $[-3,1]$.</span>
+              </p>
+              <p><strong>$A=[-3,3]$, $B=(1,+\infty)$, $A\cap B=(1,3]$, $A\setminus B=[-3,1]$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Stabilire se la seguente affermazione è vera o falsa, motivando la risposta: "Per ogni $x \in \mathbb{R}$, esiste $y \in \mathbb{R}$ tale che $x+y=0$". Scriverne poi la negazione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Vera</strong>: dato un qualsiasi $x$, basta scegliere $y=-x \in \mathbb{R}$ per avere $x+y=0$. Negazione (scambio $\forall\leftrightarrow\exists$ e nego la proprietà interna): $\exists x \in \mathbb{R} \;:\; \forall y \in \mathbb{R},\ x+y \neq 0$ — che infatti è falsa, coerentemente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostrare che il prodotto di due numeri irrazionali <strong>può</strong> essere razionale, esibendo un controesempio esplicito, e discutere perché ciò non contraddice la dimostrazione dell'irrazionalità di √2.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Controesempio: $\sqrt2 \cdot \sqrt2 = 2 \in \mathbb{Q}$. Non c'è contraddizione: la dimostrazione su $\sqrt2$ mostra solo che <em>quel singolo numero</em> non è frazione; non dice nulla sul prodotto di due irrazionali (a differenza della somma razionale+irrazionale, dove invece vale sempre l'irrazionalità, come dimostrato nell'Esercizio 1.9).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $U=\{1,2,\dots,10\}$ l'universo, $A=\{1,2,3,4\}$, $B=\{3,4,5,6\}$. Verificare la legge di De Morgan $\overline{A\cup B} = \overline A \cap \overline B$ su questo esempio concreto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$A\cup B = \{1,2,3,4,5,6\}$, quindi $\overline{A\cup B} = \{7,8,9,10\}$.</span>
+                <span class="esempio__passo">$\overline A = \{5,6,7,8,9,10\}$, $\overline B=\{1,2,7,8,9,10\}$.</span>
+                <span class="esempio__passo">$\overline A \cap \overline B = \{7,8,9,10\}$.</span>
+              </p>
+              <p><strong>I due risultati coincidono: $\{7,8,9,10\} = \{7,8,9,10\}$. La legge è verificata su questo caso. ∎</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Se $A = \{1,2,3\}$, quale affermazione è corretta?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$1 \subseteq A$</button>
+              <button class="quiz-option" data-correct="true">$1 \in A$</button>
+              <button class="quiz-option" data-correct="false">$\{1,2,3,4\} \subseteq A$</button>
+              <button class="quiz-option" data-correct="false">$A \in A$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$1$ è un elemento di $A$, quindi la relazione corretta è $\in$, non $\subseteq$ (riservato a insiemi).</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quale numero è irrazionale?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\sqrt{16}$</button>
+              <button class="quiz-option" data-correct="false">$0.\overline{7}$</button>
+              <button class="quiz-option" data-correct="true">$\sqrt{7}$</button>
+              <button class="quiz-option" data-correct="false">$-5/2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>7 non è un quadrato perfetto, quindi √7 non si semplifica in un intero o in una frazione: è irrazionale. Gli altri sono tutti razionali (√16=4, 0.7̄ = 7/9, -5/2 già una frazione).</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) La negazione di "$\forall x \in \mathbb{R},\ x^2 \geq 0$" è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\forall x \in \mathbb{R},\ x^2 &lt; 0$</button>
+              <button class="quiz-option" data-correct="true">$\exists x \in \mathbb{R} : x^2 &lt; 0$</button>
+              <button class="quiz-option" data-correct="false">$\exists x \in \mathbb{R} : x^2 \geq 0$</button>
+              <button class="quiz-option" data-correct="false">Non si può negare</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Negando un ∀ si ottiene un ∃ con la proprietà negata: basta un controesempio (che qui, per inciso, non esiste in ℝ: l'affermazione originale è vera).</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) L'intorno $I_2(5)$ corrisponde all'intervallo:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$[3,7]$</button>
+              <button class="quiz-option" data-correct="true">$(3,7)$</button>
+              <button class="quiz-option" data-correct="false">$(5,7)$</button>
+              <button class="quiz-option" data-correct="false">$(-2,2)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>I_δ(x₀) = (x₀-δ, x₀+δ), aperto. Con x₀=5, δ=2: (3,7).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Ogni numero naturale è anche un numero razionale.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: ℕ⊂ℤ⊂ℚ, quindi ogni naturale è anche razionale (es. 5 = 5/1).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) L'insieme vuoto ∅ non è sottoinsieme di nessun altro insieme.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: per convenzione (e per la definizione stessa di sottoinsieme, verificata "a vuoto"), ∅ è sottoinsieme di ogni insieme, incluso se stesso.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) $3 \in \{1,2,3\}$ e $\{3\} \subseteq \{1,2,3\}$ sono entrambe affermazioni corrette.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: la prima è una relazione elemento-insieme (∈), la seconda insieme-insieme (⊆). Sono entrambe corrette e non in contraddizione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) La somma di due numeri irrazionali è sempre irrazionale.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: controesempio, $\sqrt2 + (-\sqrt2) = 0$, che è razionale. (Diverso dal caso razionale+irrazionale, che invece è sempre irrazionale, Esercizio 1.9.)</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="insieme vuoto|vuoto|emptyset">
+            <p class="quiz-question__testo">9. (Completamento) L'insieme che non contiene alcun elemento si chiama insieme ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si indica con il simbolo ∅.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="quantificatore|quantificatori">
+            <p class="quiz-question__testo">10. (Completamento) I simboli ∀ e ∃ si chiamano ______ logici.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Permettono di esprimere "per ogni" (∀) ed "esiste" (∃) in modo sintetico e rigoroso.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="periodico|periodici">
+            <p class="quiz-question__testo">11. (Completamento) Un numero razionale, se ha infinite cifre decimali, deve avere un decimale ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Es. 1/3 = 0.333... è periodico; se non lo fosse (come π), il numero sarebbe irrazionale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché la dimostrazione "per assurdo" è uno strumento valido, usando l'esempio di √2.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si assume vero il contrario della tesi (√2 razionale) e si segue una catena di deduzioni corrette; se si arriva a una contraddizione logica (p e q entrambi pari, contro l'ipotesi di frazione ridotta), l'unica spiegazione possibile è che l'assunzione di partenza fosse falsa. Poiché i passaggi logici sono tutti validi, l'unico "sospetto" rimane l'ipotesi iniziale, che va quindi rigettata: la tesi originale (√2 irrazionale) risulta vera.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché è utile introdurre il concetto di "intorno" già prima di parlare di limiti?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: il concetto di limite si basa sull'idea di "avvicinarsi arbitrariamente" a un punto senza necessariamente raggiungerlo. L'intorno formalizza matematicamente "i punti abbastanza vicini a x₀" tramite |x-x₀|&lt;δ. Avendo già questo strumento pronto, la definizione rigorosa di limite (che richiede di controllare cosa succede in OGNI intorno) risulterà molto più naturale e meno improvvisa.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <span class="placeholder"></span>
+        <a class="next" href="02-algebra-calcolo-letterale.html"><span class="dir">Capitolo successivo →</span><strong>Algebra e calcolo letterale</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

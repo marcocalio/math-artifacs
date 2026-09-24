@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3. Funzioni — Parte 1 · Analisi Matematica 1</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1" class="is-active">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte1">Parte 1 · Analisi Matematica 1</a><span class="sep">/</span>Capitolo 3</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
+      <nav>
+        <ul>
+          <li><a href="01-numeri-reali-struttura.html">1. Numeri reali e struttura d'ordine</a></li>
+          <li><a href="02-valore-assoluto-topologia.html">2. Valore assoluto e topologia della retta</a></li>
+          <li><a href="03-funzioni.html" class="is-active">3. Funzioni</a></li>
+          <li><a href="04-limiti.html">4. Limiti di funzioni</a></li>
+          <li><a href="05-infinitesimi-infiniti.html">5. Infinitesimi, infiniti e confronti</a></li>
+          <li><a href="06-continuita.html">6. Continuità</a></li>
+          <li><a href="07-derivate.html">7. Derivate</a></li>
+          <li><a href="08-teoremi-fondamentali.html">8. Teoremi fondamentali del calcolo differenziale</a></li>
+          <li><a href="09-studio-di-funzione.html">9. Studio completo di funzione</a></li>
+          <li><a href="10-taylor-mclaurin.html">10. Sviluppi di Taylor e Mclaurin</a></li>
+          <li><a href="11-successioni.html">11. Successioni numeriche</a></li>
+          <li><a href="12-serie-numeriche.html">12. Serie numeriche</a></li>
+          <li><a href="13-integrali-indefiniti.html">13. Integrali indefiniti</a></li>
+          <li><a href="14-integrali-definiti.html">14. Integrali definiti</a></li>
+          <li><a href="15-applicazioni-integrali.html">15. Applicazioni degli integrali</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte1">Parte 1 · Analisi Matematica 1</span>
+          <span class="badge badge--base">Capitolo 3 di 15</span>
+        </div>
+        <h1>Funzioni: la macchina che trasforma i numeri</h1>
+        <p class="subtitle">La funzione è l'oggetto centrale di tutta l'Analisi Matematica: limiti, derivate e integrali sono strumenti che, in fondo, servono a studiare <em>una funzione</em>. In questo capitolo la definiamo con precisione assoluta e impariamo a maneggiarla: dominio, iniettività, inversa, composizione, monotonia.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina un <strong>distributore automatico</strong>. Inserisci un codice — diciamo <em>B4</em> — e la macchina ti restituisce <strong>uno e un solo</strong> prodotto: la barretta di cioccolato. Non due prodotti insieme, non "a volte la barretta e a volte le patatine": premi <em>B4</em> e ottieni sempre, con certezza, la stessa cosa. Questo comportamento — <strong>a ogni ingresso corrisponde una e una sola uscita</strong> — è l'essenza di ciò che in matematica chiamiamo <span class="glossario-term" data-term="funzione">funzione</span>.</p>
+        <p>Una funzione è quindi una <strong>regola di trasformazione</strong>: prende un numero (o un oggetto) da un insieme di partenza, lo elabora, e produce un numero in un insieme di arrivo. La scriviamo</p>
+        <div class="formula-block">$$f: A \to B, \qquad x \mapsto f(x)$$</div>
+        <p>e leggiamo "<em>$f$ è una funzione dall'insieme $A$ all'insieme $B$, che manda l'elemento $x$ nell'elemento $f(x)$</em>". Il simbolo $\mapsto$ (con la barretta) descrive la <em>regola</em>; la freccia $\to$ descrive gli <em>insiemi</em> coinvolti.</p>
+        <p>Nei capitoli precedenti hai visto tanti esempi di funzioni senza chiamarli così: la retta $y=2x+1$, la parabola $y=x^2$, il <span class="glossario-term" data-term="logaritmo">logaritmo</span> $y=\log_2 x$. Le hai anche già incontrate tutte insieme nel capitolo <a href="../parte0-prerequisiti/09-funzioni-elementari-grafici.html">Funzioni elementari e grafici</a> della Parte 0. Ora, però, facciamo un salto di rigore: smettiamo di pensare alle funzioni come a "formule con la $x$" e le vediamo per ciò che davvero sono — <strong>un legame preciso tra due insiemi</strong>. Questo cambio di prospettiva è ciò che distingue la matematica del liceo dall'Analisi universitaria.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>tutto ciò che varia in modo dipendente da qualcos'altro è una funzione</strong>. Lo spazio percorso dipende dal tempo; la temperatura di un forno dipende dai minuti di accensione; il prezzo di un prodotto dipende dalla quantità venduta. L'Analisi Matematica nasce proprio per rispondere a domande su queste dipendenze: "quanto velocemente cambia?" (derivata), "verso quale valore tende?" (limite), "quanto vale l'area accumulata?" (integrale). Ma prima di poter chiedere <em>come</em> cambia una grandezza, dobbiamo definire con precisione l'oggetto "funzione" che descrive quella dipendenza.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema dell'<em>ambiguità</em>. Se dico "prendo un numero e ne calcolo la radice quadrata", devo chiarire: quali numeri posso inserire? (non i negativi, se resto nei reali). E cosa ottengo? (un unico risultato non negativo). Senza queste precisazioni la "regola" è incompleta. La definizione rigorosa di funzione — con il suo <span class="glossario-term" data-term="dominio">dominio</span> e il suo <span class="glossario-term" data-term="codominio">codominio</span> — chiude ogni ambiguità.</p>
+        <p><strong>Perché è importante ora?</strong> Perché ogni singolo capitolo successivo di questo libro comincia con la frase "<em>sia $f$ una funzione...</em>". Il primo esercizio di quasi ogni compito di Analisi 1 è "<em>determinare il dominio di $f$</em>", e vale punti preziosi. Chi non padroneggia iniettività, composizione e inversa si troverà in seria difficoltà con le funzioni inverse trigonometriche, con la regola di derivazione della funzione composta (la famigerata "regola della catena") e con il calcolo degli integrali per sostituzione. Investire tempo qui rende moltissimo in seguito.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Una funzione è un traduttore automatico</div>
+          <p>Pensa a un <strong>traduttore automatico</strong> dall'italiano all'inglese. La regola "traduci" è una <strong>funzione</strong>: a ogni parola italiana associa <strong>esattamente una</strong> parola inglese. Se inserisci "gatto" ottieni sempre e solo "cat" — mai due traduzioni contemporaneamente, e mai "nessuna traduzione". Questo è il cuore della definizione: <em>esistenza</em> (ogni parola ha una traduzione) e <em>unicità</em> (una sola traduzione per parola).</p>
+          <p>Ora la parte interessante. Il fenomeno davvero istruttivo è quando due parole italiane diverse, per esempio "grande" e "grosso", si traducono <em>entrambe</em> nella stessa parola "big". Due ingressi diversi, stessa uscita: il traduttore <strong>non è <span class="glossario-term" data-term="funzione-iniettiva">iniettivo</span></strong>. E qui nasce un problema pratico enorme: se leggo "big" e voglio <strong>tradurre a ritroso</strong> verso l'italiano, non so se scegliere "grande" o "grosso". La traduzione inversa è possibile senza ambiguità <strong>solo se</strong> la traduzione era univoca in entrambe le direzioni — cioè solo se la funzione è <span class="glossario-term" data-term="funzione-biiettiva">biiettiva</span>. Tieni a mente questa immagine: la ritroverai identica quando parleremo di <span class="glossario-term" data-term="funzione-inversa">funzione inversa</span>.</p>
+        </div>
+        <p>Altri "traduttori" della vita quotidiana: il convertitore da euro a dollari (funzione, e pure invertibile), il codice fiscale associato a una persona, la corrispondenza tra un brano musicale e la sua durata in minuti. Ogni volta che senti "<em>a ogni... corrisponde un...</em>", c'è una funzione nascosta.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-definizione">4.1 Definizione rigorosa: una funzione è una relazione speciale</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Una funzione è una <em>regola</em> che prende un oggetto da un primo insieme e gli assegna un oggetto di un secondo insieme. La regola deve mantenere <strong>due promesse</strong>: non lasciare nessun ingresso senza risposta, e non dare mai due risposte diverse allo stesso ingresso. Tutta la definizione formale che leggerai fra poco serve soltanto a scrivere queste due promesse in simboli. Se tieni a mente le due promesse, hai capito il capitolo.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎫</span> L'immagine da tenere in mente</div>
+          <p>Pensa al guardaroba di un teatro. Consegni il cappotto e ricevi <strong>uno</strong> scontrino con un numero. La regola "a questo cappotto associo questo numero" mantiene le due promesse: ogni cappotto riceve un numero (nessuno resta senza), e nessun cappotto riceve due numeri diversi. Se un cappotto uscisse con due scontrini, o se restasse senza scontrino, il guardaroba sarebbe rotto. Una funzione è un guardaroba che funziona.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo due insiemi piccoli, così possiamo controllare tutto a mano:</p>
+        <div class="formula-block">$$A=\{1,\ 2,\ 3\},\qquad B=\{0,\ 1,\ 4,\ 9,\ 16\}$$</div>
+        <p>e la regola "eleva al quadrato". Applichiamola a un elemento alla volta, senza saltare passaggi.</p>
+        <div class="calcolo">$$\begin{aligned}
+        1 &amp;\longmapsto 1^2 = 1 &amp;&amp;\text{(elevo al quadrato il primo elemento di } A\text{)}\\
+        2 &amp;\longmapsto 2^2 = 4 &amp;&amp;\text{(elevo al quadrato il secondo)}\\
+        3 &amp;\longmapsto 3^2 = 9 &amp;&amp;\text{(elevo al quadrato il terzo)}
+        \end{aligned}$$</div>
+        <p>Scriviamo ora la stessa cosa come <strong>elenco di coppie</strong> "(ingresso, uscita)":</p>
+        <div class="formula-block">$$f=\{\,(1,1),\ (2,4),\ (3,9)\,\}$$</div>
+        <p>e controlliamo le due promesse, una alla volta.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Prima promessa (nessuno senza risposta).</strong> Guardo i <em>primi</em> elementi delle coppie: sono $1$, $2$, $3$. Sono esattamente tutti gli elementi di $A$. Nessun ingresso è rimasto scoperto.</span>
+          <span class="esempio__passo"><strong>Seconda promessa (nessuna doppia risposta).</strong> Guardo se un primo elemento compare in due coppie diverse: $1$ compare una volta sola, $2$ una volta sola, $3$ una volta sola. Nessun ingresso ha due uscite.</span>
+          <span class="esempio__passo">Le due promesse sono mantenute, quindi $f$ è una funzione da $A$ a $B$. Nota che $0$ e $16$ non vengono mai usati come uscita: questo <em>non</em> viola nessuna promessa. Le promesse riguardano gli ingressi, non le uscite.</span>
+        </p>
+
+        <p><strong>Ora la definizione, scritta bene.</strong> Nel <a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">capitolo 1 della Parte 0</a> abbiamo definito il <strong>prodotto cartesiano</strong> di due insiemi $A$ e $B$ come l'insieme di tutte le coppie ordinate:</p>
+        <div class="formula-block">$$A \times B = \{\, (a,b) \;:\; a \in A,\ b \in B \,\}$$</div>
+        <p>Nel nostro esempio $A\times B$ contiene $3\cdot 5=15$ coppie: $(1,0)$, $(1,1)$, $(1,4)$, $(1,9)$, $(1,16)$, poi le cinque coppie che cominciano con $2$, poi le cinque che cominciano con $3$. Un <strong>sottoinsieme</strong> qualunque $R \subseteq A \times B$ si chiama <em>relazione</em> tra $A$ e $B$: è semplicemente una scelta di alcune di quelle coppie, cioè un modo di dire "chi è in relazione con chi". La nostra $f$ è una relazione, perché è fatta di $3$ delle $15$ coppie disponibili. Una <strong>funzione è una relazione che mantiene le due promesse</strong>.</p>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (funzione)</span>
+          <p>Siano $A$ e $B$ due insiemi non vuoti. Una <strong><span class="glossario-term" data-term="funzione">funzione</span></strong> $f$ da $A$ a $B$ è una relazione $f \subseteq A \times B$ che soddisfa la seguente condizione:</p>
+          <p style="text-align:center"><em>per ogni</em> $x \in A$ <em>esiste uno e un solo</em> $y \in B$ <em>tale che</em> $(x,y) \in f$.</p>
+          <p>In simboli, con la traduzione sotto ogni pezzo:</p>
+          <div class="formula-block">$$\underbrace{\forall x \in A}_{\text{preso un ingresso qualsiasi di } A}\ \ \underbrace{\exists}_{\text{esiste}}\ \underbrace{!}_{\text{uno e uno solo}}\ \underbrace{y \in B}_{\text{un'uscita dentro } B}\ :\ \underbrace{(x,y) \in f}_{\text{la coppia sta nella relazione}}$$</div>
+          <p>Quell'unico $y$ si indica con $f(x)$ e si chiama <strong>immagine di $x$ tramite $f$</strong>. Si scrive $f:A\to B$ (la freccia dice <em>quali insiemi</em>) e $x \mapsto f(x)$ (la freccia con la barretta dice <em>qual è la regola</em>).</p>
+        </div>
+
+        <p>Spacchettiamo la condizione, perché contiene <strong>due richieste distinte</strong> ed è il DNA dell'intero concetto:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Requisito</th><th>Cosa impone</th><th>Cosa vieta</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Esistenza</strong> ("esiste $y$")</td><td>ogni $x$ di $A$ deve avere <em>almeno</em> un'immagine</td><td>che qualche $x$ resti "senza uscita"</td></tr>
+            <tr><td><strong>Unicità</strong> ("un solo $y$")</td><td>ogni $x$ deve avere <em>al più</em> un'immagine</td><td>che uno stesso $x$ produca due valori diversi</td></tr>
+          </tbody>
+        </table>
+        <p>Riprendendo l'immagine del distributore automatico: <em>esistenza</em> significa che ogni tasto fa uscire qualcosa (nessun tasto "morto"); <em>unicità</em> significa che ogni tasto fa uscire un solo prodotto (nessun tasto che ogni tanto sbaglia).</p>
+
+        <p><strong>Due non-esempi, per capire dov'è il confine.</strong> Sono i due modi in cui una regola può fallire, uno per ciascuna promessa.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Non-esempio 1: salta l'unicità.</strong> Regola: "a ogni numero reale $x$ associo un numero $y$ tale che $y^2=x$". Proviamo con $x=4$: le soluzioni di $y^2=4$ sono $y=2$ e $y=-2$, perché $2^2=4$ e anche $(-2)^2=4$. Due uscite per lo stesso ingresso: la seconda promessa è rotta. Questa regola <strong>non</strong> è una funzione. (È esattamente il motivo per cui si decide una volta per tutte che $\sqrt{4}$ vale $2$ e non $-2$: si sceglie una sola uscita per riparare la promessa.)</span>
+          <span class="esempio__passo"><strong>Non-esempio 2: salta l'esistenza.</strong> Regola: "a ogni numero reale $x$ associo $\frac{1}{x}$", pensata da $\mathbb{R}$ a $\mathbb{R}$. Proviamo con $x=0$: la scrittura $\frac{1}{0}$ non indica nessun numero reale, quindi l'ingresso $0$ resta senza uscita. La prima promessa è rotta: questa <strong>non</strong> è una funzione da $\mathbb{R}$ a $\mathbb{R}$. Lo diventa se togliamo il punto colpevole, cioè se la pensiamo da $\mathbb{R}\setminus\{0\}$ a $\mathbb{R}$.</span>
+          <span class="esempio__passo"><strong>Non-esempio 3: la circonferenza.</strong> L'equazione $x^2+y^2=1$ non definisce $y$ come funzione di $x$: per $x=0$ si ottiene $y^2=1$, che dà $y=1$ e $y=-1$. Di nuovo due uscite per un ingresso.</span>
+        </p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p>Davanti a una regola, fatti sempre <strong>queste due domande, in quest'ordine</strong>:</p>
+          <p>1) <em>Ogni ingresso previsto produce un risultato?</em> Se trovi anche un solo ingresso per cui il conto non si può fare (divisione per zero, radice pari di un numero negativo, logaritmo di un numero non positivo), la risposta è no: quell'ingresso va tolto dall'insieme di partenza.</p>
+          <p>2) <em>Può uscire più di un risultato?</em> Se la regola contiene un "$\pm$", oppure dice "un numero tale che…", oppure lascia una scelta, la risposta è sì e la regola non è una funzione finché non decidi <em>quale</em> valore prendere.</p>
+          <p>Se hai il <strong>disegno</strong> invece della formula, c'è una scorciatoia visiva: il <strong>test della retta verticale</strong>. Una curva nel piano è il grafico di una funzione se e solo se ogni retta verticale la incontra in al più un punto. Una retta verticale incontra il grafico nei punti che hanno la stessa $x$: se ne incontra due, quella $x$ avrebbe due uscite.</p>
+        </div>
+
+        <p><strong>Fin qui:</strong> una funzione è una regola che a ogni ingresso associa <em>una</em> uscita, e mai zero o due. La definizione formale con le coppie serve solo a dirlo senza ambiguità. Adesso diamo un nome agli insiemi in gioco.</p>
+
+        <h3 id="teoria-dominio">4.2 Dominio, codominio, immagine</h3>
+        <p><strong>Prima l'idea.</strong> A ogni funzione sono attaccati <em>tre</em> insiemi, non due. Il primo è l'elenco degli ingressi ammessi. Il secondo è l'ambiente in cui dichiariamo che vivranno le uscite. Il terzo è l'elenco delle uscite che escono <em>davvero</em>. Gli ultimi due sembrano la stessa cosa ma non lo sono, e confonderli è l'errore più frequente di tutto il capitolo.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎯</span> L'immagine da tenere in mente</div>
+          <p>Stai tirando freccette. Il <strong>dominio</strong> è l'insieme delle freccette che hai in mano: tutti i tiri che puoi fare. Il <strong>codominio</strong> è l'intero tabellone appeso al muro: la zona in cui, per dichiarazione, andranno a finire le freccette. L'<strong>immagine</strong> è l'insieme dei buchi che hai effettivamente fatto nel tabellone. Il tabellone è grande, i buchi sono pochi: l'immagine sta dentro il codominio, ma di solito è più piccola. Se riempissi il tabellone di buchi dappertutto, immagine e codominio coinciderebbero: quel caso ha un nome, "suriettiva", e lo vedremo nel <span class="richiamo" data-sec="4.4">§4.4</span>.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo la funzione che a ogni numero di $A=\{1,2,3,4\}$ associa il suo quadrato, e dichiariamo come insieme di arrivo $B=\{0,1,2,\dots,20\}$ (i primi ventuno numeri naturali). Calcoliamo le uscite una per una.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(1) &amp;= 1^2 = 1 &amp;&amp;\text{(sostituisco } x=1 \text{ nella formula } f(x)=x^2\text{)}\\
+        f(2) &amp;= 2^2 = 4 &amp;&amp;\text{(sostituisco } x=2\text{)}\\
+        f(3) &amp;= 3^2 = 9 &amp;&amp;\text{(sostituisco } x=3\text{)}\\
+        f(4) &amp;= 4^2 = 16 &amp;&amp;\text{(sostituisco } x=4\text{)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Dominio</strong>: l'elenco degli ingressi, cioè $\operatorname{dom} f = \{1,2,3,4\}$. Quattro elementi.</span>
+          <span class="esempio__passo"><strong>Codominio</strong>: l'insieme di arrivo <em>dichiarato</em>, cioè $B=\{0,1,2,\dots,20\}$. Ventuno elementi.</span>
+          <span class="esempio__passo"><strong>Immagine</strong>: le uscite <em>davvero</em> prodotte, cioè $\operatorname{Im} f=\{1,4,9,16\}$. Quattro elementi. Il numero $7$, per esempio, sta nel codominio ma non nell'immagine: nessuno dei quattro ingressi lo produce.</span>
+        </p>
+        <p>Tre insiemi, tre ruoli diversi. Ecco il riepilogo con i simboli:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Nome</th><th>Simbolo</th><th>Che cos'è</th></tr></thead>
+          <tbody>
+            <tr><td><span class="glossario-term" data-term="dominio">Dominio</span></td><td>$\operatorname{dom} f = A$</td><td>l'insieme di partenza: <em>tutti</em> gli ingressi ammessi</td></tr>
+            <tr><td><span class="glossario-term" data-term="codominio">Codominio</span></td><td>$B$</td><td>l'insieme di arrivo: l'ambiente in cui "vivono" le uscite</td></tr>
+            <tr><td><span class="glossario-term" data-term="immagine-funzione">Immagine</span></td><td>$\operatorname{Im} f$ o $f(A)$</td><td>l'insieme delle uscite <em>effettivamente</em> prodotte</td></tr>
+          </tbody>
+        </table>
+        <p>Formalmente l'immagine è il sottoinsieme del codominio dato da</p>
+        <div class="formula-block">$$\operatorname{Im} f = f(A) = \{\, \underbrace{y \in B}_{\text{i valori dell'insieme di arrivo}} \;:\; \underbrace{\exists\, x \in A}_{\text{per cui esiste un ingresso}},\ \underbrace{y = f(x)}_{\text{che produce proprio quel valore}} \,\} \subseteq B.$$</div>
+
+        <p><strong>Il non-esempio che vale per tutti: codominio e immagine non sono la stessa cosa.</strong> Prendiamo $f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2$. Il codominio dichiarato è tutto $\mathbb{R}$, quindi anche $-9$ ne fa parte. Ma $-9$ appartiene all'immagine? Dovrebbe esistere un numero reale $x$ con $x^2=-9$: impossibile, perché il quadrato di un numero reale è sempre maggiore o uguale a zero (Parte 0, cap. 3). Dunque $-9$ sta nel codominio e <strong>non</strong> nell'immagine. Vale sempre $\operatorname{Im} f \subseteq B$, e l'uguaglianza $\operatorname{Im} f = B$ ha un nome preciso: <em>suriettività</em> (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica: trovare l'immagine</div>
+          <p>Il dominio si legge davanti alla formula; l'immagine, invece, si <em>calcola</em>, e la ricetta è sempre la stessa: <strong>chiama $y$ un'uscita generica, scrivi l'equazione $f(x)=y$ e risolvila rispetto a $x$</strong>. Poi chiediti: per quali $y$ questa equazione ha almeno una soluzione accettabile? Quelli sono i valori dell'immagine; gli altri no.</p>
+        </div>
+        <p>Proviamo la ricetta due volte, per vedere i due esiti possibili.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Caso 1: $f(x)=2x+1$, da $\mathbb{R}$ a $\mathbb{R}$.</strong> Scrivo l'equazione $2x+1=y$ e la risolvo nell'incognita $x$, trattando $y$ come un numero fissato.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        2x+1 &amp;= y &amp;&amp;\text{(equazione da risolvere in } x\text{)}\\
+        2x &amp;= y-1 &amp;&amp;\text{(sottraggo } 1 \text{ a entrambi i membri)}\\
+        x &amp;= \frac{y-1}{2} &amp;&amp;\text{(divido entrambi i membri per } 2\text{, che non è zero)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">La soluzione $x=\frac{y-1}{2}$ è un numero reale <em>qualunque</em> sia $y$: nessuna divisione per zero, nessuna radice. Quindi ogni $y$ è raggiunto e $\operatorname{Im} f=\mathbb{R}$: immagine e codominio coincidono.</span>
+          <span class="esempio__passo"><strong>Caso 2: $f(x)=x^2$, da $\mathbb{R}$ a $\mathbb{R}$.</strong> Scrivo $x^2=y$ e risolvo: le soluzioni sono $x=\pm\sqrt{y}$, ma la radice quadrata di un numero negativo non è un numero reale. Quindi la soluzione esiste <em>solo</em> se $y\geq 0$.</span>
+          <span class="esempio__passo">Conclusione: $\operatorname{Im} f=[0,+\infty)$, che è più piccolo del codominio $\mathbb{R}$. Ritroviamo quanto visto sopra con $-9$.</span>
+        </p>
+        <p><strong>Fin qui:</strong> dominio = da dove parto, codominio = dove dichiaro di arrivare, immagine = dove arrivo davvero. La prossima domanda è: <em>data una formula, chi decide il dominio?</em></p>
+
+        <h3 id="teoria-dominio-naturale">4.3 Il dominio naturale: metodo "elenca e interseca"</h3>
+        <p><strong>Prima l'idea.</strong> Quando una funzione ti viene data solo con una formula, nessuno ti dice quali numeri puoi metterci dentro. Allora si adotta una convenzione: si prendono <em>tutti</em> i numeri reali per cui la formula produce un risultato, e nient'altro. Questo insieme si chiama <strong>dominio naturale</strong>. Il dominio naturale non si sceglie e non si inventa: si <em>calcola</em>, leggendo la formula e annotando i divieti.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚧</span> L'immagine da tenere in mente</div>
+          <p>Percorri una strada con alcuni cartelli di divieto: qui non si passa perché c'è un cantiere, là non si passa perché il ponte è chiuso. Il tuo percorso possibile è ciò che resta <em>dopo aver rispettato tutti i cartelli insieme</em>, non uno alla volta. Nella formula, i cartelli sono le operazioni "pericolose": denominatori, radici pari, logaritmi. Ogni cartello toglie qualche numero; il dominio è quello che sopravvive a tutti i cartelli contemporaneamente.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Le operazioni "pericolose" e le loro condizioni</div>
+          <p>Passa in rassegna la formula e, ogni volta che incontri una di queste strutture, annota la condizione corrispondente:</p>
+          <table class="tabella-comparativa">
+            <thead><tr><th>Struttura nella formula</th><th>Condizione da imporre</th></tr></thead>
+            <tbody>
+              <tr><td>Frazione $\dfrac{N}{D}$</td><td>denominatore $D \neq 0$</td></tr>
+              <tr><td><span class="glossario-term" data-term="radicale">Radice</span> di indice pari $\sqrt[2k]{R}$</td><td>radicando $R \geq 0$</td></tr>
+              <tr><td>Logaritmo $\log_a(P)$</td><td>argomento $P \gt 0$ (e base $a \gt 0$, $a \neq 1$)</td></tr>
+              <tr><td>$\arcsin(Q)$ oppure $\arccos(Q)$</td><td>$-1 \leq Q \leq 1$</td></tr>
+              <tr><td>$\tan(Q)$</td><td>$Q \neq \dfrac{\pi}{2} + k\pi,\ k \in \mathbb{Z}$</td></tr>
+              <tr><td>Potenza a esponente reale $P^{\alpha}$ (con $\alpha$ non intero)</td><td>base $P \gt 0$</td></tr>
+            </tbody>
+          </table>
+          <p>Le radici di indice <em>dispari</em> ($\sqrt[3]{\ }$, $\sqrt[5]{\ }$...) e i polinomi non impongono <strong>alcuna</strong> condizione: sono definiti su tutto $\mathbb{R}$.</p>
+          <p>Un caso misto da ricordare: se una radice pari sta <strong>a denominatore</strong>, le condizioni si sommano e diventano una sola più forte. Il radicando deve essere $\geq 0$ (perché è sotto radice) <em>e</em> la radice deve essere $\neq 0$ (perché è un denominatore): insieme fanno radicando $\gt 0$, con lo zero escluso.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri, un pericolo alla volta.</strong> Vogliamo il dominio naturale di</p>
+        <div class="formula-block">$$f(x) = \frac{\sqrt{x-1}}{x-3} + \ln(5-x).$$</div>
+        <p>Prima di calcolare, proviamo con due numeri a caso, per capire che cosa stiamo cercando. Con $x=2$: il radicando è $2-1=1\geq 0$ (va bene), il denominatore è $2-3=-1\neq 0$ (va bene), l'argomento del logaritmo è $5-2=3\gt 0$ (va bene): il numero $2$ sta nel dominio. Con $x=0$: il radicando è $0-1=-1$, negativo sotto una radice quadrata: il numero $0$ <em>non</em> sta nel dominio. Ora facciamolo per tutti gli $x$ in una volta sola.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Passo 1 — Elenco i pericoli.</strong> Leggo la formula da sinistra a destra. Vedo una radice quadrata (indice pari): mi impone radicando $\geq 0$. Vedo una frazione: mi impone denominatore $\neq 0$. Vedo un logaritmo: mi impone argomento $\gt 0$. Tre pericoli, tre condizioni.</span>
+          <span class="esempio__passo"><strong>Passo 2 — Risolvo la prima condizione</strong>, quella della radice, che riguarda il radicando $x-1$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        x-1 &amp;\geq 0 &amp;&amp;\text{(condizione della radice di indice pari)}\\
+        x &amp;\geq 1 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Passo 3 — Risolvo la seconda condizione</strong>, quella della frazione, che riguarda il denominatore $x-3$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        x-3 &amp;\neq 0 &amp;&amp;\text{(condizione del denominatore)}\\
+        x &amp;\neq 3 &amp;&amp;\text{(sommo } 3 \text{ a entrambi i membri)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Passo 4 — Risolvo la terza condizione</strong>, quella del logaritmo, che riguarda l'argomento $5-x$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        5-x &amp;\gt 0 &amp;&amp;\text{(condizione dell'argomento del logaritmo)}\\
+        5 &amp;\gt x &amp;&amp;\text{(sommo } x \text{ a entrambi i membri: a sinistra resta } 5\text{, a destra } x\text{)}\\
+        x &amp;\lt 5 &amp;&amp;\text{(è la stessa disuguaglianza letta da destra a sinistra)}
+        \end{aligned}$$</div>
+        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Molti, da $5-x\gt0$, scrivono direttamente $-x\gt-5$ e poi $x\gt5$: è sbagliato. Se moltiplichi (o dividi) entrambi i membri per $-1$, <strong>il verso della disuguaglianza si inverte</strong> (Parte 0, cap. 6): da $-x\gt-5$ si ottiene $x\lt 5$, non $x\gt5$. Nel calcolo qui sopra abbiamo evitato del tutto il problema sommando $x$ invece di moltiplicare per $-1$: è la mossa più sicura.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Passo 5 — Interseco.</strong> Le tre condizioni devono valere <em>tutte insieme</em>, non a turno: quindi prendo i numeri che soddisfano contemporaneamente $x \geq 1$, $x \lt 5$ e $x \neq 3$. Le prime due, messe insieme, danno l'intervallo $1 \leq x \lt 5$, cioè $[1,5)$. La terza toglie da questo intervallo il singolo punto $3$, spezzandolo in due pezzi.</span>
+        </p>
+        <div class="formula-block">$$\operatorname{dom} f = [\,1,\ 3\,) \,\cup\, (\,3,\ 5\,).$$</div>
+        <p>Rileggi il risultato guardando le parentesi: la quadra in $1$ dice che $1$ è incluso (in $x=1$ il radicando vale $0$, e la radice di $0$ esiste); le tonde intorno a $3$ dicono che $3$ è escluso da entrambi i lati (in $x=3$ salterebbe il denominatore); la tonda in $5$ dice che $5$ è escluso (in $x=5$ l'argomento del logaritmo varrebbe $0$, e $\ln 0$ non esiste). Un disegno degli intervalli su una retta, con i pallini pieni dove il numero è incluso e vuoti dove è escluso, rende l'intersezione a prova di errore.</p>
+        <p><strong>Un non-esempio da non commettere: unire invece di intersecare.</strong> Se al posto dell'intersezione facessimo l'unione, otterremmo quasi tutti i numeri reali, e per esempio accetteremmo $x=0$. Ma abbiamo già controllato: in $x=0$ la radice $\sqrt{0-1}$ non esiste. Basta che <em>una sola</em> condizione fallisca perché il numero vada buttato: per questo si interseca.</p>
+
+        <h3 id="teoria-iniettiva">4.4 Iniettività, suriettività, biiettività</h3>
+        <p><strong>Prima l'idea.</strong> Ora che sappiamo cos'è una funzione, ci facciamo due domande <em>diverse fra loro</em>, che vanno tenute ben separate:</p>
+        <p>1) <em>La funzione ripete mai un'uscita?</em> Se non la ripete mai — ingressi diversi danno sempre uscite diverse — si dice <strong>iniettiva</strong>.</p>
+        <p>2) <em>La funzione usa tutte le uscite disponibili?</em> Se non ne spreca nessuna — ogni elemento del codominio viene raggiunto — si dice <strong>suriettiva</strong>.</p>
+        <p>Sono domande indipendenti: una funzione può avere solo la prima proprietà, solo la seconda, entrambe o nessuna. Se le ha entrambe si dice <strong>biiettiva</strong>.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎬</span> L'immagine da tenere in mente</div>
+          <p>Una sala cinematografica. Gli spettatori sono il dominio, le poltrone sono il codominio, la regola "questo spettatore si siede su questa poltrona" è la funzione. <strong>Iniettiva</strong> significa che non ci sono due spettatori sulla stessa poltrona (nessuno seduto in braccio a un altro). <strong>Suriettiva</strong> significa che non resta nessuna poltrona vuota. <strong>Biiettiva</strong> significa entrambe le cose: sala esaurita e ogni poltrona con esattamente una persona. Nota che le due situazioni sono davvero indipendenti: una sala mezza vuota e ordinata è iniettiva ma non suriettiva; una sala piena in cui qualcuno sta in due sulla stessa poltrona è suriettiva ma non iniettiva.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Due funzioni tra insiemi piccolissimi, così si vede tutto.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Prima funzione.</strong> $A=\{1,2,3\}$, $B=\{5,6,7,8\}$, con $f(1)=5$, $f(2)=6$, $f(3)=7$. Le uscite sono $5$, $6$, $7$: tutte diverse fra loro, quindi $f$ è <em>iniettiva</em>. Però l'elemento $8$ del codominio non compare mai tra le uscite, quindi $f$ <em>non</em> è suriettiva. Con il cinema: tre spettatori su quattro poltrone, uno resta vuoto.</span>
+          <span class="esempio__passo"><strong>Seconda funzione.</strong> $A=\{1,2,3,4\}$, $B=\{5,6,7\}$, con $g(1)=5$, $g(2)=5$, $g(3)=6$, $g(4)=7$. Tutti gli elementi di $B$ compaiono tra le uscite ($5$ da $1$ e da $2$, $6$ da $3$, $7$ da $4$), quindi $g$ è <em>suriettiva</em>. Però $g(1)=g(2)=5$ con $1\neq 2$: due ingressi diversi, stessa uscita, quindi $g$ <em>non</em> è iniettiva. Con il cinema: quattro spettatori su tre poltrone, due si accavallano.</span>
+        </p>
+
+        <p><strong>Ora le definizioni, parola per parola.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizioni</span>
+          <p>Sia $f:A\to B$.</p>
+          <p>• $f$ è <strong><span class="glossario-term" data-term="funzione-iniettiva">iniettiva</span></strong> se manda elementi distinti in immagini distinte:</p>
+          <div class="formula-block">$$\underbrace{x_1 \neq x_2}_{\text{se gli ingressi sono diversi}} \ \Longrightarrow\ \underbrace{f(x_1) \neq f(x_2)}_{\text{allora le uscite sono diverse}}$$</div>
+          <p>Questa scrittura si può capovolgere ottenendo una frase equivalente, la <em>contronominale</em>, che nei conti è molto più comoda:</p>
+          <div class="formula-block">$$\underbrace{f(x_1)=f(x_2)}_{\text{se due uscite coincidono}} \ \Longrightarrow\ \underbrace{x_1=x_2}_{\text{allora gli ingressi erano lo stesso}}$$</div>
+          <p>• $f$ è <strong><span class="glossario-term" data-term="funzione-suriettiva">suriettiva</span></strong> se ogni elemento del codominio è raggiunto, cioè se $\operatorname{Im} f = B$:</p>
+          <div class="formula-block">$$\underbrace{\forall\, y \in B}_{\text{preso un bersaglio qualsiasi}},\ \underbrace{\exists\, x \in A}_{\text{esiste almeno un ingresso}} \;:\; \underbrace{f(x)=y}_{\text{che lo colpisce}}$$</div>
+          <p>• $f$ è <strong><span class="glossario-term" data-term="funzione-biiettiva">biiettiva</span></strong> (o <em>biunivoca</em>) se è iniettiva <em>e</em> suriettiva contemporaneamente: ogni $y \in B$ è immagine di <strong>uno e un solo</strong> $x \in A$.</p>
+        </div>
+        <p><strong>Perché la contronominale è equivalente?</strong> Perché dire "se gli ingressi sono diversi le uscite sono diverse" e dire "se le uscite sono uguali gli ingressi erano uguali" sono due modi di descrivere lo stesso divieto: <em>è vietato che due ingressi diversi diano la stessa uscita</em>. Nei conti si usa la seconda forma perché partire da un'uguaglianza ($f(x_1)=f(x_2)$) permette di fare algebra, mentre partire da una disuguaglianza ($x_1\neq x_2$) non porta da nessuna parte.</p>
+
+        <p>Il modo più efficace per <em>sentire</em> la differenza tra iniettiva e suriettiva è guardare le frecce tra due insiemi finiti:</p>
+
+        <svg viewBox="0 0 640 260" style="max-width:640px;width:100%;margin:1.2em auto;display:block;" role="img" aria-label="Due diagrammi a frecce: a sinistra una funzione iniettiva ma non suriettiva, a destra una suriettiva ma non iniettiva">
+          <defs>
+            <marker id="arrow-f" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" fill="var(--color-primary)"/>
+            </marker>
+          </defs>
+          <!-- Pannello sinistro: iniettiva non suriettiva -->
+          <text x="150" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="currentColor">Iniettiva, NON suriettiva</text>
+          <ellipse cx="70" cy="150" rx="40" ry="95" fill="var(--color-primary)" opacity="0.14" stroke="var(--color-primary)" stroke-width="2"/>
+          <ellipse cx="230" cy="150" rx="40" ry="115" fill="var(--color-secondary)" opacity="0.14" stroke="var(--color-secondary)" stroke-width="2"/>
+          <text x="70" y="55" font-size="15" font-weight="700" text-anchor="middle" fill="currentColor">A</text>
+          <text x="230" y="35" font-size="15" font-weight="700" text-anchor="middle" fill="currentColor">B</text>
+          <circle cx="70" cy="100" r="5" fill="currentColor"/><circle cx="70" cy="150" r="5" fill="currentColor"/><circle cx="70" cy="200" r="5" fill="currentColor"/>
+          <circle cx="230" cy="90" r="5" fill="currentColor"/><circle cx="230" cy="140" r="5" fill="currentColor"/><circle cx="230" cy="190" r="5" fill="currentColor"/><circle cx="230" cy="235" r="5" fill="currentColor"/>
+          <line x1="76" y1="100" x2="224" y2="90" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <line x1="76" y1="150" x2="224" y2="140" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <line x1="76" y1="200" x2="224" y2="190" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <text x="248" y="240" font-size="11" fill="var(--color-danger)">← nessuno arriva qui</text>
+          <!-- Pannello destro: suriettiva non iniettiva -->
+          <text x="490" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="currentColor">Suriettiva, NON iniettiva</text>
+          <ellipse cx="410" cy="150" rx="40" ry="115" fill="var(--color-primary)" opacity="0.14" stroke="var(--color-primary)" stroke-width="2"/>
+          <ellipse cx="570" cy="150" rx="40" ry="95" fill="var(--color-secondary)" opacity="0.14" stroke="var(--color-secondary)" stroke-width="2"/>
+          <text x="410" y="35" font-size="15" font-weight="700" text-anchor="middle" fill="currentColor">A</text>
+          <text x="570" y="55" font-size="15" font-weight="700" text-anchor="middle" fill="currentColor">B</text>
+          <circle cx="410" cy="90" r="5" fill="currentColor"/><circle cx="410" cy="140" r="5" fill="currentColor"/><circle cx="410" cy="190" r="5" fill="currentColor"/><circle cx="410" cy="235" r="5" fill="currentColor"/>
+          <circle cx="570" cy="100" r="5" fill="currentColor"/><circle cx="570" cy="150" r="5" fill="currentColor"/><circle cx="570" cy="200" r="5" fill="currentColor"/>
+          <line x1="416" y1="90" x2="564" y2="100" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <line x1="416" y1="140" x2="564" y2="100" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <line x1="416" y1="190" x2="564" y2="150" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <line x1="416" y1="235" x2="564" y2="200" stroke="var(--color-primary)" stroke-width="2" marker-end="url(#arrow-f)"/>
+          <text x="452" y="80" font-size="11" fill="var(--color-danger)">due frecce →</text>
+        </svg>
+
+        <p>Nel pannello sinistro ogni elemento di $B$ riceve <em>al più</em> una freccia (iniettiva), ma uno resta scoperto (non suriettiva). Nel pannello destro ogni elemento di $B$ è raggiunto (suriettiva), ma uno riceve <em>due</em> frecce (non iniettiva). Se una funzione fosse <em>sia</em> iniettiva <em>sia</em> suriettiva, ogni pallino di destra riceverebbe <strong>esattamente una</strong> freccia: quella è la biiettività.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica: la prova dell'iniettività</div>
+          <p>La ricetta è sempre questa, in quattro mosse:</p>
+          <p><strong>Mossa 1.</strong> Scrivi l'ipotesi $f(x_1)=f(x_2)$, sostituendo la formula di $f$ una volta con $x_1$ e una volta con $x_2$. <strong>Mossa 2.</strong> Semplifica l'equazione ottenuta, facendo su entrambi i membri le stesse operazioni. <strong>Mossa 3.</strong> Se arrivi a $x_1=x_2$, la funzione è iniettiva. <strong>Mossa 4.</strong> Se invece arrivi a una conclusione che ammette anche $x_1\neq x_2$, la funzione <em>non</em> è iniettiva: allora chiudi il discorso esibendo <strong>due numeri concreti</strong> con la stessa uscita (un controesempio vale come dimostrazione del "no").</p>
+        </div>
+
+        <p><strong>La prova in azione, riga per riga.</strong> Verifichiamo che $f(x)=5x+7$, da $\mathbb{R}$ a $\mathbb{R}$, è iniettiva.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Mossa 1.</strong> Suppongo che due uscite coincidano: $f(x_1)=f(x_2)$. Scrivo che cosa significa, sostituendo nella formula $f(x)=5x+7$ prima $x=x_1$ e poi $x=x_2$: a sinistra $5x_1+7$, a destra $5x_2+7$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        5x_1+7 &amp;= 5x_2+7 &amp;&amp;\text{(ipotesi: le due uscite coincidono)}\\
+        5x_1 &amp;= 5x_2 &amp;&amp;\text{(sottraggo } 7 \text{ a entrambi i membri)}\\
+        x_1 &amp;= x_2 &amp;&amp;\text{(divido entrambi i membri per } 5\text{, che non è zero)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> Partendo da "le uscite sono uguali" siamo arrivati a "gli ingressi sono uguali": è esattamente la forma contronominale della definizione. Quindi $f(x)=5x+7$ è iniettiva.</span>
+        </p>
+
+        <p><strong>Il non-esempio: la stessa prova su una funzione che non è iniettiva.</strong> Proviamo con $f(x)=x^2$, da $\mathbb{R}$ a $\mathbb{R}$, e guardiamo <em>dove</em> la prova si inceppa.</p>
+        <div class="calcolo">$$\begin{aligned}
+        x_1^2 &amp;= x_2^2 &amp;&amp;\text{(ipotesi: le due uscite coincidono)}\\
+        x_1^2-x_2^2 &amp;= 0 &amp;&amp;\text{(sottraggo } x_2^2 \text{ a entrambi i membri)}\\
+        (x_1-x_2)(x_1+x_2) &amp;= 0 &amp;&amp;\text{(scompongo con la differenza di quadrati } a^2-b^2=(a-b)(a+b)\text{, Parte 0, cap. 2)}
+        \end{aligned}$$</div>
+        <p>Un prodotto è zero quando è zero almeno uno dei due fattori (legge di annullamento del prodotto, Parte 0, cap. 2). Quindi ci sono <strong>due</strong> possibilità: $x_1-x_2=0$, cioè $x_1=x_2$, oppure $x_1+x_2=0$, cioè $x_1=-x_2$. La seconda possibilità è proprio quella che rovina tutto: permette ingressi diversi con la stessa uscita. Chiudiamo con un controesempio numerico esplicito:</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(2) &amp;= 2^2 = 4 &amp;&amp;\text{(calcolo l'uscita di } 2\text{)}\\
+        f(-2) &amp;= (-2)^2 = 4 &amp;&amp;\text{(calcolo l'uscita di } -2\text{: meno per meno fa più)}\\
+        2 &amp;\neq -2 \ \text{ ma } \ f(2)=f(-2) &amp;&amp;\text{(due ingressi diversi, stessa uscita)}
+        \end{aligned}$$</div>
+        <p>Un solo controesempio basta per dire NO: $f(x)=x^2$ non è iniettiva su $\mathbb{R}$.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica: la prova della suriettività</div>
+          <p><strong>Mossa 1.</strong> Prendi un $y$ <em>qualsiasi</em> nel codominio dichiarato (non un numero particolare: proprio una lettera). <strong>Mossa 2.</strong> Scrivi l'equazione $f(x)=y$ e risolvila rispetto a $x$. <strong>Mossa 3.</strong> Chiediti se la soluzione trovata è un numero accettabile <em>per ogni</em> $y$ del codominio: se sì, la funzione è suriettiva. <strong>Mossa 4.</strong> Se per qualche $y$ la soluzione non esiste, la funzione non è suriettiva: esibisci quel $y$ come controesempio.</p>
+          <p>Nota bene: la suriettività dipende dal <strong>codominio che hai dichiarato</strong>. La stessa formula può essere suriettiva o no a seconda dell'insieme di arrivo che le attacchi. L'iniettività, invece, non dipende dal codominio.</p>
+        </div>
+
+        <p><strong>La prova in azione.</strong> La stessa $f(x)=5x+7$, da $\mathbb{R}$ a $\mathbb{R}$, è suriettiva?</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Mossa 1 e 2.</strong> Prendo un $y$ reale qualsiasi e risolvo $5x+7=y$ nell'incognita $x$ (la $y$ è un numero fissato, anche se non so quale).</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        5x+7 &amp;= y &amp;&amp;\text{(equazione da risolvere in } x\text{)}\\
+        5x &amp;= y-7 &amp;&amp;\text{(sottraggo } 7 \text{ a entrambi i membri)}\\
+        x &amp;= \frac{y-7}{5} &amp;&amp;\text{(divido entrambi i membri per } 5\text{)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Mossa 3.</strong> Il numero $\frac{y-7}{5}$ è sempre un numero reale: il denominatore è $5$, che non è mai zero, e non compaiono radici. Quindi per ogni $y$ esiste l'ingresso che lo produce, e $f$ è suriettiva.</span>
+          <span class="esempio__passo"><strong>Controprova numerica.</strong> Provo a colpire un bersaglio preciso, per esempio $y=22$: la formula appena trovata mi dice quale ingresso usare, e poi verifico applicando $f$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        x &amp;= \frac{22-7}{5} &amp;&amp;\text{(sostituisco } y=22 \text{ nella formula dell'ingresso)}\\
+        x &amp;= \frac{15}{5} &amp;&amp;\text{(eseguo la sottrazione al numeratore)}\\
+        x &amp;= 3 &amp;&amp;\text{(eseguo la divisione)}\\
+        f(3) &amp;= 5\cdot 3+7 &amp;&amp;\text{(verifica: applico } f \text{ all'ingresso trovato)}\\
+        f(3) &amp;= 22 &amp;&amp;\text{(il bersaglio è colpito davvero)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Conclusione.</strong> $f$ è iniettiva e suriettiva, quindi è <strong>biiettiva</strong>.</span>
+        </p>
+        <p><strong>Il non-esempio.</strong> La stessa domanda per $f(x)=x^2$ con codominio $\mathbb{R}$: prendo $y=-9$ e provo a risolvere $x^2=-9$. Non esiste nessun numero reale il cui quadrato sia negativo, quindi il bersaglio $-9$ non viene mai colpito: $f$ <strong>non</strong> è suriettiva su $\mathbb{R}$. Se però dichiaro il codominio $[0,+\infty)$, allora ogni $y\geq 0$ è colpito da $x=\sqrt{y}$, e la stessa formula diventa suriettiva. Il codominio cambia la risposta.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il test della retta orizzontale</div>
+          <p>Per una funzione reale di cui hai il grafico, l'iniettività si legge a colpo d'occhio: $f$ è iniettiva se e solo se <strong>ogni retta orizzontale</strong> $y=k$ interseca il grafico <strong>in al più un punto</strong>. Se una retta orizzontale taglia il grafico in due punti $(x_1,k)$ e $(x_2,k)$ con $x_1\neq x_2$, allora $f(x_1)=f(x_2)=k$: due ingressi diversi, stessa uscita, quindi <em>non</em> iniettiva.</p>
+        </div>
+
+        <svg viewBox="0 0 320 220" style="max-width:360px;width:100%;margin:1.2em auto;display:block;" role="img" aria-label="Parabola y uguale x quadro con una retta orizzontale che la interseca in due punti">
+          <line x1="20" y1="180" x2="300" y2="180" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="160" y1="20" x2="160" y2="200" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M 70 40 Q 160 260 250 40" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <line x1="20" y1="95" x2="300" y2="95" stroke="var(--color-danger)" stroke-width="2" stroke-dasharray="6 4"/>
+          <circle cx="108" cy="95" r="4.5" fill="var(--color-danger)"/>
+          <circle cx="212" cy="95" r="4.5" fill="var(--color-danger)"/>
+          <text x="296" y="88" font-size="12" text-anchor="end" fill="var(--color-danger)">y = k</text>
+          <text x="256" y="45" font-size="12" fill="var(--color-primary)">y = x²</text>
+          <text x="98" y="205" font-size="11" fill="currentColor">x₁</text>
+          <text x="205" y="205" font-size="11" fill="currentColor">x₂</text>
+        </svg>
+        <p>La parabola $y=x^2$ fallisce il test (la retta $y=k$, con $k\gt0$, la incontra due volte): su tutto $\mathbb{R}$ <strong>non</strong> è iniettiva, coerentemente con il conto fatto poco fa, dove $2$ e $-2$ davano la stessa uscita.</p>
+
+        <p><strong>Fin qui:</strong> ecco il riepilogo delle due prove, da tenere sott'occhio quando fai gli esercizi.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Proprietà</th><th>Per dire SÌ</th><th>Per dire NO</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Iniettiva</strong></td><td>parti da $f(x_1)=f(x_2)$ e arriva con i conti a $x_1=x_2$</td><td>esibisci due numeri concreti $x_1\neq x_2$ con $f(x_1)=f(x_2)$</td></tr>
+            <tr><td><strong>Suriettiva</strong></td><td>prendi $y$ generico, risolvi $f(x)=y$ e mostra che la soluzione esiste sempre</td><td>esibisci un $y$ concreto del codominio per cui $f(x)=y$ non ha soluzioni</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="teoria-inversa">4.5 Funzione inversa</h3>
+        <p><strong>Prima l'idea.</strong> Una funzione ti porta da un ingresso a un'uscita. L'inversa fa il viaggio al contrario: le dai l'uscita e ti restituisce l'ingresso da cui quell'uscita proveniva. Non sempre è possibile, e capire <em>quando</em> è possibile è il cuore di questo paragrafo.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🔐</span> L'immagine da tenere in mente</div>
+          <p>Un sistema che cifra i messaggi. La funzione "cifra" trasforma il testo in una sequenza illeggibile; la funzione "decifra" è la sua inversa e riporta indietro il testo originale. Perché il sistema funzioni servono due cose. Primo: due messaggi diversi non devono mai produrre la stessa sequenza cifrata, altrimenti chi decifra non saprebbe quale dei due ricostruire (è l'<strong>iniettività</strong>). Secondo: ogni sequenza che il destinatario può ricevere deve provenire davvero da un messaggio, altrimenti "decifra" non saprebbe cosa rispondere (è la <strong>suriettività</strong>). È la stessa storia del traduttore automatico che abbiamo raccontato nella sezione 3: se "grande" e "grosso" diventano entrambi "big", la traduzione a ritroso è impossibile.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, prima con un numero solo.</strong> Prendiamo $f(x)=3x+6$. La regola, detta a parole, è: "moltiplica per $3$, poi aggiungi $6$". Proviamo con l'ingresso $4$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(4) &amp;= 3\cdot 4+6 &amp;&amp;\text{(sostituisco } x=4 \text{ nella formula)}\\
+        &amp;= 12+6 &amp;&amp;\text{(eseguo la moltiplicazione)}\\
+        &amp;= 18 &amp;&amp;\text{(eseguo la somma)}
+        \end{aligned}$$</div>
+        <p>Ora il viaggio a ritroso: mi danno $18$ e devo risalire a $4$. Devo disfare le operazioni <strong>in ordine inverso</strong>, e ciascuna con la sua operazione opposta: l'ultima cosa che $f$ ha fatto è stato aggiungere $6$, quindi la prima cosa che faccio io è togliere $6$; poi $f$ aveva moltiplicato per $3$, quindi io divido per $3$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        18-6 &amp;= 12 &amp;&amp;\text{(disfo l'ultima operazione: tolgo } 6\text{)}\\
+        12 : 3 &amp;= 4 &amp;&amp;\text{(disfo la prima operazione: divido per } 3\text{)}
+        \end{aligned}$$</div>
+        <p>Sono tornato a $4$, l'ingresso di partenza. La regola inversa, detta a parole, è "togli $6$, poi dividi per $3$", cioè $f^{-1}(y)=\dfrac{y-6}{3}$. Tieni a mente questa immagine — <em>disfare le operazioni in ordine inverso</em> — perché il metodo algebrico che vedremo fra poco fa esattamente questo, ma in automatico.</p>
+
+        <p><strong>Ora la definizione, con la condizione che la rende possibile.</strong></p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Definizione e condizione di esistenza</span>
+          <p>Una funzione $f:A\to B$ è <strong>invertibile</strong> se e solo se è <span class="glossario-term" data-term="funzione-biiettiva">biiettiva</span>. In tal caso esiste un'unica funzione, detta <strong><span class="glossario-term" data-term="funzione-inversa">funzione inversa</span></strong> $f^{-1}:B\to A$, definita da</p>
+          <div class="formula-block">$$\underbrace{f^{-1}(y) = x}_{\text{l'inversa manda } y \text{ in } x} \iff \underbrace{f(x) = y}_{\text{esattamente quando } f \text{ manda } x \text{ in } y}$$</div>
+          <p>Le due scritture dicono la stessa cosa lette nei due versi. Da questa definizione seguono subito le due proprietà che useremo per controllare i conti:</p>
+          <div class="formula-block">$$f^{-1}\big(f(x)\big)=x \quad \text{per ogni } x\in A, \qquad\qquad f\big(f^{-1}(y)\big)=y \quad \text{per ogni } y\in B.$$</div>
+          <p>A parole: applicare $f$ e poi $f^{-1}$ (o viceversa) riporta al punto di partenza, come andare avanti di tre passi e poi indietro di tre passi.</p>
+        </div>
+
+        <p><strong>Perché serve proprio la biiettività?</strong> Guardiamo le due proprietà separatamente, perché servono a cose diverse.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">L'<strong>iniettività</strong> garantisce l'<em>unicità</em> della risposta all'indietro. Se due ingressi diversi producessero la stessa uscita $y$, la domanda "da dove viene $y$?" avrebbe due risposte, e $f^{-1}(y)$ non sarebbe ben definita: verrebbe violata la seconda promessa del <span class="richiamo" data-sec="4.1">§4.1</span>.</span>
+          <span class="esempio__passo">La <strong>suriettività</strong> garantisce l'<em>esistenza</em> della risposta all'indietro. Se un certo $y$ del codominio non fosse mai prodotto da nessun ingresso, la domanda "da dove viene $y$?" non avrebbe risposta, e verrebbe violata la prima promessa del <span class="richiamo" data-sec="4.1">§4.1</span>.</span>
+          <span class="esempio__passo">Insieme, le due proprietà rendono $f^{-1}$ una funzione a tutti gli effetti. Se $f$ è solo iniettiva ma non suriettiva, non si butta via nulla: basta <strong>restringere il codominio all'immagine</strong>, cioè considerare $f$ come funzione da $A$ a $\operatorname{Im} f$. Così diventa suriettiva per costruzione, e quindi invertibile.</span>
+        </p>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Attenzione: $f^{-1}$ non è $\dfrac{1}{f}$</div>
+          <p>Il simbolo $-1$ scritto in alto <strong>non</strong> è un esponente e non significa "uno diviso". Per $f(x)=3x+6$ l'inversa è $f^{-1}(x)=\frac{x-6}{3}$, mentre $\frac{1}{f(x)}=\frac{1}{3x+6}$: due funzioni completamente diverse. Controllo rapido su un numero: $f^{-1}(18)=\frac{18-6}{3}=4$, mentre $\frac{1}{f(18)}=\frac{1}{60}$. Il $-1$ dell'inversa è solo una notazione ereditata, da leggere come "la funzione che torna indietro".</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si calcola l'inversa: le quattro mosse</div>
+          <p><strong>Mossa 1.</strong> Scrivi $y=f(x)$, cioè dai un nome all'uscita. <strong>Mossa 2.</strong> Risolvi l'equazione rispetto a $x$: l'obiettivo è arrivare a "$x=$ qualcosa che contiene solo $y$". <strong>Mossa 3.</strong> Scambia i nomi delle due lettere, $x \leftrightarrow y$, perché per abitudine la variabile indipendente si chiama $x$ (è solo un cambio di etichetta, non un calcolo). <strong>Mossa 4.</strong> Controlla su un numero comodo che $f\big(f^{-1}(x)\big)=x$.</p>
+        </div>
+
+        <p><strong>Le quattro mosse in azione su un caso con la frazione.</strong> Calcoliamo l'inversa di $f(x)=\dfrac{2x-1}{x+3}$, definita per $x\neq -3$.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Mossa 1.</strong> Do un nome all'uscita: $y=\dfrac{2x-1}{x+3}$.</span>
+          <span class="esempio__passo"><strong>Mossa 2, primo tempo: mi libero della frazione.</strong> Moltiplico entrambi i membri per il denominatore $x+3$, che non è zero perché $x\neq -3$. A destra la frazione si semplifica e resta il solo numeratore.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        y &amp;= \frac{2x-1}{x+3} &amp;&amp;\text{(punto di partenza)}\\
+        y\,(x+3) &amp;= 2x-1 &amp;&amp;\text{(moltiplico entrambi i membri per } x+3 \neq 0\text{)}\\
+        yx+3y &amp;= 2x-1 &amp;&amp;\text{(svolgo il prodotto a sinistra con la proprietà distributiva, Parte 0, cap. 2)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Mossa 2, secondo tempo: raduno le $x$.</strong> Voglio isolare $x$, quindi porto a sinistra tutti i termini che contengono $x$ e a destra tutti gli altri. Sottraggo $2x$ a entrambi i membri e sottraggo $3y$ a entrambi i membri: è per questo che i due termini "attraversano l'uguale cambiando segno".</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        yx+3y &amp;= 2x-1 &amp;&amp;\text{(punto di arrivo del passo precedente)}\\
+        yx-2x &amp;= -1-3y &amp;&amp;\text{(sottraggo } 2x \text{ e } 3y \text{ a entrambi i membri)}\\
+        x\,(y-2) &amp;= -1-3y &amp;&amp;\text{(raccolgo } x \text{ a fattor comune a sinistra)}\\
+        x &amp;= \frac{-1-3y}{y-2} &amp;&amp;\text{(divido entrambi i membri per } y-2\text{, lecito se } y\neq 2\text{)}\\
+        x &amp;= \frac{3y+1}{2-y} &amp;&amp;\text{(cambio segno sopra e sotto: due segni meno si annullano)}
+        \end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Mossa 3.</strong> Scambio i nomi delle lettere: $f^{-1}(x)=\dfrac{3x+1}{2-x}$, definita per $x\neq 2$.</span>
+          <span class="esempio__passo"><strong>Mossa 4: controllo.</strong> Scelgo un numero comodo del dominio di $f$, per esempio $x=1$: applico $f$, poi applico $f^{-1}$ al risultato e controllo di essere tornato al punto di partenza.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        f(1) &amp;= \frac{2\cdot 1-1}{1+3} &amp;&amp;\text{(sostituisco } x=1 \text{ nella formula di } f\text{)}\\
+        f(1) &amp;= \frac{1}{4} &amp;&amp;\text{(eseguo i conti: } 2-1=1 \text{ sopra, } 1+3=4 \text{ sotto)}\\
+        f^{-1}\!\left(\tfrac14\right) &amp;= \frac{3\cdot\frac14+1}{2-\frac14} &amp;&amp;\text{(sostituisco } x=\tfrac14 \text{ nella formula di } f^{-1}\text{)}\\
+        &amp;= \frac{\frac34+\frac44}{\frac84-\frac14} &amp;&amp;\text{(riduco allo stesso denominatore sopra e sotto)}\\
+        &amp;= \frac{\frac74}{\frac74} &amp;&amp;\text{(eseguo le due somme algebriche)}\\
+        &amp;= 1 &amp;&amp;\text{(numeratore e denominatore sono uguali)}
+        \end{aligned}$$</div>
+        <p>Sono tornato a $1$, cioè all'ingresso di partenza: il conto è giusto.</p>
+        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Il punto delicato è la mossa 2, secondo tempo. Se non raduni <em>tutti</em> i termini con la $x$ da una parte, il raccoglimento a fattor comune non si può fare e resti bloccato. Prima di raccogliere, ricontrolla sempre che a destra dell'uguale non sia rimasta nessuna $x$.</p>
+
+        <p><strong>Il non-esempio: una funzione che non si può invertire.</strong> Proviamo lo stesso metodo su $f(x)=x^2$ con dominio $\mathbb{R}$. Mossa 1: $y=x^2$. Mossa 2: risolvo rispetto a $x$ e ottengo $x=\pm\sqrt{y}$. Qui il metodo si ferma: il risultato non è <em>un</em> numero ma <em>due</em>, quindi non definisce una funzione (è il non-esempio 1 del <span class="richiamo" data-sec="4.1">§4.1</span>). La causa è che $f$ non è iniettiva, come abbiamo verificato nel <span class="richiamo" data-sec="4.4">§4.4</span> con $f(2)=f(-2)=4$. La cura è restringere il dominio, per esempio a $[0,+\infty)$: il vincolo $x\geq 0$ scarta la soluzione negativa e resta solo $x=\sqrt{y}$.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Dominio e immagine si scambiano</div>
+          <p>Passando all'inversa, i due insiemi si scambiano i ruoli: $\operatorname{dom} f^{-1}=\operatorname{Im} f$ e $\operatorname{Im} f^{-1}=\operatorname{dom} f$. Nell'esempio appena svolto, $f$ era definita per $x\neq -3$ e la sua inversa per $x\neq 2$: questo dice, senza fare altri conti, che il valore $2$ non appartiene all'immagine di $f$.</p>
+        </div>
+
+        <p>Geometricamente, il grafico di $f^{-1}$ è il <strong>simmetrico</strong> del grafico di $f$ rispetto alla bisettrice del primo e terzo quadrante, la retta $y=x$. Il motivo è semplice: se il punto $(a,b)$ sta sul grafico di $f$ (cioè $b=f(a)$), allora $(b,a)$ sta sul grafico di $f^{-1}$ (cioè $a=f^{-1}(b)$), e $(a,b)$ e $(b,a)$ sono sempre simmetrici rispetto a $y=x$. La dimostrazione completa è nella sezione 5.</p>
+
+        <svg viewBox="0 0 300 300" style="max-width:340px;width:100%;margin:1.2em auto;display:block;" role="img" aria-label="Grafico di una funzione e della sua inversa, simmetrici rispetto alla retta y uguale x">
+          <line x1="30" y1="270" x2="285" y2="270" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="30" y1="270" x2="30" y2="15" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="30" y1="270" x2="270" y2="30" stroke="var(--color-text-muted)" stroke-width="1.5" stroke-dasharray="5 4"/>
+          <text x="248" y="52" font-size="12" fill="var(--color-text-muted)">y = x</text>
+          <path d="M 45 265 Q 120 258 175 40" fill="none" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <path d="M 35 255 Q 42 180 260 125" fill="none" stroke="var(--color-secondary)" stroke-width="2.5"/>
+          <text x="150" y="58" font-size="13" fill="var(--color-primary)">f</text>
+          <text x="248" y="145" font-size="13" fill="var(--color-secondary)">f⁻¹</text>
+        </svg>
+
+        <h3 id="teoria-composta">4.6 Funzione composta</h3>
+        <p><strong>Prima l'idea.</strong> Comporre significa <strong>incatenare</strong> due trasformazioni: applico la prima funzione, prendo il risultato e lo do in pasto alla seconda. Non c'è nessun concetto nuovo: c'è solo da stare attenti all'ordine e a cosa entra dentro cosa.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏭</span> L'immagine da tenere in mente</div>
+          <p>Una catena di montaggio con due macchine in fila. La prima macchina taglia il pezzo, la seconda lo vernicia. Il pezzo grezzo entra nella prima, ne esce tagliato, e <em>proprio quel pezzo tagliato</em> entra nella seconda. Il risultato finale dipende dall'ordine: tagliare e poi verniciare non dà lo stesso oggetto che verniciare e poi tagliare (nel secondo caso i bordi del taglio restano grezzi). Vale anche un vincolo pratico: il pezzo che esce dalla prima macchina deve essere accettabile dalla seconda, altrimenti la catena si blocca. Questo vincolo, tradotto in matematica, è la condizione sul dominio della composta.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, prima con un numero solo.</strong> Prendiamo $f(x)=x+4$ ("aggiungi $4$") e $g(t)=t^2$ ("eleva al quadrato"), e partiamo dall'ingresso $x=3$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(3) &amp;= 3+4 = 7 &amp;&amp;\text{(prima macchina: applico } f \text{ a } 3\text{)}\\
+        g(7) &amp;= 7^2 = 49 &amp;&amp;\text{(seconda macchina: applico } g \text{ al risultato } 7\text{)}
+        \end{aligned}$$</div>
+        <p>Il risultato complessivo è $49$, e si scrive $(g\circ f)(3)=49$. Ora facciamo lo stesso con una $x$ generica, cioè senza fissare il numero di partenza. La frase da ripetersi è sempre la stessa: <strong>"al posto di $t$ metto il blocco $f(x)$"</strong>.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Scrivo la formula della seconda macchina lasciando il posto vuoto: $g(\square)=\square^2$. Il quadratino è il posto dove andrà ciò che arriva.</span>
+          <span class="esempio__passo">Dentro il quadratino metto tutto il blocco $f(x)=x+4$, per intero e tra parentesi: $g(x+4)=(x+4)^2$.</span>
+          <span class="esempio__passo">Quindi $(g\circ f)(x)=(x+4)^2$. Controllo con il numero di prima: per $x=3$ si ottiene $(3+4)^2=7^2=49$, lo stesso risultato. Torna.</span>
+        </p>
+        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Le parentesi intorno al blocco non sono un dettaglio estetico. Scrivere $x+4^2$ invece di $(x+4)^2$ darebbe $x+16$, una funzione completamente diversa: per $x=3$ verrebbe $19$ invece di $49$. Quando sostituisci un blocco dentro una formula, <strong>mettilo sempre tra parentesi</strong>, e toglile solo dopo, se i conti lo permettono.</p>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (composizione)</span>
+          <p>Date $f:A\to B$ e $g:B\to C$, la <strong><span class="glossario-term" data-term="funzione-composta">funzione composta</span></strong> $g\circ f$ (si legge "$g$ composto $f$") è la funzione da $A$ a $C$ definita da</p>
+          <div class="formula-block">$$(\underbrace{g\circ f}_{\text{la funzione composta}})(x) = \underbrace{g\big(\,\underbrace{f(x)}_{\text{prima si applica } f}\,\big)}_{\text{poi si applica } g \text{ al risultato}}$$</div>
+          <p>Si applica <strong>prima $f$</strong> (quella scritta più a destra, "più vicina" alla $x$) e <strong>poi $g$</strong>. L'ordine di lettura è da destra verso sinistra, come nelle parentesi di un conto.</p>
+        </div>
+
+        <p><strong>Il dominio della composta richiede attenzione.</strong> Non basta che $x$ stia nel dominio di $f$: serve anche che il risultato $f(x)$ appartenga al dominio di $g$, altrimenti la seconda macchina non saprebbe cosa farne. Formalmente:</p>
+        <div class="formula-block">$$\operatorname{dom}(g\circ f) = \{\, \underbrace{x \in \operatorname{dom} f}_{\text{prima condizione: } f \text{ deve poter partire}} \;:\; \underbrace{f(x) \in \operatorname{dom} g}_{\text{seconda condizione: } g \text{ deve accettare il risultato}} \,\}.$$</div>
+        <p>Cioè: si parte dal dominio di $f$ e si <strong>interseca</strong> con la condizione "$f(x)$ deve stare nel dominio di $g$". Dimenticare questa seconda richiesta è un errore classico (lo trovi tra gli errori comuni, sezione 7).</p>
+        <p><strong>Un esempio con i conti.</strong> Siano $g(t)=\ln t$, il cui dominio è $t\gt 0$, e $f(x)=x-4$, definita su tutto $\mathbb{R}$. Costruiamo la composta.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Espressione.</strong> Al posto di $t$ metto il blocco $f(x)=x-4$: $(g\circ f)(x)=\ln(x-4)$.</span>
+          <span class="esempio__passo"><strong>Prima condizione.</strong> $x$ deve stare nel dominio di $f$: $f$ è un polinomio, quindi non impone nulla.</span>
+          <span class="esempio__passo"><strong>Seconda condizione.</strong> $f(x)$ deve stare nel dominio di $g$, cioè il blocco $x-4$ deve essere positivo.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        x-4 &amp;\gt 0 &amp;&amp;\text{(il blocco deve stare nel dominio del logaritmo)}\\
+        x &amp;\gt 4 &amp;&amp;\text{(sommo } 4 \text{ a entrambi i membri)}
+        \end{aligned}$$</div>
+        <p>Il dominio della composta è quindi $(4,+\infty)$: la condizione arriva tutta dalla funzione <em>esterna</em>, quella applicata per seconda.</p>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> La composizione NON è commutativa</div>
+          <p>In generale $g\circ f \neq f\circ g$: l'ordine conta. Verifichiamolo con $f(x)=x^2$ e $g(x)=x+1$, calcolando le due composte con la regola del blocco.</p>
+          <div class="calcolo">$$\begin{aligned}
+          (g\circ f)(x) &amp;= g\big(f(x)\big) = g(x^2) &amp;&amp;\text{(al posto dell'argomento di } g \text{ metto il blocco } x^2\text{)}\\
+          &amp;= x^2+1 &amp;&amp;\text{(} g \text{ aggiunge } 1 \text{ al suo argomento)}\\
+          (f\circ g)(x) &amp;= f\big(g(x)\big) = f(x+1) &amp;&amp;\text{(al posto dell'argomento di } f \text{ metto il blocco } x+1\text{)}\\
+          &amp;= (x+1)^2 = x^2+2x+1 &amp;&amp;\text{(} f \text{ eleva al quadrato; sviluppo con } (a+b)^2=a^2+2ab+b^2\text{, Parte 0, cap. 2)}
+          \end{aligned}$$</div>
+          <p>Sono due funzioni <strong>diverse</strong>. Se non ti fidi dell'algebra, prova con un numero: per $x=1$ la prima dà $1^2+1=2$, la seconda dà $(1+1)^2=4$. "Elevo al quadrato e poi aggiungo $1$" non è la stessa cosa di "aggiungo $1$ e poi elevo al quadrato".</p>
+        </div>
+
+        <h3 id="teoria-monotone">4.7 Funzioni monotone</h3>
+        <p><strong>Prima l'idea.</strong> Una funzione è <strong><span class="glossario-term" data-term="funzione-monotona">monotona</span></strong> quando si muove sempre nello stesso verso man mano che $x$ cresce: o sale sempre, o scende sempre. Non è richiesto che salga alla stessa velocità: è richiesto soltanto che non cambi mai idea.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚶</span> L'immagine da tenere in mente</div>
+          <p>Cammini lungo un sentiero di montagna guardando l'altimetro. Se l'altimetro sale a ogni passo, il sentiero è in salita: la quota è una funzione <em>crescente</em> della distanza percorsa. Se scende a ogni passo, è in discesa: funzione <em>decrescente</em>. Se ogni tanto sale e ogni tanto scende, il sentiero non è monotono. E se per un tratto resta esattamente uguale (un pianoro), allora non è in salita "stretta": è la differenza tra crescente in senso stretto e crescente in senso debole.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo $f(x)=2x+1$ e proviamo con due ingressi, uno più piccolo dell'altro.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(1) &amp;= 2\cdot 1+1 = 3 &amp;&amp;\text{(uscita del primo ingresso)}\\
+        f(4) &amp;= 2\cdot 4+1 = 9 &amp;&amp;\text{(uscita del secondo ingresso)}\\
+        1 \lt 4 \ &amp;\text{ e } \ 3 \lt 9 &amp;&amp;\text{(l'ingresso più piccolo ha dato l'uscita più piccola)}
+        \end{aligned}$$</div>
+        <p><strong>Ma due numeri non bastano.</strong> Per dire che la funzione è crescente bisogna controllare <em>tutte</em> le coppie di ingressi, non una sola. Lo facciamo con le lettere: prendo due numeri qualsiasi $x_1$ e $x_2$ con $x_1 \lt x_2$ e trasformo questa disuguaglianza fino a farla diventare un confronto tra $f(x_1)$ e $f(x_2)$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        x_1 &amp;\lt x_2 &amp;&amp;\text{(ipotesi di partenza)}\\
+        2x_1 &amp;\lt 2x_2 &amp;&amp;\text{(moltiplico entrambi i membri per } 2\text{, positivo: il verso NON cambia)}\\
+        2x_1+1 &amp;\lt 2x_2+1 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri: il verso non cambia mai sommando)}\\
+        f(x_1) &amp;\lt f(x_2) &amp;&amp;\text{(riconosco la formula di } f \text{ in entrambi i membri)}
+        \end{aligned}$$</div>
+        <p>Siamo partiti da "il primo ingresso è più piccolo" e siamo arrivati a "la prima uscita è più piccola", <em>per qualunque coppia di numeri</em>: $f(x)=2x+1$ è strettamente crescente su $\mathbb{R}$.</p>
+
+        <p><strong>Ora le definizioni.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizioni</span>
+          <p>Sia $f$ definita su un intervallo $I$. La condizione va verificata per <em>ogni</em> coppia $x_1, x_2 \in I$ con $x_1 \lt x_2$ (cioè: comunque scegli due punti, con il primo più a sinistra del secondo).</p>
+          <p>• <strong>crescente in senso stretto</strong> se $\ f(x_1) \lt f(x_2)$ &nbsp;— sale sempre, senza tratti piatti;</p>
+          <p>• <strong>crescente in senso debole</strong> (o non decrescente) se $\ f(x_1) \leq f(x_2)$ &nbsp;— sale o resta ferma, ma non scende mai;</p>
+          <p>• <strong>decrescente in senso stretto</strong> se $\ f(x_1) \gt f(x_2)$ &nbsp;— scende sempre;</p>
+          <p>• <strong>decrescente in senso debole</strong> (o non crescente) se $\ f(x_1) \geq f(x_2)$ &nbsp;— scende o resta ferma, ma non sale mai.</p>
+          <p>La differenza tra stretto e debole è tutta nel simbolo: $\lt$ vieta i tratti piatti, $\leq$ li permette.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p>Prendi due punti generici con $x_1 \lt x_2$ e trasforma questa disuguaglianza passo dopo passo fino ad arrivare a $f(x_1)$ e $f(x_2)$, dichiarando a ogni riga che operazione fai. L'unica trappola è il verso: sommare un numero non cambia il verso; moltiplicare per un numero <strong>positivo</strong> non cambia il verso; moltiplicare per un numero <strong>negativo</strong> lo <strong>inverte</strong> (Parte 0, cap. 6). In alternativa puoi studiare il segno della differenza $f(x_2)-f(x_1)$: se è sempre positiva la funzione cresce, se è sempre negativa decresce.</p>
+        </div>
+
+        <p><strong>Una verifica con l'inversione del verso.</strong> Vediamo che $f(x)=-3x+5$ è strettamente decrescente.</p>
+        <div class="calcolo">$$\begin{aligned}
+        x_1 &amp;\lt x_2 &amp;&amp;\text{(ipotesi di partenza)}\\
+        -3x_1 &amp;\gt -3x_2 &amp;&amp;\text{(moltiplico per } -3\text{, che è negativo: il verso SI INVERTE)}\\
+        -3x_1+5 &amp;\gt -3x_2+5 &amp;&amp;\text{(sommo } 5 \text{ a entrambi i membri: il verso resta)}\\
+        f(x_1) &amp;\gt f(x_2) &amp;&amp;\text{(riconosco la formula di } f\text{)}
+        \end{aligned}$$</div>
+        <p>Da "il primo ingresso è più piccolo" siamo arrivati a "la prima uscita è più grande": è la definizione di strettamente decrescente.</p>
+
+        <p><strong>Il non-esempio: una funzione che non è monotona.</strong> Prendiamo $f(x)=x^2$ su tutto $\mathbb{R}$ e confrontiamo due coppie di punti.</p>
+        <div class="calcolo">$$\begin{aligned}
+        -2 \lt -1 \ &amp;\text{ e } \ f(-2)=4 \gt 1=f(-1) &amp;&amp;\text{(prima coppia: qui la funzione scende)}\\
+        1 \lt 2 \ &amp;\text{ e } \ f(1)=1 \lt 4=f(2) &amp;&amp;\text{(seconda coppia: qui la funzione sale)}
+        \end{aligned}$$</div>
+        <p>Nella prima coppia scende, nella seconda sale: cambia idea, quindi su $\mathbb{R}$ non è né crescente né decrescente. Però su $[0,+\infty)$, preso da solo, è strettamente crescente. Questo è il motivo per cui si parla sempre di monotonia <em>su un certo insieme</em>, mai "in assoluto".</p>
+
+        <p>La monotonia <em>stretta</em> ha una conseguenza preziosa, che dimostreremo rigorosamente nella prossima sezione: <strong>una funzione strettamente monotona è sempre iniettiva</strong>, quindi (ristretta alla sua immagine) è invertibile. Questo è il ponte tra monotonia e invertibilità che userai continuamente: spesso è molto più veloce riconoscere una salita che fare la prova algebrica del <span class="richiamo" data-sec="4.4">§4.4</span>.</p>
+        <p><strong>Attenzione: la monotonia debole non basta.</strong> Una funzione costante, per esempio $f(x)=7$, è non decrescente (non scende mai) <em>e</em> non crescente (non sale mai), ma è lontanissima dall'essere iniettiva: $f(0)=f(1)=7$. Serve il verso stretto.</p>
+
+        <h3 id="teoria-simmetrie">4.8 Ripasso: funzioni pari, dispari, periodiche</h3>
+        <p><strong>Prima l'idea.</strong> Alcune funzioni hanno un grafico "ordinato": una metà è la copia dell'altra. Riconoscere questa simmetria fa risparmiare metà del lavoro in uno studio di funzione, perché basta studiare un lato e specchiare. Le tre simmetrie più utili sono già comparse nel capitolo <a href="../parte0-prerequisiti/09-funzioni-elementari-grafici.html">Funzioni elementari e grafici</a> della Parte 0; qui le richiamiamo e, soprattutto, impariamo a <em>verificarle con i conti</em>.</p>
+        <ul>
+          <li><strong>Pari</strong>: $f(-x)=f(x)$ per ogni $x$ del dominio. Il grafico è simmetrico rispetto all'asse $y$, come in uno specchio verticale. Esempi: $x^2$, $\cos x$, $|x|$.</li>
+          <li><strong>Dispari</strong>: $f(-x)=-f(x)$ per ogni $x$ del dominio. Il grafico è simmetrico rispetto all'origine, cioè ruotandolo di mezzo giro torna su sé stesso. Esempi: $x^3$, $\sin x$, $x$.</li>
+          <li><strong>Periodica</strong> di periodo $T\gt0$: $f(x+T)=f(x)$ per ogni $x$. Il grafico si ripete identico ogni $T$. Esempi: $\sin x$ e $\cos x$ hanno periodo $2\pi$, $\tan x$ ha periodo $\pi$.</li>
+        </ul>
+        <p><strong>Come si verifica in pratica:</strong> calcola $f(-x)$ sostituendo $-x$ al posto di ogni $x$ nella formula, semplifica, e poi confronta il risultato con $f(x)$ e con $-f(x)$. Se coincide con il primo è pari; se coincide con il secondo è dispari; se non coincide con nessuno dei due non è né pari né dispari. Serve una sola regola di calcolo, già nota (Parte 0, cap. 3): una potenza di esponente <em>pari</em> cancella il segno meno, una potenza di esponente <em>dispari</em> lo conserva, cioè $(-x)^2=x^2$, $(-x)^3=-x^3$, $(-x)^4=x^4$.</p>
+        <p><strong>Prima verifica: una funzione pari.</strong> Sia $f(x)=x^4-3x^2+1$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(-x) &amp;= (-x)^4-3(-x)^2+1 &amp;&amp;\text{(sostituisco } -x \text{ al posto di ogni } x\text{)}\\
+        &amp;= x^4-3x^2+1 &amp;&amp;\text{(} (-x)^4=x^4 \text{ e } (-x)^2=x^2\text{: esponenti pari)}\\
+        &amp;= f(x) &amp;&amp;\text{(riconosco la formula di partenza)}
+        \end{aligned}$$</div>
+        <p>Il risultato coincide con $f(x)$: la funzione è <strong>pari</strong>.</p>
+        <p><strong>Seconda verifica: una funzione dispari.</strong> Sia $f(x)=x^3-4x$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(-x) &amp;= (-x)^3-4(-x) &amp;&amp;\text{(sostituisco } -x \text{ al posto di ogni } x\text{)}\\
+        &amp;= -x^3+4x &amp;&amp;\text{(} (-x)^3=-x^3 \text{: esponente dispari; e } -4\cdot(-x)=+4x\text{)}\\
+        &amp;= -(x^3-4x) &amp;&amp;\text{(raccolgo un segno meno: cambio segno a tutti gli addendi)}\\
+        &amp;= -f(x) &amp;&amp;\text{(dentro la parentesi c'è proprio } f(x)\text{)}
+        \end{aligned}$$</div>
+        <p>Il risultato coincide con $-f(x)$: la funzione è <strong>dispari</strong>.</p>
+        <p><strong>Il non-esempio: né pari né dispari.</strong> Sia $f(x)=x^2+x$.</p>
+        <div class="calcolo">$$\begin{aligned}
+        f(-x) &amp;= (-x)^2+(-x) &amp;&amp;\text{(sostituisco } -x \text{ al posto di ogni } x\text{)}\\
+        &amp;= x^2-x &amp;&amp;\text{(} (-x)^2=x^2 \text{, mentre il secondo addendo cambia segno)}
+        \end{aligned}$$</div>
+        <p>Confrontiamo: $f(x)=x^2+x$ e $-f(x)=-x^2-x$. Il risultato $x^2-x$ non è uguale né all'uno né all'altro. Se vuoi una prova numerica definitiva, basta un valore: $f(1)=1+1=2$, mentre $f(-1)=1-1=0$; siccome $0$ non è né $2$ né $-2$, la funzione non è né pari né dispari.</p>
+        <p><strong>Un dettaglio che si dimentica sempre:</strong> perché la domanda "pari o dispari?" abbia senso, il dominio deve essere <em>simmetrico</em> rispetto allo zero, cioè ogni volta che contiene $x$ deve contenere anche $-x$. Altrimenti $f(-x)$ potrebbe non esistere e non ci sarebbe niente da confrontare. Per esempio $f(x)=x^2$ ristretta a $[0,+\infty)$ non è pari, semplicemente perché $f(-x)$ non è definita.</p>
+        <p><strong>La connessione con questo capitolo.</strong> Una funzione <strong>pari non costante non è mai iniettiva</strong>: infatti $f(-x)=f(x)$ e, se $x\neq 0$, i due ingressi $x$ e $-x$ sono diversi ma hanno la stessa uscita. Allo stesso modo una funzione <strong>periodica non è mai iniettiva</strong> sul suo intero dominio: $f(x+T)=f(x)$ con $x+T\neq x$, perché $T\gt 0$. Le simmetrie sono quindi una spia visiva della <em>non</em>-invertibilità: se vedi un grafico simmetrico rispetto all'asse $y$, o che si ripete, sai già che dovrai restringere il dominio prima di parlare di inversa.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <p>In questa sezione dimostriamo tre fatti che abbiamo usato o annunciato nella teoria. Ogni dimostrazione comincia con la stessa "bussola": <em>cosa vogliamo dimostrare</em>, <em>idea della strategia</em>, <em>cosa ci servirà</em>. Se leggi solo quei tre paragrafi hai già capito il senso; i passi servono a convincersi che non ci sono buchi.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Monotonia stretta implica iniettività.</em> Se $f:I\to\mathbb{R}$ è strettamente monotona su un intervallo $I$, allora $f$ è iniettiva su $I$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che una funzione che sale sempre (o che scende sempre) non può mai ripetere due volte lo stesso valore. Detto con l'immagine della salita: se ogni passo ti porta più in alto del precedente, non puoi ritrovarti due volte alla stessa quota.</p>
+          <p><strong>Idea della strategia.</strong> Dimostrazione diretta, partendo dalla definizione di iniettività nella sua forma originale: prendiamo due ingressi diversi e facciamo vedere che le uscite sono diverse. La mossa chiave è che due numeri reali diversi non sono solo "diversi": uno dei due è per forza il più piccolo. Questo ci permette di applicare l'ipotesi di monotonia, che è scritta proprio con il simbolo $\lt$ e quindi ha bisogno di sapere chi viene prima.</p>
+          <p><strong>Cosa ci servirà.</strong> Soltanto due cose: la definizione di funzione strettamente crescente (<span class="richiamo" data-sec="4.7">§4.7</span>) e la definizione di iniettività (<span class="richiamo" data-sec="4.4">§4.4</span>). Nessun risultato esterno.</p>
+          <p>Supponiamo, per fissare le idee, che $f$ sia <strong>strettamente crescente</strong>. Il caso strettamente decrescente si tratta in modo identico, con tutte le disuguaglianze rovesciate; lo rifacciamo per intero alla fine.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1 — Prendiamo gli ingressi.</strong> Siano $x_1, x_2 \in I$ due punti qualsiasi con $x_1 \neq x_2$. Vogliamo arrivare a $f(x_1)\neq f(x_2)$.</span>
+            <span class="esempio__passo"><strong>Passo 2 — Mettiamoli in ordine.</strong> Due numeri reali distinti sono sempre confrontabili: uno è minore dell'altro (è la proprietà di tricotomia dell'ordine su $\mathbb{R}$, cap. 1). Supponiamo $x_1 \lt x_2$. Se fosse il contrario basterebbe scambiare i nomi dei due punti e il ragionamento resterebbe identico: per questo si dice "senza perdita di generalità".</span>
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> Ora abbiamo esattamente l'ipotesi che serve alla definizione di crescenza stretta, che parla di due punti <em>ordinati</em>.</span>
+            <span class="esempio__passo"><strong>Passo 3 — Applichiamo l'ipotesi.</strong> La definizione del <span class="richiamo" data-sec="4.7">§4.7</span> dice: "se $x_1 \lt x_2$ allora $f(x_1) \lt f(x_2)$". L'ipotesi è verificata dal passo 2, quindi possiamo scrivere la conclusione.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          x_1 &amp;\lt x_2 &amp;&amp;\text{(dal passo 2)}\\
+          f(x_1) &amp;\lt f(x_2) &amp;&amp;\text{(definizione di funzione strettamente crescente, §4.7)}\\
+          f(x_1) &amp;\neq f(x_2) &amp;&amp;\text{(se un numero è minore di un altro, in particolare è diverso)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> Da $x_1\neq x_2$ siamo arrivati a $f(x_1)\neq f(x_2)$: è parola per parola la definizione di iniettività del <span class="richiamo" data-sec="4.4">§4.4</span>.</span>
+            <span class="esempio__passo"><strong>Passo 4 — Il caso decrescente.</strong> Se $f$ è strettamente decrescente, il passo 3 cambia solo nel verso: da $x_1 \lt x_2$ la definizione dà $f(x_1) \gt f(x_2)$, e anche in questo caso i due valori sono diversi. La conclusione è la stessa.</span>
+          </p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo preso due ingressi diversi, li abbiamo messi in ordine (lecito, perché due numeri reali distinti sono sempre confrontabili), abbiamo applicato la definizione di monotonia stretta ottenendo due uscite in ordine stretto, e da "minore" abbiamo dedotto "diverso". Quindi ingressi diversi danno uscite diverse: $f$ è iniettiva. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il viceversa è falso!</div>
+          <p>Attenzione: iniettiva <strong>non</strong> implica monotona. Una funzione può essere iniettiva pur "saltando su e giù", purché non ripeta mai lo stesso valore. Un esempio concreto: sull'insieme $[0,1]\cup[2,3]$ definisci $f(x)=x$ sul primo pezzo e $f(x)=5-x$ sul secondo. Sul primo pezzo sale, sul secondo scende (quindi non è monotona), ma sul primo pezzo assume valori in $[0,1]$ e sul secondo valori in $[2,3]$: due insiemi senza elementi in comune, quindi nessun valore viene mai ripetuto e la funzione è iniettiva. Il teorema garantisce una sola freccia: <em>stretta monotonia $\Rightarrow$ iniettività</em>. È comunque uno strumento potentissimo, perché la monotonia si verifica spesso a colpo d'occhio (o, più avanti, con il segno della derivata, cap. 9).</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Caratterizzazione delle funzioni invertibili.</em> Una funzione $f:A\to B$ ammette una funzione inversa $f^{-1}:B\to A$ se e solo se $f$ è biiettiva.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che "si può tornare indietro" e "la funzione non ripete uscite né ne spreca" sono la stessa identica cosa. Nel <span class="richiamo" data-sec="4.5">§4.5</span> questa equivalenza è stata annunciata; qui la verifichiamo davvero, in entrambi i versi.</p>
+          <p><strong>Idea della strategia.</strong> L'enunciato contiene un "se e solo se", cioè due affermazioni in una. Le dimostriamo separatamente, una per volta. Nel verso "biiettiva $\Rightarrow$ invertibile" <em>costruiamo</em> la funzione inversa e controlliamo che rispetti le due promesse del <span class="richiamo" data-sec="4.1">§4.1</span>: l'iniettività ci darà l'unicità, la suriettività l'esistenza. Nel verso opposto supponiamo di avere già l'inversa e la usiamo come strumento per dedurre le due proprietà.</p>
+          <p><strong>Cosa ci servirà.</strong> La definizione di funzione con le sue due promesse (<span class="richiamo" data-sec="4.1">§4.1</span>), le definizioni di iniettività e suriettività (<span class="richiamo" data-sec="4.4">§4.4</span>) e la definizione di inversa con le due identità $f^{-1}(f(x))=x$ e $f(f^{-1}(y))=y$ (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Primo verso, passo 1 — Supponiamo $f$ biiettiva e costruiamo l'inversa.</strong> Prendiamo un $y\in B$ qualsiasi. Vogliamo definire $f^{-1}(y)$ come "l'ingresso da cui $y$ proviene", quindi dobbiamo controllare che questo ingresso ci sia e che sia uno solo.</span>
+            <span class="esempio__passo"><strong>Passo 2 — L'ingresso esiste.</strong> Per la suriettività (<span class="richiamo" data-sec="4.4">§4.4</span>) esiste almeno un $x\in A$ con $f(x)=y$. Prima promessa soddisfatta: nessun $y$ resta senza risposta.</span>
+            <span class="esempio__passo"><strong>Passo 3 — L'ingresso è unico.</strong> Supponiamo per un momento che ce ne siano due, $x_1$ e $x_2$, entrambi con la stessa uscita $y$. Allora $f(x_1)=y=f(x_2)$, cioè $f(x_1)=f(x_2)$; per l'iniettività, nella forma contronominale del <span class="richiamo" data-sec="4.4">§4.4</span>, questo obbliga $x_1=x_2$. I due ingressi erano quindi lo stesso. Seconda promessa soddisfatta.</span>
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> La regola "a $y$ associo l'unico $x$ con $f(x)=y$" rispetta entrambe le promesse, quindi è una funzione da $B$ ad $A$: è proprio $f^{-1}$. Per costruzione vale $f^{-1}(y)=x \iff f(x)=y$, cioè la definizione del <span class="richiamo" data-sec="4.5">§4.5</span>.</span>
+            <span class="esempio__passo"><strong>Secondo verso, passo 4 — Supponiamo che esista $f^{-1}$ e dimostriamo l'iniettività.</strong> Partiamo da due ingressi con la stessa uscita, $f(x_1)=f(x_2)$, e applichiamo $f^{-1}$ a entrambi i membri: se due numeri sono uguali, applicando la stessa funzione a entrambi si ottengono due risultati uguali.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          f(x_1) &amp;= f(x_2) &amp;&amp;\text{(ipotesi)}\\
+          f^{-1}\big(f(x_1)\big) &amp;= f^{-1}\big(f(x_2)\big) &amp;&amp;\text{(applico } f^{-1} \text{ a entrambi i membri)}\\
+          x_1 &amp;= x_2 &amp;&amp;\text{(uso l'identità } f^{-1}(f(x))=x \text{, §4.5, su ciascun membro)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> Da "uscite uguali" siamo arrivati a "ingressi uguali": $f$ è iniettiva.</span>
+            <span class="esempio__passo"><strong>Passo 5 — E la suriettività.</strong> Prendiamo un $y\in B$ qualsiasi. Poniamo $x = f^{-1}(y)$, che è un elemento di $A$ perché $f^{-1}$ va da $B$ ad $A$. Calcoliamo ora $f(x)$: sostituendo, $f(x)=f\big(f^{-1}(y)\big)=y$, per l'altra identità del <span class="richiamo" data-sec="4.5">§4.5</span>. Abbiamo quindi trovato un ingresso che produce $y$, e questo vale per ogni $y$: $f$ è suriettiva.</span>
+          </p>
+          <p><strong>Attenzione: qui è dove ci si confonde.</strong> Le due identità del <span class="richiamo" data-sec="4.5">§4.5</span> si assomigliano ma servono a cose diverse. La prima, $f^{-1}(f(x))=x$, si usa quando si parte da un <em>ingresso</em> e serve per l'iniettività. La seconda, $f(f^{-1}(y))=y$, si usa quando si parte da un'<em>uscita</em> e serve per la suriettività. Guarda sempre quale delle due lettere hai in mano.</p>
+          <p><strong>Riassunto della dimostrazione.</strong> Nel primo verso abbiamo supposto $f$ biiettiva e abbiamo costruito l'inversa, usando la suriettività per garantire che ogni $y$ abbia una risposta e l'iniettività per garantire che ne abbia una sola. Nel secondo verso abbiamo supposto di avere l'inversa e l'abbiamo applicata: alle uscite uguali per ottenere l'iniettività, a un bersaglio generico per ottenere la suriettività. Quindi le due condizioni sono equivalenti. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Simmetria dei grafici di $f$ e $f^{-1}$.</em> Se $f$ è invertibile, il grafico di $f^{-1}$ è il simmetrico del grafico di $f$ rispetto alla retta $y=x$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che il disegno dell'inversa non va calcolato da capo: è il disegno di $f$ riflesso in uno specchio messo lungo la diagonale del piano. Detto in altre parole: ogni punto del primo grafico ha un gemello sul secondo, ottenuto scambiando le due coordinate.</p>
+          <p><strong>Idea della strategia.</strong> Traduciamo la parola "grafico" nella sua definizione insiemistica (l'elenco dei punti $(a,b)$ con $b$ uguale al valore della funzione in $a$) e poi usiamo la definizione di inversa per passare da una condizione all'altra. Il legame tra i due grafici risulterà essere un semplice scambio di coordinate; alla fine resterà da verificare il fatto geometrico che scambiare le coordinate equivale a riflettere rispetto alla retta $y=x$.</p>
+          <p><strong>Cosa ci servirà.</strong> La definizione di grafico di una funzione (Parte 0, cap. 7), la definizione di funzione inversa (<span class="richiamo" data-sec="4.5">§4.5</span>) e due nozioni di geometria analitica: il punto medio di un segmento e la perpendicolarità tra rette (Parte 0, cap. 7).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1 — Scriviamo cosa significa "stare sul grafico".</strong> Il grafico di una funzione $h$ è l'insieme dei punti $\{(a,b) : b=h(a)\}$. Quindi un punto $(a,b)$ appartiene al grafico di $f$ se e solo se $b=f(a)$.</span>
+            <span class="esempio__passo"><strong>Passo 2 — Usiamo la definizione di inversa.</strong> La definizione del <span class="richiamo" data-sec="4.5">§4.5</span> dice $f^{-1}(y)=x \iff f(x)=y$. Sostituiamo $a$ al posto di $x$ e $b$ al posto di $y$: otteniamo $f^{-1}(b)=a \iff f(a)=b$.</span>
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> La condizione "$b=f(a)$" e la condizione "$a=f^{-1}(b)$" sono la stessa cosa scritta in due modi. La prima dice che $(a,b)$ sta sul grafico di $f$; la seconda, per la definizione di grafico applicata a $f^{-1}$, dice che $(b,a)$ sta sul grafico di $f^{-1}$.</span>
+            <span class="esempio__passo"><strong>Passo 3 — Il fatto geometrico.</strong> Resta da verificare che $(a,b)$ e $(b,a)$ sono simmetrici rispetto alla retta $y=x$. Due punti sono simmetrici rispetto a una retta quando il loro punto medio sta sulla retta e il segmento che li unisce le è perpendicolare. Controlliamo le due cose.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          M &amp;= \left(\frac{a+b}{2},\ \frac{b+a}{2}\right) &amp;&amp;\text{(punto medio: media delle ascisse e delle ordinate, Parte 0, cap. 7)}\\
+          m &amp;= \frac{a-b}{b-a} = -1 &amp;&amp;\text{(coefficiente angolare del segmento, per } a\neq b\text{)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Le due coordinate del punto medio sono uguali, quindi $M$ soddisfa l'equazione $y=x$: il punto medio sta sulla retta.</span>
+            <span class="esempio__passo">Il coefficiente angolare del segmento vale $-1$, mentre la retta $y=x$ ha coefficiente angolare $1$. Il loro prodotto è $1\cdot(-1)=-1$, che è la condizione di perpendicolarità tra due rette (Parte 0, cap. 7). Il segmento è dunque perpendicolare alla retta.</span>
+            <span class="esempio__passo">Se invece $a=b$ i due punti coincidono e stanno già sulla retta $y=x$: sono simmetrici di sé stessi, quindi la conclusione vale comunque.</span>
+          </p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo tradotto "il punto sta sul grafico" in un'uguaglianza, abbiamo usato la definizione di inversa per riscriverla scambiando le due lettere, e abbiamo verificato con il punto medio e la perpendicolarità che scambiare le coordinate significa riflettere rispetto a $y=x$. Quindi a ogni punto del grafico di $f$ corrisponde il suo riflesso sul grafico di $f^{-1}$, e viceversa. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Dominio con una sola condizione</span><span class="badge badge--base">Base</span></div>
+          <p>Determinare il dominio naturale di $f(x)=\sqrt{2x-6}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Elenco i pericoli.</strong> Passo in rassegna la formula con la tabella del <span class="richiamo" data-sec="4.3">§4.3</span>: l'unica struttura pericolosa è una radice di indice pari. La condizione che impone è "radicando $\geq 0$", e il radicando qui è tutto ciò che sta sotto il segno di radice, cioè $2x-6$.</span>
+            <span class="esempio__passo"><strong>Risolvo la condizione</strong>, un'operazione per riga.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          2x-6 &amp;\geq 0 &amp;&amp;\text{(condizione della radice di indice pari, §4.3)}\\
+          2x &amp;\geq 6 &amp;&amp;\text{(sommo } 6 \text{ a entrambi i membri)}\\
+          x &amp;\geq 3 &amp;&amp;\text{(divido entrambi i membri per } 2\text{, positivo: il verso non cambia)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Controllo con due numeri.</strong> Con $x=3$: il radicando vale $2\cdot 3-6=0$, e $\sqrt{0}=0$ esiste, quindi $3$ è incluso (parentesi quadra). Con $x=2$: il radicando vale $2\cdot 2-6=-2$, negativo, quindi $2$ è escluso. Coerente con il risultato.</span>
+          </p>
+          <div class="esempio__risultato">$\operatorname{dom} f = [3,+\infty)$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Iniettiva? Suriettiva?</span><span class="badge badge--base">Base</span></div>
+          <p>La funzione $f:\mathbb{R}\to\mathbb{R}$, $f(x)=3x-2$, è iniettiva? È suriettiva?</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Iniettività, mossa 1.</strong> Uso la ricetta del <span class="richiamo" data-sec="4.4">§4.4</span> nella forma contronominale: parto dall'ipotesi $f(x_1)=f(x_2)$ e scrivo che cosa significa, sostituendo nella formula $f(x)=3x-2$ prima $x=x_1$ e poi $x=x_2$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          3x_1-2 &amp;= 3x_2-2 &amp;&amp;\text{(ipotesi: le due uscite coincidono)}\\
+          3x_1 &amp;= 3x_2 &amp;&amp;\text{(sommo } 2 \text{ a entrambi i membri)}\\
+          x_1 &amp;= x_2 &amp;&amp;\text{(divido entrambi i membri per } 3\text{, che non è zero)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> Siamo arrivati a $x_1=x_2$, cioè alla conclusione richiesta dalla definizione: $f$ è iniettiva.</span>
+            <span class="esempio__passo"><strong>Suriettività.</strong> La definizione del <span class="richiamo" data-sec="4.4">§4.4</span> chiede che, preso un $y\in\mathbb{R}$ qualsiasi, esista almeno un $x$ con $f(x)=y$. Risolvo quindi l'equazione $3x-2=y$ nell'incognita $x$, trattando $y$ come un numero fissato.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          3x-2 &amp;= y &amp;&amp;\text{(equazione da risolvere in } x\text{)}\\
+          3x &amp;= y+2 &amp;&amp;\text{(sommo } 2 \text{ a entrambi i membri)}\\
+          x &amp;= \frac{y+2}{3} &amp;&amp;\text{(divido entrambi i membri per } 3\text{)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> Il numero $\frac{y+2}{3}$ esiste ed è reale <em>qualunque</em> sia $y$: nessuna divisione per zero (il denominatore è $3$), nessuna radice. Quindi ogni bersaglio è colpito e $f$ è suriettiva.</span>
+            <span class="esempio__passo"><strong>Controprova numerica.</strong> Per colpire $y=7$ serve $x=\frac{7+2}{3}=3$; verifico: $f(3)=3\cdot 3-2=7$. Torna.</span>
+          </p>
+          <div class="esempio__risultato">$f$ è iniettiva e suriettiva, quindi <strong>biiettiva</strong>; essendo una retta non orizzontale, era prevedibile.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Dominio composito (tutte le condizioni)</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Determinare il dominio di $f(x)=\dfrac{\ln(x+2)}{\sqrt{4-x}}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Elenco i pericoli.</strong> Ci sono un logaritmo (al numeratore) e una radice di indice pari che sta <em>a denominatore</em>. Due pericoli, ma il secondo vale doppio, come spiegato nel <span class="richiamo" data-sec="4.3">§4.3</span>.</span>
+            <span class="esempio__passo"><strong>Prima condizione — il logaritmo.</strong> L'argomento deve essere positivo, e l'argomento è $x+2$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          x+2 &amp;\gt 0 &amp;&amp;\text{(argomento del logaritmo positivo, §4.3)}\\
+          x &amp;\gt -2 &amp;&amp;\text{(sottraggo } 2 \text{ a entrambi i membri)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Seconda condizione — la radice a denominatore.</strong> Il radicando dovrebbe essere $\geq 0$ perché sta sotto una radice quadrata, ma la radice è anche un denominatore e quindi non può valere zero. Le due richieste insieme diventano: radicando strettamente positivo.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          4-x &amp;\gt 0 &amp;&amp;\text{(radicando positivo: radice pari a denominatore)}\\
+          4 &amp;\gt x &amp;&amp;\text{(sommo } x \text{ a entrambi i membri)}\\
+          x &amp;\lt 4 &amp;&amp;\text{(stessa disuguaglianza letta da destra a sinistra)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Interseco.</strong> Devono valere insieme $x \gt -2$ e $x \lt 4$, cioè $-2 \lt x \lt 4$. Entrambi gli estremi sono esclusi: in $-2$ l'argomento del logaritmo si annullerebbe, in $4$ il denominatore si annullerebbe.</span>
+          </p>
+          <div class="esempio__risultato">$\operatorname{dom} f = (-2,\ 4)$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Calcolo dell'inversa</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Trovare l'inversa di $f(x)=\dfrac{x+1}{x-2}$ e indicarne il dominio.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Mossa 1 — Do un nome all'uscita.</strong> Pongo $y=\dfrac{x+1}{x-2}$. Il dominio di $f$ richiede $x\neq 2$, perché il denominatore non può annullarsi.</span>
+            <span class="esempio__passo"><strong>Mossa 2, primo tempo — Tolgo la frazione.</strong> Moltiplico entrambi i membri per il denominatore $x-2$, che non è zero; a destra la frazione si semplifica e resta il numeratore.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          y &amp;= \frac{x+1}{x-2} &amp;&amp;\text{(punto di partenza)}\\
+          y\,(x-2) &amp;= x+1 &amp;&amp;\text{(moltiplico entrambi i membri per } x-2 \neq 0\text{)}\\
+          yx-2y &amp;= x+1 &amp;&amp;\text{(svolgo il prodotto a sinistra, proprietà distributiva)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Mossa 2, secondo tempo — Raduno le $x$.</strong> Porto a sinistra tutti i termini che contengono $x$ e a destra tutti gli altri: sottraggo $x$ a entrambi i membri e sommo $2y$ a entrambi i membri.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          yx-2y &amp;= x+1 &amp;&amp;\text{(dal passo precedente)}\\
+          yx-x &amp;= 1+2y &amp;&amp;\text{(sottraggo } x \text{ e sommo } 2y \text{ a entrambi i membri)}\\
+          x\,(y-1) &amp;= 2y+1 &amp;&amp;\text{(raccolgo } x \text{ a fattor comune a sinistra)}\\
+          x &amp;= \frac{2y+1}{y-1} &amp;&amp;\text{(divido entrambi i membri per } y-1\text{, lecito se } y\neq 1\text{)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Mossa 3 — Scambio i nomi.</strong> Ho l'inversa, ma con la variabile chiamata $y$. Per abitudine la variabile indipendente si chiama $x$, quindi scambio le due lettere: è solo un cambio di etichetta, non un calcolo.</span>
+            <span class="esempio__passo"><strong>Mossa 4 — Controllo.</strong> Provo con $x=0$: applico $f$, poi applico $f^{-1}$ al risultato.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          f(0) &amp;= \frac{0+1}{0-2} &amp;&amp;\text{(sostituisco } x=0 \text{ nella formula di } f\text{)}\\
+          f(0) &amp;= -\frac12 &amp;&amp;\text{(eseguo i conti: } 1 \text{ sopra, } -2 \text{ sotto)}\\
+          f^{-1}\!\left(-\tfrac12\right) &amp;= \frac{2\cdot\left(-\frac12\right)+1}{-\frac12-1} &amp;&amp;\text{(sostituisco } x=-\tfrac12 \text{ nella formula di } f^{-1}\text{)}\\
+          &amp;= \frac{-1+1}{-\frac32} &amp;&amp;\text{(eseguo il prodotto sopra e la somma sotto)}\\
+          &amp;= 0 &amp;&amp;\text{(il numeratore è } 0\text{, il denominatore non lo è)}
+          \end{aligned}$$</div>
+          <p>Sono tornato a $0$: il conto è giusto.</p>
+          <div class="esempio__risultato">$f^{-1}(x)=\dfrac{2x+1}{x-1}$, definita per $x\neq 1$ (che è proprio il valore escluso dall'immagine di $f$: dominio e immagine si scambiano, <span class="richiamo" data-sec="4.5">§4.5</span>).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Composizione e non commutatività</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Date $f(x)=\sqrt{x}$ e $g(x)=1-x$, calcolare $g\circ f$ e $f\circ g$ con i rispettivi domini, e verificare che sono diverse.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Prima composta, espressione.</strong> In $(g\circ f)(x)=g\big(f(x)\big)$ si applica prima $f$. Al posto dell'argomento di $g$ metto il blocco $f(x)=\sqrt x$: siccome $g$ calcola "$1$ meno il suo argomento", ottengo $g(\sqrt x)=1-\sqrt x$.</span>
+            <span class="esempio__passo"><strong>Prima composta, dominio.</strong> Uso la formula del <span class="richiamo" data-sec="4.6">§4.6</span>, che chiede due cose. Prima: $x$ deve stare nel dominio di $f$, cioè $x\geq 0$ (radice di indice pari). Seconda: $f(x)=\sqrt x$ deve stare nel dominio di $g$, che è tutto $\mathbb{R}$ e quindi non impone nulla. Resta solo $x\geq 0$.</span>
+            <span class="esempio__passo"><strong>Seconda composta, espressione.</strong> In $(f\circ g)(x)=f\big(g(x)\big)$ si applica prima $g$. Al posto dell'argomento di $f$ metto il blocco $g(x)=1-x$, tra parentesi: $f(1-x)=\sqrt{1-x}$.</span>
+            <span class="esempio__passo"><strong>Seconda composta, dominio.</strong> Prima condizione: $x$ deve stare nel dominio di $g$, che è tutto $\mathbb{R}$: nessun vincolo. Seconda condizione: $g(x)=1-x$ deve stare nel dominio di $f=\sqrt{\ }$, cioè deve essere $\geq 0$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          1-x &amp;\geq 0 &amp;&amp;\text{(il blocco deve stare nel dominio della radice)}\\
+          1 &amp;\geq x &amp;&amp;\text{(sommo } x \text{ a entrambi i membri)}\\
+          x &amp;\leq 1 &amp;&amp;\text{(stessa disuguaglianza letta da destra a sinistra)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Confronto.</strong> Le due funzioni hanno espressioni diverse <em>e</em> domini diversi: già questo basta per concludere $g\circ f\neq f\circ g$. Se vuoi una controprova numerica, scegli un punto che stia in entrambi i domini, per esempio $x=\frac14$: la prima dà $1-\sqrt{\frac14}=1-\frac12=\frac12$, la seconda dà $\sqrt{1-\frac14}=\sqrt{\frac34}\approx 0{,}866$. Valori diversi nello stesso punto: sono due funzioni diverse.</span>
+          </p>
+          <div class="esempio__risultato">$g\circ f=1-\sqrt x$ su $[0,+\infty)$; $\ f\circ g=\sqrt{1-x}$ su $(-\infty,1]$. Nettamente diverse.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Restringere il dominio per invertire</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>La funzione $f(x)=x^2$ non è iniettiva su $\mathbb{R}$. Restringere il dominio per renderla invertibile e calcolare l'inversa.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Perché su $\mathbb{R}$ non funziona.</strong> Fallisce il test della retta orizzontale, e il controesempio l'abbiamo già: $f(2)=4$ e $f(-2)=4$ con $2\neq -2$ (<span class="richiamo" data-sec="4.4">§4.4</span>). Due ingressi diversi, stessa uscita.</span>
+            <span class="esempio__passo"><strong>Scelgo la restrizione.</strong> Su $[0,+\infty)$ la funzione è strettamente crescente. Verifichiamolo: presi $0\leq x_1 \lt x_2$, moltiplico la disuguaglianza $x_1 \lt x_2$ prima per $x_1$ (che è $\geq 0$, quindi il verso non cambia) ottenendo $x_1^2 \leq x_1x_2$, poi per $x_2$ (che è $\gt 0$) ottenendo $x_1x_2 \lt x_2^2$; mettendo in fila le due, $x_1^2 \leq x_1x_2 \lt x_2^2$, cioè $x_1^2 \lt x_2^2$. Per il teorema della sezione 5 (monotonia stretta $\Rightarrow$ iniettività), su questo insieme è iniettiva.</span>
+            <span class="esempio__passo"><strong>Sistemo anche il codominio.</strong> Considero $f:[0,+\infty)\to[0,+\infty)$. È suriettiva, perché ogni $y\geq 0$ è il quadrato di $\sqrt y$, che è un numero del dominio. Iniettiva e suriettiva: biiettiva, quindi invertibile.</span>
+            <span class="esempio__passo"><strong>Calcolo l'inversa.</strong> Pongo $y=x^2$ con il vincolo $x\geq 0$ e risolvo rispetto a $x$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          x^2 &amp;= y &amp;&amp;\text{(equazione da risolvere in } x\text{)}\\
+          x &amp;= \sqrt{y} \ \text{ oppure } \ x=-\sqrt{y} &amp;&amp;\text{(due soluzioni: entrambe elevate al quadrato danno } y\text{)}\\
+          x &amp;= \sqrt{y} &amp;&amp;\text{(il vincolo } x\geq 0 \text{ scarta la soluzione negativa)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Dove ha lavorato la restrizione.</strong> È esattamente nell'ultima riga: senza il vincolo $x\geq 0$ non sapremmo quale delle due soluzioni scegliere, e non avremmo una funzione (è il non-esempio 1 del <span class="richiamo" data-sec="4.1">§4.1</span>).</span>
+            <span class="esempio__passo"><strong>Scambio i nomi</strong> delle variabili e ottengo l'inversa.</span>
+          </p>
+          <div class="esempio__risultato">Su $[0,+\infty)$, $\ f^{-1}(x)=\sqrt x$. È esattamente il motivo per cui la radice quadrata "inverte" il quadrato solo per numeri non negativi.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Monotonia e parità: due verifiche complete</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Data $f(x)=-2x+7$, verificare che è strettamente decrescente su $\mathbb{R}$. Data poi $g(x)=\dfrac{x^2}{x^4+1}$, stabilire se è pari, dispari o nessuna delle due.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Parte 1 — Monotonia.</strong> Seguo la ricetta del <span class="richiamo" data-sec="4.7">§4.7</span>: prendo due punti generici con $x_1 \lt x_2$ e trasformo la disuguaglianza fino ad arrivare a $f(x_1)$ e $f(x_2)$, dichiarando ogni operazione.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          x_1 &amp;\lt x_2 &amp;&amp;\text{(ipotesi di partenza)}\\
+          -2x_1 &amp;\gt -2x_2 &amp;&amp;\text{(moltiplico per } -2\text{, negativo: il verso SI INVERTE, Parte 0, cap. 6)}\\
+          -2x_1+7 &amp;\gt -2x_2+7 &amp;&amp;\text{(sommo } 7 \text{ a entrambi i membri: il verso resta)}\\
+          f(x_1) &amp;\gt f(x_2) &amp;&amp;\text{(riconosco la formula di } f\text{)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa abbiamo ottenuto.</strong> L'ingresso più piccolo dà l'uscita più grande, per ogni coppia di punti: $f$ è strettamente decrescente. Di conseguenza, per il teorema della sezione 5, è anche iniettiva.</span>
+            <span class="esempio__passo"><strong>Parte 2 — Parità.</strong> Prima controllo il dominio: il denominatore $x^4+1$ è sempre almeno $1$, quindi non si annulla mai e il dominio è tutto $\mathbb{R}$, che è simmetrico rispetto allo zero. La domanda ha senso. Ora calcolo $g(-x)$ sostituendo $-x$ al posto di ogni $x$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          g(-x) &amp;= \frac{(-x)^2}{(-x)^4+1} &amp;&amp;\text{(sostituisco } -x \text{ al posto di ogni } x\text{)}\\
+          &amp;= \frac{x^2}{x^4+1} &amp;&amp;\text{(} (-x)^2=x^2 \text{ e } (-x)^4=x^4\text{: esponenti pari, Parte 0, cap. 3)}\\
+          &amp;= g(x) &amp;&amp;\text{(riconosco la formula di partenza)}
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Conclusione della parte 2.</strong> $g(-x)=g(x)$, quindi $g$ è <strong>pari</strong>. E, per l'osservazione del <span class="richiamo" data-sec="4.8">§4.8</span>, non può essere iniettiva: per esempio $g(1)=\frac{1}{2}$ e $g(-1)=\frac{1}{2}$, due ingressi diversi con la stessa uscita.</span>
+          </p>
+          <div class="esempio__risultato">$f(x)=-2x+7$ è strettamente decrescente (quindi iniettiva); $g(x)=\dfrac{x^2}{x^4+1}$ è pari (quindi non iniettiva).</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scegliere il dominio "a piacere"</div>
+          <p>Il dominio naturale <strong>non si decide</strong>: è imposto dalla formula. Scrivere "$f(x)=1/x$ con dominio $\mathbb{R}$" è sbagliato, perché in $x=0$ la formula non è definita: il dominio naturale è $\mathbb{R}\setminus\{0\}$. <em>Come evitarlo</em>: prima di rispondere qualsiasi cosa su una funzione data da formula, individua sempre <em>tutte</em> le condizioni di esistenza e intersecale. Il dominio si <em>calcola</em>, non si sceglie.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> "Ogni funzione ha un'inversa"</div>
+          <p>Falso. L'inversa esiste <strong>solo</strong> se la funzione è biiettiva. $f(x)=x^2$ su $\mathbb{R}$ non è invertibile (non iniettiva); $\sin x$ su $\mathbb{R}$ non è invertibile (non iniettiva, è periodica). Per invertirle bisogna prima <em>restringere</em> il dominio a un intervallo su cui diventino iniettive (per esempio $[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$ per il seno, da cui nasce $\arcsin$). <em>Come evitarlo</em>: prima di parlare di $f^{-1}$, verifica sempre iniettività e suriettività.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dominio della composta: dimenticare la condizione esterna</div>
+          <p>Per $(g\circ f)(x)=g(f(x))$ molti impongono solo le condizioni su $f$ e si fermano. Ma bisogna anche imporre che $f(x)$ stia nel dominio di $g$! Esempio: $g(t)=\sqrt t$, $f(x)=x-5$, composta $\sqrt{x-5}$. Non basta "$x-5$ definito ovunque": serve $x-5\geq 0$, cioè $x\geq 5$, che è <strong>proprio</strong> la condizione ereditata dalla radice esterna. <em>Come evitarlo</em>: ricorda la formula $\operatorname{dom}(g\circ f)=\{x\in\operatorname{dom} f : f(x)\in\operatorname{dom} g\}$ — due condizioni, non una.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere iniettiva e suriettiva</div>
+          <p>Sono proprietà <strong>indipendenti</strong>: una funzione può avere l'una senza l'altra (rivedi i due diagrammi a frecce della sezione teoria). <em>Iniettiva</em> = "nessuna uscita ripetuta" (frecce che non convergono); <em>suriettiva</em> = "nessuna uscita sprecata" (ogni bersaglio colpito). <em>Come evitarlo</em>: associa iniettiva $\to$ "ingressi distinti, uscite distinte" e suriettiva $\to$ "immagine = codominio". Quando sei in dubbio, disegna le frecce tra due insiemi piccoli.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il metodo "elenca e interseca" per il dominio</div>
+          <p>Scorri la formula da sinistra a destra e, come una <em>checklist</em>, annota una condizione ogni volta che incontri: denominatore ($\neq 0$), radice pari ($\geq 0$), logaritmo ($&gt;0$), $\arcsin/\arccos$ ($-1\leq \cdot \leq 1$), tangente. Poi <strong>metti tutto a sistema</strong> (intersezione). Disegnare le soluzioni parziali su una stessa retta reale rende l'intersezione a prova di errore.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Retta orizzontale per l'iniettività, verticale per "è una funzione?"</div>
+          <p>Due test grafici gemelli. <strong>Verticale</strong>: una curva è il grafico di una funzione solo se ogni retta <em>verticale</em> la interseca in al più un punto (è la traduzione grafica dell'unicità: a ogni $x$, una sola $y$). Per questo una circonferenza <strong>non</strong> è il grafico di una funzione. <strong>Orizzontale</strong>: la funzione è iniettiva solo se ogni retta <em>orizzontale</em> la interseca in al più un punto.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Monotòna a vista = invertibile</div>
+          <p>Molte funzioni elementari sono monotone, quindi iniettive e invertibili (sull'immagine): $e^x$ e $\ln x$ (crescenti), $x^3$ (crescente), $1/x$ (decrescente su ciascun ramo). Altre lo diventano solo su un tratto: $x^2$ è invertibile solo su $[0,+\infty)$ (o solo su $(-\infty,0]$), $\sin x$ solo su $[-\tfrac{\pi}{2},\tfrac{\pi}{2}]$. Riconoscere "dove" una funzione è monotona ti dice subito "dove" puoi invertirla.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Controllo dell'inversa senza rifare i conti</div>
+          <p>Dopo aver trovato $f^{-1}$, verifica al volo che $f\big(f^{-1}(x)\big)=x$ su un valore comodo (es. $x=0$ o $x=1$). Se non torna, hai sbagliato un passaggio. In più, ricorda: $\operatorname{dom} f^{-1}=\operatorname{Im} f$ e $\operatorname{Im} f^{-1}=\operatorname{dom} f$ — dominio e immagine si <strong>scambiano</strong> passando all'inversa.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Funzioni</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Che cos'è</strong>
+              <ul><li>Relazione ⊆ A×B</li><li>∀x ∃! y : (x,y)∈f</li><li>Esistenza + unicità</li><li>f: A→B, x↦f(x)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>I tre insiemi</strong>
+              <ul><li>Dominio (partenza)</li><li>Codominio (arrivo)</li><li>Immagine ⊆ codominio</li><li>Dominio naturale: elenca &amp; interseca</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Proprietà</strong>
+              <ul><li>Iniettiva (uscite distinte)</li><li>Suriettiva (Im = B)</li><li>Biiettiva = inie. + surie.</li><li>Monotona ⇒ iniettiva</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Operazioni</strong>
+              <ul><li>Inversa f⁻¹ (se biiettiva)</li><li>Grafico simmetrico a y=x</li><li>Composta (g∘f)(x)=g(f(x))</li><li>NON commutativa</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Funzione</strong>: relazione $f\subseteq A\times B$ tale che $\forall x\in A\ \exists!\,y\in B:(x,y)\in f$. Le parole chiave sono <em>esistenza</em> e <em>unicità</em> dell'immagine.</li>
+            <li><strong>Dominio / codominio / immagine</strong>: partenza, arrivo, uscite effettive. Sempre $\operatorname{Im} f\subseteq B$; uguaglianza $\iff$ suriettiva.</li>
+            <li><strong>Dominio naturale</strong>: elenca tutte le condizioni (denominatori $\neq 0$, radici pari $\geq 0$, log $&gt;0$, ...) e <em>intersecale</em>.</li>
+            <li><strong>Iniettiva</strong> ($x_1\neq x_2\Rightarrow f(x_1)\neq f(x_2)$, test retta orizzontale), <strong>suriettiva</strong> ($\operatorname{Im} f=B$), <strong>biiettiva</strong> = entrambe.</li>
+            <li><strong>Inversa</strong> $f^{-1}$: esiste $\iff$ $f$ biiettiva; si calcola risolvendo $y=f(x)$ in $x$; grafico simmetrico rispetto a $y=x$.</li>
+            <li><strong>Composta</strong> $(g\circ f)(x)=g(f(x))$: dominio $\{x\in\operatorname{dom} f: f(x)\in\operatorname{dom} g\}$; in generale $g\circ f\neq f\circ g$.</li>
+            <li><strong>Monotonia</strong>: strettamente crescente/decrescente $\Rightarrow$ iniettiva (quindi invertibile sull'immagine).</li>
+          </ul>
+          <p style="margin-top:1em">Nel <a href="04-limiti.html">prossimo capitolo</a> useremo questi mattoni per la prima grande idea dell'Analisi: che cosa succede al valore $f(x)$ quando $x$ si <em>avvicina</em> a un punto, senza necessariamente raggiungerlo — il concetto di <span class="glossario-term" data-term="limite">limite</span>.</p>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina il dominio naturale di $f(x)=\dfrac{x+3}{x-5}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Elenco i pericoli.</strong> Nella formula c'è una sola struttura pericolosa: una frazione. La tabella del <span class="richiamo" data-sec="4.3">§4.3</span> impone che il denominatore sia diverso da zero, e il denominatore è $x-5$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x-5 &amp;\neq 0 &amp;&amp;\text{(condizione del denominatore, §4.3)}\\
+              x &amp;\neq 5 &amp;&amp;\text{(sommo } 5 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p><strong>Controllo.</strong> Con $x=5$ il denominatore vale $5-5=0$ e la frazione non esiste; con qualunque altro numero il conto si fa senza problemi. Quindi il dominio è tutta la retta reale tranne il punto $5$.</p>
+              <p><strong>$\operatorname{dom} f=\mathbb{R}\setminus\{5\}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina il dominio naturale di $f(x)=\sqrt{9-x^2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Elenco i pericoli.</strong> C'è una radice di indice pari: la tabella del <span class="richiamo" data-sec="4.3">§4.3</span> impone radicando $\geq 0$, cioè $9-x^2\geq 0$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              9-x^2 &amp;\geq 0 &amp;&amp;\text{(condizione della radice di indice pari)}\\
+              9 &amp;\geq x^2 &amp;&amp;\text{(sommo } x^2 \text{ a entrambi i membri: evito di moltiplicare per } -1\text{)}\\
+              x^2 &amp;\leq 9 &amp;&amp;\text{(stessa disuguaglianza letta da destra a sinistra)}\\
+              |x| &amp;\leq 3 &amp;&amp;\text{(estraggo la radice dai due membri, non negativi: } \sqrt{x^2}=|x| \text{, cap. 2, sez. 4.1, e } \sqrt9=3\text{)}\\
+              -3 \leq x &amp;\leq 3 &amp;&amp;\text{(sciolgo il modulo con } |t|\leq a \iff -a\leq t\leq a \text{, cap. 2, sez. 4.1, con } t=x \text{ e } a=3\text{)}
+              \end{aligned}$$</div>
+              <p><strong>Controllo con due numeri.</strong> Con $x=0$: il radicando vale $9-0=9\geq 0$, va bene. Con $x=4$: il radicando vale $9-16=-7$, negativo, non va bene. Gli estremi sono inclusi perché in $x=\pm3$ il radicando vale $0$ e $\sqrt0=0$ esiste.</p>
+              <p><strong>$\operatorname{dom} f=[-3,3]$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Date $f(x)=x+4$ e $g(x)=2x$, calcola $(g\circ f)(x)$ e $(f\circ g)(x)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Prima composta.</strong> Per definizione (<span class="richiamo" data-sec="4.6">§4.6</span>) $(g\circ f)(x)=g\big(f(x)\big)$: si applica prima $f$, poi $g$. La regola operativa è "al posto dell'argomento di $g$ metto tutto il blocco $f(x)=x+4$", tra parentesi.</p>
+              <div class="calcolo">$$\begin{aligned}
+              (g\circ f)(x) &amp;= g\big(f(x)\big) = g(x+4) &amp;&amp;\text{(al posto dell'argomento di } g \text{ metto il blocco } x+4\text{)}\\
+              &amp;= 2\,(x+4) &amp;&amp;\text{(} g \text{ raddoppia il suo argomento)}\\
+              &amp;= 2x+8 &amp;&amp;\text{(svolgo il prodotto, proprietà distributiva)}
+              \end{aligned}$$</div>
+              <p><strong>Seconda composta.</strong> Nell'altro ordine si applica prima $g$: al posto dell'argomento di $f$ metto il blocco $g(x)=2x$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              (f\circ g)(x) &amp;= f\big(g(x)\big) = f(2x) &amp;&amp;\text{(al posto dell'argomento di } f \text{ metto il blocco } 2x\text{)}\\
+              &amp;= 2x+4 &amp;&amp;\text{(} f \text{ aggiunge } 4 \text{ al suo argomento)}
+              \end{aligned}$$</div>
+              <p><strong>Controprova numerica.</strong> Con $x=1$: la prima dà $2\cdot1+8=10$, la seconda $2\cdot1+4=6$. Valori diversi nello stesso punto, quindi le due composte sono funzioni diverse.</p>
+              <p><strong>Diverse: $2x+8\neq 2x+4$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola l'inversa di $f(x)=5x-1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Mossa 1.</strong> Do un nome all'uscita: $y=5x-1$. <strong>Mossa 2.</strong> Risolvo rispetto a $x$, un'operazione per riga.</p>
+              <div class="calcolo">$$\begin{aligned}
+              y &amp;= 5x-1 &amp;&amp;\text{(punto di partenza)}\\
+              y+1 &amp;= 5x &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}\\
+              x &amp;= \frac{y+1}{5} &amp;&amp;\text{(divido entrambi i membri per } 5\text{, che non è zero)}
+              \end{aligned}$$</div>
+              <p><strong>Mossa 3.</strong> Scambio i nomi delle variabili $x \leftrightarrow y$ (metodo del <span class="richiamo" data-sec="4.5">§4.5</span>): è solo un cambio di etichetta, non un calcolo.</p>
+              <p><strong>Mossa 4: controllo.</strong> Provo con $x=2$: $f(2)=5\cdot2-1=9$; poi $f^{-1}(9)=\frac{9+1}{5}=\frac{10}{5}=2$. Sono tornato al punto di partenza: il risultato è corretto.</p>
+              <p><strong>$f^{-1}(x)=\dfrac{x+1}{5}$</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina il dominio di $f(x)=\ln(x^2-4)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Elenco i pericoli.</strong> C'è un logaritmo: la tabella del <span class="richiamo" data-sec="4.3">§4.3</span> impone argomento $\gt 0$, cioè $x^2-4\gt 0$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x^2-4 &amp;\gt 0 &amp;&amp;\text{(argomento del logaritmo positivo)}\\
+              x^2 &amp;\gt 4 &amp;&amp;\text{(sommo } 4 \text{ a entrambi i membri)}\\
+              |x| &amp;\gt 2 &amp;&amp;\text{(estraggo la radice dai due membri, non negativi: } \sqrt{x^2}=|x| \text{, cap. 2, sez. 4.1)}\\
+              x \lt -2 \ &amp;\text{ oppure } \ x \gt 2 &amp;&amp;\text{(regola } |t|\gt a \iff t\lt -a \text{ oppure } t\gt a \text{, cap. 2, sez. 4.1, con } t=x,\ a=2\text{)}
+              \end{aligned}$$</div>
+              <p><strong>Attenzione: qui si unisce, non si interseca.</strong> Sembra contraddire il metodo del <span class="richiamo" data-sec="4.3">§4.3</span>, ma non è così: le <em>condizioni diverse</em> si intersecano, mentre i due pezzi che risolvono <em>una stessa</em> condizione sono legati da "oppure" e quindi si uniscono. Qui la condizione è una sola e la sua soluzione è fatta di due tratti separati.</p>
+              <p><strong>Controllo con due numeri.</strong> Con $x=3$: $9-4=5\gt0$, va bene. Con $x=0$: $0-4=-4$, non va bene, e infatti $0$ non sta in nessuno dei due tratti.</p>
+              <p><strong>$\operatorname{dom} f=(-\infty,-2)\cup(2,+\infty)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina il dominio di $f(x)=\dfrac{1}{\sqrt{x-1}}+\dfrac{1}{x-4}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Elenco i pericoli.</strong> Due addendi, due pericoli. Nel primo c'è una radice di indice pari <em>a denominatore</em>: il radicando dovrebbe essere $\geq 0$ perché sta sotto radice, ma la radice non può valere zero perché è un denominatore; le due richieste insieme danno radicando $\gt 0$ (<span class="richiamo" data-sec="4.3">§4.3</span>). Nel secondo addendo c'è una frazione: il suo denominatore deve essere diverso da zero.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x-1 &amp;\gt 0 &amp;&amp;\text{(prima condizione: radice pari a denominatore)}\\
+              x &amp;\gt 1 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}\\[4pt]
+              x-4 &amp;\neq 0 &amp;&amp;\text{(seconda condizione: secondo denominatore)}\\
+              x &amp;\neq 4 &amp;&amp;\text{(sommo } 4 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p><strong>Interseco.</strong> Devono valere insieme $x \gt 1$ e $x \neq 4$: parto dalla semiretta $(1,+\infty)$ e le tolgo il singolo punto $4$, che la spezza in due tratti.</p>
+              <p><strong>$\operatorname{dom} f=(1,4)\cup(4,+\infty)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Stabilisci se $f(x)=x^3$ è iniettiva su $\mathbb{R}$, motivando con la monotonia.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Che cosa vogliamo.</strong> Stabilire se ingressi diversi danno sempre cubi diversi, usando la strada della monotonia: per il teorema della sezione 5, se $f$ è strettamente crescente allora è iniettiva.</p>
+              <p><strong>Primo passo: verifichiamo che $x^3$ è strettamente crescente.</strong> Presi $x_1 \lt x_2$, studiamo il segno della differenza $x_2^3-x_1^3$, scomponendola con la differenza di cubi $a^3-b^3=(a-b)(a^2+ab+b^2)$ (Parte 0, cap. 2) applicata con $a=x_2$ e $b=x_1$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x_2^3-x_1^3 &amp;= (x_2-x_1)\,(x_2^2+x_2x_1+x_1^2) &amp;&amp;\text{(differenza di cubi, con } a=x_2,\ b=x_1\text{)}\\
+              x_2-x_1 &amp;\gt 0 &amp;&amp;\text{(primo fattore: perché } x_1 \lt x_2\text{)}\\
+              x_2^2+x_2x_1+x_1^2 &amp;= \left(x_2+\frac{x_1}{2}\right)^{\!2}+\frac{3}{4}x_1^2 \ \gt \ 0 &amp;&amp;\text{(completamento del quadrato: somma di due quadrati, nulla solo se } x_1=x_2=0\text{, escluso qui perché } x_1 \lt x_2\text{)}\\
+              x_2^3-x_1^3 &amp;\gt 0 &amp;&amp;\text{(prodotto di due fattori positivi)}
+              \end{aligned}$$</div>
+              <p><strong>Che cosa abbiamo ottenuto.</strong> Da $x_1 \lt x_2$ segue $x_1^3 \lt x_2^3$: la funzione è strettamente crescente su tutto $\mathbb{R}$. Per il teorema "monotonia stretta $\Rightarrow$ iniettività" (sezione 5), è iniettiva.</p>
+              <p><strong>Sì, iniettiva (ed essendo anche suriettiva su $\mathbb{R}$, perché ogni $y$ è il cubo di $\sqrt[3]{y}$, è biiettiva; l'inversa è $\sqrt[3]{x}$).</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Date $f(x)=x^2$ e $g(x)=x-3$, calcola $(f\circ g)(x)$ e il suo dominio.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Espressione.</strong> Per definizione (<span class="richiamo" data-sec="4.6">§4.6</span>) si applica prima $g$: al posto dell'argomento di $f$ metto tutto il blocco $g(x)=x-3$, tra parentesi.</p>
+              <div class="calcolo">$$\begin{aligned}
+              (f\circ g)(x) &amp;= f\big(g(x)\big) = f(x-3) &amp;&amp;\text{(al posto dell'argomento di } f \text{ metto il blocco } x-3\text{)}\\
+              &amp;= (x-3)^2 &amp;&amp;\text{(} f \text{ eleva al quadrato il suo argomento)}
+              \end{aligned}$$</div>
+              <p><strong>Attenzione alle parentesi.</strong> Si scrive $(x-3)^2$, non $x-3^2$: il quadrato agisce su tutto il blocco. Se svolgi il quadrato con il prodotto notevole $(a-b)^2=a^2-2ab+b^2$ (Parte 0, cap. 2) ottieni $x^2-6x+9$, che è la stessa funzione scritta in un altro modo.</p>
+              <p><strong>Dominio.</strong> La formula del <span class="richiamo" data-sec="4.6">§4.6</span> chiede due cose: che $x$ stia nel dominio di $g$ e che $g(x)$ stia nel dominio di $f$. Entrambe le funzioni sono polinomi, definiti su tutto $\mathbb{R}$, quindi nessuna delle due condizioni toglie qualcosa.</p>
+              <p><strong>$(f\circ g)(x)=(x-3)^2$, $\ \operatorname{dom}=\mathbb{R}$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina il dominio di $f(x)=\dfrac{\sqrt{x+3}}{\ln(2-x)}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Elenco i pericoli.</strong> Tre: una radice di indice pari al numeratore, un logaritmo, e il fatto che quel logaritmo è un denominatore (quindi non può valere zero). Risolvo una condizione alla volta.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x+3 &amp;\geq 0 &amp;&amp;\text{(prima condizione: radicando della radice pari)}\\
+              x &amp;\geq -3 &amp;&amp;\text{(sottraggo } 3 \text{ a entrambi i membri)}\\[4pt]
+              2-x &amp;\gt 0 &amp;&amp;\text{(seconda condizione: argomento del logaritmo)}\\
+              2 &amp;\gt x &amp;&amp;\text{(sommo } x \text{ a entrambi i membri)}\\
+              x &amp;\lt 2 &amp;&amp;\text{(stessa disuguaglianza letta da destra a sinistra)}
+              \end{aligned}$$</div>
+              <p><strong>Terza condizione: il denominatore non deve annullarsi</strong>, cioè serve $\ln(2-x)\neq 0$. Il logaritmo naturale si annulla in un solo punto: $\ln t=0$ esattamente per $t=1$, perché $e^0=1$ (Parte 0, cap. 5). Quindi devo escludere il caso in cui l'argomento vale $1$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              2-x &amp;\neq 1 &amp;&amp;\text{(il logaritmo si annulla solo quando l'argomento vale } 1\text{)}\\
+              2 &amp;\neq 1+x &amp;&amp;\text{(sommo } x \text{ a entrambi i membri)}\\
+              x &amp;\neq 1 &amp;&amp;\text{(sottraggo } 1 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p><strong>Interseco.</strong> Tutte e tre insieme: $-3\leq x \lt 2$, meno il punto $1$. L'intervallo $[-3,2)$ si spezza in due tratti.</p>
+              <p><strong>$\operatorname{dom} f=[-3,1)\cup(1,2)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova l'inversa di $f(x)=\dfrac{3x-2}{x+1}$ e determina il suo dominio.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Mossa 1.</strong> Do un nome all'uscita: $y=\dfrac{3x-2}{x+1}$, con $x\neq -1$ perché il denominatore non può annullarsi.</p>
+              <p><strong>Mossa 2, primo tempo — tolgo la frazione.</strong> Moltiplico entrambi i membri per il denominatore $x+1$, che non è zero.</p>
+              <div class="calcolo">$$\begin{aligned}
+              y &amp;= \frac{3x-2}{x+1} &amp;&amp;\text{(punto di partenza)}\\
+              y\,(x+1) &amp;= 3x-2 &amp;&amp;\text{(moltiplico entrambi i membri per } x+1 \neq 0\text{)}\\
+              yx+y &amp;= 3x-2 &amp;&amp;\text{(svolgo il prodotto a sinistra, proprietà distributiva)}
+              \end{aligned}$$</div>
+              <p><strong>Mossa 2, secondo tempo — raduno le $x$.</strong> Sottraggo $3x$ a entrambi i membri e sottraggo $y$ a entrambi i membri: è questo che fa "attraversare l'uguale cambiando segno".</p>
+              <div class="calcolo">$$\begin{aligned}
+              yx-3x &amp;= -2-y &amp;&amp;\text{(sottraggo } 3x \text{ e } y \text{ a entrambi i membri)}\\
+              x\,(y-3) &amp;= -2-y &amp;&amp;\text{(raccolgo } x \text{ a fattor comune)}\\
+              x &amp;= \frac{-2-y}{y-3} &amp;&amp;\text{(divido entrambi i membri per } y-3\text{, lecito se } y\neq 3\text{)}\\
+              x &amp;= \frac{y+2}{3-y} &amp;&amp;\text{(cambio segno sopra e sotto: due segni meno si annullano)}
+              \end{aligned}$$</div>
+              <p><strong>Mossa 3.</strong> Scambio i nomi delle variabili.</p>
+              <p><strong>Mossa 4: controllo.</strong> Provo con $x=0$: $f(0)=\frac{-2}{1}=-2$; poi $f^{-1}(-2)=\frac{-2+2}{3-(-2)}=\frac{0}{5}=0$. Sono tornato a $0$: corretto.</p>
+              <p><strong>$f^{-1}(x)=\dfrac{x+2}{3-x}$, definita per $x\neq 3$ (il valore $3$ è escluso dall'immagine di $f$: dominio e immagine si scambiano, <span class="richiamo" data-sec="4.5">§4.5</span>).</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Date $f(x)=\dfrac{1}{x}$ e $g(x)=x-1$, determina il dominio di $(f\circ g)(x)$ e di $(g\circ f)(x)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Prima composta: $f\circ g$.</strong> Si applica prima $g$: al posto dell'argomento di $f(t)=\frac1t$ metto il blocco $g(x)=x-1$, ottenendo $(f\circ g)(x)=\dfrac{1}{x-1}$. Per il dominio uso la formula del <span class="richiamo" data-sec="4.6">§4.6</span>: la prima condizione ($x$ nel dominio di $g$) non impone nulla, perché $g$ è un polinomio; la seconda condizione chiede che il blocco $g(x)$ stia nel dominio di $f$, cioè sia diverso da zero.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x-1 &amp;\neq 0 &amp;&amp;\text{(il blocco deve stare nel dominio di } f\text{, cioè essere} \neq 0\text{)}\\
+              x &amp;\neq 1 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p><strong>Seconda composta: $g\circ f$.</strong> Si applica prima $f$: al posto dell'argomento di $g$ metto il blocco $f(x)=\frac1x$, ottenendo $(g\circ f)(x)=\dfrac{1}{x}-1$. Prima condizione: $x$ deve stare nel dominio di $f$, quindi $x\neq 0$. Seconda condizione: il risultato $\frac1x$ deve stare nel dominio di $g$, che è tutto $\mathbb{R}$, quindi nessun vincolo aggiuntivo.</p>
+              <p><strong>Confronto.</strong> I due domini escludono punti diversi: la prima composta si rompe dove si annulla $x-1$, la seconda dove si annulla $x$. Le due funzioni sono dunque diverse non solo come formula ma anche come insieme di partenza.</p>
+              <p><strong>$\operatorname{dom}(f\circ g)=\mathbb{R}\setminus\{1\}$, $\ \operatorname{dom}(g\circ f)=\mathbb{R}\setminus\{0\}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina l'immagine di $f:\mathbb{R}\to\mathbb{R}$, $f(x)=x^2+2x+3$, e discuti iniettività/suriettività.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Che cosa vogliamo.</strong> Sapere quali valori $y$ la funzione riesce davvero a produrre. La strada più rapida è riscrivere la formula in modo che compaia un <em>quadrato</em>, perché di un quadrato conosciamo subito il segno: non è mai negativo.</p>
+              <p><strong>Primo passo: completo il quadrato.</strong> Il prodotto notevole di riferimento è $(x+a)^2=x^2+2ax+a^2$ (Parte 0, cap. 2). Confronto il termine centrale $2ax$ con quello che ho, cioè $2x$: deve essere $2a=2$, quindi $a=1$ e il quadrato che mi serve è $(x+1)^2=x^2+2x+1$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x^2+2x+3 &amp;= (x^2+2x+1)-1+3 &amp;&amp;\text{(aggiungo e tolgo } 1\text{: il valore non cambia)}\\
+              &amp;= (x+1)^2-1+3 &amp;&amp;\text{(la parentesi è il quadrato } (x+1)^2\text{)}\\
+              &amp;= (x+1)^2+2 &amp;&amp;\text{(eseguo } -1+3=2\text{)}
+              \end{aligned}$$</div>
+              <p><strong>Secondo passo: leggo il segno.</strong> Un quadrato non è mai negativo, quindi $(x+1)^2\geq 0$; sommando $2$ a entrambi i membri ottengo $(x+1)^2+2\geq 2$, cioè $f(x)\geq 2$ per ogni $x$. Il valore $2$ viene raggiunto quando il quadrato vale $0$, cioè per $x+1=0$, cioè in $x=-1$; e ogni valore $y\geq 2$ si ottiene risolvendo $(x+1)^2=y-2$, che ha soluzione perché $y-2\geq 0$.</p>
+              <p><strong>Iniettività e suriettività.</strong> <em>Non suriettiva</em> su $\mathbb{R}$: il bersaglio $y=0$, per esempio, non viene mai colpito, perché servirebbe $f(x)=0\lt 2$. <em>Non iniettiva</em>: $f(0)=0+0+3=3$ e $f(-2)=4-4+3=3$, due ingressi diversi con la stessa uscita (basta un controesempio, <span class="richiamo" data-sec="4.4">§4.4</span>).</p>
+              <p><strong>$\operatorname{Im} f=[2,+\infty)$; $f$ non è suriettiva e non è iniettiva.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare il dominio di $f(x)=\sqrt{\dfrac{x-2}{x+1}}$ e scriverlo come unione di intervalli.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Elenco i pericoli.</strong> C'è una radice di indice pari il cui radicando è una frazione. Due condizioni: il radicando deve essere $\geq 0$ e il denominatore della frazione deve essere $\neq 0$, cioè $x+1\neq 0$, cioè $x\neq -1$.</p>
+              <p><strong>Studio il segno della frazione</strong> $\dfrac{x-2}{x+1}$ guardando separatamente i due pezzi, come si fa con le disequazioni fratte (Parte 0, cap. 6).</p>
+              <div class="calcolo">$$\begin{aligned}
+              x-2 &amp;\geq 0 &amp;&amp;\text{(quando il numeratore è non negativo)}\\
+              x &amp;\geq 2 &amp;&amp;\text{(sommo } 2 \text{ a entrambi i membri)}\\[4pt]
+              x+1 &amp;\gt 0 &amp;&amp;\text{(quando il denominatore è positivo)}\\
+              x &amp;\gt -1 &amp;&amp;\text{(sottraggo } 1 \text{ a entrambi i membri)}
+              \end{aligned}$$</div>
+              <p><strong>Metto insieme i segni.</strong> Una frazione è positiva quando numeratore e denominatore hanno lo stesso segno, negativa quando hanno segni opposti, nulla quando il numeratore è nullo. Percorrendo la retta da sinistra a destra:</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">per $x \lt -1$: numeratore negativo, denominatore negativo, frazione <strong>positiva</strong>: va bene;</span>
+                <span class="esempio__passo">in $x=-1$: denominatore nullo, la frazione non esiste: escluso;</span>
+                <span class="esempio__passo">per $-1 \lt x \lt 2$: numeratore negativo, denominatore positivo, frazione <strong>negativa</strong>: non va bene;</span>
+                <span class="esempio__passo">in $x=2$: numeratore nullo, frazione $=0$, e $\sqrt0=0$ esiste: va bene, estremo incluso;</span>
+                <span class="esempio__passo">per $x \gt 2$: entrambi positivi, frazione <strong>positiva</strong>: va bene.</span>
+              </p>
+              <p><strong>Controllo con due numeri.</strong> Con $x=-3$: $\frac{-5}{-2}=2{,}5\geq0$, accettabile. Con $x=0$: $\frac{-2}{1}=-2$, negativo, non accettabile.</p>
+              <p><strong>$\operatorname{dom} f=(-\infty,-1)\cup[2,+\infty)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $f:\mathbb{R}\to\mathbb{R}$, $f(x)=e^{x}-1$. Dimostrare che è biiettiva sul suo codominio naturale e determinarne l'inversa.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Iniettività.</strong> La funzione esponenziale $e^x$ è strettamente crescente (Parte 0, cap. 5). Sommare (o sottrarre) una costante non cambia il verso di una disuguaglianza, quindi anche $e^x-1$ è strettamente crescente: da $x_1 \lt x_2$ segue $e^{x_1} \lt e^{x_2}$ e poi $e^{x_1}-1 \lt e^{x_2}-1$. Per il teorema della sezione 5 (monotonia stretta $\Rightarrow$ iniettività), $f$ è iniettiva.</p>
+              <p><strong>Immagine.</strong> L'esponenziale assume tutti e soli i valori positivi, cioè $e^x$ percorre $(0,+\infty)$. Sottraendo $1$ a tutti quei valori l'intervallo trasla di un'unità verso il basso.</p>
+              <div class="calcolo">$$\begin{aligned}
+              e^{x} &amp;\in (0,+\infty) &amp;&amp;\text{(immagine dell'esponenziale, Parte 0, cap. 5)}\\
+              e^{x}-1 &amp;\in (0-1,\ +\infty) &amp;&amp;\text{(sottraggo } 1 \text{ a tutti i valori dell'intervallo)}\\
+              e^{x}-1 &amp;\in (-1,+\infty) &amp;&amp;\text{(eseguo } 0-1=-1\text{)}
+              \end{aligned}$$</div>
+              <p><strong>Suriettività.</strong> Dichiarando il codominio $(-1,+\infty)$, cioè considerando $f:\mathbb{R}\to(-1,+\infty)$, ogni valore del codominio viene raggiunto: immagine e codominio coincidono, quindi $f$ è suriettiva. Iniettiva e suriettiva: <strong>biiettiva</strong>, dunque invertibile (teorema della sezione 5).</p>
+              <p><strong>Inversa.</strong> Mossa 1: pongo $y=e^x-1$. Mossa 2: risolvo rispetto a $x$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              y &amp;= e^{x}-1 &amp;&amp;\text{(punto di partenza)}\\
+              e^{x} &amp;= y+1 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri per isolare l'esponenziale)}\\
+              \ln\!\left(e^{x}\right) &amp;= \ln(y+1) &amp;&amp;\text{(applico il logaritmo a entrambi i membri: lecito perché } y+1\gt 0\text{)}\\
+              x &amp;= \ln(y+1) &amp;&amp;\text{(uso } \ln(e^{x})=x\text{: il logaritmo è l'inversa dell'esponenziale, Parte 0, cap. 5)}
+              \end{aligned}$$</div>
+              <p><strong>Mossa 3.</strong> Scambio i nomi delle variabili. <strong>Mossa 4: controllo.</strong> Con $x=0$: $f(0)=e^0-1=1-1=0$; poi $f^{-1}(0)=\ln(0+1)=\ln 1=0$. Torna.</p>
+              <p><strong>$f^{-1}(x)=\ln(x+1)$, con $\operatorname{dom} f^{-1}=(-1,+\infty)=\operatorname{Im} f$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Date $f(x)=\ln x$ e $g(x)=x^2-1$, determinare l'espressione e il dominio di $(f\circ g)(x)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Espressione.</strong> Applico la definizione di composta del <span class="richiamo" data-sec="4.6">§4.6</span>, $(f\circ g)(x)=f\big(g(x)\big)$: metto tutta l'espressione $g(x)=x^2-1$ al posto dell'argomento di $f(t)=\ln t$. Ottengo $(f\circ g)(x)=\ln(x^2-1)$.</p>
+              <p><strong>Dominio: due condizioni.</strong> La formula del <span class="richiamo" data-sec="4.6">§4.6</span> ne chiede due. La prima ($x$ nel dominio di $g$) non impone nulla, perché $g$ è un polinomio. La seconda sì: il blocco $g(x)$ deve stare nel dominio del logaritmo, che è $(0,+\infty)$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              x^2-1 &amp;\gt 0 &amp;&amp;\text{(il blocco deve stare nel dominio di } \ln\text{)}\\
+              x^2 &amp;\gt 1 &amp;&amp;\text{(sommo } 1 \text{ a entrambi i membri)}\\
+              |x| &amp;\gt 1 &amp;&amp;\text{(estraggo la radice dai due membri, non negativi: } \sqrt{x^2}=|x| \text{, cap. 2, sez. 4.1)}\\
+              x \lt -1 \ &amp;\text{ oppure } \ x \gt 1 &amp;&amp;\text{(regola } |t|\gt a \iff t\lt -a \text{ oppure } t\gt a \text{, con } t=x,\ a=1\text{)}
+              \end{aligned}$$</div>
+              <p><strong>Controllo con due numeri.</strong> Con $x=2$: l'argomento vale $4-1=3\gt0$, va bene. Con $x=0$: vale $-1$, e il logaritmo di un numero negativo non esiste, quindi $0$ è escluso, come dice il risultato.</p>
+              <p><strong>$(f\circ g)(x)=\ln(x^2-1)$, $\ \operatorname{dom}=(-\infty,-1)\cup(1,+\infty)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostrare che la funzione $f(x)=\dfrac{x}{x+1}$, definita su $\mathbb{R}\setminus\{-1\}$, è iniettiva, e determinare i valori del codominio $\mathbb{R}$ che <strong>non</strong> appartengono alla sua immagine.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Iniettività.</strong> Uso la ricetta del <span class="richiamo" data-sec="4.4">§4.4</span> nella forma contronominale: parto dall'ipotesi che due uscite coincidano e cerco di dedurre che gli ingressi erano lo stesso.</p>
+              <div class="calcolo">$$\begin{aligned}
+              \frac{x_1}{x_1+1} &amp;= \frac{x_2}{x_2+1} &amp;&amp;\text{(ipotesi: } f(x_1)=f(x_2)\text{)}\\
+              x_1(x_2+1) &amp;= x_2(x_1+1) &amp;&amp;\text{(moltiplico entrambi i membri per } (x_1+1)(x_2+1)\text{, non nulli)}\\
+              x_1x_2+x_1 &amp;= x_1x_2+x_2 &amp;&amp;\text{(svolgo i due prodotti, proprietà distributiva)}\\
+              x_1 &amp;= x_2 &amp;&amp;\text{(sottraggo } x_1x_2 \text{ a entrambi i membri: quel termine sparisce)}
+              \end{aligned}$$</div>
+              <p><strong>Che cosa abbiamo ottenuto.</strong> Siamo arrivati esattamente a $x_1=x_2$: la funzione è iniettiva.</p>
+              <p><strong>Immagine.</strong> Per sapere quali $y$ vengono colpiti, seguo la ricetta del <span class="richiamo" data-sec="4.2">§4.2</span>: scrivo $f(x)=y$ e risolvo rispetto a $x$.</p>
+              <div class="calcolo">$$\begin{aligned}
+              y &amp;= \frac{x}{x+1} &amp;&amp;\text{(equazione da risolvere in } x\text{)}\\
+              y\,(x+1) &amp;= x &amp;&amp;\text{(moltiplico entrambi i membri per } x+1 \neq 0\text{)}\\
+              yx+y &amp;= x &amp;&amp;\text{(svolgo il prodotto a sinistra)}\\
+              yx-x &amp;= -y &amp;&amp;\text{(sottraggo } x \text{ e } y \text{ a entrambi i membri)}\\
+              x\,(y-1) &amp;= -y &amp;&amp;\text{(raccolgo } x \text{ a fattor comune)}\\
+              x &amp;= \frac{-y}{y-1} = \frac{y}{1-y} &amp;&amp;\text{(divido per } y-1 \text{ e cambio segno sopra e sotto)}
+              \end{aligned}$$</div>
+              <p><strong>Lettura del risultato.</strong> L'ingresso cercato esiste per ogni $y\neq 1$; per $y=1$ la divisione per $y-1$ non si può fare, cioè non esiste nessun $x$ con $f(x)=1$. Si vede anche direttamente: $\frac{x}{x+1}=1$ diventa $x=x+1$, cioè $0=1$, che è falso.</p>
+              <p><strong>$f$ è iniettiva; l'unico valore escluso dall'immagine è $y=1$, cioè $\operatorname{Im} f=\mathbb{R}\setminus\{1\}$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Quale delle seguenti condizioni fa parte della definizione di funzione $f:A\to B$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Ogni elemento di $B$ è immagine di qualche elemento di $A$</button>
+              <button class="quiz-option" data-correct="true">Ogni elemento di $A$ ha una e una sola immagine in $B$</button>
+              <button class="quiz-option" data-correct="false">Elementi diversi di $A$ hanno immagini diverse</button>
+              <button class="quiz-option" data-correct="false">$A$ e $B$ devono avere lo stesso numero di elementi</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La definizione richiede esistenza <em>e</em> unicità dell'immagine per ogni $x\in A$. Le altre opzioni descrivono suriettività, iniettività e biiettività, che sono proprietà <em>ulteriori</em>, non parte della definizione base.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Il dominio naturale di $f(x)=\dfrac{1}{\sqrt{x-2}}$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$[2,+\infty)$</button>
+              <button class="quiz-option" data-correct="true">$(2,+\infty)$</button>
+              <button class="quiz-option" data-correct="false">$\mathbb{R}\setminus\{2\}$</button>
+              <button class="quiz-option" data-correct="false">$(-\infty,2)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La radice è al denominatore: il radicando deve essere $&gt;0$ (non solo $\geq 0$), altrimenti si dividerebbe per zero. Quindi $x-2&gt;0$, cioè $x&gt;2$: il valore $2$ è escluso.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Date $f(x)=x+1$ e $g(x)=x^2$, quanto vale $(g\circ f)(x)$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$x^2+1$</button>
+              <button class="quiz-option" data-correct="true">$(x+1)^2$</button>
+              <button class="quiz-option" data-correct="false">$x^2+x$</button>
+              <button class="quiz-option" data-correct="false">$x^3$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$(g\circ f)(x)=g(f(x))=g(x+1)=(x+1)^2$. Si applica prima $f$ (la più interna) e poi $g$. L'opzione $x^2+1$ sarebbe $(f\circ g)(x)$: ordine invertito!</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Perché $f(x)=x^2$ su $\mathbb{R}$ non è invertibile?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Perché il suo dominio è illimitato</button>
+              <button class="quiz-option" data-correct="true">Perché non è iniettiva ($x$ e $-x$ hanno la stessa immagine)</button>
+              <button class="quiz-option" data-correct="false">Perché non è una funzione</button>
+              <button class="quiz-option" data-correct="false">Perché la sua immagine è $[0,+\infty)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Fallisce il test della retta orizzontale: ad esempio $f(2)=f(-2)=4$. Non essendo iniettiva, non è biiettiva, quindi non invertibile su tutto $\mathbb{R}$. Ristretta a $[0,+\infty)$, invece, diventa invertibile con inversa $\sqrt x$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Ogni funzione strettamente crescente è iniettiva.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il teorema dimostrato nel capitolo. Se $x_1&lt;x_2$ allora $f(x_1)&lt;f(x_2)$, quindi immagini sempre distinte. (Attenzione: il viceversa è falso — iniettiva non implica monotona.)</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) La composizione di funzioni è commutativa, cioè $f\circ g=g\circ f$ sempre.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: in generale l'ordine conta. Con $f(x)=x^2$ e $g(x)=x+1$ si ha $g\circ f=x^2+1$ ma $f\circ g=(x+1)^2$, funzioni diverse.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Codominio e immagine di una funzione sono sempre lo stesso insieme.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: l'immagine è sempre <em>contenuta</em> nel codominio, ma può essere più piccola. Coincidono solo se la funzione è suriettiva. Es.: $f(x)=x^2$ ha codominio $\mathbb{R}$ ma immagine $[0,+\infty)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Una circonferenza nel piano può essere il grafico di una funzione $y=f(x)$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: una retta verticale interseca la circonferenza in due punti, violando l'unicità (a una stessa $x$ corrisponderebbero due valori di $y$). Fallisce il test della retta verticale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="iniettiva|iniettività|iniettivita">
+            <p class="quiz-question__testo">9. (Completamento) Una funzione in cui elementi distinti hanno sempre immagini distinte si dice ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>$x_1\neq x_2 \Rightarrow f(x_1)\neq f(x_2)$. Si verifica graficamente con il test della retta orizzontale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="dominio">
+            <p class="quiz-question__testo">10. (Completamento) L'insieme di tutti i valori di $x$ per cui la formula di $f$ ha senso si chiama ______ (naturale) della funzione.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si determina elencando tutte le condizioni di esistenza (denominatori, radici pari, logaritmi...) e intersecandole.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="bisettrice|y=x|retta y=x">
+            <p class="quiz-question__testo">11. (Completamento) Il grafico di $f^{-1}$ è simmetrico a quello di $f$ rispetto alla retta $y=x$, detta anche ______ del primo e terzo quadrante.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>La bisettrice del primo e terzo quadrante ha equazione $y=x$: riflettere rispetto a essa equivale a scambiare le coordinate $(a,b)\to(b,a)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega, usando l'analogia del traduttore automatico, perché una funzione deve essere biiettiva per poter essere invertita.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: tradurre a ritroso significa, data una parola d'arrivo, risalire alla parola di partenza. Questo è possibile solo se: (1) ogni parola d'arrivo proviene da <em>almeno</em> una parola di partenza — cioè la traduzione "copre" tutta la lingua d'arrivo: è la <strong>suriettività</strong>, che garantisce l'<em>esistenza</em> della risposta a ritroso; (2) ogni parola d'arrivo proviene da <em>al più</em> una parola di partenza — se "big" venisse sia da "grande" sia da "grosso" non sapremmo quale scegliere: è l'<strong>iniettività</strong>, che garantisce l'<em>unicità</em>. Solo quando valgono entrambe (biiettività) la traduzione inversa è a sua volta una funzione ben definita.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Descrivi il metodo "elenca e interseca" per determinare il dominio naturale di una funzione data da una formula, e spiega perché alla fine si <em>interseca</em> (e non si unisce).</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si esamina la formula individuando ogni operazione con restrizioni — denominatori (da porre $\neq 0$), radici di indice pari (radicando $\geq 0$), logaritmi (argomento $&gt;0$), $\arcsin/\arccos$ (argomento in $[-1,1]$), ecc. — e si scrive la condizione corrispondente. Poi si <strong>intersecano</strong> tutte le condizioni. Si interseca (non si unisce) perché le condizioni devono valere <em>simultaneamente</em>: un valore di $x$ appartiene al dominio solo se rende leciti <em>tutti</em> i pezzi della formula contemporaneamente. Basta che una sola condizione fallisca perché $f(x)$ non esista. Graficamente, si riportano le soluzioni parziali sulla stessa retta reale e si prende la zona comune a tutte.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="02-valore-assoluto-topologia.html"><span class="dir">← Capitolo precedente</span><strong>Valore assoluto e topologia della retta</strong></a>
+        <a class="next" href="04-limiti.html"><span class="dir">Capitolo successivo →</span><strong>Limiti di funzioni</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

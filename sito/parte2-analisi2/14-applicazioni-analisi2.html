@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>14. Applicazioni: modelli fisici ed economici — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 14</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html" class="is-active">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 14 di 14</span>
+        </div>
+        <h1>Applicazioni: modelli fisici ed economici</h1>
+        <p class="subtitle">Siamo all'ultima tappa. In tredici capitoli hai costruito una cassetta degli attrezzi enorme: gradienti, hessiani, moltiplicatori, integrali doppi e tripli, flussi, i tre grandi teoremi, le equazioni differenziali. Adesso apriamo la cassetta e la usiamo davvero: energia e campi in fisica, serbatoi e condotti in ingegneria, budget e prezzi ombra in economia, probabilità e gaussiane in statistica, discesa del gradiente nel machine learning. E alla fine ricuciamo tutto il libro, dalla Parte 0 a qui, in un'unica mappa.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~65 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — tutto Analisi 2 in cinque righe</div>
+          <p>Cinque pilastri. Parole poverissime, una immagine mentale ciascuno. Se li hai in testa, questo capitolo scorre da solo.</p>
+          <p><strong>1) <a href="03-derivate-parziali.html">Derivate parziali</a> e <a href="04-gradiente.html">gradiente</a>: la pendenza, ma in tutte le direzioni.</strong> Muovi una variabile alla volta, tieni ferme le altre. Metti insieme le pendenze e ottieni una freccia. <br><em>Immagine: la bussola della salita.</em> Il <span class="glossario-term" data-term="gradiente">gradiente</span> punta dove si sale più ripido.</p>
+          <p><strong>2) <a href="05-hessiano-massimi-minimi.html">Massimi e minimi</a>: cime, conche e selle.</strong> Dove la freccia è nulla, il terreno è piatto. L'<span class="glossario-term" data-term="hessiano">hessiano</span> ti dice se sei in cima, in fondo o in mezzo. Con un <a href="06-moltiplicatori-lagrange.html">vincolo</a>, usi i <span class="glossario-term" data-term="moltiplicatori-di-lagrange">moltiplicatori</span>. <br><em>Immagine: la sella del cavallo.</em> Sali in un verso, scendi nell'altro.</p>
+          <p><strong>3) <a href="08-integrali-doppi.html">Integrali multipli</a>: sommare mattoncini.</strong> Taglia la regione in pezzettini, misura ogni pezzettino, somma tutto. <br><em>Immagine: pesare una torta a fettine.</em> Con due variabili conti aree e volumi, con <a href="09-integrali-tripli-cambi-variabile.html">tre</a> conti masse.</p>
+          <p><strong>4) <a href="11-integrali-superficie-campi-vettoriali.html">Campi e flussi</a>: quanta roba passa.</strong> A ogni punto è attaccata una freccia; tu conti quanta ne attraversa una superficie. I <a href="12-teoremi-green-gauss-stokes.html">tre grandi teoremi</a> dicono: quello che succede dentro si legge sul bordo. <br><em>Immagine: la rete calata nel fiume.</em></p>
+          <p><strong>5) <a href="13-equazioni-differenziali.html">Equazioni differenziali</a>: la regola del cambiamento.</strong> Non conosci la funzione: conosci la legge con cui cambia. Risolvere vuol dire ricostruirla. <br><em>Immagine: le istruzioni di guida.</em> Sai come sterzare a ogni istante, ricavi la traiettoria.</p>
+        </div>
+
+        <p>Fin qui abbiamo imparato strumenti. Ma uno strumento, da solo, non dice niente: un cacciavite non spiega cos'è una mensola. L'idea di questo capitolo finale è una sola, ed è la più bella del libro: <strong>il mondo reale è pieno di grandezze che dipendono da più di una cosa</strong>, e ogni volta che è così, l'Analisi 2 è già lì pronta.</p>
+        <p>La temperatura di una stanza dipende dal punto <em>e</em> dall'istante. Il costo di produzione dipende dal lavoro <em>e</em> dal capitale. La probabilità di un evento dipende da due misure fatte insieme. L'errore di una rete neurale dipende da milioni di parametri contemporaneamente. Nessuna di queste cose si descrive con una funzione $y=f(x)$: tutte si descrivono con $f(x,y)$, $f(x,y,z)$, $f(x_1,\dots,x_n)$.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧰</span> Una regola sola per riconoscere l'attrezzo giusto</div>
+          <p>Davanti a un problema reale, fatti <strong>tre domande in fila</strong>. <strong>(1) Che cosa varia?</strong> Se varia una sola quantità, sei in Analisi 1; se ne variano due o tre, sei qui. <strong>(2) Che cosa voglio?</strong> Se voglio la <em>pendenza</em> o la <em>direzione migliore</em>, è un gradiente; se voglio un <em>totale</em> (massa, volume, probabilità, carica), è un integrale multiplo; se voglio il <em>meglio possibile</em>, è un'ottimizzazione (libera o vincolata); se voglio <em>quanta roba attraversa</em>, è un flusso; se conosco solo la <em>legge del cambiamento</em>, è un'equazione differenziale. <strong>(3) Chi è il bordo?</strong> Se il problema ha un dentro e un contorno, quasi sempre c'è un teorema (Green, Gauss, Stokes) che ti fa risparmiare metà del lavoro.</p>
+        </div>
+        <p>Tutto il capitolo è questo: cinque ambiti — fisica, ingegneria, economia, probabilità, machine learning — e per ciascuno vedremo <em>quali</em> attrezzi si usano, <em>perché</em> proprio quelli, e almeno un conto numerico portato fino in fondo. Alla fine ti aspetta una mappa che ricuce l'intero libro, dalla Parte 0 fino a qui.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo capitolo?</div>
+          <p>Perché studiare tredici capitoli di teoria e non vederla mai <em>al lavoro</em> è come imparare tutte le regole del calcio senza mai giocare una partita. Questo capitolo è la partita. Qui scopri che l'energia potenziale <strong>è</strong> un <span class="glossario-term" data-term="potenziale-scalare">potenziale scalare</span>, che la legge di Gauss <strong>è</strong> il <span class="glossario-term" data-term="teorema-di-gauss">teorema della divergenza</span>, che il "prezzo ombra" degli economisti <strong>è</strong> il moltiplicatore $\lambda$, e che l'algoritmo che allena ChatGPT <strong>è</strong> il <span class="glossario-term" data-term="gradiente">gradiente</span> del capitolo 4. Non analogie: la stessa identica matematica, con nomi diversi.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema del <em>transfer</em>: saper fare gli esercizi ma non riconoscere la matematica quando si presenta travestita. All'esame orale la domanda che affonda più studenti non è "enuncia il teorema di Stokes", è "e a cosa serve?". In un colloquio di lavoro nessuno ti chiederà di calcolare $\iint_D xy\,dA$: ti chiederanno di stimare una portata, di minimizzare un costo, di spiegare perché un modello non converge. Questo capitolo costruisce il ponte fra le due domande.</p>
+        <p><strong>Perché è importante adesso?</strong> Perché è l'ultimo capitolo, e gli ultimi capitoli servono a <em>consolidare</em>. Ogni sezione qui dentro è deliberatamente trasversale: un problema di baricentro usa il <a href="08-integrali-doppi.html">capitolo 8</a> e le <a href="09-integrali-tripli-cambi-variabile.html">coordinate del 9</a>; un problema di energia usa il <a href="10-integrali-curvilinei.html">10</a> e il <a href="12-teoremi-green-gauss-stokes.html">12</a>; un problema di budget usa il <a href="06-moltiplicatori-lagrange.html">6</a>. È esattamente il modo in cui funziona un tema d'esame vero, dove nessuno ti dice da quale capitolo viene l'esercizio.</p>
+        <p><strong>E dopo?</strong> Dopo questo capitolo il libro finisce, ma l'Analisi no. Ogni corso che farai — Fisica 2, Meccanica Razionale, Scienza delle Costruzioni, Microeconomia, Statistica, Machine Learning, Termodinamica — parte dal punto in cui ti lasciamo. Quando in un'altra materia vedrai comparire $\nabla$, $\iint$, $\lambda$ o $\Delta u$, non sarà un simbolo nuovo: sarà un vecchio amico.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏔️</span> Lo scalatore nella nebbia: ecco cos'è la discesa del gradiente</div>
+          <p>Sei su un fianco di montagna, cala la nebbia, non vedi a due metri. Vuoi scendere a valle. Che fai? L'unica cosa che <em>puoi</em> fare: tasti il terreno intorno ai tuoi piedi, senti da che parte scende di più, e fai un passo in quella direzione. Poi ti fermi, tasti di nuovo, fai un altro passo. Ripeti.</p>
+          <p>Questa è, parola per parola, la <strong>discesa del gradiente</strong>: l'algoritmo con cui si allena praticamente ogni modello di machine learning esistente. Il terreno è la funzione di costo, "tastare intorno ai piedi" è calcolare $\nabla f$, "scendere di più" è andare nella direzione $-\nabla f$, la lunghezza del passo è il <em>learning rate</em>. Tutte le insidie dello scalatore sono insidie dell'algoritmo: passi troppo lunghi e rimbalzi da un versante all'altro, passi troppo corti e ti coglie la notte, e soprattutto — la nebbia non ti dice se quella conca in cui sei finito è davvero il fondovalle o solo una pozza a mezza costa. Il <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>, poi, è il posto peggiore: piatto sotto i piedi, ma non sei arrivato da nessuna parte.</p>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌊</span> La rete nel fiume e il contatore del gas: ecco cos'è un flusso</div>
+          <p>Immagina di calare una rete da pesca in un fiume, tenendola ferma per un minuto. Quanta acqua ci è passata attraverso? Dipende da tre cose: da quanto corre il fiume, da quanto è grande la rete, e da <strong>come è orientata</strong> — di taglio alla corrente non passa quasi niente, di traverso passa tutto. Quel numero è il <span class="glossario-term" data-term="flusso">flusso</span>, ed è esattamente $\iint_S \mathbf{F}\cdot\mathbf{n}\,dS$.</p>
+          <p>Il contatore del gas di casa tua fa la stessa cosa: misura il flusso attraverso una sezione del tubo. E il contatore dell'acqua, e la ventola del computer, e il misuratore di portata di un impianto industriale. Ma la parte davvero sorprendente è un'altra: se la superficie è <em>chiusa</em> — una scatola, una sfera, il guscio di un palloncino — allora il flusso uscente ti dice quanta "roba" viene creata dentro, senza guardarci dentro. È il <span class="glossario-term" data-term="teorema-di-gauss">teorema di Gauss</span>, ed è così che si misura una carica elettrica racchiusa senza toccarla, o si scopre una perdita in una tubatura interrata.</p>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🛒</span> La spesa con venti euro: ecco cos'è un moltiplicatore di Lagrange</div>
+          <p>Hai venti euro e vuoi comprare pane e formaggio in modo da mangiare il meglio possibile. Non puoi prendere tutto: c'è un vincolo, il budget. La soluzione ottima non è "tanto pane" né "tanto formaggio": è il punto in cui <em>l'ultimo euro speso in pane ti dà la stessa soddisfazione dell'ultimo euro speso in formaggio</em>. Se non fosse così, sposteresti un euro da uno all'altro e staresti meglio.</p>
+          <p>Quella condizione, scritta in matematica, è $\nabla U=\lambda\nabla g$: i moltiplicatori di Lagrange del <a href="06-moltiplicatori-lagrange.html">capitolo 6</a>. E il numero $\lambda$ non è un accessorio tecnico da buttare via a conto finito: è <strong>quanto miglioreresti se avessi un euro in più</strong>. Gli economisti lo chiamano <em>prezzo ombra</em>, ed è il numero che un'azienda guarda per decidere se conviene affittare un capannone in più o assumere un'altra persona.</p>
+        </div>
+
+        <p>E si potrebbe continuare a lungo. Il navigatore satellitare risolve equazioni differenziali per prevedere il traffico; il progettista di una diga integra la pressione sulla superficie bagnata; il meteorologo integra numericamente equazioni alle derivate parziali; l'assicuratore calcola una probabilità come integrale doppio di una densità congiunta; il produttore di lattine sceglie altezza e raggio per minimizzare l'alluminio a volume fissato. Tutte cose che, da questo capitolo in poi, sai fare.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-modello">4.1 Come si costruisce un modello: lo schema in quattro mosse</h3>
+        <p>Prima di entrare nei cinque ambiti, fissiamo il metodo: è sempre lo stesso, e riconoscerlo ti fa risparmiare ore.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Mossa</th><th>Che cosa si fa</th><th>Esempio</th></tr></thead>
+          <tbody>
+            <tr><td>1. Scegli le variabili</td><td>decidi da che cosa dipende la grandezza che ti interessa</td><td>il costo dipende da lavoro $L$ e capitale $K$</td></tr>
+            <tr><td>2. Scrivi la funzione</td><td>traduci il fenomeno in $f(x,y)$, in un campo $\mathbf{F}$ o in una densità</td><td>$C(K,L)=2K+4L$</td></tr>
+            <tr><td>3. Scegli l'attrezzo</td><td>gradiente, integrale multiplo, Lagrange, flusso, equazione differenziale</td><td>vincolo di budget → Lagrange</td></tr>
+            <tr><td>4. Rileggi il risultato</td><td>controlla unità di misura, segno, ordine di grandezza e <em>significato fisico</em></td><td>$\lambda$ = prezzo ombra, non un numero qualunque</td></tr>
+          </tbody>
+        </table>
+        <p>La mossa 4 è quella che distingue chi ha capito da chi ha solo calcolato. Un numero senza interpretazione è un numero sprecato: all'esame, e nella vita.</p>
+
+        <h3 id="teoria-fisica">4.2 Fisica: energia, campi e flussi</h3>
+
+        <h4>Lavoro ed energia: l'integrale curvilineo</h4>
+        <p>In Analisi 1 il lavoro di una forza variabile su un segmento era $L=\int_a^b F(x)\,dx$. Nel mondo vero, però, la forza è una <strong>freccia</strong> che cambia da punto a punto (un campo vettoriale $\mathbf{F}$) e il percorso è una <strong>curva</strong> nello spazio. La generalizzazione è l'<a href="10-integrali-curvilinei.html">integrale curvilineo</a>:</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (lavoro di un campo di forze)</span>
+          <p>Se $\gamma$ è una curva percorsa da $\mathbf{r}(t)$, $t\in[a,b]$, il lavoro del campo $\mathbf{F}$ lungo $\gamma$ è</p>
+          <div class="formula-block">$$L=\int_\gamma \mathbf{F}\cdot d\mathbf{r}=\int_a^b \mathbf{F}\big(\mathbf{r}(t)\big)\cdot\mathbf{r}'(t)\,dt$$</div>
+        </div>
+        <p>Il prodotto scalare è il cuore fisico della formula: conta <strong>solo la componente della forza nella direzione del moto</strong>. Se spingi un carrello perpendicolarmente a dove va, non fai lavoro; se lo spingi controvento, il lavoro è negativo. Esattamente quello che dice $\mathbf{F}\cdot\mathbf{r}'$.</p>
+
+        <h4>Campi conservativi ed energia potenziale</h4>
+        <p>Alcuni campi hanno una proprietà d'oro: il lavoro <strong>non dipende dal percorso</strong>, solo dal punto di partenza e da quello di arrivo. Si chiamano <span class="glossario-term" data-term="campo-conservativo">campi conservativi</span>, e sono quelli che ammettono un <span class="glossario-term" data-term="potenziale-scalare">potenziale scalare</span> $U$ con $\mathbf{F}=\nabla U$.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema fondamentale degli integrali curvilinei</span>
+          <p>Se $\mathbf{F}=\nabla U$ su un aperto connesso, allora per ogni curva $\gamma$ da $A$ a $B$</p>
+          <div class="formula-block">$$\int_\gamma \mathbf{F}\cdot d\mathbf{r}=U(B)-U(A)$$</div>
+          <p>e in particolare il lavoro lungo ogni percorso <strong>chiuso</strong> è nullo.</p>
+        </div>
+        <p>Guarda che cosa hai appena letto: è il <strong>teorema fondamentale del calcolo</strong> dell'Analisi 1, $\int_a^b f'=f(b)-f(a)$, riscritto in più variabili. Il potenziale è la primitiva; il gradiente è la derivata; gli estremi $a,b$ sono diventati due punti dello spazio.</p>
+        <p>In fisica si preferisce definire l'<strong>energia potenziale</strong> come $E_p=-U$, così che $\mathbf{F}=-\nabla E_p$ (la forza punta verso l'energia potenziale minore: le cose cadono). Ne segue la conservazione dell'energia meccanica: il lavoro fatto dal campo si trasforma tutto in energia cinetica, quindi</p>
+        <div class="formula-block">$$E_c+E_p=\text{costante}$$</div>
+        <p>La parola "conservativo" viene proprio da qui: sono i campi in cui l'energia si conserva. La gravità e la forza elastica lo sono; l'attrito no (e infatti con l'attrito il percorso conta eccome: più giri fai, più energia perdi).</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔎</span> Come riconoscere un campo conservativo in dieci secondi</div>
+          <p>Nel piano, condizione necessaria: $\dfrac{\partial F_1}{\partial y}=\dfrac{\partial F_2}{\partial x}$. Nello spazio: il rotore deve essere nullo, $\nabla\times\mathbf{F}=\mathbf{0}$. Se il dominio è <strong>semplicemente connesso</strong> (niente buchi), la condizione è anche sufficiente. Se il test fallisce, fermati: il campo non è conservativo e cercare il potenziale è tempo perso.</p>
+        </div>
+
+        <h4>La legge di Gauss dell'elettrostatica</h4>
+        <p>Una carica elettrica $q$ genera intorno a sé un campo che punta verso l'esterno e si indebolisce come $1/r^2$. Domanda: quanta "roba elettrica" esce da una superficie chiusa che racchiude la carica? La risposta è una delle formule più eleganti della fisica:</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Legge di Gauss (forma integrale)</span>
+          <div class="formula-block">$$\oiint_{S}\mathbf{E}\cdot\mathbf{n}\,dS=\frac{Q_{\text{int}}}{\varepsilon_0}$$</div>
+          <p>Il <span class="glossario-term" data-term="flusso">flusso</span> del campo elettrico uscente da <em>qualunque</em> superficie chiusa dipende solo dalla carica racchiusa, non dalla forma della superficie né da dove sta la carica dentro.</p>
+        </div>
+        <p>Perché funziona? Perché è il <span class="glossario-term" data-term="teorema-di-gauss">teorema della divergenza</span> del <a href="12-teoremi-green-gauss-stokes.html">capitolo 12</a>, che trasforma il flusso uscente nell'integrale triplo della <span class="glossario-term" data-term="divergenza">divergenza</span>:</p>
+        <div class="formula-block">$$\oiint_{S}\mathbf{E}\cdot\mathbf{n}\,dS=\iiint_{V}\nabla\cdot\mathbf{E}\,dV \qquad\text{e}\qquad \nabla\cdot\mathbf{E}=\frac{\rho}{\varepsilon_0}$$</div>
+        <p>La seconda uguaglianza è la <strong>forma differenziale</strong> della stessa legge: la divergenza misura quanto un punto "produce" campo, e le sorgenti del campo elettrico sono le cariche. Intuizione idraulica: le cariche positive sono rubinetti, quelle negative scarichi, e il flusso attraverso una superficie chiusa conta rubinetti meno scarichi. Se dentro non c'è nulla, tutto quello che entra esce: flusso zero.</p>
+        <p>Il vantaggio pratico è enorme: con una simmetria adatta (sferica, cilindrica, piana) la legge di Gauss calcola campi in tre righe, dove il calcolo diretto richiederebbe integrali mostruosi. È così che si ricavano il campo di una sfera carica, di un filo infinito, di un condensatore piano.</p>
+
+        <h4>Centro di massa e momento d'inerzia</h4>
+        <p>Un corpo vero non è un punto: ha massa distribuita nello spazio con una densità $\rho$. Due numeri lo riassumono, e si calcolano entrambi con <a href="09-integrali-tripli-cambi-variabile.html">integrali multipli</a>.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (massa, baricentro, momento d'inerzia)</span>
+          <p>Per una lamina piana $D$ di densità superficiale $\rho(x,y)$:</p>
+          <div class="formula-block">$$M=\iint_D \rho\,dA,\qquad \bar x=\frac{1}{M}\iint_D x\,\rho\,dA,\qquad \bar y=\frac{1}{M}\iint_D y\,\rho\,dA$$</div>
+          <p>e il <span class="glossario-term" data-term="momento-inerzia">momento d'inerzia</span> rispetto a un asse è</p>
+          <div class="formula-block">$$I=\iint_D d^2(x,y)\,\rho\,dA$$</div>
+          <p>dove $d(x,y)$ è la distanza del punto dall'asse. Per un solido valgono le stesse formule con $\iiint_V$ e densità volumetrica.</p>
+        </div>
+        <p>Il <span class="glossario-term" data-term="baricentro">baricentro</span> è la <strong>media pesata delle posizioni</strong>, con la massa come peso: è il punto in cui il corpo sta in equilibrio su uno spillo, ed è il punto a cui puoi immaginare concentrata tutta la massa per studiare il moto traslatorio.</p>
+        <p>Il momento d'inerzia è invece la <strong>"massa della rotazione"</strong>: misura quanto un corpo è restio a essere messo in rotazione. La differenza cruciale è quel <em>quadrato</em> della distanza: la materia lontana dall'asse pesa moltissimo, quella vicina quasi niente. Ecco perché il pattinatore che chiude le braccia accelera (riduce $I$, e $I\omega$ si conserva), perché il volano di un motore ha la massa tutta sul bordo, e perché una ruota di bici pesante al cerchione si accelera peggio di una pesante al mozzo, a parità di chili.</p>
+
+        <h4>Equazione del calore e delle onde: quando le derivate parziali diventano leggi</h4>
+        <p>Qui le derivate parziali smettono di essere un esercizio e diventano il linguaggio della fisica. Se $u(x,y,t)$ è una grandezza che dipende dal punto <em>e</em> dal tempo, due equazioni governano mezzo mondo. Le raccontiamo a parole, senza risolverle: ti basta capirne il senso.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Le due equazioni regine</span>
+          <div class="formula-block">$$\underbrace{\frac{\partial u}{\partial t}=k\,\Delta u}_{\text{calore (diffusione)}}\qquad\qquad \underbrace{\frac{\partial^2 u}{\partial t^2}=c^2\,\Delta u}_{\text{onde (vibrazione)}}$$</div>
+          <p>dove $\Delta u=\dfrac{\partial^2u}{\partial x^2}+\dfrac{\partial^2u}{\partial y^2}$ è il <em>laplaciano</em>: la somma delle derivate seconde spaziali.</p>
+        </div>
+        <p><strong>Come si diffonde il calore.</strong> Il laplaciano ha un significato bellissimo: misura <em>di quanto il valore in un punto è più basso della media dei suoi vicini</em>. Se $\Delta u$ è positivo, il punto è più freddo dell'ambiente circostante; se è negativo, è più caldo. L'equazione del calore dice allora una cosa di puro buon senso: <strong>ogni punto si scalda se i vicini sono più caldi di lui e si raffredda se sono più freddi</strong>, con velocità proporzionale allo scarto. Il risultato è che le differenze si appianano: una barra scaldata a un'estremità diventa via via tiepida dappertutto, il caffè si raffredda, una macchia di inchiostro nell'acqua si allarga e sbiadisce. La derivata prima nel tempo dice che il processo ha un verso solo: il calore non torna mai indietro da solo (è l'irreversibilità della termodinamica scritta in una riga).</p>
+        <p><strong>Come vibra una corda.</strong> L'equazione delle onde ha la derivata <em>seconda</em> nel tempo, cioè un'accelerazione: è $F=ma$ travestita. Dice che <strong>ogni pezzetto di corda accelera verso la posizione media dei suoi vicini</strong>, proporzionalmente a quanto è piegato. Se pizzichi una corda di chitarra, il punto che hai tirato viene richiamato indietro, supera la posizione di riposo per inerzia, viene richiamato di nuovo: nasce l'oscillazione, che si propaga ai vicini alla velocità $c$. Da qui vengono le onde sonore, le onde sull'acqua, le onde elettromagnetiche e la luce. La differenza fra le due equazioni è tutta in quel "$\partial t$" contro "$\partial t^2$": una spalma, l'altra fa oscillare.</p>
+
+        <h3 id="teoria-ingegneria">4.3 Ingegneria: volumi, portate, carichi e forme ottime</h3>
+
+        <h4>Volumi e baricentri di solidi</h4>
+        <p>Il volume di un solido qualunque è l'<span class="glossario-term" data-term="integrale-triplo">integrale triplo</span> della funzione costante $1$:</p>
+        <div class="formula-block">$$V=\iiint_V dV,\qquad \bar x=\frac{1}{V}\iiint_V x\,dV \quad (\text{se la densità è costante})$$</div>
+        <p>In pratica non si usano quasi mai le coordinate cartesiane: si sceglie il sistema che "assomiglia" al pezzo. Cilindriche per tubi, alberi, serbatoi e fori; sferiche per cupole, calotte e recipienti a pressione; <span class="glossario-term" data-term="coordinate-polari">polari</span> per sezioni circolari. Scegliere bene le coordinate è metà del lavoro: trasforma un dominio orribile in un rettangolo di estremi costanti.</p>
+        <p>Il baricentro serve agli ingegneri per almeno tre motivi pratici: è il punto in cui applicare il peso in uno schema di calcolo, è il punto rispetto al quale si calcolano i momenti in una struttura, ed è il punto che determina la stabilità (una gru, una nave o uno scaffale si rovesciano quando la verticale per il baricentro esce dalla base d'appoggio).</p>
+
+        <h4>Portata e flusso in un condotto</h4>
+        <p>Quanta acqua passa al secondo in un tubo? Se la velocità fosse uniforme basterebbe "velocità per area". Ma nella realtà il fluido è più veloce al centro e quasi fermo a contatto con le pareti (attrito viscoso): la velocità è una <em>funzione</em> del punto della sezione, e la portata è un integrale.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (portata volumetrica)</span>
+          <div class="formula-block">$$Q=\iint_{S}\mathbf{v}\cdot\mathbf{n}\,dS$$</div>
+          <p>cioè il <span class="glossario-term" data-term="flusso">flusso</span> del campo di velocità attraverso la sezione $S$. Si misura in $\text{m}^3/\text{s}$.</p>
+        </div>
+        <p>Per un tubo cilindrico in regime laminare il profilo di velocità è parabolico (profilo di Poiseuille): $v(r)=v_0\left(1-\dfrac{r^2}{R^2}\right)$, massimo al centro e nullo alla parete. L'integrale si fa in coordinate polari e dà un risultato che vale la pena ricordare: la portata è <strong>metà</strong> di quella che avresti con velocità uniforme pari a $v_0$ (vedi l'Esempio 5). È anche il motivo per cui un tubo leggermente più stretto riduce la portata in modo drammatico: nella formula completa di Poiseuille la portata va come $R^4$.</p>
+        <p>Il teorema della divergenza, applicato a un tratto di condotto, dà inoltre l'<strong>equazione di continuità</strong>: se il fluido è incomprimibile e non ci sono perdite, quello che entra deve uscire, cioè $\nabla\cdot\mathbf{v}=0$. È il motivo per cui strozzando un tubo l'acqua esce più veloce: stessa portata, sezione minore.</p>
+
+        <h4>Carichi distribuiti</h4>
+        <p>Una trave non regge mai "una forza in un punto": regge il proprio peso, la neve sul tetto, il vento, un solaio. Tutte forze <strong>distribuite</strong>, descritte da un carico $q(x)$ misurato in newton al metro. Due integrali riassumono tutto:</p>
+        <div class="formula-block">$$R=\int_0^L q(x)\,dx \qquad\text{(risultante)},\qquad \bar x=\frac{\displaystyle\int_0^L x\,q(x)\,dx}{\displaystyle\int_0^L q(x)\,dx}\qquad\text{(punto di applicazione)}$$</div>
+        <p>La seconda formula è di nuovo un baricentro: quello del <em>diagramma</em> del carico. Esempio lampo: un carico triangolare che cresce da $0$ a $q_0$ su una trave lunga $L$ ha risultante $R=\tfrac12 q_0L$ (l'area del triangolo) applicata a $\bar x=\tfrac23 L$ (il baricentro del triangolo). Con questi due numeri l'ingegnere sostituisce infinite forzine con una sola forza equivalente e calcola le reazioni dei vincoli.</p>
+
+        <h4>Ottimizzazione di forma: scatola, silo, serbatoio</h4>
+        <p>È la famiglia di problemi che compare in ogni esame e in ogni azienda: <strong>a volume fissato, quale forma usa meno materiale?</strong> Meno materiale significa meno costo, meno peso, meno dispersione termica.</p>
+        <p>Lo schema è sempre identico: scrivi la grandezza da minimizzare (la superficie $S$), scrivi il vincolo (il volume $V$ assegnato), poi scegli una delle due strade. <strong>Sostituzione</strong>: ricavi una variabile dal vincolo e minimizzi una funzione di due variabili con $\nabla S=\mathbf{0}$ e l'<span class="glossario-term" data-term="hessiano">hessiano</span>. <strong>Lagrange</strong>: imponi $\nabla S=\lambda\nabla V$. I risultati classici sono da tenere a mente perché in natura e in industria si ritrovano ovunque:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Oggetto</th><th>Vincolo</th><th>Forma ottima</th><th>Dove lo vedi</th></tr></thead>
+          <tbody>
+            <tr><td>Scatola senza coperchio</td><td>volume assegnato</td><td>base quadrata, altezza = metà del lato</td><td>imballaggi, vaschette</td></tr>
+            <tr><td>Lattina cilindrica chiusa</td><td>volume assegnato</td><td>$h=2r$ (altezza = diametro)</td><td>barattoli, silos, serbatoi</td></tr>
+            <tr><td>Recipiente a superficie minima</td><td>volume assegnato, forma libera</td><td>la sfera</td><td>bolle di sapone, gocce, gasometri</td></tr>
+          </tbody>
+        </table>
+        <p>La riga più bella è l'ultima: fra <em>tutte</em> le forme possibili con un dato volume, la sfera è quella con la superficie minima. Non serve un ingegnere per scoprirlo: una bolla di sapone risolve il problema da sola, perché la tensione superficiale minimizza l'energia, che è proporzionale all'area. La natura fa ottimizzazione vincolata senza sapere di farla.</p>
+
+        <h3 id="teoria-economia">4.4 Economia: scelte vincolate, prezzi ombra e minimi quadrati</h3>
+
+        <h4>Utilità, budget e moltiplicatori</h4>
+        <p>L'economia matematica è, in larghissima parte, ottimizzazione vincolata. Il consumatore massimizza l'<strong>utilità</strong> $U(x,y)$ (la soddisfazione che ricava da quantità $x$ e $y$ di due beni) sotto il <strong>vincolo di bilancio</strong> $p_xx+p_yy=b$. L'impresa massimizza la produzione sotto un vincolo di costo, oppure minimizza il costo a produzione fissata: sono lo stesso problema visto da due lati.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Il problema del consumatore</span>
+          <div class="formula-block">$$\max\ U(x,y)\quad \text{con}\quad p_xx+p_yy=b \qquad\Longrightarrow\qquad \nabla U=\lambda\nabla g,\quad g(x,y)=p_xx+p_yy$$</div>
+          <p>Poiché $g$ è lineare, $\nabla g=(p_x,p_y)$; l'uguaglianza vettoriale $\nabla U=\lambda\nabla g$ letta componente per componente è allora $U_x=\lambda p_x$ e $U_y=\lambda p_y$. Dividendo la prima per $p_x$ e la seconda per $p_y$ si isola $\lambda$ in entrambe, e si ottiene la <strong>condizione di ottimo</strong></p>
+          <div class="formula-block">$$\frac{U_x}{p_x}=\frac{U_y}{p_y}=\lambda$$</div>
+        </div>
+        <p>Leggi la condizione a parole: <strong>l'ultimo euro speso in ciascun bene deve rendere uguale</strong>. $U_x$ è l'utilità marginale del bene $x$ (quanta soddisfazione in più ti dà un'unità in più), e $U_x/p_x$ è la soddisfazione per euro speso. Se in un bene rendesse di più, sposteresti soldi lì: quindi all'ottimo i due rapporti si eguagliano. La geometria del <a href="06-moltiplicatori-lagrange.html">capitolo 6</a> è la stessa: la curva di indifferenza più alta raggiungibile <em>tocca</em> la retta di bilancio, e nel punto di tangenza i due gradienti sono paralleli.</p>
+        <p>La funzione di utilità più usata è la <strong>Cobb-Douglas</strong> $U(x,y)=x^{\alpha}y^{\beta}$, con $\alpha,\beta$ positivi: cresce in entrambi i beni ma con rendimenti decrescenti (il secondo caffè della giornata ti piace meno del primo), e i suoi gradienti si calcolano in due righe. La stessa forma, con $K$ e $L$ al posto di $x$ e $y$, descrive la produzione di un'impresa in funzione di capitale e lavoro.</p>
+
+        <h4>Il moltiplicatore come prezzo ombra</h4>
+        <p>Qui arriva il punto che gli studenti spesso saltano e gli economisti considerano il più importante di tutti. Nel capitolo 6 $\lambda$ era un numero di servizio, da calcolare e buttare. In economia $\lambda$ <strong>è il risultato</strong>.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Interpretazione del moltiplicatore</span>
+          <p>Sia $U^*(b)$ il valore ottimo dell'obiettivo quando il vincolo è $g=b$. Allora</p>
+          <div class="formula-block">$$\frac{dU^*}{db}=\lambda$$</div>
+          <p>cioè $\lambda$ misura di quanto migliora l'ottimo se si allenta il vincolo di <strong>una unità</strong>.</p>
+        </div>
+        <p>Per questo $\lambda$ si chiama <strong>prezzo ombra</strong> (<em>shadow price</em>): è il prezzo massimo che saresti disposto a pagare per una unità in più di risorsa. Se il vincolo è il budget, $\lambda$ è quanta utilità ti dà un euro in più. Se il vincolo è la capacità di un impianto, $\lambda$ è quanto profitto in più ti darebbe un'ora di macchina aggiuntiva: se $\lambda$ vale $40$ euro/ora e affittare la macchina costa $25$ euro/ora, affittare conviene. Se un vincolo ha $\lambda=0$, quel vincolo non sta stringendo: allentarlo non serve a niente.</p>
+        <p>È anche il modo giusto di leggere le <strong>unità di misura</strong> di $\lambda$: sono sempre "unità dell'obiettivo diviso unità del vincolo". Utilità per euro, profitto per ora, produzione per euro. Se il tuo $\lambda$ ha unità che non tornano, hai sbagliato a impostare.</p>
+
+        <h4>Il metodo dei minimi quadrati</h4>
+        <p>Hai una nuvola di dati sperimentali $(x_1,y_1),\dots,(x_n,y_n)$ e vuoi la retta che li riassume meglio. "Meglio" come? L'idea di Gauss e Legendre: la retta $y=mx+q$ che rende minima la <strong>somma dei quadrati</strong> degli scarti verticali.</p>
+        <div class="formula-block">$$S(m,q)=\sum_{i=1}^{n}\big(y_i-mx_i-q\big)^2$$</div>
+        <p>Nota bene che cosa è successo: $S$ è una funzione di <strong>due variabili</strong>, $m$ e $q$ — i dati sono numeri fissi, le incognite sono i coefficienti della retta. Minimizzarla è un problema del <a href="05-hessiano-massimi-minimi.html">capitolo 5</a>: annullare le due <span class="glossario-term" data-term="derivata-parziale">derivate parziali</span> e verificare con l'<span class="glossario-term" data-term="hessiano">hessiano</span>. Lo faremo per intero nella <a href="#dimostrazioni">Dimostrazione 2</a>, e il risultato sono le <em>equazioni normali</em>:</p>
+        <div class="formula-block">$$m=\frac{n\sum x_iy_i-\sum x_i\sum y_i}{n\sum x_i^2-\left(\sum x_i\right)^2},\qquad q=\bar y-m\,\bar x$$</div>
+        <p>Perché i <em>quadrati</em> e non i valori assoluti? Tre motivi: i quadrati puniscono molto gli errori grossi, sono derivabili ovunque (il valore assoluto no, ha uno spigolo), e portano a un sistema lineare risolvibile in forma chiusa. È lo stesso principio che sta dietro alla regressione lineare di ogni foglio di calcolo e alla prima lezione di ogni corso di statistica o di machine learning.</p>
+
+        <h3 id="teoria-probabilita">4.5 Probabilità e statistica: densità congiunte e la gaussiana</h3>
+
+        <h4>Probabilità come integrale doppio</h4>
+        <p>Quando due grandezze aleatorie si osservano insieme — altezza e peso, temperatura e umidità, tempo di attesa e durata della chiamata — la loro legge si descrive con una <strong>densità congiunta</strong> $f(x,y)$, e la probabilità di un evento è l'<span class="glossario-term" data-term="integrale-doppio">integrale doppio</span> della densità sulla regione corrispondente.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione (densità congiunta)</span>
+          <p>$f(x,y)$ è una densità di probabilità se $f\ge 0$ e</p>
+          <div class="formula-block">$$\iint_{\mathbb{R}^2} f(x,y)\,dA=1$$</div>
+          <p>e per ogni regione $D$ del piano</p>
+          <div class="formula-block">$$P\big((X,Y)\in D\big)=\iint_D f(x,y)\,dA$$</div>
+        </div>
+        <p>L'immagine mentale è ottima: la densità è un "telo" sopra il piano, e la probabilità è il <strong>volume</strong> sotto il telo sopra la regione che ti interessa. La condizione di normalizzazione dice che il volume totale vale $1$, cioè che qualcosa succede di sicuro. Da qui discende subito che nessuna probabilità può superare $1$: un pezzo di volume non può essere maggiore del totale.</p>
+        <p>Il <strong>valore atteso</strong> (la media) di una funzione delle due variabili è di nuovo un integrale doppio, con la densità nel ruolo di peso:</p>
+        <div class="formula-block">$$E[X]=\iint x\,f(x,y)\,dA,\qquad E[g(X,Y)]=\iint g(x,y)\,f(x,y)\,dA$$</div>
+        <p>Riconosci la struttura? È identica al baricentro: media pesata delle posizioni, con la densità al posto della massa. Non è una coincidenza — è letteralmente lo stesso integrale, e infatti in meccanica statistica le due letture si usano in modo intercambiabile.</p>
+        <p>Due variabili si dicono <strong>indipendenti</strong> quando la densità congiunta si fattorizza, $f(x,y)=f_X(x)\,f_Y(y)$: in quel caso l'integrale doppio si spezza nel prodotto di due integrali semplici, e i conti diventano facilissimi. È il primo controllo da fare in ogni esercizio.</p>
+
+        <h4>La gaussiana e il motivo per cui servono le polari</h4>
+        <p>La curva a campana di Gauss</p>
+        <div class="formula-block">$$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\,e^{-\frac{(x-\mu)^2}{2\sigma^2}}$$</div>
+        <p>è la distribuzione più importante della scienza: errori di misura, altezze, rumore elettronico, medie di tanti effetti piccoli e indipendenti finiscono tutti lì (è il teorema del limite centrale). Ma c'è un problema tecnico famosissimo: la funzione $e^{-x^2}$ <strong>non ha primitiva elementare</strong>. Nessuna combinazione di polinomi, esponenziali, logaritmi e funzioni trigonometriche la restituisce derivando. Come si fa allora a sapere che quel $\sqrt{2\pi}$ davanti è proprio il numero giusto perché l'area valga $1$?</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🎩</span> Il trucco più elegante del calcolo</div>
+          <p>Se l'integrale in una dimensione è impossibile, <strong>passa a due dimensioni</strong>. Elevando al quadrato, $I^2$ diventa un integrale doppio su tutto il piano di $e^{-(x^2+y^2)}$: una funzione che dipende <em>solo dalla distanza dall'origine</em>. E per le funzioni a simmetria circolare le <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span> sono fatte apposta. Il colpo di scena è il fattore $r$ dello jacobiano, $dA=r\,dr\,d\theta$: quel $r$ regalato è esattamente la "derivata interna" che mancava, e improvvisamente $r\,e^{-r^2}$ si integra a vista.</p>
+        </div>
+        <p>Il conto completo è nella <a href="#dimostrazioni">Dimostrazione 3</a> e dà il celebre risultato</p>
+        <div class="formula-block">$$\int_{-\infty}^{+\infty}e^{-x^2}\,dx=\sqrt{\pi}$$</div>
+        <p>Da lì, con una sostituzione lineare, si ricava la costante $\dfrac{1}{\sigma\sqrt{2\pi}}$ della gaussiana. Morale: un problema di Analisi 1 irrisolvibile è stato risolto salendo in Analisi 2. È la dimostrazione più convincente che aggiungere una dimensione, a volte, semplifica invece di complicare.</p>
+
+        <h3 id="teoria-ml">4.6 Machine learning: la discesa del gradiente</h3>
+
+        <h4>La pallina nella valle</h4>
+        <p>Addestrare un modello significa una cosa sola: <strong>trovare i parametri che rendono minimo l'errore</strong>. Si definisce una <em>funzione di costo</em> (o di perdita) $J(w_1,w_2,\dots,w_n)$ che misura quanto il modello sbaglia sui dati, e si cerca il suo minimo. Il problema è che $n$ può valere milioni: non puoi risolvere $\nabla J=\mathbf{0}$ a mano, e nemmeno un computer può farlo simbolicamente.</p>
+        <p>La soluzione è iterativa ed è quella dello scalatore nella nebbia. Immagina il grafico di $J$ come un paesaggio di colline e valli, e immagina di lasciarci cadere una <strong>pallina</strong>: la pallina rotola nella direzione di massima discesa, cioè $-\nabla J$, e si ferma sul fondo. L'algoritmo simula quel rotolare a passi discreti:</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Algoritmo (discesa del gradiente)</span>
+          <div class="formula-block">$$\mathbf{w}_{k+1}=\mathbf{w}_k-\eta\,\nabla J(\mathbf{w}_k)$$</div>
+          <p>dove $\eta$ (positivo) è il <strong>learning rate</strong>, cioè la lunghezza del passo. Si applica componente per componente: calcolo il gradiente <em>nel punto in cui mi trovo adesso</em>, moltiplico ogni sua componente per $\eta$ e la sottraggo alla corrispondente coordinata di $\mathbf{w}_k$. Lo vedremo con i numeri nell'Esempio 9.</p>
+        </div>
+        <p>Il segno meno è tutto: il <span class="glossario-term" data-term="gradiente">gradiente</span> punta verso la salita più ripida (capitolo 4), quindi per scendere si va all'opposto. E si va proprio <em>lì</em> perché, fra tutte le direzioni possibili, $-\nabla J$ è quella in cui la funzione cala più in fretta: la derivata direzionale è minima esattamente in quella direzione.</p>
+
+        <svg viewBox="0 0 480 230" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Una pallina che scende lungo una valle a passi successivi verso il minimo, con un minimo locale a lato">
+          <path d="M 30 40 C 90 150, 120 60, 170 120 C 210 168, 260 190, 320 150 C 370 118, 420 60, 460 35" fill="none" stroke="var(--color-primary)" stroke-width="2.8"/>
+          <circle cx="60" cy="105" r="8" fill="var(--color-secondary)"/>
+          <circle cx="118" cy="88" r="6" fill="var(--color-secondary)" opacity="0.55"/>
+          <circle cx="175" cy="127" r="6" fill="var(--color-secondary)" opacity="0.55"/>
+          <circle cx="245" cy="180" r="6" fill="var(--color-secondary)" opacity="0.55"/>
+          <circle cx="292" cy="180" r="8" fill="var(--color-danger)"/>
+          <text x="42" y="90" font-size="11" font-weight="700" fill="var(--color-secondary)">start</text>
+          <text x="252" y="210" font-size="11" font-weight="700" fill="var(--color-danger)">minimo</text>
+          <text x="96" y="52" font-size="11" fill="var(--color-text-muted)">minimo locale</text>
+          <circle cx="106" cy="92" r="3" fill="var(--color-text-muted)"/>
+          <text x="360" y="100" font-size="12" font-weight="700" fill="var(--color-primary)">costo J(w)</text>
+        </svg>
+
+        <h4>Il learning rate: il parametro che rovina o salva tutto</h4>
+        <p>Scegliere $\eta$ è la decisione più delicata dell'addestramento, e il motivo è facilissimo da vedere con lo scalatore.</p>
+        <ul>
+          <li><strong>$\eta$ troppo piccolo</strong>: passettini minuscoli. L'algoritmo converge, ma può servire un numero di iterazioni impraticabile. Si dice che "l'addestramento non parte".</li>
+          <li><strong>$\eta$ giusto</strong>: il costo scende rapidamente e si stabilizza. È la curva a "L" che si vede nei grafici di training.</li>
+          <li><strong>$\eta$ troppo grande</strong>: il passo scavalca il fondovalle e si finisce più in alto dell'altro versante. Il costo <em>oscilla</em> o addirittura <em>esplode</em>. Vedremo nell'Esempio 9 un caso in cui, con $\eta$ appena sopra una soglia, i valori raddoppiano di segno a ogni passo e l'algoritmo diverge.</li>
+        </ul>
+        <p>Per questo nella pratica si usano <em>schedule</em> che riducono $\eta$ nel tempo (passi lunghi all'inizio, corti alla fine, come chi scende di corsa e poi rallenta vicino a casa) e varianti come <em>momentum</em> e <em>Adam</em>, che regolano il passo automaticamente e usano l'inerzia della pallina per attraversare zone piatte.</p>
+
+        <h4>Minimi locali e punti di sella</h4>
+        <p>La nebbia ha un prezzo: il gradiente è un'informazione <strong>locale</strong>, e non sa nulla di quello che c'è oltre la collina. Due trappole, entrambe vecchie conoscenze del <a href="05-hessiano-massimi-minimi.html">capitolo 5</a>:</p>
+        <p><strong>Minimi locali.</strong> La pallina si ferma in una conca a mezza costa credendo di essere arrivata. In $\nabla J=\mathbf{0}$ con hessiano definito positivo l'algoritmo si ferma legittimamente, ma non è il minimo globale. Rimedi pratici: partire da più punti iniziali diversi, usare il rumore dei mini-batch (la discesa <em>stocastica</em>), aggiungere momentum.</p>
+        <p><strong>Punti di sella.</strong> Peggio ancora: un <span class="glossario-term" data-term="punto-di-sella">punto di sella</span> ha gradiente nullo ma non è un minimo — scende in alcune direzioni e sale in altre. Il terreno sotto i piedi è piatto, la pallina rallenta fino quasi a fermarsi, e l'addestramento sembra bloccato per migliaia di iterazioni. In dimensione alta, cosa sorprendente, i punti di sella sono <em>molto</em> più numerosi dei minimi locali: perché un punto critico sia un minimo servono tutte le direzioni "in su", e con milioni di direzioni è statisticamente improbabile. Ecco perché lo studio dell'<span class="glossario-term" data-term="hessiano">hessiano</span>, che sembrava un esercizio scolastico, è diventato un tema di ricerca applicata.</p>
+
+        <h4>La regola della catena dietro la backpropagation</h4>
+        <p>Resta una domanda: come si calcola $\nabla J$ quando il modello ha milioni di parametri incastrati in decine di strati? La risposta è la <strong>regola della catena</strong> in più variabili, l'unica vera magia delle reti neurali.</p>
+        <p>Una rete neurale è una <strong>composizione</strong> di funzioni: l'ingresso entra nel primo strato, l'uscita del primo strato entra nel secondo, e così via fino al costo finale. In simboli, schematicamente,</p>
+        <div class="formula-block">$$J=\ell\big(a_L\big),\qquad a_L=\sigma\big(z_L\big),\qquad z_L=w_L\,a_{L-1}+b_L,\qquad \dots$$</div>
+        <p>Per sapere quanto il costo cambia se muovo un peso $w$ sepolto nel terzo strato, la regola della catena moltiplica le sensibilità lungo tutta la catena:</p>
+        <div class="formula-block">$$\frac{\partial J}{\partial w}=\frac{\partial J}{\partial a_L}\cdot\frac{\partial a_L}{\partial z_L}\cdot\frac{\partial z_L}{\partial a_{L-1}}\cdots\frac{\partial z_k}{\partial w}$$</div>
+        <p>La <strong>backpropagation</strong> è semplicemente questa formula applicata con intelligenza: invece di rifare tutta la catena per ogni singolo peso (costo proibitivo), si parte dall'uscita e si torna indietro <em>una sola volta</em>, riutilizzando a ogni strato i fattori già calcolati. Il nome dice tutto: l'errore si <em>propaga all'indietro</em>. Ogni pezzo che moltiplichi è una derivata parziale del capitolo 3; la loro composizione è la regola della catena del capitolo 4. Nessuna matematica nuova: solo la tua, usata bene.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🤖</span> Il collegamento che vale l'intero capitolo</div>
+          <p>Ogni modello linguistico, ogni riconoscitore di immagini, ogni sistema di raccomandazione che usi oggi è addestrato così: si definisce un costo, si calcola il gradiente con la regola della catena, si fa un passo nella direzione $-\nabla J$, si ripete milioni di volte. Il capitolo 3 (derivate parziali), il capitolo 4 (gradiente e regola della catena) e il capitolo 5 (minimi e selle) <strong>sono</strong> l'intelligenza artificiale moderna, scritti in una notazione diversa.</p>
+        </div>
+
+        <h3 id="teoria-mappa-libro">4.7 La mappa finale: come si incastra tutto il libro</h3>
+        <p>Siamo alla fine, ed è il momento di guardare l'intero percorso dall'alto. Il libro ha tre blocchi, e ciascuno serve al successivo.</p>
+        <p><strong>Parte 0 — i prerequisiti.</strong> Insiemi, disequazioni, funzioni elementari, trigonometria, geometria analitica, logaritmi. Non erano "Analisi": erano l'alfabeto. Senza saper risolvere una disequazione non si trova un dominio; senza la geometria analitica non si riconosce una circonferenza dentro un integrale doppio; senza trigonometria non esistono le coordinate polari.</p>
+        <p><strong>Parte 1 — Analisi 1, una variabile.</strong> Qui è nato tutto: il concetto di limite, la derivata come velocità istantanea, l'integrale come somma di infiniti pezzettini, e il ponte fra i due, il teorema fondamentale del calcolo. Tutta la Parte 1 studia funzioni con <em>un</em> ingresso e <em>una</em> uscita: una strada a senso unico.</p>
+        <p><strong>Parte 2 — Analisi 2, più variabili.</strong> Ogni singolo concetto della Parte 1 è stato ripreso e generalizzato. Non sostituito: <em>generalizzato</em>. Se metti le due colonne una accanto all'altra, la simmetria è impressionante.</p>
+
+        <table class="tabella-comparativa">
+          <thead><tr><th>Analisi 1 — una variabile</th><th>Analisi 2 — più variabili</th><th>L'idea che non cambia</th></tr></thead>
+          <tbody>
+            <tr><td>Derivata $f'(x)$: un numero</td><td><span class="glossario-term" data-term="gradiente">Gradiente</span> $\nabla f=(f_x,f_y)$: un vettore</td><td>quanto e in che verso cambia la funzione</td></tr>
+            <tr><td>Retta tangente $y=f(x_0)+f'(x_0)(x-x_0)$</td><td><span class="glossario-term" data-term="piano-tangente">Piano tangente</span> $z=f(P_0)+\nabla f(P_0)\cdot(P-P_0)$</td><td>approssimare con un oggetto lineare</td></tr>
+            <tr><td>Massimi e minimi: $f'=0$, poi segno di $f''$</td><td>Punti critici $\nabla f=\mathbf{0}$, poi <span class="glossario-term" data-term="hessiano">hessiano</span> (con le selle in più)</td><td>prima trova i punti piatti, poi classificali</td></tr>
+            <tr><td>Massimi vincolati: sostituisci il vincolo</td><td><span class="glossario-term" data-term="moltiplicatori-di-lagrange">Moltiplicatori di Lagrange</span> $\nabla f=\lambda\nabla g$</td><td>all'ottimo, obiettivo e vincolo sono tangenti</td></tr>
+            <tr><td>Integrale su un intervallo $\displaystyle\int_a^b f\,dx$</td><td><span class="glossario-term" data-term="integrale-doppio">Integrali doppi</span> e <span class="glossario-term" data-term="integrale-triplo">tripli</span> $\displaystyle\iint_D,\ \iiint_V$</td><td>affetta, misura, somma, passa al limite</td></tr>
+            <tr><td>Sostituzione $x=g(u)$, fattore $g'(u)$</td><td>Cambio di variabile con lo jacobiano ($r$ in polari)</td><td>cambiare coordinate costa un fattore di dilatazione</td></tr>
+            <tr><td>Primitiva $F$ con $F'=f$</td><td><span class="glossario-term" data-term="potenziale-scalare">Potenziale</span> $U$ con $\nabla U=\mathbf{F}$ (<span class="glossario-term" data-term="campo-conservativo">campo conservativo</span>)</td><td>risalire dalla variazione alla grandezza</td></tr>
+            <tr><td>Teorema fondamentale $\displaystyle\int_a^b f'=f(b)-f(a)$</td><td>Green, <span class="glossario-term" data-term="teorema-di-gauss">Gauss</span>, <span class="glossario-term" data-term="teorema-di-stokes">Stokes</span></td><td>quello che accade dentro si legge sul bordo</td></tr>
+            <tr><td>Lunghezza d'arco $\displaystyle\int\sqrt{1+(f')^2}\,dx$</td><td>Integrali curvilinei e di superficie</td><td>misurare oggetti curvi sommando pezzetti dritti</td></tr>
+            <tr><td>Equazioni: l'incognita è un numero</td><td><span class="glossario-term" data-term="equazione-differenziale">Equazioni differenziali</span>: l'incognita è una funzione</td><td>si conosce una relazione, si cerca chi la soddisfa</td></tr>
+          </tbody>
+        </table>
+
+        <svg viewBox="0 0 620 180" style="max-width:640px;margin:1.6em auto;display:block;" role="img" aria-label="Schema del libro: Parte 0 prerequisiti, poi Analisi 1 in una variabile, poi Analisi 2 in più variabili, poi le applicazioni">
+          <rect x="10" y="55" width="130" height="70" rx="12" fill="var(--color-bg-alt)" stroke="var(--color-border)" stroke-width="2"/>
+          <text x="75" y="85" font-size="13" font-weight="800" text-anchor="middle" fill="currentColor">Parte 0</text>
+          <text x="75" y="104" font-size="11" text-anchor="middle" fill="var(--color-text-muted)">l'alfabeto</text>
+          <rect x="165" y="55" width="130" height="70" rx="12" fill="var(--color-primary)" opacity="0.16" stroke="var(--color-primary)" stroke-width="2"/>
+          <text x="230" y="85" font-size="13" font-weight="800" text-anchor="middle" fill="currentColor">Analisi 1</text>
+          <text x="230" y="104" font-size="11" text-anchor="middle" fill="var(--color-text-muted)">una variabile</text>
+          <rect x="320" y="55" width="130" height="70" rx="12" fill="var(--color-secondary)" opacity="0.16" stroke="var(--color-secondary)" stroke-width="2"/>
+          <text x="385" y="85" font-size="13" font-weight="800" text-anchor="middle" fill="currentColor">Analisi 2</text>
+          <text x="385" y="104" font-size="11" text-anchor="middle" fill="var(--color-text-muted)">più variabili</text>
+          <rect x="475" y="55" width="135" height="70" rx="12" fill="var(--color-secondary)" opacity="0.30" stroke="var(--color-secondary)" stroke-width="2.4"/>
+          <text x="542" y="85" font-size="13" font-weight="800" text-anchor="middle" fill="currentColor">Capitolo 14</text>
+          <text x="542" y="104" font-size="11" text-anchor="middle" fill="var(--color-text-muted)">il mondo reale</text>
+          <path d="M 142 90 L 161 90" stroke="currentColor" stroke-width="2"/>
+          <path d="M 297 90 L 316 90" stroke="currentColor" stroke-width="2"/>
+          <path d="M 452 90 L 471 90" stroke="currentColor" stroke-width="2"/>
+          <text x="310" y="35" font-size="11" text-anchor="middle" fill="var(--color-text-muted)">ogni blocco usa tutto quello che viene prima</text>
+        </svg>
+
+        <p>Questa tabella è, letteralmente, il libro in una pagina. Se sai leggerla da sinistra a destra spiegando <em>perché</em> ogni riga è la stessa idea in due vesti, hai capito l'Analisi. Ed è anche, non per caso, una delle domande d'orale più frequenti in assoluto.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+        <p>Tre derivazioni, scelte perché sono <em>le formule applicative più usate del capitolo</em>: il baricentro (fisica e ingegneria), i minimi quadrati (economia e statistica) e l'integrale di Gauss (probabilità). Ognuna è preceduta dall'idea intuitiva: capisci prima <em>perché deve venire così</em>, poi guardi i conti.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Derivazione 1</span>
+          <p><em class="nome">La formula del baricentro.</em> Per una lamina $D$ di densità $\rho(x,y)$ e massa $M=\iint_D\rho\,dA$, l'ascissa del baricentro è $\ \bar x=\dfrac{1}{M}\displaystyle\iint_D x\,\rho(x,y)\,dA$.</p>
+        </div>
+        <p><strong>L'idea intuitiva.</strong> Pensa a un'altalena a bilico. Due bambini stanno in equilibrio quando i <em>momenti</em> — peso per distanza dal fulcro — si compensano: il bambino leggero deve stare più lontano. Il baricentro è il punto in cui piazzeresti il fulcro perché <strong>tutti i momenti si annullino insieme</strong>. Se poi la "massa" è distribuita con continuità invece che concentrata in due bambini, la somma dei momenti diventa un integrale. Tutto qui: la formula è la legge della leva scritta con l'integrale.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (equilibrio dei momenti + somme di Riemann)</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Suddividiamo $D$ in tanti rettangolini di area $\Delta A$. Il rettangolino $i$-esimo, centrato in $(x_i,y_i)$, ha massa $\Delta m_i\approx\rho(x_i,y_i)\,\Delta A$: per rettangolini piccoli la densità è praticamente costante lì dentro.</span>
+            <span class="esempio__passo">Imponiamo l'equilibrio rispetto a un fulcro posto in $x=\bar x$. Il momento del pezzetto $i$ è (braccio) per (massa), cioè $(x_i-\bar x)\,\Delta m_i$. La condizione di equilibrio è che la somma di tutti i momenti sia nulla: $\ \displaystyle\sum_i (x_i-\bar x)\,\Delta m_i=0$.</span>
+            <span class="esempio__passo">Spezziamo la somma e portiamo fuori $\bar x$, che è un numero fisso: $\ \displaystyle\sum_i x_i\,\Delta m_i-\bar x\sum_i \Delta m_i=0$, cioè $\ \bar x\displaystyle\sum_i \Delta m_i=\sum_i x_i\,\Delta m_i$.</span>
+            <span class="esempio__passo">Passiamo al limite per $\Delta A\to 0$. A sinistra $\sum_i\Delta m_i\to M=\iint_D\rho\,dA$ (la massa totale); a destra la somma di Riemann della funzione $x\,\rho(x,y)$ converge all'integrale doppio.</span>
+          </p>
+          <div class="formula-block">$$\bar x\cdot M=\iint_D x\,\rho(x,y)\,dA\qquad\Longrightarrow\qquad \bar x=\frac{1}{M}\iint_D x\,\rho(x,y)\,dA.\qquad\text{∎}$$</div>
+          <p>Identicamente per $\bar y$ (equilibrio rispetto a un fulcro orizzontale) e, con $\iiint_V$, per i solidi. Nota il controllo di coerenza: se $\rho$ è costante, $\rho$ si semplifica fra numeratore e denominatore e resta il puro <strong>centroide geometrico</strong> $\bar x=\frac1A\iint_D x\,dA$ — il baricentro di un corpo omogeneo dipende solo dalla forma, come deve essere.</p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Derivazione 2</span>
+          <p><em class="nome">La retta dei minimi quadrati.</em> Dati $n$ punti $(x_i,y_i)$, la retta $y=mx+q$ che minimizza $S(m,q)=\sum_i(y_i-mx_i-q)^2$ ha coefficienti $\ m=\dfrac{n\sum x_iy_i-\sum x_i\sum y_i}{n\sum x_i^2-(\sum x_i)^2}\ $ e $\ q=\bar y-m\bar x$.</p>
+        </div>
+        <p><strong>L'idea intuitiva.</strong> Immagina la retta come un'asta rigida e ogni dato collegato all'asta da una <strong>molla verticale</strong>. L'energia di una molla tesa di $e$ vale $\tfrac12 k e^2$: proporzionale al <em>quadrato</em> dello scarto. La retta si assesta dove l'energia totale delle molle è minima — ed è esattamente la retta dei minimi quadrati. Da lì in poi è puro capitolo 5: una funzione di due variabili ($m$ e $q$, non $x$ e $y$: i dati sono numeri fissi!) di cui cerchiamo il minimo annullando le derivate parziali.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (derivate parziali ed equazioni normali)</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Deriviamo rispetto a $q$ usando la regola della catena su ogni addendo: $\ \dfrac{\partial S}{\partial q}=\displaystyle\sum_i 2\big(y_i-mx_i-q\big)\cdot(-1)=-2\sum_i\big(y_i-mx_i-q\big)$.</span>
+            <span class="esempio__passo">Deriviamo rispetto a $m$: la derivata interna ora vale $-x_i$, quindi $\ \dfrac{\partial S}{\partial m}=-2\displaystyle\sum_i x_i\big(y_i-mx_i-q\big)$.</span>
+            <span class="esempio__passo">Poniamo entrambe uguali a zero e dividiamo per $-2$: resta $\sum_i\left(y_i-mx_i-q\right)=0$ e $\sum_i x_i\left(y_i-mx_i-q\right)=0$. Spezziamo ora ciascuna somma nei suoi tre pezzi, portando fuori dal simbolo di somma le costanti $m$ e $q$ (che non dipendono dall'indice $i$) e ricordando che $\sum_i q=n\,q$ perché si somma $n$ volte lo stesso numero. Dalla prima: $\sum_i y_i-m\sum_i x_i-nq=0$; dalla seconda, dopo aver svolto il prodotto $x_i\left(y_i-mx_i-q\right)=x_iy_i-mx_i^2-qx_i$: $\sum_i x_iy_i-m\sum_i x_i^2-q\sum_i x_i=0$. Portando a destra i termini negativi si ottiene il sistema lineare nelle incognite $m,q$ detto delle <strong>equazioni normali</strong>: $$\begin{cases}\displaystyle\sum_i y_i=m\sum_i x_i+n\,q\\[6pt] \displaystyle\sum_i x_iy_i=m\sum_i x_i^2+q\sum_i x_i\end{cases}$$</span>
+            <span class="esempio__passo">Dalla prima equazione, dividendo <em>tutti</em> i termini per $n$ e usando le definizioni di media $\bar y=\frac1n\sum_i y_i$ e $\bar x=\frac1n\sum_i x_i$: $\ \bar y=m\bar x+q$, cioè $\ q=\bar y-m\bar x$. <strong>Conseguenza notevole: la retta passa sempre per il punto medio $(\bar x,\bar y)$ della nuvola di dati.</strong></span>
+            <span class="esempio__passo">Sostituisco questa espressione di $q$ nella seconda equazione, al posto di $q$: $\ \sum_i x_iy_i=m\sum_i x_i^2+\left(\bar y-m\bar x\right)\sum_i x_i$. Ora riscrivo le medie come $\bar x=\frac1n\sum_i x_i$ e $\bar y=\frac1n\sum_i y_i$ e moltiplico ogni termine per $n$: $\ n\sum_i x_iy_i=mn\sum_i x_i^2+\sum_i y_i\sum_i x_i-m\left(\sum_i x_i\right)^2$. Raccolgo $m$ a destra e porto a sinistra il termine senza $m$: $\ n\sum_i x_iy_i-\sum_i x_i\sum_i y_i=m\left(n\sum_i x_i^2-\left(\sum_i x_i\right)^2\right)$. Divido entrambi i membri per la parentesi e ottengo la formula dell'enunciato (quel denominatore è, a meno di un fattore $n$, la varianza delle $x$: si annulla solo se tutti gli $x_i$ sono uguali, cioè se i dati stanno su una verticale e nessuna retta $y=mx+q$ può interpolarli).</span>
+            <span class="esempio__passo"><strong>È davvero un minimo?</strong> Le derivate seconde sono $S_{qq}=2n$, $S_{mm}=2\sum x_i^2$, $S_{mq}=2\sum x_i$. Il determinante hessiano vale $4\big(n\sum x_i^2-(\sum x_i)^2\big)$, positivo per la disuguaglianza di Cauchy-Schwarz (se non tutti gli $x_i$ coincidono), e $S_{qq}$ è positivo: hessiano definito positivo, dunque <strong>minimo</strong>. ∎</span>
+          </p>
+          <p>Osserva quanto è potente il metodo: nessun tentativo, nessuna curva disegnata a occhio. Due derivate parziali, un sistema lineare, e la migliore retta possibile esce da sola. È il primo algoritmo di apprendimento della storia — e funziona ancora.</p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Derivazione 3</span>
+          <p><em class="nome">L'integrale di Gauss.</em> $\ \displaystyle\int_{-\infty}^{+\infty}e^{-x^2}\,dx=\sqrt{\pi}$.</p>
+        </div>
+        <p><strong>L'idea intuitiva.</strong> In una dimensione siamo bloccati: $e^{-x^2}$ non ha primitiva elementare, e nessun trucco di Analisi 1 funziona. Ma la funzione $e^{-(x^2+y^2)}$ nel piano dipende <em>solo dalla distanza dall'origine</em>: è una campana rotonda, perfettamente simmetrica. E per gli oggetti rotondi esistono coordinate fatte apposta. Il regalo arriva dallo jacobiano: passando in polari compare un fattore $r$ che è proprio il pezzo che ci mancava per poter integrare. Insomma: <strong>saliamo di una dimensione per far comparire la derivata interna che in una dimensione non c'era.</strong></p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (elevamento al quadrato e coordinate polari)</span>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Chiamiamo $I=\displaystyle\int_{-\infty}^{+\infty}e^{-x^2}dx$ (converge: la campana decresce più in fretta di qualunque esponenziale). Il nome della variabile è muto, quindi vale anche $I=\displaystyle\int_{-\infty}^{+\infty}e^{-y^2}dy$.</span>
+            <span class="esempio__passo">Moltiplichiamo le due scritture e uniamo in un unico integrale doppio su tutto il piano (teorema di Fubini): $$I^2=\left(\int_{-\infty}^{+\infty}\!\!e^{-x^2}dx\right)\!\!\left(\int_{-\infty}^{+\infty}\!\!e^{-y^2}dy\right)=\iint_{\mathbb{R}^2}e^{-(x^2+y^2)}\,dA$$</span>
+            <span class="esempio__passo">Passiamo in <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span>: $x^2+y^2=r^2$, $dA=r\,dr\,d\theta$, con $r$ da $0$ a $+\infty$ e $\theta$ da $0$ a $2\pi$ per coprire tutto il piano: $$I^2=\int_0^{2\pi}\!\!\int_0^{+\infty} e^{-r^2}\,r\,dr\,d\theta$$</span>
+            <span class="esempio__passo">L'integrale interno ora è elementare, perché quel fattore $r$ è proprio la derivata interna che serviva. Sostituisco $u=r^2$: allora $du=2r\,dr$, cioè $r\,dr=\frac{du}{2}$, e l'integrale diventa $\int e^{-u}\frac{du}{2}=-\frac12 e^{-u}$; tornando a $r$ la primitiva è $-\frac12e^{-r^2}$. Valuto agli estremi ($e^{-r^2}\to 0$ per $r\to+\infty$ e vale $1$ per $r=0$): $$\int_0^{+\infty} r\,e^{-r^2}dr=\left[-\tfrac12 e^{-r^2}\right]_0^{+\infty}=0-\left(-\tfrac12\right)=\tfrac12$$</span>
+            <span class="esempio__passo">Resta l'integrale in $\theta$, banale: $\ I^2=\displaystyle\int_0^{2\pi}\tfrac12\,d\theta=\tfrac12\cdot 2\pi=\pi$.</span>
+          </p>
+          <div class="formula-block">$$I^2=\pi\qquad\Longrightarrow\qquad I=\sqrt{\pi}\quad(\text{positivo, perché }e^{-x^2}\text{ lo è}).\qquad\text{∎}$$</div>
+          <p>Da qui si verifica che la gaussiana $\dfrac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}}$ ha integrale $1$. Sostituisco $t=\dfrac{x-\mu}{\sigma\sqrt2}$: allora $\dfrac{(x-\mu)^2}{2\sigma^2}=t^2$ (basta elevare al quadrato la sostituzione) e, differenziando $x=\mu+\sigma\sqrt2\,t$, si ha $dx=\sigma\sqrt2\,dt$. L'integrale diventa quindi $\dfrac{1}{\sigma\sqrt{2\pi}}\displaystyle\int_{-\infty}^{+\infty}e^{-t^2}\,\sigma\sqrt2\,dt=\dfrac{\sigma\sqrt2}{\sigma\sqrt{2\pi}}\cdot\sqrt\pi=\dfrac{\sqrt2\,\sqrt\pi}{\sqrt2\,\sqrt\pi}=1$, dove nel penultimo passaggio si è usato proprio il risultato appena dimostrato. La costante di normalizzazione della distribuzione più usata al mondo nasce da un cambio di coordinate del capitolo 9.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+        <p>Nove esempi, almeno uno per ambito, tutti con i numeri portati fino in fondo. Sono ordinati come la teoria: fisica (1-4), ingegneria (5-6), economia (7), probabilità (8), machine learning (9).</p>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Fisica: il lavoro non dipende dal percorso</span><span class="badge badge--base">Base</span></div>
+          <p>Dato il campo di forze $\mathbf{F}(x,y)=(2xy,\ x^2)$, calcolare il lavoro per portare un punto da $A=(0,0)$ a $B=(1,2)$ lungo <strong>tre</strong> percorsi diversi.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Il campo è conservativo?</strong> $\dfrac{\partial}{\partial y}(2xy)=2x$ e $\dfrac{\partial}{\partial x}(x^2)=2x$: coincidono, e il piano è semplicemente connesso. Sì, è <span class="glossario-term" data-term="campo-conservativo">conservativo</span>.</span>
+            <span class="esempio__passo"><strong>Potenziale.</strong> Cerco $U$ con $U_x=2xy$: integro in $x$ trattando $y$ come una costante, $\int 2xy\,dx=y\int 2x\,dx=x^2y$. La "costante" di integrazione non è un numero ma una funzione della sola $y$ (perché derivando in $x$ qualsiasi funzione di $y$ dà zero), quindi scrivo $U=x^2y+c(y)$. Impongo ora la seconda condizione $U_y=x^2$: derivo l'espressione trovata rispetto a $y$, $U_y=x^2+c'(y)$, e uguaglio a $x^2$; resta $c'(y)=0$, cioè $c$ è una costante che posso prendere nulla. Dunque $U(x,y)=x^2y$.</span>
+            <span class="esempio__passo"><strong>Percorso 1 — il teorema.</strong> $L=U(1,2)-U(0,0)=1^2\cdot 2-0=2$.</span>
+            <span class="esempio__passo"><strong>Percorso 2 — la retta $y=2x$.</strong> Parametrizzo $\mathbf{r}(t)=(t,2t)$, $t\in[0,1]$, $\mathbf{r}'=(1,2)$. Il campo sulla curva è $(2t\cdot 2t,\ t^2)=(4t^2,t^2)$, e il prodotto scalare vale $4t^2+2t^2=6t^2$. Quindi $L=\displaystyle\int_0^1 6t^2\,dt=\big[2t^3\big]_0^1=2$.</span>
+            <span class="esempio__passo"><strong>Percorso 3 — due segmenti.</strong> Da $(0,0)$ a $(1,0)$: qui $y=0$, $d\mathbf{r}=(dx,0)$, $\mathbf{F}\cdot d\mathbf{r}=2xy\,dx=0$. Da $(1,0)$ a $(1,2)$: qui $x=1$, $d\mathbf{r}=(0,dy)$, $\mathbf{F}\cdot d\mathbf{r}=x^2dy=1\,dy$, e $\displaystyle\int_0^2 1\,dy=2$. Totale: $0+2=2$.</span>
+          </p>
+          <div class="esempio__risultato">$L=2$ con tutti e tre i metodi. Il percorso non conta: conta solo la differenza di potenziale fra partenza e arrivo. E questo è il motivo per cui, in montagna, la fatica "utile" per arrivare in cima dipende solo dal dislivello, non dal sentiero scelto.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Fisica: energia potenziale elastica in due dimensioni</span><span class="badge badge--base">Base</span></div>
+          <p>Una pallina è legata all'origine da due molle incrociate, così che la forza di richiamo sia $\mathbf{F}(x,y)=(-kx,\ -ky)$ con $k=2\ \text{N/m}$. Trovare l'energia potenziale e il lavoro fatto dalla forza quando la pallina torna da $(3,4)$ all'origine (lunghezze in metri).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Energia potenziale.</strong> Cerco $E_p$ con $\mathbf{F}=-\nabla E_p$, cioè, cambiando segno a entrambe le componenti di $\mathbf{F}$, $\dfrac{\partial E_p}{\partial x}=kx$ e $\dfrac{\partial E_p}{\partial y}=ky$. Integro la prima in $x$ (con $y$ costante): $E_p=\dfrac{k}{2}x^2+c(y)$. Derivo in $y$ e uguaglio alla seconda condizione: $c'(y)=ky$, quindi $c(y)=\dfrac k2y^2$. In tutto $E_p(x,y)=\dfrac{k}{2}\big(x^2+y^2\big)$, che sostituendo $k=2$ diventa $E_p=x^2+y^2$.</span>
+            <span class="esempio__passo"><strong>Valori agli estremi.</strong> $E_p(3,4)=9+16=25\ \text{J}$; $\ E_p(0,0)=0$.</span>
+            <span class="esempio__passo"><strong>Lavoro.</strong> Il lavoro della forza è la <em>diminuzione</em> di energia potenziale: $L=E_p(\text{iniziale})-E_p(\text{finale})=25-0=25\ \text{J}$.</span>
+            <span class="esempio__passo"><strong>Controllo con l'energia cinetica.</strong> Se la pallina parte ferma, arriva nell'origine con $E_c=25\ \text{J}$, cioè $\tfrac12 m v^2=25$: con $m=2\ \text{kg}$ si ha $v=5\ \text{m/s}$.</span>
+          </p>
+          <div class="esempio__risultato">$E_p(x,y)=x^2+y^2$, $\ L=25\ \text{J}$. Nota che $E_p$ dipende solo da $x^2+y^2=r^2$: le superfici equipotenziali sono circonferenze, e la forza (il gradiente cambiato di segno) è sempre radiale, diretta verso il centro. La geometria conferma la fisica.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Fisica: flusso con il teorema della divergenza</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il <span class="glossario-term" data-term="flusso">flusso</span> del campo $\mathbf{F}(x,y,z)=(x,y,z)$ uscente dalla sfera di centro l'origine e raggio $R=2$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Via diretta (faticosa):</strong> bisognerebbe parametrizzare la sfera, calcolare la normale, fare l'integrale di superficie. Proviamo invece la scorciatoia.</span>
+            <span class="esempio__passo"><strong><span class="glossario-term" data-term="teorema-di-gauss">Teorema della divergenza</span>:</strong> la superficie è chiusa, quindi $\ \displaystyle\oiint_S\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_V \nabla\cdot\mathbf{F}\,dV$.</span>
+            <span class="esempio__passo"><strong>Divergenza:</strong> $\nabla\cdot\mathbf{F}=\dfrac{\partial x}{\partial x}+\dfrac{\partial y}{\partial y}+\dfrac{\partial z}{\partial z}=1+1+1=3$. È costante: che fortuna.</span>
+            <span class="esempio__passo"><strong>Integrale triplo:</strong> l'integrale di una costante è la costante per il volume, e il volume della sfera di raggio $2$ è $\tfrac43\pi\cdot 2^3=\tfrac{32}{3}\pi$. Quindi $\ \Phi=3\cdot\tfrac{32}{3}\pi=32\pi$.</span>
+            <span class="esempio__passo"><strong>Controllo a occhio:</strong> sulla sfera $\mathbf{F}=(x,y,z)$ è radiale di modulo $R=2$ e la normale è radiale, quindi $\mathbf{F}\cdot\mathbf{n}=2$ ovunque. Area della sfera: $4\pi R^2=16\pi$. Flusso $=2\cdot 16\pi=32\pi$. ✓</span>
+          </p>
+          <div class="esempio__risultato">$\Phi=32\pi$. Un integrale di superficie trasformato in una moltiplicazione: è per questo che i fisici adorano il teorema di Gauss. Con $\mathbf{F}$ campo elettrico, questo conto <em>è</em> la legge di Gauss.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Fisica: baricentro di una lamina semicircolare</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Trovare il <span class="glossario-term" data-term="baricentro">baricentro</span> della lamina omogenea $D=\{(x,y):x^2+y^2\le R^2,\ y\ge 0\}$ (mezzo disco), e il <span class="glossario-term" data-term="momento-inerzia">momento d'inerzia</span> di un disco pieno rispetto al suo asse.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>(a) Simmetria.</strong> La lamina è simmetrica rispetto all'asse $y$: quindi $\bar x=0$ senza fare conti. Regola d'oro: <em>ogni simmetria ti regala una coordinata</em>.</span>
+            <span class="esempio__passo"><strong>Area:</strong> $A=\tfrac12\pi R^2$. Serve poi $\displaystyle\iint_D y\,dA$: passo in <span class="glossario-term" data-term="coordinate-polari">polari</span>, con $y=r\sin\theta$, $dA=r\,dr\,d\theta$, $r\in[0,R]$, $\theta\in[0,\pi]$.</span>
+            <span class="esempio__passo">Sostituisco $y=r\sin\theta$ e $dA=r\,dr\,d\theta$: l'integranda diventa $(r\sin\theta)\cdot r=r^2\sin\theta$, cioè un prodotto di una funzione della sola $r$ per una funzione del solo $\theta$; poiché anche gli estremi sono costanti, l'integrale doppio si spezza nel prodotto di due integrali semplici. $\displaystyle\iint_D y\,dA=\int_0^{\pi}\!\!\int_0^{R}(r\sin\theta)\,r\,dr\,d\theta=\left(\int_0^R r^2dr\right)\left(\int_0^\pi \sin\theta\,d\theta\right)=\frac{R^3}{3}\cdot\big[-\cos\theta\big]_0^\pi$. L'ultima parentesi vale $-\cos\pi-(-\cos 0)=-(-1)+1=2$, quindi il tutto fa $\frac{R^3}{3}\cdot 2=\frac{2R^3}{3}$.</span>
+            <span class="esempio__passo"><strong>Divido per l'area:</strong> $\ \bar y=\dfrac{2R^3/3}{\pi R^2/2}=\dfrac{2R^3}{3}\cdot\dfrac{2}{\pi R^2}=\dfrac{4R}{3\pi}$.</span>
+            <span class="esempio__passo"><strong>(b) Momento d'inerzia del disco pieno</strong> di raggio $R$ e densità $\rho$ costante, rispetto all'asse per il centro. Nella definizione $I=\iint d^2\rho\,dA$ la distanza dall'asse di un punto del disco è proprio $d=r$, quindi $d^2=r^2$; passo in polari, dove $dA=r\,dr\,d\theta$, e l'integranda diventa $r^2\cdot r=r^3$: $\ I=\displaystyle\iint r^2\rho\,dA=\rho\int_0^{2\pi}\!\!\int_0^R r^2\cdot r\,dr\,d\theta=\rho\left(\int_0^{2\pi}d\theta\right)\left(\int_0^R r^3dr\right)=\rho\cdot 2\pi\cdot\frac{R^4}{4}=\frac{\pi\rho R^4}{2}$.</span>
+            <span class="esempio__passo">Poiché la massa è $M=\rho\pi R^2$, si ottiene $\ I=\tfrac12 MR^2$.</span>
+          </p>
+          <div class="esempio__risultato">$\big(\bar x,\bar y\big)=\left(0,\ \dfrac{4R}{3\pi}\right)\approx(0,\ 0{,}424\,R)$ e $I=\tfrac12MR^2$. Il baricentro sta sotto la metà dell'altezza ($0{,}424R$ invece di $0{,}5R$) perché il semicerchio è più largo in basso: la massa "tira giù" il punto di equilibrio. E il $\tfrac12 MR^2$ del disco è la formula che ritrovi in ogni libro di fisica: qui l'hai ricavata, non memorizzata.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Ingegneria: portata di un condotto (profilo di Poiseuille)</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>In un tubo di raggio $R=0{,}1\ \text{m}$ l'acqua scorre in regime laminare con profilo $v(r)=v_0\left(1-\dfrac{r^2}{R^2}\right)$, dove $v_0=2\ \text{m/s}$ è la velocità al centro. Calcolare la portata $Q$ e la velocità media.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Imposto il flusso.</strong> La velocità è perpendicolare alla sezione, quindi $\mathbf{v}\cdot\mathbf{n}=v(r)$ e $\ Q=\displaystyle\iint_S v(r)\,dS$. Il dominio è un cerchio e l'integranda dipende solo da $r$: coordinate polari, obbligatorie.</span>
+            <span class="esempio__passo">Sostituisco $dS=r\,dr\,d\theta$ (lo jacobiano delle polari, cap. 9) e moltiplico $r$ dentro la parentesi: $\left(1-\frac{r^2}{R^2}\right)r=r-\frac{r^3}{R^2}$. L'integranda non dipende da $\theta$, quindi l'integrale in $\theta$ dà semplicemente il fattore $2\pi$: $Q=\displaystyle\int_0^{2\pi}\!\!\int_0^R v_0\left(1-\frac{r^2}{R^2}\right)r\,dr\,d\theta=2\pi v_0\int_0^R\left(r-\frac{r^3}{R^2}\right)dr$.</span>
+            <span class="esempio__passo"><strong>Calcolo l'integrale interno:</strong> $\displaystyle\int_0^R\left(r-\frac{r^3}{R^2}\right)dr=\left[\frac{r^2}{2}-\frac{r^4}{4R^2}\right]_0^R=\frac{R^2}{2}-\frac{R^2}{4}=\frac{R^2}{4}$.</span>
+            <span class="esempio__passo"><strong>Sostituisco:</strong> $\ Q=2\pi v_0\cdot\dfrac{R^2}{4}=\dfrac{\pi v_0R^2}{2}$.</span>
+            <span class="esempio__passo"><strong>Numeri:</strong> $Q=\dfrac{\pi\cdot 2\cdot (0{,}1)^2}{2}=\pi\cdot 0{,}01\approx 0{,}0314\ \text{m}^3/\text{s}$, cioè circa $31{,}4$ litri al secondo.</span>
+            <span class="esempio__passo"><strong>Velocità media:</strong> $\ \bar v=\dfrac{Q}{\pi R^2}=\dfrac{\pi v_0R^2/2}{\pi R^2}=\dfrac{v_0}{2}=1\ \text{m/s}$.</span>
+          </p>
+          <div class="esempio__risultato">$Q=\dfrac{\pi v_0R^2}{2}\approx 31{,}4\ \text{L/s}$, con velocità media esattamente <strong>metà</strong> di quella al centro. Chi moltiplicasse ingenuamente $v_0$ per l'area sbaglierebbe del $100\%$: l'attrito alle pareti rallenta il fluido, e solo l'integrale ne tiene conto.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Ingegneria: la scatola che spreca meno materiale</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Progettare una scatola a base rettangolare <strong>senza coperchio</strong> di volume $32\ \text{dm}^3$ usando la minima quantità di materiale.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Traduco.</strong> Lati di base $x,y$, altezza $z$. Superficie da minimizzare: fondo più quattro pareti, $\ S=xy+2xz+2yz$. Vincolo: $xyz=32$.</span>
+            <span class="esempio__passo"><strong>Elimino il vincolo</strong> ricavando dal vincolo $z=\dfrac{32}{xy}$ e sostituendo questa espressione al posto di $z$ nella superficie: $2xz=2x\cdot\dfrac{32}{xy}=\dfrac{64}{y}$ (la $x$ si semplifica) e $2yz=2y\cdot\dfrac{32}{xy}=\dfrac{64}{x}$ (si semplifica la $y$). Resta $\ S(x,y)=xy+\dfrac{64}{y}+\dfrac{64}{x}$, funzione di due variabili su $x,y$ positivi.</span>
+            <span class="esempio__passo"><strong>Punti critici:</strong> derivo rispetto a $x$ tenendo $y$ fisso, scrivendo $\frac{64}{x}=64x^{-1}$ la cui derivata è $-64x^{-2}$: $\ S_x=y-\dfrac{64}{x^2}=0\ \Rightarrow\ y=\dfrac{64}{x^2}$. Per simmetria dei ruoli, $\ S_y=x-\dfrac{64}{y^2}=0\ \Rightarrow\ x=\dfrac{64}{y^2}$.</span>
+            <span class="esempio__passo"><strong>Risolvo il sistema:</strong> sostituisco $y=\frac{64}{x^2}$ (dalla prima) al posto di $y$ nella seconda: $\ x=\dfrac{64}{\left(64/x^2\right)^2}=\dfrac{64}{4096/x^4}=\dfrac{64\,x^4}{4096}=\dfrac{x^4}{64}$. Moltiplico entrambi i membri per $64$, $64x=x^4$, e divido per $x$ (positivo, quindi lecito): $x^3=64$, quindi $x=\sqrt[3]{64}=4$. Allora $y=\dfrac{64}{4^{2}}=\dfrac{64}{16}=4$ e $z=\dfrac{32}{4\cdot 4}=\dfrac{32}{16}=2$.</span>
+            <span class="esempio__passo"><strong>È un minimo?</strong> Derivo una seconda volta: da $S_x=y-64x^{-2}$ segue $S_{xx}=128x^{-3}=\dfrac{128}{x^3}$, che in $x=4$ vale $\frac{128}{64}=2$; analogamente $S_{yy}=\dfrac{128}{y^3}=2$; e derivando $S_x$ rispetto a $y$ resta solo $S_{xy}=1$. Determinante <span class="glossario-term" data-term="hessiano">hessiano</span> $=2\cdot 2-1^2=3$, positivo, e $S_{xx}=2$ positivo: minimo locale. Poiché $S$ tende all'infinito ai bordi del dominio ($x$ o $y$ verso $0$ o verso l'infinito), è il minimo assoluto.</span>
+            <span class="esempio__passo"><strong>Superficie minima:</strong> $S=4\cdot4+2\cdot4\cdot2+2\cdot4\cdot2=16+16+16=48\ \text{dm}^2$.</span>
+          </p>
+          <div class="esempio__risultato">Base quadrata $4\times 4$, altezza $2$: <strong>l'altezza è metà del lato di base</strong>, e la superficie vale $48\ \text{dm}^2$. La struttura del risultato ($16+16+16$: fondo, due pareti, due pareti) non è un caso: all'ottimo il materiale si ripartisce equamente, ed è una regola ricorrente nei problemi di forma ottima.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Economia: budget, utilità e prezzo ombra</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Un consumatore ha utilità $U(x,y)=\sqrt{x}\,\sqrt{y}$, i prezzi sono $p_x=2$ e $p_y=4$ euro, il budget è $b=80$ euro. Trovare il paniere ottimo, l'utilità massima e il valore di $\lambda$, interpretandolo.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Imposto Lagrange</strong> con $g(x,y)=2x+4y=80$. Calcolo il gradiente di $U=\sqrt x\,\sqrt y$: derivando rispetto a $x$ (con $y$ costante) e usando $\left(\sqrt x\right)'=\frac{1}{2\sqrt x}$ si ha $U_x=\dfrac{\sqrt y}{2\sqrt x}=\dfrac12\sqrt{\dfrac yx}$; simmetricamente $U_y=\dfrac{\sqrt x}{2\sqrt y}=\dfrac12\sqrt{\dfrac xy}$. Quindi $\ \nabla U=\left(\dfrac{1}{2}\sqrt{\dfrac{y}{x}},\ \dfrac{1}{2}\sqrt{\dfrac{x}{y}}\right)$, mentre $\ \nabla g=(2,4)$ perché $g$ è lineare.</span>
+            <span class="esempio__passo"><strong>Condizione di ottimo.</strong> Il sistema $\nabla U=\lambda\nabla g$ dà $U_x=\lambda p_x$ e $U_y=\lambda p_y$; dividendo la prima per la seconda il $\lambda$ sparisce e resta $\dfrac{U_x}{U_y}=\dfrac{p_x}{p_y}$. Il rapporto delle utilità marginali è $\dfrac{\frac12\sqrt{y/x}}{\frac12\sqrt{x/y}}=\sqrt{\dfrac{y}{x}\cdot\dfrac{y}{x}}=\dfrac{y}{x}$ (dividere per una radice equivale a moltiplicare per il suo reciproco). Quindi $\ \dfrac{y}{x}=\dfrac{2}{4}=\dfrac12$, cioè $\ y=\dfrac{x}{2}$.</span>
+            <span class="esempio__passo"><strong>Sostituisco nel vincolo:</strong> $\ 2x+4\cdot\dfrac{x}{2}=2x+2x=4x=80\ \Rightarrow\ x=20$, $\ y=10$.</span>
+            <span class="esempio__passo"><strong>Utilità massima:</strong> $\ U=\sqrt{20}\cdot\sqrt{10}=\sqrt{200}=10\sqrt2\approx 14{,}14$.</span>
+            <span class="esempio__passo"><strong>Moltiplicatore:</strong> dalla prima equazione di Lagrange ricavo $\lambda=\dfrac{U_x}{p_x}$. Sostituisco $x=20$ e $y=10$ in $U_x$: $\ U_x=\dfrac12\sqrt{\dfrac{10}{20}}=\dfrac12\sqrt{\dfrac12}=\dfrac{1}{2\sqrt2}$. Divido per $p_x=2$ (cioè moltiplico per $\frac12$): $\ \lambda=\dfrac{1}{2\sqrt2}\cdot\dfrac12=\dfrac{1}{4\sqrt2}$, e razionalizzando (moltiplico sopra e sotto per $\sqrt2$) $\ \lambda=\dfrac{\sqrt2}{8}\approx 0{,}177$.</span>
+            <span class="esempio__passo"><strong>Verifica del prezzo ombra.</strong> Rifacendo il conto con budget generico $b$ si trova $x=\dfrac{b}{4}$, $y=\dfrac{b}{8}$ e $U^*(b)=\sqrt{\dfrac{b^2}{32}}=\dfrac{b}{4\sqrt2}$. Derivando: $\ \dfrac{dU^*}{db}=\dfrac{1}{4\sqrt2}=\dfrac{\sqrt2}{8}=\lambda$. ✓</span>
+          </p>
+          <div class="esempio__risultato">Paniere ottimo $(20,\ 10)$, utilità $10\sqrt2\approx14{,}14$, $\lambda=\dfrac{\sqrt2}{8}\approx0{,}177$ <em>unità di utilità per euro</em>. Cioè: un euro in più di budget farebbe crescere la soddisfazione di circa $0{,}18$. Se qualcuno ti offrisse dieci euro extra, guadagneresti circa $1{,}77$ di utilità — ed è esattamente il tipo di conto che un'azienda fa prima di decidere un investimento.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Probabilità: densità congiunta e valore atteso</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Due grandezze aleatorie hanno densità congiunta $f(x,y)=k(x+y)$ sul quadrato $[0,1]\times[0,1]$ e zero altrove. Trovare $k$, la probabilità che la somma non superi $1$, e il valore atteso di $X$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Normalizzazione.</strong> Impongo che il volume totale sotto il telo valga $1$. Faccio prima l'integrale interno in $y$, trattando $x$ come una costante: $\int_0^1(x+y)\,dy=\left[xy+\frac{y^2}{2}\right]_0^1=x+\frac12$. Poi quello esterno in $x$: $\int_0^1\left(x+\frac12\right)dx=\left[\frac{x^2}{2}+\frac x2\right]_0^1=\frac12+\frac12=1$. In tutto $\ \displaystyle\int_0^1\!\!\int_0^1 k(x+y)\,dy\,dx=k\int_0^1\left(x+\tfrac12\right)dx=k\left(\tfrac12+\tfrac12\right)=k$. Uguaglio a $1$: quindi $k=1$.</span>
+            <span class="esempio__passo"><strong>Regione dell'evento.</strong> "La somma non supera $1$" significa $x+y\le 1$: è il triangolo sotto la diagonale del quadrato. Integro con $y$ da $0$ a $1-x$: $$P=\int_0^1\!\!\int_0^{1-x}(x+y)\,dy\,dx$$</span>
+            <span class="esempio__passo"><strong>Integrale interno:</strong> $\displaystyle\int_0^{1-x}(x+y)\,dy=\left[xy+\frac{y^2}{2}\right]_0^{1-x}=x(1-x)+\frac{(1-x)^2}{2}$. Sviluppando: $x-x^2+\dfrac{1-2x+x^2}{2}=\dfrac12-\dfrac{x^2}{2}$.</span>
+            <span class="esempio__passo"><strong>Integrale esterno:</strong> $\ P=\displaystyle\int_0^1\left(\frac12-\frac{x^2}{2}\right)dx=\frac12-\frac16=\frac13$.</span>
+            <span class="esempio__passo"><strong>Valore atteso:</strong> applico $E[X]=\iint x\,f(x,y)\,dA$ con $f=x+y$, quindi l'integranda è $x(x+y)=x^2+xy$. Integrale interno in $y$ (con $x$ costante): $\int_0^1\left(x^2+xy\right)dy=\left[x^2y+\frac{xy^2}{2}\right]_0^1=x^2+\frac x2$. Integrale esterno: $\ E[X]=\displaystyle\int_0^1\!\!\int_0^1 x(x+y)\,dy\,dx=\int_0^1\left(x^2+\frac{x}{2}\right)dx=\frac13+\frac14=\frac{4+3}{12}=\frac{7}{12}$.</span>
+          </p>
+          <div class="esempio__risultato">$k=1$, $\ P(X+Y\le 1)=\dfrac13$, $\ E[X]=\dfrac{7}{12}\approx 0{,}583$. Due controlli di sanità: la probabilità è compresa fra $0$ e $1$ (obbligatorio!), ed è minore di $\tfrac12$ perché la densità $x+y$ pesa di più l'angolo in alto a destra, cioè <em>fuori</em> dal triangolo. Analogamente $E[X]$ supera $\tfrac12$: la densità favorisce le $x$ grandi.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 9 — Machine learning: discesa del gradiente, passo per passo</span><span class="badge badge--esame">Esame</span></div>
+          <p>Minimizzare $J(x,y)=x^2+4y^2$ partendo da $(2,1)$ con learning rate $\eta=0{,}1$. Eseguire tre passi e discutere che cosa succede con $\eta=0{,}3$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Gradiente:</strong> $\nabla J=(2x,\ 8y)$. La regola è $\ (x,y)\leftarrow (x,y)-\eta\,(2x,8y)$, che componente per componente dà $\ x\leftarrow x(1-2\eta)$ e $\ y\leftarrow y(1-8\eta)$.</span>
+            <span class="esempio__passo"><strong>Valore iniziale:</strong> $J(2,1)=4+4=8$.</span>
+            <span class="esempio__passo"><strong>Passo 1:</strong> $\nabla J(2,1)=(4,8)$, quindi $(2,1)-0{,}1\,(4,8)=(1{,}6,\ 0{,}2)$. Nuovo costo: $2{,}56+4\cdot0{,}04=2{,}72$.</span>
+            <span class="esempio__passo"><strong>Passo 2:</strong> $\nabla J(1{,}6,\ 0{,}2)=(3{,}2,\ 1{,}6)$, quindi $(1{,}6,0{,}2)-0{,}1\,(3{,}2,1{,}6)=(1{,}28,\ 0{,}04)$. Costo: $1{,}6384+0{,}0064=1{,}6448$.</span>
+            <span class="esempio__passo"><strong>Passo 3:</strong> $\nabla J(1{,}28,\ 0{,}04)=(2{,}56,\ 0{,}32)$, quindi $(1{,}024,\ 0{,}008)$. Costo: $\approx 1{,}0488$. Il costo scende a ogni passo: $8\to2{,}72\to1{,}64\to1{,}05$, avvicinandosi al minimo $(0,0)$ dove $J=0$.</span>
+            <span class="esempio__passo"><strong>E con $\eta=0{,}3$?</strong> La $y$ evolve secondo $y\leftarrow y\,(1-8\cdot0{,}3)=y\,(1-2{,}4)=-1{,}4\,y$. Il segno si inverte e il modulo <em>cresce</em> del $40\%$ a ogni passo: $1\to-1{,}4\to1{,}96\to-2{,}74\dots$ L'algoritmo <strong>diverge</strong>, pur avendo il gradiente giusto.</span>
+          </p>
+          <div class="esempio__risultato">Con $\eta=0{,}1$ la discesa converge a $(0,0)$; con $\eta=0{,}3$ esplode. La soglia è $\eta=0{,}25$: per valori maggiori il fattore $|1-8\eta|$ supera $1$ nella direzione ripida. Morale operativa: <strong>il learning rate massimo è dettato dalla direzione più ripida</strong> (qui la $y$, che pesa quattro volte). È il motivo per cui in pratica si normalizzano i dati: per rendere la valle più rotonda e poter usare passi più lunghi senza rimbalzare.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Cercare il potenziale di un campo che non è conservativo</div>
+          <p>Capita a tutti almeno una volta: si parte a integrare $F_1$ rispetto a $x$, poi si deriva rispetto a $y$ e non torna niente, e si perde mezz'ora convinti di aver sbagliato un conto. <em>Come evitarlo</em>: <strong>prima il test, poi il potenziale</strong>. Nel piano controlla $\partial_yF_1=\partial_xF_2$, nello spazio controlla che il rotore sia nullo. Dieci secondi che ne salvano trenta di minuti. E ricorda la seconda metà della condizione: il test è sufficiente solo se il dominio è semplicemente connesso — il controesempio classico è il campo "vorticoso" $\left(\frac{-y}{x^2+y^2},\frac{x}{x^2+y^2}\right)$, che passa il test ma ha circuitazione $2\pi$ attorno all'origine, perché l'origine è un buco.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare lo jacobiano nel cambio di coordinate</div>
+          <p>Scrivere $\iint f\,dr\,d\theta$ invece di $\iint f\,r\,dr\,d\theta$ è l'errore numero uno degli integrali doppi, e in questo capitolo si paga caro: senza il fattore $r$ l'integrale di Gauss non si chiude, la portata viene sbagliata, il momento d'inerzia perde un ordine in $R$. <em>Come evitarlo</em>: ricorda che $r\,dr\,d\theta$ è l'<strong>area del mattoncino</strong> in polari — lontano dall'origine gli archi sono più lunghi, quindi i mattoncini sono più grandi. Stesso discorso per $r\,dr\,d\theta\,dz$ in cilindriche e $r^2\sin\varphi\,dr\,d\varphi\,d\theta$ in sferiche.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Buttare via il moltiplicatore $\lambda$ appena trovato</div>
+          <p>Moltissimi studenti calcolano $\lambda$, lo usano per ricavare $x$ e $y$, e poi non lo scrivono nemmeno nel risultato finale. In un esercizio di economia (e in una domanda d'orale) $\lambda$ <strong>è</strong> la risposta più interessante: è il prezzo ombra, cioè di quanto migliora l'ottimo per una unità in più di risorsa. <em>Come evitarlo</em>: prendi l'abitudine di chiudere ogni esercizio vincolato con una riga in italiano — "un euro in più di budget aumenta l'utilità di $0{,}18$" — e di controllarne le unità di misura.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere Gauss e Stokes (e applicarli a superfici sbagliate)</div>
+          <p>Sono teoremi diversi con ipotesi diverse. <strong>Gauss</strong> riguarda una superficie <em>chiusa</em> che racchiude un volume, e collega il flusso all'integrale triplo della <span class="glossario-term" data-term="divergenza">divergenza</span>. <strong><span class="glossario-term" data-term="teorema-di-stokes">Stokes</span></strong> riguarda una superficie <em>aperta</em> con un bordo, e collega la circuitazione lungo il bordo al flusso del rotore. <em>Come evitarlo</em>: chiediti "questa superficie ha un bordo?". Se ce l'ha, è Stokes; se è chiusa (e quindi non ha bordo), è Gauss. Attenzione anche alle orientazioni: normale uscente per Gauss, regola della mano destra fra bordo e normale per Stokes.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Nei minimi quadrati, derivare rispetto alle variabili sbagliate</div>
+          <p>Nella funzione $S(m,q)=\sum(y_i-mx_i-q)^2$ le incognite sono $m$ e $q$: i dati $x_i,y_i$ sono <strong>numeri fissi</strong>. Chi deriva rispetto a $x$ o a $y$ non ottiene nulla di sensato. <em>Come evitarlo</em>: prima di derivare, scrivi esplicitamente "variabili: $m,q$; costanti: i dati". È lo stesso riflesso che serve in fisica, dove spesso si deriva rispetto a un parametro e non rispetto alla posizione.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che gradiente nullo significhi minimo</div>
+          <p>In una variabile $f'=0$ lasciava tre possibilità; in più variabili se ne aggiunge una molto più insidiosa, il <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>. Concludere "il gradiente è nullo, quindi è il minimo" è sbagliato in matematica e costoso nel machine learning, dove le selle bloccano l'addestramento per migliaia di iterazioni. <em>Come evitarlo</em>: calcola sempre l'<span class="glossario-term" data-term="hessiano">hessiano</span>. Determinante negativo significa sella; determinante nullo significa caso dubbio, e serve un'analisi diretta.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dare per scontato che una probabilità venga fra 0 e 1</div>
+          <p>Se un integrale doppio di densità ti restituisce $1{,}4$ oppure un numero negativo, non hai scoperto niente di nuovo sulla probabilità: hai sbagliato gli estremi di integrazione, la costante di normalizzazione o il verso della disuguaglianza nella regione. <em>Come evitarlo</em>: normalizza sempre per prima cosa (imponi che l'integrale totale valga $1$) e <strong>disegna la regione</strong> prima di scegliere l'ordine di integrazione.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">📐</span> Sfrutta le simmetrie: ogni simmetria è un conto in meno</div>
+          <p>Se il dominio e la densità sono simmetrici rispetto a un asse, il baricentro sta su quell'asse: coordinata trovata senza integrare (Esempio 4). Se l'integranda è dispari rispetto a una variabile e il dominio è simmetrico, l'integrale è zero. Se il campo è radiale e la superficie è una sfera concentrica, il flusso è "modulo per area". Guardare le simmetrie <em>prima</em> di impostare l'integrale è la scorciatoia più redditizia dell'intera Analisi 2.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🧭</span> Scegli le coordinate guardando il dominio, non la funzione</div>
+          <p>Cerchi, corone e settori chiedono <span class="glossario-term" data-term="coordinate-polari">polari</span>; cilindri, tubi e fori chiedono cilindriche; sfere, calotte e coni chiedono sferiche. La regola pratica: <strong>scegli le coordinate che rendono costanti gli estremi di integrazione</strong>. Un dominio descritto da $0\le r\le R$, $0\le\theta\le 2\pi$ si integra in tre righe; lo stesso dominio in cartesiane richiede radici quadrate negli estremi e tre volte il tempo.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">📏</span> L'analisi dimensionale smaschera gli errori in dieci secondi</div>
+          <p>Prima di consegnare, controlla le unità. Una portata deve venire in $\text{m}^3/\text{s}$; un lavoro in joule; un momento d'inerzia in $\text{kg}\cdot\text{m}^2$ (se ti viene $\text{kg}\cdot\text{m}$ hai perso un quadrato); $\lambda$ in "obiettivo diviso vincolo"; una probabilità è un puro numero fra $0$ e $1$. Controlla anche il <strong>segno</strong> (un'area, una massa e una probabilità non sono mai negative) e l'<strong>ordine di grandezza</strong> (se il serbatoio viene grande come un condominio, qualcosa non va).</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🗓️</span> Le ultime due settimane prima dell'esame: un piano che funziona</div>
+          <p><strong>Giorni 14-10 — ricostruzione.</strong> Un capitolo al giorno, ma non rileggendo: prendi un foglio bianco e <em>riscrivi a memoria</em> le formule chiave del capitolo, poi controlla e correggi in rosso. Quello che sbagli in rosso è il tuo programma di ripasso.</p>
+          <p><strong>Giorni 9-5 — un esercizio per tipo.</strong> Fai un solo esercizio per ciascuna famiglia: un integrale doppio in polari, un triplo in cilindriche, un Lagrange, un campo conservativo, un flusso con Gauss, un'equazione differenziale. Se ne sbagli uno, fanne subito un secondo dello stesso tipo. L'obiettivo non è la quantità: è che nessuna famiglia ti trovi impreparato.</p>
+          <p><strong>Giorni 4-2 — simulazioni a tempo.</strong> Temi d'esame completi, cronometro acceso, senza guardare le soluzioni. È l'unico modo di allenare la gestione del tempo e la resistenza allo stress. Correggi subito dopo e annota gli errori su un unico foglio, il "foglio degli inciampi".</p>
+          <p><strong>Ultimo giorno — niente cose nuove.</strong> Rileggi solo il foglio degli inciampi, la <a href="#teoria-mappa-libro">tabella delle corrispondenze</a> e le mappe mentali dei capitoli. Poi chiudi tutto e dormi: la memoria si consolida nel sonno, non nell'ultima ora di panico.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🎤</span> Errori tipici all'orale (e come evitarli)</div>
+          <ul>
+            <li><strong>Dire "il gradiente è la derivata" e fermarsi.</strong> Di' che è un <em>vettore</em> di derivate parziali, che punta nella direzione di massima crescita e che il suo modulo è la pendenza massima. Le tre cose insieme, sempre.</li>
+            <li><strong>Enunciare un teorema senza le ipotesi.</strong> È l'errore che costa più punti in assoluto. Green e Stokes vogliono il dominio con bordo regolare e l'orientazione giusta; il test del rotore vuole il dominio semplicemente connesso; Schwarz vuole le derivate seconde continue.</li>
+            <li><strong>Non saper fare un esempio.</strong> Dopo ogni definizione, tieni pronto un esempio e un controesempio. "Campo conservativo: la gravità. Non conservativo: l'attrito, oppure il campo vorticoso attorno all'origine."</li>
+            <li><strong>Calcolare senza disegnare.</strong> All'orale, disegna il dominio o la superficie <em>mentre</em> parli: chiarisce a te le idee e mostra alla commissione che capisci la geometria, non solo l'algebra.</li>
+            <li><strong>Non saper collegare.</strong> La domanda "che rapporto c'è con l'Analisi 1?" arriva quasi sempre. La risposta è nella <a href="#teoria-mappa-libro">tabella della sezione 4.7</a>: imparala, vale più di dieci formule.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">✅</span> Checklist di autovalutazione: sei pronto se sai fare tutto questo</div>
+          <p>Rispondi onestamente. Ogni "no" è un capitolo da riaprire — e sai già quale.</p>
+          <ul>
+            <li>Calcolo $\nabla f$ e so dire, in italiano, che cosa significa il suo modulo. <em>(cap. 4)</em></li>
+            <li>Trovo i punti critici di $f(x,y)$ e li classifico con l'hessiano, selle comprese. <em>(cap. 5)</em></li>
+            <li>Risolvo un problema vincolato con Lagrange <strong>e</strong> interpreto $\lambda$. <em>(cap. 6)</em></li>
+            <li>Disegno un dominio, scelgo l'ordine di integrazione e so invertirlo. <em>(cap. 8)</em></li>
+            <li>Passo a polari, cilindriche o sferiche mettendo lo jacobiano giusto. <em>(cap. 9)</em></li>
+            <li>Riconosco un campo conservativo e ne costruisco il potenziale. <em>(cap. 10)</em></li>
+            <li>Calcolo un flusso e so dire quando conviene Gauss invece del conto diretto. <em>(cap. 11-12)</em></li>
+            <li>Enuncio Green, Gauss e Stokes con le ipotesi, e so dire che cosa hanno in comune. <em>(cap. 12)</em></li>
+            <li>Risolvo un'equazione a variabili separabili e un problema di Cauchy. <em>(cap. 13)</em></li>
+            <li>Data una situazione reale (portata, budget, baricentro, costo da minimizzare), so scegliere l'attrezzo giusto senza che nessuno me lo suggerisca. <em>(questo capitolo)</em></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Analisi 2 al lavoro</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Fisica</strong>
+              <ul><li>Lavoro: $\int_\gamma\mathbf{F}\cdot d\mathbf{r}$</li><li>Conservativo → $L=U(B)-U(A)$</li><li>Gauss: $\oiint\mathbf{E}\cdot\mathbf{n}\,dS=Q/\varepsilon_0$</li><li>Baricentro e $I$ con integrali multipli</li><li>Calore: spalma. Onde: oscilla</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Ingegneria</strong>
+              <ul><li>Volumi con $\iiint dV$</li><li>Portata $=\iint\mathbf{v}\cdot\mathbf{n}\,dS$</li><li>Carico: risultante + punto di applicazione</li><li>Forma ottima: lattina $h=2r$, sfera regina</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Economia</strong>
+              <ul><li>Max utilità con budget → Lagrange</li><li>Ottimo: $U_x/p_x=U_y/p_y=\lambda$</li><li>$\lambda$ = prezzo ombra $=dU^*/db$</li><li>Minimi quadrati: due derivate parziali</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Probabilità</strong>
+              <ul><li>$P=\iint_D f(x,y)\,dA$ (volume sotto il telo)</li><li>Normalizzazione: totale $=1$</li><li>$E[X]=\iint x f\,dA$ (è un baricentro)</li><li>$\int e^{-x^2}dx=\sqrt\pi$ grazie alle polari</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Machine learning</strong>
+              <ul><li>Passo: $\mathbf{w}\leftarrow\mathbf{w}-\eta\nabla J$</li><li>$\eta$ piccolo lento, grande esplode</li><li>Trappole: minimi locali e selle</li><li>Backpropagation = regola della catena</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Sintesi del libro</strong>
+              <ul><li>Derivata → gradiente</li><li>Tangente → piano tangente</li><li>$\int_a^b$ → $\iint,\iiint$</li><li>Teorema fondamentale → Green/Gauss/Stokes</li><li>Equazioni → equazioni differenziali</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Il metodo</strong>: quali variabili → quale funzione → quale attrezzo → che cosa significa il risultato. L'ultimo passo è quello che fa la differenza all'esame.</li>
+            <li><strong>Fisica</strong>: lavoro $L=\displaystyle\int_\gamma\mathbf{F}\cdot d\mathbf{r}$; se il campo è <span class="glossario-term" data-term="campo-conservativo">conservativo</span>, $L=U(B)-U(A)$ e l'energia si conserva. Legge di Gauss: il flusso da una superficie chiusa dipende solo da ciò che è racchiuso. Baricentro e momento d'inerzia sono integrali multipli, e il quadrato della distanza in $I$ spiega perché la massa lontana dall'asse pesa tanto.</li>
+            <li><strong>Calore e onde</strong>: $\partial_t u=k\Delta u$ appiana le differenze (ogni punto insegue la media dei vicini); $\partial_{tt}u=c^2\Delta u$ fa oscillare (ogni punto accelera verso la media dei vicini).</li>
+            <li><strong>Ingegneria</strong>: portata $Q=\displaystyle\iint_S\mathbf{v}\cdot\mathbf{n}\,dS$ (con profilo parabolico, metà della velocità massima per l'area); carico distribuito = risultante $\int q\,dx$ applicata nel baricentro del diagramma; forma ottima a volume fissato: lattina con $h=2r$, e in assoluto la sfera.</li>
+            <li><strong>Economia</strong>: all'ottimo vincolato $\dfrac{U_x}{p_x}=\dfrac{U_y}{p_y}=\lambda$, e $\lambda=\dfrac{dU^*}{db}$ è il <strong>prezzo ombra</strong>. I minimi quadrati nascono da due derivate parziali e passano sempre per $(\bar x,\bar y)$.</li>
+            <li><strong>Probabilità</strong>: la densità è un telo, la probabilità è il volume sotto il telo, il totale vale $1$; $E[X]$ è un baricentro. E $\displaystyle\int_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt\pi$ si ottiene solo salendo in due dimensioni e passando in polari.</li>
+            <li><strong>Machine learning</strong>: $\mathbf{w}\leftarrow\mathbf{w}-\eta\nabla J$. Il segno meno perché il gradiente sale; $\eta$ troppo grande fa divergere; le selle sono più frequenti dei minimi locali in dimensione alta; la backpropagation è la regola della catena applicata all'indietro una volta sola.</li>
+            <li><strong>La sintesi</strong>: derivata → gradiente, tangente → piano tangente, $f''$ → hessiano, $\int_a^b$ → $\iint$ e $\iiint$, primitiva → potenziale, teorema fondamentale → Green/Gauss/Stokes, equazioni → equazioni differenziali. Una sola matematica, in due vesti.</li>
+          </ul>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎉</span> Ce l'hai fatta: hai finito il libro. Congratulazioni!</div>
+          <p>Fermati un momento e renditi conto di dove sei arrivato. Hai cominciato dalla <a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">Parte 0</a>, con gli insiemi e le disequazioni, quando "analisi matematica" era solo il nome di un esame da temere. Poi hai attraversato tutta l'<a href="../index.html#parte1">Analisi 1</a>: limiti, continuità, derivate, i grandi teoremi, Taylor, serie, integrali. E infine hai fatto il salto più difficile di tutti, quello in <a href="../index.html#parte2">più variabili</a>: superfici invece di curve, gradienti invece di derivate, integrali doppi e tripli, campi, flussi, i tre teoremi che chiudono il cerchio, le equazioni differenziali. Ventinove capitoli. Centinaia di esercizi. Una montagna vera, salita un passo alla volta.</p>
+          <p>E soprattutto: non hai imparato delle formule. Hai imparato un <strong>modo di pensare</strong>. Affettare un problema complicato in pezzi minuscoli che sai gestire, e poi sommarli. Guardare come cambia una cosa per capire com'è fatta. Cercare la direzione migliore quando le direzioni possibili sono infinite. Riconoscere che dietro problemi che sembrano lontanissimi — una bolla di sapone, un budget familiare, una rete neurale, una corda di chitarra — c'è la stessa identica matematica. Questo, adesso, è tuo per sempre, e nessun esame te lo può togliere.</p>
+          <p>Un ultimo consiglio, il più utile che possiamo darti: <strong>torna indietro e rifai i quiz dei capitoli</strong>. Non quelli che ricordi bene — proprio quelli che avevi fatto all'inizio, quando ogni concetto era nuovo. Ti accorgerai di due cose bellissime. La prima è che ora le risposte ti sembrano ovvie, e questo è il metro di quanto sei cresciuto. La seconda è che coglierai collegamenti che allora ti erano sfuggiti: capirai perché il teorema fondamentale del calcolo assomiglia così tanto a Gauss, perché la primitiva e il potenziale sono parenti, perché il valor medio e il baricentro sono la stessa formula. Il secondo giro su un libro di matematica vale sempre più del primo.</p>
+          <p>Grazie di essere arrivato fin qui. In bocca al lupo per l'esame — e per tutto quello che verrà dopo, dove questa matematica ti aspetta al varco, travestita da fisica, da economia, da ingegneria o da intelligenza artificiale. Ormai la riconoscerai. 🚀</p>
+          <div class="btn-row">
+            <a class="btn btn--primary" href="../index.html">📚 Torna all'indice e rifai i quiz</a>
+            <a class="btn btn--ghost" href="../glossario.html">📖 Sfoglia il glossario</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi <strong>riepilogativi e trasversali</strong>: ciascuno mescola strumenti di capitoli diversi, esattamente come fa un tema d'esame. Prova sempre a impostare da solo prima di aprire la soluzione, e chiuditi ogni esercizio con una riga di interpretazione del risultato.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Verifica che $\mathbf{F}(x,y)=(2x+y,\ x+2y)$ è conservativo, determinane il potenziale e calcola il lavoro da $A=(0,0)$ a $B=(1,2)$. <em>(capitoli 4 e 10)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Test:</strong> $\dfrac{\partial}{\partial y}(2x+y)=1$ e $\dfrac{\partial}{\partial x}(x+2y)=1$: coincidono, e il dominio è tutto il piano (semplicemente connesso). Il campo è conservativo.</span>
+                <span class="esempio__passo"><strong>Potenziale:</strong> da $U_x=2x+y$ integro in $x$: $U=x^2+xy+c(y)$. Derivo in $y$: $U_y=x+c'(y)=x+2y$, quindi $c'(y)=2y$ e $c(y)=y^2$. Dunque $U(x,y)=x^2+xy+y^2$.</span>
+                <span class="esempio__passo"><strong>Lavoro:</strong> $L=U(1,2)-U(0,0)=(1+2+4)-0=7$.</span>
+              </p>
+              <p><strong>$U=x^2+xy+y^2$, $\ L=7$.</strong> Nessun integrale curvilineo calcolato: il potenziale fa tutto il lavoro.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Una lamina occupa il rettangolo $D=[0,2]\times[0,1]$ con densità $\rho(x,y)=x+y$. Calcola massa e coordinate del baricentro. <em>(capitolo 8)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Massa:</strong> applico $M=\iint_D\rho\,dA$. Integrale interno in $y$ (con $x$ costante): $\int_0^1(x+y)\,dy=\left[xy+\frac{y^2}{2}\right]_0^1=x+\frac12$. Integrale esterno: $M=\displaystyle\int_0^2\!\!\int_0^1(x+y)\,dy\,dx=\int_0^2\left(x+\tfrac12\right)dx=\left[\tfrac{x^2}{2}+\tfrac x2\right]_0^2=2+1=3$.</span>
+                <span class="esempio__passo"><strong>Momento rispetto all'asse $y$:</strong> è $\iint_D x\,\rho\,dA$, quindi l'integranda è $x(x+y)=x^2+xy$. Interno: $\int_0^1\left(x^2+xy\right)dy=x^2+\frac x2$. Esterno: $\displaystyle\int_0^2\!\!\int_0^1(x^2+xy)\,dy\,dx=\int_0^2\left(x^2+\tfrac{x}{2}\right)dx=\left[\tfrac{x^3}{3}+\tfrac{x^2}{4}\right]_0^2=\tfrac83+1=\tfrac{11}{3}$. Divido per la massa: $\bar x=\dfrac{11/3}{3}=\dfrac{11}{9}$.</span>
+                <span class="esempio__passo"><strong>Momento rispetto all'asse $x$:</strong> stavolta l'integranda è $y(x+y)=xy+y^2$. Interno: $\int_0^1\left(xy+y^2\right)dy=\frac x2+\frac13$. Esterno: $\displaystyle\int_0^2\!\!\int_0^1(xy+y^2)\,dy\,dx=\int_0^2\left(\tfrac{x}{2}+\tfrac13\right)dx=\left[\tfrac{x^2}{4}+\tfrac x3\right]_0^2=1+\tfrac23=\tfrac53$, quindi $\bar y=\dfrac{5/3}{3}=\dfrac59$.</span>
+              </p>
+              <p><strong>$M=3$, baricentro $\left(\dfrac{11}{9},\ \dfrac59\right)\approx(1{,}22;\ 0{,}56)$.</strong> Entrambe le coordinate superano il centro geometrico $(1;\ 0{,}5)$: la densità cresce verso l'angolo in alto a destra e tira lì il baricentro. Controllo di coerenza superato.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Applica due passi di discesa del gradiente a $J(x,y)=x^2+y^2$ partendo da $(3,4)$ con $\eta=0{,}1$, e verifica che il costo diminuisce. <em>(capitoli 4 e 5)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\nabla J=(2x,2y)$, quindi la regola diventa $(x,y)\leftarrow(x,y)\,(1-2\eta)=(x,y)\cdot 0{,}8$.</span>
+                <span class="esempio__passo"><strong>Passo 1:</strong> $(3,4)-0{,}1\,(6,8)=(2{,}4;\ 3{,}2)$.</span>
+                <span class="esempio__passo"><strong>Passo 2:</strong> $(2{,}4;3{,}2)-0{,}1\,(4{,}8;6{,}4)=(1{,}92;\ 2{,}56)$.</span>
+                <span class="esempio__passo"><strong>Costi:</strong> $J=25\ \to\ 5{,}76+10{,}24=16\ \to\ 3{,}6864+6{,}5536=10{,}24$.</span>
+              </p>
+              <p><strong>$(1{,}92;\ 2{,}56)$, costo $10{,}24$.</strong> Il costo si riduce di un fattore $0{,}64=0{,}8^2$ a ogni passo: qui la valle è perfettamente rotonda, quindi tutte le direzioni convergono alla stessa velocità e il punto scivola lungo la retta che unisce l'origine al punto di partenza.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Il profitto di un'azienda che produce due beni è $P(x,y)=8x+10y-x^2-y^2-xy$ (migliaia di euro). Trova le quantità che massimizzano il profitto e verifica che sia davvero un massimo. <em>(capitolo 5)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Punti critici:</strong> $P_x=8-2x-y=0$ e $P_y=10-2y-x=0$.</span>
+                <span class="esempio__passo">Dalla prima ricavo $y=8-2x$; sostituisco questa espressione al posto di $y$ nella seconda: $10-2(8-2x)-x=10-16+4x-x=3x-6$, che posto uguale a zero dà $x=2$; risalgo, $y=8-2\cdot 2=4$.</span>
+                <span class="esempio__passo"><strong>Hessiano:</strong> $P_{xx}=-2$, $P_{yy}=-2$, $P_{xy}=-1$. Determinante $=(-2)(-2)-(-1)^2=3$, positivo; $P_{xx}$ è negativo: <strong>massimo</strong>.</span>
+                <span class="esempio__passo"><strong>Profitto:</strong> $P(2,4)=16+40-4-16-8=28$.</span>
+              </p>
+              <p><strong>$x=2$, $y=4$, profitto massimo $28$ mila euro.</strong> Il termine $-xy$ rappresenta l'interferenza fra i due prodotti (si cannibalizzano a vicenda): senza di esso l'ottimo sarebbe $(4,5)$, quindi la concorrenza interna riduce entrambe le produzioni.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso uscente di $\mathbf{F}(x,y,z)=(x^2,\ y^2,\ z^2)$ dalla superficie del cubo $[0,1]^3$ usando il teorema della divergenza. <em>(capitoli 9 e 12)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il conto diretto richiederebbe <strong>sei</strong> integrali di superficie, uno per faccia. Con Gauss ne basta uno triplo.</span>
+                <span class="esempio__passo"><strong>Divergenza:</strong> $\nabla\cdot\mathbf{F}=2x+2y+2z$.</span>
+                <span class="esempio__passo"><strong>Integrale triplo:</strong> $\displaystyle\iiint_{[0,1]^3}(2x+2y+2z)\,dV$. Spezzo la somma in tre integrali; per simmetria i tre addendi danno lo stesso contributo, quindi ne calcolo uno solo. Su un cubo con estremi costanti l'integrale si fattorizza: $\displaystyle\iiint 2x\,dV=2\left(\int_0^1x\,dx\right)\left(\int_0^1dy\right)\left(\int_0^1dz\right)=2\cdot\tfrac12\cdot 1\cdot 1=1$.</span>
+                <span class="esempio__passo">Totale: $1+1+1=3$.</span>
+              </p>
+              <p><strong>$\Phi=3$.</strong> Flusso positivo: il campo "esce" più di quanto entri, perché la divergenza è positiva ovunque dentro il cubo (tranne nell'origine, dove si annulla). Il cubo si comporta come una sorgente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Una piastra rettangolare omogenea occupa $[0,a]\times[0,b]$ e ha massa $M$. Calcola il momento d'inerzia rispetto all'asse $y$ ed esprimilo in funzione di $M$ e $a$. <em>(capitolo 8)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">La distanza di un punto dall'asse $y$ è $|x|$, quindi $\ I=\displaystyle\iint_D x^2\rho\,dA$ con $\rho$ costante.</span>
+                <span class="esempio__passo">Gli estremi sono costanti e l'integranda dipende solo da $x$, quindi i due integrali si separano: quello interno vale $\int_0^a x^2dx=\left[\frac{x^3}{3}\right]_0^a=\frac{a^3}{3}$, quello in $y$ è di una costante e dà semplicemente $b$. Dunque $I=\rho\displaystyle\int_0^b\!\!\int_0^a x^2\,dx\,dy=\rho\,b\cdot\frac{a^3}{3}$.</span>
+                <span class="esempio__passo">Poiché $M=\rho\,ab$, si ha $\rho b=\dfrac{M}{a}$ e quindi $\ I=\dfrac{M}{a}\cdot\dfrac{a^3}{3}=\dfrac{Ma^2}{3}$.</span>
+              </p>
+              <p><strong>$I=\dfrac{Ma^2}{3}$.</strong> Nota due cose: $b$ sparisce (la dimensione parallela all'asse non conta) e rispetto all'asse baricentrico si troverebbe $\dfrac{Ma^2}{12}$, cioè quattro volte meno. Allontanare l'asse dal baricentro costa carissimo: è il teorema di Huygens-Steiner.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Massimizza $f(x,y)=xy$ con il vincolo $x+y=10$. Calcola anche $\lambda$ e verifica che coincida con $\dfrac{df^*}{db}$, dove $b$ è il valore del vincolo. <em>(capitolo 6)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Lagrange:</strong> derivo $f=xy$ rispetto a $x$ e a $y$ ottenendo $\nabla f=(y,x)$, e $g=x+y$ dà $\nabla g=(1,1)$. La condizione $\nabla f=\lambda\nabla g$, letta componente per componente, è il sistema $y=\lambda\cdot 1$ e $x=\lambda\cdot 1$: entrambe le variabili valgono $\lambda$, quindi $x=y$. Sostituisco $y=x$ nel vincolo: $x+x=2x=10$, quindi $x=y=5$ e $\lambda=5$.</span>
+                <span class="esempio__passo"><strong>Massimo:</strong> $f(5,5)=25$.</span>
+                <span class="esempio__passo"><strong>Verifica del prezzo ombra:</strong> con vincolo generico $x+y=b$ si trova $x=y=b/2$ e $f^*(b)=\dfrac{b^2}{4}$. Derivando: $\dfrac{df^*}{db}=\dfrac{b}{2}=5$ per $b=10$. ✓</span>
+              </p>
+              <p><strong>$x=y=5$, $f=25$, $\lambda=5$.</strong> Interpretazione: se il vincolo passasse da $10$ a $11$, il prodotto massimo crescerebbe di circa $5$ (in effetti $\frac{121}{4}=30{,}25$, cioè $+5{,}25$: $\lambda$ è la stima al primo ordine). È anche il fatto classico che, a perimetro fissato, il rettangolo di area massima è il quadrato.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">La densità congiunta di due variabili è $f(x,y)=4xy$ su $[0,1]\times[0,1]$. Verifica la normalizzazione, calcola $P\!\left(X\le\tfrac12,\ Y\le\tfrac12\right)$ e $E[X]$, e stabilisci se le variabili sono indipendenti. <em>(capitolo 8)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Normalizzazione:</strong> l'integranda si fattorizza, quindi $\displaystyle\iint 4xy\,dA=4\left(\int_0^1x\,dx\right)\left(\int_0^1y\,dy\right)=4\cdot\tfrac12\cdot\tfrac12=1$ ✓.</span>
+                <span class="esempio__passo"><strong>Probabilità:</strong> $4\left(\displaystyle\int_0^{1/2}x\,dx\right)\left(\int_0^{1/2}y\,dy\right)=4\cdot\tfrac18\cdot\tfrac18=\dfrac{1}{16}$.</span>
+                <span class="esempio__passo"><strong>Valore atteso:</strong> $E[X]=4\left(\displaystyle\int_0^1x^2dx\right)\left(\int_0^1y\,dy\right)=4\cdot\tfrac13\cdot\tfrac12=\dfrac23$.</span>
+                <span class="esempio__passo"><strong>Indipendenza:</strong> $f(x,y)=(2x)(2y)=f_X(x)f_Y(y)$, prodotto di due densità valide su $[0,1]$: le variabili sono <strong>indipendenti</strong>.</span>
+              </p>
+              <p><strong>$P=\dfrac{1}{16}$, $E[X]=\dfrac23$.</strong> Controllo: essendo indipendenti, $P\left(X\le\frac12,Y\le\frac12\right)$ deve essere il prodotto $P\left(X\le\frac12\right)P\left(Y\le\frac12\right)=\frac14\cdot\frac14=\frac{1}{16}$ ✓. E $E[X]=\frac23$ è maggiore di $\frac12$ perché la densità $2x$ pesa di più i valori grandi.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Un serbatoio cilindrico chiuso deve contenere $V=2\pi\ \text{m}^3$. Determina raggio e altezza che minimizzano la superficie totale (cioè la lamiera usata), e calcola la superficie minima. <em>(capitoli 5 e 6)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Modello:</strong> superficie $S=2\pi r^2+2\pi rh$ (due basi più il mantello), vincolo $\pi r^2h=V$.</span>
+                <span class="esempio__passo"><strong>Sostituisco</strong> nel vincolo ricavo $h=\dfrac{V}{\pi r^2}$ e lo metto al posto di $h$ nel termine del mantello: $2\pi rh=2\pi r\cdot\dfrac{V}{\pi r^2}=\dfrac{2V}{r}$ (si semplificano $\pi$ e una $r$). Resta $\ S(r)=2\pi r^2+\dfrac{2V}{r}$, funzione di una sola variabile positiva.</span>
+                <span class="esempio__passo"><strong>Derivo</strong> scrivendo $\frac{2V}{r}=2Vr^{-1}$, la cui derivata è $-2Vr^{-2}$: $S'(r)=4\pi r-\dfrac{2V}{r^2}$. Pongo $S'(r)=0$, porto il secondo termine a destra, $4\pi r=\dfrac{2V}{r^2}$, moltiplico entrambi i membri per $r^2$ e divido per $4\pi$: $\ r^3=\dfrac{2V}{4\pi}=\dfrac{V}{2\pi}$. Con $V=2\pi$: $r^3=1$, quindi $r=1\ \text{m}$.</span>
+                <span class="esempio__passo"><strong>Altezza:</strong> $h=\dfrac{2\pi}{\pi\cdot 1}=2\ \text{m}$, cioè $h=2r$: l'altezza uguaglia il diametro.</span>
+                <span class="esempio__passo"><strong>Minimo?</strong> $S''(r)=4\pi+\dfrac{4V}{r^3}$, positivo: minimo. <strong>Superficie:</strong> $S=2\pi+4\pi=6\pi\approx 18{,}85\ \text{m}^2$.</span>
+              </p>
+              <p><strong>$r=1\ \text{m}$, $h=2\ \text{m}$, $S=6\pi\ \text{m}^2$.</strong> La relazione $h=2r$ vale per <em>qualunque</em> volume: è il motivo per cui i barattoli di pelati hanno quelle proporzioni. Curiosità: molte lattine di bibita sono più slanciate, perché lì conta anche l'ergonomia e il costo del coperchio è diverso da quello del mantello — il modello matematico va sempre confrontato con i vincoli reali.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova la retta dei minimi quadrati per i punti $(1,2)$, $(2,3)$, $(3,5)$ e verifica che passi per il baricentro dei dati. <em>(capitoli 3 e 5)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Somme:</strong> $n=3$, $\ \sum x_i=6$, $\ \sum y_i=10$, $\ \sum x_iy_i=2+6+15=23$, $\ \sum x_i^2=1+4+9=14$.</span>
+                <span class="esempio__passo"><strong>Pendenza:</strong> applico la formula delle equazioni normali $m=\dfrac{n\sum x_iy_i-\sum x_i\sum y_i}{n\sum x_i^2-\left(\sum x_i\right)^2}$ (Derivazione 2), sostituendo i quattro numeri appena calcolati: $m=\dfrac{3\cdot 23-6\cdot 10}{3\cdot 14-6^2}=\dfrac{69-60}{42-36}=\dfrac{9}{6}=\dfrac32$.</span>
+                <span class="esempio__passo"><strong>Intercetta:</strong> $\bar x=2$, $\bar y=\dfrac{10}{3}$, quindi $q=\bar y-m\bar x=\dfrac{10}{3}-3=\dfrac13$.</span>
+                <span class="esempio__passo"><strong>Verifica:</strong> nel punto $\bar x=2$ la retta vale $\dfrac32\cdot 2+\dfrac13=3+\dfrac13=\dfrac{10}{3}=\bar y$ ✓.</span>
+                <span class="esempio__passo"><strong>Residui:</strong> $2-\frac{11}{6}=\frac16$, $\ 3-\frac{10}{3}=-\frac13$, $\ 5-\frac{29}{6}=\frac16$. Somma dei residui: $\frac16-\frac13+\frac16=0$ ✓ (proprietà generale).</span>
+              </p>
+              <p><strong>$y=\dfrac32x+\dfrac13$.</strong> La somma dei residui nulla non è un caso: è esattamente la prima equazione normale, $\sum(y_i-mx_i-q)=0$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Verifica che $\mathbf{F}(x,y,z)=(yz,\ xz,\ xy)$ ha rotore nullo, trovane il potenziale e calcola il lavoro da $(1,1,1)$ a $(2,3,4)$. Quanto vale su un percorso chiuso? <em>(capitoli 10 e 12)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Rotore:</strong> $\ \partial_yF_3-\partial_zF_2=x-x=0$; $\ \partial_zF_1-\partial_xF_3=y-y=0$; $\ \partial_xF_2-\partial_yF_1=z-z=0$. Rotore nullo, dominio tutto lo spazio: campo conservativo.</span>
+                <span class="esempio__passo"><strong>Potenziale:</strong> da $U_x=yz$ integro in $x$: $U=xyz+c(y,z)$. Derivando in $y$ e in $z$ si ottiene $xz$ e $xy$, già corretti, quindi $c$ è costante: $U=xyz$.</span>
+                <span class="esempio__passo"><strong>Lavoro:</strong> $L=U(2,3,4)-U(1,1,1)=24-1=23$.</span>
+                <span class="esempio__passo"><strong>Percorso chiuso:</strong> partenza e arrivo coincidono, quindi $L=U(A)-U(A)=0$.</span>
+              </p>
+              <p><strong>$U=xyz$, $\ L=23$, $\ L_{\text{chiuso}}=0$.</strong> Il lavoro nullo su ogni ciclo è la definizione stessa di campo conservativo: è il motivo per cui non esiste la "macchina a moto perpetuo" alimentata dalla gravità.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il momento d'inerzia di una sfera piena omogenea di raggio $R$ e massa $M$ rispetto a un asse passante per il centro, usando le coordinate sferiche. <em>(capitolo 9)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Imposto:</strong> la distanza dall'asse $z$ è $\sqrt{x^2+y^2}$, quindi $I=\displaystyle\iiint_V (x^2+y^2)\,\rho\,dV$.</span>
+                <span class="esempio__passo"><strong>Sferiche:</strong> $x^2+y^2=r^2\sin^2\varphi$ e $dV=r^2\sin\varphi\,dr\,d\varphi\,d\theta$, quindi l'integranda diventa $r^4\sin^3\varphi$.</span>
+                <span class="esempio__passo">$I=\rho\displaystyle\int_0^{2\pi}\!\!d\theta\int_0^{\pi}\!\sin^3\varphi\,d\varphi\int_0^R\! r^4dr=\rho\cdot 2\pi\cdot\frac43\cdot\frac{R^5}{5}=\frac{8\pi\rho R^5}{15}$.</span>
+                <span class="esempio__passo">(Per l'integrale in $\varphi$: $\displaystyle\int_0^\pi\sin^3\varphi\,d\varphi=\int_0^\pi(1-\cos^2\varphi)\sin\varphi\,d\varphi=\left[-\cos\varphi+\frac{\cos^3\varphi}{3}\right]_0^\pi=\frac43$.)</span>
+                <span class="esempio__passo"><strong>In funzione della massa:</strong> la massa è $M=\rho\cdot(\text{volume})=\dfrac43\pi R^3\rho$. Faccio il rapporto $\frac IM$, dividendo per una frazione cioè moltiplicando per il suo reciproco; $\pi$ e $\rho$ si semplificano, e $R^5/R^3=R^2$: $\ \dfrac{I}{M}=\dfrac{8\pi\rho R^5/15}{\frac43\pi R^3\rho}=\dfrac{8R^2}{15}\cdot\dfrac34=\dfrac{24R^2}{60}=\dfrac{2}{5}R^2$, da cui $I=\dfrac25MR^2$.</span>
+              </p>
+              <p><strong>$I=\dfrac25MR^2$.</strong> Confronta con il guscio sferico sottile, che vale $\frac23MR^2$: a parità di massa e raggio, la sfera piena è molto più facile da far ruotare, perché gran parte della sua materia sta vicino all'asse.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $\mathbf{F}(x,y,z)=(2xy,\ x^2+z^2,\ 2yz)$. (a) Stabilisci se è conservativo. (b) In caso affermativo determinane il potenziale. (c) Calcola il lavoro da $O=(0,0,0)$ a $P=(1,2,3)$. (d) Spiega perché il risultato non dipende dalla traiettoria scelta. <em>(capitoli 10 e 12)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> Rotore: $\ \partial_yF_3-\partial_zF_2=2z-2z=0$; $\ \partial_zF_1-\partial_xF_3=0-0=0$; $\ \partial_xF_2-\partial_yF_1=2x-2x=0$. Rotore nullo su $\mathbb{R}^3$, che è semplicemente connesso: <strong>conservativo</strong>.</span>
+                <span class="esempio__passo"><strong>(b)</strong> Da $U_x=2xy$: $U=x^2y+c(y,z)$. Derivo in $y$: $x^2+c_y=x^2+z^2$, quindi $c_y=z^2$ e $c=yz^2+d(z)$. Derivo in $z$: $2yz+d'(z)=2yz$, quindi $d$ è costante. <strong>$U(x,y,z)=x^2y+yz^2$.</strong></span>
+                <span class="esempio__passo"><strong>(c)</strong> $L=U(1,2,3)-U(0,0,0)=\big(1\cdot 2+2\cdot 9\big)-0=2+18=20$.</span>
+                <span class="esempio__passo"><strong>(d)</strong> Perché per il teorema fondamentale degli integrali curvilinei $\int_\gamma\nabla U\cdot d\mathbf{r}=U(B)-U(A)$: il valore dipende solo dagli estremi. Equivalentemente, il lavoro su ogni cammino chiuso è nullo, quindi due cammini diversi con gli stessi estremi (che insieme formano un ciclo) danno lo stesso risultato.</span>
+              </p>
+              <p><strong>(a) sì; (b) $U=x^2y+yz^2$; (c) $L=20$; (d) indipendenza dal percorso.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un'impresa produce secondo $Q(K,L)=K^{1/3}L^{2/3}$, con costo unitario del capitale $2$ e del lavoro $4$, e un budget di $120$. (a) Determina $K$ e $L$ ottimi. (b) Calcola la produzione massima. (c) Calcola $\lambda$ e interpretalo. (d) Conviene indebitarsi a un tasso che costa $0{,}1$ unità di prodotto per euro? <em>(capitolo 6)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> Derivo $Q=K^{1/3}L^{2/3}$ rispetto a $K$ (con $L$ costante) con la regola della potenza: $Q_K=\tfrac13K^{1/3-1}L^{2/3}=\tfrac13K^{-2/3}L^{2/3}$; e rispetto a $L$: $\ Q_L=\tfrac23K^{1/3}L^{2/3-1}=\tfrac23K^{1/3}L^{-1/3}$. Faccio il rapporto sottraendo gli esponenti delle basi uguali: $\dfrac{Q_K}{Q_L}=\dfrac{1/3}{2/3}\cdot K^{-2/3-1/3}L^{2/3+1/3}=\dfrac12\cdot\dfrac{L}{K}$. La condizione di ottimo $\dfrac{Q_K}{Q_L}=\dfrac{p_K}{p_L}$ dà quindi $\ \dfrac{1}{2}\cdot\dfrac{L}{K}=\dfrac{2}{4}=\dfrac12$; moltiplicando entrambi i membri per $2$ resta $\frac LK=1$, cioè $L=K$.</span>
+                <span class="esempio__passo">Vincolo: $2K+4L=6K=120$, quindi $K=L=20$.</span>
+                <span class="esempio__passo"><strong>(b)</strong> $Q=20^{1/3}\cdot 20^{2/3}=20$.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Con $K=L$ si ha $K^{-2/3}L^{2/3}=1$, quindi $Q_K=\tfrac13$ e $\ \lambda=\dfrac{Q_K}{p_K}=\dfrac{1/3}{2}=\dfrac16\approx 0{,}167$. Verifica: con budget $b$ si trova $K=L=b/6$ e $Q^*=b/6$, quindi $\dfrac{dQ^*}{db}=\dfrac16$ ✓.</span>
+                <span class="esempio__passo"><strong>(d)</strong> Un euro in più di budget produce $0{,}167$ unità in più; se costa $0{,}1$ unità, il saldo è positivo: <strong>conviene</strong>, finché $\lambda$ resta maggiore del costo del denaro.</span>
+              </p>
+              <p><strong>$K=L=20$, $Q=20$, $\lambda=\dfrac16$, e l'indebitamento conviene.</strong> Questa è esattamente la logica con cui si valuta un investimento: confrontare il prezzo ombra della risorsa con il suo costo di mercato.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Due tempi di attesa indipendenti hanno densità congiunta $f(x,y)=e^{-(x+y)}$ per $x\ge 0$, $y\ge 0$. (a) Verifica la normalizzazione. (b) Calcola la probabilità che la somma dei due tempi non superi $1$. (c) Calcola $E[X]$. <em>(capitoli 8 e 9)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a)</strong> $\displaystyle\int_0^{+\infty}\!\!\int_0^{+\infty}e^{-x}e^{-y}\,dy\,dx=\left(\int_0^{+\infty}e^{-x}dx\right)^2=1^2=1$ ✓ (la fattorizzazione conferma anche l'indipendenza).</span>
+                <span class="esempio__passo"><strong>(b)</strong> La regione è il triangolo $x\ge0$, $y\ge0$, $x+y\le1$: $$P=\int_0^1\!\!\int_0^{1-x}e^{-x}e^{-y}\,dy\,dx$$</span>
+                <span class="esempio__passo">Integrale interno in $y$: il fattore $e^{-x}$ è costante rispetto a $y$ e si porta fuori, mentre $\int e^{-y}dy=-e^{-y}$. Valuto agli estremi: $e^{-x}\big[-e^{-y}\big]_0^{1-x}=e^{-x}\left(-e^{-(1-x)}+e^{0}\right)=e^{-x}\left(1-e^{-(1-x)}\right)$. Svolgo il prodotto usando $e^{-x}e^{-(1-x)}=e^{-x-1+x}=e^{-1}$: resta $e^{-x}-e^{-1}$.</span>
+                <span class="esempio__passo">Integrale esterno: $\displaystyle\int_0^1\left(e^{-x}-e^{-1}\right)dx=\big(1-e^{-1}\big)-e^{-1}=1-\dfrac{2}{e}\approx 0{,}264$.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Poiché la densità si fattorizza, anche $E[X]=\iint x\,f\,dA$ si spezza nel prodotto di due integrali semplici: $E[X]=\displaystyle\int_0^{+\infty}x\,e^{-x}dx\cdot\int_0^{+\infty}e^{-y}dy$. Il secondo vale $1$ (è la normalizzazione già usata); il primo si fa per parti (Analisi 1, cap. 13) con $u=x$ e $dv=e^{-x}dx$, quindi $du=dx$ e $v=-e^{-x}$: $\left[-xe^{-x}\right]_0^{+\infty}+\int_0^{+\infty}e^{-x}dx=0+1=1$. In tutto $E[X]=1\cdot 1=1$.</span>
+              </p>
+              <p><strong>(a) ✓; (b) $P=1-\dfrac2e\approx 26{,}4\%$; (c) $E[X]=1$.</strong> Coerente: ciascun tempo dura in media $1$, quindi la somma media è $2$ e la probabilità che stiano entrambi dentro $1$ deve essere ben minore di $\frac12$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 14.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $J(x,y)=x^3+y^3-3xy$ una funzione di costo. (a) Trova e classifica i punti critici. (b) Esegui un passo di discesa del gradiente da $(2,2)$ con $\eta=0{,}1$ e verifica che il costo scenda. (c) Spiega che cosa succederebbe a un algoritmo che partisse molto vicino a $(0,0)$. <em>(capitoli 4, 5 e ML)</em></p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>(a) Punti critici:</strong> $J_x=3x^2-3y=0\Rightarrow y=x^2$; $\ J_y=3y^2-3x=0\Rightarrow x=y^2$. Sostituisco la prima nella seconda al posto di $y$: $x=\left(x^2\right)^2=x^4$ (potenza di potenza: gli esponenti si moltiplicano). Porto tutto a sinistra, $x^4-x=0$, e raccolgo $x$: $x\left(x^3-1\right)=0$, quindi $x=0$ oppure $x^3=1$, cioè $x=1$. Con $y=x^2$ i punti sono $(0,0)$ e $(1,1)$.</span>
+                <span class="esempio__passo"><strong>Hessiano:</strong> $J_{xx}=6x$, $J_{yy}=6y$, $J_{xy}=-3$; determinante $=36xy-9$.</span>
+                <span class="esempio__passo">In $(0,0)$: determinante $=-9$, negativo → <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>. In $(1,1)$: determinante $=27$, positivo, con $J_{xx}=6$ positivo → <strong>minimo locale</strong>, con $J(1,1)=1+1-3=-1$.</span>
+                <span class="esempio__passo"><strong>(b)</strong> $\nabla J(2,2)=(3\cdot4-6,\ 3\cdot4-6)=(6,6)$, quindi il nuovo punto è $(2,2)-0{,}1\,(6,6)=(1{,}4;\ 1{,}4)$. Costo: da $J(2,2)=8+8-12=4$ a $J(1{,}4;1{,}4)=2(2{,}744)-3(1{,}96)=5{,}488-5{,}88=-0{,}392$. Sceso ✓.</span>
+                <span class="esempio__passo"><strong>(c)</strong> Vicino a $(0,0)$ il gradiente è quasi nullo: l'algoritmo rallenta moltissimo e sembra convergere, ma $(0,0)$ è una <em>sella</em>, non un minimo. Basta una direzione di discesa (o il rumore dei mini-batch, o il momentum) per uscirne, ma senza quegli accorgimenti l'addestramento può restare bloccato per migliaia di iterazioni su un punto che non è affatto una soluzione.</span>
+              </p>
+              <p><strong>(a) $(0,0)$ sella, $(1,1)$ minimo locale con $J=-1$; (b) $(1{,}4;1{,}4)$ con costo $-0{,}392$; (c) stallo sulla sella.</strong> Nota che $J$ non ha minimo assoluto (per $x=y\to-\infty$ tende a $-\infty$): un'altra cosa che un algoritmo cieco non può sapere, e che solo l'analisi teorica rivela.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">L'ultimo quiz del libro: mettiti alla prova</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Il lavoro di un campo <strong>conservativo</strong> lungo un percorso chiuso vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">la lunghezza del percorso moltiplicata per il modulo del campo</button>
+              <button class="quiz-option" data-correct="true">sempre zero</button>
+              <button class="quiz-option" data-correct="false">dipende dalla forma del percorso</button>
+              <button class="quiz-option" data-correct="false">l'area racchiusa dal percorso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Zero: il lavoro vale $U(B)-U(A)$ e su un ciclo partenza e arrivo coincidono. È la definizione operativa di campo conservativo, e il motivo per cui la gravità non permette il moto perpetuo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Per calcolare il flusso di un campo uscente da una <strong>superficie chiusa</strong>, lo strumento più efficiente è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">il teorema di Stokes, che usa il rotore</button>
+              <button class="quiz-option" data-correct="true">il teorema della divergenza (Gauss): $\displaystyle\oiint_S\mathbf{F}\cdot\mathbf{n}\,dS=\iiint_V\nabla\cdot\mathbf{F}\,dV$</button>
+              <button class="quiz-option" data-correct="false">un integrale curvilineo lungo il bordo</button>
+              <button class="quiz-option" data-correct="false">il metodo dei moltiplicatori di Lagrange</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Superficie chiusa = niente bordo = Gauss. Stokes serve invece per superfici <em>aperte</em>, cioè con un bordo lungo cui calcolare la circuitazione. Nell'Esempio 3 questa scelta ha trasformato un integrale di superficie in una moltiplicazione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Nella discesa del gradiente l'aggiornamento dei parametri è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\mathbf{w}_{k+1}=\mathbf{w}_k+\eta\,\nabla J(\mathbf{w}_k)$</button>
+              <button class="quiz-option" data-correct="true">$\mathbf{w}_{k+1}=\mathbf{w}_k-\eta\,\nabla J(\mathbf{w}_k)$</button>
+              <button class="quiz-option" data-correct="false">$\mathbf{w}_{k+1}=\mathbf{w}_k-\eta\,J(\mathbf{w}_k)$</button>
+              <button class="quiz-option" data-correct="false">$\mathbf{w}_{k+1}=-\eta\,\nabla J(\mathbf{w}_k)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il segno <strong>meno</strong> è essenziale: il gradiente punta verso la salita più ripida, quindi per <em>scendere</em> si va nella direzione opposta. E si usa il gradiente, non il valore della funzione: serve la direzione, non l'altezza.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) In un problema di massimo vincolato, il moltiplicatore $\lambda$ rappresenta:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">il valore massimo della funzione obiettivo</button>
+              <button class="quiz-option" data-correct="false">un parametro ausiliario privo di significato, da scartare</button>
+              <button class="quiz-option" data-correct="true">di quanto migliora l'ottimo se il vincolo viene allentato di una unità (prezzo ombra)</button>
+              <button class="quiz-option" data-correct="false">la pendenza della curva di vincolo nel punto ottimo</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\lambda=\dfrac{dU^*}{db}$: è il <strong>prezzo ombra</strong> della risorsa. Se $\lambda$ supera il costo di mercato di quella risorsa, conviene procurarsene di più: è così che si valuta un investimento (Esercizio 14.14).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Il momento d'inerzia di un corpo dipende da quale asse di rotazione si sceglie.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: nella formula $I=\iint d^2\rho\,dA$ la distanza $d$ è misurata <em>dall'asse scelto</em>. Cambiando asse cambia tutto: la stessa piastra ha $\frac{Ma^2}{3}$ rispetto a un lato e $\frac{Ma^2}{12}$ rispetto all'asse baricentrico (Esercizio 14.6).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) L'integrale $\displaystyle\int_{-\infty}^{+\infty}e^{-x^2}dx$ si calcola elevandolo al quadrato, trasformandolo in un integrale doppio e passando in coordinate polari.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, ed è il trucco più elegante del calcolo: $e^{-x^2}$ non ha primitiva elementare, ma $I^2=\iint e^{-(x^2+y^2)}dA$ in polari diventa immediato grazie al fattore $r$ dello jacobiano. Risultato: $I=\sqrt\pi$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Un learning rate più grande è sempre preferibile, perché fa arrivare prima al minimo.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: oltre una certa soglia il passo scavalca il fondovalle e l'algoritmo oscilla o diverge. Nell'Esempio 9, con $\eta=0{,}3$ la coordinata ripida veniva moltiplicata per $-1{,}4$ a ogni iterazione, allontanandosi dal minimo invece di avvicinarsi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Calcolando una probabilità come integrale doppio di una densità congiunta si può legittimamente ottenere un valore maggiore di $1$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: il volume totale sotto la densità vale $1$, e una parte non può superare il tutto. Se ti viene un numero maggiore di $1$ (o negativo) hai sbagliato la costante di normalizzazione, gli estremi o la regione di integrazione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="conservativo|campo conservativo">
+            <p class="quiz-question__testo">9. (Completamento) Un campo vettoriale che ammette potenziale scalare, e in cui quindi il lavoro non dipende dal percorso, si dice ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback><strong>Conservativo</strong>: esiste $U$ con $\mathbf{F}=\nabla U$, il lavoro vale $U(B)-U(A)$ e l'energia meccanica si conserva. Il potenziale è l'equivalente in più variabili della primitiva.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="learning rate|tasso di apprendimento|passo">
+            <p class="quiz-question__testo">10. (Completamento) Nel machine learning, il parametro $\eta$ che stabilisce la lunghezza del passo a ogni iterazione si chiama ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback><strong>Learning rate</strong> (tasso di apprendimento). Troppo piccolo: convergenza lentissima. Troppo grande: oscillazioni o divergenza. È il parametro più delicato di tutto l'addestramento.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="baricentro|centro di massa">
+            <p class="quiz-question__testo">11. (Completamento) Il punto di equilibrio di una lamina, calcolato come media delle posizioni pesata con la densità, si chiama ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback><strong>Baricentro</strong> (o centro di massa): $\bar x=\frac1M\iint x\rho\,dA$. La stessa formula, con la densità di probabilità al posto di quella di massa, dà il valore atteso $E[X]$: due letture dello stesso integrale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue la discesa del gradiente usando l'immagine della pallina nella valle: che cos'è il terreno, che cos'è il passo, che ruolo ha il learning rate e quali sono le due trappole in cui può finire.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: il terreno è il grafico della funzione di costo $J(\mathbf{w})$, cioè quanto il modello sbaglia in funzione dei suoi parametri; l'altezza è l'errore, e cercare il minimo significa cercare i parametri migliori. La pallina è lo stato corrente dei parametri. A ogni iterazione si calcola il gradiente $\nabla J$, che è la direzione di massima salita, e ci si muove nel verso opposto: $\mathbf{w}\leftarrow\mathbf{w}-\eta\nabla J$. Il learning rate $\eta$ è la lunghezza del passo: se è troppo piccolo la discesa è corretta ma lentissima e l'addestramento non finisce mai; se è troppo grande il passo scavalca il fondovalle e si finisce più in alto sull'altro versante, con oscillazioni o vera e propria divergenza (nell'Esempio 9, con $\eta=0{,}3$ la coordinata ripida si moltiplicava per $-1{,}4$ a ogni passo). Le due trappole sono: (a) i <em>minimi locali</em>, conche a mezza costa dove la pallina si ferma credendo di essere arrivata, mentre il minimo globale è altrove; (b) i <em>punti di sella</em>, dove il gradiente è nullo ma la funzione scende in alcune direzioni e sale in altre — il terreno sembra piatto, la pallina rallenta quasi fino a fermarsi, e in dimensione alta le selle sono molto più frequenti dei minimi locali. Rimedi pratici: partenze multiple, momentum, rumore dei mini-batch, learning rate variabile nel tempo.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Un compagno ti chiede: "ma alla fine che rapporto c'è fra Analisi 1 e Analisi 2? Sono due materie diverse?". Rispondi elencando almeno quattro corrispondenze e spiegando in che senso il teorema fondamentale del calcolo e i teoremi di Green, Gauss e Stokes sono la stessa idea.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: non sono due materie diverse, ma la stessa teoria con un ingresso in più. Corrispondenze principali: la derivata $f'(x)$, che era un numero, diventa il gradiente $\nabla f$, che è un vettore di derivate parziali; la retta tangente diventa il piano tangente; il test della derivata seconda diventa lo studio della matrice hessiana, con in più i punti di sella che in una variabile non esistevano; l'integrale su un intervallo diventa integrale doppio o triplo su una regione o un solido; la sostituzione con il fattore $g'(u)$ diventa il cambio di variabile con lo jacobiano; la primitiva $F$ con $F'=f$ diventa il potenziale $U$ con $\nabla U=\mathbf{F}$; le equazioni, che avevano per incognita un numero, diventano equazioni differenziali, che hanno per incognita una funzione. Quanto ai teoremi: il teorema fondamentale del calcolo dice che $\int_a^b f'(x)dx=f(b)-f(a)$, cioè che la somma di tutte le variazioni interne all'intervallo si legge soltanto agli <em>estremi</em>, che sono il "bordo" dell'intervallo. Green, Gauss e Stokes dicono esattamente la stessa cosa in dimensione superiore: l'integrale di una derivata (divergenza o rotore) su una regione, su un volume o su una superficie è uguale a un integrale calcolato solo sul <em>bordo</em> di quell'oggetto — una curva chiusa per Green, una superficie chiusa per Gauss, il contorno della superficie per Stokes. In tutti i casi il messaggio è lo stesso: quello che succede dentro si può leggere sul bordo. Non a caso esiste un'unica formulazione generale che li contiene tutti, il teorema di Stokes generalizzato.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="13-equazioni-differenziali.html"><span class="dir">← Capitolo precedente</span><strong>Equazioni differenziali</strong></a>
+        <a class="next" href="../index.html"><span class="dir">Hai completato il libro 🎉</span><strong>Torna all'indice del libro</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

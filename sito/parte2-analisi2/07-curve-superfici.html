@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7. Curve e superfici parametriche — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 7</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html" class="is-active">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 7 di 14</span>
+        </div>
+        <h1>Curve e superfici parametriche</h1>
+        <p class="subtitle">Fino ad ora le curve erano grafici di funzioni: sempre "una $y$ sopra ogni $x$". Ma una traiettoria vera — un drone che fa un giro della morte, un satellite in orbita, una molla che sale a spirale — non è il grafico di niente. Serve un'idea nuova e molto più potente: descrivere il punto <em>mentre si muove</em>, istante per istante. Da lì nascono le curve parametriche, le superfici parametriche, e tutto il calcolo integrale in più dimensioni che vedrai nei prossimi capitoli.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Quattro cose sole. Le rispieghiamo in parole poverissime, una immagine mentale ciascuna. Se le hai in testa, il capitolo scorre.</p>
+          <p><strong>1) La <a href="../parte1-analisi1/07-derivate.html">derivata</a> è una velocità.</strong> Hai una quantità che cambia. La derivata dice quanto cambia in fretta <em>adesso</em>. <br><em>Immagine: il tachimetro dell'auto.</em> Non la media del viaggio: il numero di questo secondo.</p>
+          <p><strong>2) L'<a href="../parte1-analisi1/14-integrali-definiti.html">integrale definito</a> è una somma di tantissimi pezzettini.</strong> Tagli a fettine sottilissime, misuri ogni fettina, sommi tutto. <br><em>Immagine: il contachilometri.</em> Somma continuamente i micro-pezzi di strada e alla fine ti dà il totale.</p>
+          <p><strong>3) <a href="../parte0-prerequisiti/08-trigonometria.html">Seno e coseno</a> sono le ombre di un punto che gira.</strong> Metti un punto sul cerchio di raggio $1$ e fallo girare di un angolo $t$. <br><em>Immagine: l'ombra.</em> $\cos t$ è l'ombra orizzontale, $\sin t$ è l'ombra verticale. Ecco perché $(\cos t,\ \sin t)$ disegna un cerchio: è il punto che gira.</p>
+          <p><strong>4) Un vettore è una freccia; il prodotto vettoriale fabbrica una freccia perpendicolare.</strong> Un vettore ha direzione e lunghezza (e lo sommi mettendo le frecce in fila). <br><em>Immagine: due matite appoggiate sul tavolo.</em> Il prodotto vettoriale $\mathbf{a}\times\mathbf{b}$ è una terza matita che si alza <strong>perpendicolare a entrambe</strong>, e la sua lunghezza è l'<strong>area del parallelogramma</strong> che le due matite delimitano. Se le due matite sono parallele, il parallelogramma è schiacciato: area zero, prodotto vettoriale nullo. Se hai bisogno di rivedere i vettori nel piano, guarda la <a href="../parte0-prerequisiti/07-geometria-analitica.html">geometria analitica</a>.</p>
+        </div>
+
+        <p>Ora l'idea centrale del capitolo, in una frase: <strong>smettiamo di disegnare curve e cominciamo a percorrerle</strong>.</p>
+        <p>Immagina di andare a correre con lo smartphone in tasca. Il GPS registra la tua posizione ogni secondo. Alla fine hai una lista: al secondo $0$ eri qui, al secondo $1$ eri lì, al secondo $2$ eri più avanti... Se unisci tutti quei puntini ottieni la <strong>traccia</strong> del tuo giro: una curva sulla mappa.</p>
+        <p>Questa è esattamente una <span class="glossario-term" data-term="curva-parametrica">curva parametrica</span>. La scriviamo così:</p>
+        <div class="formula-block">$$\mathbf{r}(t)=\big(x(t),\,y(t),\,z(t)\big)$$</div>
+        <p>Leggila come una frase: "<strong>al tempo $t$, il punto si trova in quella posizione lì</strong>". La lettera $t$ è il <strong>parametro</strong>, ed è il cronometro della corsa. Tu dai un istante, la formula ti restituisce un punto.</p>
+        <p>Perché è meglio del "grafico di una funzione"? Perché il grafico di $y=f(x)$ può disegnare solo curve che <em>non tornano mai indietro</em> e non si sovrappongono mai: sopra ogni $x$ c'è una sola $y$. Ma una corsa vera può girare in tondo, incrociare sé stessa, tornare al punto di partenza. Con il parametro tutto questo è naturalissimo: nessuno vieta al corridore di passare due volte nello stesso punto in due istanti diversi.</p>
+        <p>E le superfici? Stessa idea, ma con <strong>due cronometri</strong>. Una <span class="glossario-term" data-term="superficie-parametrica">superficie parametrica</span> si scrive</p>
+        <div class="formula-block">$$\mathbf{r}(u,v)=\big(x(u,v),\,y(u,v),\,z(u,v)\big)$$</div>
+        <p>e l'immagine giusta è quella di un <strong>foglio elastico</strong>. Parti da un rettangolo di gomma piatto (il dominio dei parametri $u$ e $v$), poi lo stiri, lo pieghi, lo avvolgi e lo appoggi nello spazio. Il risultato è la superficie. I due parametri sono le "coordinate stampate sul foglio": ti dicono in che punto del foglio ti trovi, prima ancora che il foglio venisse deformato. Sulla Terra questi due numeri hanno perfino un nome che conosci: <strong>latitudine</strong> e <strong>longitudine</strong>.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>il mondo è pieno di oggetti curvi che non sono grafici di funzioni</strong>. Un'orbita, un'elica del DNA, la superficie di un pallone, la vela di una barca, una cupola: nessuno di questi si può scrivere come "$y$ in funzione di $x$". Serve un linguaggio che descriva forme <em>qualunque</em> nello spazio — e quel linguaggio è la parametrizzazione. In più, parametrizzare è l'unico modo per poter <strong>integrare su curve e su superfici</strong>: senza questo capitolo, i capitoli 10, 11 e 12 sarebbero impossibili.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Due problemi gemelli. Il primo: <em>come misuro la lunghezza di una linea storta?</em> Un righello misura segmenti dritti, non ghirigori. Il secondo: <em>come misuro l'area di una superficie curva?</em> Le formule della geometria elementare danno l'area di rettangoli e triangoli piatti, non di una cupola. La risposta, in entrambi i casi, è la stessa strategia dell'<a href="../parte1-analisi1/14-integrali-definiti.html">integrale definito</a>: <strong>spezzo in pezzettini talmente piccoli da poterli considerare dritti (o piatti), li misuro uno a uno, e li sommo tutti</strong>. Il "sommare tutti" è l'integrale.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo capitolo è la cerniera di tutta la Parte 2. Nei capitoli precedenti hai studiato le <span class="glossario-term" data-term="funzione-piu-variabili">funzioni di più variabili</span>, il gradiente, i massimi e i minimi: tutto su <em>domini piatti</em>. Da qui in poi i domini diventano curvi. La <span class="glossario-term" data-term="lunghezza-arco">lunghezza d'arco</span> di questo capitolo è l'ingrediente degli <a href="10-integrali-curvilinei.html">integrali curvilinei</a>; l'elemento d'area $dS$ è l'ingrediente degli <span class="glossario-term" data-term="integrale-di-superficie">integrali di superficie</span> del <a href="11-integrali-superficie-campi-vettoriali.html">Capitolo 11</a>; il <span class="glossario-term" data-term="versore-normale">versore normale</span> e l'orientazione sono ciò che rende sensati i <a href="12-teoremi-green-gauss-stokes.html">teoremi di Green, Gauss e Stokes</a>. Chi salta questo capitolo si ritrova, tre capitoli dopo, a manipolare simboli che non significano nulla.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🥾</span> Quanto era lungo davvero quel sentiero?</div>
+          <p>Torni da un'escursione e l'app ti dice: <strong>"14,7 km"</strong>. Come fa a saperlo? Il telefono non ha un contachilometri: ha solo una <strong>lista di posizioni</strong> registrate, diciamo una ogni secondo. Ecco cosa fa l'app, ed è <em>letteralmente</em> la formula della lunghezza d'arco:</p>
+          <p>1) prende due posizioni consecutive e calcola la distanza in linea d'aria tra loro (un pezzettino dritto, perché in un secondo non hai fatto in tempo a curvare molto);<br>
+          2) ripete per tutte le coppie consecutive;<br>
+          3) <strong>somma tutti i pezzettini</strong>.</p>
+          <p>Il risultato è la lunghezza della spezzata che approssima il sentiero. Se il GPS campionasse ogni millisecondo invece che ogni secondo, i pezzettini sarebbero più piccoli e la misura più precisa: al limite, per pezzettini infinitamente piccoli, la somma diventa l'integrale $\int_a^b|\mathbf{r}'(t)|\,dt$. La tua app di trekking <strong>calcola un integrale curvilineo senza dirtelo</strong>. E il dislivello? Stessa storia, ma sommando solo le componenti verticali.</p>
+        </div>
+        <p><strong>Il drone.</strong> Quando programmi la traiettoria di un drone non disegni una curva sul foglio: scrivi, istante per istante, dove deve trovarsi. Cioè scrivi $\mathbf{r}(t)$. Il software poi deriva: $\mathbf{r}'(t)$ è la velocità che i motori devono produrre, $\mathbf{r}''(t)$ è l'accelerazione, e da quella si ricava la spinta necessaria. Se in qualche istante $\mathbf{r}'(t)=\mathbf{0}$, il drone si ferma in aria; se $|\mathbf{r}''(t)|$ è troppo grande, la manovra è troppo brusca e il drone non ce la fa. Tutta la programmazione del volo è calcolo su curve parametriche.</p>
+        <p><strong>Il satellite.</strong> Un'orbita ellittica non è il grafico di nessuna funzione (a ogni "$x$" corrispondono due punti dell'ellisse). Ma parametrizzata è banale: $\mathbf{r}(t)=(a\cos t,\ b\sin t)$. E siccome i satelliti veri hanno anche una deriva lungo l'asse, la loro traccia al suolo è una curva che assomiglia a una sinusoide che si avvolge: pura geometria parametrica. Le leggi di Keplero sono affermazioni su $\mathbf{r}(t)$ e sulle sue derivate.</p>
+        <p><strong>La cupola e la vela.</strong> Un architetto che deve ordinare il rame per rivestire una cupola ha bisogno dell'<strong>area</strong> della superficie curva, non della sua proiezione a terra (che è molto più piccola!). Un velaio che taglia il tessuto per una randa ha lo stesso problema. Entrambi risolvono così: parametrizzano la superficie con due parametri, calcolano quanto viene "stirato" un rettangolino di tessuto quando viene appoggiato sulla forma curva — questo fattore di stiramento è $|\mathbf{r}_u\times\mathbf{r}_v|$ — e integrano. Il software CAD che fa il preventivo esegue esattamente questa formula.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-curve">4.1 Curve parametriche: la definizione</h3>
+        <p>Cominciamo a dare forma precisa all'idea del "punto che si muove".</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Curva parametrica.</em> Sia $I=[a,b]\subseteq\mathbb{R}$ un intervallo. Una <strong><span class="glossario-term" data-term="curva-parametrica">curva parametrica</span></strong> (o <em>arco di curva</em>) in $\mathbb{R}^3$ è una funzione continua</p>
+          <div class="formula-block">$$\mathbf{r}:I\longrightarrow\mathbb{R}^3,\qquad \mathbf{r}(t)=\big(x(t),\,y(t),\,z(t)\big)$$</div>
+          <p>Le funzioni $x(t),y(t),z(t)$ si dicono <strong>equazioni parametriche</strong> della curva; $t$ è il <strong>parametro</strong>. L'insieme dei punti $\Gamma=\{\mathbf{r}(t):t\in I\}$ si chiama <strong>sostegno</strong> (o traccia) della curva. Per una curva piana si omette semplicemente la terza componente.</p>
+        </div>
+        <p>Attenzione a una distinzione che sembra pedante e invece è la sorgente di metà degli errori d'esame: <strong>la curva è la funzione $\mathbf{r}$, il sostegno è il disegno</strong>. Due curve diverse possono avere lo stesso disegno: $\mathbf{r}_1(t)=(\cos t,\sin t)$ con $t\in[0,2\pi]$ e $\mathbf{r}_2(t)=(\cos 2t,\sin 2t)$ con $t\in[0,2\pi]$ disegnano entrambe la stessa circonferenza, ma la seconda la percorre <strong>due volte</strong>, al doppio della velocità. Il disegno è identico; il "viaggio" no.</p>
+
+        <h3 id="teoria-esempi-curve">4.2 Le parametrizzazioni fondamentali</h3>
+        <p>Queste sei vanno sapute a memoria: sono i mattoni con cui si costruisce quasi tutto il resto.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Curva</th><th>Parametrizzazione</th><th>Intervallo</th><th>Come leggerla</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Segmento</strong> da $A$ a $B$</td><td>$\mathbf{r}(t)=A+t\,(B-A)$</td><td>$t\in[0,1]$</td><td>parto da $A$ e mi muovo dritto verso $B$; a $t=\tfrac12$ sono a metà</td></tr>
+            <tr><td><strong>Circonferenza</strong> di raggio $R$</td><td>$\mathbf{r}(t)=(R\cos t,\ R\sin t)$</td><td>$t\in[0,2\pi]$</td><td>il punto che gira: $t$ è l'angolo</td></tr>
+            <tr><td><strong>Ellisse</strong> di semiassi $a,b$</td><td>$\mathbf{r}(t)=(a\cos t,\ b\sin t)$</td><td>$t\in[0,2\pi]$</td><td>la circonferenza schiacciata: $t$ <em>non</em> è più l'angolo vero</td></tr>
+            <tr><td><strong>Elica cilindrica</strong></td><td>$\mathbf{r}(t)=(R\cos t,\ R\sin t,\ ct)$</td><td>$t\in\mathbb{R}$</td><td>giro in tondo e contemporaneamente salgo: la molla, la scala a chiocciola, il DNA</td></tr>
+            <tr><td><strong>Cicloide</strong></td><td>$\mathbf{r}(t)=\big(a(t-\sin t),\ a(1-\cos t)\big)$</td><td>$t\in[0,2\pi]$</td><td>il percorso di un chiodo piantato nel copertone di una bici che rotola</td></tr>
+            <tr><td><strong>Grafico</strong> di $y=f(x)$</td><td>$\mathbf{r}(t)=\big(t,\ f(t)\big)$</td><td>$t\in[\alpha,\beta]$</td><td>ogni grafico <em>è</em> una curva parametrica: mi muovo a velocità $1$ in orizzontale</td></tr>
+          </tbody>
+        </table>
+        <p>L'ultima riga merita un secondo di attenzione perché è liberatoria: <strong>tutto quello che hai studiato in Analisi 1 è un caso particolare di questo capitolo</strong>. Il grafico di una funzione è la curva parametrica più pigra che esista, quella in cui il punto avanza in orizzontale sempre alla stessa velocità e si limita a salire e scendere.</p>
+        <p>In <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span>, una curva data da $\rho=\rho(\theta)$ si parametrizza immediatamente prendendo $\theta$ come parametro:</p>
+        <div class="formula-block">$$\mathbf{r}(\theta)=\big(\rho(\theta)\cos\theta,\ \rho(\theta)\sin\theta\big)$$</div>
+
+        <h3 id="teoria-velocita">4.3 Velocità: il vettore tangente</h3>
+        <p>Se $\mathbf{r}(t)$ è la posizione, cosa sarà mai la sua <span class="glossario-term" data-term="derivata">derivata</span>? La stessa cosa che era in Analisi 1: la velocità. Si deriva <strong>componente per componente</strong>.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Vettore velocità, versore tangente, velocità scalare.</em> Se le componenti sono derivabili, si pone</p>
+          <div class="formula-block">$$\mathbf{r}'(t)=\big(x'(t),\,y'(t),\,z'(t)\big)=\lim_{h\to 0}\frac{\mathbf{r}(t+h)-\mathbf{r}(t)}{h}$$</div>
+          <p>e si chiama <strong>vettore velocità</strong> (o vettore tangente). Il suo modulo</p>
+          <div class="formula-block">$$v(t)=|\mathbf{r}'(t)|=\sqrt{x'(t)^2+y'(t)^2+z'(t)^2}$$</div>
+          <p>è la <strong>velocità scalare</strong>. Se $\mathbf{r}'(t)\neq\mathbf{0}$ si definisce il <strong>versore tangente</strong></p>
+          <div class="formula-block">$$\mathbf{T}(t)=\frac{\mathbf{r}'(t)}{|\mathbf{r}'(t)|}$$</div>
+          <p>Infine $\mathbf{a}(t)=\mathbf{r}''(t)$ è il <strong>vettore accelerazione</strong>.</p>
+        </div>
+        <p>Perché $\mathbf{r}'(t)$ è <em>tangente</em>? Guarda il rapporto incrementale: $\mathbf{r}(t+h)-\mathbf{r}(t)$ è la freccia che va dalla posizione di adesso a quella di fra poco, cioè una <strong>corda</strong> della curva. Dividere per $h$ non cambia la direzione, la accorcia soltanto. Quando $h\to 0$ la corda ruota e si adagia sulla curva: esattamente come le secanti diventavano la tangente nel <a href="../parte1-analisi1/07-derivate.html">capitolo sulle derivate</a>. La differenza è che qui non otteniamo un numero (la pendenza) ma un <strong>vettore</strong>, che porta con sé due informazioni in una: la <strong>direzione</strong> (dove sto andando) e il <strong>modulo</strong> (quanto vado veloce).</p>
+
+        <svg viewBox="0 0 460 260" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Una curva nel piano con il vettore velocità tangente in un punto e il versore tangente">
+          <path d="M 30 220 C 120 60, 260 250, 430 60" fill="none" stroke="currentColor" stroke-width="2.6"/>
+          <line x1="190" y1="164" x2="300" y2="196" stroke="var(--color-secondary)" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <line x1="190" y1="164" x2="250" y2="186" stroke="var(--color-secondary)" stroke-width="1.6" stroke-dasharray="5 4"/>
+          <line x1="190" y1="164" x2="290" y2="192" stroke="var(--color-primary)" stroke-width="3"/>
+          <polygon points="290,192 276,184 277,197" fill="var(--color-primary)"/>
+          <circle cx="190" cy="164" r="5.5" fill="var(--color-primary)"/>
+          <circle cx="250" cy="186" r="4" fill="var(--color-secondary)" opacity=".75"/>
+          <circle cx="300" cy="196" r="4" fill="var(--color-secondary)" opacity=".5"/>
+          <text x="160" y="158" font-size="14" font-weight="700" fill="currentColor">r(t)</text>
+          <text x="296" y="215" font-size="14" font-weight="700" fill="var(--color-primary)">r'(t)</text>
+          <text x="238" y="146" font-size="12" fill="var(--color-secondary)">corde r(t+h) − r(t)</text>
+          <text x="36" y="238" font-size="12" fill="var(--color-text-muted)">senso di percorrenza →</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Le corde (tratteggiate) si accorciano e ruotano: al limite danno il vettore velocità $\mathbf{r}'(t)$, tangente alla curva e orientato nel senso di percorrenza.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🚗</span> Il cruscotto della curva</div>
+          <p>Tre oggetti, tre strumenti del cruscotto. $\mathbf{r}(t)$ è il <strong>navigatore</strong> (dove sono). $\mathbf{r}'(t)$ è <strong>tachimetro + bussola</strong> insieme (quanto vado forte e in che direzione). $|\mathbf{r}'(t)|$ è il <strong>solo tachimetro</strong> (il numero, senza la direzione). E $\mathbf{T}(t)$ è la <strong>sola bussola</strong>: la direzione con la velocità normalizzata a $1$.</p>
+        </div>
+
+        <h3 id="teoria-regolari">4.4 Curve regolari, punti singolari, curve chiuse e semplici</h3>
+        <p>Non tutte le curve sono "buone". Ci servono condizioni che garantiscano che in ogni punto ci sia una tangente ben definita.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Curva regolare.</em> Una curva $\mathbf{r}:[a,b]\to\mathbb{R}^3$ si dice <strong>regolare</strong> se:</p>
+          <ul>
+            <li>$\mathbf{r}$ è di classe $C^1$ (le componenti sono derivabili con derivata continua);</li>
+            <li>$\mathbf{r}'(t)\neq\mathbf{0}$ per ogni $t\in[a,b]$.</li>
+          </ul>
+          <p>Un punto in cui $\mathbf{r}'(t_0)=\mathbf{0}$ si dice <strong>punto singolare</strong>. Una curva è <strong>regolare a tratti</strong> se l'intervallo si spezza in un numero finito di sottointervalli su ciascuno dei quali la curva è regolare.</p>
+        </div>
+        <p>La condizione $\mathbf{r}'\neq\mathbf{0}$ sembra tecnica ma è profondamente intuitiva: <strong>se ti fermi, puoi ripartire in qualunque direzione</strong>. Un punto in cui la velocità si annulla è un punto in cui la curva può fare uno spigolo, o addirittura invertire il senso di marcia, formando una <strong>cuspide</strong>: una punta acuminata. Il caso-simbolo è la cicloide, che negli istanti $t=0,2\pi,4\pi,\dots$ ha velocità nulla (è l'istante in cui il chiodo del copertone tocca l'asfalto e si ferma un attimo) e infatti mostra una cuspide.</p>
+        <p>Altri aggettivi che ritroverai a ogni pagina dei prossimi capitoli:</p>
+        <ul>
+          <li><strong>Curva chiusa</strong>: $\mathbf{r}(a)=\mathbf{r}(b)$, cioè torni al punto di partenza. Un giro di pista.</li>
+          <li><strong>Curva semplice</strong>: non si autointerseca, cioè $\mathbf{r}(t_1)\neq\mathbf{r}(t_2)$ per $t_1\neq t_2$ (con l'unica eccezione ammessa degli estremi, se la curva è chiusa). Non passi mai due volte dallo stesso punto.</li>
+          <li><strong>Orientazione</strong>: il verso in cui si percorre. Ogni curva ammette due orientazioni; passare da una all'altra significa <strong>invertire il parametro</strong>, ad esempio sostituendo $t$ con $a+b-t$. Per una curva chiusa piana si parla di verso <em>antiorario</em> (detto positivo) e <em>orario</em>.</li>
+        </ul>
+
+        <h3 id="teoria-riparametrizzazione">4.5 Riparametrizzazione: cambiare cronometro</h3>
+        <p>Lo stesso sentiero puoi percorrerlo camminando, correndo o fermandoti a fare foto. Il disegno del sentiero non cambia; cambia solo il rapporto tra tempo e posizione. Matematicamente:</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Riparametrizzazione.</em> Sia $\varphi:[\alpha,\beta]\to[a,b]$ una funzione di classe $C^1$, biiettiva, con $\varphi'(\tau)\neq 0$. Allora $\boldsymbol{\rho}(\tau)=\mathbf{r}\big(\varphi(\tau)\big)$ è una <strong>riparametrizzazione</strong> di $\mathbf{r}$. Se $\varphi'\,\gt\,0$ la riparametrizzazione <strong>conserva l'orientazione</strong>, se $\varphi'\,\lt\,0$ la <strong>inverte</strong>.</p>
+        </div>
+        <p>La regola della catena dà subito la relazione tra le velocità: $\boldsymbol{\rho}'(\tau)=\mathbf{r}'(\varphi(\tau))\,\varphi'(\tau)$. Il vettore tangente ha la <strong>stessa direzione</strong>, solo un modulo diverso: cambia la velocità, non la strada. È il motivo per cui la lunghezza (che dipende dalla strada) sarà invariante, come dimostreremo nella <a href="#dimostrazioni">sezione 5</a>.</p>
+
+        <h3 id="teoria-lunghezza">4.6 Lunghezza d'arco: il contachilometri</h3>
+        <p>Arriviamo al risultato più importante della prima metà del capitolo.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema / Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="lunghezza-arco">Lunghezza d'arco</span>.</em> Sia $\mathbf{r}:[a,b]\to\mathbb{R}^3$ una curva regolare (o regolare a tratti). La sua lunghezza è</p>
+          <div class="formula-block">$$L=\int_a^b\big|\mathbf{r}'(t)\big|\,dt=\int_a^b\sqrt{x'(t)^2+y'(t)^2+z'(t)^2}\ dt$$</div>
+        </div>
+        <p>Leggila "alla fisica" e diventa ovvia: <strong>spazio = velocità × tempo</strong>, sommato su tutti gli istantini. In ogni intervallino $dt$ percorri $|\mathbf{r}'(t)|\,dt$ metri di strada; sommando tutti i pezzettini — cioè calcolando un <span class="glossario-term" data-term="integrale-definito">integrale definito</span> — ottieni il totale. È il contachilometri dell'auto, che non fa altro che accumulare micro-spostamenti.</p>
+        <p>La quantità $ds=|\mathbf{r}'(t)|\,dt$ si chiama <strong>elemento di lunghezza</strong> ed è il simbolo che ritroverai negli <a href="10-integrali-curvilinei.html">integrali curvilinei</a>. La funzione</p>
+        <div class="formula-block">$$s(t)=\int_a^t\big|\mathbf{r}'(u)\big|\,du$$</div>
+        <p>si chiama <strong>ascissa curvilinea</strong>: dice quanti metri di curva hai percorso dall'inizio fino all'istante $t$. Per il <a href="../parte1-analisi1/14-integrali-definiti.html">teorema fondamentale del calcolo</a> vale $s'(t)=|\mathbf{r}'(t)|\,\gt\,0$, quindi $s$ è strettamente crescente e invertibile: si può usare $s$ stesso come parametro. Questa è la <strong>parametrizzazione naturale</strong>, e ha una proprietà elegantissima: percorrendo la curva "a ritmo di metro", si ha sempre $\left|\dfrac{d\mathbf{r}}{ds}\right|=1$. È il camminatore perfetto, che avanza esattamente un metro di sentiero al secondo, per tutto il tragitto.</p>
+        <p>Due casi particolari si ricavano subito e vanno memorizzati:</p>
+        <div class="formula-block">
+          $$\textbf{Grafico } y=f(x):\qquad L=\int_\alpha^\beta\sqrt{1+f'(x)^2}\ dx$$
+          $$\textbf{Polari } \rho=\rho(\theta):\qquad L=\int_{\theta_1}^{\theta_2}\sqrt{\rho(\theta)^2+\rho'(\theta)^2}\ d\theta$$
+        </div>
+        <p>La prima segue da $\mathbf{r}(x)=(x,f(x))$, da cui $\mathbf{r}'=(1,f')$ e $|\mathbf{r}'|=\sqrt{1+f'^2}$. La seconda si ottiene derivando $\mathbf{r}(\theta)=(\rho\cos\theta,\rho\sin\theta)$ e semplificando con l'identità fondamentale della trigonometria (la verifica è l'Esercizio 7.10).</p>
+
+        <h3 id="teoria-curvatura">4.7 Un cenno alla curvatura: quanto è stretta la piega</h3>
+        <p>La lunghezza dice <em>quanta</em> strada c'è. La <strong>curvatura</strong> dice <em>quanto è stretta</em> ogni curva della strada — è l'informazione che ti fa rallentare in moto prima di un tornante.</p>
+        <p>L'idea: percorri la curva a ritmo costante di un metro al secondo (parametrizzazione naturale) e guarda la bussola $\mathbf{T}$. Se la strada è dritta, la bussola non si muove mai. Se la strada gira, la bussola ruota; e <strong>più stretta è la piega, più in fretta ruota</strong>. Dunque:</p>
+        <div class="formula-block">$$\kappa=\left|\frac{d\mathbf{T}}{ds}\right|\qquad\text{e, con un parametro qualunque,}\qquad \kappa(t)=\frac{\big|\mathbf{r}'(t)\times\mathbf{r}''(t)\big|}{\big|\mathbf{r}'(t)\big|^{3}}$$</div>
+        <p>Per una retta $\kappa=0$ (la bussola è immobile). Per una circonferenza di raggio $R$ si trova $\kappa=\dfrac{1}{R}$: cerchio piccolo, curvatura grande; cerchio enorme, curvatura quasi nulla — infatti un pezzo di equatore terrestre sembra dritto. Il numero $\dfrac{1}{\kappa}$ si chiama <strong>raggio di curvatura</strong>: è il raggio del cerchio che meglio approssima la curva in quel punto, e per una curva piana $y=f(x)$ vale $\kappa=\dfrac{|f''(x)|}{\left(1+f'(x)^2\right)^{3/2}}$. Non è un caso che compaia la derivata seconda: la curvatura è la parente stretta della concavità di Analisi 1.</p>
+
+        <h3 id="teoria-superfici">4.8 Superfici parametriche: il foglio elastico</h3>
+        <p>Passiamo dalla dimensione uno alla dimensione due. Un parametro disegna una linea; <strong>due parametri disegnano un foglio</strong>.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="superficie-parametrica">Superficie parametrica</span>.</em> Sia $D\subseteq\mathbb{R}^2$ un dominio (connesso, con interno non vuoto). Una <strong>superficie parametrica</strong> è una funzione continua</p>
+          <div class="formula-block">$$\mathbf{r}:D\longrightarrow\mathbb{R}^3,\qquad \mathbf{r}(u,v)=\big(x(u,v),\,y(u,v),\,z(u,v)\big)$$</div>
+          <p>L'immagine $\Sigma=\mathbf{r}(D)$ è il <strong>sostegno</strong> della superficie; $u,v$ sono i <strong>parametri</strong>.</p>
+        </div>
+        <p>Ecco le parametrizzazioni che devi riconoscere a colpo d'occhio:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Superficie</th><th>Parametrizzazione</th><th>Dominio dei parametri</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Piano</strong> per $P_0$ con giaciture $\mathbf{a},\mathbf{b}$</td><td>$\mathbf{r}(u,v)=P_0+u\,\mathbf{a}+v\,\mathbf{b}$</td><td>$(u,v)\in\mathbb{R}^2$</td></tr>
+            <tr><td><strong>Sfera</strong> di raggio $R$</td><td>$\mathbf{r}(\varphi,\theta)=(R\sin\varphi\cos\theta,\ R\sin\varphi\sin\theta,\ R\cos\varphi)$</td><td>$\varphi\in[0,\pi],\ \theta\in[0,2\pi]$</td></tr>
+            <tr><td><strong>Cilindro</strong> di raggio $R$, altezza $h$</td><td>$\mathbf{r}(\theta,z)=(R\cos\theta,\ R\sin\theta,\ z)$</td><td>$\theta\in[0,2\pi],\ z\in[0,h]$</td></tr>
+            <tr><td><strong>Cono</strong> $z=\sqrt{x^2+y^2}$</td><td>$\mathbf{r}(u,\theta)=(u\cos\theta,\ u\sin\theta,\ u)$</td><td>$u\in[0,h],\ \theta\in[0,2\pi]$</td></tr>
+            <tr><td><strong>Grafico</strong> di $z=f(x,y)$</td><td>$\mathbf{r}(x,y)=\big(x,\ y,\ f(x,y)\big)$</td><td>$(x,y)\in D$</td></tr>
+            <tr><td><strong>Rotazione</strong> di $y=f(x)\geq 0$ attorno all'asse $x$</td><td>$\mathbf{r}(x,\theta)=\big(x,\ f(x)\cos\theta,\ f(x)\sin\theta\big)$</td><td>$x\in[\alpha,\beta],\ \theta\in[0,2\pi]$</td></tr>
+          </tbody>
+        </table>
+        <p>Guarda la sfera: $\varphi$ è la <strong>colatitudine</strong> (l'angolo misurato dal Polo Nord: $\varphi=0$ al polo, $\varphi=\pi/2$ all'equatore, $\varphi=\pi$ al Polo Sud) e $\theta$ è la <strong>longitudine</strong>. Sono esattamente le coordinate del mappamondo. E la parametrizzazione del grafico ripete, in dimensione superiore, la stessa liberazione di prima: <strong>ogni superficie-grafico è un caso particolarissimo di superficie parametrica</strong>, quella in cui si usano $x$ e $y$ come parametri.</p>
+
+        <h3 id="teoria-tangenti">4.9 Curve coordinate, vettori tangenti, normale e piano tangente</h3>
+        <p>Sul foglio elastico, prima di deformarlo, sono stampate le righe di un quaderno a quadretti: le linee "$v=\text{cost}$" e le linee "$u=\text{cost}$". Quando il foglio viene appoggiato nello spazio, quelle righe diventano curve disegnate sulla superficie: le <strong>curve coordinate</strong>. Sulla sfera sono i <strong>meridiani</strong> ($\theta$ fissato) e i <strong>paralleli</strong> ($\varphi$ fissato).</p>
+        <p>Ogni curva coordinata è una curva parametrica, quindi ha un suo vettore tangente. Basta derivare parzialmente:</p>
+        <div class="formula-block">
+          $$\mathbf{r}_u=\frac{\partial\mathbf{r}}{\partial u}=\left(\frac{\partial x}{\partial u},\frac{\partial y}{\partial u},\frac{\partial z}{\partial u}\right),\qquad \mathbf{r}_v=\frac{\partial\mathbf{r}}{\partial v}=\left(\frac{\partial x}{\partial v},\frac{\partial y}{\partial v},\frac{\partial z}{\partial v}\right)$$
+        </div>
+        <p>Questi due vettori sono tangenti alla superficie e puntano in due direzioni diverse. Due frecce non parallele, uscenti dallo stesso punto, individuano un piano: il <span class="glossario-term" data-term="piano-tangente">piano tangente</span>. E il prodotto vettoriale delle due — ricorda la matita che si alza perpendicolare — dà la <strong>normale</strong>.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Superficie regolare, vettore normale, piano tangente.</em> Sia $\mathbf{r}$ di classe $C^1$ su $D$. Si pone</p>
+          <div class="formula-block">$$\mathbf{N}(u,v)=\mathbf{r}_u\times\mathbf{r}_v$$</div>
+          <p>La superficie si dice <strong>regolare</strong> nel punto $(u_0,v_0)$ se $\mathbf{N}(u_0,v_0)\neq\mathbf{0}$ (equivalentemente: $\mathbf{r}_u$ e $\mathbf{r}_v$ non sono paralleli). In tal caso il <strong>piano tangente</strong> in $P_0=\mathbf{r}(u_0,v_0)$ ha equazione</p>
+          <div class="formula-block">$$\mathbf{N}(u_0,v_0)\cdot\big(X-P_0\big)=0,\qquad X=(x,y,z)$$</div>
+          <p>e il <span class="glossario-term" data-term="versore-normale">versore normale</span> è $\ \mathbf{n}=\dfrac{\mathbf{N}}{|\mathbf{N}|}$.</p>
+        </div>
+        <p>Prima di usare $\mathbf{N}$ conviene richiamare <strong>come si calcola un prodotto vettoriale in componenti</strong>. Dati $\mathbf{a}=(a_1,a_2,a_3)$ e $\mathbf{b}=(b_1,b_2,b_3)$:</p>
+        <div class="formula-block">$$\mathbf{a}\times\mathbf{b}=\big(a_2b_3-a_3b_2,\ \ a_3b_1-a_1b_3,\ \ a_1b_2-a_2b_1\big)$$</div>
+        <p>Regola pratica per ricordarla: per la <em>prima</em> componente si coprono con un dito le prime componenti di $\mathbf a$ e $\mathbf b$ e si fa il determinante $2\times2$ di quel che resta, $a_2b_3-a_3b_2$; per la <em>seconda</em> si coprono le seconde e si cambia segno al risultato; per la <em>terza</em> si coprono le terze. Gli indici girano sempre in tondo $1\to2\to3\to1$.</p>
+        <p>Per il grafico $z=f(x,y)$ il calcolo si fa una volta per tutte. La parametrizzazione è $\mathbf{r}(x,y)=(x,\,y,\,f(x,y))$: derivando rispetto a $x$ (la prima componente dà $1$, la seconda $0$, la terza $f_x$) ottengo $\mathbf{r}_x=(1,0,f_x)$; derivando rispetto a $y$, $\mathbf{r}_y=(0,1,f_y)$. Applico ora la formula del prodotto vettoriale con $\mathbf a=\mathbf r_x$, cioè $a_1=1$, $a_2=0$, $a_3=f_x$, e $\mathbf b=\mathbf r_y$, cioè $b_1=0$, $b_2=1$, $b_3=f_y$. Una componente per volta: la prima vale $a_2b_3-a_3b_2=0\cdot f_y-f_x\cdot 1=-f_x$; la seconda vale $a_3b_1-a_1b_3=f_x\cdot 0-1\cdot f_y=-f_y$; la terza vale $a_1b_2-a_2b_1=1\cdot1-0\cdot0=1$. Quindi</p>
+        <div class="formula-block">$$\mathbf{N}=\mathbf{r}_x\times\mathbf{r}_y=\big(-f_x,\,-f_y,\,1\big),\qquad |\mathbf{N}|=\sqrt{(-f_x)^2+(-f_y)^2+1^2}=\sqrt{1+f_x^2+f_y^2}$$</div>
+        <p>(per il modulo ho usato $|\mathbf v|=\sqrt{v_1^2+v_2^2+v_3^2}$, e i due segni meno spariscono perché elevati al quadrato).</p>
+        <p>Scriviamo ora il piano tangente. Sostituisco $\mathbf N=(-f_x,-f_y,1)$ e $P_0=(x_0,y_0,f(x_0,y_0))$ dentro l'equazione $\mathbf{N}\cdot(X-P_0)=0$, svolgendo il prodotto scalare componente per componente:</p>
+        <div class="formula-block">$$-f_x(x_0,y_0)\,(x-x_0)-f_y(x_0,y_0)\,(y-y_0)+1\cdot\big(z-f(x_0,y_0)\big)=0$$</div>
+        <p>Porto a destra i primi due addendi (cambiando loro il segno) e poi $-f(x_0,y_0)$: si ottiene $z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$, proprio la formula del differenziale che hai visto nel <a href="03-derivate-parziali.html">Capitolo 3</a>. Le due strade portano allo stesso posto, come deve essere.</p>
+
+        <svg viewBox="0 0 470 280" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Un pezzo di superficie curva con le curve coordinate, i due vettori tangenti r_u e r_v e il vettore normale perpendicolare">
+          <path d="M 60 190 C 140 120, 260 240, 400 150 L 400 70 C 260 160, 140 40, 60 110 Z" fill="var(--color-primary-light)" opacity=".5" stroke="var(--color-border)" stroke-width="1.2"/>
+          <path d="M 60 150 C 140 80, 260 200, 400 110" fill="none" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <path d="M 200 168 C 205 140, 208 120, 210 96" fill="none" stroke="var(--color-secondary)" stroke-width="1.8"/>
+          <line x1="205" y1="134" x2="290" y2="140" stroke="var(--color-primary)" stroke-width="2.8"/>
+          <polygon points="290,140 277,134 277,146" fill="var(--color-primary)"/>
+          <line x1="205" y1="134" x2="212" y2="80" stroke="var(--color-accent)" stroke-width="2.8"/>
+          <polygon points="212,80 204,92 217,93" fill="var(--color-accent)"/>
+          <line x1="205" y1="134" x2="148" y2="44" stroke="var(--color-danger)" stroke-width="3"/>
+          <polygon points="148,44 149,60 161,52" fill="var(--color-danger)"/>
+          <circle cx="205" cy="134" r="5" fill="currentColor"/>
+          <text x="296" y="146" font-size="14" font-weight="700" fill="var(--color-primary)">r_u</text>
+          <text x="220" y="76" font-size="14" font-weight="700" fill="var(--color-accent)">r_v</text>
+          <text x="98" y="38" font-size="14" font-weight="700" fill="var(--color-danger)">N = r_u × r_v</text>
+          <text x="62" y="215" font-size="12" fill="var(--color-text-muted)">curve coordinate sulla superficie</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">I due tangenti $\mathbf{r}_u$ e $\mathbf{r}_v$ generano il piano tangente; il loro prodotto vettoriale $\mathbf{N}$ è perpendicolare a entrambi.</p>
+
+        <h3 id="teoria-area">4.10 L'elemento d'area: il parallelogrammino deformato</h3>
+        <p>Qui si prepara il terreno per il <a href="11-integrali-superficie-campi-vettoriali.html">Capitolo 11</a>, e vale la pena capirlo davvero.</p>
+        <p>Nel dominio dei parametri prendi un rettangolino minuscolo, con lati $du$ e $dv$: la sua area è banalmente $du\,dv$. Ora appoggia il foglio sulla forma curva. Quel rettangolino si deforma in un pezzetto di superficie che, essendo piccolissimo, è praticamente piatto: è un <strong>parallelogramma</strong>. Quali sono i suoi due lati? Spostandoti di $du$ lungo la direzione $u$ ti muovi (al primo ordine) di $\mathbf{r}_u\,du$; spostandoti di $dv$ lungo $v$ ti muovi di $\mathbf{r}_v\,dv$. Quindi il parallelogrammino ha per lati proprio $\mathbf{r}_u\,du$ e $\mathbf{r}_v\,dv$. E l'area di un parallelogramma è il modulo del prodotto vettoriale dei suoi lati:</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Elemento d'area.</em> Per una superficie regolare,</p>
+          <div class="formula-block">$$dS=\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv,\qquad\text{e l'area totale è}\qquad \mathrm{Area}(\Sigma)=\iint_D\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$$</div>
+        </div>
+        <p>Il fattore $|\mathbf{r}_u\times\mathbf{r}_v|$ è il <strong>coefficiente di stiramento</strong>: dice di quanto viene ingrandito (o rimpicciolito) un quadratino di foglio quando lo appoggi sulla superficie. Se vale $1$, il foglio è stato posato senza deformarlo; se vale $3$, ogni quadratino è diventato tre volte più grande. È l'esatto analogo bidimensionale di $|\mathbf{r}'(t)|$ per le curve, che diceva di quanto veniva stirato un intervallino di tempo.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> I tre $dS$ da tenere in tasca</div>
+          <p><strong>Grafico</strong> $z=f(x,y)$: $\ dS=\sqrt{1+f_x^2+f_y^2}\ dx\,dy$.<br>
+          <strong>Sfera</strong> di raggio $R$: $\ dS=R^2\sin\varphi\ d\varphi\,d\theta$ (e integrando si ritrova $4\pi R^2$).<br>
+          <strong>Rotazione</strong> di $y=f(x)$ attorno all'asse $x$: $\ dS=f(x)\sqrt{1+f'(x)^2}\ dx\,d\theta$, da cui la formula classica dell'area di una superficie di rotazione $2\pi\displaystyle\int_\alpha^\beta f(x)\sqrt{1+f'(x)^2}\,dx$ che avevi incontrato nelle <a href="../parte1-analisi1/15-applicazioni-integrali.html">applicazioni degli integrali</a>.</p>
+        </div>
+
+        <h3 id="teoria-orientazione">4.11 Orientazione, bordo, e il nastro di Möbius</h3>
+        <p>In ogni punto di una superficie regolare ci sono <strong>due</strong> versori normali: $\mathbf{n}$ e $-\mathbf{n}$. Scegliere in modo <em>coerente</em> uno dei due su tutta la superficie — cioè in modo che il verso scelto vari con continuità, senza salti — significa <strong>orientare</strong> la superficie. Intuitivamente: decidere qual è la "faccia esterna" e quale l'"interna", quale lato verniciare di rosso e quale di blu.</p>
+        <p>Per una sfera è facilissimo: scegli tutte le normali uscenti (verso l'esterno) e hai finito. Una superficie con <strong>bordo</strong> — come una calotta sferica, un disco, o un pezzo di vela — ha un contorno, e l'orientazione della superficie induce un verso di percorrenza sul bordo secondo la <em>regola della mano destra</em>: se il pollice indica $\mathbf{n}$, le dita indicano il verso positivo del bordo. È la convenzione che rende veri i teoremi di Stokes e della divergenza del <a href="12-teoremi-green-gauss-stokes.html">Capitolo 12</a>.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🎗️</span> Il nastro di Möbius: una superficie con una sola faccia</div>
+          <p>Prendi una striscia di carta, <strong>ruota un capo di mezzo giro</strong> e incollalo all'altro. Ottieni il nastro di Möbius. Ora appoggia un pennarello e comincia a colorare <em>una sola faccia</em>, senza mai staccare la punta né scavalcare il bordo: dopo un giro completo ti ritrovi... sull'altro lato, e alla fine hai colorato tutto. <strong>Il nastro di Möbius ha una sola faccia</strong>.</p>
+          <p>In linguaggio matematico: trasportando con continuità il versore normale lungo il nastro, dopo un giro lo ritrovi capovolto ($\mathbf{n}$ è diventato $-\mathbf{n}$). Non esiste una scelta coerente: il nastro è una superficie <strong>non orientabile</strong>. Non è una curiosità da salotto — è il motivo per cui nell'enunciato del teorema di Stokes la parola "orientabile" c'è davvero, e non è decorativa: su una superficie del genere il flusso non è nemmeno definibile.</p>
+        </div>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea prima dei conti (dimostrazione 1)</div>
+          <p>Come misuri uno spago aggrovigliato? Lo tendi. Come misuri una curva che non puoi toccare? La <strong>approssimi con una spezzata</strong>: pianti dei paletti lungo la curva e misuri i segmenti dritti tra un paletto e il successivo — un righello basta. Poi ne pianti di più, e poi ancora di più: la spezzata aderisce sempre meglio alla curva e la sua lunghezza cresce verso il valore vero. Il passo finale è riconoscere che quella somma di segmentini <strong>è una somma di Riemann</strong>, e quindi al limite è un integrale.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Formula della lunghezza d'arco.</em> Sia $\mathbf{r}:[a,b]\to\mathbb{R}^3$ di classe $C^1$. Allora il limite delle lunghezze delle poligonali inscritte, al raffinarsi delle partizioni, esiste e vale $\displaystyle L=\int_a^b|\mathbf{r}'(t)|\,dt$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (approssimazione poligonale)</span>
+          <p>Prendiamo una partizione dell'intervallo dei tempi, $a=t_0\,\lt\,t_1\,\lt\,\dots\,\lt\,t_n=b$, e chiamiamo $\Delta t_i=t_i-t_{i-1}$. I punti $P_i=\mathbf{r}(t_i)$ sono i nostri "paletti" sulla curva. La lunghezza della poligonale che li unisce è</p>
+          <div class="formula-block">$$L_n=\sum_{i=1}^{n}\big|\mathbf{r}(t_i)-\mathbf{r}(t_{i-1})\big|$$</div>
+          <p><strong>Passo 1 — stimiamo il singolo segmento.</strong> Per il teorema fondamentale del calcolo applicato a ciascuna componente,</p>
+          <div class="formula-block">$$\mathbf{r}(t_i)-\mathbf{r}(t_{i-1})=\int_{t_{i-1}}^{t_i}\mathbf{r}'(u)\,du$$</div>
+          <p>(l'integrale di una funzione a valori vettoriali si intende componente per componente).</p>
+          <p><strong>Passo 2 — facciamo comparire il valore della derivata in un punto.</strong> Scriviamo, sommando e sottraendo $\mathbf{r}'(t_{i-1})\Delta t_i$:</p>
+          <div class="formula-block">$$\mathbf{r}(t_i)-\mathbf{r}(t_{i-1})=\mathbf{r}'(t_{i-1})\,\Delta t_i+\int_{t_{i-1}}^{t_i}\big[\mathbf{r}'(u)-\mathbf{r}'(t_{i-1})\big]\,du$$</div>
+          <p><strong>Passo 3 — l'errore è uniformemente piccolo.</strong> Poiché $\mathbf{r}'$ è continua sul compatto $[a,b]$, per il teorema di Heine–Cantor è <em>uniformemente</em> continua: fissato $\varepsilon\,\gt\,0$ esiste $\delta\,\gt\,0$ tale che $|u-w|\,\lt\,\delta\Rightarrow|\mathbf{r}'(u)-\mathbf{r}'(w)|\,\lt\,\varepsilon$. Se la partizione ha passo minore di $\delta$, l'integrale residuo ha modulo minore di $\varepsilon\,\Delta t_i$. Per la disuguaglianza triangolare,</p>
+          <div class="formula-block">$$\Big|\,\big|\mathbf{r}(t_i)-\mathbf{r}(t_{i-1})\big|-\big|\mathbf{r}'(t_{i-1})\big|\,\Delta t_i\,\Big|\;\leq\;\varepsilon\,\Delta t_i$$</div>
+          <p><strong>Passo 4 — sommiamo.</strong> Sommando su $i=1,\dots,n$ e ricordando che $\sum_i\Delta t_i=b-a$:</p>
+          <div class="formula-block">$$\left|\,L_n-\sum_{i=1}^{n}\big|\mathbf{r}'(t_{i-1})\big|\,\Delta t_i\,\right|\;\leq\;\varepsilon\,(b-a)$$</div>
+          <p><strong>Passo 5 — riconosciamo la somma di Riemann.</strong> La somma $\sum_i|\mathbf{r}'(t_{i-1})|\,\Delta t_i$ è esattamente una somma di Riemann della funzione continua $t\mapsto|\mathbf{r}'(t)|$, dunque converge a $\int_a^b|\mathbf{r}'(t)|\,dt$ quando il passo tende a zero. Poiché $\varepsilon$ è arbitrario, anche $L_n$ converge allo stesso limite:</p>
+          <div class="formula-block">$$L=\lim_{n\to\infty}L_n=\int_a^b\big|\mathbf{r}'(t)\big|\,dt\qquad\text{∎}$$</div>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea prima dei conti (dimostrazione 2)</div>
+          <p>Il sentiero è lungo quello che è lungo: che tu lo percorra di corsa, camminando o fermandoti ogni tanto, i chilometri non cambiano. Nella formula questo si vede così: se vai al doppio della velocità, $|\mathbf{r}'|$ raddoppia ma il tempo impiegato si dimezza, e nell'integrale i due effetti si annullano esattamente. Il conto che lo rende rigoroso è la <strong>sostituzione</strong> negli integrali.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Invarianza della lunghezza per riparametrizzazione.</em> Sia $\mathbf{r}:[a,b]\to\mathbb{R}^3$ regolare e sia $\varphi:[\alpha,\beta]\to[a,b]$ di classe $C^1$, biiettiva e crescente ($\varphi'\,\gt\,0$), con $\varphi(\alpha)=a$, $\varphi(\beta)=b$. Posto $\boldsymbol{\rho}=\mathbf{r}\circ\varphi$, le due curve hanno la stessa lunghezza.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (regola della catena + sostituzione)</span>
+          <p><strong>Passo 1.</strong> Per la regola della catena applicata a ciascuna componente, $\boldsymbol{\rho}'(\tau)=\mathbf{r}'\big(\varphi(\tau)\big)\cdot\varphi'(\tau)$.</p>
+          <p><strong>Passo 2.</strong> Prendiamo il modulo. Poiché $\varphi'(\tau)$ è uno scalare <em>positivo</em>, esce dal modulo senza valore assoluto:</p>
+          <div class="formula-block">$$\big|\boldsymbol{\rho}'(\tau)\big|=\big|\mathbf{r}'(\varphi(\tau))\big|\cdot\varphi'(\tau)$$</div>
+          <p><strong>Passo 3.</strong> Integriamo su $[\alpha,\beta]$ ed eseguiamo la sostituzione $t=\varphi(\tau)$, per cui $dt=\varphi'(\tau)\,d\tau$, con estremi $\varphi(\alpha)=a$ e $\varphi(\beta)=b$:</p>
+          <div class="formula-block">$$L_{\boldsymbol{\rho}}=\int_\alpha^\beta\big|\mathbf{r}'(\varphi(\tau))\big|\,\varphi'(\tau)\,d\tau=\int_a^b\big|\mathbf{r}'(t)\big|\,dt=L_{\mathbf{r}}$$</div>
+          <p>Le due lunghezze coincidono. Se invece $\varphi'\,\lt\,0$ (inversione dell'orientazione) compare $|\varphi'|=-\varphi'$ e si scambiano gli estremi: i due segni si compensano e la lunghezza resta la stessa. <span class="qed">∎</span></p>
+        </div>
+        <p>La morale è importante e vale la pena enunciarla a parole: <strong>la lunghezza è una proprietà del sostegno orientato, non della parametrizzazione</strong>. È questo che autorizza a dire "la lunghezza <em>della circonferenza</em>" senza specificare come la si percorre — purché la si percorra una volta sola. (Se la percorri due volte, come in $\mathbf{r}(t)=(\cos 2t,\sin 2t)$ su $[0,2\pi]$, l'integrale dà $4\pi$: giustamente, perché hai fatto due giri. La formula non sbaglia mai; sei tu che devi sapere quante volte stai girando.)</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea prima dei conti (dimostrazione 3)</div>
+          <p>Perché nell'elemento d'area compare proprio $|\mathbf{r}_u\times\mathbf{r}_v|$ e non, che so, $|\mathbf{r}_u|\,|\mathbf{r}_v|$? Perché due matite sul tavolo delimitano un rettangolo solo se sono perpendicolari: se le avvicini fino a renderle parallele, il "rettangolo" si schiaccia e l'area va a zero, mentre il prodotto delle lunghezze resta lo stesso. Serve una formula che si accorga dell'inclinazione — e il prodotto vettoriale fa esattamente questo.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Area del parallelogramma e formula di Lagrange.</em> Dati $\mathbf{a},\mathbf{b}\in\mathbb{R}^3$, l'area del parallelogramma che essi individuano è $|\mathbf{a}\times\mathbf{b}|$, e vale l'identità $\ |\mathbf{a}\times\mathbf{b}|^2=|\mathbf{a}|^2|\mathbf{b}|^2-(\mathbf{a}\cdot\mathbf{b})^2$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Passo 1 — l'area.</strong> Il parallelogramma di lati $\mathbf{a}$ e $\mathbf{b}$ ha base $|\mathbf{a}|$ e altezza $|\mathbf{b}|\sin\vartheta$, dove $\vartheta\in[0,\pi]$ è l'angolo tra i due vettori (l'altezza è la proiezione di $\mathbf{b}$ ortogonale ad $\mathbf{a}$). Dunque $\mathrm{Area}=|\mathbf{a}|\,|\mathbf{b}|\sin\vartheta$. D'altra parte, per definizione di prodotto vettoriale, $|\mathbf{a}\times\mathbf{b}|=|\mathbf{a}|\,|\mathbf{b}|\sin\vartheta$. Le due quantità coincidono.</p>
+          <p><strong>Passo 2 — l'identità.</strong> Partendo da $\cos\vartheta=\dfrac{\mathbf{a}\cdot\mathbf{b}}{|\mathbf{a}||\mathbf{b}|}$ e dalla relazione fondamentale $\sin^2\vartheta=1-\cos^2\vartheta$:</p>
+          <div class="formula-block">$$|\mathbf{a}\times\mathbf{b}|^2=|\mathbf{a}|^2|\mathbf{b}|^2\sin^2\vartheta=|\mathbf{a}|^2|\mathbf{b}|^2\left(1-\frac{(\mathbf{a}\cdot\mathbf{b})^2}{|\mathbf{a}|^2|\mathbf{b}|^2}\right)=|\mathbf{a}|^2|\mathbf{b}|^2-(\mathbf{a}\cdot\mathbf{b})^2$$</div>
+          <p><strong>Passo 3 — conseguenza per le superfici.</strong> Applicando il tutto a $\mathbf{a}=\mathbf{r}_u\,du$ e $\mathbf{b}=\mathbf{r}_v\,dv$, l'area del parallelogrammino tangente è $|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv=dS$. Ponendo $E=|\mathbf{r}_u|^2$, $F=\mathbf{r}_u\cdot\mathbf{r}_v$, $G=|\mathbf{r}_v|^2$ si ottiene la comodissima formula operativa</p>
+          <div class="formula-block">$$dS=\sqrt{EG-F^2}\ du\,dv$$</div>
+          <p>che permette di calcolare $dS$ con soli prodotti scalari, senza mai eseguire un prodotto vettoriale. Si noti anche che la regolarità $\mathbf{r}_u\times\mathbf{r}_v\neq\mathbf{0}$ equivale a $EG-F^2\,\gt\,0$, cioè alla non-parallelità dei due tangenti. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Parametrizzare un segmento</span><span class="badge badge--base">Base</span></div>
+          <p>Scrivere una parametrizzazione del segmento che va da $A=(1,2,0)$ a $B=(5,-1,6)$ e individuare il punto di mezzo.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso la formula $\mathbf{r}(t)=A+t(B-A)$ con $t\in[0,1]$: a $t=0$ sono in $A$, a $t=1$ sono in $B$.</span>
+            <span class="esempio__passo">Calcolo lo spostamento: $B-A=(5-1,\,-1-2,\,6-0)=(4,-3,6)$.</span>
+            <span class="esempio__passo">Quindi $\mathbf{r}(t)=(1+4t,\ 2-3t,\ 6t)$, $t\in[0,1]$.</span>
+            <span class="esempio__passo">Punto di mezzo: $t=\tfrac12$ dà $\mathbf{r}(\tfrac12)=(3,\ \tfrac12,\ 3)$.</span>
+            <span class="esempio__passo">Verifica della lunghezza: $\mathbf{r}'(t)=(4,-3,6)$ è costante, $|\mathbf{r}'|=\sqrt{16+9+36}=\sqrt{61}$, quindi $L=\int_0^1\sqrt{61}\,dt=\sqrt{61}$, che è proprio la distanza $AB$.</span>
+          </p>
+          <div class="esempio__risultato">$\mathbf{r}(t)=(1+4t,\ 2-3t,\ 6t),\ t\in[0,1]$; punto medio $(3,\tfrac12,3)$; lunghezza $\sqrt{61}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Moto circolare: velocità e accelerazione</span><span class="badge badge--base">Base</span></div>
+          <p>Data $\mathbf{r}(t)=(R\cos\omega t,\ R\sin\omega t)$ con $R,\omega\,\gt\,0$, calcolare velocità, velocità scalare, versore tangente e accelerazione, e interpretarli fisicamente.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo componente per componente (catena: l'interno è $\omega t$, derivata $\omega$): $\ \mathbf{r}'(t)=(-R\omega\sin\omega t,\ R\omega\cos\omega t)$.</span>
+            <span class="esempio__passo">Velocità scalare: applico $|\mathbf r'|=\sqrt{x'^2+y'^2}$ con $x'=-R\omega\sin\omega t$ e $y'=R\omega\cos\omega t$: $\ |\mathbf{r}'(t)|=\sqrt{R^2\omega^2\sin^2\omega t+R^2\omega^2\cos^2\omega t}$. Raccolgo $R^2\omega^2$ sotto radice e lo porto fuori (è positivo): $\ R\omega\sqrt{\sin^2\omega t+\cos^2\omega t}$. Ora uso l'<strong>identità fondamentale della trigonometria</strong> $\sin^2\alpha+\cos^2\alpha=1$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">§4.4 di Trigonometria</a>) con $\alpha=\omega t$: la radice vale $\sqrt1=1$ e resta $|\mathbf{r}'(t)|=R\omega$. È <strong>costante</strong>: moto circolare uniforme.</span>
+            <span class="esempio__passo">Versore tangente: applico la definizione $\mathbf T=\mathbf r'/|\mathbf r'|$, cioè divido ogni componente di $\mathbf r'$ per $R\omega$; il fattore $R\omega$ si semplifica e resta $\mathbf{T}(t)=(-\sin\omega t,\ \cos\omega t)$. Nota che $\mathbf{T}\cdot\mathbf{r}=-R\sin\omega t\cos\omega t+R\cos\omega t\sin\omega t=0$: la velocità è perpendicolare al raggio, come deve essere.</span>
+            <span class="esempio__passo">Accelerazione: $\mathbf{r}''(t)=(-R\omega^2\cos\omega t,\ -R\omega^2\sin\omega t)=-\omega^2\,\mathbf{r}(t)$.</span>
+            <span class="esempio__passo">Modulo: $|\mathbf{r}''|=R\omega^2=\dfrac{v^2}{R}$ con $v=R\omega$.</span>
+          </p>
+          <div class="esempio__risultato">La velocità è costante in modulo ma non in direzione; l'accelerazione punta verso il centro ed è la ben nota <strong>accelerazione centripeta</strong> $a=\dfrac{v^2}{R}$. La matematica delle curve parametriche restituisce gratis la fisica del moto circolare.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Lunghezza di un'elica</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare la lunghezza dell'elica $\mathbf{r}(t)=(3\cos t,\ 3\sin t,\ 4t)$ per $t\in[0,2\pi]$ (una spira completa).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo: $\mathbf{r}'(t)=(-3\sin t,\ 3\cos t,\ 4)$.</span>
+            <span class="esempio__passo">Modulo: applico $|\mathbf r'|=\sqrt{x'^2+y'^2+z'^2}$ sostituendo $x'=-3\sin t$, $y'=3\cos t$, $z'=4$: $\ |\mathbf{r}'(t)|=\sqrt{9\sin^2t+9\cos^2t+16}$. Raccolgo $9$ nei primi due addendi, $9(\sin^2t+\cos^2t)$, e uso l'<strong>identità fondamentale</strong> $\sin^2t+\cos^2t=1$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">Trigonometria, §4.4</a>): quella parentesi vale $1$, quindi resta $\sqrt{9+16}=\sqrt{25}=5$. Costante: l'elica si percorre a velocità uniforme.</span>
+            <span class="esempio__passo">Integro con la formula $L=\int_a^b|\mathbf r'(t)|\,dt$ del <span class="richiamo" data-sec="4.6">§4.6</span>, mettendo $|\mathbf r'|=5$, $a=0$, $b=2\pi$: l'integrale di una costante è la costante per l'ampiezza dell'intervallo, quindi $L=\displaystyle\int_0^{2\pi}5\,dt=5\cdot(2\pi-0)=10\pi$.</span>
+            <span class="esempio__passo">Controllo di coerenza: se "srotolo" il cilindro ottengo un triangolo rettangolo con cateti la circonferenza di base $2\pi\cdot 3=6\pi$ e il passo $4\cdot 2\pi=8\pi$; l'ipotenusa vale $\sqrt{(6\pi)^2+(8\pi)^2}=10\pi$. Tutto torna.</span>
+          </p>
+          <div class="esempio__risultato">$L=10\pi\approx 31{,}4$. In generale, per $\mathbf{r}(t)=(R\cos t,R\sin t,ct)$ si ha $|\mathbf{r}'|=\sqrt{R^2+c^2}$: l'elica è sempre a velocità costante.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Lunghezza del grafico di una funzione</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare la lunghezza della curva $y=\dfrac{2}{3}x^{3/2}$ per $x\in[0,3]$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Parametrizzo il grafico: $\mathbf{r}(x)=\left(x,\ \tfrac23 x^{3/2}\right)$, quindi userò $L=\displaystyle\int_0^3\sqrt{1+f'(x)^2}\,dx$.</span>
+            <span class="esempio__passo">Derivo con la regola della potenza $(x^a)'=a\,x^{a-1}$, qui con $a=\tfrac32$: $\ f'(x)=\tfrac23\cdot\tfrac32\,x^{3/2-1}=\tfrac23\cdot\tfrac32\,x^{1/2}=x^{1/2}=\sqrt{x}$ (i coefficienti $\frac23$ e $\frac32$ sono reciproci e danno $1$).</span>
+            <span class="esempio__passo"><strong>Sostituisco $\sqrt x$ al posto di $f'(x)$</strong> dentro la formula: $\ \sqrt{1+f'(x)^2}=\sqrt{1+(\sqrt x)^2}=\sqrt{1+x}$, perché quadrato e radice si annullano a vicenda (per $x\geq0$). Ecco perché l'esercizio è "addomesticato": l'esponente $3/2$ serve proprio a far sparire la radice doppia.</span>
+            <span class="esempio__passo">Integro con la sostituzione $u=1+x$, per cui $du=dx$ e gli estremi diventano $u=1$ (quando $x=0$) e $u=4$ (quando $x=3$): $\ \int_1^4\sqrt u\,du=\int_1^4 u^{1/2}du$. Per la regola $\int u^a du=\frac{u^{a+1}}{a+1}$ con $a=\frac12$ viene $\frac{u^{3/2}}{3/2}=\frac23u^{3/2}$, cioè, tornando alla $x$, $\ \displaystyle\int_0^3\sqrt{1+x}\,dx=\left[\frac{2}{3}(1+x)^{3/2}\right]_0^3$.</span>
+            <span class="esempio__passo">Valuto agli estremi: con $x=3$ ho $(1+3)^{3/2}=4^{3/2}=(\sqrt4)^3=2^3=8$; con $x=0$ ho $1^{3/2}=1$. Quindi $L=\frac{2}{3}\left(8-1\right)=\frac{2}{3}\cdot7$.</span>
+          </p>
+          <div class="esempio__risultato">$L=\dfrac{14}{3}\approx 4{,}67$. (Confronto utile: la corda da $(0,0)$ a $(3,2\sqrt3)\approx(3;3{,}46)$ misura circa $4{,}58$: la curva è appena più lunga, e così deve essere.)</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — La cicloide: cuspidi e lunghezza</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Data la cicloide $\mathbf{r}(t)=\big(a(t-\sin t),\ a(1-\cos t)\big)$ con $a\,\gt\,0$ e $t\in[0,2\pi]$: trovare i punti singolari e calcolare la lunghezza di un arco.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo: $\mathbf{r}'(t)=\big(a(1-\cos t),\ a\sin t\big)$.</span>
+            <span class="esempio__passo"><strong>Punti singolari</strong>: $\mathbf{r}'(t)=\mathbf{0}$ richiede $1-\cos t=0$ e $\sin t=0$, cioè $t=0$ e $t=2\pi$. Lì la ruota tocca terra e il punto del copertone è istantaneamente fermo: la curva ha una <strong>cuspide</strong>.</span>
+            <span class="esempio__passo">Calcolo il modulo al quadrato, $|\mathbf r'|^2=x'^2+y'^2$, raccogliendo il fattore comune $a^2$: $\ |\mathbf{r}'(t)|^2=a^2\big[(1-\cos t)^2+\sin^2 t\big]$. Sviluppo il quadrato con il prodotto notevole $(p-q)^2=p^2-2pq+q^2$ (uso le lettere $p,q$ per non confonderle con il raggio $a$ della ruota; qui $p=1$ e $q=\cos t$): $\ (1-\cos t)^2=1-2\cos t+\cos^2t$. Sostituisco: $\ a^2\big[1-2\cos t+\cos^2t+\sin^2t\big]$; ora $\cos^2t+\sin^2t=1$ per l'<strong>identità fondamentale</strong> (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">Trigonometria, §4.4</a>), quindi $1+1=2$ e resta $|\mathbf r'|^2=a^2(2-2\cos t)$.</span>
+            <span class="esempio__passo">Uso la <a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">formula di bisezione</a> $1-\cos t=2\sin^2\tfrac{t}{2}$, che applico al fattore $2-2\cos t=2(1-\cos t)=2\cdot 2\sin^2\tfrac t2=4\sin^2\tfrac t2$. Estraggo la radice: $\ |\mathbf{r}'(t)|=a\sqrt{4\sin^2\tfrac t2}=2a\left|\sin\tfrac t2\right|=2a\sin\tfrac t2$ (il valore assoluto si toglie perché per $t\in[0,2\pi]$ si ha $\tfrac t2\in[0,\pi]$, dove il seno è non negativo).</span>
+            <span class="esempio__passo">Integro. Serve una primitiva di $\sin\frac t2$: poiché $\frac{d}{dt}\cos\frac t2=-\frac12\sin\frac t2$ (regola della catena, la derivata dell'interno $\frac t2$ è $\frac12$), per compensare il fattore $\frac12$ devo moltiplicare per $2$, cioè la primitiva è $-2\cos\frac t2$. Dunque $L=\displaystyle\int_0^{2\pi}2a\sin\frac t2\,dt=2a\left[-2\cos\frac t2\right]_0^{2\pi}$. Valuto: in $t=2\pi$ ho $-2\cos\pi=-2\cdot(-1)=2$; in $t=0$ ho $-2\cos 0=-2$. La differenza è $2-(-2)=4$, quindi $L=2a\cdot 4$.</span>
+          </p>
+          <div class="esempio__risultato">Cuspidi in $t=0$ e $t=2\pi$; lunghezza di un arco $L=8a$. Sorprendente e famosissimo: un arco di cicloide è lungo esattamente <strong>quattro diametri</strong> della ruota, un numero razionale senza traccia di $\pi$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Piano tangente e normale alla sfera</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Per la sfera di raggio $2$ parametrizzata da $\mathbf{r}(\varphi,\theta)=(2\sin\varphi\cos\theta,\ 2\sin\varphi\sin\theta,\ 2\cos\varphi)$, calcolare $\mathbf{r}_\varphi$, $\mathbf{r}_\theta$, il vettore normale e il piano tangente nel punto corrispondente a $\varphi=\tfrac{\pi}{3}$, $\theta=0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Punto: $\mathbf{r}\left(\tfrac\pi3,0\right)=\left(2\cdot\tfrac{\sqrt3}{2},\ 0,\ 2\cdot\tfrac12\right)=(\sqrt3,\,0,\,1)$.</span>
+            <span class="esempio__passo">$\mathbf{r}_\varphi=(2\cos\varphi\cos\theta,\ 2\cos\varphi\sin\theta,\ -2\sin\varphi)$; in $(\tfrac\pi3,0)$ diventa $(1,\,0,\,-\sqrt3)$.</span>
+            <span class="esempio__passo">$\mathbf{r}_\theta=(-2\sin\varphi\sin\theta,\ 2\sin\varphi\cos\theta,\ 0)$; in $(\tfrac\pi3,0)$ diventa $(0,\,\sqrt3,\,0)$.</span>
+            <span class="esempio__passo">Prodotto vettoriale. Applico la formula $\mathbf{a}\times\mathbf{b}=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1)$ del <span class="richiamo" data-sec="4.9">§4.9</span>, con $\mathbf a=\mathbf r_\varphi=(1,0,-\sqrt3)$ (cioè $a_1=1$, $a_2=0$, $a_3=-\sqrt3$) e $\mathbf b=\mathbf r_\theta=(0,\sqrt3,0)$ (cioè $b_1=0$, $b_2=\sqrt3$, $b_3=0$). Una componente per volta: la prima è $a_2b_3-a_3b_2=0\cdot 0-(-\sqrt3)\cdot\sqrt3=+3$; la seconda è $a_3b_1-a_1b_3=(-\sqrt3)\cdot 0-1\cdot 0=0$; la terza è $a_1b_2-a_2b_1=1\cdot\sqrt3-0\cdot 0=\sqrt3$. Dunque $\mathbf{N}=(3,\,0,\,\sqrt3)$.</span>
+            <span class="esempio__passo">Modulo: uso $|\mathbf v|=\sqrt{v_1^2+v_2^2+v_3^2}$ con le componenti appena trovate, $\ |\mathbf{N}|=\sqrt{3^2+0^2+(\sqrt3)^2}=\sqrt{9+3}=\sqrt{12}=2\sqrt3$. Coincide con la formula generale $|\mathbf{N}|=R^2\sin\varphi$ sostituendo $R=2$ e $\sin\tfrac\pi3=\tfrac{\sqrt3}{2}$: $\ 4\cdot\tfrac{\sqrt3}{2}=2\sqrt3$. ✓</span>
+            <span class="esempio__passo">Versore normale: applico $\mathbf n=\mathbf N/|\mathbf N|$, cioè divido ogni componente per $2\sqrt3$: $\ \mathbf{n}=\left(\tfrac{3}{2\sqrt3},\ 0,\ \tfrac{\sqrt3}{2\sqrt3}\right)$. Semplifico la prima ($\tfrac{3}{2\sqrt3}=\tfrac{3\sqrt3}{2\cdot3}=\tfrac{\sqrt3}{2}$, razionalizzando) e la terza ($\tfrac{\sqrt3}{2\sqrt3}=\tfrac12$): $\ \mathbf{n}=\left(\tfrac{\sqrt3}{2},\,0,\,\tfrac12\right)$, che è esattamente il punto $(\sqrt3,0,1)$ diviso per il raggio $2$: la normale alla sfera è <strong>radiale</strong>, come l'intuizione promette.</span>
+            <span class="esempio__passo">Piano tangente. Uso l'equazione $\mathbf{N}\cdot(X-P_0)=0$ del <span class="richiamo" data-sec="4.9">§4.9</span>, sostituendo $\mathbf N=(3,0,\sqrt3)$ e $P_0=(\sqrt3,0,1)$ e svolgendo il prodotto scalare componente per componente: $\ 3(x-\sqrt3)+0\,(y-0)+\sqrt3\,(z-1)=0$. Svolgo le parentesi: $3x-3\sqrt3+\sqrt3 z-\sqrt3=0$; porto i termini noti a destra sommandoli ($3\sqrt3+\sqrt3=4\sqrt3$): $\ 3x+\sqrt3 z=4\sqrt3$. Infine divido tutto per $\sqrt3$, ricordando che $3/\sqrt3=\sqrt3$: $\ \sqrt3\,x+z=4$.</span>
+          </p>
+          <div class="esempio__risultato">$\mathbf{N}=(3,0,\sqrt3)$, $\ \mathbf{n}=\left(\tfrac{\sqrt3}{2},0,\tfrac12\right)$, piano tangente $\sqrt3\,x+z=4$ (verifica: il punto $(\sqrt3,0,1)$ soddisfa $3+1=4$).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Elemento d'area e superficie della sfera</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Ricavare $dS$ per la sfera di raggio $R$ e dedurne l'area totale.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivo $\mathbf r(\varphi,\theta)=(R\sin\varphi\cos\theta,\ R\sin\varphi\sin\theta,\ R\cos\varphi)$ rispetto a $\varphi$, trattando $\theta$ come costante: $\ \mathbf{r}_\varphi=(R\cos\varphi\cos\theta,\ R\cos\varphi\sin\theta,\ -R\sin\varphi)$. Calcolo $E=|\mathbf{r}_\varphi|^2$ sommando i quadrati delle tre componenti: $\ R^2\cos^2\varphi\cos^2\theta+R^2\cos^2\varphi\sin^2\theta+R^2\sin^2\varphi$. Raccolgo $R^2\cos^2\varphi$ nei primi due: $\ R^2\cos^2\varphi(\cos^2\theta+\sin^2\theta)+R^2\sin^2\varphi$. Per l'<strong>identità fondamentale</strong> la parentesi vale $1$, quindi resta $R^2\cos^2\varphi+R^2\sin^2\varphi=R^2(\cos^2\varphi+\sin^2\varphi)=R^2$, usando <em>di nuovo</em> la stessa identità, stavolta con l'angolo $\varphi$. Dunque $E=R^2$.</span>
+            <span class="esempio__passo">Derivo rispetto a $\theta$, trattando $\varphi$ come costante: $\ \mathbf{r}_\theta=(-R\sin\varphi\sin\theta,\ R\sin\varphi\cos\theta,\ 0)$ (la terza componente $R\cos\varphi$ non contiene $\theta$, quindi ha derivata nulla). Sommo i quadrati: $\ G=R^2\sin^2\varphi\sin^2\theta+R^2\sin^2\varphi\cos^2\theta=R^2\sin^2\varphi(\sin^2\theta+\cos^2\theta)=R^2\sin^2\varphi$, ancora per l'identità fondamentale.</span>
+            <span class="esempio__passo">Prodotto scalare $F=\mathbf{r}_\varphi\cdot\mathbf{r}_\theta$: moltiplico le componenti omologhe e sommo. Prima per prima: $(R\cos\varphi\cos\theta)(-R\sin\varphi\sin\theta)=-R^2\sin\varphi\cos\varphi\cos\theta\sin\theta$. Seconda per seconda: $(R\cos\varphi\sin\theta)(R\sin\varphi\cos\theta)=+R^2\sin\varphi\cos\varphi\sin\theta\cos\theta$. Terza per terza: qualsiasi cosa per $0$ fa $0$. I primi due addendi sono uguali e opposti, quindi $F=0$: i meridiani sono perpendicolari ai paralleli.</span>
+            <span class="esempio__passo">Uso la formula $dS=\sqrt{EG-F^2}\,d\varphi\,d\theta$ della sezione 5, <strong>sostituendo $E=R^2$, $G=R^2\sin^2\varphi$, $F=0$</strong>: $\ \sqrt{R^2\cdot R^2\sin^2\varphi-0}=\sqrt{R^4\sin^2\varphi}=R^2\sin\varphi$ (la radice di un prodotto di quadrati è il prodotto dei valori assoluti, e qui tutto è positivo perché $\sin\varphi\geq 0$ per $\varphi\in[0,\pi]$). Dunque $dS=R^2\sin\varphi\ d\varphi\,d\theta$.</span>
+            <span class="esempio__passo">Integro: $\displaystyle\iint R^2\sin\varphi\,d\varphi\,d\theta=R^2\int_0^{2\pi}\!\!d\theta\int_0^{\pi}\!\sin\varphi\,d\varphi=R^2\cdot 2\pi\cdot\big[-\cos\varphi\big]_0^\pi=R^2\cdot2\pi\cdot 2$.</span>
+          </p>
+          <div class="esempio__risultato">$dS=R^2\sin\varphi\,d\varphi\,d\theta$ e $\ \mathrm{Area}=4\pi R^2$: la formula della sfera, finalmente <em>dimostrata</em> e non calata dall'alto. Nota il fattore $\sin\varphi$: ai poli ($\varphi\to 0,\pi$) si annulla, perché lì i meridiani si stringono e il "quadratino di foglio" viene schiacciato a zero.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere la curva con il suo sostegno (e girare due volte)</div>
+          <p>"Calcola la lunghezza della circonferenza di raggio $1$" e lo studente scrive $\mathbf{r}(t)=(\cos 2t,\sin 2t)$ con $t\in[0,2\pi]$: l'integrale dà $4\pi$ invece di $2\pi$. La formula non ha sbagliato nulla — quella parametrizzazione percorre la circonferenza <strong>due volte</strong>! <em>Come evitarlo</em>: prima di integrare, chiediti sempre "<em>con questo intervallo di $t$, quante volte passo su ogni punto?</em>". Se il sostegno viene percorso $k$ volte, l'integrale restituisce $k$ volte la lunghezza.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare il modulo nella lunghezza d'arco</div>
+          <p>Scrivere $L=\int_a^b\mathbf{r}'(t)\,dt$ è un errore concettuale, non di distrazione: quell'integrale è un <strong>vettore</strong> (e per una curva chiusa vale addirittura $\mathbf{0}$, perché è semplicemente $\mathbf{r}(b)-\mathbf{r}(a)$, lo spostamento netto). La lunghezza è un <strong>numero non negativo</strong> e richiede il modulo: $L=\int_a^b|\mathbf{r}'(t)|\,dt$. <em>Come evitarlo</em>: ricorda la differenza fisica tra <em>spostamento</em> (dove sei finito) e <em>strada percorsa</em> (quanto contachilometri hai consumato). Un giro di pista: spostamento zero, strada $400$ metri.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Portare la radice dentro la somma</div>
+          <p>Scrivere $\sqrt{x'^2+y'^2}=x'+y'$, oppure $\sqrt{1+f'^2}=1+f'$, è l'errore algebrico che rovina più compiti di tutti. La radice di una somma <strong>non</strong> è la somma delle radici. <em>Come evitarlo</em>: prova sempre con i numeri, $\sqrt{9+16}=5\neq 3+4=7$. E ricorda che, quando l'esercizio è "bello", di solito sotto radice c'è un <strong>quadrato perfetto</strong> nascosto (vedi Esercizio 7.16): cercalo, non spezzare la radice.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Invertire l'ordine nel prodotto vettoriale (o usare quello scalare)</div>
+          <p>Due errori distinti sullo stesso simbolo. Primo: $\mathbf{r}_v\times\mathbf{r}_u=-\,\mathbf{r}_u\times\mathbf{r}_v$, cioè la normale punta dalla parte opposta. Per l'<em>area</em> non cambia nulla (c'è il modulo), ma per l'<strong>orientazione</strong> e per i flussi del Capitolo 11 cambia il segno del risultato. Secondo, più grave: usare $\mathbf{r}_u\cdot\mathbf{r}_v$, che è un <em>numero</em> e non può essere un vettore normale. <em>Come evitarlo</em>: chiediti "mi serve una freccia o un numero?". Normale e area vogliono il prodotto <strong>vettoriale</strong>; perpendicolarità e proiezioni vogliono quello <strong>scalare</strong>.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scrivere $dS=|\mathbf{r}_u|\,|\mathbf{r}_v|\,du\,dv$</div>
+          <p>Vero solo nel caso fortunato in cui $\mathbf{r}_u\perp\mathbf{r}_v$ (cioè $F=0$, come per sfera e cilindro): ecco perché l'errore passa inosservato negli esercizi standard e poi esplode in sede d'esame con una parametrizzazione obliqua. La formula corretta è $dS=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv=\sqrt{EG-F^2}\,du\,dv$. <em>Come evitarlo</em>: calcola sempre anche $F=\mathbf{r}_u\cdot\mathbf{r}_v$; solo se viene $0$ puoi permetterti la scorciatoia.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il "cerca il quadrato perfetto" sotto radice</div>
+          <p>Negli esercizi d'esame la funzione $|\mathbf{r}'(t)|$ è <strong>quasi sempre</strong> integrabile a mano, il che significa che sotto radice si nasconde un quadrato perfetto. Sospetti tipici: $1+\tan^2=\dfrac{1}{\cos^2}$; $\ \sinh^2+1=\cosh^2$; $\ 2-2\cos t=4\sin^2\tfrac t2$; $\ 1+4t^2+4t^4=(1+2t^2)^2$; $\ \sin^2+\cos^2=1$ (che elimina $t$ da metà dei conti). <em>Se il tuo integrale sembra impossibile, quasi certamente hai sbagliato una derivata</em>: ricontrolla prima di arrenderti.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Tabella-lampo delle formule di lunghezza</div>
+          <p>Sono tutte la stessa formula travestita. Tienile in fila:</p>
+          <ul>
+            <li><strong>Parametrica</strong>: $L=\displaystyle\int_a^b\sqrt{x'^2+y'^2+z'^2}\ dt$ — quella madre.</li>
+            <li><strong>Grafico</strong> $y=f(x)$: $L=\displaystyle\int\sqrt{1+f'^2}\ dx$ — è il caso $x=t$, quindi $x'=1$.</li>
+            <li><strong>Polari</strong> $\rho=\rho(\theta)$: $L=\displaystyle\int\sqrt{\rho^2+\rho'^2}\ d\theta$ — sempre la stessa, dopo la semplificazione trigonometrica.</li>
+          </ul>
+          <p>Memorizza la prima e ricava le altre in dieci secondi: è molto più sicuro che ricordarne tre.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Tre controlli di plausibilità che salvano il compito</div>
+          <p><strong>1) Dimensioni e segno.</strong> Una lunghezza e un'area sono numeri positivi. Se ti viene negativo, hai sbagliato un estremo o dimenticato un modulo.</p>
+          <p><strong>2) Confronto con la corda.</strong> La lunghezza di una curva è <em>sempre</em> maggiore o uguale alla distanza in linea d'aria tra i suoi estremi. Un confronto a mente ti dice subito se il risultato è assurdo.</p>
+          <p><strong>3) Casi noti.</strong> Se la tua formula generale, specializzata alla circonferenza, non dà $2\pi R$, oppure specializzata alla sfera non dà $4\pi R^2$, la formula è sbagliata. Controlla sempre su un caso che conosci a memoria.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come scegliere la parametrizzazione giusta</div>
+          <p>Non esiste "la" parametrizzazione: esiste quella comoda. Regole pratiche, in ordine di utilità:</p>
+          <ul>
+            <li>Compare $x^2+y^2=R^2$? Usa $x=R\cos t$, $y=R\sin t$: l'identità fondamentale fa sparire tutto.</li>
+            <li>Compare $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$? Usa $x=a\cos t$, $y=b\sin t$.</li>
+            <li>È una superficie di rotazione? Prendi come parametri <strong>l'altezza (o l'ascissa) e l'angolo di rotazione</strong>: viene sempre pulita.</li>
+            <li>È scritta come $z=f(x,y)$ o $y=f(x)$? Non complicarti la vita: usa direttamente $x$ (e $y$) come parametri.</li>
+            <li>Ti serve solo la lunghezza o l'area? Allora <strong>sei libero</strong>: per l'invarianza dimostrata, qualunque parametrizzazione regolare che percorra il sostegno una volta sola dà lo stesso numero. Scegli la più semplice.</li>
+          </ul>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Verifica-lampo della normale a una sfera o a un grafico</div>
+          <p>Due controlli istantanei. Per la <strong>sfera</strong> centrata nell'origine, il versore normale deve essere <em>radiale</em>: $\mathbf{n}=\pm\dfrac{P}{R}$, cioè il punto stesso normalizzato. Se ti viene qualcos'altro, hai sbagliato un conto. Per il <strong>grafico</strong> $z=f(x,y)$, la normale è sempre $(-f_x,-f_y,1)$: ha terza componente $1$, quindi punta "verso l'alto", e se $f$ è costante si riduce a $(0,0,1)$ come dev'essere per un piano orizzontale.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Curve e superfici parametriche</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Curve: definizione</strong>
+              <ul><li>$\mathbf{r}(t)=(x(t),y(t),z(t))$</li><li>$t$ = cronometro, traccia GPS</li><li>sostegno $\neq$ parametrizzazione</li><li>chiusa, semplice, orientata</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Curve: derivate</strong>
+              <ul><li>$\mathbf{r}'(t)$ = velocità, tangente</li><li>$|\mathbf{r}'(t)|$ = tachimetro</li><li>$\mathbf{T}=\mathbf{r}'/|\mathbf{r}'|$ = bussola</li><li>$\mathbf{r}''$ = accelerazione</li><li>regolare $\Leftrightarrow\mathbf{r}'\neq\mathbf{0}$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Lunghezza</strong>
+              <ul><li>$L=\int_a^b|\mathbf{r}'(t)|\,dt$</li><li>poligonali → integrale</li><li>invariante per riparametrizz.</li><li>ascissa curvilinea $s(t)$</li><li>curvatura $\kappa=1/R$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Superfici</strong>
+              <ul><li>$\mathbf{r}(u,v)$ = foglio elastico</li><li>sfera: latitudine e longitudine</li><li>curve coordinate</li><li>$\mathbf{r}_u,\mathbf{r}_v$ tangenti</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Normale e area</strong>
+              <ul><li>$\mathbf{N}=\mathbf{r}_u\times\mathbf{r}_v$</li><li>piano tangente $\mathbf{N}\cdot(X-P_0)=0$</li><li>$dS=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv$</li><li>$\sqrt{EG-F^2}$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Orientazione</strong>
+              <ul><li>due normali: $\mathbf{n}$ e $-\mathbf{n}$</li><li>scelta coerente = orientare</li><li>bordo e mano destra</li><li>Möbius: non orientabile</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Curva parametrica</strong>: $\mathbf{r}(t)=(x(t),y(t),z(t))$, la posizione di un punto che si muove; $t$ è il cronometro, il disegno che resta è il <em>sostegno</em>.</li>
+            <li><strong>Velocità</strong>: $\mathbf{r}'(t)$ è tangente alla curva e orientato nel senso di percorrenza; $|\mathbf{r}'(t)|$ è la velocità scalare (il tachimetro); $\mathbf{T}=\mathbf{r}'/|\mathbf{r}'|$ è il versore tangente; $\mathbf{r}''$ è l'accelerazione.</li>
+            <li><strong>Regolarità</strong>: $\mathbf{r}\in C^1$ e $\mathbf{r}'(t)\neq\mathbf{0}$. Dove la velocità si annulla possono nascere <em>cuspidi</em> (cicloide in $t=0$).</li>
+            <li><strong>Lunghezza d'arco</strong>: $L=\displaystyle\int_a^b|\mathbf{r}'(t)|\,dt$ — il contachilometri che somma tutti i pezzettini di strada. Non dimenticare mai il modulo.</li>
+            <li><strong>Invarianza</strong>: la lunghezza non dipende dalla parametrizzazione (purché il sostegno sia percorso una volta sola). L'ascissa curvilinea $s(t)=\int_a^t|\mathbf{r}'|$ dà la parametrizzazione naturale, in cui $|d\mathbf{r}/ds|=1$.</li>
+            <li><strong>Formule derivate</strong>: grafico $L=\int\sqrt{1+f'^2}\,dx$; polari $L=\int\sqrt{\rho^2+\rho'^2}\,d\theta$.</li>
+            <li><strong>Superficie parametrica</strong>: $\mathbf{r}(u,v)$, il foglio elastico deformato. Da sapere a memoria: piano, sfera (colatitudine e longitudine), cilindro, cono, grafico $z=f(x,y)$, superficie di rotazione.</li>
+            <li><strong>Tangenti e normale</strong>: $\mathbf{r}_u,\mathbf{r}_v$ generano il piano tangente; $\mathbf{N}=\mathbf{r}_u\times\mathbf{r}_v$ è perpendicolare alla superficie; regolarità significa $\mathbf{N}\neq\mathbf{0}$. Piano tangente: $\mathbf{N}\cdot(X-P_0)=0$.</li>
+            <li><strong>Elemento d'area</strong>: $dS=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv=\sqrt{EG-F^2}\,du\,dv$ — l'area del parallelogrammino deformato. Per la sfera $dS=R^2\sin\varphi\,d\varphi\,d\theta$, da cui $4\pi R^2$.</li>
+            <li><strong>Orientazione</strong>: scegliere con continuità uno dei due versori normali. Non sempre è possibile: il <em>nastro di Möbius</em> non è orientabile.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Scrivi una parametrizzazione del segmento che va da $A=(1,2)$ a $B=(5,-1)$, indica dove si trova il punto corrispondente a $t=\tfrac12$ e calcola la lunghezza del segmento con l'integrale.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Formula del segmento: $\mathbf{r}(t)=A+t(B-A)$, $t\in[0,1]$.</span>
+                <span class="esempio__passo">$B-A=(4,-3)$, quindi $\mathbf{r}(t)=(1+4t,\ 2-3t)$.</span>
+                <span class="esempio__passo">$t=\tfrac12$: $\ \mathbf{r}\!\left(\tfrac12\right)=\left(1+2,\ 2-\tfrac32\right)=\left(3,\ \tfrac12\right)$, il punto medio.</span>
+                <span class="esempio__passo">$\mathbf{r}'(t)=(4,-3)$ costante, $|\mathbf{r}'|=\sqrt{16+9}=5$, dunque $L=\int_0^1 5\,dt=5$.</span>
+              </p>
+              <p><strong>$\mathbf{r}(t)=(1+4t,\,2-3t)$ con $t\in[0,1]$; punto medio $\left(3,\tfrac12\right)$; lunghezza $5$</strong> (il classico triangolo $3$-$4$-$5$).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Data $\mathbf{r}(t)=(3\cos t,\ 3\sin t)$ con $t\in[0,2\pi]$: calcola $\mathbf{r}'(t)$, $|\mathbf{r}'(t)|$, il versore tangente e la lunghezza della curva.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}'(t)=(-3\sin t,\ 3\cos t)$.</span>
+                <span class="esempio__passo">Applico $|\mathbf r'|=\sqrt{x'^2+y'^2}$: $\ \sqrt{(-3\sin t)^2+(3\cos t)^2}=\sqrt{9\sin^2t+9\cos^2t}$. Raccolgo $9$ sotto radice, $\sqrt{9(\sin^2t+\cos^2t)}$, e uso l'<strong>identità fondamentale</strong> $\sin^2t+\cos^2t=1$: resta $\sqrt{9}=3$ (costante).</span>
+                <span class="esempio__passo">Per la definizione $\mathbf T=\mathbf r'/|\mathbf r'|$ divido ogni componente per $3$: $\ \mathbf{T}(t)=\dfrac{(-3\sin t,\,3\cos t)}{3}=(-\sin t,\ \cos t)$, che ha modulo $\sqrt{\sin^2t+\cos^2t}=1$, come deve essere per un versore.</span>
+                <span class="esempio__passo">Applico $L=\int_a^b|\mathbf r'(t)|dt$ con $|\mathbf r'|=3$ costante: $\ L=\displaystyle\int_0^{2\pi}3\,dt=3\cdot 2\pi=6\pi$.</span>
+              </p>
+              <p><strong>$|\mathbf{r}'|=3$, $\ \mathbf{T}=(-\sin t,\cos t)$, $\ L=6\pi$</strong>, cioè $2\pi R$ con $R=3$: la formula della circonferenza, ritrovata per integrazione.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Parametrizza la parabola $y=x^2$ e trova il vettore tangente e il versore tangente nel punto di ascissa $x=1$. La curva è regolare?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Un grafico si parametrizza sempre così: $\mathbf{r}(t)=(t,\ t^2)$.</span>
+                <span class="esempio__passo">$\mathbf{r}'(t)=(1,\ 2t)$; in $t=1$: $\ \mathbf{r}'(1)=(1,2)$.</span>
+                <span class="esempio__passo">$|\mathbf{r}'(1)|=\sqrt{1+4}=\sqrt5$, quindi $\mathbf{T}(1)=\left(\tfrac{1}{\sqrt5},\ \tfrac{2}{\sqrt5}\right)$.</span>
+                <span class="esempio__passo">Regolarità: la prima componente di $\mathbf{r}'$ vale sempre $1$, quindi $\mathbf{r}'(t)\neq\mathbf{0}$ per ogni $t$.</span>
+              </p>
+              <p><strong>$\mathbf{r}'(1)=(1,2)$, $\ \mathbf{T}(1)=\tfrac{1}{\sqrt5}(1,2)$; la curva è regolare ovunque.</strong> La pendenza del tangente è $2/1=2=f'(1)$: coerente con Analisi 1.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Parametrizza il cilindro $x^2+y^2=4$ con $z\in[0,5]$ e descrivi le sue due famiglie di curve coordinate.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">La condizione $x^2+y^2=4$ è una circonferenza di raggio $2$ in ogni piano orizzontale: pongo $x=2\cos\theta$, $y=2\sin\theta$.</span>
+                <span class="esempio__passo">La quota è libera, quindi la uso direttamente come secondo parametro.</span>
+                <span class="esempio__passo">$\mathbf{r}(\theta,z)=(2\cos\theta,\ 2\sin\theta,\ z)$, con $\theta\in[0,2\pi]$, $z\in[0,5]$.</span>
+                <span class="esempio__passo">Curve coordinate: fissando $z$ ottengo una <strong>circonferenza</strong> orizzontale di raggio $2$; fissando $\theta$ ottengo un <strong>segmento verticale</strong> (una "generatrice" del cilindro).</span>
+              </p>
+              <p><strong>$\mathbf{r}(\theta,z)=(2\cos\theta,\,2\sin\theta,\,z)$;</strong> le curve coordinate sono circonferenze orizzontali e rette verticali — esattamente la trama di una lattina.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola la lunghezza dell'elica $\mathbf{r}(t)=(\cos t,\ \sin t,\ t)$ per $t\in[0,4\pi]$ (due spire).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}'(t)=(-\sin t,\ \cos t,\ 1)$.</span>
+                <span class="esempio__passo">$|\mathbf{r}'(t)|=\sqrt{\sin^2t+\cos^2t+1}=\sqrt{1+1}=\sqrt2$ (costante: l'identità fondamentale ha fatto sparire $t$).</span>
+                <span class="esempio__passo">$L=\displaystyle\int_0^{4\pi}\sqrt2\,dt=4\sqrt2\,\pi$.</span>
+              </p>
+              <p><strong>$L=4\sqrt{2}\,\pi\approx 17{,}77$.</strong> Controllo: una sola spira misurerebbe $2\sqrt2\pi$, e due spire il doppio. Coerente.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola la lunghezza del grafico di $y=\dfrac{x^2}{2}-\dfrac{\ln x}{4}$ per $x\in[1,2]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivo termine per termine: $\left(\dfrac{x^2}{2}\right)'=\dfrac{2x}{2}=x$ e $\left(\dfrac{\ln x}{4}\right)'=\dfrac{1}{4x}$ (la derivata di $\ln x$ è $1/x$). Con il segno meno davanti al secondo: $\ f'(x)=x-\dfrac{1}{4x}$.</span>
+                <span class="esempio__passo">Elevo al quadrato con il prodotto notevole $(p-q)^2=p^2-2pq+q^2$, dove $p=x$ e $q=\dfrac{1}{4x}$. Il doppio prodotto vale $2\cdot x\cdot\dfrac{1}{4x}=\dfrac{2}{4}=\dfrac12$ (le $x$ si semplificano!), quindi $f'(x)^2=x^2-\dfrac12+\dfrac{1}{16x^2}$. Aggiungo $1$: $\ 1+f'(x)^2=1+x^2-\dfrac12+\dfrac{1}{16x^2}=x^2+\dfrac12+\dfrac{1}{16x^2}$, avendo sommato $1-\frac12=\frac12$.</span>
+                <span class="esempio__passo">Riconosco il quadrato perfetto: $\left(x+\dfrac{1}{4x}\right)^2=x^2+2\cdot x\cdot\dfrac{1}{4x}+\dfrac{1}{16x^2}=x^2+\dfrac12+\dfrac{1}{16x^2}$. Perfetto.</span>
+                <span class="esempio__passo">Quindi $\sqrt{1+f'^2}=x+\dfrac{1}{4x}$ (positivo su $[1,2]$).</span>
+                <span class="esempio__passo">Integro termine per termine: una primitiva di $x$ è $\frac{x^2}{2}$, una primitiva di $\frac{1}{4x}$ è $\frac{\ln x}{4}$ (perché $\int\frac{dx}{x}=\ln x$ e il $\frac14$ è una costante moltiplicativa). Dunque $L=\displaystyle\int_1^2\left(x+\frac{1}{4x}\right)dx=\left[\frac{x^2}{2}+\frac{\ln x}{4}\right]_1^2$. Valuto agli estremi: in $x=2$ viene $\frac42+\frac{\ln2}{4}=2+\frac{\ln2}{4}$; in $x=1$ viene $\frac12+\frac{\ln1}{4}=\frac12+0$. La lunghezza è la differenza: $\left(2+\frac{\ln 2}{4}\right)-\frac12$.</span>
+              </p>
+              <p><strong>$L=\dfrac32+\dfrac{\ln 2}{4}\approx 1{,}673$.</strong> È il prototipo dell'esercizio "con il quadrato perfetto nascosto": il termine $-\tfrac{\ln x}{4}$ è messo lì apposta perché il doppio prodotto valga $\tfrac12$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per la circonferenza $\mathbf{r}(t)=(3\cos t,\ 3\sin t)$, $t\in[0,2\pi]$, calcola l'ascissa curvilinea $s(t)$ e riparametrizza la curva rispetto a $s$. Verifica che la nuova parametrizzazione ha velocità $1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dall'Esercizio 7.2 sappiamo che $|\mathbf{r}'(t)|=3$.</span>
+                <span class="esempio__passo">$s(t)=\displaystyle\int_0^t 3\,du=3t$, con $s\in[0,6\pi]$.</span>
+                <span class="esempio__passo">Inverto la relazione $s=3t$ dividendo entrambi i membri per $3$: $\ t=\dfrac{s}{3}$.</span>
+                <span class="esempio__passo"><strong>Sostituisco $\dfrac s3$ al posto di $t$</strong> nella parametrizzazione originale $\mathbf r(t)=(3\cos t,3\sin t)$: $\ \boldsymbol{\rho}(s)=\left(3\cos\dfrac{s}{3},\ 3\sin\dfrac{s}{3}\right)$.</span>
+                <span class="esempio__passo">Verifica: derivo rispetto a $s$ con la regola della catena (la derivata dell'interno $\frac s3$ è $\frac13$, e $3\cdot\frac13=1$): $\ \boldsymbol{\rho}'(s)=\left(-3\cdot\tfrac13\sin\dfrac s3,\ 3\cdot\tfrac13\cos\dfrac s3\right)=\left(-\sin\dfrac s3,\ \cos\dfrac s3\right)$, il cui modulo è $\sqrt{\sin^2\frac s3+\cos^2\frac s3}=1$ per l'identità fondamentale.</span>
+              </p>
+              <p><strong>$s(t)=3t$ e $\ \boldsymbol{\rho}(s)=\left(3\cos\tfrac s3,\,3\sin\tfrac s3\right)$ con $s\in[0,6\pi]$, di velocità unitaria.</strong> Interpretazione: il parametro non è più l'angolo ma i <em>metri di curva percorsi</em>.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Considera il paraboloide $z=x^2+y^2$ con la parametrizzazione $\mathbf{r}(x,y)=(x,\ y,\ x^2+y^2)$. Calcola $\mathbf{r}_x$, $\mathbf{r}_y$, il vettore normale e il piano tangente nel punto $(1,1,2)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}_x=(1,\ 0,\ 2x)$ e $\mathbf{r}_y=(0,\ 1,\ 2y)$; in $(1,1)$: $\ \mathbf{r}_x=(1,0,2)$, $\ \mathbf{r}_y=(0,1,2)$.</span>
+                <span class="esempio__passo">Normale: qui la superficie è il grafico di $f(x,y)=x^2+y^2$, quindi posso usare la formula già ricavata nel <span class="richiamo" data-sec="4.9">§4.9</span>, $\mathbf{N}=\mathbf{r}_x\times\mathbf{r}_y=(-f_x,\,-f_y,\,1)$. Sostituisco $f_x=2x$ e $f_y=2y$ valutate in $(1,1)$, cioè $f_x=2$ e $f_y=2$: $\ \mathbf N=(-2,\,-2,\,1)$.</span>
+                <span class="esempio__passo">$|\mathbf{N}|=\sqrt{(-2)^2+(-2)^2+1^2}=\sqrt{4+4+1}=\sqrt9=3$; divido ogni componente per $3$ e ottengo $\mathbf{n}=\left(-\tfrac23,-\tfrac23,\tfrac13\right)$.</span>
+                <span class="esempio__passo">Piano tangente: uso $\mathbf N\cdot(X-P_0)=0$ con $\mathbf N=(-2,-2,1)$ e $P_0=(1,1,2)$, svolgendo il prodotto scalare componente per componente: $\ -2(x-1)-2(y-1)+1(z-2)=0$.</span>
+                <span class="esempio__passo">Semplifico: $-2x-2y+z+2=0$, cioè $z=2x+2y-2$.</span>
+              </p>
+              <p><strong>$\mathbf{N}=(-2,-2,1)$, $\ \mathbf{n}=\tfrac13(-2,-2,1)$, piano tangente $z=2x+2y-2$.</strong> Coincide con la formula del differenziale: $z=f(1,1)+f_x(1,1)(x-1)+f_y(1,1)(y-1)=2+2(x-1)+2(y-1)$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Per la cicloide $\mathbf{r}(t)=(t-\sin t,\ 1-\cos t)$ con $t\in[0,2\pi]$: determina i punti singolari, spiegane il significato fisico e calcola la lunghezza dell'arco.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}'(t)=(1-\cos t,\ \sin t)$.</span>
+                <span class="esempio__passo">Annullo entrambe le componenti: $1-\cos t=0\Rightarrow t=0,2\pi$; e in quei punti anche $\sin t=0$. Quindi i punti singolari sono $t=0$ e $t=2\pi$, cioè i punti $(0,0)$ e $(2\pi,0)$.</span>
+                <span class="esempio__passo">Significato: sono gli istanti in cui il punto del copertone tocca l'asfalto; per il rotolamento senza strisciamento la sua velocità istantanea è nulla, e la curva forma una <strong>cuspide</strong>.</span>
+                <span class="esempio__passo">$|\mathbf{r}'(t)|^2=(1-\cos t)^2+\sin^2t$. Sviluppo il quadrato con $(p-q)^2=p^2-2pq+q^2$ ($p=1$, $q=\cos t$): $\ 1-2\cos t+\cos^2t+\sin^2t$; per l'<strong>identità fondamentale</strong> $\cos^2t+\sin^2t=1$, quindi resta $1-2\cos t+1=2-2\cos t=2(1-\cos t)$. Ora applico la <strong>formula di bisezione</strong> $1-\cos t=2\sin^2\frac t2$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">Trigonometria, §4.5</a>): $\ 2\cdot2\sin^2\frac t2=4\sin^2\dfrac t2$.</span>
+                <span class="esempio__passo">Estraggo la radice: $|\mathbf{r}'(t)|=\sqrt{4\sin^2\frac t2}=2\left|\sin\frac t2\right|=2\sin\dfrac t2$, perché per $t\in[0,2\pi]$ si ha $\frac t2\in[0,\pi]$, dove il seno è non negativo e il valore assoluto si può togliere.</span>
+                <span class="esempio__passo">Integro. Una primitiva di $\sin\frac t2$ è $-2\cos\frac t2$ (il fattore $2$ compensa il $\frac12$ che la regola della catena farebbe comparire derivando l'interno $\frac t2$), quindi una primitiva di $2\sin\frac t2$ è $-4\cos\frac t2$: $\ L=\displaystyle\int_0^{2\pi}2\sin\frac t2\,dt=\left[-4\cos\frac t2\right]_0^{2\pi}$. Valuto: in $t=2\pi$ viene $-4\cos\pi=+4$; in $t=0$ viene $-4\cos0=-4$. Differenza: $4-(-4)=8$.</span>
+              </p>
+              <p><strong>Cuspidi in $t=0$ e $t=2\pi$; $L=8$</strong> (cioè $8a$ con $a=1$: quattro diametri della ruota). La curva è regolare a tratti, non regolare.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">(a) Dimostra che per una curva in polari $\rho=\rho(\theta)$ vale $L=\int\sqrt{\rho^2+\rho'^2}\,d\theta$. (b) Applicala alla cardioide $\rho=1+\cos\theta$, $\theta\in[0,2\pi]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) Parametrizzo con $\theta$: $\ \mathbf{r}(\theta)=(\rho\cos\theta,\ \rho\sin\theta)$.</span>
+                <span class="esempio__passo">Derivo ciascuna componente con la regola del prodotto $(fg)'=f'g+fg'$, ricordando che sia $\rho$ sia $\cos\theta$ dipendono da $\theta$: la prima dà $\rho'\cos\theta+\rho\cdot(-\sin\theta)$, la seconda $\rho'\sin\theta+\rho\cos\theta$. Quindi $\mathbf{r}'=(\rho'\cos\theta-\rho\sin\theta,\ \rho'\sin\theta+\rho\cos\theta)$.</span>
+                <span class="esempio__passo">Elevo al quadrato entrambe le componenti (sempre con $(p\pm q)^2=p^2\pm2pq+q^2$) e le sommo: i doppi prodotti $-2\rho\rho'\sin\theta\cos\theta$ e $+2\rho\rho'\sin\theta\cos\theta$ sono opposti e si elidono. Dei termini rimasti raccolgo $\rho'^2$ e $\rho^2$: $\ \rho'^2(\cos^2\theta+\sin^2\theta)+\rho^2(\sin^2\theta+\cos^2\theta)$, e per l'<strong>identità fondamentale</strong> ciascuna parentesi vale $1$: resta $\rho'^2+\rho^2$. Quindi $|\mathbf{r}'|=\sqrt{\rho^2+\rho'^2}$.</span>
+                <span class="esempio__passo">(b) Qui $\rho=1+\cos\theta$, quindi $\rho'=-\sin\theta$. <strong>Sostituisco nella formula appena dimostrata</strong>: $\ \rho^2+\rho'^2=(1+\cos\theta)^2+(-\sin\theta)^2$. Sviluppo il primo quadrato con $(p+q)^2=p^2+2pq+q^2$ ($p=1$, $q=\cos\theta$): $\ 1+2\cos\theta+\cos^2\theta+\sin^2\theta$; per l'identità fondamentale gli ultimi due danno $1$, quindi il tutto vale $2+2\cos\theta$.</span>
+                <span class="esempio__passo">Applico la <strong>formula di bisezione del coseno</strong> $1+\cos\theta=2\cos^2\dfrac\theta2$ (<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-formule">Trigonometria, §4.5</a>) al fattore $2+2\cos\theta=2(1+\cos\theta)=2\cdot2\cos^2\frac\theta2=4\cos^2\dfrac\theta2$. Estraggo la radice: $|\mathbf{r}'|=\sqrt{4\cos^2\frac\theta2}=2\left|\cos\dfrac\theta2\right|$.</span>
+                <span class="esempio__passo">Per il valore assoluto spezzo l'intervallo. Su $[0,\pi]$ si ha $\frac\theta2\in[0,\frac\pi2]$, dove il coseno è $\geq0$ e il modulo si toglie; su $[\pi,2\pi]$ il coseno è $\leq0$ e il modulo cambia il segno. Ma i due pezzi danno lo stesso contributo (la cardioide è simmetrica rispetto all'asse $x$), quindi calcolo solo il primo e raddoppio: $\ L=\displaystyle 2\int_0^{\pi}2\cos\frac\theta2\,d\theta$. Una primitiva di $2\cos\frac\theta2$ è $4\sin\frac\theta2$ (di nuovo il fattore $2$ compensa il $\frac12$ della catena): $\ L=2\left[4\sin\frac\theta2\right]_0^{\pi}=2\left(4\sin\frac\pi2-4\sin0\right)=2\cdot 4=8$.</span>
+              </p>
+              <p><strong>(a) $L=\int\sqrt{\rho^2+\rho'^2}\,d\theta$; (b) la cardioide misura $L=8$.</strong> Attenzione al valore assoluto: su $[\pi,2\pi]$ si ha $\cos\tfrac\theta2\leq 0$, e ignorarlo darebbe $0$ invece di $8$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Per il cono parametrizzato da $\mathbf{r}(u,\theta)=(u\cos\theta,\ u\sin\theta,\ u)$ con $u\in[0,h]$, $\theta\in[0,2\pi]$: calcola $\mathbf{N}$, l'elemento d'area e l'area laterale totale. Dove la superficie non è regolare?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}_u=(\cos\theta,\ \sin\theta,\ 1)$ e $\mathbf{r}_\theta=(-u\sin\theta,\ u\cos\theta,\ 0)$.</span>
+                <span class="esempio__passo">Applico la formula $\mathbf a\times\mathbf b=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1)$ con $\mathbf a=\mathbf r_u=(\cos\theta,\sin\theta,1)$ e $\mathbf b=\mathbf r_\theta=(-u\sin\theta,\ u\cos\theta,\ 0)$. Prima componente: $a_2b_3-a_3b_2=\sin\theta\cdot 0-1\cdot u\cos\theta=-u\cos\theta$. Seconda: $a_3b_1-a_1b_3=1\cdot(-u\sin\theta)-\cos\theta\cdot 0=-u\sin\theta$. Terza: $a_1b_2-a_2b_1=\cos\theta\cdot u\cos\theta-\sin\theta\cdot(-u\sin\theta)=u\cos^2\theta+u\sin^2\theta=u$, per l'identità fondamentale. Quindi $\mathbf{N}=(-u\cos\theta,\ -u\sin\theta,\ u)$.</span>
+                <span class="esempio__passo">$|\mathbf{N}|=\sqrt{u^2\cos^2\theta+u^2\sin^2\theta+u^2}$; raccolgo $u^2$ nei primi due e uso ancora l'identità fondamentale: $\sqrt{u^2+u^2}=\sqrt{2u^2}=u\sqrt2$ (per $u\geq 0$).</span>
+                <span class="esempio__passo">$dS=\sqrt2\,u\,du\,d\theta$.</span>
+                <span class="esempio__passo">Area $=\displaystyle\int_0^{2\pi}\!\!\int_0^h\sqrt2\,u\,du\,d\theta=2\pi\sqrt2\left[\frac{u^2}{2}\right]_0^h=\sqrt2\,\pi h^2$.</span>
+                <span class="esempio__passo">Regolarità: $\mathbf{N}=\mathbf{0}$ se e solo se $u=0$, cioè nel <strong>vertice</strong> del cono.</span>
+              </p>
+              <p><strong>$dS=\sqrt2\,u\,du\,d\theta$ e area laterale $\sqrt2\,\pi h^2$;</strong> la superficie non è regolare nel vertice (la punta non ha piano tangente). Controllo con la geometria: raggio di base $h$, apotema $\sqrt{h^2+h^2}=h\sqrt2$, area laterale $\pi\,r\,\ell=\pi h\cdot h\sqrt2$. Coincide.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Parametrizza la superficie ottenuta ruotando $y=\sqrt{x}$, con $x\in[0,4]$, attorno all'asse $x$; scrivi $dS$ e calcola l'area.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Superficie di rotazione attorno a $x$: $\ \mathbf{r}(x,\theta)=\big(x,\ \sqrt x\cos\theta,\ \sqrt x\sin\theta\big)$, con $x\in[0,4]$, $\theta\in[0,2\pi]$.</span>
+                <span class="esempio__passo">Uso la formula $dS=f(x)\sqrt{1+f'(x)^2}\,dx\,d\theta$ con $f(x)=\sqrt x$ e $f'(x)=\dfrac{1}{2\sqrt x}$.</span>
+                <span class="esempio__passo">Calcolo $f'(x)^2=\left(\dfrac{1}{2\sqrt x}\right)^2=\dfrac{1}{4x}$, quindi $1+f'^2=1+\dfrac{1}{4x}$. Ora $f\sqrt{1+f'^2}=\sqrt{x}\,\sqrt{1+\dfrac{1}{4x}}$: uso la regola $\sqrt a\cdot\sqrt b=\sqrt{ab}$ per portare $\sqrt x$ dentro la radice (dove diventa $x$) e moltiplico $x$ per ciascun addendo, $x\cdot1+x\cdot\frac{1}{4x}=x+\frac14$. Resta $\sqrt{x+\dfrac14}$.</span>
+                <span class="esempio__passo">$\mathrm{Area}=\displaystyle\int_0^{2\pi}\!\!\int_0^4\sqrt{x+\frac14}\,dx\,d\theta$. L'integranda non contiene $\theta$, quindi l'integrale in $\theta$ produce soltanto il fattore $2\pi$. Per quello in $x$ pongo $u=x+\frac14$ (da cui $du=dx$) e applico $\int u^{1/2}du=\frac{u^{3/2}}{3/2}=\frac23u^{3/2}$: $\ \mathrm{Area}=2\pi\left[\frac{2}{3}\left(x+\frac14\right)^{3/2}\right]_0^4$.</span>
+                <span class="esempio__passo">Valuto agli estremi. In $x=4$: $\left(4+\frac14\right)^{3/2}=\left(\dfrac{17}{4}\right)^{3/2}=\dfrac{17^{3/2}}{4^{3/2}}=\dfrac{17\sqrt{17}}{8}$ (perché $4^{3/2}=(\sqrt4)^3=8$). In $x=0$: $\left(\dfrac14\right)^{3/2}=\dfrac{1}{8}$. Sottraggo: $\ \mathrm{Area}=2\pi\cdot\dfrac23\left(\dfrac{17\sqrt{17}}{8}-\dfrac18\right)=\dfrac{4\pi}{3}\cdot\dfrac{17\sqrt{17}-1}{8}$, e semplificando $4$ con $8$ si ottiene $\dfrac{\pi}{6}\left(17\sqrt{17}-1\right)$.</span>
+              </p>
+              <p><strong>$dS=\sqrt{x+\tfrac14}\,dx\,d\theta$ e $\ \mathrm{Area}=\dfrac{\pi}{6}\left(17\sqrt{17}-1\right)\approx 36{,}18$.</strong> Nota: in $x=0$ la parametrizzazione non è regolare ($f'\to+\infty$), ma l'integrale converge tranquillamente.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data la spirale logaritmica $\mathbf{r}(t)=(e^t\cos t,\ e^t\sin t)$ con $t\in[0,1]$: verifica che la curva è regolare, calcola $|\mathbf{r}'(t)|$ e la lunghezza dell'arco.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivo con la regola del prodotto: $x'=e^t\cos t-e^t\sin t=e^t(\cos t-\sin t)$ e $y'=e^t\sin t+e^t\cos t=e^t(\sin t+\cos t)$.</span>
+                <span class="esempio__passo">$|\mathbf{r}'|^2=e^{2t}\big[(\cos t-\sin t)^2+(\sin t+\cos t)^2\big]$.</span>
+                <span class="esempio__passo">Sviluppo i due quadrati con $(p-q)^2=p^2-2pq+q^2$ e $(p+q)^2=p^2+2pq+q^2$: $\ (\cos^2t-2\sin t\cos t+\sin^2t)+(\sin^2t+2\sin t\cos t+\cos^2t)$. I due doppi prodotti sono opposti e si elidono; restano due parentesi che valgono $1$ ciascuna per l'<strong>identità fondamentale</strong> $\sin^2t+\cos^2t=1$. In tutto $1+1=2$.</span>
+                <span class="esempio__passo">Quindi $|\mathbf{r}'(t)|=\sqrt2\,e^t\,\gt\,0$ per ogni $t$: la curva è <strong>regolare</strong>.</span>
+                <span class="esempio__passo">$L=\displaystyle\int_0^1\sqrt2\,e^t\,dt=\sqrt2\big[e^t\big]_0^1=\sqrt2\,(e-1)$.</span>
+              </p>
+              <p><strong>$|\mathbf{r}'(t)|=\sqrt2\,e^t$ e $\ L=\sqrt2\,(e-1)\approx 2{,}43$.</strong> Curiosità: poiché $|\mathbf{r}(t)|=e^t$, si ha $|\mathbf{r}'|=\sqrt2\,|\mathbf{r}|$ — la spirale logaritmica accelera esattamente in proporzione alla distanza dall'origine, ed è per questo che è "autosimile".</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostra che se una curva derivabile $\mathbf{r}(t)$ ha modulo costante, $|\mathbf{r}(t)|=R$ per ogni $t$, allora $\mathbf{r}(t)\cdot\mathbf{r}'(t)=0$. Interpreta geometricamente il risultato.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Elevo al quadrato l'ipotesi per liberarmi della radice: $|\mathbf{r}(t)|^2=\mathbf{r}(t)\cdot\mathbf{r}(t)=R^2$, costante.</span>
+                <span class="esempio__passo">Derivo entrambi i membri rispetto a $t$. A destra la derivata di una costante è $0$.</span>
+                <span class="esempio__passo">A sinistra uso la regola del prodotto per il prodotto scalare (che si dimostra scrivendo il prodotto scalare in componenti e derivando ciascun termine): $\dfrac{d}{dt}\big(\mathbf{r}\cdot\mathbf{r}\big)=\mathbf{r}'\cdot\mathbf{r}+\mathbf{r}\cdot\mathbf{r}'=2\,\mathbf{r}\cdot\mathbf{r}'$.</span>
+                <span class="esempio__passo">Uguaglio: $2\,\mathbf{r}(t)\cdot\mathbf{r}'(t)=0$, cioè $\mathbf{r}(t)\cdot\mathbf{r}'(t)=0$. $\ \blacksquare$</span>
+              </p>
+              <p><strong>Il vettore posizione e il vettore velocità sono sempre ortogonali.</strong> Geometricamente: se il punto resta sempre alla stessa distanza dall'origine, si muove su una sfera (o su una circonferenza nel piano), e quindi la sua velocità deve essere tangente alla sfera, cioè perpendicolare al raggio. È esattamente ciò che avevamo osservato nell'Esempio 2 con il moto circolare. Vale anche il viceversa: se $\mathbf{r}\cdot\mathbf{r}'\equiv 0$ allora $|\mathbf{r}|$ è costante.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data la superficie $\mathbf{r}(u,v)=(u+v,\ u-v,\ uv)$: calcola $\mathbf{r}_u$, $\mathbf{r}_v$, il vettore normale, il versore normale e il piano tangente nel punto corrispondente a $(u,v)=(1,1)$. Discuti la regolarità.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Punto: $\mathbf{r}(1,1)=(1+1,\ 1-1,\ 1\cdot 1)=(2,\ 0,\ 1)$.</span>
+                <span class="esempio__passo">$\mathbf{r}_u=(1,\ 1,\ v)$, che in $(1,1)$ vale $(1,1,1)$; $\ \mathbf{r}_v=(1,\ -1,\ u)$, che in $(1,1)$ vale $(1,-1,1)$.</span>
+                <span class="esempio__passo">Prodotto vettoriale con la formula $\mathbf a\times\mathbf b=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1)$, dove $\mathbf a=\mathbf r_u=(1,1,1)$ e $\mathbf b=\mathbf r_v=(1,-1,1)$. Prima componente: $a_2b_3-a_3b_2=1\cdot1-1\cdot(-1)=1+1=2$. Seconda: $a_3b_1-a_1b_3=1\cdot 1-1\cdot 1=0$. Terza: $a_1b_2-a_2b_1=1\cdot(-1)-1\cdot 1=-2$. Quindi $\mathbf{N}=(2,\ 0,\ -2)$.</span>
+                <span class="esempio__passo">$|\mathbf{N}|=\sqrt{2^2+0^2+(-2)^2}=\sqrt{4+0+4}=\sqrt8=2\sqrt2$; divido ogni componente per $2\sqrt2$ e semplifico ($\frac{2}{2\sqrt2}=\frac{1}{\sqrt2}$), ottenendo $\mathbf{n}=\left(\dfrac{1}{\sqrt2},\ 0,\ -\dfrac{1}{\sqrt2}\right)$.</span>
+                <span class="esempio__passo">Piano tangente: uso $\mathbf N\cdot(X-P_0)=0$ con $\mathbf N=(2,0,-2)$ e $P_0=(2,0,1)$: $\ 2(x-2)+0\,(y-0)-2(z-1)=0$. Svolgo: $2x-4-2z+2=0$, cioè $2x-2z-2=0$; divido tutto per $2$ e porto il termine noto a destra: $\ x-z=1$.</span>
+                <span class="esempio__passo">Regolarità in generale: $\mathbf{N}(u,v)=\mathbf{r}_u\times\mathbf{r}_v=(u+v,\ v-u,\ -2)$, la cui terza componente vale sempre $-2\neq 0$: la superficie è regolare in ogni punto.</span>
+              </p>
+              <p><strong>$\mathbf{N}=(2,0,-2)$, $\ \mathbf{n}=\tfrac{1}{\sqrt2}(1,0,-1)$, piano tangente $x-z=1$</strong> (verifica sul punto: $2-1=1$ ✓). La superficie è regolare ovunque.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Calcola la lunghezza della curva $\mathbf{r}(t)=\left(t,\ t^2,\ \dfrac{2}{3}t^3\right)$ per $t\in[0,1]$, e spiega quale trucco algebrico rende l'integrale elementare.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\mathbf{r}'(t)=\left(1,\ 2t,\ 2t^2\right)$.</span>
+                <span class="esempio__passo">$|\mathbf{r}'(t)|^2=1+4t^2+4t^4$.</span>
+                <span class="esempio__passo"><strong>Il trucco</strong>: riconosco un quadrato perfetto. Infatti $(1+2t^2)^2=1+4t^2+4t^4$. Quindi $|\mathbf{r}'(t)|=1+2t^2$ (positivo, nessun valore assoluto da discutere).</span>
+                <span class="esempio__passo">$L=\displaystyle\int_0^1\left(1+2t^2\right)dt=\left[t+\frac{2t^3}{3}\right]_0^1=1+\frac23$.</span>
+              </p>
+              <p><strong>$L=\dfrac53\approx 1{,}67$.</strong> Il trucco è quello della sezione 8: quando l'esercizio è costruito per essere risolubile a mano, sotto la radice c'è un quadrato perfetto della forma $(A+B)^2=A^2+2AB+B^2$. Controllo di plausibilità: la corda da $(0,0,0)$ a $\left(1,1,\tfrac23\right)$ misura $\sqrt{1+1+\tfrac49}\approx1{,}56\,\lt\,1{,}67$. Coerente.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Per una curva parametrica $\mathbf{r}(t)$, il vettore $\mathbf{r}'(t)$ rappresenta:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un vettore perpendicolare alla curva</button>
+              <button class="quiz-option" data-correct="true">il vettore velocità, tangente alla curva nel senso di percorrenza</button>
+              <button class="quiz-option" data-correct="false">la lunghezza della curva fino all'istante $t$</button>
+              <button class="quiz-option" data-correct="false">l'area racchiusa dalla curva</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\mathbf{r}'(t)$ è il limite delle corde $\big(\mathbf{r}(t+h)-\mathbf{r}(t)\big)/h$: la sua direzione è tangente alla curva, il suo modulo è la velocità scalare.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quanto vale la lunghezza dell'elica $\mathbf{r}(t)=(\cos t,\ \sin t,\ t)$ per $t\in[0,2\pi]$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$2\pi$</button>
+              <button class="quiz-option" data-correct="true">$2\sqrt2\,\pi$</button>
+              <button class="quiz-option" data-correct="false">$4\pi$</button>
+              <button class="quiz-option" data-correct="false">$\pi^2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\mathbf{r}'=(-\sin t,\cos t,1)$, quindi $|\mathbf{r}'|=\sqrt{1+1}=\sqrt2$ e $L=\int_0^{2\pi}\sqrt2\,dt=2\sqrt2\,\pi$. Non è $2\pi$: quella sarebbe la lunghezza della sola ombra circolare, senza la salita.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Data una superficie parametrica regolare $\mathbf{r}(u,v)$, un vettore perpendicolare alla superficie si ottiene con:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\mathbf{r}_u\cdot\mathbf{r}_v$ (prodotto scalare)</button>
+              <button class="quiz-option" data-correct="true">$\mathbf{r}_u\times\mathbf{r}_v$ (prodotto vettoriale)</button>
+              <button class="quiz-option" data-correct="false">$\mathbf{r}_u+\mathbf{r}_v$</button>
+              <button class="quiz-option" data-correct="false">$|\mathbf{r}_u|\,|\mathbf{r}_v|$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\mathbf{r}_u$ e $\mathbf{r}_v$ sono tangenti alla superficie; il loro prodotto <strong>vettoriale</strong> è perpendicolare a entrambi, dunque alla superficie. Il prodotto scalare darebbe un numero, non una freccia.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) L'elemento d'area di una superficie parametrica è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$dS=du\,dv$</button>
+              <button class="quiz-option" data-correct="false">$dS=|\mathbf{r}_u|\,|\mathbf{r}_v|\,du\,dv$ sempre</button>
+              <button class="quiz-option" data-correct="true">$dS=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv$</button>
+              <button class="quiz-option" data-correct="false">$dS=(\mathbf{r}_u\cdot\mathbf{r}_v)\,du\,dv$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il rettangolino $du\,dv$ del dominio si deforma in un parallelogramma di lati $\mathbf{r}_u\,du$ e $\mathbf{r}_v\,dv$, la cui area è $|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv$. La seconda opzione vale solo se $\mathbf{r}_u\perp\mathbf{r}_v$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Due parametrizzazioni regolari diverse che percorrono lo stesso sostegno una sola volta danno la stessa lunghezza.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, ed è un teorema dimostrato nella sezione 5: con la sostituzione $t=\varphi(\tau)$ l'integrale $\int|\boldsymbol{\rho}'|\,d\tau$ si trasforma esattamente in $\int|\mathbf{r}'|\,dt$. Correre o camminare non cambia i chilometri.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) La lunghezza di una curva si calcola come $\int_a^b\mathbf{r}'(t)\,dt$, senza modulo.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: quell'integrale è un <em>vettore</em> e vale $\mathbf{r}(b)-\mathbf{r}(a)$, cioè lo spostamento netto (per una curva chiusa è $\mathbf{0}$!). La lunghezza richiede il modulo: $L=\int_a^b|\mathbf{r}'(t)|\,dt$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Una curva si dice regolare in un punto se in quel punto $\mathbf{r}'(t)=\mathbf{0}$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, è esattamente il contrario: la regolarità richiede $\mathbf{r}'(t)\neq\mathbf{0}$ (oltre alla classe $C^1$). Dove la velocità si annulla la curva può formare una cuspide, come la cicloide in $t=0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Il nastro di Möbius è un esempio di superficie non orientabile.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: trasportando con continuità il versore normale lungo il nastro si torna al punto di partenza con il verso invertito. Non esiste una scelta coerente di "faccia esterna": il nastro ha una sola faccia.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="scalare|velocita scalare|velocità scalare">
+            <p class="quiz-question__testo">9. (Completamento) Il modulo $|\mathbf{r}'(t)|$ del vettore velocità si chiama velocità ______ (è il numero che segna il tachimetro).</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>La velocità <strong>scalare</strong> è un numero non negativo: perde l'informazione sulla direzione (che resta nel versore tangente $\mathbf{T}$) e conserva solo "quanto vado forte".</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="lunghezza|lunghezza d'arco|lunghezza darco">
+            <p class="quiz-question__testo">10. (Completamento) L'integrale $\displaystyle\int_a^b|\mathbf{r}'(t)|\,dt$ si chiama ______ d'arco della curva.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È la <strong>lunghezza</strong> d'arco: nasce come limite delle lunghezze delle poligonali inscritte ed è il contachilometri che somma tutti i pezzettini di strada $ds=|\mathbf{r}'(t)|\,dt$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="vettoriale|prodotto vettoriale">
+            <p class="quiz-question__testo">11. (Completamento) L'operazione $\mathbf{r}_u\times\mathbf{r}_v$ si chiama prodotto ______ e restituisce una freccia perpendicolare a entrambi i vettori.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Prodotto <strong>vettoriale</strong>: dà un vettore perpendicolare a entrambi, di modulo pari all'area del parallelogramma da essi individuato — ed è proprio quest'area che diventa l'elemento $dS$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché la lunghezza di una curva si calcola integrando $|\mathbf{r}'(t)|$, e perché il risultato non dipende dalla parametrizzazione scelta.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: per misurare una curva la si approssima con una spezzata, piantando dei paletti $\mathbf{r}(t_0),\dots,\mathbf{r}(t_n)$ e sommando le distanze in linea d'aria tra paletti consecutivi — cosa che un righello sa fare. Ogni segmentino vale circa $|\mathbf{r}'(t_{i-1})|\,\Delta t_i$, perché in un intervallo di tempo piccolo lo spostamento è circa "velocità per tempo". La somma $\sum_i|\mathbf{r}'(t_{i-1})|\Delta t_i$ è una somma di Riemann che, infittendo i paletti, converge a $\int_a^b|\mathbf{r}'(t)|\,dt$. È la stessa logica dell'integrale definito: tanti pezzettini piccoli, sommati tutti. Quanto all'invarianza: se riparametrizzo con $t=\varphi(\tau)$, la regola della catena dà $|\boldsymbol{\rho}'(\tau)|=|\mathbf{r}'(\varphi(\tau))|\,\varphi'(\tau)$, e la sostituzione nell'integrale riporta esattamente all'integrale di partenza. Intuitivamente: se vado al doppio della velocità impiego metà del tempo, e i due effetti si compensano. La lunghezza è una proprietà del percorso, non del modo in cui lo si percorre — purché lo si percorra una volta sola (se ci passo due volte, l'integrale giustamente raddoppia).</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Spiega la differenza tra una curva parametrica e una superficie parametrica, e di' che cosa rappresentano rispettivamente $\mathbf{r}'(t)$ e $\mathbf{r}_u\times\mathbf{r}_v$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: una curva parametrica usa <strong>un solo parametro</strong>, $\mathbf{r}(t)=(x(t),y(t),z(t))$: è la posizione di un punto che si muove nel tempo, e il suo disegno è una linea (la traccia GPS di una corsa). Una superficie parametrica usa <strong>due parametri</strong>, $\mathbf{r}(u,v)$: è un foglio elastico piatto che viene stirato e appoggiato nello spazio, e il suo disegno è un pezzo di superficie (la sfera con latitudine e longitudine è l'esempio principe). In dimensione uno ci si muove lungo una linea, in dimensione due ci si muove su un foglio. Quanto alle derivate: $\mathbf{r}'(t)$ è il vettore velocità, tangente alla curva, che dice in che direzione e quanto velocemente si procede; il suo modulo $|\mathbf{r}'(t)|$ misura di quanto viene stirato un intervallino di tempo e genera la lunghezza. Per le superfici i vettori tangenti sono due, $\mathbf{r}_u$ e $\mathbf{r}_v$ (le velocità lungo le curve coordinate), e generano il piano tangente; il loro prodotto vettoriale $\mathbf{r}_u\times\mathbf{r}_v$ è invece <em>perpendicolare</em> alla superficie (dà il versore normale e l'orientazione) e il suo modulo misura di quanto viene stirato un rettangolino di parametri, generando l'elemento d'area $dS=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv$.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="06-moltiplicatori-lagrange.html"><span class="dir">← Capitolo precedente</span><strong>Moltiplicatori di Lagrange</strong></a>
+        <a class="next" href="08-integrali-doppi.html"><span class="dir">Capitolo successivo →</span><strong>Integrali doppi</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

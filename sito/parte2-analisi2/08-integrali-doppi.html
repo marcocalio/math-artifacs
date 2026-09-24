@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>8. Integrali doppi — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 8</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html" class="is-active">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 8 di 14</span>
+        </div>
+        <h1>Integrali doppi</h1>
+        <p class="subtitle">In Analisi 1 sommavi rettangolini sottili e ottenevi un'<em>area</em>. Qui sommi parallelepipedi sottili e ottieni un <strong>volume</strong>: quanta terra c'è sotto una collina, quanta massa c'è in una lastra di densità variabile, quanta pioggia è caduta su una regione. Tutto l'apparato tecnico — formule di riduzione, domini normali, coordinate polari — serve solo a trasformare quella somma impossibile in due integrali di Analisi 1, uno dopo l'altro.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~65 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Quattro cose sole, in parole poverissime. Una immagine mentale per ciascuna. Se le hai in testa, il resto del capitolo è in discesa.</p>
+          <p><strong>1) L'<a href="../parte1-analisi1/14-integrali-definiti.html">integrale definito</a> è una somma di infinite fettine.</strong> Prendi la regione sotto un grafico. Tagliala a fettine verticali sottilissime. Ogni fettina è quasi un rettangolo: base piccolissima $dx$, altezza $f(x)$. Sommi tutte le aree e hai finito. <br><em>Immagine: una fetta di pane per volta.</em> Il simbolo $\int$ è solo una "S" allungata: S di <strong>somma</strong>.</p>
+          <p><strong>2) Una <a href="../parte1-analisi1/13-integrali-indefiniti.html">primitiva</a> è "la funzione da cui sei partito derivando".</strong> Se $G'=f$, allora $G$ è una <span class="glossario-term" data-term="primitiva">primitiva</span> di $f$. Serve perché il <span class="glossario-term" data-term="teorema-fondamentale-del-calcolo">Teorema Fondamentale</span> dice che $\int_a^b f = G(b)-G(a)$: trovi la primitiva, la valuti agli estremi, sottrai. <br><em>Immagine: il tasto "annulla".</em> La primitiva disfa la derivata.</p>
+          <p><strong>3) Una <a href="01-funzioni-piu-variabili.html">funzione di due variabili</a> $z=f(x,y)$ dà un'altezza sopra ogni punto del pavimento.</strong> Il dominio non è più un intervallo sulla retta: è una <strong>regione del piano</strong>. Il grafico non è una curva: è una <strong>superficie</strong> nello spazio. <br><em>Immagine: una collina sopra una mappa.</em> Ogni punto $(x,y)$ della mappa ha la sua quota $f(x,y)$.</p>
+          <p><strong>4) Le <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span> individuano un punto con "quanto lontano" e "in che direzione".</strong> Invece di $(x,y)$ usi $(r,\theta)$: $r\geq 0$ è la distanza dall'origine, $\theta$ è l'angolo misurato dal semiasse positivo delle $x$. Il legame lo dà la <a href="../parte0-prerequisiti/08-trigonometria.html">trigonometria</a>: $x=r\cos\theta$, $y=r\sin\theta$, e quindi $x^2+y^2=r^2$. <br><em>Immagine: il radar.</em> "Bersaglio a 3 km, direzione nord-est." Molto più comodo di "3 km a est e 3 km a nord" quando le cose sono rotonde.</p>
+        </div>
+
+        <p>Ora l'idea del capitolo, in una frase: <strong>tutto quello che sai fare in una dimensione, lo rifai in due — solo che il risultato non è più un'area, è un volume.</strong></p>
+        <p>Ripercorriamo insieme. In Analisi 1 avevi una funzione $f(x)$ su un intervallo $[a,b]$. Per misurare la regione sotto il grafico l'hai spezzata in tante fettine verticali; ogni fettina era (quasi) un rettangolo di base $\Delta x$ e altezza $f(x)$; hai sommato tutte le areole $f(x)\,\Delta x$ e poi hai fatto diventare le fettine infinitamente sottili. Il risultato era l'area.</p>
+        <p>Adesso hai una <span class="glossario-term" data-term="funzione-piu-variabili">funzione di due variabili</span> $f(x,y)$, definita su una <strong>regione $D$ del piano</strong>. Il grafico è una superficie che galleggia sopra $D$ — pensala come una <strong>collina</strong> sopra una mappa. La domanda naturale diventa: <em>quanta terra c'è sotto la collina?</em> Cioè: qual è il volume del solido che ha per pavimento la regione $D$, per soffitto la superficie $z=f(x,y)$ e per pareti dei muretti verticali che si alzano dal bordo di $D$?</p>
+        <p>La ricetta è identica, con un'unica promozione di dimensione. Non taglio più a fettine: <strong>quadretto la mappa</strong>, come una scacchiera. Su ogni quadretto $\Delta A$ la collina è quasi piatta, quindi il pezzo di terra sopra quel quadretto è quasi un <strong>parallelepipedo</strong>: base $\Delta A$, altezza $f$ del punto. Il suo volume è $f(x,y)\,\Delta A$. Sommo tutti i parallelepipedi, poi faccio diventare i quadretti infinitamente piccoli. Quel limite è l'<strong><span class="glossario-term" data-term="integrale-doppio">integrale doppio</span></strong>:</p>
+        <div class="formula-block">$$\iint_D f(x,y)\,dA \;=\; \text{volume (con segno) del solido compreso tra la regione } D \text{ e la superficie } z=f(x,y).$$</div>
+        <p>Il doppio simbolo $\iint$ ricorda che stiamo sommando lungo <em>due</em> direzioni, e la scritta $dA$ (oppure $dx\,dy$) è l'erede di quel quadrettino $\Delta A$ diventato infinitesimo. Tieni a mente la tabella mentale: in Analisi 1, <strong>rettangolini $\to$ area</strong>; in Analisi 2, <strong>parallelepipedi $\to$ volume</strong>.</p>
+
+        <svg viewBox="0 0 460 270" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Parallelepipedi affiancati che approssimano il volume sotto una superficie: una somma di Riemann doppia">
+          <path d="M 60 240 L 300 240 L 380 190 L 140 190 Z" fill="var(--color-bg-alt)" stroke="var(--color-border)" stroke-width="1.4"/>
+          <path d="M 100 240 L 180 190 M 140 240 L 220 190 M 180 240 L 260 190 M 220 240 L 300 190 M 260 240 L 340 190" stroke="var(--color-border)" stroke-width="1"/>
+          <path d="M 87 224 L 327 224 M 113 207 L 353 207" stroke="var(--color-border)" stroke-width="1"/>
+          <g opacity="0.9">
+            <path d="M 100 240 L 100 196 L 140 196 L 140 240 Z" fill="var(--color-primary)" opacity="0.30" stroke="var(--color-primary)" stroke-width="1"/>
+            <path d="M 100 196 L 140 196 L 168 178 L 128 178 Z" fill="var(--color-primary)" opacity="0.55" stroke="var(--color-primary)" stroke-width="1"/>
+            <path d="M 140 196 L 168 178 L 168 222 L 140 240 Z" fill="var(--color-primary)" opacity="0.42" stroke="var(--color-primary)" stroke-width="1"/>
+          </g>
+          <g opacity="0.9">
+            <path d="M 160 240 L 160 164 L 200 164 L 200 240 Z" fill="var(--color-primary)" opacity="0.30" stroke="var(--color-primary)" stroke-width="1"/>
+            <path d="M 160 164 L 200 164 L 228 146 L 188 146 Z" fill="var(--color-primary)" opacity="0.55" stroke="var(--color-primary)" stroke-width="1"/>
+            <path d="M 200 164 L 228 146 L 228 222 L 200 240 Z" fill="var(--color-primary)" opacity="0.42" stroke="var(--color-primary)" stroke-width="1"/>
+          </g>
+          <g opacity="0.9">
+            <path d="M 220 240 L 220 128 L 260 128 L 260 240 Z" fill="var(--color-primary)" opacity="0.30" stroke="var(--color-primary)" stroke-width="1"/>
+            <path d="M 220 128 L 260 128 L 288 110 L 248 110 Z" fill="var(--color-primary)" opacity="0.55" stroke="var(--color-primary)" stroke-width="1"/>
+            <path d="M 260 128 L 288 110 L 288 222 L 260 240 Z" fill="var(--color-primary)" opacity="0.42" stroke="var(--color-primary)" stroke-width="1"/>
+          </g>
+          <path d="M 90 208 C 150 186, 210 118, 300 84" fill="none" stroke="currentColor" stroke-width="2.6"/>
+          <text x="306" y="80" font-size="14" font-style="italic" fill="currentColor">z = f(x,y)</text>
+          <text x="320" y="258" font-size="13" font-weight="700" fill="currentColor">D</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Ogni quadretto della mappa porta sopra di sé un parallelepipedo di volume $f(x,y)\,\Delta A$. Rimpicciolendo i quadretti, la somma tende al volume esatto.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché il mondo è fatto di <strong>grandezze distribuite su una superficie</strong>, non su una retta. La massa di una lamiera non è la stessa in ogni punto; la pioggia non cade uguale su tutta la provincia; la carica elettrica non è spalmata uniformemente su una piastra; la popolazione non è distribuita in modo omogeneo su un territorio. In tutti questi casi conosci una <em>densità</em> — quanta grandezza c'è <strong>per unità di superficie</strong>, punto per punto — e vuoi il <strong>totale</strong>. L'integrale doppio è esattamente la macchina che somma una densità su una regione e restituisce il totale.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Due problemi apparentemente diversi, che si rivelano lo stesso problema. Il primo è geometrico: <em>quanto vale il volume di un solido dalla forma qualunque?</em> Per il cilindro e il cono ci sono formule scolastiche; per una collina, per una diga, per lo sterro di un cantiere, no. Il secondo è fisico: <em>quanto pesa un oggetto piatto la cui densità cambia da punto a punto?</em> Se la densità fosse costante basterebbe "densità per area"; se cambia, quella moltiplicazione non ha senso. La risposta a entrambi è la stessa: <strong>spezza in pezzetti così piccoli che dentro ciascuno la grandezza sia praticamente costante, moltiplica, somma, passa al limite</strong>.</p>
+        <p><strong>Perché è importante ora?</strong> Perché chiude il cerchio del calcolo in più variabili. Nei capitoli precedenti hai imparato a <em>derivare</em> in più variabili: <a href="03-derivate-parziali.html">derivate parziali</a>, <a href="04-gradiente.html">gradiente</a>, <a href="05-hessiano-massimi-minimi.html">massimi e minimi</a>. Mancava la controparte: <strong>integrare</strong> in più variabili. Da qui in poi tutto è un'estensione: gli <a href="09-integrali-tripli-cambi-variabile.html">integrali tripli</a> (tre variabili, stessa identica logica), gli <a href="10-integrali-curvilinei.html">integrali curvilinei</a>, gli <a href="11-integrali-superficie-campi-vettoriali.html">integrali di superficie</a> e infine i grandi <a href="12-teoremi-green-gauss-stokes.html">teoremi di Green, Gauss e Stokes</a>, che non sono altro che il Teorema Fondamentale del Calcolo promosso a più dimensioni. L'integrale doppio è la porta d'ingresso di tutto questo.</p>
+        <p>C'è poi una ragione più sottile, e più bella. L'integrale doppio ci costringe a inventare una tecnica che in Analisi 1 non serviva: il <strong>cambio di variabili con il <span class="glossario-term" data-term="jacobiano">jacobiano</span></strong>. In una dimensione, la sostituzione $x=g(t)$ portava un innocuo $g'(t)\,dt$. In due dimensioni la sostituzione <em>deforma le aree</em>, e bisogna tenerne conto con un fattore di correzione. Capire quel fattore — perché in polari compare una $r$, e non è un capriccio — è uno dei passaggi più formativi di tutto il corso.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">⚖️</span> Quanto pesa questa lastra? (densità variabile)</div>
+          <p>Hai una lastra piatta — un pezzo di lamiera, un pannello di compensato, una piastrella — che occupa la regione $D$ del piano. Se fosse fatta di un unico materiale omogeneo il problema sarebbe banale: <strong>massa = densità × area</strong>. Fine.</p>
+          <p>Ma le lastre vere non sono omogenee. Una piastra sinterizzata è più compatta al centro; una lamiera laminata è più densa dove è stata pressata di più; una tavola di legno ha nodi e venature. Chiamiamo $\rho(x,y)$ la <strong>densità superficiale</strong> nel punto $(x,y)$: quanti chilogrammi per metro quadro <em>lì</em>. La formula "densità × area" non funziona più, perché non esiste <em>la</em> densità: ce n'è una diversa in ogni punto.</p>
+          <p>Allora fai la cosa ovvia: <strong>ritagli mentalmente la lastra in tanti quadretti minuscoli</strong>. Un quadretto è così piccolo che dentro di esso la densità è praticamente costante, pari a $\rho(x,y)$ del suo centro. La massa di quel quadretto è quindi (finalmente!) densità per area: $\rho(x,y)\,\Delta A$. Sommi tutti i quadretti, li fai diventare infinitamente piccoli, e ottieni la massa totale:</p>
+          <div class="formula-block">$$m \;=\; \iint_D \rho(x,y)\,dA.$$</div>
+          <p>Ed ecco il punto che vale la pena portarsi a casa: è <strong>la stessa identica formula</strong> del volume sotto una collina. Cambia solo cosa significa $f$. Se $f$ è un'altezza, la somma dei $f\cdot\Delta A$ è un volume. Se $f$ è una densità, la somma dei $\rho\cdot\Delta A$ è una massa. Se $f$ è la pioggia caduta per metro quadro, la somma è il volume d'acqua raccolto sulla provincia. Se $f$ è la carica per unità di superficie, la somma è la carica totale della piastra. <strong>Una sola macchina matematica, infinite letture fisiche.</strong></p>
+        </div>
+        <p>La stessa idea risponde a domande molto concrete di ingegneria. <strong>Quanta terra devo spostare?</strong> Un cantiere stradale deve livellare un terreno: un drone rileva la quota $h(x,y)$ in migliaia di punti, si sottrae la quota di progetto e si integra la differenza sull'area del cantiere. Il numero che esce sono i metri cubi da scavare — e quindi i camion da noleggiare, e quindi il costo. <strong>Dove sta il baricentro di questo pezzo?</strong> Un progettista che deve sollevare una piastra irregolare con una gru ha bisogno di sapere dove agganciarla: il <span class="glossario-term" data-term="baricentro">baricentro</span> si calcola con due integrali doppi, e sbagliarlo significa far oscillare il carico.</p>
+        <p>E un'ultima, quotidiana: <strong>qual è il valore medio?</strong> La temperatura media di una piastra, la pressione media su un'ala, la luminosità media di un'immagine (che è letteralmente una funzione di due variabili campionata sui pixel). In tutti i casi la media è "il totale diviso l'estensione": $\bar f=\frac{1}{\text{area}(D)}\iint_D f\,dA$. Ogni volta che un software di fotoritocco ti mostra l'istogramma di una foto, dietro c'è una somma di Riemann doppia.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-riemann">4.1 Somme di Riemann sui rettangoli e definizione</h3>
+        <p>Partiamo dal caso più semplice possibile: il dominio è un <strong>rettangolo</strong> con i lati paralleli agli assi,</p>
+        <div class="formula-block">$$R=[a,b]\times[c,d]=\{(x,y)\in\mathbb{R}^2\ :\ a\leq x\leq b,\ \ c\leq y\leq d\}.$$</div>
+        <p>Sia $f$ una funzione limitata su $R$. Prendiamo una partizione di $[a,b]$ e una di $[c,d]$:</p>
+        <div class="formula-block">$$a=x_0\lt x_1\lt\cdots\lt x_n=b,\qquad c=y_0\lt y_1\lt\cdots\lt y_m=d.$$</div>
+        <p>Le due partizioni tagliano $R$ come una scacchiera in $n\cdot m$ <strong>sottorettangoli</strong> $R_{ij}=[x_{i-1},x_i]\times[y_{j-1},y_j]$, ciascuno di area</p>
+        <div class="formula-block">$$\Delta A_{ij}=\Delta x_i\,\Delta y_j=(x_i-x_{i-1})(y_j-y_{j-1}).$$</div>
+        <p>In ogni sottorettangolo scegliamo un punto campione $P_{ij}=(\xi_{ij},\eta_{ij})\in R_{ij}$ e costruiamo il parallelepipedo di base $R_{ij}$ e altezza $f(P_{ij})$: il suo volume (con segno) è $f(P_{ij})\,\Delta A_{ij}$. La somma di tutti questi volumi è la <strong><span class="glossario-term" data-term="somma-di-riemann">somma di Riemann</span></strong> doppia:</p>
+        <div class="formula-block">$$S(P)=\sum_{i=1}^{n}\sum_{j=1}^{m} f(\xi_{ij},\eta_{ij})\,\Delta x_i\,\Delta y_j.$$</div>
+        <p>Chiamiamo <strong>ampiezza</strong> (o "mesh") della partizione il diametro massimo dei sottorettangoli. Se, facendo tendere a zero l'ampiezza, tutte le somme di Riemann convergono a uno <strong>stesso numero</strong>, indipendentemente dalla scelta dei punti campione, quel numero è l'integrale doppio.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Integrale doppio su un rettangolo.</em> La funzione limitata $f$ si dice <strong>integrabile</strong> su $R$ se esiste finito e unico il limite delle somme di Riemann al tendere a zero dell'ampiezza della partizione. Tale numero si chiama <strong><span class="glossario-term" data-term="integrale-doppio">integrale doppio</span></strong> di $f$ su $R$ e si indica</p>
+          <div class="formula-block">$$\iint_R f(x,y)\,dA \;=\; \iint_R f(x,y)\,dx\,dy \;=\; \lim_{\text{mesh}\to 0}\ \sum_{i,j} f(\xi_{ij},\eta_{ij})\,\Delta x_i\,\Delta y_j.$$</div>
+        </div>
+        <p>Esattamente come per l'<span class="glossario-term" data-term="integrale-definito">integrale definito</span> di Analisi 1, il risultato è un <strong>numero</strong>, non una funzione: niente "$+C$", mai. E come in Analisi 1 vale la lettura <strong>con segno</strong>: dove $f\gt 0$ il parallelepipedo sta sopra il pavimento e conta positivamente, dove $f\lt 0$ sta sotto e conta negativamente. Quindi $\iint_D f$ è il volume <em>geometrico</em> solo quando $f\geq 0$ su tutto $D$.</p>
+
+        <h3 id="teoria-domini">4.2 Dalle regioni rettangolari alle regioni qualunque</h3>
+        <p>I domini interessanti non sono rettangoli: sono triangoli, cerchi, regioni fra due curve. Il trucco per estendere la definizione è di una semplicità disarmante. Sia $D$ un insieme limitato del piano e $f$ definita su $D$. Scegliamo un rettangolo $R$ abbastanza grande da contenere $D$ e <strong>prolunghiamo $f$ con zero</strong> fuori da $D$:</p>
+        <div class="formula-block">$$\tilde f(x,y)=\begin{cases} f(x,y), &amp; (x,y)\in D,\\[2pt] 0, &amp; (x,y)\in R\setminus D.\end{cases}$$</div>
+        <p>Poi si definisce, semplicemente,</p>
+        <div class="formula-block">$$\iint_D f(x,y)\,dA \;:=\; \iint_R \tilde f(x,y)\,dA.$$</div>
+        <p>L'idea è ovvia: fuori da $D$ l'altezza è zero, quindi quei parallelepipedi hanno volume nullo e non disturbano. Si dimostra che il risultato non dipende da quale rettangolo $R$ abbiamo scelto.</p>
+        <p>C'è però un prezzo da pagare: $\tilde f$ ha in generale un <strong>salto lungo il bordo di $D$</strong>, anche se $f$ era continuissima. Se il bordo fosse "grasso" o troppo frastagliato, quel salto rovinerebbe l'integrabilità. Per questo si richiede che $D$ sia <strong>misurabile</strong> (secondo Peano–Jordan): intuitivamente, che il suo bordo sia così sottile da avere <em>area nulla</em>.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> "Misurabile" in parole povere</div>
+          <p>Immagina di ricoprire il <strong>bordo</strong> di $D$ con quadretti di una scacchiera finissima. Se, rimpicciolendo i quadretti, l'area totale dei quadretti che toccano il bordo tende a zero, allora $D$ è misurabile. <br><em>Immagine: il tratto di matita con cui hai disegnato il contorno.</em> Se affilando la matita il tratto diventa sempre più sottile fino a "non pesare" nulla, sei a posto.</p>
+          <p>Buona notizia pratica: <strong>tutti i domini che incontrerai agli esami sono misurabili</strong>. Poligoni, cerchi, ellissi, regioni delimitate da un numero finito di grafici di funzioni continue: il loro bordo è fatto di curve, e una curva ha area nulla. Non devi verificarlo ogni volta, basta sapere perché la condizione c'è.</p>
+        </div>
+
+        <h3 id="teoria-integrabilita">4.3 Chi è integrabile</h3>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Integrabilità delle funzioni continue.</em> Sia $D\subset\mathbb{R}^2$ un insieme <span class="glossario-term" data-term="insieme-chiuso">chiuso</span>, limitato e misurabile, e sia $f$ <span class="glossario-term" data-term="continuita">continua</span> su $D$. Allora $f$ è integrabile su $D$.</p>
+        </div>
+        <p>Ritrovi le stesse tre ipotesi di Analisi 1, tradotte in due dimensioni. <strong>Chiuso e limitato</strong> (cioè compatto) è l'analogo di "$[a,b]$ chiuso e limitato": serve perché il <a href="02-limiti-continuita-piu-variabili.html">teorema di Weierstrass</a> garantisca massimo e minimo su ogni pezzetto, così le somme superiori e inferiori esistono e si possono stringere a tenaglia. <strong>Misurabile</strong> è la novità bidimensionale: in una dimensione l'analogo del bordo erano i due punti $a$ e $b$, che ovviamente hanno "lunghezza nulla", e nessuno se ne preoccupava. <strong>Continua</strong> impedisce salti bruschi all'interno.</p>
+        <p>Come in Analisi 1, la classe degli integrabili è più larga: restano integrabili le funzioni limitate le cui discontinuità sono confinate su un insieme di area nulla (per esempio su un numero finito di curve). La regola pratica da usare: <strong>se $f$ è continua su un dominio chiuso, limitato e dal bordo ragionevole, l'integrale esiste</strong> — poi il problema è solo calcolarlo.</p>
+
+        <h3 id="teoria-proprieta">4.4 Proprietà dell'integrale doppio</h3>
+        <p>Sono le stesse dell'integrale semplice, con le stesse dimostrazioni "per passaggio al limite sulle somme". Le elenchiamo perché le userai continuamente.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proprietà</span>
+          <p>Siano $f,g$ integrabili su $D$ (chiuso, limitato, misurabile) e $\alpha,\beta\in\mathbb{R}$.</p>
+          <div class="formula-block">
+            $$\textbf{Linearità:}\qquad \iint_D\big(\alpha f+\beta g\big)\,dA=\alpha\iint_D f\,dA+\beta\iint_D g\,dA$$
+            $$\textbf{Additività sui domini:}\qquad D=D_1\cup D_2,\ \ \text{interni disgiunti}\ \Longrightarrow\ \iint_D f=\iint_{D_1} f+\iint_{D_2} f$$
+            $$\textbf{Monotonia:}\qquad f\leq g\ \text{su}\ D\ \Longrightarrow\ \iint_D f\,dA\leq\iint_D g\,dA$$
+            $$\textbf{Modulo:}\qquad \left|\iint_D f\,dA\right|\leq\iint_D |f|\,dA$$
+            $$\textbf{Area:}\qquad \iint_D 1\,dA=\text{area}(D)$$
+          </div>
+        </div>
+        <p>Qualche commento con l'immagine giusta in testa:</p>
+        <ul>
+          <li><strong>Linearità</strong>: raddoppiare l'altezza della collina raddoppia il volume; sovrapporre due colline somma i volumi. È ciò che permette di integrare "pezzo per pezzo" un'espressione come $3x^2-5y$.</li>
+          <li><strong>Additività sui domini</strong>: se tagli la mappa in due parti che si toccano solo lungo il bordo, il volume totale è la somma dei due volumi. Attenzione alla clausola "<em>interni disgiunti</em>": la sovrapposizione ammessa è solo lungo curve, che hanno area nulla e quindi non contribuiscono. Questa proprietà è la tua àncora di salvataggio quando un dominio <strong>non</strong> è normale: lo spezzi in due o tre pezzi che lo sono.</li>
+          <li><strong>Monotonia</strong>: una collina più bassa ovunque ha meno terra sotto. Conseguenza immediata e utilissima: se $m\leq f\leq M$ su $D$, allora $m\cdot\text{area}(D)\leq\iint_D f\leq M\cdot\text{area}(D)$ — una stima gratis, senza calcolare nulla.</li>
+          <li><strong>Area come integrale</strong>: prendendo $f\equiv 1$ il solido è un cilindro di base $D$ e altezza $1$, il cui volume è numericamente uguale all'area di $D$. È il modo standard per calcolare aree con gli integrali doppi.</li>
+        </ul>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema della media integrale</span>
+          <p><em class="nome">Esiste un punto in cui la funzione vale esattamente la sua media.</em> Sia $D$ chiuso, limitato, misurabile e <strong>connesso</strong>, con $\text{area}(D)\gt 0$, e sia $f$ continua su $D$. Allora esiste un punto $(x_0,y_0)\in D$ tale che</p>
+          <div class="formula-block">$$\iint_D f(x,y)\,dA \;=\; f(x_0,y_0)\cdot\text{area}(D).$$</div>
+          <p>Il numero $\ \bar f=\dfrac{1}{\text{area}(D)}\displaystyle\iint_D f\,dA\ $ si chiama <strong>valor medio</strong> (o media integrale) di $f$ su $D$.</p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il teorema della media, spiegato con la sabbia</div>
+          <p>Hai una collina di sabbia sopra la regione $D$. Passa un rullo e la <strong>spiana</strong>, senza aggiungere né togliere sabbia. Alla fine hai un solido dall'altezza costante $\bar f$ e volume identico: $\bar f\cdot\text{area}(D)$. Il teorema dice che <strong>quell'altezza livellata viene effettivamente raggiunta dalla collina originale in almeno un punto</strong>. Del resto è ovvio: se la collina fosse sempre più bassa del livello medio non potrebbe avere quel volume, e lo stesso se fosse sempre più alta. Da qualche parte deve incrociarlo. (La connessione di $D$ serve proprio qui: su due isole separate la funzione potrebbe saltare il valore medio senza mai assumerlo.)</p>
+        </div>
+
+        <h3 id="teoria-fubini">4.5 Formule di riduzione su un rettangolo (teorema di Fubini)</h3>
+        <p>La definizione è bella ma inservibile: nessuno calcola un limite di somme doppie a mano. Serve l'analogo del Teorema Fondamentale, cioè un metodo che riconduca l'integrale doppio a cose che sappiamo già fare. È il <strong>teorema di riduzione</strong>, noto anche come teorema di Fubini.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di riduzione (Fubini) su un rettangolo</span>
+          <p>Sia $f$ continua sul rettangolo $R=[a,b]\times[c,d]$. Allora l'integrale doppio si calcola con <strong>due integrazioni semplici successive</strong>, e l'ordine è indifferente:</p>
+          <div class="formula-block">$$\iint_R f(x,y)\,dx\,dy=\int_a^b\!\!\left(\int_c^d f(x,y)\,dy\right)dx=\int_c^d\!\!\left(\int_a^b f(x,y)\,dx\right)dy.$$</div>
+        </div>
+        <p>La meccanica è questa, e va capita bene. Nell'integrale <strong>interno</strong> $\int_c^d f(x,y)\,dy$ la variabile $x$ è trattata come una <strong>costante</strong> — esattamente come nelle <a href="03-derivate-parziali.html">derivate parziali</a>, ma al contrario: lì congelavi una variabile per derivare, qui la congeli per integrare. Il risultato dell'integrale interno è quindi una funzione della sola $x$, chiamiamola $A(x)$. Poi l'integrale <strong>esterno</strong> integra $A(x)$ su $[a,b]$ e produce finalmente un numero.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🍞</span> Perché funziona: il principio di Cavalieri (il volume "a fette")</div>
+          <p>Vuoi il volume di un pane in cassetta. Lo affetti. Ogni fetta è sottile $dx$ e ha una certa <strong>area della sezione</strong>, chiamiamola $A(x)$: il suo volume è circa $A(x)\,dx$. Sommi tutte le fette e ottieni $V=\int A(x)\,dx$. Questo è il principio di Cavalieri, e ha quasi quattrocento anni.</p>
+          <p>Ora applicalo al nostro solido. Taglialo con il piano verticale $x=\bar x$: cosa vedi nella sezione? Una figura piana delimitata sotto dal segmento $y\in[c,d]$ e sopra dal profilo $z=f(\bar x, y)$. Ma quella è <strong>esattamente una figura da Analisi 1</strong>: l'area sotto il grafico della funzione $y\mapsto f(\bar x,y)$. Quindi</p>
+          <div class="formula-block">$$A(\bar x)=\int_c^d f(\bar x,y)\,dy,$$</div>
+          <p>e il volume totale è $\int_a^b A(x)\,dx$: proprio la formula di riduzione. <strong>L'integrale interno calcola l'area di una fetta; l'integrale esterno somma le fette.</strong> Affettare nell'altra direzione (con i piani $y=\bar y$) dà l'altro ordine di integrazione: stesso pane, fette girate di novanta gradi, stesso volume.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il caso regalato: rettangolo + funzione che si separa</div>
+          <p>Se il dominio è un <strong>rettangolo</strong> e l'integranda si fattorizza come $f(x,y)=g(x)\,h(y)$, allora l'integrale doppio si spezza nel <strong>prodotto</strong> di due integrali semplici:</p>
+          <div class="formula-block">$$\iint_{[a,b]\times[c,d]} g(x)h(y)\,dx\,dy=\left(\int_a^b g(x)\,dx\right)\cdot\left(\int_c^d h(y)\,dy\right).$$</div>
+          <p>Motivo: nell'integrale interno $g(x)$ è una costante e se ne esce. Esempio: $\displaystyle\iint_{[0,1]\times[0,\pi]} x\sin y\,dA$. Qui riconosco $g(x)=x$ e $h(y)=\sin y$, e il dominio è il rettangolo $[0,1]\times[0,\pi]$: posso quindi spezzare nel prodotto $\left(\int_0^1 x\,dx\right)\left(\int_0^\pi\sin y\,dy\right)$. Calcolo i due pezzi separatamente con le primitive di Analisi 1: $\int_0^1 x\,dx=\left[\frac{x^2}{2}\right]_0^1=\frac12-0=\frac12$, mentre $\int_0^\pi\sin y\,dy=\big[-\cos y\big]_0^\pi=-\cos\pi-(-\cos 0)=-(-1)+1=2$. Moltiplico i due risultati: $\frac12\cdot 2=1$. <strong>Attenzione</strong>: serve <em>sia</em> il rettangolo <em>sia</em> la fattorizzazione. Su un triangolo non funziona, perché gli estremi interni dipendono dall'altra variabile.</p>
+        </div>
+
+        <h3 id="teoria-normali">4.6 Domini normali (o semplici)</h3>
+        <p>I rettangoli sono facili, ma rari. Il caso che incontrerai in nove esercizi su dieci è quello dei <strong><span class="glossario-term" data-term="dominio-normale">domini normali</span></strong>, detti anche <em>semplici</em>. L'idea è che il dominio sia descrivibile "a strisce": una variabile corre fra due numeri fissi, l'altra fra due curve.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Dominio normale rispetto all'asse $x$</em> (si integra prima in $y$). Date due funzioni continue $g_1\leq g_2$ su $[a,b]$:</p>
+          <div class="formula-block">$$D=\{(x,y)\ :\ a\leq x\leq b,\ \ g_1(x)\leq y\leq g_2(x)\}.$$</div>
+          <p><em class="nome">Dominio normale rispetto all'asse $y$</em> (si integra prima in $x$). Date due funzioni continue $h_1\leq h_2$ su $[c,d]$:</p>
+          <div class="formula-block">$$D=\{(x,y)\ :\ c\leq y\leq d,\ \ h_1(y)\leq x\leq h_2(y)\}.$$</div>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Formule di riduzione su domini normali</span>
+          <p>Se $f$ è continua su $D$, allora:</p>
+          <div class="formula-block">$$\iint_D f\,dx\,dy=\int_a^b\!\!\left(\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\right)dx \qquad\text{(normale rispetto a } x)$$
+          $$\iint_D f\,dx\,dy=\int_c^d\!\!\left(\int_{h_1(y)}^{h_2(y)} f(x,y)\,dx\right)dy \qquad\text{(normale rispetto a } y)$$</div>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">👀</span> Come riconoscerli e come leggere gli estremi dal disegno</div>
+          <p><strong>Il test visivo.</strong> Disegna il dominio. Poi passaci sopra una retta:</p>
+          <p>• <strong>Normale rispetto a $x$</strong> (strisce <em>verticali</em>): ogni retta verticale che attraversa $D$ lo taglia in <strong>un solo segmento</strong>, mai in due pezzi staccati. Un cerchio va bene, una ciambella no, una "C" no.</p>
+          <p>• <strong>Normale rispetto a $y$</strong> (strisce <em>orizzontali</em>): stesso test con le rette orizzontali.</p>
+          <p><strong>La ricetta in tre mosse</strong> (caso "normale rispetto a $x$"):</p>
+          <p><strong>(1) L'ombra.</strong> Schiaccia $D$ sull'asse $x$ (proiettalo): ottieni un intervallo $[a,b]$. Questi sono gli estremi <strong>esterni</strong>, e sono sempre <strong>numeri</strong>.<br>
+          <strong>(2) Entra ed esci.</strong> Fissa una $x$ generica dentro $[a,b]$ e percorri la striscia verticale dal basso verso l'alto: la curva da cui <em>entri</em> è $g_1(x)$, quella da cui <em>esci</em> è $g_2(x)$. Questi sono gli estremi <strong>interni</strong>, e dipendono da $x$.<br>
+          <strong>(3) Scrivi.</strong> L'integrale interno è in $dy$, con estremi $g_1(x)$ e $g_2(x)$; quello esterno è in $dx$, da $a$ a $b$.</p>
+          <p><strong>Regola d'oro che salva la vita</strong>: <em>gli estremi dell'integrale esterno sono sempre costanti</em>. Se ti ritrovi una lettera $y$ negli estremi di un $dx$ esterno, hai sbagliato: il risultato non sarebbe un numero.</p>
+        </div>
+
+        <svg viewBox="0 0 520 240" style="max-width:600px;margin:1.4em auto;display:block;" role="img" aria-label="Lo stesso triangolo descritto come dominio normale rispetto a x, con strisce verticali, e rispetto a y, con strisce orizzontali">
+          <line x1="40" y1="180" x2="235" y2="180" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="50" y1="200" x2="50" y2="30" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 50 180 L 210 180 L 210 40 Z" fill="var(--color-primary)" opacity="0.20" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="140" y="96" width="12" height="84" fill="var(--color-accent)" opacity="0.75"/>
+          <text x="120" y="205" font-size="12" fill="var(--color-accent)">y da 0 a x</text>
+          <text x="44" y="196" font-size="12" font-weight="700" fill="currentColor">0</text>
+          <text x="206" y="196" font-size="12" font-weight="700" fill="currentColor">1</text>
+          <text x="216" y="38" font-size="12" font-style="italic" fill="currentColor">y = x</text>
+          <text x="50" y="24" font-size="12.5" font-weight="700" fill="var(--color-primary)">normale rispetto a x</text>
+          <line x1="300" y1="180" x2="495" y2="180" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="310" y1="200" x2="310" y2="30" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 310 180 L 470 180 L 470 40 Z" fill="var(--color-primary)" opacity="0.20" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="390" y="98" width="80" height="12" fill="var(--color-accent)" opacity="0.75"/>
+          <text x="352" y="92" font-size="12" fill="var(--color-accent)">x da y a 1</text>
+          <text x="300" y="46" font-size="12" font-weight="700" fill="currentColor">1</text>
+          <text x="304" y="196" font-size="12" font-weight="700" fill="currentColor">0</text>
+          <text x="310" y="24" font-size="12.5" font-weight="700" fill="var(--color-primary)">normale rispetto a y</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Lo stesso triangolo di vertici $(0,0)$, $(1,0)$, $(1,1)$, letto in due modi: a strisce verticali e a strisce orizzontali.</p>
+
+        <p>Vediamo i quattro domini che ricorrono sempre, con gli estremi già scritti.</p>
+
+        <p><strong>(a) Il triangolo della figura</strong>, vertici $(0,0)$, $(1,0)$, $(1,1)$. I lati sono $y=0$ (sotto), $x=1$ (destra), $y=x$ (ipotenusa). A strisce verticali: l'ombra sull'asse $x$ è $[0,1]$; fissata $x$, si entra da $y=0$ e si esce da $y=x$. A strisce orizzontali: l'ombra sull'asse $y$ è $[0,1]$; fissata $y$, si entra da $x=y$ e si esce da $x=1$.</p>
+        <div class="formula-block">$$\int_0^1\!\!\int_0^{x} f\,dy\,dx \qquad\text{oppure}\qquad \int_0^1\!\!\int_{y}^{1} f\,dx\,dy.$$</div>
+
+        <p><strong>(b) La regione fra una parabola e una retta</strong>: $D$ compreso fra $y=x^2$ (sotto) e $y=x$ (sopra). Prima cosa, sempre: <strong>trova le intersezioni</strong>, $x^2=x\Rightarrow x=0$ oppure $x=1$. Sull'intervallo $[0,1]$ si ha $x^2\leq x$, quindi la parabola sta sotto.</p>
+        <div class="formula-block">$$D=\{0\leq x\leq 1,\ x^2\leq y\leq x\}\quad\Longrightarrow\quad \iint_D f\,dA=\int_0^1\!\!\int_{x^2}^{x} f(x,y)\,dy\,dx.$$</div>
+        <p>Volendo invertire: per $y$ fissato in $[0,1]$, la striscia orizzontale entra dalla retta $x=y$ ed esce dalla parabola $x=\sqrt{y}$ (attenzione: si ricava $x$ da $y=x^2$ prendendo la radice <em>positiva</em>, perché siamo nel primo quadrante). Quindi $D=\{0\leq y\leq 1,\ y\leq x\leq\sqrt y\}$.</p>
+
+        <svg viewBox="0 0 520 230" style="max-width:600px;margin:1.4em auto;display:block;" role="img" aria-label="A sinistra la regione fra la parabola y uguale x quadro e la retta y uguale x; a destra il cerchio con una striscia verticale">
+          <line x1="40" y1="180" x2="235" y2="180" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="50" y1="200" x2="50" y2="30" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 50 180 Q 130 180 210 40 Z" fill="var(--color-secondary)" opacity="0.24" stroke="none"/>
+          <path d="M 50 180 Q 130 180 210 40" fill="none" stroke="currentColor" stroke-width="2.2"/>
+          <line x1="50" y1="180" x2="210" y2="40" stroke="var(--color-primary)" stroke-width="2.2"/>
+          <rect x="124" y="110" width="10" height="35" fill="var(--color-accent)" opacity="0.8"/>
+          <text x="214" y="36" font-size="11.5" fill="var(--color-primary)">y = x</text>
+          <text x="196" y="140" font-size="11.5" fill="currentColor">y = x²</text>
+          <text x="86" y="128" font-size="11.5" fill="var(--color-accent)">x² ≤ y ≤ x</text>
+          <text x="206" y="196" font-size="12" font-weight="700" fill="currentColor">1</text>
+          <line x1="300" y1="115" x2="500" y2="115" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="400" y1="205" x2="400" y2="25" stroke="var(--color-border)" stroke-width="1.5"/>
+          <circle cx="400" cy="115" r="78" fill="var(--color-primary)" opacity="0.18" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="436" y="46" width="10" height="138" fill="var(--color-accent)" opacity="0.75"/>
+          <text x="300" y="212" font-size="11.5" fill="var(--color-accent)">−√(a²−x²) ≤ y ≤ √(a²−x²)</text>
+          <text x="480" y="106" font-size="12" font-weight="700" fill="currentColor">a</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Due domini normali tipici: la regione fra due curve e il cerchio. In entrambi, ogni retta verticale taglia un solo segmento.</p>
+
+        <p><strong>(c) Il cerchio</strong> $x^2+y^2\leq a^2$. Ricavando $y$: $y^2\leq a^2-x^2$, cioè $-\sqrt{a^2-x^2}\leq y\leq\sqrt{a^2-x^2}$, con $x$ che varia sull'ombra $[-a,a]$.</p>
+        <div class="formula-block">$$\iint_D f\,dA=\int_{-a}^{a}\!\!\int_{-\sqrt{a^2-x^2}}^{\ \sqrt{a^2-x^2}} f(x,y)\,dy\,dx.$$</div>
+        <p>Formalmente corretto, praticamente orribile: quelle radici renderanno l'integrale esterno un incubo. È esattamente il motivo per cui esistono le <a href="#teoria-polari">coordinate polari</a>, fra due paragrafi.</p>
+
+        <p><strong>(d) Un dominio che <em>non</em> è normale</strong>: la corona circolare $1\leq x^2+y^2\leq 4$. Una retta verticale che passa vicino al centro entra nella corona, esce nel buco, rientra: taglia <strong>due</strong> segmenti. Non è normale rispetto a $x$, né (per simmetria) rispetto a $y$. Che si fa? Si usa l'<strong>additività</strong>: si spezza la corona in pezzi normali (per esempio le due metà sinistra e destra, ciascuna a sua volta divisa), oppure — molto meglio — si passa in polari, dove la corona diventa il rettangolo $1\leq r\leq 2$, $0\leq\theta\leq 2\pi$.</p>
+
+        <h3 id="teoria-scambio">4.7 Scambio dell'ordine di integrazione</h3>
+        <p>Un dominio normale rispetto a entrambi gli assi si può descrivere in due modi, quindi l'integrale si può calcolare in due ordini. Il risultato è lo stesso, <strong>ma la fatica no</strong>. Saper passare da un ordine all'altro è una delle abilità più richieste agli esami.</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scambiare $dx\,dy$ lasciando gli estremi dov'erano</div>
+          <p>Questo <strong>non</strong> è lo scambio dell'ordine, è un errore. Scrivere $\int_0^1\int_0^x f\,dy\,dx=\int_0^1\int_0^x f\,dx\,dy$ è privo di senso. Lo scambio dell'ordine si fa <strong>ridisegnando il dominio</strong> e rileggendone gli estremi nell'altra direzione. In pratica: <strong>(1)</strong> dagli estremi ricostruisci le disuguaglianze che definiscono $D$; <strong>(2)</strong> disegna $D$; <strong>(3)</strong> rileggi il disegno a strisce girate di novanta gradi; <strong>(4)</strong> riscrivi.</p>
+        </div>
+        <p>Vediamo il procedimento su un caso in cui lo scambio non è una comodità ma una <strong>necessità assoluta</strong>. Consideriamo</p>
+        <div class="formula-block">$$I=\int_0^1\!\!\left(\int_x^1 e^{y^2}\,dy\right)dx.$$</div>
+        <p>L'integrale interno è $\int_x^1 e^{y^2}\,dy$. Fermiamoci: la funzione $e^{y^2}$ <strong>non ha primitiva elementare</strong>. Non esiste alcuna combinazione di funzioni note la cui derivata sia $e^{y^2}$ — è un fatto dimostrato, non una nostra incapacità. Con questo ordine siamo bloccati alla prima riga.</p>
+        <p><strong>Passo 1 — ricostruisco il dominio.</strong> Gli estremi dicono: $0\leq x\leq 1$ e, per ogni $x$, $x\leq y\leq 1$. Quindi $D=\{(x,y):0\leq x\leq 1,\ x\leq y\leq 1\}$.</p>
+        <p><strong>Passo 2 — disegno.</strong> È il triangolo <em>sopra</em> la diagonale $y=x$ dentro il quadrato unitario: vertici $(0,0)$, $(0,1)$, $(1,1)$.</p>
+        <p><strong>Passo 3 — rileggo a strisce orizzontali.</strong> L'ombra sull'asse $y$ è $[0,1]$. Fissata $y$, la striscia orizzontale entra da $x=0$ ed esce dalla diagonale $x=y$. Dunque $D=\{0\leq y\leq 1,\ 0\leq x\leq y\}$.</p>
+        <p><strong>Passo 4 — riscrivo e calcolo.</strong> Ora $e^{y^2}$ è costante rispetto a $x$ e l'integrale interno diventa banale:</p>
+        <div class="formula-block">$$I=\int_0^1\!\!\left(\int_0^y e^{y^2}\,dx\right)dy=\int_0^1 e^{y^2}\Big[x\Big]_0^{y}dy=\int_0^1 y\,e^{y^2}\,dy.$$</div>
+        <p>E questo si fa con la <strong>sostituzione</strong> (il metodo di Analisi 1): pongo $u=y^2$, cioè chiamo $u$ l'esponente. Derivando, $du=2y\,dy$, da cui ricavo $y\,dy=\frac{du}{2}$. Nell'integrale sostituisco $e^{y^2}$ con $e^{u}$ e il blocco $y\,dy$ con $\frac{du}{2}$, e cambio gli estremi (quando $y=0$ allora $u=0^2=0$; quando $y=1$ allora $u=1^2=1$):</p>
+        <div class="formula-block">$$\int_0^1 y\,e^{y^2}\,dy=\frac12\int_0^1 e^{u}\,du=\frac12\Big[e^{u}\Big]_0^1=\frac12\big(e^{1}-e^{0}\big)=\frac12(e-1).$$</div>
+        <p>Tornando alla variabile originale ($u=y^2$) si scrive anche $\frac12\big[e^{y^2}\big]_0^1$: è la stessa cosa. In ogni caso</p>
+        <div class="formula-block">$$I=\frac{e-1}{2}.$$</div>
+        <p>Osserva il meccanismo, perché è sempre lo stesso: <strong>lo scambio ha fatto comparire un fattore $y$</strong> (la lunghezza della striscia), e quel fattore è esattamente ciò che serviva per rendere integrabile $e^{y^2}$. La stessa magia funziona con $\frac{\sin y}{y}$, con $\sin(y^2)$, con $\sqrt{1+y^3}$: appena vedi nell'integrale interno una funzione senza primitiva elementare, <strong>non insistere — scambia</strong>.</p>
+
+        <svg viewBox="0 0 520 235" style="max-width:600px;margin:1.4em auto;display:block;" role="img" aria-label="Il triangolo sopra la diagonale letto a strisce verticali e poi a strisce orizzontali">
+          <line x1="40" y1="180" x2="235" y2="180" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="50" y1="200" x2="50" y2="30" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 50 180 L 50 40 L 210 40 Z" fill="var(--color-primary)" opacity="0.20" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="108" y="40" width="12" height="88" fill="var(--color-accent)" opacity="0.75"/>
+          <text x="126" y="86" font-size="11.5" fill="var(--color-accent)">y da x a 1</text>
+          <text x="60" y="200" font-size="12" fill="currentColor">x da 0 a 1</text>
+          <text x="152" y="130" font-size="11.5" font-style="italic" fill="currentColor">y = x</text>
+          <line x1="300" y1="180" x2="495" y2="180" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="310" y1="200" x2="310" y2="30" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 310 180 L 310 40 L 470 40 Z" fill="var(--color-primary)" opacity="0.20" stroke="var(--color-primary)" stroke-width="2"/>
+          <rect x="310" y="104" width="76" height="12" fill="var(--color-accent)" opacity="0.75"/>
+          <text x="392" y="116" font-size="11.5" fill="var(--color-accent)">x da 0 a y</text>
+          <text x="300" y="212" font-size="12" fill="currentColor">y da 0 a 1</text>
+          <text x="412" y="130" font-size="11.5" font-style="italic" fill="currentColor">x = y</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Lo stesso triangolo: a sinistra $\int_0^1\!\int_x^1(\cdots)dy\,dx$, a destra $\int_0^1\!\int_0^y(\cdots)dx\,dy$.</p>
+
+        <h3 id="teoria-polari">4.8 Coordinate polari e cambio di variabili</h3>
+        <p>Quando il dominio è rotondo — cerchi, corone, settori — o quando nell'integranda compare la combinazione $x^2+y^2$, le coordinate cartesiane sono la scelta sbagliata. Passiamo alle <span class="glossario-term" data-term="coordinate-polari">coordinate polari</span>:</p>
+        <div class="formula-block">$$\begin{cases} x=r\cos\theta\\ y=r\sin\theta\end{cases}\qquad r\geq 0,\quad \theta\in[0,2\pi),\qquad\text{con}\quad x^2+y^2=r^2.$$</div>
+        <p>Il vantaggio è immediato sui domini. Il cerchio $x^2+y^2\leq a^2$, che in cartesiane richiedeva radici quadrate negli estremi, diventa semplicemente</p>
+        <div class="formula-block">$$0\leq r\leq a,\qquad 0\leq\theta\leq 2\pi:$$</div>
+        <p>un <strong>rettangolo</strong> nel piano $(r,\theta)$. La corona $1\leq x^2+y^2\leq 4$ diventa $1\leq r\leq 2$, $0\leq\theta\leq 2\pi$. Il quarto di disco nel primo quadrante diventa $0\leq r\leq a$, $0\leq\theta\leq\frac{\pi}{2}$. Le forme rotonde si raddrizzano.</p>
+        <p>Ma c'è un prezzo, e chi lo dimentica sbaglia sistematicamente l'esercizio. <strong>Il pezzettino d'area non è $dr\,d\theta$: è $r\,dr\,d\theta$.</strong></p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🍕</span> Perché compare la $r$: il settore di corona circolare</div>
+          <p>In cartesiane la griglia è fatta di rettangolini tutti uguali: lati $dx$ e $dy$, area $dx\,dy$. In polari la griglia è fatta di <strong>settori di corona circolare</strong> — pensa a una fetta di pizza a cui hai tolto la punta — e questi <strong>non sono tutti uguali</strong>: sono minuscoli vicino al centro e larghi lontano.</p>
+          <p>Guarda un singolo pezzettino, compreso fra i raggi $r$ e $r+dr$ e fra gli angoli $\theta$ e $\theta+d\theta$. È quasi un rettangolino, e i suoi due lati sono:</p>
+          <p>• il lato <strong>radiale</strong>, lungo $dr$ (ti sposti verso l'esterno di $dr$);<br>
+          • il lato <strong>circolare</strong>, che è un archetto. E la lunghezza di un arco non è l'angolo: è <strong>raggio per angolo</strong>, cioè $r\,d\theta$.</p>
+          <p>Quindi l'area è base per altezza: $\ dA=(r\,d\theta)(dr)=r\,dr\,d\theta$. <br><em>Immagine: le fette di una torta.</em> Tagli la torta in dieci spicchi uguali (stesso $d\theta$). Vicino al centro gli spicchi sono strettissimi, sul bordo sono larghi. Il fattore $r$ è proprio questo: <strong>più sei lontano dal centro, più il "quadretto" polare è grande</strong>. Senza quel fattore staresti contando tutti i pezzettini come se fossero uguali, e il conto verrebbe sbagliato.</p>
+        </div>
+
+        <svg viewBox="0 0 360 245" style="max-width:430px;margin:1.4em auto;display:block;" role="img" aria-label="Settore di corona circolare fra i raggi r e r più dr e fra gli angoli theta e theta più d theta">
+          <line x1="40" y1="205" x2="340" y2="205" stroke="var(--color-border)" stroke-width="1.4"/>
+          <line x1="60" y1="230" x2="60" y2="30" stroke="var(--color-border)" stroke-width="1.4"/>
+          <path d="M 60 205 L 210.5 134.9" stroke="var(--color-border)" stroke-width="1" stroke-dasharray="4 3"/>
+          <path d="M 60 205 L 146.0 82.1" stroke="var(--color-border)" stroke-width="1" stroke-dasharray="4 3"/>
+          <path d="M 159.7 158.5 A 110 110 0 0 0 123.1 114.9 L 146.0 82.1 A 150 150 0 0 1 196.0 141.6 Z" fill="var(--color-accent)" opacity="0.55" stroke="var(--color-accent)" stroke-width="1.4"/>
+          <path d="M 170 205 A 110 110 0 0 0 60 95" fill="none" stroke="var(--color-border)" stroke-width="1" stroke-dasharray="3 4"/>
+          <path d="M 210 205 A 150 150 0 0 0 60 55" fill="none" stroke="var(--color-border)" stroke-width="1" stroke-dasharray="3 4"/>
+          <text x="46" y="222" font-size="12" font-weight="700" fill="currentColor">O</text>
+          <text x="110" y="182" font-size="13" font-style="italic" fill="currentColor">r</text>
+          <text x="196" y="168" font-size="12" font-weight="700" fill="var(--color-accent)">dr</text>
+          <text x="150" y="70" font-size="12" font-weight="700" fill="var(--color-accent)">r·dθ</text>
+          <text x="92" y="196" font-size="12" font-style="italic" fill="currentColor">dθ</text>
+          <text x="232" y="112" font-size="12.5" font-weight="700" fill="var(--color-accent)">dA = r dr dθ</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Il "quadrettino" polare ha lati $dr$ e $r\,d\theta$: la sua area cresce con la distanza dall'origine.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (cambio di variabili in coordinate polari)</span>
+          <p>Sia $D$ un dominio del piano $xy$ e sia $D'$ la sua descrizione nel piano $(r,\theta)$. Se $f$ è continua su $D$, allora</p>
+          <div class="formula-block">$$\iint_D f(x,y)\,dx\,dy \;=\; \iint_{D'} f(r\cos\theta,\ r\sin\theta)\;\underbrace{r}_{\text{jacobiano}}\;dr\,d\theta.$$</div>
+        </div>
+        <p>Quella $r$ non è un'invenzione mnemonica: è il valore assoluto del determinante <strong><span class="glossario-term" data-term="jacobiano">jacobiano</span></strong> della trasformazione, cioè la matrice delle derivate parziali delle vecchie variabili rispetto alle nuove:</p>
+        <div class="formula-block">$$J=\frac{\partial(x,y)}{\partial(r,\theta)}=\begin{vmatrix}\dfrac{\partial x}{\partial r} &amp; \dfrac{\partial x}{\partial \theta}\\[8pt] \dfrac{\partial y}{\partial r} &amp; \dfrac{\partial y}{\partial \theta}\end{vmatrix}=\begin{vmatrix}\cos\theta &amp; -r\sin\theta\\ \sin\theta &amp; \ \ r\cos\theta\end{vmatrix}=r\cos^2\theta+r\sin^2\theta=r.$$</div>
+        <p>Da dove vengono quei quattro numeri? Sono le quattro <a href="03-derivate-parziali.html">derivate parziali</a> di $x=r\cos\theta$ e $y=r\sin\theta$, ciascuna calcolata trattando l'altra variabile come costante:</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">$\dfrac{\partial x}{\partial r}$: derivo $r\cos\theta$ rispetto a $r$ tenendo $\theta$ fisso; $\cos\theta$ è una costante moltiplicativa, resta $\cos\theta$.</span>
+          <span class="esempio__passo">$\dfrac{\partial x}{\partial \theta}$: derivo $r\cos\theta$ rispetto a $\theta$ tenendo $r$ fisso; la derivata del coseno è meno seno, quindi $-r\sin\theta$.</span>
+          <span class="esempio__passo">$\dfrac{\partial y}{\partial r}=\sin\theta$ e $\dfrac{\partial y}{\partial \theta}=r\cos\theta$, con lo stesso ragionamento su $y=r\sin\theta$.</span>
+          <span class="esempio__passo">Ora applico la regola del determinante $2\times 2$, $\begin{vmatrix}a &amp; b\\ c &amp; d\end{vmatrix}=ad-bc$, con $a=\cos\theta$, $b=-r\sin\theta$, $c=\sin\theta$, $d=r\cos\theta$: ottengo $\cos\theta\cdot r\cos\theta-(-r\sin\theta)\cdot\sin\theta=r\cos^2\theta+r\sin^2\theta$.</span>
+          <span class="esempio__passo">Raccolgo $r$: $r(\cos^2\theta+\sin^2\theta)$, e la parentesi vale $1$ per l'identità fondamentale della trigonometria ($\sin^2+\cos^2=1$, <a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">Prerequisiti, cap. 8</a>). Resta $J=r$.</span>
+        </p>
+        <p>Il significato del jacobiano è <strong>di quanto la trasformazione dilata o comprime le aree</strong>, punto per punto. Vale $r$: vicino all'origine ($r$ piccolo) le aree si contraggono, lontano si dilatano. Nel caso generale il teorema suona così.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Cambio di variabili (caso generale)</span>
+          <p>Sia $\Phi(u,v)=\big(x(u,v),\,y(u,v)\big)$ una trasformazione di classe $C^1$ e invertibile (salvo al più su insiemi di area nulla) da $D'$ a $D$. Allora</p>
+          <div class="formula-block">$$\iint_D f(x,y)\,dx\,dy=\iint_{D'} f\big(x(u,v),y(u,v)\big)\ \big|\det J_\Phi(u,v)\big|\ du\,dv.$$</div>
+          <p>Il <strong>valore assoluto</strong> è essenziale: un'area non può essere negativa, e il segno del determinante dice solo se la trasformazione conserva o ribalta l'orientamento.</p>
+        </div>
+        <p>Una variante che vale la pena memorizzare sono le <strong>coordinate polari ellittiche</strong>, per domini a forma di ellisse $\frac{x^2}{a^2}+\frac{y^2}{b^2}\leq 1$:</p>
+        <div class="formula-block">$$x=a\,r\cos\theta,\quad y=b\,r\sin\theta,\qquad |J|=a\,b\,r,\qquad 0\leq r\leq 1,\ \ 0\leq\theta\leq 2\pi.$$</div>
+        <p>Perché proprio questa sostituzione, e perché il nuovo dominio è $0\leq r\leq 1$? Sostituisco $x=a\,r\cos\theta$ e $y=b\,r\sin\theta$ dentro la disuguaglianza che definisce l'ellisse: $\frac{(a r\cos\theta)^2}{a^2}+\frac{(b r\sin\theta)^2}{b^2}=\frac{a^2r^2\cos^2\theta}{a^2}+\frac{b^2r^2\sin^2\theta}{b^2}=r^2\cos^2\theta+r^2\sin^2\theta=r^2(\cos^2\theta+\sin^2\theta)=r^2$. La condizione $\frac{x^2}{a^2}+\frac{y^2}{b^2}\leq 1$ diventa quindi $r^2\leq 1$, cioè $0\leq r\leq 1$. Il jacobiano si calcola come sopra: le derivate parziali sono $\frac{\partial x}{\partial r}=a\cos\theta$, $\frac{\partial x}{\partial\theta}=-a\,r\sin\theta$, $\frac{\partial y}{\partial r}=b\sin\theta$, $\frac{\partial y}{\partial\theta}=b\,r\cos\theta$, e con $ad-bc$ si ottiene $ab\,r\cos^2\theta+ab\,r\sin^2\theta=ab\,r$.</p>
+        <p>Con esse l'ellisse diventa un rettangolo e, per esempio, la sua area si calcola così: $\text{area}=\iint 1\,dx\,dy=\int_0^{2\pi}\!\int_0^1 ab\,r\,dr\,d\theta$. L'integrale interno è $\int_0^1 ab\,r\,dr=ab\left[\frac{r^2}{2}\right]_0^1=ab\cdot\frac12$ (la costante $ab$ esce dall'integrale); poi l'integrale esterno moltiplica per la lunghezza $2\pi$ dell'intervallo degli angoli, perché la quantità rimasta non dipende da $\theta$: $\frac{ab}{2}\cdot 2\pi=ab\,\pi$. È la formula che conoscevi dalle superiori, finalmente <em>dimostrata</em>.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🧭</span> Come si scelgono gli estremi in polari</div>
+          <p>Il ragionamento è lo stesso di prima, ma "a raggiera". <strong>Fissa una direzione $\theta$</strong> e spara un raggio dall'origine verso l'esterno: da quale $r$ entri nel dominio? a quale $r$ esci? Quelli sono gli estremi interni (possono dipendere da $\theta$). Poi chiediti: <strong>per quali angoli $\theta$ il raggio incontra il dominio?</strong> Quelli sono gli estremi esterni, e sono numeri.</p>
+          <p>Angoli tipici da avere in mente: tutto il piano $\theta\in[0,2\pi]$; primo quadrante $\left[0,\frac{\pi}{2}\right]$; semipiano superiore $y\geq 0$ $\to[0,\pi]$; semipiano destro $x\geq 0$ $\to\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$ (oppure, equivalentemente, $\left[0,\frac\pi2\right]\cup\left[\frac{3\pi}{2},2\pi\right]$); settore fra le rette $y=x$ e $y=-x$ nel semipiano $y\geq0$ $\to\left[\frac{\pi}{4},\frac{3\pi}{4}\right]$.</p>
+        </div>
+
+        <h3 id="teoria-applicazioni">4.9 Applicazioni: area, volume, media, massa, baricentro</h3>
+        <p>Tutte le formule che seguono sono lo stesso integrale doppio, letto con occhiali diversi. Vale la pena raccoglierle in un unico posto.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Formulario delle applicazioni</span>
+          <div class="formula-block">
+            $$\textbf{Area di } D:\qquad \text{area}(D)=\iint_D 1\,dA$$
+            $$\textbf{Volume sotto una superficie } (f\geq 0):\qquad V=\iint_D f(x,y)\,dA$$
+            $$\textbf{Volume fra due superfici } (f\geq g):\qquad V=\iint_D \big(f(x,y)-g(x,y)\big)\,dA$$
+            $$\textbf{Valor medio:}\qquad \bar f=\frac{1}{\text{area}(D)}\iint_D f(x,y)\,dA$$
+            $$\textbf{Massa di una lastra di densità } \rho:\qquad m=\iint_D \rho(x,y)\,dA$$
+            $$\textbf{Baricentro:}\qquad x_G=\frac{1}{m}\iint_D x\,\rho(x,y)\,dA,\qquad y_G=\frac{1}{m}\iint_D y\,\rho(x,y)\,dA$$
+          </div>
+        </div>
+        <p>Sulle ultime due merita qualche parola. Il <span class="glossario-term" data-term="baricentro">baricentro</span> è la <strong>media pesata delle posizioni</strong>, dove il peso è la massa: $x_G$ è "la $x$ media dei punti della lastra, contati proporzionalmente a quanta massa portano". Se la densità è <strong>costante</strong>, $\rho$ si semplifica fra numeratore e denominatore e resta il <em>baricentro geometrico</em> (o centroide), che dipende solo dalla forma:</p>
+        <div class="formula-block">$$x_G=\frac{1}{\text{area}(D)}\iint_D x\,dA,\qquad y_G=\frac{1}{\text{area}(D)}\iint_D y\,dA.$$</div>
+        <p>Un'osservazione che fa risparmiare moltissimo tempo: <strong>se il dominio e la densità sono simmetrici rispetto a una retta, il baricentro sta su quella retta</strong>. Per un semidisco centrato nell'origine con densità costante, per esempio, la simmetria rispetto all'asse $y$ dà subito $x_G=0$ — un integrale in meno da calcolare.</p>
+        <p>La stessa idea di "media pesata" produce, con pesi diversi, i <strong>momenti di inerzia</strong> rispetto agli assi, $I_x=\iint_D y^2\rho\,dA$ e $I_y=\iint_D x^2\rho\,dA$, che in meccanica misurano quanto un corpo si oppone alla rotazione. Li ritroverai nel <a href="14-applicazioni-analisi2.html">Capitolo 14</a>.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea intuitiva della prima dimostrazione</div>
+          <p>Il teorema di riduzione dice una cosa che, a pensarci, è quasi ovvia: <strong>per misurare un pane, affettalo</strong>. Il volume del solido è la somma dei volumi delle sue fette; il volume di una fetta è "area della sezione per spessore"; e l'area della sezione è un normalissimo integrale di Analisi 1. Tutta la dimostrazione consiste nel dire questa frase in modo che regga il passaggio al limite: si parte dalla somma di Riemann doppia, si raggruppano i termini per colonne, e si riconosce che ogni colonna è una somma di Riemann semplice.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema di riduzione (Fubini) su un rettangolo</span>
+          <p><em class="nome">Riduzione a integrali iterati.</em> Se $f$ è continua su $R=[a,b]\times[c,d]$, allora $\displaystyle\iint_R f\,dA=\int_a^b\!\!\left(\int_c^d f(x,y)\,dy\right)dx$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (a fette, nello spirito di Cavalieri)</span>
+          <p>Poiché $f$ è continua sul compatto $R$, è integrabile: il limite delle somme di Riemann esiste e non dipende dalla partizione né dai punti campione. Possiamo dunque <strong>scegliere noi</strong> la partizione più comoda: uniforme in entrambe le direzioni, con</p>
+          <div class="formula-block">$$\Delta x=\frac{b-a}{n},\qquad \Delta y=\frac{d-c}{m},\qquad x_i=a+i\,\Delta x,\qquad y_j=c+j\,\Delta y.$$</div>
+          <p>Scegliamo come punto campione in $R_{ij}$ il vertice $(x_i,y_j)$. La somma di Riemann è</p>
+          <div class="formula-block">$$S_{n,m}=\sum_{i=1}^{n}\sum_{j=1}^{m} f(x_i,y_j)\,\Delta x\,\Delta y.$$</div>
+          <p><strong>Passo 1 — raccogliamo per colonne.</strong> Il fattore $\Delta x$ non dipende da $j$: possiamo portarlo fuori dalla somma interna e scrivere</p>
+          <div class="formula-block">$$S_{n,m}=\sum_{i=1}^{n}\left(\underbrace{\sum_{j=1}^{m} f(x_i,y_j)\,\Delta y}_{\textstyle =:\ A_m(x_i)}\right)\Delta x.$$</div>
+          <p><strong>Passo 2 — riconosciamo la fetta.</strong> A $x_i$ <em>fissato</em>, la quantità $A_m(x_i)$ è esattamente una somma di Riemann <strong>semplice</strong> per la funzione di una variabile $y\mapsto f(x_i,y)$ sull'intervallo $[c,d]$. Tale funzione è continua (restrizione di una funzione continua), quindi integrabile, e per $m\to\infty$</p>
+          <div class="formula-block">$$A_m(x_i)\ \longrightarrow\ A(x_i)=\int_c^d f(x_i,y)\,dy.$$</div>
+          <p>Questa $A(x)$ è l'<strong>area della sezione</strong> del solido con il piano verticale di ascissa $x$: la fetta di pane.</p>
+          <p><strong>Passo 3 — sommiamo le fette.</strong> Sostituendo, $S_{n,m}$ tende a $\sum_{i=1}^n A(x_i)\,\Delta x$, che a sua volta è una somma di Riemann semplice per la funzione $A$ su $[a,b]$. Resta da sapere che $A$ è continua: lo è, perché $f$ è continua su un compatto e quindi <strong>uniformemente continua</strong> (teorema di Heine–Cantor), il che permette di controllare $|A(x)-A(x')|\leq (d-c)\cdot\max|f(x,y)-f(x',y)|$ e far tendere il massimo a zero con $|x-x'|$. La stessa uniforme continuità è ciò che rende lecito scambiare i due passaggi al limite ($n\to\infty$ e $m\to\infty$), che è il punto tecnicamente delicato di tutta la dimostrazione.</p>
+          <p>Dunque, per $n\to\infty$,</p>
+          <div class="formula-block">$$\iint_R f\,dA=\lim_{n,m\to\infty} S_{n,m}=\int_a^b A(x)\,dx=\int_a^b\!\!\left(\int_c^d f(x,y)\,dy\right)dx.$$</div>
+          <p>Raggruppando per <em>righe</em> anziché per colonne si ottiene, con lo stesso identico argomento, l'altro ordine di integrazione: stesso pane, fette girate. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> E se $f$ non è continua? (perché Fubini ha delle ipotesi)</div>
+          <p>La continuità non è un lusso. Esistono funzioni limitate per cui i due integrali iterati esistono entrambi ma <strong>danno risultati diversi</strong>: il classico controesempio è $f(x,y)=\frac{x^2-y^2}{(x^2+y^2)^2}$ su $(0,1]\times(0,1]$, per cui un ordine dà $\frac\pi4$ e l'altro $-\frac\pi4$. La funzione non è limitata vicino all'origine, e l'integrale doppio non esiste: gli integrali iterati, da soli, non bastano a garantire nulla. Negli esercizi d'esame le funzioni saranno continue e potrai scambiare tranquillamente — ma ora sai perché l'ipotesi c'è.</p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea intuitiva della seconda dimostrazione</div>
+          <p>Il teorema della media dice: <em>spiana la collina e troverai che il livello finale era già presente da qualche parte</em>. La dimostrazione formalizza questo in tre mosse. Primo, la collina ha un punto più basso e uno più alto (Weierstrass). Secondo, il suo volume sta fra quello del pavimento piatto all'altezza minima e quello del soffitto piatto all'altezza massima (monotonia). Terzo, una funzione continua su un insieme connesso assume tutti i valori intermedi fra il minimo e il massimo — quindi assume anche il livello medio.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema della media integrale</span>
+          <p><em class="nome">Esistenza del punto medio.</em> Se $D$ è chiuso, limitato, misurabile e connesso con $\text{area}(D)\gt 0$, e $f$ è continua su $D$, allora esiste $(x_0,y_0)\in D$ con $\displaystyle\iint_D f\,dA=f(x_0,y_0)\cdot\text{area}(D)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Passo 1 (Weierstrass).</strong> $f$ è continua sull'insieme chiuso e limitato $D$: per il teorema di Weierstrass ammette minimo assoluto $m$ e massimo assoluto $M$, assunti in punti di $D$. Dunque</p>
+          <div class="formula-block">$$m\leq f(x,y)\leq M\qquad\text{per ogni }(x,y)\in D.$$</div>
+          <p><strong>Passo 2 (monotonia).</strong> Integriamo la catena di disuguaglianze su $D$. Ricordando che $\iint_D 1\,dA=\text{area}(D)$ e usando la linearità:</p>
+          <div class="formula-block">$$m\cdot\text{area}(D)\ \leq\ \iint_D f\,dA\ \leq\ M\cdot\text{area}(D).$$</div>
+          <p><strong>Passo 3 (divisione).</strong> Poiché $\text{area}(D)\gt 0$ possiamo dividere senza cambiare i versi:</p>
+          <div class="formula-block">$$m\ \leq\ \bar f:=\frac{1}{\text{area}(D)}\iint_D f\,dA\ \leq\ M.$$</div>
+          <p><strong>Passo 4 (valori intermedi).</strong> Il numero $\bar f$ è compreso fra il minimo e il massimo di $f$. Poiché $D$ è <strong>connesso</strong> e $f$ è continua, l'immagine $f(D)$ è un intervallo (teorema dei valori intermedi in più variabili: si congiungono con un cammino continuo il punto di minimo e quello di massimo, e si applica il teorema dei valori intermedi alla funzione di una variabile ottenuta componendo $f$ con il cammino). Quindi $\bar f\in f(D)$: esiste $(x_0,y_0)\in D$ con $f(x_0,y_0)=\bar f$, cioè</p>
+          <div class="formula-block">$$\iint_D f\,dA=f(x_0,y_0)\cdot\text{area}(D).\qquad\text{∎}$$</div>
+          <p>Nota dove serve ogni ipotesi: senza compattezza niente $m$ e $M$; senza connessione il valore $\bar f$ potrebbe cadere in un "buco" dell'immagine; senza $\text{area}(D)\gt 0$ la divisione del Passo 3 non si può fare.</p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea intuitiva della terza dimostrazione</div>
+          <p>Perché il jacobiano polare è proprio $r$, e non $2r$ o $r^2$? Anziché fidarci della formula con le derivate parziali, calcoliamo <strong>esattamente</strong> l'area di un settore di corona circolare e guardiamo cosa succede quando lo rimpiccioliamo. Se il conto esatto, al limite, dà $r\,\Delta r\,\Delta\theta$, allora la $r$ è giustificata dalla geometria e non solo dall'algebra.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione (l'elemento d'area in polari)</span>
+          <p><em class="nome">Il settore di corona circolare.</em> L'area del settore compreso fra i raggi $r$ e $r+\Delta r$ e fra gli angoli $\theta$ e $\theta+\Delta\theta$ vale esattamente $\left(r+\frac{\Delta r}{2}\right)\Delta r\,\Delta\theta$, e quindi $\approx r\,\Delta r\,\Delta\theta$ per $\Delta r$ piccolo.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Un settore circolare di raggio $\rho$ e ampiezza $\Delta\theta$ è la frazione $\frac{\Delta\theta}{2\pi}$ del disco completo, quindi ha area</p>
+          <div class="formula-block">$$\frac{\Delta\theta}{2\pi}\cdot\pi\rho^2=\frac{1}{2}\rho^2\,\Delta\theta.$$</div>
+          <p>Il nostro pezzetto è la differenza fra il settore grande (raggio $r+\Delta r$) e quello piccolo (raggio $r$), con la stessa apertura $\Delta\theta$:</p>
+          <div class="formula-block">$$\Delta A=\frac{1}{2}(r+\Delta r)^2\Delta\theta-\frac{1}{2}r^2\Delta\theta=\frac{\Delta\theta}{2}\Big[(r+\Delta r)^2-r^2\Big].$$</div>
+          <p>Sviluppiamo il quadrato: $(r+\Delta r)^2-r^2=2r\,\Delta r+(\Delta r)^2$. Dunque</p>
+          <div class="formula-block">$$\Delta A=\frac{\Delta\theta}{2}\Big[2r\,\Delta r+(\Delta r)^2\Big]=\left(r+\frac{\Delta r}{2}\right)\Delta r\,\Delta\theta.$$</div>
+          <p>Questo è <em>esatto</em>, senza approssimazioni. Ora osserva il fattore fra parentesi: quando $\Delta r\to 0$ tende a $r$, e il termine $\frac{\Delta r}{2}$ è un infinitesimo di ordine superiore, che sparisce nel passaggio al limite delle somme di Riemann. Resta</p>
+          <div class="formula-block">$$dA=r\,dr\,d\theta,$$</div>
+          <p>in perfetto accordo con il calcolo del determinante jacobiano, $|J|=r$. <strong>La geometria e l'algebra dicono la stessa cosa</strong>: il quadrettino polare "pesa" tanto quanto è lontano dall'origine. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💎</span> Idea intuitiva della perla finale</div>
+          <p>C'è una funzione che in Analisi 1 ti ha frustrato: $e^{-x^2}$, la campana di Gauss. È continua, è positiva, sotto di essa c'è chiaramente un'area finita — eppure <strong>non ha primitiva elementare</strong>: non esiste modo di calcolarla con il Teorema Fondamentale. Sembrava un vicolo cieco.</p>
+          <p>L'idea, geniale, è questa: <strong>anziché calcolare $I$, calcoliamo $I^2$</strong>. Perché il quadrato di quell'integrale si può leggere come un integrale doppio su tutto il piano; e su tutto il piano possiamo passare in polari; e in polari compare quel benedetto fattore $r$ che trasforma $e^{-r^2}$ in $r\,e^{-r^2}$, che invece <em>la primitiva ce l'ha</em>. Il problema impossibile in una dimensione diventa facile in due. Un capolavoro.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (integrale di Gauss)</span>
+          <p><em class="nome">L'area sotto la campana.</em> $\displaystyle\int_{-\infty}^{+\infty} e^{-x^2}\,dx=\sqrt{\pi}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (con le coordinate polari)</span>
+          <p><strong>Passo 0 — l'integrale converge.</strong> Per $|x|\geq 1$ vale $x^2\geq|x|$, quindi $e^{-x^2}\leq e^{-|x|}$, e $\int_{1}^{+\infty}e^{-x}dx$ è finito; sul tratto centrale $[-1,1]$ la funzione è limitata. Dunque $I=\int_{-\infty}^{+\infty}e^{-x^2}dx$ è un numero finito e positivo.</p>
+          <p><strong>Passo 1 — eleviamo al quadrato.</strong> Poiché il nome della variabile d'integrazione è irrilevante, possiamo scrivere il secondo fattore in $y$:</p>
+          <div class="formula-block">$$I^2=\left(\int_{-\infty}^{+\infty} e^{-x^2}dx\right)\left(\int_{-\infty}^{+\infty} e^{-y^2}dy\right).$$</div>
+          <p><strong>Passo 2 — il prodotto è un integrale doppio.</strong> È il caso "regalato" delle variabili separate, letto al contrario: il prodotto di due integrali semplici su intervalli è l'integrale doppio del prodotto sul rettangolo — qui il rettangolo è tutto il piano. E $e^{-x^2}e^{-y^2}=e^{-(x^2+y^2)}$:</p>
+          <div class="formula-block">$$I^2=\iint_{\mathbb{R}^2} e^{-(x^2+y^2)}\,dx\,dy.$$</div>
+          <p><strong>Passo 3 — polari.</strong> Guarda l'integranda: contiene $x^2+y^2$. È il segnale inequivocabile. Applico il cambio di variabili del <span class="richiamo" data-sec="4.8">§4.8</span> <em>sostituendo</em> $x$ con $r\cos\theta$ e $y$ con $r\sin\theta$. Vediamo cosa diventa ogni pezzo: l'esponente $x^2+y^2$ diventa $r^2\cos^2\theta+r^2\sin^2\theta=r^2(\cos^2\theta+\sin^2\theta)=r^2$ (identità fondamentale), quindi $e^{-(x^2+y^2)}$ diventa $e^{-r^2}$; l'elemento d'area $dx\,dy$ diventa $r\,dr\,d\theta$ (jacobiano $|J|=r$). Tutto il piano corrisponde a $0\leq r\lt+\infty$, $0\leq\theta\leq 2\pi$. Lavoriamo prima sul disco $D_R$ di raggio $R$, che in polari è il rettangolo $0\leq r\leq R$, $0\leq\theta\leq 2\pi$:</p>
+          <div class="formula-block">$$\iint_{D_R} e^{-(x^2+y^2)}dx\,dy=\int_0^{2\pi}\!\!\int_0^{R} e^{-r^2}\,r\,dr\,d\theta.$$</div>
+          <p><strong>Passo 4 — ecco la magia.</strong> L'integrale interno ora contiene $r\,e^{-r^2}$, che <em>ha</em> primitiva elementare: pongo $u=r^2$ (chiamo $u$ l'esponente cambiato di segno a parte), da cui $du=2r\,dr$ e quindi $r\,dr=\frac{du}{2}$. Sostituisco $e^{-r^2}$ con $e^{-u}$ e il blocco $r\,dr$ con $\frac{du}{2}$; gli estremi cambiano di conseguenza ($r=0\Rightarrow u=0$, $r=R\Rightarrow u=R^2$):</p>
+          <div class="formula-block">$$\int_0^{R} r\,e^{-r^2}\,dr=\frac12\int_0^{R^2} e^{-u}\,du=\frac12\Big[-e^{-u}\Big]_0^{R^2}=\frac12\Big(-e^{-R^2}-(-e^{0})\Big)=\frac{1}{2}\left(1-e^{-R^2}\right).$$</div>
+          <p>(Scritto nella variabile originale è lo stesso di $\left[-\frac12 e^{-r^2}\right]_0^{R}$.) Il risultato non dipende più da $r$: è una <em>costante</em> rispetto a $\theta$. L'integrale esterno di una costante $k$ su $[0,2\pi]$ vale $k\cdot(2\pi-0)$, quindi dà semplicemente un fattore $2\pi$:</p>
+          <div class="formula-block">$$\iint_{D_R} e^{-(x^2+y^2)}dx\,dy=2\pi\cdot\frac{1}{2}\left(1-e^{-R^2}\right)=\pi\left(1-e^{-R^2}\right).$$</div>
+          <p><strong>Passo 5 — al limite.</strong> Facendo crescere il raggio, i dischi $D_R$ invadono tutto il piano e $e^{-R^2}\to 0$; poiché l'integranda è positiva, il limite dei valori sui dischi è l'integrale su $\mathbb{R}^2$. Dunque</p>
+          <div class="formula-block">$$I^2=\lim_{R\to+\infty}\pi\left(1-e^{-R^2}\right)=\pi.$$</div>
+          <p>Infine $I\gt 0$ perché l'integranda è positiva, quindi si prende la radice positiva:</p>
+          <div class="formula-block">$$\int_{-\infty}^{+\infty} e^{-x^2}\,dx=\sqrt{\pi}.\qquad\text{∎}$$</div>
+          <p>Fermati un attimo su cosa è successo: <strong>un problema irrisolvibile in una dimensione si è sciolto salendo in due dimensioni</strong>, e la chiave è stata proprio quel fattore $r$ del jacobiano che tanti studenti dimenticano. Da questo risultato discende, fra l'altro, la costante di normalizzazione $\frac{1}{\sqrt{2\pi}\,\sigma}$ della distribuzione normale: ogni volta che in statistica vedi quel $\sqrt{2\pi}$, stai guardando l'eco di questa dimostrazione.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Riduzione su un rettangolo</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\iint_R xy\,dA$ con $R=[0,1]\times[0,2]$, e verificare che l'ordine non conta.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il dominio è un rettangolo: applico direttamente Fubini, integrando prima in $y$ da $0$ a $2$.</span>
+            <span class="esempio__passo">Integrale interno, con $x$ trattata come costante: $\displaystyle\int_0^2 xy\,dy=x\left[\frac{y^2}{2}\right]_0^2=x\cdot 2=2x$.</span>
+            <span class="esempio__passo">Integrale esterno: $\displaystyle\int_0^1 2x\,dx=\big[x^2\big]_0^1=1$.</span>
+            <span class="esempio__passo">Controllo con l'altro ordine: $\displaystyle\int_0^1 xy\,dx=y\left[\frac{x^2}{2}\right]_0^1=\frac{y}{2}$, poi $\displaystyle\int_0^2\frac{y}{2}\,dy=\left[\frac{y^2}{4}\right]_0^2=1$. Coincide.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\iint_R xy\,dA=1$. &nbsp; Si poteva anche notare che l'integranda è separabile: $\left(\int_0^1 x\,dx\right)\left(\int_0^2 y\,dy\right)=\frac12\cdot 2=1$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Volume sotto un piano</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare il volume del solido che ha per base il rettangolo $R=[0,2]\times[0,3]$ e per soffitto il piano $z=x+2y$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Su $R$ si ha $x+2y\geq 0$: la funzione è non negativa, quindi l'integrale doppio è proprio il volume geometrico.</span>
+            <span class="esempio__passo">Integrale interno in $y$ (con $x$ costante): $\displaystyle\int_0^3 (x+2y)\,dy=\Big[xy+y^2\Big]_0^3=3x+9$.</span>
+            <span class="esempio__passo">Integrale esterno: $\displaystyle\int_0^2(3x+9)\,dx=\left[\frac{3x^2}{2}+9x\right]_0^2=6+18=24$.</span>
+            <span class="esempio__passo">Verifica rapida col teorema della media: l'area di $R$ è $6$, e il valor medio di $x+2y$ su $R$ è $\bar x+2\bar y=1+2\cdot\frac32=4$. Infatti $4\cdot 6=24$.</span>
+          </p>
+          <div class="esempio__risultato">$V=24$. &nbsp; Quando l'integranda è lineare, il valor medio si può indovinare dal centro del rettangolo: un ottimo controllo.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Dominio normale: il triangolo, nei due ordini</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare $\displaystyle\iint_T (x+y)\,dA$, dove $T$ è il triangolo di vertici $(0,0)$, $(1,0)$, $(1,1)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Disegno: i lati sono $y=0$, $x=1$ e l'ipotenusa $y=x$. Ombra sull'asse $x$: $[0,1]$. Fissata $x$, si entra da $y=0$ e si esce da $y=x$. Quindi $T=\{0\leq x\leq 1,\ 0\leq y\leq x\}$.</span>
+            <span class="esempio__passo">Integrale interno: $\displaystyle\int_0^{x}(x+y)\,dy=\left[xy+\frac{y^2}{2}\right]_0^{x}=x^2+\frac{x^2}{2}=\frac{3x^2}{2}$.</span>
+            <span class="esempio__passo">Integrale esterno: $\displaystyle\int_0^1\frac{3x^2}{2}\,dx=\frac32\cdot\frac13=\frac12$.</span>
+            <span class="esempio__passo">Controprova nell'altro ordine, $T=\{0\leq y\leq 1,\ y\leq x\leq 1\}$. Ora integro in $dx$ tenendo $y$ costante: la primitiva di $x+y$ rispetto a $x$ è $\frac{x^2}{2}+yx$. Sostituisco l'estremo superiore $x=1$ e sottraggo il valore nell'estremo inferiore $x=y$: $\left(\frac12+y\right)-\left(\frac{y^2}{2}+y^2\right)=\frac12+y-\frac{3y^2}{2}$.</span>
+            <span class="esempio__passo">Integrale esterno: $\displaystyle\int_0^1\left(\frac12+y-\frac{3y^2}{2}\right)dy=\left[\frac{y}{2}+\frac{y^2}{2}-\frac{y^3}{2}\right]_0^1=\frac12+\frac12-\frac12=\frac12$. Coincide con il risultato di prima.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\iint_T(x+y)\,dA=\frac12$. &nbsp; Nota che l'estremo interno $y=x$ contiene la variabile esterna: è normale e corretto. Il contrario non lo sarebbe mai.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Regione fra una parabola e una retta</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare $\displaystyle\iint_D (x+y)\,dA$, dove $D$ è la regione compresa fra le curve $y=x^2$ e $y=x$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Intersezioni: $x^2=x\ \Rightarrow\ x(x-1)=0\ \Rightarrow\ x=0,\ x=1$. Su $[0,1]$ vale $x^2\leq x$, quindi la parabola sta <strong>sotto</strong> la retta.</span>
+            <span class="esempio__passo">Dominio normale rispetto a $x$: $D=\{0\leq x\leq 1,\ x^2\leq y\leq x\}$.</span>
+            <span class="esempio__passo">Integrale interno: $\displaystyle\int_{x^2}^{x}(x+y)\,dy=\left[xy+\frac{y^2}{2}\right]_{x^2}^{x}=\left(x^2+\frac{x^2}{2}\right)-\left(x^3+\frac{x^4}{2}\right)=\frac{3x^2}{2}-x^3-\frac{x^4}{2}$.</span>
+            <span class="esempio__passo">Integrale esterno: $\displaystyle\int_0^1\left(\frac{3x^2}{2}-x^3-\frac{x^4}{2}\right)dx=\frac32\cdot\frac13-\frac14-\frac12\cdot\frac15=\frac12-\frac14-\frac1{10}$.</span>
+            <span class="esempio__passo">Denominatore comune $20$: $\ \frac{10}{20}-\frac{5}{20}-\frac{2}{20}=\frac{3}{20}$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\iint_D(x+y)\,dA=\frac{3}{20}$. &nbsp; La mossa decisiva è sempre la prima: trovare le intersezioni e capire <em>chi sta sopra</em>.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Scambio d'ordine indispensabile</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\displaystyle\int_0^{\pi}\!\!\left(\int_x^{\pi}\frac{\sin y}{y}\,dy\right)dx$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Tentativo diretto: l'integrale interno è $\int_x^\pi\frac{\sin y}{y}dy$. La funzione $\frac{\sin y}{y}$ (il "seno cardinale") <strong>non ha primitiva elementare</strong>. Con questo ordine siamo fermi.</span>
+            <span class="esempio__passo">Ricostruisco il dominio dagli estremi: $0\leq x\leq\pi$ e $x\leq y\leq\pi$. È il triangolo di vertici $(0,0)$, $(0,\pi)$, $(\pi,\pi)$, cioè la parte del quadrato che sta <em>sopra</em> la diagonale.</span>
+            <span class="esempio__passo">Rileggo a strisce orizzontali: ombra sull'asse $y$ uguale a $[0,\pi]$; fissata $y$, si entra da $x=0$ e si esce da $x=y$. Dunque $D=\{0\leq y\leq\pi,\ 0\leq x\leq y\}$.</span>
+            <span class="esempio__passo">Riscrivo: $\displaystyle\int_0^{\pi}\!\!\left(\int_0^{y}\frac{\sin y}{y}\,dx\right)dy$. Ora $\frac{\sin y}{y}$ è costante rispetto a $x$ e l'integrale interno vale $\frac{\sin y}{y}\cdot y=\sin y$.</span>
+            <span class="esempio__passo">Resta $\displaystyle\int_0^{\pi}\sin y\,dy=\big[-\cos y\big]_0^{\pi}=1+1=2$.</span>
+          </p>
+          <div class="esempio__risultato">Il valore è $2$. &nbsp; Lo scambio ha prodotto un fattore $y$ (la lunghezza della striscia) che ha semplificato esattamente il denominatore. È il pattern da riconoscere a occhio.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Coordinate polari</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\displaystyle\iint_D \sqrt{x^2+y^2}\,dA$, dove $D$ è il disco $x^2+y^2\leq 4$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Doppio segnale per le polari: il dominio è un disco <em>e</em> l'integranda contiene $x^2+y^2$. In cartesiane servirebbero radici annidate: da evitare.</span>
+            <span class="esempio__passo">Passo in polari (<span class="richiamo" data-sec="4.8">§4.8</span>): <strong>sostituisco $x=r\cos\theta$ al posto di $x$ e $y=r\sin\theta$ al posto di $y$</strong>. Nell'integranda compare $x^2+y^2$, che diventa $r^2\cos^2\theta+r^2\sin^2\theta=r^2(\cos^2\theta+\sin^2\theta)=r^2$ (identità fondamentale della trigonometria). Quindi $\sqrt{x^2+y^2}=\sqrt{r^2}=r$ (radice positiva, perché $r\geq0$).</span>
+            <span class="esempio__passo">Il nuovo dominio: la condizione $x^2+y^2\leq 4$ diventa $r^2\leq 4$, cioè $0\leq r\leq 2$; il disco è percorso tutto intorno, quindi $0\leq\theta\leq 2\pi$. In polari il disco è diventato un <em>rettangolo</em>.</span>
+            <span class="esempio__passo">Non dimentico il jacobiano: $dx\,dy$ non diventa $dr\,d\theta$ ma $r\,dr\,d\theta$. L'integranda complessiva è quindi (funzione)$\times$(jacobiano) $=r\cdot r=r^2$.</span>
+            <span class="esempio__passo">$\displaystyle\iint_D\sqrt{x^2+y^2}\,dA=\int_0^{2\pi}\!\!\int_0^{2} r^2\,dr\,d\theta$.</span>
+            <span class="esempio__passo">Integrale interno (in $dr$, con $\theta$ trattato come costante): la primitiva di $r^2$ è $\frac{r^3}{3}$, quindi $\displaystyle\int_0^2 r^2dr=\left[\frac{r^3}{3}\right]_0^2=\frac{2^3}{3}-\frac{0^3}{3}=\frac83$.</span>
+            <span class="esempio__passo">Integrale esterno: il risultato $\frac83$ non contiene più $\theta$, è una costante. L'integrale di una costante $k$ su $[0,2\pi]$ vale $k\cdot(2\pi-0)$, quindi $\displaystyle\int_0^{2\pi}\frac83\,d\theta=\frac83\cdot 2\pi=\frac{16\pi}{3}$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\iint_D\sqrt{x^2+y^2}\,dA=\frac{16\pi}{3}$. &nbsp; Controllo di sensatezza: l'integranda varia fra $0$ e $2$, l'area è $4\pi\approx 12{,}57$; il risultato $\approx 16{,}76$ corrisponde a un'altezza media $\approx 1{,}33$, plausibile.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Baricentro di un semidisco</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Trovare il baricentro della lastra omogenea $D=\{x^2+y^2\leq R^2,\ y\geq 0\}$ (mezzo disco, densità costante).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Simmetria: $D$ è simmetrico rispetto all'asse $y$ e la densità è costante, quindi $x_G=0$ senza calcoli. Resta solo $y_G$.</span>
+            <span class="esempio__passo">Area: metà disco, $\text{area}(D)=\frac{\pi R^2}{2}$.</span>
+            <span class="esempio__passo">Passo in polari (<span class="richiamo" data-sec="4.8">§4.8</span>) <strong>sostituendo $x=r\cos\theta$ e $y=r\sin\theta$</strong>. Il nuovo dominio: $x^2+y^2\leq R^2$ diventa $0\leq r\leq R$; la condizione $y\geq 0$ (semipiano superiore) corrisponde agli angoli $0\leq\theta\leq\pi$. L'integranda è $y$, che diventa $r\sin\theta$; l'elemento d'area $dA$ diventa $r\,dr\,d\theta$. Quindi $\displaystyle\iint_D y\,dA=\int_0^{\pi}\!\!\int_0^{R}(r\sin\theta)\,r\,dr\,d\theta$.</span>
+            <span class="esempio__passo">Moltiplico integranda e jacobiano: $(r\sin\theta)\cdot r=r^2\sin\theta$. Questa espressione è il prodotto di una funzione della sola $r$ ($r^2$) per una funzione del solo $\theta$ ($\sin\theta$), e il dominio in polari è un rettangolo: vale quindi il caso "regalato" del <span class="richiamo" data-sec="4.5">§4.5</span> e l'integrale doppio si spezza nel prodotto di due integrali semplici, $\displaystyle\left(\int_0^R r^2dr\right)\left(\int_0^\pi\sin\theta\,d\theta\right)$.</span>
+            <span class="esempio__passo">Calcolo i due pezzi: $\displaystyle\int_0^R r^2dr=\left[\frac{r^3}{3}\right]_0^R=\frac{R^3}{3}$, e $\displaystyle\int_0^\pi\sin\theta\,d\theta=\big[-\cos\theta\big]_0^\pi=-\cos\pi+\cos0=1+1=2$. Il prodotto è $\frac{R^3}{3}\cdot 2=\frac{2R^3}{3}$.</span>
+            <span class="esempio__passo">$\displaystyle y_G=\frac{1}{\text{area}(D)}\iint_D y\,dA=\frac{2R^3/3}{\pi R^2/2}=\frac{2R^3}{3}\cdot\frac{2}{\pi R^2}=\frac{4R}{3\pi}$.</span>
+          </p>
+          <div class="esempio__risultato">$G=\left(0,\ \dfrac{4R}{3\pi}\right)$. &nbsp; Numericamente $\frac{4}{3\pi}\approx 0{,}42$: il baricentro sta a circa il $42\%$ del raggio, cioè <strong>sotto</strong> la metà dell'altezza — giusto, perché il semidisco è più largo in basso.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Estremi che dipendono dalla variabile sbagliata</div>
+          <p>È l'errore numero uno, e produce risultati che non sono nemmeno numeri. Scrivere</p>
+          <div class="formula-block">$$\int_0^{y}\!\!\int_0^{1} f(x,y)\,dy\,dx\qquad\text{oppure}\qquad \int_0^1\!\!\int_0^{y} f(x,y)\,dy\,dx$$</div>
+          <p>è privo di senso: nel primo caso l'integrale <em>esterno</em> in $dx$ ha estremi che contengono $y$; nel secondo l'integrale in $dy$ ha per estremo la variabile $y$ stessa, che sparisce appena integri. In entrambi i casi il risultato finale conterrebbe ancora una $y$ libera, mentre un integrale doppio è un <strong>numero</strong>.</p>
+          <p><em>Come evitarlo.</em> Due controlli meccanici da fare <strong>prima</strong> di calcolare: <strong>(1)</strong> gli estremi dell'integrale <strong>esterno</strong> devono essere costanti, sempre, senza eccezioni; <strong>(2)</strong> gli estremi dell'integrale <strong>interno</strong> possono contenere <em>solo</em> la variabile dell'integrale esterno, mai la propria. Se integri in $dy$ all'interno, gli estremi possono contenere $x$ ma non $y$.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare la $r$ nel passaggio in coordinate polari</div>
+          <p>Si sostituisce diligentemente $x=r\cos\theta$ e $y=r\sin\theta$, si scrivono i nuovi estremi... e si scrive $dr\,d\theta$ invece di $r\,dr\,d\theta$. Il risultato è semplicemente sbagliato. Prova classica: l'area del disco unitario. Senza jacobiano verrebbe $\int_0^{2\pi}\!\int_0^1 dr\,d\theta=2\pi$, mentre l'area è $\pi$. <strong>Un fattore $2$ di troppo</strong>, e per di più con la formula "sbagliata" ogni disco avrebbe area $2\pi r$, cioè la sua <em>circonferenza</em>: dimensionalmente assurdo.</p>
+          <p><em>Come evitarlo.</em> Ritualizza il passaggio: appena scrivi il simbolo $\iint$ in polari, scrivi <strong>subito</strong> $\;r\,dr\,d\theta$ alla fine, prima ancora di occuparti dell'integranda. E tieni in testa l'immagine del settore di corona: il pezzettino d'area cresce con la distanza dal centro, non può essere sempre lo stesso.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare i limiti dell'angolo</div>
+          <p>Il secondo classico delle polari. Il quarto di disco nel primo quadrante non è $\theta\in[0,\pi]$ ma $\theta\in\left[0,\frac{\pi}{2}\right]$. La metà destra del disco ($x\geq 0$) non è $\theta\in[0,\pi]$ (quella è la metà <em>superiore</em>): è $\theta\in\left[-\frac{\pi}{2},\frac{\pi}{2}\right]$. E il settore fra le rette $y=x$ e $y=-x$ con $y\geq 0$ è $\theta\in\left[\frac{\pi}{4},\frac{3\pi}{4}\right]$, non $\left[-\frac\pi4,\frac\pi4\right]$.</p>
+          <p>Errore gemello: percorrere l'angolo <strong>due volte</strong>. Se il dominio è tutto il piano e usi $\theta\in[0,2\pi]$ va bene; se usi $\theta\in[-\pi,\pi]$ va bene lo stesso; ma $\theta\in[0,2\pi]$ <em>insieme</em> a $r$ che può essere negativo raddoppia il conteggio.</p>
+          <p><em>Come evitarlo.</em> Disegna il dominio e traccia materialmente i due raggi estremi che lo delimitano, leggendo gli angoli sul disegno. Poi fai il controllo di coerenza: se il dominio è un settore, la sua area deve valere $\frac{\Delta\theta}{2\pi}$ dell'area del disco completo. Un fattore sbagliato salta fuori subito.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere volume con segno e volume geometrico</div>
+          <p>Come in Analisi 1, dove $f\lt 0$ i contributi sono <strong>negativi</strong>. Se ti chiedono "il volume del solido compreso fra la superficie e il piano $z=0$" e la funzione cambia segno su $D$, non puoi integrare di filata: devi spezzare $D$ nelle regioni in cui $f\geq0$ e in cui $f\leq0$, e integrare $|f|$. Esempio: $\iint_{[-1,1]\times[0,1]} x\,dA=0$ per simmetria, ma il volume geometrico delle due "pinne" vale $\frac12$.</p>
+          <p><em>Come evitarlo.</em> Prima di calcolare, studia il segno dell'integranda sul dominio. Se è sempre dello stesso segno, procedi tranquillo; altrimenti, la parola "volume" impone di spezzare.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Invertire l'ordine senza ridisegnare il dominio</div>
+          <p>Scambiare i simboli $dx$ e $dy$ tenendo gli stessi estremi è, semplicemente, cambiare esercizio. $\int_0^1\!\int_{x^2}^{x}f\,dy\,dx$ non è $\int_0^1\!\int_{x^2}^{x}f\,dx\,dy$: quest'ultima scrittura non ha nemmeno senso. L'inversione richiede di ricostruire le disuguaglianze, disegnare, e rileggere le strisce nell'altra direzione — ottenendo in questo caso $\int_0^1\!\int_{y}^{\sqrt y}f\,dx\,dy$, con estremi <em>diversi</em>.</p>
+          <p><em>Come evitarlo.</em> Non invertire mai "a occhio". Il disegno non è un optional: è lo strumento di calcolo. Regola pratica: se dopo l'inversione gli estremi sono rimasti gli stessi, hai quasi certamente sbagliato (l'unica eccezione è il rettangolo, dove sono costanti da entrambe le parti).</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">✏️</span> Disegna il dominio. Sempre. Prima di tutto.</div>
+          <p>Non è un consiglio di stile: negli integrali doppi <strong>il disegno è metà del calcolo</strong>. Gli estremi di integrazione non si ricavano dall'algebra, si <em>leggono</em> dalla figura. Un disegno fatto in trenta secondi ti dice se il dominio è normale, rispetto a quale asse conviene, se va spezzato, se conviene passare in polari e quali sono gli angoli. Chi salta il disegno passa il triplo del tempo a raccapezzarsi sugli estremi — e di solito sbaglia comunque.</p>
+          <p>Sequenza consigliata: <strong>(1)</strong> trova le intersezioni fra le curve che delimitano $D$; <strong>(2)</strong> disegna; <strong>(3)</strong> decidi la direzione delle strisce; <strong>(4)</strong> solo allora scrivi gli estremi.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Scegli l'ordine che rende fattibile l'integrale interno</div>
+          <p>L'ordine è una <em>tua</em> scelta, e ha conseguenze enormi. Tre criteri, in ordine di priorità:</p>
+          <p><strong>(1) Fattibilità.</strong> Se in un ordine l'integrale interno non ha primitiva elementare ($e^{y^2}$, $\frac{\sin y}{y}$, $\sin(y^2)$, $\sqrt{1+y^3}$, $\frac{1}{\ln y}$), inverti. Non è un'opzione: è l'unica strada.</p>
+          <p><strong>(2) Numero di pezzi.</strong> Se in un ordine il dominio va spezzato in due o tre parti e nell'altro no, scegli quello che non lo spezza. Tipico: regioni delimitate in alto da due curve diverse.</p>
+          <p><strong>(3) Pulizia degli estremi.</strong> Preferisci l'ordine in cui gli estremi interni sono polinomi semplici anziché radici o funzioni inverse.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">⭕</span> Quando passare in polari: i tre segnali</div>
+          <p>Non sempre le polari aiutano, ma quando servono si riconoscono a colpo d'occhio. <strong>(1) Il dominio è rotondo</strong>: disco, corona, settore, semidisco, o è definito da disuguaglianze del tipo $x^2+y^2\leq a^2$. <strong>(2) L'integranda contiene $x^2+y^2$</strong>, o $\sqrt{x^2+y^2}$, o $e^{-(x^2+y^2)}$, o $\arctan\frac{y}{x}$: in polari diventano $r^2$, $r$, $e^{-r^2}$, $\theta$. <strong>(3) Compaiono radici quadrate negli estremi</strong>, tipo $\pm\sqrt{a^2-x^2}$: è il sintomo di un cerchio travestito da dominio normale.</p>
+          <p>Vale anche il contrario: su un triangolo o un rettangolo le polari di solito <em>peggiorano</em> le cose, perché gli estremi in $r$ diventano funzioni brutte di $\theta$ (per esempio $r\leq\frac{1}{\cos\theta+\sin\theta}$). Usa lo strumento giusto per la forma giusta.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🪞</span> Sfrutta le simmetrie: interi integrali che valgono zero</div>
+          <p>Prima di calcolare, guarda se il dominio è simmetrico. Se $D$ è simmetrico rispetto all'asse $y$ (cioè $(x,y)\in D\Rightarrow(-x,y)\in D$) e l'integranda è <strong>dispari in $x$</strong> (cioè $f(-x,y)=-f(x,y)$), allora</p>
+          <div class="formula-block">$$\iint_D f\,dA=0,$$</div>
+          <p>perché ogni contributo a destra è cancellato dal suo gemello a sinistra. Analogamente per la simmetria rispetto all'asse $x$ con integrande dispari in $y$. Esempi immediati: $\iint_{x^2+y^2\leq1} x\,dA=0$, $\iint_{x^2+y^2\leq1} xy\,dA=0$, $\iint_{x^2+y^2\leq1} x^3y^2\,dA=0$.</p>
+          <p>E se l'integranda è <strong>pari</strong>, dimezza il lavoro: $\iint_D f=2\iint_{D^+}f$, dove $D^+$ è la metà con $x\geq0$. La stessa logica ti regala $x_G=0$ per ogni lastra omogenea simmetrica rispetto all'asse $y$.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🧮</span> Controlla il risultato con una stima "a occhio"</div>
+          <p>Un integrale doppio è (quasi sempre) un volume, quindi puoi <strong>stimarlo prima di calcolarlo</strong>. Trova grossolanamente il minimo $m$ e il massimo $M$ dell'integranda su $D$ e calcola l'area di $D$: per monotonia il risultato deve stare fra $m\cdot\text{area}(D)$ e $M\cdot\text{area}(D)$. Se il tuo numero cade fuori da quella forbice, c'è un errore — quasi sempre un jacobiano dimenticato o un estremo sbagliato.</p>
+          <p>Due controlli-lampo aggiuntivi: se $f\geq 0$ su $D$, il risultato <strong>non può essere negativo</strong>; e se hai calcolato un'area, confrontala con la figura (un triangolo dentro il quadrato unitario non può avere area $3$).</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">L'integrale doppio $\displaystyle\iint_D f\,dA$</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Costruzione</strong>
+              <ul><li>Quadretti $\Delta A=\Delta x\,\Delta y$</li><li>Parallelepipedi $f\cdot\Delta A$</li><li>Somme di Riemann doppie</li><li>Limite = volume con segno</li><li>È un NUMERO</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Esistenza</strong>
+              <ul><li>$D$ chiuso, limitato, misurabile</li><li>Bordo di area nulla</li><li>$f$ continua ⇒ integrabile</li><li>Fuori da $D$: prolungo con $0$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Proprietà</strong>
+              <ul><li>Linearità</li><li>Additività sui domini</li><li>Monotonia e modulo</li><li>$\iint_D 1\,dA=\text{area}(D)$</li><li>Media: $\bar f=\frac{1}{|D|}\iint_D f$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Come si calcola</strong>
+              <ul><li>Fubini su rettangolo</li><li>Domini normali: strisce</li><li>Esterno = estremi costanti</li><li>Scambio d'ordine: ridisegna!</li><li>Non normale ⇒ spezza</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Polari e jacobiano</strong>
+              <ul><li>$x=r\cos\theta$, $y=r\sin\theta$</li><li>$dA=r\,dr\,d\theta$ (mai $dr\,d\theta$)</li><li>$|J|=r$ dal settore di corona</li><li>Ellisse: $|J|=abr$</li><li>Gauss: $\int e^{-x^2}dx=\sqrt\pi$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Applicazioni</strong>
+              <ul><li>Area e volume</li><li>Valor medio</li><li>Massa $=\iint\rho\,dA$</li><li>Baricentro (media pesata)</li><li>Momenti d'inerzia</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Definizione</strong>: $\displaystyle\iint_D f\,dA=\lim\sum_{i,j} f(P_{ij})\Delta x_i\Delta y_j$. In Analisi 1 sommavi rettangolini e ottenevi un'<em>area</em>; qui sommi parallelepipedi e ottieni un <strong>volume con segno</strong>. Il risultato è un <strong>numero</strong>: niente "$+C$".</li>
+            <li><strong>Esistenza</strong>: $f$ continua su $D$ chiuso, limitato e misurabile (bordo di area nulla) $\Rightarrow$ $f$ integrabile. Su domini generali si prolunga $f$ con $0$ fuori da $D$.</li>
+            <li><strong>Proprietà</strong>: linearità; additività su domini a interni disgiunti; monotonia; $\big|\iint f\big|\leq\iint|f|$; $\iint_D 1\,dA=\text{area}(D)$; teorema della media, $\iint_D f=f(x_0,y_0)\,\text{area}(D)$.</li>
+            <li><strong>Riduzione (Fubini) su un rettangolo</strong>: $\displaystyle\iint_R f=\int_a^b\!\!\left(\int_c^d f\,dy\right)dx=\int_c^d\!\!\left(\int_a^b f\,dx\right)dy$. Nell'integrale interno l'altra variabile è una costante. Se $R$ è un rettangolo e $f(x,y)=g(x)h(y)$, l'integrale è il <em>prodotto</em> dei due integrali semplici.</li>
+            <li><strong>Domini normali</strong>: rispetto a $x$, $D=\{a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\}$ e si integra prima in $y$; rispetto a $y$, $D=\{c\leq y\leq d,\ h_1(y)\leq x\leq h_2(y)\}$ e si integra prima in $x$. <strong>Gli estremi esterni sono sempre costanti.</strong></li>
+            <li><strong>Scambio d'ordine</strong>: si fa <em>ridisegnando</em> il dominio e rileggendo le strisce nell'altra direzione. È indispensabile quando l'integrale interno non ha primitiva elementare ($e^{y^2}$, $\frac{\sin y}{y}$, $\sin(y^2)$, $\sqrt{1+y^3}$).</li>
+            <li><strong>Coordinate polari</strong>: $x=r\cos\theta$, $y=r\sin\theta$, e soprattutto $\ dx\,dy=r\,dr\,d\theta$. La $r$ è il modulo del jacobiano e nasce dal settore di corona circolare, i cui lati sono $dr$ e $r\,d\theta$. Caso generale: $dx\,dy=|\det J_\Phi|\,du\,dv$; per l'ellisse, $|J|=abr$.</li>
+            <li><strong>Applicazioni</strong>: area $=\iint_D 1$; volume $=\iint_D f$ (o $\iint_D(f-g)$); valor medio $=\frac{1}{\text{area}(D)}\iint_D f$; massa $=\iint_D\rho$; baricentro $x_G=\frac1m\iint_D x\rho$, $y_G=\frac1m\iint_D y\rho$.</li>
+            <li><strong>Perla</strong>: $\displaystyle\int_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt{\pi}$, ottenuto elevando al quadrato, passando all'integrale doppio su $\mathbb{R}^2$ e sfruttando il fattore $r$ delle polari.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Disegna sempre il dominio prima di scrivere gli estremi, e prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iint_R (x+y)\,dA$ con $R=[0,1]\times[0,2]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Dominio rettangolare: applico Fubini integrando prima in $y$ (da $0$ a $2$), con $x$ costante.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^2 (x+y)\,dy=\Big[xy+\frac{y^2}{2}\Big]_0^2=2x+2$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1 (2x+2)\,dx=\Big[x^2+2x\Big]_0^1=1+2=3$.</span>
+              </p>
+              <p><strong>$\displaystyle\iint_R (x+y)\,dA=3$.</strong> Controllo: l'area è $2$ e il valor medio di $x+y$ è $\frac12+1=\frac32$; infatti $\frac32\cdot 2=3$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iint_Q x^2y\,dA$ con $Q=[0,1]\times[0,1]$, sfruttando la separabilità.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il dominio è un rettangolo e l'integranda si fattorizza: $x^2y=g(x)\,h(y)$ con $g(x)=x^2$, $h(y)=y$.</span>
+                <span class="esempio__passo">Quindi l'integrale è il prodotto dei due integrali semplici: $\displaystyle\left(\int_0^1 x^2dx\right)\left(\int_0^1 y\,dy\right)$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1 x^2dx=\frac13$ e $\displaystyle\int_0^1 y\,dy=\frac12$.</span>
+              </p>
+              <p><strong>$\displaystyle\iint_Q x^2y\,dA=\frac13\cdot\frac12=\frac16$.</strong> Ricorda: la fattorizzazione funziona solo perché il dominio è un rettangolo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola con un integrale doppio l'area del triangolo di vertici $(0,0)$, $(2,0)$, $(0,2)$, e verifica con la formula elementare.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">L'ipotenusa è la retta per $(2,0)$ e $(0,2)$, cioè $x+y=2$, ovvero $y=2-x$.</span>
+                <span class="esempio__passo">Dominio normale rispetto a $x$: ombra $[0,2]$; fissata $x$, si entra da $y=0$ e si esce da $y=2-x$.</span>
+                <span class="esempio__passo">$\displaystyle\text{area}=\int_0^2\!\!\int_0^{2-x} 1\,dy\,dx=\int_0^2 (2-x)\,dx$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^2(2-x)dx=\Big[2x-\frac{x^2}{2}\Big]_0^2=4-2=2$.</span>
+              </p>
+              <p><strong>Area $=2$.</strong> Verifica elementare: base $2$, altezza $2$, area $=\frac{2\cdot2}{2}=2$. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola l'area del disco $D=\{x^2+y^2\leq 9\}$ usando le coordinate polari.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il raggio è $3$, perché $x^2+y^2\leq 9=3^2$. Passo in polari (<span class="richiamo" data-sec="4.8">§4.8</span>) <strong>sostituendo $x=r\cos\theta$ e $y=r\sin\theta$</strong>: allora $x^2+y^2=r^2$ e la condizione $r^2\leq 9$ diventa $0\leq r\leq 3$; il disco è percorso a giro completo, quindi $0\leq\theta\leq 2\pi$.</span>
+                <span class="esempio__passo">L'area è $\iint_D 1\,dA$ (<span class="richiamo" data-sec="4.4">§4.4</span>, "area come integrale"), e nel cambio di variabili $dx\,dy$ diventa $r\,dr\,d\theta$: l'integranda $1$ moltiplicata per il jacobiano $r$ dà $r$. Quindi $\displaystyle\text{area}=\int_0^{2\pi}\!\!\int_0^{3} r\,dr\,d\theta$.</span>
+                <span class="esempio__passo">Interno (in $dr$, $\theta$ costante): la primitiva di $r$ è $\frac{r^2}{2}$, quindi $\displaystyle\int_0^3 r\,dr=\Big[\frac{r^2}{2}\Big]_0^3=\frac{9}{2}-0=\frac92$. Esterno: $\frac92$ non dipende da $\theta$, e l'integrale di una costante su $[0,2\pi]$ la moltiplica per $2\pi$: $\frac92\cdot 2\pi=9\pi$.</span>
+              </p>
+              <p><strong>Area $=9\pi$.</strong> Coincide con $\pi R^2=\pi\cdot 9$. Se avessi dimenticato il jacobiano avresti ottenuto $3\cdot2\pi=6\pi$: sbagliato.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iint_T y\,dA$, dove $T=\{(x,y):0\leq x\leq 1,\ 0\leq y\leq x\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il dominio è già scritto in forma normale rispetto a $x$: integro prima in $y$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{x} y\,dy=\Big[\frac{y^2}{2}\Big]_0^{x}=\frac{x^2}{2}$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1\frac{x^2}{2}\,dx=\frac12\cdot\frac13=\frac16$.</span>
+                <span class="esempio__passo">Controprova nell'altro ordine. Rileggo il triangolo a strisce orizzontali: $T=\{0\leq y\leq 1,\ y\leq x\leq 1\}$. Ora l'integrale interno è in $dx$ e l'integranda $y$ è una <em>costante</em> rispetto a $x$: $\displaystyle\int_y^1 y\,dx=y\big[x\big]_y^1=y(1-y)$. Poi l'esterno: $\displaystyle\int_0^1 y(1-y)\,dy=\int_0^1(y-y^2)\,dy=\Big[\frac{y^2}{2}-\frac{y^3}{3}\Big]_0^1=\frac12-\frac13=\frac16$. ✓</span>
+              </p>
+              <p><strong>$\displaystyle\iint_T y\,dA=\frac16$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scrivi come dominio normale rispetto a $x$ la regione $D$ compresa fra $y=x^2$ e $y=2x$, e calcolane l'area.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Intersezioni: $x^2=2x\ \Rightarrow\ x(x-2)=0\ \Rightarrow\ x=0$ e $x=2$.</span>
+                <span class="esempio__passo">Su $[0,2]$ vale $x^2\leq 2x$ (per esempio in $x=1$: $1\leq 2$), quindi la parabola sta sotto la retta.</span>
+                <span class="esempio__passo">$D=\{0\leq x\leq 2,\ x^2\leq y\leq 2x\}$.</span>
+                <span class="esempio__passo">$\displaystyle\text{area}=\iint_D 1\,dA=\int_0^2\!\!\int_{x^2}^{2x}dy\,dx$. L'integrale interno di $1$ in $dy$ è la lunghezza della striscia verticale: $\int_{x^2}^{2x}1\,dy=\big[y\big]_{x^2}^{2x}=2x-x^2$ (estremo superiore meno estremo inferiore).</span>
+                <span class="esempio__passo">$\displaystyle\int_0^2(2x-x^2)\,dx=\Big[x^2-\frac{x^3}{3}\Big]_0^2=\left(4-\frac83\right)-0=\frac{12-8}{3}=\frac43$.</span>
+              </p>
+              <p><strong>$D=\{0\leq x\leq 2,\ x^2\leq y\leq 2x\}$ e area $=\dfrac43$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il volume del solido compreso fra il disco $x^2+y^2\leq 4$ e il paraboloide $z=4-x^2-y^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Sul disco di raggio $2$ si ha $x^2+y^2\leq 4$, quindi $z=4-(x^2+y^2)\geq 0$: l'integrale doppio è il volume geometrico.</span>
+                <span class="esempio__passo">Polari (dominio rotondo e integranda con $x^2+y^2$). <strong>Sostituisco $x=r\cos\theta$, $y=r\sin\theta$</strong>: allora $x^2+y^2=r^2$, quindi la condizione $x^2+y^2\leq4$ diventa $0\leq r\leq 2$ e il giro completo dà $0\leq\theta\leq2\pi$; l'integranda $4-x^2-y^2$ diventa $4-r^2$; l'elemento d'area $dx\,dy$ diventa $r\,dr\,d\theta$.</span>
+                <span class="esempio__passo">$\displaystyle V=\int_0^{2\pi}\!\!\int_0^2 (4-r^2)\,r\,dr\,d\theta$. Svolgo il prodotto dentro l'integrale, moltiplicando la parentesi per $r$: $(4-r^2)\cdot r=4r-r^3$. Quindi $\displaystyle V=\int_0^{2\pi}\!\!\int_0^2 (4r-r^3)\,dr\,d\theta$.</span>
+                <span class="esempio__passo">Interno: le primitive sono $\int 4r\,dr=2r^2$ e $\int r^3dr=\frac{r^4}{4}$, quindi $\displaystyle\int_0^2(4r-r^3)dr=\Big[2r^2-\frac{r^4}{4}\Big]_0^2$. Sostituisco $r=2$: $2\cdot 4-\frac{16}{4}=8-4=4$; in $r=0$ tutto vale $0$. Risultato: $4$.</span>
+                <span class="esempio__passo">Esterno: $4$ è costante rispetto a $\theta$, quindi $\displaystyle\int_0^{2\pi}4\,d\theta=4\cdot 2\pi=8\pi$.</span>
+              </p>
+              <p><strong>$V=8\pi$.</strong> Curiosità: è esattamente metà del volume del cilindro circoscritto ($\pi\cdot4\cdot4=16\pi$) — proprietà nota del paraboloide.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iint_C \frac{1}{x^2+y^2}\,dA$ sulla corona circolare $C=\{1\leq x^2+y^2\leq 4\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">La corona <strong>non</strong> è un dominio normale (le rette verticali centrali la tagliano in due segmenti), ma in polari diventa un rettangolo: $1\leq r\leq 2$, $0\leq\theta\leq2\pi$.</span>
+                <span class="esempio__passo">Perché $1\leq r\leq 2$: <strong>sostituisco $x=r\cos\theta$, $y=r\sin\theta$</strong>, così $x^2+y^2=r^2$ e la doppia disuguaglianza $1\leq x^2+y^2\leq4$ diventa $1\leq r^2\leq 4$, cioè $1\leq r\leq 2$ (estraggo la radice, positiva perché $r\geq0$).</span>
+                <span class="esempio__passo">L'integranda $\frac{1}{x^2+y^2}$ diventa $\frac{1}{r^2}$; moltiplicata per il jacobiano $r$ dà $\frac{1}{r^2}\cdot r=\frac{1}{r}$ (semplifico una $r$).</span>
+                <span class="esempio__passo">$\displaystyle\int_0^{2\pi}\!\!\int_1^2\frac1r\,dr\,d\theta$. Interno: la primitiva di $\frac1r$ è $\ln r$ (Analisi 1), quindi $\displaystyle\int_1^2\frac{dr}{r}=\big[\ln r\big]_1^2=\ln 2-\ln 1=\ln 2-0=\ln 2$.</span>
+                <span class="esempio__passo">Esterno: $\ln 2$ non dipende da $\theta$, quindi $\displaystyle\int_0^{2\pi}\ln 2\,d\theta=\ln 2\cdot 2\pi$.</span>
+              </p>
+              <p><strong>$\displaystyle\iint_C \frac{dA}{x^2+y^2}=2\pi\ln 2\approx 4{,}36$.</strong> Senza il jacobiano avresti integrato $\frac{1}{r^2}$ ottenendo $\pi$: numero diverso e sbagliato.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\int_0^1\!\!\left(\int_{\sqrt y}^{1}\sqrt{1+x^3}\,dx\right)dy$ scambiando l'ordine di integrazione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Con questo ordine l'integrale interno richiederebbe una primitiva di $\sqrt{1+x^3}$, che non è elementare: bisogna invertire.</span>
+                <span class="esempio__passo">Ricostruisco il dominio: $0\leq y\leq 1$ e $\sqrt y\leq x\leq 1$. La condizione $x\geq\sqrt y$ con $y\geq0$ equivale a $y\leq x^2$.</span>
+                <span class="esempio__passo">Rileggo a strisce verticali: ombra sull'asse $x$ uguale a $[0,1]$; fissata $x$, si entra da $y=0$ e si esce da $y=x^2$. Dunque $D=\{0\leq x\leq1,\ 0\leq y\leq x^2\}$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1\!\!\int_0^{x^2}\sqrt{1+x^3}\,dy\,dx=\int_0^1 \sqrt{1+x^3}\cdot x^2\,dx$: lo scambio ha prodotto il fattore $x^2$.</span>
+                <span class="esempio__passo">Sostituzione: pongo $u=1+x^3$ (il blocco sotto radice), quindi $du=3x^2\,dx$ e da qui $x^2\,dx=\frac{du}{3}$. Cambio anche gli estremi: $x=0\Rightarrow u=1+0=1$, $x=1\Rightarrow u=1+1=2$. Sostituisco $\sqrt{1+x^3}$ con $\sqrt u$ e il blocco $x^2\,dx$ con $\frac{du}{3}$: $\displaystyle\int_0^1\sqrt{1+x^3}\,x^2\,dx=\frac13\int_1^2\sqrt u\,du$.</span>
+                <span class="esempio__passo">Ora è un integrale elementare: $\sqrt u=u^{1/2}$ e la primitiva di $u^{1/2}$ è $\frac{u^{3/2}}{3/2}=\frac23u^{3/2}$. Quindi $\displaystyle\frac13\int_1^2\sqrt u\,du=\frac13\cdot\frac23\Big[u^{3/2}\Big]_1^2=\frac29\left(2^{3/2}-1^{3/2}\right)$. Infine $2^{3/2}=2\cdot 2^{1/2}=2\sqrt2$ e $1^{3/2}=1$, da cui $\frac29\left(2\sqrt2-1\right)$.</span>
+              </p>
+              <p><strong>Il valore è $\dfrac{2}{9}\left(2\sqrt2-1\right)\approx 0{,}407$.</strong> Il fattore $x^2$ comparso con lo scambio è esattamente quello che serviva per la sostituzione.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Trova il baricentro della lastra omogenea a forma di triangolo di vertici $(0,0)$, $(1,0)$, $(0,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">L'ipotenusa è $x+y=1$, quindi $T=\{0\leq x\leq 1,\ 0\leq y\leq 1-x\}$ e $\text{area}(T)=\frac12$.</span>
+                <span class="esempio__passo">Densità costante: si semplifica, e basta il baricentro geometrico.</span>
+                <span class="esempio__passo">$\displaystyle\iint_T x\,dA=\int_0^1\!\!\int_0^{1-x}x\,dy\,dx$. Interno: $x$ è costante rispetto a $y$, quindi $\int_0^{1-x}x\,dy=x\big[y\big]_0^{1-x}=x(1-x)$. Esterno: sviluppo il prodotto, $x(1-x)=x-x^2$, e integro: $\displaystyle\int_0^1(x-x^2)\,dx=\Big[\frac{x^2}{2}-\frac{x^3}{3}\Big]_0^1=\frac12-\frac13=\frac16$.</span>
+                <span class="esempio__passo">$\displaystyle x_G=\frac{1/6}{1/2}=\frac13$. Per la simmetria del triangolo rispetto alla bisettrice $y=x$, anche $y_G=\frac13$.</span>
+              </p>
+              <p><strong>$G=\left(\dfrac13,\dfrac13\right)$.</strong> Conferma geometrica: il baricentro di un triangolo è la media dei vertici, $\frac{(0,0)+(1,0)+(0,1)}{3}=\left(\frac13,\frac13\right)$. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Una lastra occupa il quarto di disco $D=\{x^2+y^2\leq 1,\ x\geq 0,\ y\geq 0\}$ e ha densità $\rho(x,y)=x^2+y^2$. Calcolane la massa.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">La massa è $m=\iint_D\rho\,dA$. Dominio rotondo e densità che contiene $x^2+y^2$: polari obbligatorie.</span>
+                <span class="esempio__passo">Primo quadrante: $0\leq\theta\leq\frac{\pi}{2}$ (non $\pi$!). Raggio: $0\leq r\leq 1$.</span>
+                <span class="esempio__passo">Sostituendo $x=r\cos\theta$, $y=r\sin\theta$ la densità $\rho=x^2+y^2$ diventa $r^2$, e $dA=dx\,dy$ diventa $r\,dr\,d\theta$; quindi l'integranda complessiva è $\rho\cdot|J|=r^2\cdot r=r^3$.</span>
+                <span class="esempio__passo">$\displaystyle m=\int_0^{\pi/2}\!\!\int_0^1 r^3\,dr\,d\theta$. L'integrale interno (primitiva di $r^3$ uguale a $\frac{r^4}{4}$) vale $\Big[\frac{r^4}{4}\Big]_0^1=\frac14-0=\frac14$; poi l'esterno moltiplica questa costante per l'ampiezza $\frac{\pi}{2}$ dell'intervallo degli angoli: $m=\frac14\cdot\frac{\pi}{2}$.</span>
+              </p>
+              <p><strong>$m=\dfrac{\pi}{8}\approx 0{,}39$.</strong> Sensato: l'area del quarto di disco è $\frac\pi4\approx0{,}785$ e la densità media vale $\frac12$, quindi $m\approx0{,}39$. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra, con un cambio di variabili, che l'area dell'ellisse $\frac{x^2}{a^2}+\frac{y^2}{b^2}\leq 1$ vale $\pi ab$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Uso le coordinate polari ellittiche: $x=a\,r\cos\theta$, $y=b\,r\sin\theta$.</span>
+                <span class="esempio__passo">Verifico il dominio: $\frac{x^2}{a^2}+\frac{y^2}{b^2}=r^2\cos^2\theta+r^2\sin^2\theta=r^2\leq 1$, quindi $0\leq r\leq 1$ e $0\leq\theta\leq 2\pi$: un rettangolo.</span>
+                <span class="esempio__passo">Jacobiano: scrivo le quattro derivate parziali di $x=a\,r\cos\theta$ e $y=b\,r\sin\theta$ — $\frac{\partial x}{\partial r}=a\cos\theta$, $\frac{\partial x}{\partial\theta}=-a\,r\sin\theta$, $\frac{\partial y}{\partial r}=b\sin\theta$, $\frac{\partial y}{\partial\theta}=b\,r\cos\theta$ — e applico la regola $\begin{vmatrix}a &amp; b\\ c &amp; d\end{vmatrix}=ad-bc$: $\begin{vmatrix} a\cos\theta &amp; -a r\sin\theta\\ b\sin\theta &amp; \ \ b r\cos\theta\end{vmatrix}=ab\,r\cos^2\theta+ab\,r\sin^2\theta=ab\,r(\cos^2\theta+\sin^2\theta)=ab\,r$, positivo per $r\gt 0$.</span>
+                <span class="esempio__passo">L'area è $\iint 1\,dx\,dy$, e $dx\,dy$ diventa $|J|\,dr\,d\theta=ab\,r\,dr\,d\theta$: $\displaystyle\text{area}=\int_0^{2\pi}\!\!\int_0^1 ab\,r\,dr\,d\theta$. Interno: la costante $ab$ esce e $\int_0^1 r\,dr=\Big[\frac{r^2}{2}\Big]_0^1=\frac12$, quindi resta $\frac{ab}{2}$. Esterno: $\frac{ab}{2}$ è costante rispetto a $\theta$, quindi si moltiplica per $2\pi$: $\frac{ab}{2}\cdot2\pi=\pi ab$.</span>
+              </p>
+              <p><strong>Area $=\pi ab$. ∎</strong> Controllo: con $a=b=R$ si ritrova $\pi R^2$, l'area del cerchio. ✓</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $D$ la regione del piano delimitata dalle curve $y=x$ e $y=x^2$. (a) Descrivi $D$ come dominio normale nei due modi; (b) calcolane l'area; (c) calcola $\displaystyle\iint_D x\,dA$; (d) deduci il valor medio di $f(x,y)=x$ su $D$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) Intersezioni in $x=0$ e $x=1$; su $[0,1]$ la parabola sta sotto. Normale rispetto a $x$: $D=\{0\leq x\leq1,\ x^2\leq y\leq x\}$. Normale rispetto a $y$: da $y=x^2$ si ricava $x=\sqrt y$ (radice positiva), quindi $D=\{0\leq y\leq1,\ y\leq x\leq\sqrt y\}$.</span>
+                <span class="esempio__passo">(b) $\displaystyle\text{area}=\iint_D 1\,dA=\int_0^1\!\!\int_{x^2}^{x}1\,dy\,dx$; l'integrale interno è la lunghezza della striscia, $\big[y\big]_{x^2}^{x}=x-x^2$. Quindi $\displaystyle\text{area}=\int_0^1(x-x^2)\,dx=\Big[\frac{x^2}{2}-\frac{x^3}{3}\Big]_0^1=\frac12-\frac13=\frac16$.</span>
+                <span class="esempio__passo">(c) $\displaystyle\iint_D x\,dA=\int_0^1\!\!\int_{x^2}^{x}x\,dy\,dx$. Nell'integrale interno $x$ è una costante rispetto a $y$, quindi esce: $\int_{x^2}^{x}x\,dy=x\big[y\big]_{x^2}^{x}=x\,(x-x^2)$, cioè la costante moltiplicata per la lunghezza della striscia. Svolgo il prodotto: $x\cdot x-x\cdot x^2=x^2-x^3$. Poi l'esterno: $\displaystyle\int_0^1(x^2-x^3)\,dx=\Big[\frac{x^3}{3}-\frac{x^4}{4}\Big]_0^1=\frac13-\frac14=\frac{4-3}{12}=\frac1{12}$.</span>
+                <span class="esempio__passo">(d) $\displaystyle\bar f=\frac{1}{\text{area}(D)}\iint_D x\,dA=\frac{1/12}{1/6}=\frac12$.</span>
+              </p>
+              <p><strong>(b) area $=\frac16$; &nbsp; (c) $\iint_D x\,dA=\frac1{12}$; &nbsp; (d) $\bar x=\frac12$.</strong> Il valor medio $\frac12$ è il centro dell'intervallo $[0,1]$: coerente, perché la regione è "simmetrica in larghezza" rispetto a $x=\frac12$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Calcola il volume del solido delimitato inferiormente dal disco $x^2+y^2\leq 1$ del piano $z=0$ e superiormente dalla semisfera $z=\sqrt{1-x^2-y^2}$. Confronta il risultato con la formula del volume della sfera.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\displaystyle V=\iint_{x^2+y^2\leq1}\sqrt{1-x^2-y^2}\,dA$. Dominio rotondo e integranda con $x^2+y^2$: polari.</span>
+                <span class="esempio__passo"><strong>Sostituisco $x=r\cos\theta$ e $y=r\sin\theta$</strong>: allora $x^2+y^2=r^2$, quindi la condizione $x^2+y^2\leq1$ diventa $0\leq r\leq 1$ e il giro completo dà $0\leq\theta\leq2\pi$; l'integranda $\sqrt{1-x^2-y^2}$ diventa $\sqrt{1-r^2}$; l'elemento d'area $dx\,dy$ diventa $r\,dr\,d\theta$.</span>
+                <span class="esempio__passo">$\displaystyle V=\int_0^{2\pi}\!\!\int_0^1 \sqrt{1-r^2}\ r\,dr\,d\theta$. Per l'integrale interno pongo $u=1-r^2$ (il blocco sotto radice), quindi $du=-2r\,dr$, cioè $r\,dr=-\frac{du}{2}$. Gli estremi si invertono: $r=0\Rightarrow u=1$ e $r=1\Rightarrow u=0$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^1 r\sqrt{1-r^2}\,dr=-\frac12\int_1^0\sqrt u\,du=+\frac12\int_0^1\sqrt u\,du$ (scambiando gli estremi l'integrale cambia segno, e il segno meno sparisce). Poi $\displaystyle\int_0^1\sqrt u\,du=\Big[\frac23u^{3/2}\Big]_0^1=\frac23$, quindi il tutto vale $\frac12\cdot\frac23=\frac13$.</span>
+                <span class="esempio__passo">Integrale esterno: $\frac13$ non dipende da $\theta$, quindi si moltiplica per l'ampiezza $2\pi$: $\displaystyle V=2\pi\cdot\frac13=\frac{2\pi}{3}$.</span>
+              </p>
+              <p><strong>$V=\dfrac{2\pi}{3}$.</strong> Verifica: la sfera di raggio $1$ ha volume $\frac43\pi$, e la semisfera è esattamente la metà, $\frac23\pi$. ✓ Nota ancora una volta che è il fattore $r$ a rendere immediata la sostituzione.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Un compagno calcola l'area del disco unitario così: $\displaystyle\iint_D dA=\int_0^{2\pi}\!\!\int_0^1 dr\,d\theta=2\pi$. Individua l'errore, correggilo e spiega perché il risultato sbagliato era riconoscibile a occhio.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Riconoscimento immediato: l'area del disco unitario è $\pi r^2=\pi$, mentre $2\pi$ è la sua <em>circonferenza</em>. Un'area che coincide con un perimetro è un campanello d'allarme dimensionale.</span>
+                <span class="esempio__passo">L'errore è la mancanza del jacobiano: passando in polari, $dx\,dy$ non diventa $dr\,d\theta$ ma $r\,dr\,d\theta$.</span>
+                <span class="esempio__passo">Calcolo corretto: $\displaystyle\int_0^{2\pi}\!\!\int_0^1 r\,dr\,d\theta=2\pi\cdot\Big[\frac{r^2}{2}\Big]_0^1=2\pi\cdot\frac12=\pi$.</span>
+                <span class="esempio__passo">Perché la $r$ c'è: il pezzettino d'area polare è un settore di corona di lati $dr$ e $r\,d\theta$, dunque $dA=r\,dr\,d\theta$. Senza la $r$ si conterebbero i quadretti vicino al centro come se fossero grandi quanto quelli lontani.</span>
+              </p>
+              <p><strong>Il valore corretto è $\pi$; l'errore è la $r$ mancante nell'elemento d'area.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 8.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostra che $\displaystyle\int_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt{\pi}$, giustificando ogni passaggio. Deduci poi il valore di $\displaystyle\int_{0}^{+\infty}e^{-x^2}dx$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Chiamo $I=\int_{-\infty}^{+\infty}e^{-x^2}dx$. Converge perché per $|x|\geq1$ si ha $e^{-x^2}\leq e^{-|x|}$, il cui integrale è finito; e $I\gt 0$ perché l'integranda è positiva.</span>
+                <span class="esempio__passo">Elevo al quadrato usando due nomi diversi per la variabile muta: $\displaystyle I^2=\left(\int_{\mathbb{R}}e^{-x^2}dx\right)\left(\int_{\mathbb{R}}e^{-y^2}dy\right)=\iint_{\mathbb{R}^2}e^{-(x^2+y^2)}dx\,dy$ (variabili separate su un "rettangolo" che è tutto il piano).</span>
+                <span class="esempio__passo">Passo in polari sul disco $D_R$: $\displaystyle\iint_{D_R}e^{-(x^2+y^2)}dA=\int_0^{2\pi}\!\!\int_0^R e^{-r^2}\,r\,dr\,d\theta$. Il fattore $r$ del jacobiano rende l'integranda integrabile elementarmente.</span>
+                <span class="esempio__passo">Calcolo l'integrale interno con la sostituzione $u=r^2$, da cui $du=2r\,dr$ e $r\,dr=\frac{du}{2}$ (estremi: $r=0\Rightarrow u=0$, $r=R\Rightarrow u=R^2$): $\displaystyle\int_0^R r\,e^{-r^2}dr=\frac12\int_0^{R^2}e^{-u}du=\frac12\Big[-e^{-u}\Big]_0^{R^2}=\frac12\left(1-e^{-R^2}\right)$. Poi l'integrale esterno moltiplica questa costante per $2\pi$, quindi il doppio vale $2\pi\cdot\frac12\left(1-e^{-R^2}\right)=\pi\left(1-e^{-R^2}\right)$.</span>
+                <span class="esempio__passo">Per $R\to+\infty$ i dischi invadono il piano e $e^{-R^2}\to0$: $I^2=\pi$, e poiché $I\gt0$ si ha $I=\sqrt\pi$.</span>
+                <span class="esempio__passo">Infine $e^{-x^2}$ è pari, quindi $\displaystyle\int_0^{+\infty}e^{-x^2}dx=\frac{I}{2}=\frac{\sqrt\pi}{2}$.</span>
+              </p>
+              <p><strong>$\displaystyle\int_{-\infty}^{+\infty}e^{-x^2}dx=\sqrt{\pi}$ &nbsp; e &nbsp; $\displaystyle\int_{0}^{+\infty}e^{-x^2}dx=\frac{\sqrt{\pi}}{2}$.</strong> Un integrale impossibile in una variabile, risolto salendo in due dimensioni.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Se $f(x,y)\geq 0$ su $D$, l'integrale doppio $\displaystyle\iint_D f\,dA$ rappresenta:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">l'area della regione $D$</button>
+              <button class="quiz-option" data-correct="true">il volume del solido compreso fra $D$ e la superficie $z=f(x,y)$</button>
+              <button class="quiz-option" data-correct="false">la lunghezza del bordo di $D$</button>
+              <button class="quiz-option" data-correct="false">una famiglia di funzioni, definita a meno di una costante $+C$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>In Analisi 1 sommavi rettangolini e ottenevi un'area; qui sommi parallelepipedi $f\cdot\Delta A$ e ottieni un <strong>volume</strong>. L'area di $D$ si ottiene nel caso particolare $f\equiv 1$. Ed è un numero: nessun "$+C$".</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Passando in coordinate polari, l'elemento d'area $dx\,dy$ diventa:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$dr\,d\theta$</button>
+              <button class="quiz-option" data-correct="true">$r\,dr\,d\theta$</button>
+              <button class="quiz-option" data-correct="false">$r^2\,dr\,d\theta$</button>
+              <button class="quiz-option" data-correct="false">$\frac{1}{r}\,dr\,d\theta$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$dA=r\,dr\,d\theta$, perché il pezzettino polare è un settore di corona di lati $dr$ e $r\,d\theta$ (l'arco è raggio per angolo). La $r$ è il modulo del determinante jacobiano.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Se $D=\{a\leq x\leq b,\ g_1(x)\leq y\leq g_2(x)\}$ è normale rispetto all'asse $x$, la formula di riduzione corretta è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">$\displaystyle\int_a^b\!\!\left(\int_{g_1(x)}^{g_2(x)} f(x,y)\,dy\right)dx$</button>
+              <button class="quiz-option" data-correct="false">$\displaystyle\int_{g_1(x)}^{g_2(x)}\!\!\left(\int_a^b f(x,y)\,dy\right)dx$</button>
+              <button class="quiz-option" data-correct="false">$\displaystyle\int_a^b\!\!\left(\int_{g_1(x)}^{g_2(x)} f(x,y)\,dx\right)dy$</button>
+              <button class="quiz-option" data-correct="false">$\displaystyle\left(\int_a^b f\,dx\right)\left(\int_{g_1}^{g_2} f\,dy\right)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Si integra <strong>prima in $y$</strong> (fra le due curve, estremi che dipendono da $x$) e poi in $x$ fra i due <strong>numeri</strong> $a$ e $b$. Gli estremi dell'integrale esterno sono sempre costanti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Quanto vale $\displaystyle\iint_D 1\,dA$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$1$, qualunque sia $D$</button>
+              <button class="quiz-option" data-correct="true">l'area di $D$</button>
+              <button class="quiz-option" data-correct="false">il perimetro di $D$</button>
+              <button class="quiz-option" data-correct="false">$0$, perché la funzione è costante</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Con $f\equiv1$ il solido è un cilindro di base $D$ e altezza $1$: il suo volume è numericamente uguale all'<strong>area di $D$</strong>. È il modo standard per calcolare aree con gli integrali doppi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se $f$ è continua su un rettangolo $R=[a,b]\times[c,d]$, si può scambiare l'ordine di integrazione lasciando invariati gli estremi.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, ed è l'unico caso in cui accade: su un <strong>rettangolo</strong> gli estremi sono costanti in entrambe le direzioni, quindi il teorema di Fubini permette di invertire senza toccarli.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Su un dominio normale qualsiasi si può scambiare l'ordine di integrazione lasciando gli estremi come sono.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, ed è un errore gravissimo. Lo scambio richiede di <strong>ridisegnare il dominio</strong> e rileggerne gli estremi nell'altra direzione: per esempio $\int_0^1\!\int_{x^2}^{x}(\cdots)dy\,dx$ diventa $\int_0^1\!\int_{y}^{\sqrt y}(\cdots)dx\,dy$, con estremi diversi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Gli estremi dell'integrale esterno possono dipendere dalla variabile dell'integrale interno.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: gli estremi <strong>esterni sono sempre numeri</strong>. Se contenessero la variabile interna il risultato non sarebbe un numero ma una funzione — e l'integrale doppio è un numero. Solo gli estremi <em>interni</em> possono dipendere dalla variabile esterna.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Ogni funzione continua su un insieme chiuso, limitato e misurabile $D$ è integrabile su $D$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il teorema di integrabilità delle funzioni continue, l'analogo bidimensionale di quello di Analisi 1. La misurabilità (bordo di area nulla) è la condizione in più che nasce dal prolungamento con zero fuori da $D$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="jacobiano|determinante jacobiano|lo jacobiano">
+            <p class="quiz-question__testo">9. (Completamento) Nel cambio di variabili $\iint_D f\,dx\,dy=\iint_{D'} f\cdot|\det J|\,du\,dv$, il fattore correttivo $|\det J|$ si chiama modulo del determinante ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il determinante <strong>jacobiano</strong>: misura di quanto la trasformazione dilata o comprime le aree, punto per punto. In coordinate polari vale $r$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="normale|semplice|normale rispetto a x">
+            <p class="quiz-question__testo">10. (Completamento) Un dominio descritto da $a\leq x\leq b$ e $g_1(x)\leq y\leq g_2(x)$ si dice dominio ______ rispetto all'asse $x$.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si chiama dominio <strong>normale</strong> (o <em>semplice</em>) rispetto a $x$: ogni retta verticale lo taglia in un solo segmento, e si integra prima in $y$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="fubini|di fubini|riduzione">
+            <p class="quiz-question__testo">11. (Completamento) Il teorema che permette di ridurre un integrale doppio a due integrazioni semplici successive si chiama teorema di ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È il teorema di <strong>Fubini</strong>, o teorema di riduzione. La sua idea è il principio di Cavalieri: l'integrale interno calcola l'area di una fetta, quello esterno somma le fette.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché, passando in coordinate polari, compare il fattore $r$ e non basta scrivere $dr\,d\theta$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: in coordinate cartesiane la griglia è fatta di rettangolini tutti uguali, di lati $dx$ e $dy$, quindi l'elemento d'area è $dx\,dy$. In coordinate polari la griglia è invece fatta di settori di corona circolare, che <strong>non</strong> sono tutti uguali: sono minuscoli vicino all'origine e larghi lontano. Un singolo pezzettino, compreso fra i raggi $r$ e $r+dr$ e fra gli angoli $\theta$ e $\theta+d\theta$, ha due lati: quello radiale, lungo $dr$, e quello circolare, che è un arco di lunghezza <em>raggio per angolo</em>, cioè $r\,d\theta$ (non $d\theta$). Moltiplicando i due lati si ottiene $dA=r\,dr\,d\theta$. Lo si può verificare esattamente: l'area del settore di corona è $\frac{\Delta\theta}{2}\big[(r+\Delta r)^2-r^2\big]=\left(r+\frac{\Delta r}{2}\right)\Delta r\,\Delta\theta$, che al tendere di $\Delta r$ a zero diventa $r\,dr\,d\theta$. Lo stesso numero si ottiene calcolando il determinante jacobiano della trasformazione, che vale $r$. Dimenticare la $r$ significa contare i quadretti vicino al centro come se fossero grandi quanto quelli lontani: per esempio l'area del disco unitario verrebbe $2\pi$ invece di $\pi$.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché per calcolare $\displaystyle\int_0^1\!\!\left(\int_x^1 e^{y^2}\,dy\right)dx$ è indispensabile scambiare l'ordine di integrazione? Descrivi il procedimento e il risultato.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: con questo ordine l'integrale interno è $\int_x^1 e^{y^2}dy$, ma la funzione $e^{y^2}$ <strong>non ha primitiva elementare</strong> — è un fatto dimostrato, non un limite delle nostre tecniche — quindi il calcolo si blocca alla prima riga. Bisogna invertire l'ordine, e per farlo si ricostruisce il dominio dagli estremi: $0\leq x\leq1$ e $x\leq y\leq1$, cioè il triangolo di vertici $(0,0)$, $(0,1)$, $(1,1)$, la parte del quadrato unitario sopra la diagonale $y=x$. Lo si rilegge a strisce orizzontali: $y$ varia fra i numeri $0$ e $1$, e per ogni $y$ fissato la striscia entra da $x=0$ ed esce da $x=y$. L'integrale diventa $\int_0^1\!\left(\int_0^y e^{y^2}dx\right)dy$. Ora $e^{y^2}$ è costante rispetto a $x$, quindi l'integrale interno vale $y\,e^{y^2}$: lo scambio ha fatto comparire il fattore $y$, che è la lunghezza della striscia. E $y\,e^{y^2}$ la primitiva ce l'ha: con la sostituzione $u=y^2$ si ottiene $\int_0^1 y e^{y^2}dy=\frac12\big[e^{y^2}\big]_0^1=\frac{e-1}{2}$. Il punto generale da ricordare: quando l'integrale interno contiene una funzione senza primitiva elementare, non si insiste — si ridisegna il dominio e si scambia.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="07-curve-superfici.html"><span class="dir">← Capitolo precedente</span><strong>Curve e superfici</strong></a>
+        <a class="next" href="09-integrali-tripli-cambi-variabile.html"><span class="dir">Capitolo successivo →</span><strong>Integrali tripli e cambi di variabile</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

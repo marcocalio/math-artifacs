@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>11. Integrali di superficie e campi vettoriali — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 11</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html" class="is-active">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 11 di 14</span>
+        </div>
+        <h1>Integrali di superficie e campi vettoriali</h1>
+        <p class="subtitle">Nel Capitolo 10 abbiamo integrato lungo un filo; ora integriamo su un telo. Impareremo a misurare l'area di una superficie curva, a pesare una lamina di densità variabile e — soprattutto — a calcolare il <strong>flusso</strong>: quanta roba attraversa una superficie al secondo. Poi conosceremo i tre operatori che descrivono un campo vettoriale punto per punto: la <strong>divergenza</strong> (quanto un punto è rubinetto o scarico), il <strong>rotore</strong> (quanto fa girare una girandola) e il <strong>laplaciano</strong> (quanto un punto si discosta dalla media dei suoi vicini). È il vocabolario con cui è scritta tutta la fisica moderna.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~65 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve prima</div>
+          <p>Quattro ingredienti, spiegati in parole poverissime. Una immagine mentale ciascuno. Se li hai in testa, il resto del capitolo scivola liscio.</p>
+          <p><strong>1) Una <a href="07-curve-superfici.html">superficie parametrica</a> è un foglio elastico appoggiato nello spazio.</strong> Due manopole, $u$ e $v$. Le giri e ti sposti sul foglio. La formula $\mathbf{r}(u,v)$ ti dice dove finisci.<br><em>Immagine: la carta geografica.</em> Latitudine e longitudine sono le due manopole; il punto sulla Terra è il risultato.<br>E il <strong>vettore normale</strong>? Sul foglio ci sono due frecce che scivolano lungo le due direzioni delle manopole: $\mathbf{r}_u$ e $\mathbf{r}_v$. Il vettore $\mathbf{N}=\mathbf{r}_u\times\mathbf{r}_v$ è <em>lo spillo piantato perpendicolare al foglio</em>. Diviso per la sua lunghezza diventa il <span class="glossario-term" data-term="versore-normale">versore normale</span> $\mathbf{n}$, lungo esattamente $1$.</p>
+          <p><strong>2) Un <a href="08-integrali-doppi.html">integrale doppio</a> è una somma di tantissime colonnine.</strong> Tagli una regione piatta in quadratini minuscoli, su ognuno misuri qualcosa, sommi tutto.<br><em>Immagine: la torta a fette quadrate.</em> Ogni fettina contribuisce un pochino, il totale è l'integrale.</p>
+          <p><strong>3) Un <a href="10-integrali-curvilinei.html">campo vettoriale</a> è una freccia appiccicata in ogni punto.</strong> Non un numero per punto (quello è un campo scalare, come la temperatura): una <em>freccia</em>, con direzione e lunghezza.<br><em>Immagine: il fiume.</em> In ogni punto dell'acqua c'è una freccia che dice dove va la corrente e quanto è veloce. Si scrive $\mathbf{F}(x,y,z)=\big(F_1,\,F_2,\,F_3\big)$.</p>
+          <p><strong>4) Prodotto scalare e prodotto vettoriale: due frecce, due prodotti diversi.</strong><br>Il <strong>prodotto scalare</strong> $\mathbf{a}\cdot\mathbf{b}$ dà un <em>numero</em> e misura <em>quanto le due frecce sono d'accordo</em>. Massimo se sono parallele, <strong>zero se sono perpendicolari</strong>, negativo se puntano in versi opposti.<br><em>Immagine: l'ombra.</em> È la lunghezza dell'ombra di $\mathbf{a}$ proiettata su $\mathbf{b}$, moltiplicata per la lunghezza di $\mathbf{b}$.<br>Il <strong>prodotto vettoriale</strong> $\mathbf{a}\times\mathbf{b}$ dà una <em>freccia nuova</em>, perpendicolare a entrambe, e lunga quanto l'<strong>area del parallelogramma</strong> costruito su di esse.<br><em>Immagine: due matite sul tavolo.</em> La terza matita si alza in verticale; se le prime due sono parallele, il parallelogramma è schiacciato e la terza matita ha lunghezza zero.</p>
+        </div>
+
+        <p>Bene. Ora l'idea del capitolo, in una frase: <strong>finora abbiamo integrato su regioni piatte e su fili; adesso integriamo su teli curvi</strong>.</p>
+        <p>Partiamo da una domanda concreta. Hai una cupola di rame, curva, e vuoi sapere <strong>quanti metri quadrati di lamiera</strong> servono per rivestirla. Non è un rettangolo, non è un cerchio: è una forma storta nello spazio. Come si misura?</p>
+        <p>La risposta ha lo stesso sapore di tutte le risposte dell'Analisi: <strong>se non so misurare il pezzo grande, lo taglio in pezzettini così piccoli da sembrare piatti</strong>. Un pezzettino minuscolo di superficie curva, visto da vicinissimo, è indistinguibile da un pezzo di piano — anzi, da un <strong>parallelogrammino</strong>, un po' sghembo, appoggiato nello spazio. E l'area di un parallelogramma la sappiamo calcolare: è il modulo del prodotto vettoriale dei suoi due lati. Sommando (cioè integrando) tutti i parallelogrammini, otteniamo l'area totale.</p>
+        <p>Quel pezzettino di area si chiama <strong>elemento d'area</strong> e si scrive $dS$. È il protagonista assoluto del capitolo:</p>
+        <div class="formula-block">$$dS=\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$$</div>
+        <p>Una volta che sappiamo misurare i pezzettini, possiamo anche <strong>pesarli</strong>. Se la cupola non è omogenea — in certe zone la lamiera è più spessa — a ogni punto è associata una densità $f$, e la massa totale è la somma di "densità $\times$ areola": è l'<span class="glossario-term" data-term="integrale-di-superficie">integrale di superficie</span> di una funzione scalare.</p>
+        <p>Poi arriva il salto concettuale vero, quello che dà il nome alla seconda metà del capitolo. Immagina di immergere una <strong>rete da pesca</strong> in un fiume. L'acqua scorre, la rete è lì, ferma. Domanda: <strong>quanti litri al secondo passano attraverso la rete?</strong> Questa quantità si chiama <span class="glossario-term" data-term="flusso">flusso</span>, e per calcolarla serve mettere insieme due cose che ora conosciamo entrambe: il <span class="glossario-term" data-term="campo-vettoriale">campo vettoriale</span> della corrente e l'elemento d'area della rete. La formula sarà</p>
+        <div class="formula-block">$$\Phi=\iint_\Sigma \mathbf{F}\cdot\mathbf{n}\,dS$$</div>
+        <p>e quel prodotto scalare $\mathbf{F}\cdot\mathbf{n}$ è la traduzione matematica di una frase di buon senso: <strong>conta solo la parte di corrente che attraversa davvero la rete</strong>, non quella che le scivola accanto parallelamente.</p>
+        <p>Infine, nell'ultima parte, faremo una cosa diversa: invece di guardare un campo vettoriale "in grande" (quanto ne attraversa una superficie), lo guarderemo <strong>punto per punto</strong>, con tre strumenti di misura. La <span class="glossario-term" data-term="divergenza">divergenza</span> chiede: <em>qui sta nascendo o sparendo roba?</em> Il <span class="glossario-term" data-term="rotore">rotore</span> chiede: <em>qui il fluido gira?</em> Il <span class="glossario-term" data-term="laplaciano">laplaciano</span> chiede: <em>qui il valore è più alto o più basso della media dei vicini?</em> Tre domande semplicissime, tre operatori che useremo per sempre.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché quasi tutte le leggi della fisica sono <strong>leggi di bilancio su una superficie</strong>. Quanta acqua entra in un serbatoio? Quanto calore esce dalle pareti di una casa? Quanta carica elettrica è racchiusa dentro una scatola? In ognuno di questi casi la domanda non riguarda un punto, e nemmeno una linea: riguarda <strong>ciò che attraversa un confine</strong>. E il confine di una regione dello spazio è una superficie. Senza integrali di superficie non si può nemmeno <em>scrivere</em> la legge di Gauss, l'equazione di continuità o il bilancio termico di un edificio.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema del <em>bilancio</em>. Prendi una regione dello spazio con il suo bordo. Tutto quello che succede dentro (la roba che si accumula, si crea, si distrugge) deve fare i conti con quello che passa dal bordo. Il flusso è la contabilità di questo scambio: positivo se esce, negativo se entra. Gli operatori differenziali sono la stessa contabilità ridotta a un punto solo — e nel <a href="12-teoremi-green-gauss-stokes.html">Capitolo 12</a> scopriremo che le due descrizioni, quella "in grande" (flusso attraverso il bordo) e quella "in piccolo" (divergenza punto per punto), sono la stessa cosa: è il teorema della divergenza.</p>
+        <p><strong>Perché è importante ora?</strong> Perché questo capitolo è la cerniera fra tutto quello che hai imparato e i grandi teoremi che stanno per arrivare. Gli <a href="08-integrali-doppi.html">integrali doppi</a> ti hanno dato la tecnica di calcolo; le <a href="07-curve-superfici.html">superfici parametriche</a> ti hanno dato l'oggetto geometrico; gli <a href="10-integrali-curvilinei.html">integrali curvilinei</a> ti hanno dato l'idea di integrare un campo vettoriale lungo qualcosa. Qui i tre filoni si fondono. E le tre parole che imparerai — divergenza, rotore, laplaciano — sono esattamente le tre che compaiono nei teoremi di Gauss e di Stokes, nelle equazioni di Maxwell, nell'equazione del calore, nell'equazione delle onde e in quella di Navier–Stokes. Impararle bene adesso significa non doverle più reimparare mai.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌊</span> La portata di un fiume (e del tubo di casa tua)</div>
+          <p>Un idrologo deve sapere quanti metri cubi al secondo scorrono in un fiume. Non può misurare "la velocità del fiume" come se fosse un numero solo: al centro la corrente è veloce, vicino alle rive è quasi ferma, sul fondo l'attrito la rallenta. La velocità è un <strong>campo vettoriale</strong> $\mathbf{v}$, diverso in ogni punto.</p>
+          <p>Allora si fa così: si sceglie una <strong>sezione trasversale</strong> del fiume — una superficie $\Sigma$ che taglia la corrente — e si somma, su tutta la sezione, il contributo di ogni areola: quanta acqua ci passa attraverso al secondo. Quel contributo è $\mathbf{v}\cdot\mathbf{n}\,dS$, cioè "componente della velocità perpendicolare alla sezione, moltiplicata per l'areola". Il totale</p>
+          <div class="formula-block">$$Q=\iint_\Sigma \mathbf{v}\cdot\mathbf{n}\,dS \qquad\left[\frac{\text{m}^3}{\text{s}}\right]$$</div>
+          <p>è la <strong>portata</strong>. È la stessa identica formula che un ingegnere usa per dimensionare il tubo dell'acqua di casa, la canna fumaria di una caldaia o il condotto di ventilazione di un capannone. Ed è il motivo per cui, se strozzi un tubo, l'acqua accelera: la portata deve restare la stessa, quindi se l'area si dimezza la velocità deve raddoppiare.</p>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">⚡</span> La legge di Gauss: contare le cariche senza guardarci dentro</div>
+          <p>Chiudi una carica elettrica dentro una superficie qualunque: una sfera, un cubo, un sacchetto di forma bizzarra. Calcola il flusso del campo elettrico $\mathbf{E}$ attraverso quella superficie chiusa, con la normale che punta verso l'esterno. Il risultato, sorprendente, è che <strong>non dipende né dalla forma della superficie né da dove sta la carica dentro</strong>: dipende solo da <em>quanta</em> carica c'è racchiusa.</p>
+          <div class="formula-block">$$\oiint_{\Sigma}\mathbf{E}\cdot\mathbf{n}\,dS=\frac{Q_{\text{int}}}{\varepsilon_0}$$</div>
+          <p>Questa è la <strong>legge di Gauss</strong>, la prima delle equazioni di Maxwell. Il suo contenuto intuitivo è bellissimo: le linee di campo partono dalle cariche positive e finiscono su quelle negative, e contare quante linee bucano il sacchetto equivale a contare le cariche che ci sono dentro. È esattamente il principio della gabbia di Faraday e del funzionamento dei condensatori. Nell'<a href="#esercizi">Esercizio 11.15</a> lo verificherai con le tue mani su una sfera.</p>
+        </div>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌀</span> Vorticità: perché il meteorologo guarda il rotore</div>
+          <p>Apri una mappa meteo e vedrai i cicloni: enormi masse d'aria che ruotano. La grandezza che i modelli numerici calcolano per prevederli si chiama <strong>vorticità</strong>, ed è proprio il <span class="glossario-term" data-term="rotore">rotore</span> del campo di velocità del vento, $\boldsymbol{\omega}=\operatorname{rot}\mathbf{v}$.</p>
+          <p>L'immagine è letteralmente questa: immagina di lasciar cadere una minuscola <strong>girandola</strong> nel vento, tenendola ferma in un punto. Se il vento è uniforme, la girandola viene spinta via ma non gira. Se invece da un lato l'aria è più veloce che dall'altro, la girandola comincia a ruotare: c'è rotore. La direzione del vettore $\operatorname{rot}\mathbf{v}$ è l'asse attorno a cui gira, il suo modulo dice quanto forte. Un ciclone è una regione con vorticità grande; un anticiclone ha vorticità di segno opposto. Lo stesso conto, in scala ridotta, spiega il vortice che si forma sopra lo scarico della vasca da bagno e le turbolenze dietro l'ala di un aereo.</p>
+        </div>
+
+        <p>E il <strong>laplaciano</strong>? Compare ogni volta che qualcosa si <em>livella</em>. Prendi una piastra di metallo scaldata in un punto: il calore si diffonde, le zone calde si raffreddano, quelle fredde si scaldano, finché la temperatura diventa uniforme. La legge che governa il processo è l'<strong>equazione del calore</strong>,</p>
+        <div class="formula-block">$$\frac{\partial u}{\partial t}=k\,\Delta u$$</div>
+        <p>dove $u(x,y,z,t)$ è la temperatura. Letta in italiano dice: <em>la temperatura di un punto cresce se quel punto è più freddo della media dei suoi vicini, e cala se è più caldo</em>. Perché è proprio questo che misura $\Delta u$. La stessa equazione, con nomi diversi, descrive la diffusione di un inquinante nell'aria, la propagazione di un profumo in una stanza, persino il prezzo di un'opzione finanziaria (modello di Black–Scholes). Quando poi $\Delta u=0$, il sistema ha smesso di cambiare: è l'<strong>equilibrio</strong>, e le funzioni che lo descrivono si chiamano <em>armoniche</em>. Ne parleremo fra poco.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-elemento-area">4.1 L'elemento d'area: il parallelogrammino sghembo</h3>
+        <p>Riprendiamo con calma l'idea anticipata nell'introduzione, perché tutto il capitolo poggia su di essa.</p>
+        <p>Sia $\Sigma$ una <span class="glossario-term" data-term="superficie-parametrica">superficie parametrica</span> regolare, descritta da</p>
+        <div class="formula-block">$$\mathbf{r}:D\subseteq\mathbb{R}^2\longrightarrow\mathbb{R}^3,\qquad \mathbf{r}(u,v)=\big(x(u,v),\,y(u,v),\,z(u,v)\big)$$</div>
+        <p>Nel dominio dei parametri prendi un rettangolino microscopico di lati $du$ e $dv$: la sua area è, banalmente, $du\,dv$. Ma quel rettangolino, una volta "appoggiato" sulla superficie dalla mappa $\mathbf{r}$, si deforma. Diventa un pezzetto di superficie curva talmente piccolo da essere, con ottima approssimazione, <strong>piatto</strong>: un parallelogramma sghembo nello spazio.</p>
+        <p>Quali sono i suoi due lati? Se dal punto $\mathbf{r}(u,v)$ ti sposti di un pochino $du$ nella direzione del primo parametro, ti muovi (al primo ordine) del vettore $\mathbf{r}_u\,du$; se ti sposti di $dv$ nella direzione del secondo, ti muovi di $\mathbf{r}_v\,dv$. Ecco i due lati. E l'area di un parallelogramma costruito su due vettori è il <strong>modulo del loro prodotto vettoriale</strong>:</p>
+        <div class="formula-block">$$dS=\big|\,\mathbf{r}_u\,du\times\mathbf{r}_v\,dv\,\big|=\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$$</div>
+
+        <svg viewBox="0 0 500 210" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Un rettangolino du per dv nel dominio dei parametri diventa un parallelogrammino appoggiato sulla superficie">
+          <text x="36" y="42" font-size="12" fill="var(--color-text-muted)">dominio dei parametri</text>
+          <rect x="46" y="62" width="76" height="58" fill="var(--color-primary)" opacity="0.22" stroke="var(--color-primary)" stroke-width="1.6"/>
+          <text x="74" y="140" font-size="13" font-style="italic" fill="currentColor">du</text>
+          <text x="22" y="96" font-size="13" font-style="italic" fill="currentColor">dv</text>
+          <line x1="160" y1="92" x2="228" y2="92" stroke="var(--color-text-muted)" stroke-width="2"/>
+          <polygon points="236,92 222,85 222,99" fill="var(--color-text-muted)"/>
+          <text x="185" y="82" font-size="14" font-style="italic" fill="var(--color-text-muted)">r</text>
+          <text x="300" y="42" font-size="12" fill="var(--color-text-muted)">sulla superficie</text>
+          <polygon points="300,112 392,84 436,124 344,152" fill="var(--color-accent)" opacity="0.32" stroke="var(--color-accent)" stroke-width="1.5"/>
+          <line x1="300" y1="112" x2="392" y2="84" stroke="var(--color-primary)" stroke-width="3"/>
+          <polygon points="398,82 384,77 388,90" fill="var(--color-primary)"/>
+          <line x1="300" y1="112" x2="344" y2="152" stroke="var(--color-secondary)" stroke-width="3"/>
+          <polygon points="349,157 334,152 343,141" fill="var(--color-secondary)"/>
+          <text x="396" y="76" font-size="12" font-weight="700" fill="var(--color-primary)">r_u du</text>
+          <text x="290" y="176" font-size="12" font-weight="700" fill="var(--color-secondary)">r_v dv</text>
+          <text x="360" y="112" font-size="13" font-weight="700" fill="currentColor">dS</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Il quadratino $du\,dv$ si deforma nel parallelogrammino di lati $\mathbf{r}_u\,du$ e $\mathbf{r}_v\,dv$: la sua area è $dS$.</p>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Area di una superficie parametrica.</em> Sia $\mathbf{r}:D\to\mathbb{R}^3$ di classe $C^1$ e regolare (cioè $\mathbf{r}_u\times\mathbf{r}_v\neq\mathbf{0}$ in $D$, salvo al più un insieme trascurabile). L'<strong>area</strong> di $\Sigma=\mathbf{r}(D)$ è</p>
+          <div class="formula-block">$$\operatorname{Area}(\Sigma)=\iint_D\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$$</div>
+        </div>
+        <p>Il fattore $\big|\mathbf{r}_u\times\mathbf{r}_v\big|$ ha un nome parlante: <strong>coefficiente di stiramento</strong>. Dice di quanto viene ingrandito (o rimpicciolito) un quadratino di foglio quando lo appoggi sulla forma curva. Se vale $1$, il foglio è stato posato senza deformarlo; se vale $5$, ogni quadratino è diventato cinque volte più grande. È l'esatto parente bidimensionale del $|\mathbf{r}'(t)|$ che nel <a href="10-integrali-curvilinei.html">Capitolo 10</a> stirava gli intervallini di tempo lungo una curva, ed è cugino stretto dello <a href="09-integrali-tripli-cambi-variabile.html">jacobiano</a> dei cambi di variabile.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il caso più usato di tutti: il grafico $z=f(x,y)$</div>
+          <p>Se la superficie è il grafico di una funzione, i parametri sono già lì: $x$ e $y$. Si scrive $\mathbf{r}(x,y)=\big(x,\,y,\,f(x,y)\big)$, da cui $\mathbf{r}_x=(1,0,f_x)$ e $\mathbf{r}_y=(0,1,f_y)$, e il prodotto vettoriale dà $\mathbf{N}=(-f_x,\,-f_y,\,1)$; il modulo di questo vettore è $\sqrt{(-f_x)^2+(-f_y)^2+1^2}=\sqrt{1+f_x^2+f_y^2}$. Tutti i conti, riga per riga, sono nella <a href="#dimostrazioni">prima dimostrazione della sezione 5</a>. Quindi</p>
+          <div class="formula-block">$$dS=\sqrt{1+f_x^2+f_y^2}\;dx\,dy$$</div>
+          <p>Leggila così: la radice è il <strong>fattore di inclinazione</strong>. Se la superficie è orizzontale ($f_x=f_y=0$) la radice vale $1$ e ritrovi l'integrale doppio piatto: nessuna deformazione. Più il piano tangente è ripido, più grande è la radice, perché un'ombra piccola sul pavimento corrisponde a un pezzo grande di superficie inclinata — pensa a un tetto spiovente: la sua area è sempre maggiore di quella della casa vista dall'alto.</p>
+        </div>
+
+        <p>Ecco gli elementi d'area che conviene <strong>sapere a memoria</strong>, perché tornano in ogni esercizio d'esame:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Superficie</th><th>Parametrizzazione</th><th>$\mathbf{r}_u\times\mathbf{r}_v$</th><th>Elemento d'area $dS$</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Grafico</strong> $z=f(x,y)$</td><td>$(x,\,y,\,f(x,y))$</td><td>$(-f_x,\,-f_y,\,1)$</td><td>$\sqrt{1+f_x^2+f_y^2}\,dx\,dy$</td></tr>
+            <tr><td><strong>Sfera</strong> di raggio $R$</td><td>$(R\sin\varphi\cos\theta,\ R\sin\varphi\sin\theta,\ R\cos\varphi)$</td><td>$R\sin\varphi\cdot\mathbf{r}$, uscente</td><td>$R^2\sin\varphi\,d\varphi\,d\theta$</td></tr>
+            <tr><td><strong>Cilindro</strong> di raggio $R$</td><td>$(R\cos\theta,\ R\sin\theta,\ z)$</td><td>$(R\cos\theta,\,R\sin\theta,\,0)$, uscente</td><td>$R\,d\theta\,dz$</td></tr>
+            <tr><td><strong>Cono</strong> $z=\sqrt{x^2+y^2}$</td><td>$(u\cos\theta,\ u\sin\theta,\ u)$</td><td>$(-u\cos\theta,\,-u\sin\theta,\,u)$</td><td>$\sqrt{2}\,u\,du\,d\theta$</td></tr>
+            <tr><td><strong>Piano</strong> $z=ax+by+c$</td><td>$(x,\,y,\,ax+by+c)$</td><td>$(-a,\,-b,\,1)$</td><td>$\sqrt{1+a^2+b^2}\,dx\,dy$</td></tr>
+          </tbody>
+        </table>
+        <p>Osserva la riga della sfera: $dS=R^2\sin\varphi\,d\varphi\,d\theta$ contiene quel $\sin\varphi$ che già conosci dalle <span class="glossario-term" data-term="coordinate-sferiche">coordinate sferiche</span>. Ha un senso geografico preciso: vicino ai poli ($\varphi\approx 0$ oppure $\varphi\approx\pi$) i meridiani si stringono e un "quadratino di mappa" corrisponde a pochissima superficie reale; all'equatore ($\varphi=\pi/2$) il fattore è massimo. È lo stesso motivo per cui la Groenlandia sembra enorme sulle carte geografiche.</p>
+
+        <h3 id="teoria-integrale-scalare">4.2 L'integrale di superficie di una funzione scalare</h3>
+        <p>Se sappiamo misurare le areole, sappiamo anche pesarle. Mettiamo su $\Sigma$ una funzione $f$ — una densità, una temperatura, una concentrazione — e sommiamo il contributo di ogni pezzettino.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="integrale-di-superficie">Integrale di superficie</span> di una funzione scalare.</em> Sia $\Sigma=\mathbf{r}(D)$ una superficie regolare e sia $f$ continua su $\Sigma$. Si pone</p>
+          <div class="formula-block">$$\iint_\Sigma f\,dS \;=\; \iint_D f\big(\mathbf{r}(u,v)\big)\,\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$$</div>
+          <p>Il membro di destra è un ordinario <span class="glossario-term" data-term="integrale-doppio">integrale doppio</span> sul dominio piatto $D$: ecco perché tutta la tecnica del <a href="08-integrali-doppi.html">Capitolo 8</a> si riusa tale e quale.</p>
+        </div>
+        <p>Tre osservazioni da fissare subito.</p>
+        <ul>
+          <li><strong>Se $f\equiv 1$ ritrovi l'area.</strong> Infatti $\iint_\Sigma 1\,dS=\iint_D|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv=\operatorname{Area}(\Sigma)$. È il test di coerenza più veloce che esista: quando non sai se hai impostato bene un integrale di superficie, prova a metterci $f=1$ e vedi se ottieni l'area.</li>
+          <li><strong>Il significato fisico principale è la massa.</strong> Se $\Sigma$ è una lamina curva sottilissima (una cupola, una vela, un guscio) e $f=\delta$ è la densità superficiale (massa per unità di area), allora $m=\iint_\Sigma \delta\,dS$ è la massa totale. Allo stesso modo si calcolano il baricentro ($\bar z=\frac{1}{m}\iint_\Sigma z\,\delta\,dS$, e analoghe) e i momenti d'inerzia.</li>
+          <li><strong>Il risultato non dipende dalla parametrizzazione.</strong> Puoi descrivere la stessa sfera con angoli diversi, o percorrerla "al contrario": l'integrale scalare resta identico. La ragione tecnica è che un cambio di parametri introduce uno jacobiano che si semplifica esattamente con quello del cambio di variabili nell'integrale doppio. La ragione intuitiva è ancora più semplice: <em>il peso di una lamina non dipende da come hai deciso di numerarne i punti</em>.</li>
+        </ul>
+        <p>Attenzione a questa terza proprietà, però: vale per gli integrali <strong>scalari</strong>. Per il flusso, che vedremo tra poco, la scelta del verso conta eccome — e cambia il segno del risultato.</p>
+
+        <h3 id="teoria-orientazione">4.3 Orientazione: da che parte guarda la superficie</h3>
+        <p>In ogni punto di una superficie regolare ci sono <strong>due</strong> versori normali, opposti fra loro: $\mathbf{n}$ e $-\mathbf{n}$. Uno "guarda" da una parte, l'altro dall'altra. Scegliere quale dei due usare, in modo continuo su tutta la superficie, significa <strong>orientare</strong> la superficie.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Superficie orientata.</em> Una superficie regolare $\Sigma$ si dice <strong>orientabile</strong> se è possibile scegliere un campo di versori normali $\mathbf{n}$ continuo su tutta $\Sigma$. La scelta effettuata si chiama <strong>orientazione</strong>. Data una parametrizzazione, l'orientazione naturale è</p>
+          <div class="formula-block">$$\mathbf{n}=\frac{\mathbf{r}_u\times\mathbf{r}_v}{\big|\mathbf{r}_u\times\mathbf{r}_v\big|}$$</div>
+          <p>e scambiando fra loro i due parametri ($u\leftrightarrow v$) si ottiene l'orientazione opposta, perché il prodotto vettoriale è anticommutativo: $\mathbf{r}_v\times\mathbf{r}_u=-\,\mathbf{r}_u\times\mathbf{r}_v$.</p>
+        </div>
+        <p>Due convenzioni universali, da rispettare sempre salvo indicazione contraria:</p>
+        <ul>
+          <li><strong>Superficie chiusa</strong> (la buccia di una regione solida: sfera, cubo, superficie di un cilindro tappato): si usa la <strong>normale uscente</strong>, cioè quella che punta verso l'esterno del solido. Il simbolo dell'integrale su una superficie chiusa è $\displaystyle\oiint_\Sigma$.</li>
+          <li><strong>Superficie che è grafico</strong> $z=f(x,y)$: si dice "orientata verso l'alto" quando la normale ha terza componente positiva, cioè $\mathbf{N}=(-f_x,-f_y,1)$; "verso il basso" nel caso opposto, $\mathbf{N}=(f_x,f_y,-1)$.</li>
+        </ul>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Il nastro di Möbius: una superficie con una faccia sola</div>
+          <p>Non tutte le superfici sono orientabili. Prendi una striscia di carta, dai mezzo giro a un'estremità e incolla i due capi: hai un <strong>nastro di Möbius</strong>. Appoggia lo spillo della normale in un punto e falla scivolare lungo tutto il nastro: quando torni al punto di partenza, lo spillo punta <em>dalla parte opposta</em>. Non esiste alcun modo continuo di decidere quale sia il "sopra" e quale il "sotto", perché il nastro ha una faccia sola (provalo con un pennarello: lo colori tutto senza mai staccare la punta). Su una superficie del genere <strong>il flusso non è definibile</strong>. Per fortuna tutte le superfici degli esercizi — sfere, cilindri, coni, grafici, tori — sono perfettamente orientabili.</p>
+        </div>
+
+        <h3 id="teoria-flusso">4.4 Il flusso di un campo vettoriale</h3>
+        <p>Eccoci al concetto centrale. Torniamo alla <strong>rete immersa nel fiume</strong> e costruiamo la formula pezzo per pezzo, con la sola forza del buon senso.</p>
+        <p>Prendi un'areola $dS$ della rete. Lì la corrente ha velocità $\mathbf{F}$. <strong>Quanta acqua passa attraverso quell'areola in un secondo?</strong> Se la corrente fosse perpendicolare alla rete, la risposta sarebbe facile: in un secondo attraversa il contenuto di un cilindretto di base $dS$ e altezza $|\mathbf{F}|$, cioè $|\mathbf{F}|\,dS$. Ma se la corrente arriva <strong>obliqua</strong>, solo una parte di essa attraversa davvero: la componente parallela alla rete scivola via lungo la maglia senza passare. E se la corrente è <strong>parallela</strong> alla rete, non passa proprio niente.</p>
+        <p>La quantità che serve è dunque la <strong>componente di $\mathbf{F}$ perpendicolare alla superficie</strong>, cioè lungo $\mathbf{n}$. E il prodotto scalare è precisamente lo strumento che estrae una componente: $\mathbf{F}\cdot\mathbf{n}=|\mathbf{F}|\cos\alpha$, dove $\alpha$ è l'angolo fra la corrente e lo spillo normale.</p>
+
+        <svg viewBox="0 0 480 240" style="max-width:530px;margin:1.4em auto;display:block;" role="img" aria-label="Una rete immersa in una corrente: solo la componente della velocità perpendicolare alla rete contribuisce al flusso">
+          <line x1="30" y1="60" x2="130" y2="60" stroke="var(--color-secondary)" stroke-width="2"/>
+          <polygon points="138,60 124,54 124,66" fill="var(--color-secondary)"/>
+          <line x1="30" y1="120" x2="130" y2="120" stroke="var(--color-secondary)" stroke-width="2"/>
+          <polygon points="138,120 124,114 124,126" fill="var(--color-secondary)"/>
+          <line x1="30" y1="180" x2="130" y2="180" stroke="var(--color-secondary)" stroke-width="2"/>
+          <polygon points="138,180 124,174 124,186" fill="var(--color-secondary)"/>
+          <text x="34" y="42" font-size="12" fill="var(--color-secondary)">corrente F</text>
+          <line x1="250" y1="26" x2="205" y2="214" stroke="var(--color-primary)" stroke-width="5" opacity="0.75"/>
+          <text x="196" y="232" font-size="12" font-weight="700" fill="var(--color-primary)">la rete (superficie)</text>
+          <line x1="228" y1="120" x2="318" y2="141" stroke="var(--color-danger)" stroke-width="3"/>
+          <polygon points="326,143 311,136 310,148" fill="var(--color-danger)"/>
+          <text x="330" y="146" font-size="13" font-weight="700" fill="var(--color-danger)">n</text>
+          <line x1="228" y1="120" x2="330" y2="120" stroke="var(--color-secondary)" stroke-width="2.6" stroke-dasharray="5 4"/>
+          <text x="336" y="118" font-size="13" font-weight="700" fill="var(--color-secondary)">F</text>
+          <path d="M 268 120 A 42 42 0 0 1 264 131" fill="none" stroke="currentColor" stroke-width="1.4"/>
+          <text x="272" y="136" font-size="12" font-style="italic" fill="currentColor">α</text>
+          <circle cx="228" cy="120" r="4.5" fill="currentColor"/>
+          <text x="330" y="186" font-size="12" fill="var(--color-text-muted)">passa solo la parte lungo n</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Il contributo dell'areola è $\mathbf{F}\cdot\mathbf{n}\,dS=|\mathbf{F}|\cos\alpha\,dS$: se $\mathbf{F}$ è parallelo alla rete ($\alpha=90^\circ$) non passa nulla.</p>
+
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="flusso">Flusso</span> di un campo vettoriale attraverso una superficie.</em> Sia $\Sigma$ una superficie regolare e orientata dal versore $\mathbf{n}$, e sia $\mathbf{F}$ un campo vettoriale continuo su $\Sigma$. Il <strong>flusso</strong> di $\mathbf{F}$ attraverso $\Sigma$ è</p>
+          <div class="formula-block">$$\Phi_\Sigma(\mathbf{F})=\iint_\Sigma \mathbf{F}\cdot\mathbf{n}\,dS$$</div>
+          <p>In coordinate, con la parametrizzazione $\mathbf{r}(u,v)$ che induce l'orientazione scelta:</p>
+          <div class="formula-block">$$\Phi_\Sigma(\mathbf{F})=\iint_D \mathbf{F}\big(\mathbf{r}(u,v)\big)\cdot\big(\mathbf{r}_u\times\mathbf{r}_v\big)\,du\,dv$$</div>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La semplificazione che ti salva ogni volta</div>
+          <p>Guarda cosa succede passando dalla prima alla seconda formula. Per definizione $\mathbf{n}=\dfrac{\mathbf{r}_u\times\mathbf{r}_v}{\big|\mathbf{r}_u\times\mathbf{r}_v\big|}$ e $dS=\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$. Moltiplicandoli, <strong>il modulo al denominatore si elide con quello dell'elemento d'area</strong>:</p>
+          <div class="formula-block">$$\mathbf{n}\,dS=\frac{\mathbf{r}_u\times\mathbf{r}_v}{\big|\mathbf{r}_u\times\mathbf{r}_v\big|}\cdot\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv=\big(\mathbf{r}_u\times\mathbf{r}_v\big)\,du\,dv$$</div>
+          <p>Morale operativa: <strong>nel flusso non devi mai normalizzare e non compaiono radici quadrate</strong>. Basta il prodotto vettoriale grezzo. Chi normalizza e poi rimoltiplica per il modulo fa il doppio della fatica, e spesso sbaglia.</p>
+        </div>
+        <p>Il <strong>segno</strong> del flusso porta un'informazione precisa, che va letta sempre:</p>
+        <ul>
+          <li>$\Phi\gt 0$: il campo attraversa la superficie prevalentemente <strong>nel verso di $\mathbf{n}$</strong>. Su una superficie chiusa con normale uscente significa che, nel complesso, <em>esce</em> più roba di quanta ne entra: dentro c'è una <strong>sorgente</strong>.</li>
+          <li>$\Phi\lt 0$: prevale il verso opposto a $\mathbf{n}$; su una superficie chiusa, dentro c'è un <strong>pozzo</strong>.</li>
+          <li>$\Phi=0$: entra tanta roba quanta ne esce (oppure il campo è ovunque tangente alla superficie e non la attraversa affatto).</li>
+        </ul>
+        <p>E quindi, prevedibilmente: <strong>cambiando orientazione il flusso cambia segno</strong>, $\Phi_{-\mathbf{n}}=-\Phi_{\mathbf{n}}$. Non è un difetto della teoria, è il suo contenuto: "entrare" e "uscire" sono la stessa cosa vista dai due lati. Per questo la consegna di un esercizio deve <em>sempre</em> specificare l'orientazione, e tu devi <em>sempre</em> verificare di aver preso quella giusta.</p>
+        <p>Per il caso frequentissimo del <strong>grafico</strong> $z=f(x,y)$ su un dominio $D$ del piano, orientato verso l'alto, la formula operativa diventa una sola riga, senza radici:</p>
+        <div class="formula-block">$$\Phi=\iint_D \mathbf{F}\big(x,y,f(x,y)\big)\cdot\big(-f_x,\,-f_y,\,1\big)\,dx\,dy$$</div>
+
+        <h3 id="teoria-operatori">4.5 Gli operatori differenziali: guardare il campo da vicino</h3>
+        <p>Il flusso è una misura "in grande": richiede una superficie intera. Ora facciamo il movimento opposto e chiediamoci cosa succede <strong>in un singolo punto</strong>. Tre domande diverse, tre operatori.</p>
+        <p>Prima però presentiamo il simbolo che li unifica tutti, l'operatore <strong>nabla</strong>, che si comporta come un vettore le cui componenti sono "istruzioni di derivazione":</p>
+        <div class="formula-block">$$\nabla=\left(\frac{\partial}{\partial x},\ \frac{\partial}{\partial y},\ \frac{\partial}{\partial z}\right)$$</div>
+        <p>Non è un vettore vero: è un <em>vettore di operatori</em>. Ma si comporta così bene che possiamo trattarlo come tale, e i tre operatori nascono dai tre modi di moltiplicare un vettore: per uno scalare, con il prodotto scalare, con il prodotto vettoriale.</p>
+
+        <h4 id="teoria-gradiente">Gradiente — la direzione della salita più ripida</h4>
+        <p>Il <span class="glossario-term" data-term="gradiente">gradiente</span> lo conosci già dal <a href="04-gradiente.html">Capitolo 4</a>: prende una funzione scalare e restituisce un vettore.</p>
+        <div class="formula-block">$$\operatorname{grad} f=\nabla f=\left(\frac{\partial f}{\partial x},\ \frac{\partial f}{\partial y},\ \frac{\partial f}{\partial z}\right)$$</div>
+        <p>Significato: <strong>punta nella direzione in cui $f$ cresce più in fretta</strong>, e il suo modulo dice quanto ripida è quella salita. Immagine: sei su una collina nella nebbia; il gradiente è la direzione in cui ti conviene camminare per salire il più rapidamente possibile. Un campo che si scrive come $\mathbf{F}=\nabla f$ si dice <span class="glossario-term" data-term="campo-conservativo">conservativo</span>, e $f$ è il suo potenziale.</p>
+
+        <h4 id="teoria-divergenza">Divergenza — il rubinetto e lo scarico</h4>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="divergenza">Divergenza</span>.</em> Dato il campo $\mathbf{F}=(F_1,F_2,F_3)$ di classe $C^1$, si pone</p>
+          <div class="formula-block">$$\operatorname{div}\mathbf{F}=\nabla\cdot\mathbf{F}=\frac{\partial F_1}{\partial x}+\frac{\partial F_2}{\partial y}+\frac{\partial F_3}{\partial z}$$</div>
+          <p>Mangia un <strong>campo vettoriale</strong> e restituisce una <strong>funzione scalare</strong>.</p>
+        </div>
+        <p>Significato intuitivo: <strong>la divergenza in un punto misura quanto quel punto è una sorgente o un pozzo</strong>. Immagina di circondare il punto con una scatolina microscopica e di contare quanta roba esce meno quanta ne entra, per unità di volume.</p>
+        <ul>
+          <li>$\operatorname{div}\mathbf{F}\gt 0$: <strong>rubinetto</strong>. Lì il fluido nasce, le frecce si allargano e si allontanano dal punto.</li>
+          <li>$\operatorname{div}\mathbf{F}\lt 0$: <strong>scarico</strong>. Lì il fluido sparisce, le frecce convergono verso il punto.</li>
+          <li>$\operatorname{div}\mathbf{F}=0$ ovunque: il campo si dice <strong>solenoidale</strong> (o a divergenza nulla). Niente si crea e niente si distrugge: quello che entra in ogni scatolina esce tutto. È il caso dei fluidi incomprimibili — l'acqua, appunto — e del campo magnetico, per il quale $\operatorname{div}\mathbf{B}=0$ significa "non esistono monopoli magnetici": non c'è nessun punto da cui il campo magnetico sgorga.</li>
+        </ul>
+        <p>Esempio-tipo: $\mathbf{F}=(x,y,z)$, il campo che "esplode" radialmente dall'origine, ha $\operatorname{div}\mathbf{F}=1+1+1=3\gt0$ ovunque: ogni punto è una sorgente, e infatti le frecce si allontanano sempre. Invece $\mathbf{F}=(-y,x,0)$, il campo che ruota attorno all'asse $z$, ha $\operatorname{div}\mathbf{F}=0+0+0=0$: le frecce girano in tondo, non nasce né scompare niente.</p>
+
+        <h4 id="teoria-rotore">Rotore — la girandola nel fluido</h4>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="rotore">Rotore</span>.</em> Dato $\mathbf{F}=(F_1,F_2,F_3)$ di classe $C^1$, si pone</p>
+          <div class="formula-block">$$\operatorname{rot}\mathbf{F}=\nabla\times\mathbf{F}=\begin{vmatrix}\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k}\\[4pt] \dfrac{\partial}{\partial x} &amp; \dfrac{\partial}{\partial y} &amp; \dfrac{\partial}{\partial z}\\[6pt] F_1 &amp; F_2 &amp; F_3\end{vmatrix}$$</div>
+          <p>cioè, sviluppando il determinante simbolico lungo la prima riga,</p>
+          <div class="formula-block">$$\operatorname{rot}\mathbf{F}=\left(\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z},\ \ \frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x},\ \ \frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}\right)$$</div>
+          <p>Mangia un <strong>campo vettoriale</strong> e restituisce un <strong>campo vettoriale</strong>.</p>
+        </div>
+        <p>Significato intuitivo: <strong>metti una minuscola girandola nel fluido, tenendola ferma in quel punto. Il rotore dice se e quanto si mette a girare.</strong> La direzione del vettore $\operatorname{rot}\mathbf{F}$ è l'asse di rotazione (verso dato dalla regola della mano destra), il suo modulo è la velocità di rotazione — per l'esattezza, il doppio della velocità angolare locale.</p>
+        <ul>
+          <li>$\operatorname{rot}\mathbf{F}=\mathbf{0}$ ovunque: il campo si dice <strong>irrotazionale</strong>. La girandola viene trascinata via ma non ruota mai su sé stessa.</li>
+          <li>$\operatorname{rot}\mathbf{F}\neq\mathbf{0}$: c'è vorticità. Tipicamente perché il campo è più veloce da un lato della girandola che dall'altro.</li>
+        </ul>
+        <p>Esempio-tipo: per $\mathbf{F}=(-y,x,0)$, cioè $F_1=-y$, $F_2=x$, $F_3=0$, applico la formula appena scritta una componente alla volta. Prima: $\partial_y F_3-\partial_z F_2=\partial_y(0)-\partial_z(x)=0-0=0$. Seconda: $\partial_z F_1-\partial_x F_3=\partial_z(-y)-\partial_x(0)=0-0=0$. Terza: $\partial_x F_2-\partial_y F_1=\partial_x(x)-\partial_y(-y)=1-(-1)=2$. Si trova dunque $\operatorname{rot}\mathbf{F}=(0,0,2)$: rotazione attorno all'asse $z$, esattamente ciò che si vede guardando il disegno delle frecce. Per $\mathbf{F}=(x,y,z)$ invece ogni componente del rotore è una differenza di derivate del tipo $\partial_y(z)-\partial_z(y)=0-0$, quindi $\operatorname{rot}\mathbf{F}=\mathbf{0}$: le frecce si allargano ma nessuna girandola ruota.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Il rotore non è "il campo gira in tondo"</div>
+          <p>Attenzione a un fraintendimento sottile: il rotore non misura se le <em>traiettorie</em> sono curve, ma se una girandola <em>locale</em> ruota. Un fiume che scorre tutto dritto verso destra, ma più veloce al centro che vicino alle rive, ha rotore diverso da zero: una girandola messa fra il centro e la riva viene spinta più forte da un lato e comincia a ruotare, pur muovendosi lungo una traiettoria rettilinea. Viceversa esistono campi le cui traiettorie sono circonferenze ma con rotore nullo (il vortice "ideale" $\mathbf{F}=\left(\dfrac{-y}{x^2+y^2},\dfrac{x}{x^2+y^2},0\right)$, fuori dall'origine). Il rotore è una faccenda <strong>locale</strong>, non di forma globale delle traiettorie.</p>
+        </div>
+
+        <h4 id="teoria-laplaciano">Laplaciano — quanto sei diverso dai tuoi vicini</h4>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="laplaciano">Laplaciano</span>.</em> Data $f$ di classe $C^2$, si pone</p>
+          <div class="formula-block">$$\Delta f=\nabla^2 f=\operatorname{div}\big(\operatorname{grad} f\big)=\frac{\partial^2 f}{\partial x^2}+\frac{\partial^2 f}{\partial y^2}+\frac{\partial^2 f}{\partial z^2}$$</div>
+          <p>Mangia una <strong>funzione scalare</strong> e restituisce una <strong>funzione scalare</strong>. Una funzione con $\Delta f=0$ si dice <strong>armonica</strong>.</p>
+        </div>
+        <p>Significato intuitivo, e questa è forse l'immagine più bella del capitolo: <strong>il laplaciano misura di quanto il valore in un punto si discosta dalla media dei valori nei punti vicini</strong>.</p>
+        <ul>
+          <li>$\Delta f\gt 0$ in un punto: lì $f$ vale <em>meno</em> della media dei vicini. È una conca. Se $f$ è la temperatura, quel punto è più freddo dei suoi vicini e quindi <strong>si scalderà</strong>.</li>
+          <li>$\Delta f\lt 0$: lì $f$ vale <em>più</em> della media dei vicini. È un cocuzzolo, un punto più caldo che <strong>si raffredderà</strong>.</li>
+          <li>$\Delta f=0$ (funzione <strong>armonica</strong>): ogni punto vale esattamente la media dei suoi vicini. Niente conche, niente cocuzzoli: il sistema è in <strong>equilibrio</strong> e non cambia più. È il motivo per cui una funzione armonica non può avere massimi o minimi all'interno del dominio (il cosiddetto <em>principio del massimo</em>): il suo valore estremo sta sempre sul bordo, come la temperatura di una piastra all'equilibrio è decisa da come sono scaldati i bordi.</li>
+        </ul>
+        <p>È la stessa idea della derivata seconda in una variabile: $f''\gt0$ significa concavità verso l'alto, cioè punto sotto la corda. Il laplaciano è quella storia raccontata in tutte le direzioni contemporaneamente. Piccolo esempio: $f(x,y)=x^2-y^2$ ha $\Delta f=2-2=0$, quindi è armonica — ed è proprio la sella, che infatti non ha né massimi né minimi.</p>
+
+        <h3 id="teoria-tabella">4.6 Tabella riassuntiva dei quattro operatori</h3>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Operatore</th><th>Cosa mangia</th><th>Cosa restituisce</th><th>Significato in una frase</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gradiente</strong> $\nabla f$</td><td>funzione scalare $f$</td><td>campo vettoriale</td><td>Dove salire per crescere più in fretta. <em>La bussola della collina.</em></td></tr>
+            <tr><td><strong>Divergenza</strong> $\nabla\cdot\mathbf{F}$</td><td>campo vettoriale $\mathbf{F}$</td><td>funzione scalare</td><td>Quanto il punto è sorgente o pozzo. <em>Il rubinetto e lo scarico.</em></td></tr>
+            <tr><td><strong>Rotore</strong> $\nabla\times\mathbf{F}$</td><td>campo vettoriale $\mathbf{F}$</td><td>campo vettoriale</td><td>Quanto una girandola si mette a girare. <em>La vorticità.</em></td></tr>
+            <tr><td><strong>Laplaciano</strong> $\Delta f=\nabla\cdot\nabla f$</td><td>funzione scalare $f$</td><td>funzione scalare</td><td>Quanto il punto è sopra o sotto la media dei vicini. <em>Il termometro rispetto al vicinato.</em></td></tr>
+          </tbody>
+        </table>
+        <p>Un consiglio pratico che vale più di mille formule: <strong>prima di calcolare, chiediti che tipo di oggetto deve venire fuori.</strong> Se stai calcolando una divergenza e ti ritrovi in mano tre componenti, hai sbagliato. Se stai calcolando un rotore e ottieni un numero, hai sbagliato. Questo controllo di "tipo" intercetta da solo metà degli errori d'esame.</p>
+        <p>Nomenclatura da fissare, perché ricorre in continuazione:</p>
+        <ul>
+          <li>$\operatorname{div}\mathbf{F}=0$ &nbsp;$\Longrightarrow$&nbsp; campo <strong>solenoidale</strong> (senza sorgenti né pozzi);</li>
+          <li>$\operatorname{rot}\mathbf{F}=\mathbf{0}$ &nbsp;$\Longrightarrow$&nbsp; campo <strong>irrotazionale</strong> (senza vortici locali);</li>
+          <li>$\Delta f=0$ &nbsp;$\Longrightarrow$&nbsp; funzione <strong>armonica</strong> (in equilibrio);</li>
+          <li>$\mathbf{F}=\nabla f$ &nbsp;$\Longrightarrow$&nbsp; campo <strong>conservativo</strong> (deriva da un potenziale).</li>
+        </ul>
+
+        <h3 id="teoria-identita">4.7 Due identità notevoli (e il loro significato)</h3>
+        <p>Fra i quattro operatori esistono relazioni che non sono curiosità tecniche, ma affermazioni profonde sulla struttura dei campi vettoriali. Le due più importanti sono queste:</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (identità fondamentali)</span>
+          <p>Sia $f$ di classe $C^2$ e $\mathbf{F}$ un campo vettoriale di classe $C^2$ su un aperto di $\mathbb{R}^3$. Allora</p>
+          <div class="formula-block">$$\operatorname{rot}\big(\operatorname{grad} f\big)=\nabla\times\nabla f=\mathbf{0}\qquad\text{e}\qquad \operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=\nabla\cdot\big(\nabla\times\mathbf{F}\big)=0$$</div>
+        </div>
+        <p>In parole, e sono due frasi da imparare a memoria:</p>
+        <ul>
+          <li><strong>"I campi gradiente non vorticano."</strong> Se un campo deriva da un potenziale, nessuna girandola immersa in esso ruoterà mai: ogni campo conservativo è automaticamente irrotazionale. È il criterio pratico numero uno per <em>escludere</em> che un campo sia conservativo: calcoli il rotore, se non viene zero hai finito, il campo non è conservativo. (Il viceversa richiede un'ipotesi sulla forma del dominio — ne parla il <a href="12-teoremi-green-gauss-stokes.html">Capitolo 12</a>.)</li>
+          <li><strong>"I campi rotore non hanno sorgenti."</strong> Se un campo è il rotore di qualcos'altro, la sua divergenza è nulla: è automaticamente solenoidale. Ecco perché in fisica il campo magnetico, che si scrive $\mathbf{B}=\operatorname{rot}\mathbf{A}$ a partire dal potenziale vettore $\mathbf{A}$, soddisfa gratis $\operatorname{div}\mathbf{B}=0$, cioè "non esistono monopoli magnetici". Spezza una calamita in due e ottieni due calamite complete, mai un polo nord isolato.</li>
+        </ul>
+        <p>Entrambe le identità hanno la stessa identica radice: il <strong>teorema di Schwarz</strong> sull'uguaglianza delle derivate seconde miste, $f_{xy}=f_{yx}$, che hai incontrato nel <a href="03-derivate-parziali.html">Capitolo 3</a>. Le dimostriamo nella prossima sezione: vedrai che sono due righe di conti, ma vale la pena seguirle perché mostrano <em>perché</em> quei termini si cancellano a due a due.</p>
+        <p>Merita una menzione anche una terza relazione, che abbiamo già usato come definizione: $\operatorname{div}\big(\operatorname{grad} f\big)=\Delta f$. Cioè il laplaciano è la divergenza del gradiente — e questo spiega perfettamente l'equazione del calore. Il gradiente della temperatura indica dove il calore vuole andare (dal caldo al freddo), la sua divergenza dice se in quel punto il calore si accumula o se ne va, e quindi se la temperatura sale o scende. Tutto torna.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <p>Quattro dimostrazioni, tutte brevi. Ognuna è preceduta dall'<strong>idea intuitiva</strong>: leggi prima quella, poi i conti diventano una semplice verifica di ciò che già ti aspetti.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea della prima dimostrazione: il tetto spiovente</div>
+          <p>Perché sul grafico $z=f(x,y)$ compare il fattore $\sqrt{1+f_x^2+f_y^2}$? Pensa a un tetto inclinato e alla sua ombra sul pavimento. Il tetto è sempre <strong>più grande</strong> della sua ombra, e tanto più grande quanto più è ripido. Il fattore di ingrandimento dipende dalle due pendenze $f_x$ e $f_y$. Se il tetto è orizzontale, tetto e ombra coincidono: il fattore vale $1$. Il conto qui sotto non fa che tradurre questa frase in simboli.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Elemento d'area di un grafico.</em> Se $\Sigma$ è il grafico di $f\in C^1(D)$, cioè $\Sigma=\{(x,y,f(x,y)):(x,y)\in D\}$, allora $dS=\sqrt{1+f_x^2+f_y^2}\,dx\,dy$ e</p>
+          <div class="formula-block">$$\operatorname{Area}(\Sigma)=\iint_D\sqrt{1+f_x^2+f_y^2}\;dx\,dy$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Parametrizziamo la superficie usando come parametri le stesse $x$ e $y$:</p>
+          <div class="formula-block">$$\mathbf{r}(x,y)=\big(x,\ y,\ f(x,y)\big),\qquad (x,y)\in D.$$</div>
+          <p>Deriviamo parzialmente rispetto ai due parametri, una componente alla volta. Per $\mathbf{r}_x$ derivo rispetto a $x$ tenendo $y$ fissa: la prima componente è $x$, la cui derivata rispetto a $x$ è $1$; la seconda è $y$, che rispetto a $x$ è una costante, quindi derivata $0$; la terza è $f(x,y)$, la cui derivata parziale è per definizione $f_x$. Per $\mathbf{r}_y$ si ragiona allo specchio, scambiando i ruoli di $x$ e $y$:</p>
+          <div class="formula-block">$$\mathbf{r}_x=\big(1,\ 0,\ f_x\big),\qquad \mathbf{r}_y=\big(0,\ 1,\ f_y\big).$$</div>
+          <p>Calcoliamo il prodotto vettoriale con il determinante simbolico, mettendo nella seconda riga le componenti di $\mathbf{r}_x$ e nella terza quelle di $\mathbf{r}_y$, e sviluppando lungo la prima riga (ricorda il segno meno davanti al termine in $\mathbf{j}$):</p>
+          <div class="formula-block">$$\mathbf{r}_x\times\mathbf{r}_y=\begin{vmatrix}\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k}\\ 1 &amp; 0 &amp; f_x\\ 0 &amp; 1 &amp; f_y\end{vmatrix}=\big(0\cdot f_y-f_x\cdot 1\big)\mathbf{i}-\big(1\cdot f_y-f_x\cdot 0\big)\mathbf{j}+\big(1\cdot 1-0\cdot 0\big)\mathbf{k}=\big(-f_x,\ -f_y,\ 1\big).$$</div>
+          <p>Il modulo di questo vettore è</p>
+          <div class="formula-block">$$\big|\mathbf{r}_x\times\mathbf{r}_y\big|=\sqrt{(-f_x)^2+(-f_y)^2+1^2}=\sqrt{1+f_x^2+f_y^2}.$$</div>
+          <p>Sostituendo nella definizione $dS=\big|\mathbf{r}_x\times\mathbf{r}_y\big|\,dx\,dy$ si ottiene la tesi. Nota due conferme: la terza componente della normale è $+1$, quindi la normale punta <strong>verso l'alto</strong> (come deve essere per un grafico orientato in modo naturale); e per una superficie orizzontale ($f_x=f_y=0$) il fattore vale $1$, cioè non c'è alcun ingrandimento — il tetto piatto coincide con la sua ombra. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea della seconda dimostrazione: le bucce d'arancia</div>
+          <p>Vogliamo ritrovare la formula $4\pi R^2$ per l'area della sfera. L'idea è affettare la sfera in tanti <strong>anelli orizzontali</strong> (i paralleli). Un anello alla colatitudine $\varphi$ ha raggio $R\sin\varphi$, quindi circonferenza $2\pi R\sin\varphi$, e spessore $R\,d\varphi$. Area dell'anello: circonferenza per spessore. Poi si sommano tutti gli anelli dal Polo Nord al Polo Sud. Vicino ai poli gli anelli sono piccolissimi ($\sin\varphi\approx 0$), all'equatore sono i più grandi: ecco da dove viene il $\sin\varphi$.</p>
+        </div>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Area della sfera.</em> La sfera di raggio $R$ ha elemento d'area $dS=R^2\sin\varphi\,d\varphi\,d\theta$ e area totale $4\pi R^2$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Usiamo la parametrizzazione sferica, con $\varphi$ colatitudine e $\theta$ longitudine:</p>
+          <div class="formula-block">$$\mathbf{r}(\varphi,\theta)=\big(R\sin\varphi\cos\theta,\ R\sin\varphi\sin\theta,\ R\cos\varphi\big),\qquad \varphi\in[0,\pi],\ \theta\in[0,2\pi].$$</div>
+          <p>Le derivate parziali si calcolano <strong>una componente alla volta</strong>. Per $\mathbf{r}_\varphi$ derivo rispetto a $\varphi$ <em>tenendo $\theta$ come se fosse una costante</em> (è la definizione di derivata parziale, <a href="03-derivate-parziali.html">Capitolo 3</a>): nella prima componente $R\cos\theta$ è un fattore costante e $\frac{d}{d\varphi}\sin\varphi=\cos\varphi$, quindi viene $R\cos\varphi\cos\theta$; nella seconda idem con $\sin\theta$; nella terza $\frac{d}{d\varphi}\cos\varphi=-\sin\varphi$. Per $\mathbf{r}_\theta$ derivo rispetto a $\theta$ tenendo $\varphi$ costante: nella terza componente $R\cos\varphi$ non contiene affatto $\theta$, quindi la sua derivata è $0$.</p>
+          <div class="formula-block">$$\mathbf{r}_\varphi=\big(R\cos\varphi\cos\theta,\ R\cos\varphi\sin\theta,\ -R\sin\varphi\big),\qquad \mathbf{r}_\theta=\big(-R\sin\varphi\sin\theta,\ R\sin\varphi\cos\theta,\ 0\big).$$</div>
+          <p>Ora il prodotto vettoriale. Applico la regola del determinante simbolico, che per due vettori $\mathbf{a}=(a_1,a_2,a_3)$ e $\mathbf{b}=(b_1,b_2,b_3)$ dà $\mathbf{a}\times\mathbf{b}=\big(a_2b_3-a_3b_2,\ \ a_3b_1-a_1b_3,\ \ a_1b_2-a_2b_1\big)$. Qui sostituisco $\mathbf{a}=\mathbf{r}_\varphi$ e $\mathbf{b}=\mathbf{r}_\theta$, cioè $a_1=R\cos\varphi\cos\theta$, $a_2=R\cos\varphi\sin\theta$, $a_3=-R\sin\varphi$, $b_1=-R\sin\varphi\sin\theta$, $b_2=R\sin\varphi\cos\theta$, $b_3=0$:</p>
+          <div class="formula-block">$$\mathbf{r}_\varphi\times\mathbf{r}_\theta=\begin{vmatrix}\mathbf{i} &amp; \mathbf{j} &amp; \mathbf{k}\\[2pt] R\cos\varphi\cos\theta &amp; R\cos\varphi\sin\theta &amp; -R\sin\varphi\\[2pt] -R\sin\varphi\sin\theta &amp; R\sin\varphi\cos\theta &amp; 0\end{vmatrix}$$</div>
+          <p>Svolgo le tre componenti una per una, scrivendo prima la sostituzione e poi il risultato:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><em>Prima componente</em>, $a_2b_3-a_3b_2$: $\big(R\cos\varphi\sin\theta\big)\cdot 0-\big(-R\sin\varphi\big)\cdot\big(R\sin\varphi\cos\theta\big)=0+R^2\sin^2\varphi\cos\theta$ (meno per meno dà più, e $\sin\varphi\cdot\sin\varphi=\sin^2\varphi$).</span>
+            <span class="esempio__passo"><em>Seconda componente</em>, $a_3b_1-a_1b_3$: $\big(-R\sin\varphi\big)\cdot\big(-R\sin\varphi\sin\theta\big)-\big(R\cos\varphi\cos\theta\big)\cdot 0=R^2\sin^2\varphi\sin\theta-0$.</span>
+            <span class="esempio__passo"><em>Terza componente</em>, $a_1b_2-a_2b_1$: $\big(R\cos\varphi\cos\theta\big)\big(R\sin\varphi\cos\theta\big)-\big(R\cos\varphi\sin\theta\big)\big(-R\sin\varphi\sin\theta\big)=R^2\sin\varphi\cos\varphi\cos^2\theta+R^2\sin\varphi\cos\varphi\sin^2\theta$. Raccolgo il fattore comune $R^2\sin\varphi\cos\varphi$ e resta $R^2\sin\varphi\cos\varphi\big(\cos^2\theta+\sin^2\theta\big)$; per l'<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">identità fondamentale della trigonometria</a> la parentesi vale $1$, quindi la terza componente è $R^2\sin\varphi\cos\varphi$.</span>
+          </p>
+          <div class="formula-block">$$\mathbf{r}_\varphi\times\mathbf{r}_\theta=\big(R^2\sin^2\varphi\cos\theta,\ \ R^2\sin^2\varphi\sin\theta,\ \ R^2\sin\varphi\cos\varphi\big).$$</div>
+          <p>Raccogliamo $R^2\sin\varphi$ da tutte e tre le componenti: nella prima resta $\sin\varphi\cos\theta$, nella seconda $\sin\varphi\sin\theta$, nella terza $\cos\varphi$. Il fattore raccolto è un numero <em>non negativo</em>, perché $\sin\varphi\geq 0$ per $\varphi\in[0,\pi]$: ce ne ricorderemo fra due righe, quando calcoleremo il modulo.</p>
+          <div class="formula-block">$$\mathbf{r}_\varphi\times\mathbf{r}_\theta=R^2\sin\varphi\,\big(\sin\varphi\cos\theta,\ \sin\varphi\sin\theta,\ \cos\varphi\big)=R\sin\varphi\cdot\mathbf{r}(\varphi,\theta).$$</div>
+          <p>(L'ultima uguaglianza si legge così: la terna fra parentesi è esattamente $\mathbf{r}(\varphi,\theta)$ diviso $R$, perché $\mathbf{r}$ ha le stesse componenti moltiplicate per $R$; quindi $R^2\sin\varphi\cdot\frac{\mathbf{r}}{R}=R\sin\varphi\,\mathbf{r}$.)</p>
+          <p>Il vettore fra parentesi, cioè $\big(\sin\varphi\cos\theta,\ \sin\varphi\sin\theta,\ \cos\varphi\big)$, ha modulo $1$. Verifichiamolo, perché è il passaggio che fa sparire tutto: il modulo al quadrato è la somma dei quadrati delle componenti, cioè $\sin^2\varphi\cos^2\theta+\sin^2\varphi\sin^2\theta+\cos^2\varphi$. Raccolgo $\sin^2\varphi$ nei primi due addendi e ottengo $\sin^2\varphi\big(\cos^2\theta+\sin^2\theta\big)+\cos^2\varphi$; la parentesi vale $1$ per l'identità fondamentale (prima applicazione), quindi resta $\sin^2\varphi+\cos^2\varphi$, che vale $1$ di nuovo per la stessa identità (seconda applicazione). Dunque</p>
+          <div class="formula-block">$$\big|\mathbf{r}_\varphi\times\mathbf{r}_\theta\big|=R^2\sin\varphi\qquad\Longrightarrow\qquad dS=R^2\sin\varphi\,d\varphi\,d\theta.$$</div>
+          <p>Si noti anche che il prodotto vettoriale è un multiplo <em>positivo</em> del vettore posizione $\mathbf{r}$: questa parametrizzazione orienta la sfera con la <strong>normale uscente</strong>, e $\mathbf{n}=\mathbf{r}/R$. Integriamo ora su tutto il dominio dei parametri:</p>
+          <div class="formula-block">$$\operatorname{Area}=\int_0^{2\pi}\!\!\int_0^{\pi} R^2\sin\varphi\,d\varphi\,d\theta=R^2\int_0^{2\pi}\!d\theta\int_0^{\pi}\!\sin\varphi\,d\varphi=R^2\cdot 2\pi\cdot\big[-\cos\varphi\big]_0^{\pi}.$$</div>
+          <p>Due parole sui passaggi appena fatti, perché sono tre cose diverse in fila. <em>Primo</em>: $R^2$ è una costante e come tale esce dall'integrale. <em>Secondo</em>: l'integranda rimasta, $\sin\varphi$, non contiene $\theta$; quando la funzione integranda si spezza nel prodotto di una funzione della sola $\varphi$ per una funzione della sola $\theta$ (qui la seconda è semplicemente $1$) e il dominio è un rettangolo, l'integrale doppio si fattorizza nel prodotto di due integrali semplici (teorema di Fubini, <a href="08-integrali-doppi.html">Capitolo 8</a>). <em>Terzo</em>: $\int_0^{2\pi}d\theta=\big[\theta\big]_0^{2\pi}=2\pi-0=2\pi$, e una primitiva di $\sin\varphi$ è $-\cos\varphi$ (perché derivando $-\cos\varphi$ si ottiene $+\sin\varphi$).</p>
+          <p>Valuto la parentesi quadra sostituendo prima l'estremo superiore e poi quello inferiore: $\big[-\cos\varphi\big]_0^{\pi}=\big(-\cos\pi\big)-\big(-\cos 0\big)=-(-1)-(-1)=1+1=2$. Si conclude $\operatorname{Area}=R^2\cdot 2\pi\cdot 2=4\pi R^2$. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea della terza dimostrazione: salire non fa girare</div>
+          <p>Perché $\operatorname{rot}(\operatorname{grad} f)=\mathbf{0}$? Immagine: sei su una collina e in ogni punto punti la freccia verso la salita più ripida. Potrebbe un ometto immerso in quel campo di frecce mettersi a girare in tondo? No: girare in tondo significherebbe tornare al punto di partenza salendo sempre, e sarebbe una scala di Escher. Il conto formale dice esattamente questo, e la cancellazione avviene grazie al fatto che <em>l'ordine in cui derivi non conta</em> (teorema di Schwarz).</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">I campi gradiente sono irrotazionali.</em> Se $f\in C^2$, allora $\operatorname{rot}\big(\operatorname{grad} f\big)=\mathbf{0}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Poniamo $\mathbf{F}=\operatorname{grad} f=(f_x,\ f_y,\ f_z)$, cioè <strong>sostituisco</strong> $F_1=f_x$, $F_2=f_y$, $F_3=f_z$ (le tre componenti del gradiente, <span class="richiamo" data-sec="4.5">§4.5</span>). Applichiamo ora la formula del rotore del <span class="richiamo" data-sec="4.5">§4.5</span>, $\operatorname{rot}\mathbf{F}=\big(\partial_y F_3-\partial_z F_2,\ \partial_z F_1-\partial_x F_3,\ \partial_x F_2-\partial_y F_1\big)$, una componente alla volta. Ricorda la notazione: $f_{zy}$ significa "derivo prima rispetto a $z$, poi rispetto a $y$".</p>
+          <p><strong>Prima componente:</strong></p>
+          <div class="formula-block">$$\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}=\frac{\partial}{\partial y}\big(f_z\big)-\frac{\partial}{\partial z}\big(f_y\big)=f_{zy}-f_{yz}=0,$$</div>
+          <p>perché $f\in C^2$ e il <strong>teorema di Schwarz</strong> garantisce che le derivate seconde miste coincidono, qualunque sia l'ordine di derivazione.</p>
+          <p><strong>Seconda componente:</strong> $\ \dfrac{\partial F_1}{\partial z}-\dfrac{\partial F_3}{\partial x}=f_{xz}-f_{zx}=0$, per lo stesso motivo.</p>
+          <p><strong>Terza componente:</strong> $\ \dfrac{\partial F_2}{\partial x}-\dfrac{\partial F_1}{\partial y}=f_{yx}-f_{xy}=0$, ancora per Schwarz.</p>
+          <p>Tutte e tre le componenti sono nulle, dunque $\operatorname{rot}\big(\operatorname{grad} f\big)=\mathbf{0}$. <span class="qed">∎</span></p>
+          <p><strong>Conseguenza operativa.</strong> Se un campo ha rotore diverso da zero, <em>non può</em> essere conservativo: non esiste alcun potenziale da cui derivi. È il test di esclusione più rapido che esista, e ti evita di cercare a vuoto un potenziale che non c'è.</p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Idea della quarta dimostrazione: i vortici non creano materia</div>
+          <p>Perché $\operatorname{div}(\operatorname{rot}\mathbf{F})=0$? Immagine: il rotore descrive quanto il fluido gira. Ma il girare, da solo, non crea né distrugge nulla: un vortice rimescola l'acqua, non la fa comparire dal niente. Un campo che è "fatto di soli vortici" non può avere sorgenti. Anche qui, il meccanismo tecnico è la cancellazione a coppie garantita da Schwarz: <strong>sei termini che si elidono a due a due</strong>.</p>
+        </div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">I campi rotore sono solenoidali.</em> Se $\mathbf{F}\in C^2$, allora $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Scriviamo le tre componenti del rotore:</p>
+          <div class="formula-block">$$\operatorname{rot}\mathbf{F}=\left(\underbrace{\frac{\partial F_3}{\partial y}-\frac{\partial F_2}{\partial z}}_{G_1},\ \ \underbrace{\frac{\partial F_1}{\partial z}-\frac{\partial F_3}{\partial x}}_{G_2},\ \ \underbrace{\frac{\partial F_2}{\partial x}-\frac{\partial F_1}{\partial y}}_{G_3}\right).$$</div>
+          <p>Chiamiamo $\mathbf{G}=\operatorname{rot}\mathbf{F}=(G_1,G_2,G_3)$ e applichiamo la definizione di divergenza del <span class="richiamo" data-sec="4.5">§4.5</span>, $\operatorname{div}\mathbf{G}=\dfrac{\partial G_1}{\partial x}+\dfrac{\partial G_2}{\partial y}+\dfrac{\partial G_3}{\partial z}$. Sostituisco a $G_1$, $G_2$, $G_3$ le tre espressioni appena scritte e derivo <em>dentro</em> ogni parentesi, termine per termine: per esempio $\dfrac{\partial G_1}{\partial x}=\dfrac{\partial}{\partial x}\left(\dfrac{\partial F_3}{\partial y}-\dfrac{\partial F_2}{\partial z}\right)=\dfrac{\partial^2F_3}{\partial x\,\partial y}-\dfrac{\partial^2F_2}{\partial x\,\partial z}$ (la derivata di una differenza è la differenza delle derivate). Facendo lo stesso con $G_2$ rispetto a $y$ e con $G_3$ rispetto a $z$:</p>
+          <div class="formula-block">$$\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=\left(\frac{\partial^2 F_3}{\partial x\,\partial y}-\frac{\partial^2 F_2}{\partial x\,\partial z}\right)+\left(\frac{\partial^2 F_1}{\partial y\,\partial z}-\frac{\partial^2 F_3}{\partial y\,\partial x}\right)+\left(\frac{\partial^2 F_2}{\partial z\,\partial x}-\frac{\partial^2 F_1}{\partial z\,\partial y}\right).$$</div>
+          <p>Abbiamo sei termini. Li <strong>riordiniamo</strong> mettendo insieme quelli che contengono la stessa funzione: i due termini in $F_3$ (il primo e il quarto), i due in $F_1$ (il terzo e il sesto), i due in $F_2$ (il secondo e il quinto). Riordinare una somma è sempre lecito, cambia solo l'ordine degli addendi:</p>
+          <div class="formula-block">$$\underbrace{\left(\frac{\partial^2 F_3}{\partial x\,\partial y}-\frac{\partial^2 F_3}{\partial y\,\partial x}\right)}_{=\,0}+\underbrace{\left(\frac{\partial^2 F_1}{\partial y\,\partial z}-\frac{\partial^2 F_1}{\partial z\,\partial y}\right)}_{=\,0}+\underbrace{\left(\frac{\partial^2 F_2}{\partial z\,\partial x}-\frac{\partial^2 F_2}{\partial x\,\partial z}\right)}_{=\,0}=0.$$</div>
+          <p>Ogni coppia contiene la stessa derivata seconda mista calcolata nei due ordini possibili: per il teorema di Schwarz (applicabile perché $\mathbf{F}\in C^2$) le due quantità coincidono e la differenza è nulla. Quindi la somma vale $0$. <span class="qed">∎</span></p>
+          <p><strong>Conseguenza operativa.</strong> Se un campo $\mathbf{G}$ ha divergenza diversa da zero, non può essere il rotore di nessun campo: non esiste alcun potenziale vettore. In elettromagnetismo questa è la ragione strutturale per cui $\operatorname{div}\mathbf{B}=0$ e non esistono monopoli magnetici.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Area laterale di un cilindro</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare l'area della superficie laterale del cilindro $x^2+y^2=R^2$ con $0\leq z\leq h$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Parametrizzo</strong>: $\mathbf{r}(\theta,z)=\big(R\cos\theta,\ R\sin\theta,\ z\big)$ con $\theta\in[0,2\pi]$, $z\in[0,h]$. Perché questa scelta? Perché sostituendo $x=R\cos\theta$ e $y=R\sin\theta$ nell'equazione del cilindro ottengo $R^2\cos^2\theta+R^2\sin^2\theta=R^2\big(\cos^2\theta+\sin^2\theta\big)=R^2$ grazie all'<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">identità fondamentale</a>: l'equazione è soddisfatta per ogni $\theta$. La quota $z$ resta libera e fa da secondo parametro.</span>
+            <span class="esempio__passo"><strong>Derivate parziali</strong>, una componente alla volta. Derivando rispetto a $\theta$ con $z$ fissa: $\frac{d}{d\theta}(R\cos\theta)=-R\sin\theta$, $\frac{d}{d\theta}(R\sin\theta)=R\cos\theta$, e $z$ non contiene $\theta$ quindi dà $0$. Derivando rispetto a $z$ con $\theta$ fisso: le prime due componenti non contengono $z$ e danno $0$, la terza dà $1$. Quindi $\mathbf{r}_\theta=(-R\sin\theta,\ R\cos\theta,\ 0)$ e $\mathbf{r}_z=(0,\ 0,\ 1)$.</span>
+            <span class="esempio__passo"><strong>Prodotto vettoriale</strong> con la regola $\mathbf{a}\times\mathbf{b}=\big(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1\big)$, dove metto $\mathbf{a}=\mathbf{r}_\theta$ e $\mathbf{b}=\mathbf{r}_z$. Prima componente: $(R\cos\theta)\cdot1-0\cdot0=R\cos\theta$. Seconda: $0\cdot 0-(-R\sin\theta)\cdot 1=R\sin\theta$. Terza: $(-R\sin\theta)\cdot 0-(R\cos\theta)\cdot 0=0$. Dunque $\mathbf{r}_\theta\times\mathbf{r}_z=\big(R\cos\theta,\ R\sin\theta,\ 0\big)$.</span>
+            <span class="esempio__passo"><strong>Modulo</strong> (radice della somma dei quadrati delle componenti): $\sqrt{R^2\cos^2\theta+R^2\sin^2\theta+0^2}$. Raccolgo $R^2$: $\sqrt{R^2\big(\cos^2\theta+\sin^2\theta\big)}=\sqrt{R^2\cdot 1}=R$ — di nuovo l'identità fondamentale.</span>
+            <span class="esempio__passo">Dunque $dS=\big|\mathbf{r}_\theta\times\mathbf{r}_z\big|\,d\theta\,dz=R\,d\theta\,dz$. L'integranda è la costante $R$, quindi l'integrale doppio si spezza nel prodotto di due integrali semplici: $\displaystyle\int_0^{2\pi}\!\!\int_0^{h} R\,dz\,d\theta=R\left(\int_0^{h}\!dz\right)\!\left(\int_0^{2\pi}\!d\theta\right)=R\cdot h\cdot 2\pi$.</span>
+          </p>
+          <div class="esempio__risultato">$\operatorname{Area}=2\pi R h$. È il risultato elementare "srotola il cilindro e ottieni un rettangolo di base $2\pi R$ e altezza $h$": la conferma che il metodo funziona.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Integrale scalare su un grafico piano</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\displaystyle\iint_\Sigma z\,dS$, dove $\Sigma$ è la porzione del piano $z=x+y$ che sta sopra il quadrato $D=[0,1]\times[0,1]$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">È un grafico: $f(x,y)=x+y$, quindi $f_x=1$ e $f_y=1$.</span>
+            <span class="esempio__passo">Elemento d'area: uso la formula del grafico (<span class="richiamo" data-sec="4.1">§4.1</span>, dimostrata nella sezione 5) $dS=\sqrt{1+f_x^2+f_y^2}\,dx\,dy$ e <strong>sostituisco $f_x=1$ e $f_y=1$</strong>: $dS=\sqrt{1+1^2+1^2}\,dx\,dy=\sqrt{1+1+1}\,dx\,dy=\sqrt{3}\,dx\,dy$. È costante perché il piano ha inclinazione uguale ovunque.</span>
+            <span class="esempio__passo">Ora l'integranda. La funzione da integrare è $f=z$, ma $z$ sulla superficie non è libero: vale $z=x+y$. <strong>Sostituisco quindi $x+y$ al posto di $z$</strong>, e insieme a $dS=\sqrt3\,dx\,dy$ l'integranda diventa $(x+y)\sqrt3$.</span>
+            <span class="esempio__passo">Porto fuori la costante $\sqrt3$ e spezzo la somma in due integrali (l'integrale di una somma è la somma degli integrali): $\displaystyle\iint_\Sigma z\,dS=\sqrt3\int_0^1\!\!\int_0^1 (x+y)\,dx\,dy=\sqrt3\left(\int_0^1\!\!\int_0^1 x\,dx\,dy+\int_0^1\!\!\int_0^1 y\,dx\,dy\right).$</span>
+            <span class="esempio__passo">Calcolo il primo: $\int_0^1 x\,dx=\big[\frac{x^2}{2}\big]_0^1=\frac12-0=\frac12$, e poi $\int_0^1\frac12\,dy=\frac12$. Il secondo è identico a ruoli scambiati e dà anch'esso $\frac12$. Quindi il tutto vale $\sqrt3\left(\tfrac12+\tfrac12\right)=\sqrt3\cdot 1$.</span>
+          </p>
+          <div class="esempio__risultato">$\displaystyle\iint_\Sigma z\,dS=\sqrt{3}$. Controllo: con $f\equiv 1$ avremmo ottenuto l'area $\sqrt3$, coerente con un quadrato unitario inclinato.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Massa di una calotta sferica</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Una lamina ha la forma dell'emisfero superiore di raggio $R$ ($x^2+y^2+z^2=R^2$, $z\geq 0$) e densità superficiale $\delta(x,y,z)=z$. Calcolarne la massa.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso la <strong>parametrizzazione sferica</strong> della tabella del <span class="richiamo" data-sec="4.1">§4.1</span>, cioè $x=R\sin\varphi\cos\theta$, $y=R\sin\varphi\sin\theta$, $z=R\cos\varphi$, con elemento d'area $dS=R^2\sin\varphi\,d\varphi\,d\theta$ (dimostrato nella sezione 5). La condizione $z\geq 0$ diventa $R\cos\varphi\geq 0$, cioè $\cos\varphi\geq 0$, cioè $\varphi\in[0,\pi/2]$; la longitudine $\theta$ gira tutta: $\theta\in[0,2\pi]$.</span>
+            <span class="esempio__passo">Nell'integrale $m=\iint_\Sigma \delta\,dS$ <strong>sostituisco $\delta=z=R\cos\varphi$</strong> (la densità, espressa nei parametri) e <strong>$dS=R^2\sin\varphi\,d\varphi\,d\theta$</strong>: $\displaystyle m=\int_0^{2\pi}\!\!\int_0^{\pi/2} \underbrace{\big(R\cos\varphi\big)}_{\delta}\,\underbrace{R^2\sin\varphi\,d\varphi\,d\theta}_{dS}$.</span>
+            <span class="esempio__passo">Raccolgo le costanti $R\cdot R^2=R^3$. L'integranda rimasta, $\cos\varphi\sin\varphi$, non contiene $\theta$: l'integrale doppio si fattorizza e l'integrale in $\theta$ dà $\int_0^{2\pi}d\theta=2\pi$. Resta $m=2\pi R^3\displaystyle\int_0^{\pi/2}\sin\varphi\cos\varphi\,d\varphi$.</span>
+            <span class="esempio__passo">Per l'integrale rimasto uso la <strong>sostituzione</strong> $t=\sin\varphi$: allora $dt=\cos\varphi\,d\varphi$, cioè il pezzo $\cos\varphi\,d\varphi$ dell'integranda diventa esattamente $dt$ e $\sin\varphi$ diventa $t$. Cambio anche gli estremi, perché ora la variabile è $t$: per $\varphi=0$ si ha $t=\sin 0=0$; per $\varphi=\pi/2$ si ha $t=\sin(\pi/2)=1$. Quindi $\displaystyle\int_0^{\pi/2}\sin\varphi\cos\varphi\,d\varphi=\int_0^{1}t\,dt=\Big[\frac{t^2}{2}\Big]_0^1=\frac12$.</span>
+          </p>
+          <div class="esempio__risultato">$m=2\pi R^3\cdot\dfrac12=\pi R^3$. Ha senso: la densità $z$ è massima al polo e nulla all'equatore, quindi la massa è minore di $\delta_{\max}\cdot\text{area}=R\cdot 2\pi R^2=2\pi R^3$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Flusso radiale attraverso una sfera</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il flusso di $\mathbf{F}(x,y,z)=(x,\ y,\ z)$ attraverso la sfera di centro l'origine e raggio $R$, orientata con la normale uscente.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Sulla sfera il versore normale uscente è $\mathbf{n}=\dfrac{\mathbf{r}}{R}=\dfrac{(x,y,z)}{R}$, dove $\mathbf{r}=(x,y,z)$ è il vettore posizione: lo abbiamo ricavato nella dimostrazione dell'area della sfera (sezione 5), dove il prodotto vettoriale è risultato un multiplo positivo di $\mathbf{r}$. Dividere per $R$ serve a farne un <em>versore</em>, cioè un vettore di modulo $1$, perché sulla sfera $|\mathbf{r}|=R$.</span>
+            <span class="esempio__passo">Ma il campo è proprio $\mathbf{F}=(x,y,z)=\mathbf{r}$! Quindi, applicando la definizione di prodotto scalare (somma dei prodotti delle componenti omologhe), $\mathbf{F}\cdot\mathbf{n}=\mathbf{r}\cdot\dfrac{\mathbf{r}}{R}=\dfrac{\mathbf{r}\cdot\mathbf{r}}{R}=\dfrac{x\cdot x+y\cdot y+z\cdot z}{R}=\dfrac{x^2+y^2+z^2}{R}$. A questo punto <strong>sostituisco $x^2+y^2+z^2=R^2$</strong>, che è l'equazione stessa della sfera e vale in <em>tutti</em> i suoi punti: $\dfrac{R^2}{R}=R$, costante su tutta la sfera.</span>
+            <span class="esempio__passo">Un integrando costante esce dall'integrale, e ciò che resta, $\iint_\Sigma dS$, è per definizione l'area della superficie (<span class="richiamo" data-sec="4.2">§4.2</span>, caso $f\equiv1$), che per la sfera vale $4\pi R^2$ (dimostrato nella sezione 5): $\displaystyle\Phi=\iint_\Sigma R\,dS=R\cdot\operatorname{Area}(\Sigma)=R\cdot 4\pi R^2$.</span>
+          </p>
+          <div class="esempio__risultato">$\Phi=4\pi R^3$, positivo: il campo esce dalla sfera, come deve essere per un campo che "esplode" dall'origine. Controllo bonus: $\operatorname{div}\mathbf{F}=3$ e il volume della palla è $\frac43\pi R^3$; il prodotto $3\cdot\frac43\pi R^3=4\pi R^3$ coincide — è un'anticipazione del teorema della divergenza.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Flusso attraverso la superficie laterale di un cilindro</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il flusso di $\mathbf{F}=(x,\ y,\ 0)$ attraverso il cilindro laterale $x^2+y^2=R^2$, $0\leq z\leq h$, con normale uscente.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">La formula da usare è quella del flusso in coordinate (<span class="richiamo" data-sec="4.4">§4.4</span>): $\Phi=\iint_D \mathbf{F}\big(\mathbf{r}(u,v)\big)\cdot\big(\mathbf{r}_u\times\mathbf{r}_v\big)\,du\,dv$. Qui i parametri sono $u=\theta$ e $v=z$, e il prodotto vettoriale l'abbiamo già calcolato nell'Esempio 1: $\mathbf{r}_\theta\times\mathbf{r}_z=(R\cos\theta,\ R\sin\theta,\ 0)$.</span>
+            <span class="esempio__passo"><strong>Controllo l'orientazione prima di proseguire</strong>, perché il segno del flusso dipende da questo. Il vettore $(R\cos\theta,\ R\sin\theta,\ 0)$ è $R$ volte $(\cos\theta,\sin\theta,0)$, cioè punta esattamente nella direzione che va dall'asse del cilindro verso il punto della parete: è la direzione radiale <em>verso fuori</em>. È l'orientazione richiesta, quindi non devo cambiare segno.</span>
+            <span class="esempio__passo"><strong>Sostituisco la parametrizzazione dentro il campo</strong>, cioè calcolo $\mathbf{F}(\mathbf{r}(\theta,z))$. Il campo è $\mathbf{F}=(x,y,0)$; al posto di $x$ metto $R\cos\theta$, al posto di $y$ metto $R\sin\theta$. Ottengo $\mathbf{F}\big(\mathbf{r}(\theta,z)\big)=(R\cos\theta,\ R\sin\theta,\ 0)$.</span>
+            <span class="esempio__passo"><strong>Prodotto scalare</strong> (moltiplico le componenti omologhe e sommo): $\mathbf{F}\cdot(\mathbf{r}_\theta\times\mathbf{r}_z)=(R\cos\theta)(R\cos\theta)+(R\sin\theta)(R\sin\theta)+0\cdot 0=R^2\cos^2\theta+R^2\sin^2\theta+0$. Raccolgo $R^2$: $R^2\big(\cos^2\theta+\sin^2\theta\big)=R^2\cdot 1=R^2$, per l'<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">identità fondamentale</a>.</span>
+            <span class="esempio__passo">L'integranda è la costante $R^2$ e il dominio dei parametri è il rettangolo $[0,2\pi]\times[0,h]$, quindi l'integrale si spezza: $\displaystyle\Phi=\int_0^{2\pi}\!\!\int_0^{h} R^2\,dz\,d\theta=R^2\left(\int_0^h\! dz\right)\!\left(\int_0^{2\pi}\! d\theta\right)=R^2\cdot h\cdot 2\pi$.</span>
+          </p>
+          <div class="esempio__risultato">$\Phi=2\pi R^2 h$. Osserva che il campo è perfettamente perpendicolare al cilindro in ogni punto: il flusso è massimo, pari a $|\mathbf{F}|\cdot\text{area}=R\cdot 2\pi R h$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Flusso attraverso un grafico (paraboloide)</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare il flusso di $\mathbf{F}=(0,\ 0,\ z)$ attraverso la porzione di paraboloide $z=1-x^2-y^2$ con $z\geq 0$, orientata verso l'alto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Trovo il dominio $D$</strong>, cioè l'ombra della superficie sul piano $xy$. Sostituisco $z=1-x^2-y^2$ nella condizione $z\geq 0$: ottengo $1-x^2-y^2\geq 0$, cioè (portando $x^2+y^2$ a destra) $x^2+y^2\leq 1$. Il dominio $D$ è il disco unitario.</span>
+            <span class="esempio__passo">È un grafico con $f(x,y)=1-x^2-y^2$. Derivate parziali: $f_x=-2x$ (derivo rispetto a $x$ tenendo $y$ fissa: $1$ e $-y^2$ sono costanti e danno $0$) e, simmetricamente, $f_y=-2y$. La formula della normale verso l'alto (<span class="richiamo" data-sec="4.3">§4.3</span>) è $\mathbf{N}=(-f_x,\,-f_y,\,1)$; <strong>sostituisco</strong> $f_x=-2x$ e $f_y=-2y$ e faccio attenzione al doppio segno meno: $-f_x=-(-2x)=+2x$, $-f_y=-(-2y)=+2y$. Dunque $\mathbf{N}=(2x,\ 2y,\ 1)$.</span>
+            <span class="esempio__passo"><strong>Sostituisco la superficie nel campo</strong>: $\mathbf{F}=(0,0,z)$ e sul grafico $z$ vale $1-x^2-y^2$, quindi $\mathbf{F}=(0,\ 0,\ 1-x^2-y^2)$. Prodotto scalare con $\mathbf{N}$: $0\cdot 2x+0\cdot 2y+(1-x^2-y^2)\cdot 1=1-x^2-y^2$. Niente radici: la semplificazione del flusso (<span class="richiamo" data-sec="4.4">§4.4</span>) ha fatto il suo lavoro.</span>
+            <span class="esempio__passo">Il dominio è un disco, quindi <strong>passo in coordinate polari</strong> (<a href="08-integrali-doppi.html">Capitolo 8</a>): pongo $x=\rho\cos\theta$, $y=\rho\sin\theta$, con $\rho\in[0,1]$ e $\theta\in[0,2\pi]$, e ricordo che lo jacobiano di questo cambio di variabili è $\rho$, cioè $dx\,dy=\rho\,d\rho\,d\theta$. Nell'integranda $x^2+y^2$ diventa $\rho^2\cos^2\theta+\rho^2\sin^2\theta=\rho^2\big(\cos^2\theta+\sin^2\theta\big)=\rho^2$. Quindi $\displaystyle\Phi=\int_0^{2\pi}\!\!\int_0^{1}\big(1-\rho^2\big)\,\rho\,d\rho\,d\theta$.</span>
+            <span class="esempio__passo">Svolgo il prodotto dentro l'integranda: $(1-\rho^2)\rho=\rho-\rho^3$. L'integranda non dipende da $\theta$, quindi l'integrale in $\theta$ dà il fattore $2\pi$. Resta $\displaystyle\int_0^1(\rho-\rho^3)\,d\rho=\Big[\frac{\rho^2}{2}-\frac{\rho^4}{4}\Big]_0^1=\Big(\frac12-\frac14\Big)-0=\frac14$, e moltiplicando per $2\pi$: $\Phi=2\pi\cdot\frac14=\frac{\pi}{2}$.</span>
+          </p>
+          <div class="esempio__risultato">$\Phi=\dfrac{\pi}{2}$, positivo: il campo verticale $(0,0,z)$ attraversa la cupola verso l'alto.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Divergenza, rotore e laplaciano di un campo concreto</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Dato $\mathbf{F}(x,y,z)=\big(x^2y,\ y^2z,\ z^2x\big)$, calcolare $\operatorname{div}\mathbf{F}$ e $\operatorname{rot}\mathbf{F}$; verificare poi che $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Chi è chi.</strong> Scrivo subito le tre componenti: $F_1=x^2y$, $F_2=y^2z$, $F_3=z^2x$. Ogni volta che una formula chiede $F_1$, $F_2$ o $F_3$, sostituirò queste.</span>
+            <span class="esempio__passo"><strong>Divergenza</strong> (deve venire uno scalare). Uso la definizione del <span class="richiamo" data-sec="4.5">§4.5</span>, $\operatorname{div}\mathbf{F}=\partial_x F_1+\partial_y F_2+\partial_z F_3$, e sostituisco: $\operatorname{div}\mathbf{F}=\dfrac{\partial}{\partial x}(x^2y)+\dfrac{\partial}{\partial y}(y^2z)+\dfrac{\partial}{\partial z}(z^2x)$. Derivo un addendo alla volta, trattando le altre lettere come costanti: $\partial_x(x^2y)=y\cdot 2x=2xy$, $\partial_y(y^2z)=z\cdot 2y=2yz$, $\partial_z(z^2x)=x\cdot 2z=2zx$. Somma: $2xy+2yz+2zx$.</span>
+            <span class="esempio__passo"><strong>Rotore</strong> (deve venire un vettore), prima componente: $\dfrac{\partial F_3}{\partial y}-\dfrac{\partial F_2}{\partial z}=\dfrac{\partial}{\partial y}(z^2x)-\dfrac{\partial}{\partial z}(y^2z)=0-y^2=-y^2$.</span>
+            <span class="esempio__passo">Seconda componente: $\dfrac{\partial F_1}{\partial z}-\dfrac{\partial F_3}{\partial x}=0-z^2=-z^2$. Terza: $\dfrac{\partial F_2}{\partial x}-\dfrac{\partial F_1}{\partial y}=0-x^2=-x^2$.</span>
+            <span class="esempio__passo">Quindi $\operatorname{rot}\mathbf{F}=\big(-y^2,\ -z^2,\ -x^2\big)$. Essendo diverso da zero, $\mathbf{F}$ <strong>non</strong> è conservativo.</span>
+            <span class="esempio__passo">Verifica dell'identità: $\operatorname{div}\big(-y^2,-z^2,-x^2\big)=\dfrac{\partial}{\partial x}(-y^2)+\dfrac{\partial}{\partial y}(-z^2)+\dfrac{\partial}{\partial z}(-x^2)=0+0+0=0$. ✓</span>
+          </p>
+          <div class="esempio__risultato">$\operatorname{div}\mathbf{F}=2(xy+yz+zx)$, $\ \operatorname{rot}\mathbf{F}=(-y^2,-z^2,-x^2)$, e in effetti $\operatorname{div}(\operatorname{rot}\mathbf{F})=0$ come garantisce il teorema.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Funzioni armoniche e verifica di rot(grad f)</span><span class="badge badge--esame">Esame</span></div>
+          <p>Data $f(x,y,z)=x^2+y^2-2z^2$: (a) calcolare $\Delta f$ e dire se $f$ è armonica; (b) calcolare $\operatorname{grad} f$ e verificare che il suo rotore è nullo; (c) calcolare $\operatorname{div}\big(\operatorname{grad} f\big)$ e confrontarlo con (a).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) La formula del laplaciano (<span class="richiamo" data-sec="4.5">§4.5</span>) è $\Delta f=f_{xx}+f_{yy}+f_{zz}$: servono le tre derivate seconde <em>pure</em>. Le ricavo in due tappe. Prime derivate (ogni volta le altre due lettere sono costanti): $f_x=2x$, $f_y=2y$, $f_z=-4z$. Derivo una seconda volta rispetto alla stessa variabile: $f_{xx}=\partial_x(2x)=2$, $f_{yy}=\partial_y(2y)=2$, $f_{zz}=\partial_z(-4z)=-4$. Sostituisco nella formula: $\Delta f=2+2-4=0$, quindi la funzione è <strong>armonica</strong>.</span>
+            <span class="esempio__passo">(b) Il gradiente è la terna delle prime derivate, già calcolate al punto (a): $\operatorname{grad} f=(f_x,f_y,f_z)=(2x,\ 2y,\ -4z)$.</span>
+            <span class="esempio__passo">Rotore del gradiente, prima componente: $\dfrac{\partial}{\partial y}(-4z)-\dfrac{\partial}{\partial z}(2y)=0-0=0$. Seconda: $\dfrac{\partial}{\partial z}(2x)-\dfrac{\partial}{\partial x}(-4z)=0-0=0$. Terza: $\dfrac{\partial}{\partial x}(2y)-\dfrac{\partial}{\partial y}(2x)=0-0=0$.</span>
+            <span class="esempio__passo">Quindi $\operatorname{rot}\big(\operatorname{grad} f\big)=\mathbf{0}$, come previsto dal teorema: nessuna girandola ruota in un campo gradiente.</span>
+            <span class="esempio__passo">(c) $\operatorname{div}(2x,2y,-4z)=2+2-4=0$, che è esattamente $\Delta f$: il laplaciano <em>è</em> la divergenza del gradiente.</span>
+          </p>
+          <div class="esempio__risultato">$\Delta f=0$ ($f$ è armonica), $\operatorname{rot}(\operatorname{grad} f)=\mathbf{0}$, e $\operatorname{div}(\operatorname{grad} f)=\Delta f=0$. Interpretazione: ogni punto vale la media dei vicini, il campo $\operatorname{grad} f$ non ha vortici e nemmeno sorgenti — siamo in equilibrio.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare il fattore $\big|\mathbf{r}_u\times\mathbf{r}_v\big|$</div>
+          <p>È l'errore numero uno in assoluto. Si scrive $\iint_\Sigma f\,dS$ e poi si calcola $\iint_D f\,du\,dv$, come se la superficie fosse piatta. Risultato: si integra sull'<em>ombra</em> invece che sulla superficie, e il numero viene sistematicamente troppo piccolo. <em>Come evitarlo</em>: prima ancora di guardare la funzione integranda, scrivi in un angolo del foglio la riga "$dS=\ldots$" e riempila. Solo dopo passa all'integrale. E ricorda il test del tetto: se non compare nessun fattore di ingrandimento, hai calcolato l'area dell'ombra, non del tetto.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Normalizzare la normale e poi rimoltiplicare per il modulo</div>
+          <p>Nel calcolo del flusso molti scrivono coscienziosamente $\mathbf{n}=\dfrac{\mathbf{r}_u\times\mathbf{r}_v}{\big|\mathbf{r}_u\times\mathbf{r}_v\big|}$, calcolano la radice quadrata (spesso orribile), poi riscrivono $dS$ con la stessa radice... e quasi sempre perdono per strada uno dei due pezzi, ottenendo un risultato con una radice di troppo o di meno. <em>Come evitarlo</em>: memorizza la formula compatta $\mathbf{n}\,dS=\big(\mathbf{r}_u\times\mathbf{r}_v\big)\,du\,dv$ e usa direttamente</p>
+          <div class="formula-block">$$\Phi=\iint_D \mathbf{F}\cdot\big(\mathbf{r}_u\times\mathbf{r}_v\big)\,du\,dv$$</div>
+          <p><strong>Nel flusso le radici non devono comparire mai.</strong> Se ne vedi una, quasi certamente stai sbagliando. (Nell'integrale <em>scalare</em>, invece, la radice ci deve essere: lì non c'è niente con cui semplificarla.)</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sbagliare l'orientazione e quindi il segno</div>
+          <p>Un flusso calcolato con la normale sbagliata è esatto in valore assoluto e <strong>sbagliato di segno</strong>: in un esame vale zero, perché il segno è l'informazione fisica (entra o esce?). L'errore tipico: si parametrizza una superficie chiusa in modo che il prodotto vettoriale punti verso l'interno, senza accorgersene. <em>Come evitarlo</em>: dopo aver calcolato $\mathbf{r}_u\times\mathbf{r}_v$, <strong>valutalo in un punto concreto</strong> e guarda dove punta. Esempio: sul cilindro in $\theta=0$ si ottiene $(R,0,0)$, che punta verso l'esterno — bene. Se punta dalla parte sbagliata, basta scambiare i due parametri oppure cambiare segno al risultato finale. Se la consegna dice "verso l'alto", controlla che la terza componente sia positiva.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere il tipo di oggetto: divergenza vettore, rotore scalare</div>
+          <p>Si legge spesso "$\operatorname{div}\mathbf{F}=(2x,\ 2y,\ 2z)$" oppure "$\operatorname{rot}\mathbf{F}=3$". Sono errori di <em>tipo</em>, gravi quanto scrivere che una derivata è un insieme. La divergenza <strong>somma</strong> tre derivate e restituisce un numero; il rotore combina sei derivate e restituisce tre componenti. <em>Come evitarlo</em>: usa la tabella della sezione 4.6 come checklist e, ogni volta, scrivi accanto al risultato "scalare" o "vettore" prima di calcolare. Occhio anche a $\operatorname{grad}$ di un campo vettoriale e a $\operatorname{div}$ di una funzione scalare: sono scritture prive di senso in questo corso.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Mettere le derivate miste nel laplaciano</div>
+          <p>Il laplaciano è la somma delle derivate seconde <strong>pure</strong>: $\Delta f=f_{xx}+f_{yy}+f_{zz}$. Non contiene $f_{xy}$, né $f_{xz}$, né $f_{yz}$ — quelle stanno nella <a href="05-hessiano-massimi-minimi.html">matrice hessiana</a>, che è un altro oggetto. Un modo elegante di ricordarlo: il laplaciano è la <strong>traccia</strong> dell'hessiana, cioè la somma dei soli elementi diagonali. <em>Come evitarlo</em>: scrivi mentalmente $\Delta=\nabla\cdot\nabla$ e osserva che il prodotto scalare accoppia sempre la stessa componente con sé stessa: $x$ con $x$, $y$ con $y$, $z$ con $z$. Nessun termine misto può nascere.</p>
+        </div>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Sostituire l'equazione della superficie troppo tardi (o mai)</div>
+          <p>Dopo aver calcolato $\mathbf{r}_u\times\mathbf{r}_v$, bisogna valutare il campo <strong>sui punti della superficie</strong>: cioè sostituire $x,y,z$ con le loro espressioni in funzione dei parametri. Chi si dimentica questo passaggio si ritrova un integrale in cinque lettere che non sa risolvere. <em>Come evitarlo</em>: fai sempre due colonne, "campo" e "normale", e riempi prima la colonna del campo scrivendo $\mathbf{F}\big(\mathbf{r}(u,v)\big)$ per esteso. Sulla sfera, per dire, ricordati che $x^2+y^2+z^2$ vale semplicemente $R^2$: sfruttare l'equazione della superficie spesso riduce l'integranda a una costante.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sulla sfera, $\mathbf{n}=\mathbf{r}/R$: usala e risparmia pagine di conti</div>
+          <p>Su una sfera di raggio $R$ centrata nell'origine, la normale uscente in un punto è semplicemente il vettore posizione diviso per il raggio. Quindi, se il campo è radiale, il prodotto scalare si semplifica in modo spettacolare. Con $\mathbf{F}=\mathbf{r}$: $\ \mathbf{F}\cdot\mathbf{n}=\dfrac{|\mathbf{r}|^2}{R}=R$, costante. Con $\mathbf{F}=k\,\dfrac{\mathbf{r}}{|\mathbf{r}|^3}$: $\ \mathbf{F}\cdot\mathbf{n}=\dfrac{k}{R^2}$, di nuovo costante. <strong>Quando l'integranda è costante, il flusso è "costante $\times$ area" e hai finito in una riga</strong>, senza nemmeno parametrizzare.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Campo tangente $\Rightarrow$ flusso nullo (a colpo d'occhio)</div>
+          <p>Se in ogni punto il campo è <strong>tangente</strong> alla superficie, allora $\mathbf{F}\cdot\mathbf{n}=0$ ovunque e il flusso è $0$ senza alcun calcolo. Casi tipici: un campo puramente verticale $(0,0,c)$ attraverso la superficie laterale di un cilindro verticale (scorre parallelo alla parete, non la buca); un campo puramente orizzontale attraverso un pezzo di piano orizzontale. Prima di lanciarti in un integrale, fai sempre questo controllo geometrico: <em>il campo attraversa davvero la superficie, o le scivola accanto?</em></p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Per i grafici: la ricetta in una riga</div>
+          <p>Se $\Sigma$ è il grafico $z=f(x,y)$ sopra $D$, orientato verso l'alto, non c'è nulla da parametrizzare. Scrivi direttamente</p>
+          <div class="formula-block">$$\Phi=\iint_D \Big[-F_1\,f_x-F_2\,f_y+F_3\Big]_{z=f(x,y)}\,dx\,dy$$</div>
+          <p>e per l'integrale scalare $\displaystyle\iint_\Sigma g\,dS=\iint_D g\big(x,y,f(x,y)\big)\sqrt{1+f_x^2+f_y^2}\,dx\,dy$. Due formule, coprono metà degli esercizi d'esame. E se il dominio $D$ è un cerchio o una corona, il passaggio successivo è quasi sempre in <strong>coordinate polari</strong>.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Nabla come vettore: tre prodotti, tre operatori</div>
+          <p>Non imparare quattro formule separate: imparane una sola, $\nabla=\left(\partial_x,\partial_y,\partial_z\right)$, e poi ricorda che i modi di moltiplicare con un vettore sono esattamente tre.<br>$\nabla f$ (per uno scalare) $\to$ <strong>gradiente</strong>, vettore.<br>$\nabla\cdot\mathbf{F}$ (prodotto scalare) $\to$ <strong>divergenza</strong>, scalare.<br>$\nabla\times\mathbf{F}$ (prodotto vettoriale) $\to$ <strong>rotore</strong>, vettore.<br>$\nabla\cdot\nabla f$ (scalare del gradiente) $\to$ <strong>laplaciano</strong>, scalare.<br>Il tipo del risultato è deciso dal tipo di prodotto: prodotto scalare $\Rightarrow$ scalare, prodotto vettoriale $\Rightarrow$ vettore. Con questa chiave non sbagli più né formula né tipo.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sfrutta le identità per rispondere senza calcolare</div>
+          <p>Due domande frequentissime, due risposte immediate. "Quanto vale $\operatorname{rot}\big(\nabla(x^3y\sin z)\big)$?" $\mathbf{0}$, perché è il rotore di un gradiente — non serve derivare niente. "Il campo $\mathbf{G}=(x,y,z)$ può essere il rotore di qualche campo?" No: $\operatorname{div}\mathbf{G}=3\neq 0$, mentre ogni rotore ha divergenza nulla. Allo stesso modo, per <strong>escludere</strong> che un campo sia conservativo basta trovargli rotore non nullo. Queste tre mosse valgono punti gratis in ogni compito.</p>
+        </div>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Controlla il segno con il buon senso fisico</div>
+          <p>Finito il conto, fermati un istante e chiediti: <em>il campo esce o entra?</em> Se hai orientato con la normale uscente e il campo si allontana visibilmente dall'origine (come $\mathbf{F}=(x,y,z)$), il flusso <strong>deve</strong> venire positivo. Se ti viene negativo, hai quasi sicuramente invertito la normale. Lo stesso vale per le simmetrie: se il campo e la superficie sono simmetrici rispetto a un piano e il campo è dispari rispetto a quella riflessione, il flusso è $0$ — le due metà si cancellano, esattamente come per gli integrali di funzioni dispari su intervalli simmetrici.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Superfici, flusso e operatori $\nabla$</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Elemento d'area</strong>
+              <ul><li>$dS=|\mathbf{r}_u\times\mathbf{r}_v|\,du\,dv$</li><li>Parallelogrammino sghembo</li><li>Grafico: $\sqrt{1+f_x^2+f_y^2}$</li><li>Sfera: $R^2\sin\varphi$; cilindro: $R$; cono: $\sqrt2\,u$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Integrale scalare</strong>
+              <ul><li>$\iint_\Sigma f\,dS$</li><li>$f=1$ ⇒ area</li><li>$f=\delta$ ⇒ massa della lamina</li><li>Non dipende dalla parametrizzazione</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Orientazione</strong>
+              <ul><li>Due normali opposte</li><li>$\mathbf{n}=\dfrac{\mathbf{r}_u\times\mathbf{r}_v}{|\mathbf{r}_u\times\mathbf{r}_v|}$</li><li>Chiusa ⇒ normale uscente</li><li>Möbius: non orientabile</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Flusso</strong>
+              <ul><li>$\Phi=\iint_\Sigma\mathbf{F}\cdot\mathbf{n}\,dS$</li><li>La rete nel fiume</li><li>$\mathbf{n}\,dS=(\mathbf{r}_u\times\mathbf{r}_v)\,du\,dv$</li><li>Segno = verso; orientazione opposta ⇒ $-\Phi$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Operatori</strong>
+              <ul><li>grad: scalare → vettore (salita)</li><li>div: vettore → scalare (rubinetto/scarico)</li><li>rot: vettore → vettore (girandola)</li><li>$\Delta$: scalare → scalare (media dei vicini)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Identità e nomi</strong>
+              <ul><li>$\operatorname{rot}(\operatorname{grad} f)=\mathbf{0}$</li><li>$\operatorname{div}(\operatorname{rot}\mathbf{F})=0$</li><li>$\operatorname{div}(\operatorname{grad} f)=\Delta f$</li><li>Solenoidale / irrotazionale / armonica</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Elemento d'area</strong>: $dS=\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$, perché il pezzettino di superficie è un parallelogrammino di lati $\mathbf{r}_u\,du$ e $\mathbf{r}_v\,dv$. Per il grafico $z=f(x,y)$ diventa $dS=\sqrt{1+f_x^2+f_y^2}\,dx\,dy$.</li>
+            <li><strong>Integrale scalare</strong>: $\displaystyle\iint_\Sigma f\,dS=\iint_D f(\mathbf{r}(u,v))\,\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$. Con $f=1$ dà l'<strong>area</strong>, con $f=\delta$ la <strong>massa</strong> di una lamina curva. Non dipende dalla parametrizzazione.</li>
+            <li><strong>$dS$ da memorizzare</strong>: sfera $R^2\sin\varphi\,d\varphi\,d\theta$ (area $4\pi R^2$); cilindro $R\,d\theta\,dz$ (area laterale $2\pi Rh$); cono $z=\sqrt{x^2+y^2}$: $\sqrt2\,u\,du\,d\theta$.</li>
+            <li><strong>Orientazione</strong>: due versori normali opposti; $\mathbf{n}=\dfrac{\mathbf{r}_u\times\mathbf{r}_v}{\big|\mathbf{r}_u\times\mathbf{r}_v\big|}$. Sulle superfici <strong>chiuse</strong> si usa la <strong>normale uscente</strong>. Cambiare orientazione cambia il segno del flusso.</li>
+            <li><strong>Flusso</strong>: $\displaystyle\Phi=\iint_\Sigma\mathbf{F}\cdot\mathbf{n}\,dS=\iint_D\mathbf{F}\cdot\big(\mathbf{r}_u\times\mathbf{r}_v\big)\,du\,dv$. È "quanta roba attraversa la rete al secondo": conta solo la componente <strong>perpendicolare</strong>. Nel flusso non compaiono radici.</li>
+            <li><strong>Divergenza</strong> $\operatorname{div}\mathbf{F}=\partial_xF_1+\partial_yF_2+\partial_zF_3$ (scalare): sorgente se positiva, pozzo se negativa; nulla ⇒ campo <strong>solenoidale</strong>.</li>
+            <li><strong>Rotore</strong> $\operatorname{rot}\mathbf{F}=\nabla\times\mathbf{F}$ (vettore, determinante simbolico): quanto gira una girandola locale; nullo ⇒ campo <strong>irrotazionale</strong>.</li>
+            <li><strong>Laplaciano</strong> $\Delta f=f_{xx}+f_{yy}+f_{zz}$ (solo derivate <em>pure</em>): quanto il punto sta sopra o sotto la media dei vicini; nullo ⇒ funzione <strong>armonica</strong>. Vale $\Delta f=\operatorname{div}(\operatorname{grad} f)$.</li>
+            <li><strong>Identità</strong>: $\operatorname{rot}\big(\operatorname{grad} f\big)=\mathbf{0}$ ("i campi gradiente non vorticano") e $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$ ("i campi rotore non hanno sorgenti"). Entrambe seguono dal teorema di Schwarz.</li>
+            <li><strong>Controllo di tipo</strong>: prima di calcolare, decidi se il risultato deve essere scalare o vettoriale. Intercetta da solo metà degli errori.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola l'elemento d'area del piano $z=2x+3y$ e l'area della porzione che sta sopra il rettangolo $D=[0,1]\times[0,2]$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">È un grafico con $f(x,y)=2x+3y$, quindi $f_x=2$ e $f_y=3$.</span>
+                <span class="esempio__passo">$dS=\sqrt{1+f_x^2+f_y^2}\,dx\,dy=\sqrt{1+4+9}\,dx\,dy=\sqrt{14}\,dx\,dy$, costante.</span>
+                <span class="esempio__passo">Area $=\sqrt{14}\cdot\operatorname{Area}(D)=\sqrt{14}\cdot(1\cdot 2)$.</span>
+              </p>
+              <p><strong>$dS=\sqrt{14}\,dx\,dy$ e Area $=2\sqrt{14}\approx 7{,}48$.</strong> Il rettangolo "ombra" ha area $2$: l'inclinazione lo ingrandisce di $\sqrt{14}$ volte.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Usando $dS=R^2\sin\varphi\,d\varphi\,d\theta$, calcola l'area dell'emisfero superiore di raggio $R$ e verifica che sia metà di $4\pi R^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Nella parametrizzazione sferica $z=R\cos\varphi$; l'emisfero <em>superiore</em> è $z\geq 0$, cioè $\cos\varphi\geq 0$, che per $\varphi\in[0,\pi]$ significa $\varphi\in[0,\pi/2]$. La longitudine gira tutta: $\theta\in[0,2\pi]$. Cambia dunque solo l'estremo superiore dell'integrale in $\varphi$, da $\pi$ a $\pi/2$.</span>
+                <span class="esempio__passo">$\displaystyle\operatorname{Area}=\int_0^{2\pi}\!\!\int_0^{\pi/2}R^2\sin\varphi\,d\varphi\,d\theta$. Porto fuori la costante $R^2$; l'integranda rimasta non contiene $\theta$, quindi il doppio integrale si spezza nel prodotto $\left(\int_0^{2\pi}d\theta\right)\left(\int_0^{\pi/2}\sin\varphi\,d\varphi\right)$. Il primo fattore vale $2\pi$; per il secondo uso la primitiva $-\cos\varphi$ (derivandola si riottiene $\sin\varphi$). In tutto: $R^2\cdot 2\pi\cdot\big[-\cos\varphi\big]_0^{\pi/2}$.</span>
+                <span class="esempio__passo">Valuto la parentesi quadra: estremo superiore meno estremo inferiore, $\big[-\cos\varphi\big]_0^{\pi/2}=\big(-\cos\frac{\pi}{2}\big)-\big(-\cos 0\big)=-\cos(\pi/2)+\cos 0=0+1=1$.</span>
+              </p>
+              <p><strong>Area $=2\pi R^2$</strong>, che è esattamente metà di $4\pi R^2$. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iint_\Sigma 1\,dS$ dove $\Sigma$ è la superficie laterale del cilindro $x^2+y^2=4$ con $0\leq z\leq 5$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Identifico i dati: l'equazione $x^2+y^2=4$ si legge $x^2+y^2=2^2$, quindi il raggio è $R=2$; l'altezza è $h=5$. L'elemento d'area del cilindro (tabella del <span class="richiamo" data-sec="4.1">§4.1</span>, ricavato nell'Esempio 1) è $dS=R\,d\theta\,dz$; <strong>sostituisco $R=2$</strong> e ottengo $dS=2\,d\theta\,dz$.</span>
+                <span class="esempio__passo">$\displaystyle\iint_\Sigma 1\,dS=\int_0^{2\pi}\!\!\int_0^{5}2\,dz\,d\theta$. L'integranda è costante, quindi l'integrale è semplicemente la costante per l'area del rettangolo dei parametri: $2\cdot\left(\int_0^5 dz\right)\left(\int_0^{2\pi}d\theta\right)=2\cdot 5\cdot 2\pi$.</span>
+              </p>
+              <p><strong>$\displaystyle\iint_\Sigma 1\,dS=20\pi$.</strong> Coerente con $2\pi Rh=2\pi\cdot 2\cdot 5$: integrare la funzione costante $1$ restituisce sempre l'area.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola divergenza e rotore del campo $\mathbf{F}(x,y,z)=(x,\ y,\ z)$ e interpreta i risultati.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\operatorname{div}\mathbf{F}=\dfrac{\partial x}{\partial x}+\dfrac{\partial y}{\partial y}+\dfrac{\partial z}{\partial z}=1+1+1=3$ (scalare).</span>
+                <span class="esempio__passo">Rotore, prima componente: $\partial_y(z)-\partial_z(y)=0-0=0$; seconda: $\partial_z(x)-\partial_x(z)=0$; terza: $\partial_x(y)-\partial_y(x)=0$.</span>
+              </p>
+              <p><strong>$\operatorname{div}\mathbf{F}=3$, $\ \operatorname{rot}\mathbf{F}=\mathbf{0}$.</strong> Interpretazione: ogni punto è una <em>sorgente</em> (le frecce si allontanano radialmente), ma nessuna girandola ruota. Infatti $\mathbf{F}=\nabla\big(\tfrac12(x^2+y^2+z^2)\big)$ è un campo gradiente, e i campi gradiente sono sempre irrotazionali.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Una lamina cilindrica ha raggio $1$, altezza $3$ ($0\leq z\leq 3$) e densità superficiale $\delta(x,y,z)=z$. Calcolane la massa.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Con $R=1$ l'elemento d'area è $dS=1\cdot d\theta\,dz=d\theta\,dz$.</span>
+                <span class="esempio__passo">$\displaystyle m=\iint_\Sigma z\,dS=\int_0^{2\pi}\!\!\int_0^{3} z\,dz\,d\theta$.</span>
+                <span class="esempio__passo">$\displaystyle\int_0^3 z\,dz=\Big[\frac{z^2}{2}\Big]_0^3=\frac92$, e l'integrale in $\theta$ dà il fattore $2\pi$.</span>
+              </p>
+              <p><strong>$m=2\pi\cdot\dfrac92=9\pi$.</strong> Controllo di ragionevolezza: la densità media sul cilindro è $\bar\delta=3/2$ e l'area è $2\pi\cdot1\cdot3=6\pi$; il prodotto $\frac32\cdot 6\pi=9\pi$ coincide, perché la densità cresce linearmente in $z$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso di $\mathbf{F}=(0,\ 0,\ 3)$ attraverso il disco $z=0$, $x^2+y^2\leq 4$, orientato verso l'alto. Poi di' quanto vale il flusso dello stesso campo attraverso la superficie laterale del cilindro $x^2+y^2=4$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Il disco $z=0$ è il grafico della funzione costante $f(x,y)=0$, quindi $f_x=0$ e $f_y=0$. Sostituisco nella formula della normale verso l'alto (<span class="richiamo" data-sec="4.3">§4.3</span>) $\mathbf{N}=(-f_x,-f_y,1)$ e ottengo $\mathbf{N}=(0,0,1)$, che ha già modulo $1$: dunque $\mathbf{n}=(0,0,1)$ e $dS=\sqrt{1+0+0}\,dx\,dy=dx\,dy$.</span>
+                <span class="esempio__passo">Prodotto scalare componente per componente: $\mathbf{F}\cdot\mathbf{n}=0\cdot 0+0\cdot 0+3\cdot 1=3$, costante. Un integrando costante esce dall'integrale e lascia l'area del disco di raggio $2$, cioè $\pi\cdot 2^2$: quindi $\Phi=3\cdot\operatorname{Area}(\text{disco})=3\cdot\pi\cdot 2^2$.</span>
+                <span class="esempio__passo">Sulla superficie laterale la normale uscente è orizzontale: dall'Esempio 1, $\mathbf{r}_\theta\times\mathbf{r}_z=(R\cos\theta,R\sin\theta,0)$ e dividendo per il modulo $R$ si ottiene $\mathbf{n}=(\cos\theta,\sin\theta,0)$. Il campo invece è verticale, $\mathbf{F}=(0,0,3)$. Prodotto scalare: $0\cdot\cos\theta+0\cdot\sin\theta+3\cdot 0=0$. Integrando zero si ottiene zero.</span>
+              </p>
+              <p><strong>Attraverso il disco: $\Phi=12\pi$. Attraverso la superficie laterale: $\Phi=0$.</strong> Il campo verticale scivola lungo la parete senza attraversarla: campo tangente ⇒ flusso nullo.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Dato $\mathbf{F}=(yz,\ xz,\ xy)$, calcola $\operatorname{div}\mathbf{F}$ e $\operatorname{rot}\mathbf{F}$. Il campo è solenoidale? È irrotazionale? È conservativo?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\operatorname{div}\mathbf{F}=\partial_x(yz)+\partial_y(xz)+\partial_z(xy)=0+0+0=0$.</span>
+                <span class="esempio__passo">Rotore, prima componente: $\partial_y(xy)-\partial_z(xz)=x-x=0$.</span>
+                <span class="esempio__passo">Seconda: $\partial_z(yz)-\partial_x(xy)=y-y=0$. Terza: $\partial_x(xz)-\partial_y(yz)=z-z=0$.</span>
+                <span class="esempio__passo">Cerco un potenziale: se $f=xyz$ allora $\nabla f=(yz,\ xz,\ xy)=\mathbf{F}$. ✓</span>
+              </p>
+              <p><strong>$\operatorname{div}\mathbf{F}=0$ (solenoidale), $\operatorname{rot}\mathbf{F}=\mathbf{0}$ (irrotazionale), e il campo è conservativo con potenziale $f=xyz$.</strong> Un campo può benissimo essere entrambe le cose: non nasce nulla e non gira nulla.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola il laplaciano di $f(x,y,z)=x^2+y^2-2z^2$ e di $g(x,y,z)=x^2+y^2+z^2$. Quale delle due è armonica? Interpreta il segno di $\Delta g$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Per $f$: $f_{xx}=2$, $f_{yy}=2$, $f_{zz}=-4$, quindi $\Delta f=2+2-4=0$.</span>
+                <span class="esempio__passo">Per $g$: $g_{xx}=2$, $g_{yy}=2$, $g_{zz}=2$, quindi $\Delta g=6$.</span>
+                <span class="esempio__passo">Ricorda: nel laplaciano entrano solo le derivate seconde <strong>pure</strong>, mai le miste.</span>
+              </p>
+              <p><strong>$\Delta f=0$: $f$ è armonica. $\Delta g=6\gt 0$: $g$ non lo è.</strong> Interpretazione: $g$ ha un minimo nell'origine, quindi nell'origine vale <em>meno</em> della media dei suoi vicini — ed è proprio ciò che segnala un laplaciano positivo. Se $g$ fosse una temperatura, quel punto si scalderebbe.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso di $\mathbf{F}=(x,\ y,\ z)$ attraverso la sola superficie laterale del cilindro $x^2+y^2=R^2$, $0\leq z\leq h$, con normale uscente.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Parametrizzo: $\mathbf{r}(\theta,z)=(R\cos\theta,\ R\sin\theta,\ z)$, con $\mathbf{r}_\theta\times\mathbf{r}_z=(R\cos\theta,\ R\sin\theta,\ 0)$ — punta verso l'esterno, corretto.</span>
+                <span class="esempio__passo">Calcolo $\mathbf{F}(\mathbf{r}(\theta,z))$, cioè <strong>sostituisco la parametrizzazione dentro il campo</strong>: in $\mathbf{F}=(x,y,z)$ metto $x=R\cos\theta$, $y=R\sin\theta$ e lascio $z$ (che è già un parametro). Ottengo $\mathbf{F}=(R\cos\theta,\ R\sin\theta,\ z)$.</span>
+                <span class="esempio__passo">Prodotto scalare fra $\mathbf{F}$ e $\mathbf{r}_\theta\times\mathbf{r}_z$, moltiplicando le componenti omologhe e sommando: $(R\cos\theta)(R\cos\theta)+(R\sin\theta)(R\sin\theta)+z\cdot 0=R^2\cos^2\theta+R^2\sin^2\theta+0$. Raccolgo $R^2$ e uso l'<a href="../parte0-prerequisiti/08-trigonometria.html#teoria-identita">identità fondamentale</a> $\cos^2\theta+\sin^2\theta=1$: resta $R^2$. La terza componente del campo non contribuisce, perché la normale ha terza componente nulla (è orizzontale).</span>
+                <span class="esempio__passo">Integranda costante su un rettangolo di parametri, quindi l'integrale si fattorizza: $\displaystyle\Phi=\int_0^{2\pi}\!\!\int_0^{h}R^2\,dz\,d\theta=R^2\left(\int_0^h dz\right)\left(\int_0^{2\pi}d\theta\right)=R^2\,h\,2\pi$.</span>
+              </p>
+              <p><strong>$\Phi=2\pi R^2 h$.</strong> Nota che la componente verticale del campo è completamente irrilevante: sulla parete laterale conta solo la parte radiale.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\displaystyle\iint_\Sigma z\,dS$, dove $\Sigma$ è la porzione di cono $z=\sqrt{x^2+y^2}$ compresa fra $z=0$ e $z=1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Parametrizzo il cono: $\mathbf{r}(u,\theta)=(u\cos\theta,\ u\sin\theta,\ u)$ con $u\in[0,1]$, $\theta\in[0,2\pi]$. Verifica che sia giusta: sostituendo $x=u\cos\theta$ e $y=u\sin\theta$ si ha $\sqrt{x^2+y^2}=\sqrt{u^2(\cos^2\theta+\sin^2\theta)}=\sqrt{u^2}=u$ (con $u\geq 0$), che è proprio la terza componente. Quindi sul cono $z=u$, e la condizione $0\leq z\leq 1$ diventa $u\in[0,1]$.</span>
+                <span class="esempio__passo">Derivate parziali. Rispetto a $u$ con $\theta$ fisso: $\cos\theta$ e $\sin\theta$ sono costanti moltiplicative, quindi $\partial_u(u\cos\theta)=\cos\theta$, $\partial_u(u\sin\theta)=\sin\theta$, $\partial_u(u)=1$. Rispetto a $\theta$ con $u$ fisso: $\partial_\theta(u\cos\theta)=-u\sin\theta$, $\partial_\theta(u\sin\theta)=u\cos\theta$, e $u$ non contiene $\theta$ quindi dà $0$. In tutto: $\mathbf{r}_u=(\cos\theta,\ \sin\theta,\ 1)$, $\ \mathbf{r}_\theta=(-u\sin\theta,\ u\cos\theta,\ 0)$.</span>
+                <span class="esempio__passo">Prodotto vettoriale con la regola $\mathbf{a}\times\mathbf{b}=(a_2b_3-a_3b_2,\ a_3b_1-a_1b_3,\ a_1b_2-a_2b_1)$, dove $\mathbf{a}=\mathbf{r}_u$ e $\mathbf{b}=\mathbf{r}_\theta$. Prima: $\sin\theta\cdot 0-1\cdot(u\cos\theta)=-u\cos\theta$. Seconda: $1\cdot(-u\sin\theta)-\cos\theta\cdot 0=-u\sin\theta$. Terza: $\cos\theta\cdot(u\cos\theta)-\sin\theta\cdot(-u\sin\theta)=u\cos^2\theta+u\sin^2\theta=u(\cos^2\theta+\sin^2\theta)=u$. Quindi $\mathbf{r}_u\times\mathbf{r}_\theta=(-u\cos\theta,\ -u\sin\theta,\ u)$.</span>
+                <span class="esempio__passo">Modulo: $\sqrt{u^2\cos^2\theta+u^2\sin^2\theta+u^2}$. Nei primi due addendi raccolgo $u^2$ e uso ancora $\cos^2\theta+\sin^2\theta=1$: restano $u^2+u^2=2u^2$, quindi il modulo è $\sqrt{2u^2}=u\sqrt2$ (positivo perché $u\geq 0$). Dunque $dS=\sqrt2\,u\,du\,d\theta$.</span>
+                <span class="esempio__passo">Nell'integrale <strong>sostituisco $z=u$</strong> (la funzione integranda espressa nei parametri) e $dS=\sqrt2\,u\,du\,d\theta$: $\displaystyle\iint_\Sigma z\,dS=\int_0^{2\pi}\!\!\int_0^{1}u\cdot\sqrt2\,u\,du\,d\theta$. L'integranda $\sqrt2\,u^2$ non dipende da $\theta$, quindi l'integrale in $\theta$ dà $2\pi$: resta $2\pi\sqrt2\int_0^1 u^2\,du=2\pi\sqrt2\Big[\frac{u^3}{3}\Big]_0^1=2\pi\sqrt2\cdot\frac13$.</span>
+              </p>
+              <p><strong>$\displaystyle\iint_\Sigma z\,dS=\dfrac{2\sqrt2\,\pi}{3}$.</strong> Verifica parziale: con $f\equiv1$ si otterrebbe $\sqrt2\,\pi$, che è l'area laterale $\pi R L$ con $R=1$ e apotema $L=\sqrt2$. ✓</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso di $\mathbf{F}=(0,\ 0,\ z)$ attraverso la porzione di paraboloide $z=x^2+y^2$ con $x^2+y^2\leq 1$, orientata verso l'alto.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Grafico con $f(x,y)=x^2+y^2$: derivando rispetto a $x$ (con $y$ costante) viene $f_x=2x$, e simmetricamente $f_y=2y$. Nella formula della normale verso l'alto $\mathbf{N}=(-f_x,-f_y,1)$ <strong>sostituisco</strong> queste due espressioni: $\mathbf{N}=(-2x,\ -2y,\ 1)$. (Qui il segno meno resta, a differenza dell'Esempio 6 dove $f_x$ era già negativa.)</span>
+                <span class="esempio__passo">Sul grafico $z=x^2+y^2$, quindi <strong>sostituisco $x^2+y^2$ al posto di $z$</strong> nel campo: $\mathbf{F}=(0,0,x^2+y^2)$. Prodotto scalare componente per componente: $0\cdot(-2x)+0\cdot(-2y)+(x^2+y^2)\cdot 1=x^2+y^2$.</span>
+                <span class="esempio__passo">Il dominio è il disco $x^2+y^2\leq 1$, quindi passo in coordinate polari (<a href="08-integrali-doppi.html">Capitolo 8</a>): pongo $x=\rho\cos\theta$, $y=\rho\sin\theta$, con jacobiano $dx\,dy=\rho\,d\rho\,d\theta$, e $\rho\in[0,1]$, $\theta\in[0,2\pi]$. L'integranda $x^2+y^2$ diventa $\rho^2(\cos^2\theta+\sin^2\theta)=\rho^2$. Dunque $\displaystyle\Phi=\int_0^{2\pi}\!\!\int_0^{1}\rho^2\cdot\rho\,d\rho\,d\theta=2\pi\int_0^1\rho^3\,d\rho=2\pi\Big[\frac{\rho^4}{4}\Big]_0^1=2\pi\cdot\frac14$.</span>
+              </p>
+              <p><strong>$\Phi=\dfrac{\pi}{2}$.</strong> Osserva che ancora una volta non è comparsa alcuna radice quadrata: nel flusso il modulo della normale si semplifica sempre.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Sia $f(x,y,z)=x^2yz$. Calcola $\operatorname{grad} f$ e verifica esplicitamente che $\operatorname{rot}\big(\operatorname{grad} f\big)=\mathbf{0}$. Spiega quale teorema garantisce a priori il risultato.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$\operatorname{grad} f=\big(2xyz,\ x^2z,\ x^2y\big)$.</span>
+                <span class="esempio__passo">Prima componente del rotore: $\partial_y(x^2y)-\partial_z(x^2z)=x^2-x^2=0$.</span>
+                <span class="esempio__passo">Seconda: $\partial_z(2xyz)-\partial_x(x^2y)=2xy-2xy=0$.</span>
+                <span class="esempio__passo">Terza: $\partial_x(x^2z)-\partial_y(2xyz)=2xz-2xz=0$.</span>
+              </p>
+              <p><strong>$\operatorname{rot}\big(\operatorname{grad} f\big)=\mathbf{0}$.</strong> A priori lo garantisce il <strong>teorema di Schwarz</strong>: ogni componente del rotore di un gradiente è una differenza del tipo $f_{ab}-f_{ba}$, e per una funzione di classe $C^2$ le derivate seconde miste coincidono. In una frase: <em>i campi gradiente non vorticano</em>.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Calcola l'area della porzione di paraboloide $z=x^2+y^2$ con $0\leq z\leq 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Trovo l'ombra della superficie: sostituisco $z=x^2+y^2$ nella condizione $z\leq 1$ e ottengo $x^2+y^2\leq 1$, cioè $D$ è il disco unitario.</span>
+                <span class="esempio__passo">È un grafico con $f(x,y)=x^2+y^2$, quindi $f_x=2x$ e $f_y=2y$. Sostituisco nella formula $dS=\sqrt{1+f_x^2+f_y^2}\,dx\,dy$: $\sqrt{1+(2x)^2+(2y)^2}=\sqrt{1+4x^2+4y^2}$. Qui la radice <strong>ci deve essere</strong>: è un integrale scalare, non un flusso (nel flusso il modulo si semplifica, <span class="richiamo" data-sec="4.4">§4.4</span>; qui no).</span>
+                <span class="esempio__passo">Passo in coordinate polari ponendo $x=\rho\cos\theta$, $y=\rho\sin\theta$, con jacobiano $dx\,dy=\rho\,d\rho\,d\theta$ e $\rho\in[0,1]$, $\theta\in[0,2\pi]$. Dentro la radice $4x^2+4y^2=4\rho^2(\cos^2\theta+\sin^2\theta)=4\rho^2$. Quindi $\displaystyle\operatorname{Area}=\int_0^{2\pi}\!\!\int_0^{1}\sqrt{1+4\rho^2}\;\rho\,d\rho\,d\theta$; l'integranda non dipende da $\theta$, quindi l'integrale in $\theta$ dà $2\pi$ e resta $2\pi\int_0^1\rho\sqrt{1+4\rho^2}\,d\rho$.</span>
+                <span class="esempio__passo"><strong>Sostituzione</strong> $t=1+4\rho^2$. Differenziando, $dt=8\rho\,d\rho$, cioè $\rho\,d\rho=\frac{1}{8}dt$: proprio il pezzo che compare nell'integranda. Cambio anche gli estremi: per $\rho=0$ si ha $t=1+0=1$; per $\rho=1$ si ha $t=1+4=5$. Dunque $\displaystyle\int_0^1\rho\sqrt{1+4\rho^2}\,d\rho=\frac18\int_1^{5}\sqrt t\,dt$. Una primitiva di $\sqrt t=t^{1/2}$ è $\frac{t^{3/2}}{3/2}=\frac23 t^{3/2}$, quindi il tutto vale $\frac18\cdot\frac23\Big[t^{3/2}\Big]_1^{5}=\frac{1}{12}\big(5^{3/2}-1^{3/2}\big)=\frac{1}{12}\big(5\sqrt5-1\big)$, avendo usato $5^{3/2}=5\cdot 5^{1/2}=5\sqrt5$.</span>
+              </p>
+              <p><strong>$\operatorname{Area}=\dfrac{\pi}{6}\big(5\sqrt5-1\big)\approx 5{,}33$.</strong> Controllo: l'ombra è un disco di area $\pi\approx3{,}14$; la superficie curva è più grande, come deve essere.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Calcola il flusso di $\mathbf{F}=(x,\ y,\ z)$ attraverso l'intera superficie chiusa del cilindro $x^2+y^2\leq R^2$, $0\leq z\leq h$ (parete laterale più le due basi), con normale uscente. Confronta il risultato con $\operatorname{div}\mathbf{F}$ moltiplicata per il volume.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Parete laterale</strong> (Esercizio 11.9): $\Phi_{\text{lat}}=2\pi R^2 h$.</span>
+                <span class="esempio__passo"><strong>Base superiore</strong> $z=h$: è il "coperchio", quindi uscire dal solido significa andare verso l'alto e la normale uscente è $\mathbf{n}=(0,0,1)$. Prodotto scalare componente per componente: $\mathbf{F}\cdot\mathbf{n}=x\cdot 0+y\cdot 0+z\cdot 1=z$, e su questa base $z$ vale sempre $h$: costante. Una costante esce dall'integrale e lascia l'area del disco di raggio $R$, cioè $\pi R^2$. Quindi $\Phi_{\text{sup}}=h\cdot\pi R^2$.</span>
+                <span class="esempio__passo"><strong>Base inferiore</strong> $z=0$: qui uscire dal solido significa andare verso il <em>basso</em>, quindi la normale uscente è $\mathbf{n}=(0,0,-1)$. Prodotto scalare: $x\cdot 0+y\cdot 0+z\cdot(-1)=-z$, e su questa base $z=0$, quindi l'integranda è $0$ ovunque. $\Phi_{\text{inf}}=0$.</span>
+                <span class="esempio__passo">Totale: $\Phi=2\pi R^2h+\pi R^2h+0=3\pi R^2 h$.</span>
+                <span class="esempio__passo">Confronto: $\operatorname{div}\mathbf{F}=3$ e il volume del cilindro è $\pi R^2h$; il prodotto vale $3\pi R^2 h$. ✓</span>
+              </p>
+              <p><strong>$\Phi=3\pi R^2h$, esattamente $\operatorname{div}\mathbf{F}\cdot\text{Volume}$.</strong> Non è una coincidenza: è il <strong>teorema della divergenza</strong>, che dimostreremo nel <a href="12-teoremi-green-gauss-stokes.html">Capitolo 12</a>. Attenzione all'errore classico: sulla base inferiore la normale uscente punta verso il <em>basso</em>, non verso l'alto.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Il campo elettrico di una carica puntiforme nell'origine è $\mathbf{F}=k\,\dfrac{\mathbf{r}}{|\mathbf{r}|^{3}}$, con $\mathbf{r}=(x,y,z)$. Calcola il flusso attraverso la sfera di raggio $R$ centrata nell'origine, con normale uscente, e commenta la dipendenza da $R$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Tutti i punti della sfera distano $R$ dall'origine, quindi su $\Sigma$ vale $|\mathbf{r}|=R$. <strong>Sostituisco $R$ al posto di $|\mathbf{r}|$</strong> nell'espressione del campo: $\mathbf{F}=k\,\dfrac{\mathbf{r}}{|\mathbf{r}|^3}=k\,\dfrac{\mathbf{r}}{R^{3}}$. Attenzione: questa sostituzione è lecita <em>solo sulla superficie</em>, non nello spazio circostante.</span>
+                <span class="esempio__passo">La normale uscente della sfera è $\mathbf{n}=\dfrac{\mathbf{r}}{R}$ (ricavata nella dimostrazione dell'area della sfera, sezione 5, e già usata nell'Esempio 4).</span>
+                <span class="esempio__passo">Prodotto scalare: $\mathbf{F}\cdot\mathbf{n}=\dfrac{k\,\mathbf{r}}{R^{3}}\cdot\dfrac{\mathbf{r}}{R}=k\,\dfrac{\mathbf{r}\cdot\mathbf{r}}{R^{3}\cdot R}$. Ora $\mathbf{r}\cdot\mathbf{r}=x^2+y^2+z^2=|\mathbf{r}|^2=R^2$, quindi $k\,\dfrac{R^2}{R^{4}}=\dfrac{k}{R^{2}}$ (semplifico $R^2$ sopra con due dei quattro $R$ sotto), costante su tutta la sfera.</span>
+                <span class="esempio__passo">Una costante esce dall'integrale, e $\iint_\Sigma dS$ è l'area della sfera, cioè $4\pi R^2$ (sezione 5): $\displaystyle\Phi=\frac{k}{R^{2}}\iint_\Sigma dS=\frac{k}{R^{2}}\cdot 4\pi R^{2}$, dove $R^2$ si semplifica con $R^2$.</span>
+              </p>
+              <p><strong>$\Phi=4\pi k$, indipendente da $R$.</strong> È il cuore della <strong>legge di Gauss</strong>: il campo decresce come $1/R^2$ ma l'area cresce come $R^2$, e i due effetti si cancellano esattamente. Qualunque sfera (e, più in generale, qualunque superficie chiusa che racchiuda la carica) dà lo stesso flusso, che dipende solo dalla carica racchiusa.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 11.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dato $\mathbf{F}=\big(x^2-y^2,\ 2xy,\ z\big)$: (a) calcola $\operatorname{div}\mathbf{F}$ e stabilisci dove il campo è solenoidale; (b) calcola $\operatorname{rot}\mathbf{F}$ e stabilisci se è conservativo; (c) verifica che $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) $\operatorname{div}\mathbf{F}=\partial_x(x^2-y^2)+\partial_y(2xy)+\partial_z(z)=2x+2x+1=4x+1$.</span>
+                <span class="esempio__passo">La divergenza si annulla solo dove $4x+1=0$, cioè sul piano $x=-\tfrac14$: il campo <strong>non</strong> è solenoidale, se non su quel piano. Per $x\gt-\tfrac14$ i punti sono sorgenti, per $x\lt-\tfrac14$ sono pozzi.</span>
+                <span class="esempio__passo">(b) Rotore, prima componente: $\partial_y(z)-\partial_z(2xy)=0-0=0$. Seconda: $\partial_z(x^2-y^2)-\partial_x(z)=0-0=0$. Terza: $\partial_x(2xy)-\partial_y(x^2-y^2)=2y-(-2y)=4y$.</span>
+                <span class="esempio__passo">Quindi $\operatorname{rot}\mathbf{F}=(0,\ 0,\ 4y)$, non identicamente nullo: il campo <strong>non è conservativo</strong> (un campo gradiente avrebbe rotore nullo).</span>
+                <span class="esempio__passo">(c) $\operatorname{div}(0,0,4y)=\partial_x(0)+\partial_y(0)+\partial_z(4y)=0+0+0=0$. ✓</span>
+              </p>
+              <p><strong>(a) $\operatorname{div}\mathbf{F}=4x+1$, nulla solo su $x=-\frac14$; (b) $\operatorname{rot}\mathbf{F}=(0,0,4y)$, quindi non conservativo; (c) $\operatorname{div}(\operatorname{rot}\mathbf{F})=0$, come impone il teorema.</strong> Attenzione al segno nella terza componente: $-\partial_y(-y^2)=+2y$, un punto in cui si sbaglia facilmente.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Per una superficie parametrica $\mathbf{r}(u,v)$, l'elemento d'area è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$dS=\big(\mathbf{r}_u\cdot\mathbf{r}_v\big)\,du\,dv$</button>
+              <button class="quiz-option" data-correct="true">$dS=\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv$</button>
+              <button class="quiz-option" data-correct="false">$dS=du\,dv$, come nell'integrale doppio</button>
+              <button class="quiz-option" data-correct="false">$dS=\big|\mathbf{r}_u\big|\cdot\big|\mathbf{r}_v\big|\,du\,dv$ sempre</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il pezzettino di superficie è un <strong>parallelogrammino</strong> di lati $\mathbf{r}_u\,du$ e $\mathbf{r}_v\,dv$, e l'area di un parallelogramma è il modulo del prodotto vettoriale dei lati. L'ultima opzione varrebbe solo se i due vettori fossero perpendicolari.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Il flusso $\displaystyle\iint_\Sigma\mathbf{F}\cdot\mathbf{n}\,dS$ misura:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">l'area della superficie $\Sigma$, pesata con $|\mathbf{F}|$</button>
+              <button class="quiz-option" data-correct="true">quanta "roba" attraversa $\Sigma$ nell'unità di tempo, contando solo la componente perpendicolare di $\mathbf{F}$</button>
+              <button class="quiz-option" data-correct="false">il lavoro compiuto dal campo lungo il bordo di $\Sigma$</button>
+              <button class="quiz-option" data-correct="false">la lunghezza totale delle linee di campo dentro $\Sigma$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È la rete immersa nel fiume: passa solo la parte di corrente <strong>perpendicolare</strong> alla rete, ed è esattamente ciò che estrae il prodotto scalare $\mathbf{F}\cdot\mathbf{n}$. Il lavoro lungo una curva è invece l'integrale curvilineo del <a href="10-integrali-curvilinei.html">Capitolo 10</a>.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) La divergenza di un campo vettoriale $\mathbf{F}$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">un campo vettoriale, che indica la direzione di massima crescita</button>
+              <button class="quiz-option" data-correct="true">una funzione scalare, che misura quanto il punto è sorgente o pozzo</button>
+              <button class="quiz-option" data-correct="false">un campo vettoriale, il cui modulo misura la rotazione locale</button>
+              <button class="quiz-option" data-correct="false">una matrice di derivate seconde</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\operatorname{div}\mathbf{F}=\partial_xF_1+\partial_yF_2+\partial_zF_3$ è una <strong>somma</strong>, quindi uno scalare: il rubinetto (positiva) o lo scarico (negativa). La rotazione locale è il <em>rotore</em>, che invece è un vettore.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Per ogni funzione $f$ di classe $C^2$, quanto vale $\operatorname{rot}\big(\operatorname{grad} f\big)$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\Delta f$</button>
+              <button class="quiz-option" data-correct="true">$\mathbf{0}$, il vettore nullo</button>
+              <button class="quiz-option" data-correct="false">$\operatorname{grad}\big(\operatorname{div} f\big)$</button>
+              <button class="quiz-option" data-correct="false">dipende da $f$: in generale non è nullo</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>"I campi gradiente non vorticano": ogni componente è una differenza $f_{ab}-f_{ba}$, nulla per il <strong>teorema di Schwarz</strong>. Conseguenza pratica: se un campo ha rotore non nullo, non può essere conservativo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) L'integrale di superficie della funzione costante $1$ restituisce l'area della superficie.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: $\iint_\Sigma 1\,dS=\iint_D\big|\mathbf{r}_u\times\mathbf{r}_v\big|\,du\,dv=\operatorname{Area}(\Sigma)$. È anche il test di coerenza più rapido per controllare di aver impostato bene l'integrale.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Invertendo l'orientazione di una superficie, il flusso di un campo attraverso di essa cambia segno.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: sostituendo $\mathbf{n}$ con $-\mathbf{n}$ il prodotto scalare cambia segno, quindi $\Phi_{-\mathbf{n}}=-\Phi_{\mathbf{n}}$. "Entrare" e "uscire" sono la stessa cosa vista dai due lati. L'integrale <em>scalare</em>, invece, non risente dell'orientazione.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Il rotore di un campo vettoriale è una funzione scalare.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: il rotore è un <strong>vettore</strong> (nasce da un prodotto vettoriale, $\nabla\times\mathbf{F}$). La sua direzione è l'asse attorno a cui gira la girandola, il modulo dice quanto velocemente. Lo scalare è la divergenza.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Il laplaciano di $f$ si ottiene sommando tutte le derivate seconde di $f$, comprese quelle miste.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: entrano solo le derivate seconde <strong>pure</strong>, $\Delta f=f_{xx}+f_{yy}+f_{zz}$. È la <em>traccia</em> della matrice hessiana, cioè la somma dei soli elementi sulla diagonale; le miste appartengono all'hessiana ma non al laplaciano.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="solenoidale|solenoidali|campo solenoidale">
+            <p class="quiz-question__testo">9. (Completamento) Un campo vettoriale con divergenza identicamente nulla, cioè senza sorgenti né pozzi, si dice ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Campo <strong>solenoidale</strong>: quello che entra in ogni scatolina esce tutto. È il caso dei fluidi incomprimibili e del campo magnetico, per cui $\operatorname{div}\mathbf{B}=0$ (niente monopoli magnetici).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="irrotazionale|irrotazionali|campo irrotazionale">
+            <p class="quiz-question__testo">10. (Completamento) Un campo vettoriale con rotore identicamente nullo, in cui nessuna girandola si mette a ruotare, si dice ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Campo <strong>irrotazionale</strong>. Ogni campo conservativo (cioè gradiente di un potenziale) è irrotazionale; il viceversa vale sotto opportune ipotesi sulla forma del dominio, come vedrai nel <a href="12-teoremi-green-gauss-stokes.html">Capitolo 12</a>.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="armonica|armonic|funzione armonica|armoniche">
+            <p class="quiz-question__testo">11. (Completamento) Una funzione il cui laplaciano è nullo, cioè che in ogni punto vale esattamente la media dei valori nei punti vicini, si dice ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Funzione <strong>armonica</strong>: $\Delta f=0$. Descrive una situazione di equilibrio (niente conche, niente cocuzzoli) e per questo non può avere massimi o minimi interni: gli estremi stanno sempre sul bordo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Usando l'analogia della rete immersa nel fiume, spiega perché nel flusso compare il prodotto scalare $\mathbf{F}\cdot\mathbf{n}$ e non semplicemente $|\mathbf{F}|$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: immagina una rete ferma dentro un fiume e chiediti quanta acqua la attraversa in un secondo. Se la corrente arriva <strong>perpendicolare</strong> alla rete, passa tutta: il contributo di un'areola è $|\mathbf{F}|\,dS$. Ma se la corrente arriva <strong>obliqua</strong>, solo una parte di essa attraversa davvero le maglie: la componente parallela alla rete scivola via lungo la superficie senza passare. Nel caso estremo in cui la corrente è parallela alla rete, non passa niente. Quindi ciò che conta non è l'intensità del campo, ma la sua <strong>componente perpendicolare alla superficie</strong>, cioè lungo il versore normale $\mathbf{n}$. E l'operazione che estrae la componente di un vettore lungo una direzione è esattamente il prodotto scalare: $\mathbf{F}\cdot\mathbf{n}=|\mathbf{F}|\cos\alpha$, dove $\alpha$ è l'angolo fra il campo e la normale. Ecco perché il contributo di ogni areola è $\mathbf{F}\cdot\mathbf{n}\,dS$ e il flusso totale è $\iint_\Sigma\mathbf{F}\cdot\mathbf{n}\,dS$. Il segno, infine, dice il verso: positivo se il campo attraversa nel verso di $\mathbf{n}$, negativo nell'altro.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Spiega la differenza fra divergenza e rotore usando le immagini del rubinetto e della girandola, e argomenta perché $\operatorname{div}\big(\operatorname{rot}\mathbf{F}\big)=0$ ha senso anche intuitivamente.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: le due grandezze rispondono a domande diverse sullo stesso campo, guardato in un singolo punto. La <strong>divergenza</strong> chiede: "qui nasce o sparisce roba?". Circondo il punto con una scatolina minuscola e conto quanto esce meno quanto entra: se è positiva il punto è un <em>rubinetto</em> (sorgente), se è negativa è uno <em>scarico</em> (pozzo), se è nulla il campo è solenoidale. È una somma di derivate, quindi uno scalare. Il <strong>rotore</strong> chiede invece: "qui il fluido fa girare le cose?". Metto una <em>girandola</em> microscopica nel punto e guardo se ruota: la direzione del vettore rotore è l'asse di rotazione, il modulo dice quanto in fretta gira. È un vettore, perché nasce da un prodotto vettoriale. Quanto all'identità $\operatorname{div}(\operatorname{rot}\mathbf{F})=0$: un campo che è il rotore di qualcos'altro descrive puro rimescolamento, pura rotazione. E rimescolare non crea né distrugge materia — un vortice fa girare l'acqua, non la fa comparire dal nulla. Quindi un campo rotore non può avere sorgenti né pozzi: la sua divergenza deve essere nulla. Formalmente la verifica sono sei termini che si cancellano a due a due grazie al teorema di Schwarz. In fisica è il motivo per cui $\mathbf{B}=\operatorname{rot}\mathbf{A}$ implica $\operatorname{div}\mathbf{B}=0$, cioè l'inesistenza dei monopoli magnetici.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="10-integrali-curvilinei.html"><span class="dir">← Capitolo precedente</span><strong>Integrali curvilinei</strong></a>
+        <a class="next" href="12-teoremi-green-gauss-stokes.html"><span class="dir">Capitolo successivo →</span><strong>Teoremi di Green, Gauss e Stokes</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

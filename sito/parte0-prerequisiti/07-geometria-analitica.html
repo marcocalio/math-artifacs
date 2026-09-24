@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7. Geometria Analitica — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 7</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html" class="is-active">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 7 di 9</span>
+        </div>
+        <h1>Geometria Analitica: quando l'algebra incontra il disegno</h1>
+        <p class="subtitle">Un'equazione è una curva. Una curva è un'equazione. In questo capitolo costruiamo il ponte che unisce numeri e figure: il piano cartesiano, la retta e le coniche (parabola, circonferenza, ellisse, iperbole). È il linguaggio con cui, tra pochi capitoli, disegnerai ogni funzione dell'Analisi.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina di essere René Descartes (in italiano <em>Cartesio</em>), disteso a letto una mattina del 1637, che osserva una mosca passeggiare sul soffitto a riquadri. A un certo punto ti accorgi di una cosa semplice ma rivoluzionaria: per descrivere <strong>esattamente</strong> dove si trova la mosca in ogni istante ti bastano <strong>due soli numeri</strong> — quante piastrelle da sinistra, quante dal basso.</p>
+        <p>Questa idea, apparentemente banale, fa collassare in uno solo due mondi che per duemila anni erano rimasti separati:</p>
+        <p>1) l'<strong>algebra</strong>, il mondo delle equazioni, delle $x$ e delle $y$; 2) la <strong>geometria</strong>, il mondo dei punti, delle rette, delle curve. Con la geometria analitica una retta <em>diventa</em> un'equazione, una circonferenza <em>diventa</em> un'equazione; e viceversa, ogni equazione <em>disegna</em> una figura. Risolvere un problema di geometria diventa una questione di conti; e fare conti acquista, all'improvviso, un significato visivo.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea in una frase</div>
+          <p>Ancoriamo ogni punto del piano a una <strong>coppia ordinata di numeri</strong> $(x, y)$. Da quel momento in poi, "geometria" e "algebra" diventano due lingue diverse per dire la <strong>stessa cosa</strong>, e possiamo tradurre liberamente dall'una all'altra a seconda di quale sia più comoda per il problema che abbiamo davanti.</p>
+        </div>
+        <p>Questo capitolo non richiede calcoli spaventosi: richiede di allenare l'occhio a <strong>vedere una figura dietro ogni equazione</strong>. È esattamente lo sguardo che ti servirà quando, in Analisi 1, dovrai capire "a colpo d'occhio" l'andamento di una funzione.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché senza un modo per <strong>tradurre le figure in numeri</strong> l'Analisi Matematica sarebbe impossibile. Il grafico di una funzione, la retta tangente a una curva, l'area sotto una parabola: sono tutti oggetti che vivono nel piano cartesiano. La geometria analitica è la <strong>tela</strong> su cui verrà dipinto ogni singolo concetto dei prossimi capitoli.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Prima di Cartesio e Fermat, un problema geometrico si risolveva con riga, compasso e tantissima intuizione: ogni figura richiedeva un'idea nuova. Dopo di loro, una domanda come "queste due rette si incontrano? E dove?" diventa un banale <span class="glossario-term" data-term="equazione">sistema di equazioni</span> da risolvere con le tecniche viste nel <a href="05-equazioni.html">Capitolo 5</a>. L'ingegno viene sostituito da un <strong>metodo</strong>, e il metodo si può insegnare, automatizzare, generalizzare.</p>
+        <p><strong>Perché è importante ora?</strong> Perché il <span class="glossario-term" data-term="coefficiente-angolare">coefficiente angolare</span> di una retta — la sua pendenza — è l'antenato diretto della <strong>derivata</strong>. Quando in Analisi 1 studierai la <a href="../parte1-analisi1/07-derivate.html">derivata</a>, scoprirai che non è altro che "la pendenza della retta tangente" a una curva in un punto. Se oggi capisci davvero cosa significa $m$, tra qualche mese la derivata ti sembrerà quasi ovvia. E lo stesso vale per le coniche: parabole, circonferenze ed ellissi torneranno ovunque, dai grafici di funzione fino allo studio delle <a href="../parte2-analisi2/07-curve-superfici.html">curve e superfici</a> in Analisi 2.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Hai un piano cartesiano in tasca</div>
+          <p>Ogni volta che apri una mappa sullo smartphone, il GPS trasforma la tua posizione in una <strong>coppia di numeri</strong> (latitudine e longitudine): è letteralmente un piano cartesiano avvolto attorno alla Terra. La stessa idea di Cartesio, tre secoli e mezzo dopo, in tasca a miliardi di persone.</p>
+        </div>
+        <p>La <strong>pendenza</strong> di una retta non è un'astrazione: è l'<strong>inclinazione di una strada</strong>. Quel cartello triangolare con scritto "10%" all'inizio di una salita significa esattamente $m = 0{,}10$: per ogni $100$ metri percorsi in orizzontale, sali di $10$ metri in verticale. Una rampa per disabili a norma ha pendenza massima dell'$8\%$; una pista da sci nera può superare il $40\%$. È tutto coefficiente angolare.</p>
+        <p>E le <strong>coniche</strong> sono ovunque, spesso nascoste:</p>
+        <ul>
+          <li>🌉 Gli <strong>archi dei ponti</strong> e la fune di certe funivie disegnano curve vicine a <span class="glossario-term" data-term="parabola">parabole</span>; le antenne satellitari sono <strong>paraboloidi</strong>, perché la parabola ha la magica proprietà di concentrare in un unico punto (il fuoco) tutti i segnali che arrivano paralleli al suo asse.</li>
+          <li>🪐 I <strong>pianeti</strong> non girano in cerchio attorno al Sole: percorrono <strong>ellissi</strong>, con il Sole in uno dei due fuochi (prima legge di Keplero). Anche l'orbita della Stazione Spaziale è un'ellisse.</li>
+          <li>💡 Punta una <strong>lampada da tavolo</strong> con paralume conico contro un muro: il bordo di luce sul muro disegna un ramo di <strong>iperbole</strong>. Il cono di luce "tagliato" dal piano del muro genera proprio quella curva.</li>
+          <li>⭕ La <span class="glossario-term" data-term="circonferenza">circonferenza</span> è il luogo dei punti a distanza fissa da un centro: è il principio con cui il GPS ti localizza (intersezione di più "sfere" di distanza dai satelliti) e con cui un compasso disegna un cerchio perfetto.</li>
+        </ul>
+        <p>Non è un caso che parabola, ellisse e iperbole si chiamino <strong>sezioni coniche</strong>: si ottengono tutte tagliando un cono con un piano, cambiando solo l'inclinazione del taglio. Una lampada e un pianeta, così lontani, parlano la stessa lingua matematica.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-piano">4.1 Il piano cartesiano</h3>
+        <p>Prendiamo due rette <span class="glossario-term" data-term="retta-cartesiana">numeriche</span> perpendicolari che si incontrano in un punto $O$ detto <strong>origine</strong>. Quella orizzontale è l'<strong>asse delle ascisse</strong> (asse $x$), quella verticale l'<strong>asse delle ordinate</strong> (asse $y$). Ogni punto $P$ del piano è individuato da una <strong>coppia ordinata</strong> di <span class="glossario-term" data-term="numero-reale">numeri reali</span> $P = (x_P,\ y_P)$: la prima coordinata (l'ascissa) dice quanto ci si sposta in orizzontale, la seconda (l'ordinata) quanto in verticale.</p>
+        <p>I due assi dividono il piano in quattro <strong>quadranti</strong>, numerati in senso antiorario a partire da quello in alto a destra. Il segno delle coordinate cambia da quadrante a quadrante:</p>
+
+        <svg viewBox="0 0 380 320" style="max-width:440px;margin:1.2em auto;display:block;" role="img" aria-label="Piano cartesiano con i quattro quadranti e un punto P nel primo quadrante">
+          <line x1="20" y1="160" x2="360" y2="160" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="190" y1="20" x2="190" y2="300" stroke="currentColor" stroke-width="1.5"/>
+          <polygon points="360,160 348,154 348,166" fill="currentColor"/>
+          <polygon points="190,20 184,32 196,32" fill="currentColor"/>
+          <text x="352" y="180" font-size="15" font-style="italic" fill="currentColor">x</text>
+          <text x="200" y="30" font-size="15" font-style="italic" fill="currentColor">y</text>
+          <text x="176" y="178" font-size="13" fill="currentColor">O</text>
+          <text x="272" y="95" font-size="15" font-weight="700" fill="var(--color-text-muted)">I (+,+)</text>
+          <text x="70" y="95" font-size="15" font-weight="700" fill="var(--color-text-muted)">II (−,+)</text>
+          <text x="70" y="235" font-size="15" font-weight="700" fill="var(--color-text-muted)">III (−,−)</text>
+          <text x="272" y="235" font-size="15" font-weight="700" fill="var(--color-text-muted)">IV (+,−)</text>
+          <line x1="285" y1="100" x2="285" y2="160" stroke="var(--color-primary)" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <line x1="285" y1="100" x2="190" y2="100" stroke="var(--color-primary)" stroke-width="1.3" stroke-dasharray="4 3"/>
+          <circle cx="285" cy="100" r="5" fill="var(--color-primary)"/>
+          <text x="294" y="96" font-size="14" font-weight="700" fill="var(--color-primary)">P(x, y)</text>
+          <text x="278" y="153" font-size="11" fill="var(--color-primary)">x</text>
+          <text x="197" y="104" font-size="11" fill="var(--color-primary)">y</text>
+        </svg>
+
+        <p>Le proiezioni tratteggiate mostrano come si "legge" un punto: da $P$ si scende verticalmente per trovare l'ascissa sull'asse $x$, e orizzontalmente per trovare l'ordinata sull'asse $y$. Attenzione all'ordine: $(3, 5)$ e $(5, 3)$ sono <strong>due punti diversi</strong>, perché la coppia è <em>ordinata</em>.</p>
+
+        <h3 id="teoria-distanza">4.2 Distanza tra due punti e punto medio</h3>
+        <p>Dati due punti $A = (x_A, y_A)$ e $B = (x_B, y_B)$, la loro <strong>distanza</strong> (cioè la lunghezza del segmento $AB$) è:</p>
+        <div class="formula-block">
+          $$d(A,B) = \overline{AB} = \sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}$$
+        </div>
+        <p>La dimostriamo tra poco con il teorema di Pitagora (sezione <a href="#dimostrazioni">Dimostrazioni</a>): è semplicemente l'ipotenusa di un triangolo rettangolo i cui cateti sono le differenze delle ascisse e delle ordinate.</p>
+        <p><strong>Come si usa, concretamente.</strong> I quattro numeri che compaiono nella formula sono le coordinate dei due punti, e vanno sostituiti sempre nello stesso ordine: $x_A$ e $y_A$ sono ascissa e ordinata del primo punto, $x_B$ e $y_B$ quelle del secondo. Per esempio con $A=(1,2)$ e $B=(4,6)$ si mette $1$ al posto di $x_A$, $2$ al posto di $y_A$, $4$ al posto di $x_B$, $6$ al posto di $y_B$, e si ottiene $\sqrt{(4-1)^2+(6-2)^2}$. Le due sottrazioni sono sempre "coordinata del secondo punto meno coordinata del primo"; e siccome poi si eleva al quadrato, se sbagli l'ordine il risultato non cambia.</p>
+        <p>Il <strong>punto medio</strong> $M$ del segmento $AB$ ha invece per coordinate la <em>media aritmetica</em> delle coordinate degli estremi:</p>
+        <div class="formula-block">
+          $$M = \left( \frac{x_A + x_B}{2},\ \frac{y_A + y_B}{2} \right)$$
+        </div>
+        <p><strong>Perché proprio la media?</strong> Su una retta numerica il punto a metà strada tra due numeri è la loro media: tra $1$ e $4$ il centro è $\frac{1+4}{2}=2{,}5$, che dista $1{,}5$ da entrambi. Nel piano non si fa altro che ripetere questo ragionamento due volte, una per le ascisse e una per le ordinate: l'ascissa di $M$ è la media delle ascisse, l'ordinata di $M$ è la media delle ordinate.</p>
+        <p>Nota il diverso "sapore" delle due formule: nella distanza compaiono <strong>differenze</strong> (quanto sono lontani), nel punto medio compaiono <strong>somme divise per due</strong> (a metà strada). Confonderle è un classico, quindi tienile ben distinte fin da subito.</p>
+
+        <h3 id="teoria-retta">4.3 La retta</h3>
+        <p>Una <span class="glossario-term" data-term="retta-cartesiana">retta</span> nel piano si può scrivere in due forme equivalenti. La <strong>forma esplicita</strong> è la più intuitiva:</p>
+        <div class="formula-block">
+          $$y = mx + q$$
+        </div>
+        <p>Qui i due protagonisti sono:</p>
+        <ul>
+          <li>$m$ = <strong><span class="glossario-term" data-term="coefficiente-angolare">coefficiente angolare</span></strong> (la <em>pendenza</em>): misura quanto sale (o scende) $y$ ogni volta che $x$ aumenta di $1$. Se $m &gt; 0$ la retta sale andando verso destra, se $m &lt; 0$ scende, se $m = 0$ è orizzontale. Più grande è $|m|$, più ripida è la retta.</li>
+          <li>$q$ = <strong>intercetta</strong> (o <em>ordinata all'origine</em>): è il valore di $y$ quando $x = 0$, cioè il punto in cui la retta taglia l'asse $y$, di coordinate $(0, q)$.</li>
+        </ul>
+        <p>Geometricamente, il coefficiente angolare è il rapporto tra lo spostamento verticale e quello orizzontale quando ci si muove lungo la retta:</p>
+
+        <svg viewBox="0 0 360 250" style="max-width:420px;margin:1.2em auto;display:block;" role="img" aria-label="Retta con il triangolo della pendenza che illustra m uguale delta y su delta x">
+          <line x1="30" y1="215" x2="340" y2="215" stroke="currentColor" stroke-width="1.5"/>
+          <line x1="60" y1="20" x2="60" y2="235" stroke="currentColor" stroke-width="1.5"/>
+          <polygon points="340,215 328,209 328,221" fill="currentColor"/>
+          <polygon points="60,20 54,32 66,32" fill="currentColor"/>
+          <text x="330" y="233" font-size="14" font-style="italic" fill="currentColor">x</text>
+          <text x="70" y="30" font-size="14" font-style="italic" fill="currentColor">y</text>
+          <line x1="70" y1="200" x2="320" y2="55" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <line x1="110" y1="177" x2="280" y2="177" stroke="var(--color-secondary)" stroke-width="1.6" stroke-dasharray="5 3"/>
+          <line x1="280" y1="177" x2="280" y2="78" stroke="var(--color-secondary)" stroke-width="1.6" stroke-dasharray="5 3"/>
+          <circle cx="110" cy="177" r="4.5" fill="var(--color-primary)"/>
+          <circle cx="280" cy="78" r="4.5" fill="var(--color-primary)"/>
+          <text x="180" y="195" font-size="14" font-weight="700" fill="var(--color-secondary)">Δx</text>
+          <text x="288" y="132" font-size="14" font-weight="700" fill="var(--color-secondary)">Δy</text>
+          <text x="150" y="55" font-size="15" font-weight="700" fill="var(--color-primary)">m = Δy / Δx</text>
+        </svg>
+
+        <p>La <strong>forma implicita</strong> (o generale) mette invece tutto a primo membro:</p>
+        <div class="formula-block">
+          $$ax + by + c = 0 \qquad (\text{con } a, b \text{ non entrambi nulli})$$
+        </div>
+        <p>È più "democratica": riesce a descrivere <strong>anche le rette verticali</strong> (del tipo $x = k$), che la forma esplicita non può rappresentare perché avrebbero pendenza infinita. Quando $b \neq 0$ si passa dall'implicita all'esplicita ricavando $y$, cioè lasciandolo da solo a primo membro. I passaggi sono due:</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Porto a destra</strong> tutti i termini che non contengono $y$, cioè $ax$ e $c$: attraversando il segno di uguale cambiano segno. Resta $by = -ax - c$.</span>
+          <span class="esempio__passo"><strong>Divido entrambi i membri per $b$</strong> (si può, perché stiamo supponendo $b \neq 0$): a sinistra $\frac{by}{b}=y$, a destra va diviso per $b$ <em>ciascun</em> addendo, quindi $y = -\dfrac{a}{b}x - \dfrac{c}{b}$.</span>
+        </p>
+        <div class="formula-block">
+          $$ax + by + c = 0 \;\Longrightarrow\; y = -\frac{a}{b}\,x - \frac{c}{b} \qquad\text{quindi}\qquad m = -\frac{a}{b}, \quad q = -\frac{c}{b}$$
+        </div>
+        <p>L'ultimo passaggio (quello dopo il "quindi") è un semplice <em>confronto</em> con $y=mx+q$: il numero che moltiplica $x$ è per definizione $m$, e qui vale $-\frac{a}{b}$; il termine noto è $q$, e qui vale $-\frac{c}{b}$.</p>
+
+        <h4>Retta per due punti</h4>
+        <p>Per due punti distinti passa una e una sola retta. Se conosci $A=(x_A,y_A)$ e $B=(x_B,y_B)$ (con $x_A \neq x_B$), il coefficiente angolare è il rapporto tra la differenza delle ordinate e la differenza delle ascisse:</p>
+        <div class="formula-block">
+          $$m = \frac{y_B - y_A}{x_B - x_A}$$
+        </div>
+        <p>È esattamente il $\frac{\Delta y}{\Delta x}$ del disegno qui sopra: $\Delta y = y_B - y_A$ è di quanto si sale passando da $A$ a $B$, $\Delta x = x_B - x_A$ di quanto ci si sposta in orizzontale. <strong>Attenzione all'ordine</strong>: sopra ci vanno le ordinate, sotto le ascisse, e i due punti vanno presi sempre nello stesso ordine (se sopra scrivi prima $B$, anche sotto devi scrivere prima $B$). Scambiandoli in <em>entrambe</em> le differenze cambiano segno sia numeratore sia denominatore e il rapporto resta lo stesso; scambiandoli in una sola, il risultato viene sbagliato di segno.</p>
+        <p>Trovato $m$, la retta si scrive comodamente con la <strong>forma punto-pendenza</strong>, imponendo il passaggio per uno dei due punti:</p>
+        <div class="formula-block">
+          $$y - y_A = m\,(x - x_A)$$
+        </div>
+        <p><strong>Da dove viene questa formula.</strong> Prendo un punto generico $P=(x,y)$ e calcolo la pendenza fra $P$ e $A$ con la formula appena vista, mettendo $P$ al posto di $B$: $\ m = \dfrac{y - y_A}{x - x_A}$. Perché $P$ stia sulla retta, questa pendenza deve essere proprio $m$. Moltiplico entrambi i membri per $(x - x_A)$ così da togliere il denominatore: a destra $\frac{y-y_A}{x-x_A}\cdot(x-x_A)=y-y_A$, a sinistra resta $m\,(x-x_A)$. Ecco la formula. Per usarla basta sostituire i tre numeri noti al posto di $m$, $x_A$, $y_A$, poi svolgere i conti fino ad arrivare alla forma $y=mx+q$.</p>
+
+        <h4>Parallelismo e perpendicolarità</h4>
+        <p>Due condizioni sono così importanti che vanno imparate a memoria — ma con la loro giustificazione, così non le confonderai mai:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Relazione</th><th>Condizione sui coefficienti angolari</th><th>Idea intuitiva</th></tr></thead>
+          <tbody>
+            <tr><td>Rette <strong>parallele</strong> ($r \parallel s$)</td><td>$m_1 = m_2$</td><td>Stessa pendenza $\Rightarrow$ stessa inclinazione $\Rightarrow$ non si incontrano mai.</td></tr>
+            <tr><td>Rette <strong>perpendicolari</strong> ($r \perp s$)</td><td>$m_1 \cdot m_2 = -1$, cioè $m_2 = -\dfrac{1}{m_1}$</td><td>Ruotando una retta di $90°$, la pendenza si "ribalta e cambia segno".</td></tr>
+          </tbody>
+        </table>
+        <p>La condizione di perpendicolarità $m_1 \cdot m_2 = -1$ vale quando <strong>nessuna delle due rette è orizzontale o verticale</strong>. Il caso limite è intuitivo a parte: una retta orizzontale ($m=0$) è perpendicolare a una verticale (senza $m$), e viceversa.</p>
+
+        <h4>Cenno al fascio di rette</h4>
+        <p>Un <strong>fascio di rette</strong> è un insieme infinito di rette che dipende da un parametro. I due casi tipici:</p>
+        <ul>
+          <li><strong>Fascio proprio</strong>: tutte le rette che passano per uno stesso punto $P_0=(x_0,y_0)$, al variare della pendenza: $\ y - y_0 = m\,(x - x_0)$. È come un ventaglio che ruota attorno a un perno.</li>
+          <li><strong>Fascio improprio</strong>: tutte le rette con la stessa pendenza $m$ fissata, al variare di $q$: $\ y = mx + q$. Sono tutte parallele tra loro, come i righi di un quaderno.</li>
+        </ul>
+
+        <h3 id="teoria-parabola">4.4 La parabola</h3>
+        <p>La <span class="glossario-term" data-term="parabola">parabola</span> con asse verticale ha equazione:</p>
+        <div class="formula-block">
+          $$y = ax^2 + bx + c \qquad (a \neq 0)$$
+        </div>
+        <p>La riconosci subito: è la stessa espressione del <strong>trinomio di secondo grado</strong> che hai già incontrato studiando <a href="05-equazioni.html">equazioni</a> e <a href="06-disequazioni.html">disequazioni</a> di secondo grado. Non è una coincidenza: <strong>risolvere $ax^2+bx+c=0$ significa trovare i punti in cui la parabola taglia l'asse $x$</strong>, e studiare il segno di $ax^2+bx+c$ significa chiedersi dove la parabola sta sopra o sotto l'asse $x$. I suoi elementi caratteristici:</p>
+        <ul>
+          <li><strong>Concavità</strong>: se $a &gt; 0$ la parabola è rivolta verso l'alto (sorride, $\smile$); se $a &lt; 0$ è rivolta verso il basso (è triste, $\frown$). Più grande è $|a|$, più "stretta" e chiusa è la parabola.</li>
+          <li><strong>Vertice</strong> $V$: il punto più basso (se $a&gt;0$) o più alto (se $a&lt;0$). Le sue coordinate sono</li>
+        </ul>
+        <div class="formula-block">
+          $$V = \left( -\frac{b}{2a},\ -\frac{\Delta}{4a} \right), \qquad \text{dove } \Delta = b^2 - 4ac$$
+        </div>
+        <p><strong>Come si usa.</strong> Prima si calcola l'ascissa $x_V=-\dfrac{b}{2a}$, sostituendo al posto di $a$ e $b$ i coefficienti letti nell'equazione — con il loro segno: se $b$ è negativo, il meno davanti alla frazione lo trasforma in un più. Per l'ordinata hai due strade equivalenti: applicare la formula $y_V=-\dfrac{\Delta}{4a}$, oppure (più semplice e con meno rischi di errore) <strong>sostituire il valore di $x_V$ appena trovato nell'equazione della parabola</strong>, perché il vertice è un punto della parabola come tutti gli altri.</p>
+        <p><strong>Da dove viene $-\frac{b}{2a}$.</strong> Non è un numero magico: è il punto di mezzo fra i due zeri $x_{1,2}=\dfrac{-b\pm\sqrt{\Delta}}{2a}$ dati dalla formula risolutiva (Capitolo 5). Sommandoli, le due radici si elidono (una compare con il meno, l'altra con il più): $x_1+x_2=\dfrac{-b-\sqrt\Delta}{2a}+\dfrac{-b+\sqrt\Delta}{2a}=\dfrac{-2b}{2a}=-\dfrac{b}{a}$. La media è la metà di questa somma, cioè $\dfrac{x_1+x_2}{2}=-\dfrac{b}{2a}$: proprio l'ascissa del vertice, che infatti sta sull'asse di simmetria, a metà strada fra i due zeri.</p>
+        <ul>
+          <li><strong>Asse di simmetria</strong>: la retta verticale $x = -\dfrac{b}{2a}$ che passa per il vertice. La parabola è specchiata rispetto a questa retta.</li>
+          <li><strong>Intersezioni con gli assi</strong>: con l'asse $y$ si ottiene ponendo $x=0$, cioè il punto $(0, c)$; con l'asse $x$ risolvendo $ax^2+bx+c=0$ (che ha $2$, $1$ o $0$ soluzioni reali a seconda del segno del <span class="glossario-term" data-term="discriminante">discriminante</span> $\Delta$).</li>
+        </ul>
+
+        <h3 id="teoria-circonferenza">4.5 La circonferenza</h3>
+        <p>La <span class="glossario-term" data-term="circonferenza">circonferenza</span> è il luogo dei punti del piano che hanno <strong>distanza fissa</strong> $r$ (il raggio) da un punto fisso $C=(a,b)$ (il centro). L'equazione si ricava traducendo in formule questa frase, un pezzo alla volta:</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Chiamo $P=(x,y)$ un punto generico della circonferenza. La condizione da imporre è "la distanza di $P$ dal centro $C$ vale $r$", cioè $\overline{PC}=r$.</span>
+          <span class="esempio__passo">Traduco $\overline{PC}$ con la formula della distanza del <span class="richiamo" data-sec="4.2">§4.2</span>, $\ \overline{PC}=\sqrt{(x_P-x_C)^2+(y_P-y_C)^2}$, sostituendo $x_P=x$ e $y_P=y$ (le coordinate del punto generico) e $x_C=a$, $y_C=b$ (le coordinate del centro). Ottengo $\ \sqrt{(x-a)^2+(y-b)^2}=r$.</span>
+          <span class="esempio__passo">Elevo al quadrato entrambi i membri per far sparire la radice (lecito, perché sia una distanza sia il raggio non sono mai negativi): a sinistra quadrato e radice si annullano a vicenda, a destra resta $r^2$.</span>
+        </p>
+        <p>Si arriva così all'<strong>equazione canonica</strong>:</p>
+        <div class="formula-block">
+          $$(x - a)^2 + (y - b)^2 = r^2$$
+        </div>
+        <p>È la forma "parlante": leggi centro e raggio a colpo d'occhio. Occhio ai segni: nella parentesi compare l'<em>opposto</em> della coordinata del centro, quindi se vedi $(x+3)^2$ devi leggerlo come $(x-(-3))^2$, cioè $a=-3$. Se invece sviluppi i due quadrati con il prodotto notevole $(u-v)^2=u^2-2uv+v^2$ (Capitolo 2), la prima volta con $u=x$, $v=a$ e la seconda con $u=y$, $v=b$, ottieni $x^2-2ax+a^2+y^2-2by+b^2=r^2$; portando $r^2$ a sinistra (cambia segno) e riordinando i termini arrivi alla <strong>forma generale</strong>:</p>
+        <div class="formula-block">
+          $$x^2 + y^2 + dx + ey + f = 0$$
+        </div>
+        <p>Il confronto fra i due sviluppi, termine a termine, dice chi sono i nuovi coefficienti: $d=-2a$ (il coefficiente di $x$), $e=-2b$ (quello di $y$) e $f=a^2+b^2-r^2$ (il termine noto). Da $d=-2a$, dividendo entrambi i membri per $-2$, si ricava $a=-\frac{d}{2}$; allo stesso modo $b=-\frac{e}{2}$. Ecco perché nelle formule qui sotto compaiono proprio quelle metà cambiate di segno.</p>
+        <p>Nota la firma inconfondibile: i coefficienti di $x^2$ e $y^2$ sono <strong>uguali</strong> (qui entrambi $1$) e <strong>non c'è il termine misto</strong> $xy$. Per tornare dalla forma generale a centro e raggio si <strong>completa il quadrato</strong> (tecnica vista nel Capitolo 5), ottenendo le formule:</p>
+        <div class="formula-block">
+          $$C = \left( -\frac{d}{2},\ -\frac{e}{2} \right), \qquad r = \sqrt{\frac{d^2}{4} + \frac{e^2}{4} - f}$$
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Condizione di esistenza</div>
+          <p>Perché ci sia una circonferenza <strong>vera</strong>, il numero sotto radice deve essere positivo: $\dfrac{d^2}{4} + \dfrac{e^2}{4} - f &gt; 0$, cioè $r^2 &gt; 0$. Se quel numero è $0$ l'equazione rappresenta un solo punto (una circonferenza "di raggio zero"); se è negativo, <strong>nessun punto reale</strong> la soddisfa: la circonferenza non esiste.</p>
+        </div>
+
+        <h3 id="teoria-ellisse-iperbole">4.6 Ellisse e iperbole</h3>
+        <p>Completiamo la famiglia delle coniche con le due curve centrate nell'origine. L'<strong>ellisse</strong> è come una circonferenza "schiacciata": i punti hanno somma delle distanze da due fuochi costante. La sua equazione canonica è</p>
+        <div class="formula-block">
+          $$\frac{x^2}{a^2} + \frac{y^2}{b^2} = 1$$
+        </div>
+        <p>dove $a$ e $b$ sono i <strong>semiassi</strong>: l'ellisse taglia l'asse $x$ in $(\pm a, 0)$ e l'asse $y$ in $(0, \pm b)$. Se $a = b$ si ricade nella circonferenza di raggio $a$. Il grado di "schiacciamento" si misura con l'<strong>eccentricità</strong> $\varepsilon = \dfrac{c}{a}$ (con $c = \sqrt{a^2 - b^2}$ se $a &gt; b$), un numero compreso tra $0$ e $1$: vicino a $0$ l'ellisse è quasi un cerchio, vicino a $1$ è molto allungata.</p>
+        <p>L'<strong>iperbole</strong> (con i fuochi sull'asse $x$) ha invece un <em>meno</em> al posto del <em>più</em>:</p>
+        <div class="formula-block">
+          $$\frac{x^2}{a^2} - \frac{y^2}{b^2} = 1$$
+        </div>
+        <p>È fatta di <strong>due rami</strong> separati che si aprono verso destra e verso sinistra, tagliando l'asse $x$ in $(\pm a, 0)$. La sua caratteristica più elegante sono gli <strong>asintoti</strong>: due rette a cui i rami si avvicinano indefinitamente senza mai toccarle,</p>
+        <div class="formula-block">
+          $$y = \pm \frac{b}{a}\,x$$
+        </div>
+        <p>L'eccentricità dell'iperbole è $\varepsilon = \dfrac{c}{a}$ con $c = \sqrt{a^2 + b^2}$, ed è sempre $\varepsilon &gt; 1$. (Gli asintoti sono un'anticipazione geometrica di un concetto che formalizzerai con i <strong>limiti</strong> in Analisi 1.)</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Formula della distanza tra due punti.</em> Dati $A=(x_A,y_A)$ e $B=(x_B,y_B)$, la lunghezza del segmento $AB$ è $\ \overline{AB} = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (con il teorema di Pitagora)</span>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Consideriamo il punto ausiliario $C = (x_B,\ y_A)$: ha la stessa ascissa di $B$ e la stessa ordinata di $A$. I tre punti $A$, $C$, $B$ formano un triangolo <strong>rettangolo</strong>, con l'angolo retto in $C$ (perché il cateto $AC$ è orizzontale e il cateto $CB$ è verticale).</span>
+          <span class="esempio__passo">Il cateto orizzontale $AC$ ha lunghezza pari alla differenza (in valore assoluto) delle ascisse: $\overline{AC} = |x_B - x_A|$.</span>
+          <span class="esempio__passo">Il cateto verticale $CB$ ha lunghezza pari alla differenza delle ordinate: $\overline{CB} = |y_B - y_A|$.</span>
+          <span class="esempio__passo">Per il teorema di Pitagora, l'ipotenusa $AB$ soddisfa $\overline{AB}^2 = \overline{AC}^2 + \overline{CB}^2 = |x_B-x_A|^2 + |y_B-y_A|^2$.</span>
+          <span class="esempio__passo">Poiché elevare al quadrato cancella il valore assoluto ($|t|^2 = t^2$), otteniamo $\overline{AB}^2 = (x_B-x_A)^2 + (y_B-y_A)^2$. Estraendo la radice quadrata (positiva, essendo una lunghezza) si ha la tesi.</span>
+          </p>
+          <p>Dunque $\overline{AB} = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}$. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché l'ordine dei punti non conta</div>
+          <p>Nella formula compaiono i quadrati delle differenze, e $(x_B - x_A)^2 = (x_A - x_B)^2$. Quindi $d(A,B) = d(B,A)$: la distanza è la stessa da qualunque estremo si parta, esattamente come ci aspettiamo dal mondo reale.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Condizione di perpendicolarità.</em> Due rette non parallele agli assi, di coefficienti angolari $m_1$ e $m_2$, sono perpendicolari se e solo se $m_1 \cdot m_2 = -1$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Giustificazione (rotazione di 90°)</span>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Muoviamoci lungo la prima retta: a ogni passo orizzontale di $1$ corrisponde un passo verticale di $m_1$. Possiamo quindi rappresentare la sua direzione con il "vettore" $(1,\ m_1)$.</span>
+          <span class="esempio__passo">Rendere perpendicolare la retta equivale a ruotare questo vettore di $90°$. La rotazione di un quarto di giro trasforma un generico vettore $(u, v)$ nel vettore $(-v,\ u)$ (si scambiano le componenti e si cambia un segno).</span>
+          <span class="esempio__passo">Applicandola a $(1,\ m_1)$ otteniamo la direzione della retta perpendicolare: $(-m_1,\ 1)$.</span>
+          <span class="esempio__passo">Il coefficiente angolare è sempre "quanto salgo diviso quanto avanzo", cioè la seconda componente diviso la prima: $m_2 = \dfrac{1}{-m_1} = -\dfrac{1}{m_1}$.</span>
+          </p>
+          <p>Moltiplicando i due coefficienti: $\ m_1 \cdot m_2 = m_1 \cdot \left(-\dfrac{1}{m_1}\right) = -1$. Viceversa, se $m_1 m_2 = -1$ allora $m_2 = -1/m_1$ e la costruzione precedente mostra che la seconda retta è ruotata di $90°$ rispetto alla prima. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Centro e raggio dalla forma generale.</em> L'equazione $x^2+y^2+dx+ey+f=0$ rappresenta una circonferenza di centro $C=\left(-\tfrac{d}{2}, -\tfrac{e}{2}\right)$ e raggio $r=\sqrt{\tfrac{d^2}{4}+\tfrac{e^2}{4}-f}$, purché il radicando sia positivo.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (completamento del quadrato)</span>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Raggruppiamo i termini in $x$ e quelli in $y$, portando la costante a destra: $(x^2 + dx) + (y^2 + ey) = -f$.</span>
+          <span class="esempio__passo"><strong>Perché vale l'identità del completamento del quadrato.</strong> Sviluppo $\left(x+\tfrac{d}{2}\right)^2$ con il prodotto notevole $(u+v)^2=u^2+2uv+v^2$ (Capitolo 2), prendendo $u=x$ e $v=\tfrac{d}{2}$: ottengo $x^2+2\cdot x\cdot\tfrac{d}{2}+\tfrac{d^2}{4}=x^2+dx+\tfrac{d^2}{4}$. Rispetto a quello che mi serve, cioè $x^2+dx$, c'è un pezzo in più: $\tfrac{d^2}{4}$. Per avere un'uguaglianza vera lo sottraggo, e scrivo $\ x^2+dx=\left(x+\tfrac{d}{2}\right)^2-\tfrac{d^2}{4}$.</span>
+          <span class="esempio__passo">Completiamo così ciascun quadrato: per la $x$ uso l'identità appena giustificata, per la $y$ la stessa identità con $y$ al posto di $x$ ed $e$ al posto di $d$, cioè $y^2+ey=\left(y+\tfrac{e}{2}\right)^2-\tfrac{e^2}{4}$. Sostituendo entrambe otteniamo: $\left(x+\tfrac{d}{2}\right)^2 - \tfrac{d^2}{4} + \left(y+\tfrac{e}{2}\right)^2 - \tfrac{e^2}{4} = -f$.</span>
+          <span class="esempio__passo">Spostiamo a destra le due costanti $-\tfrac{d^2}{4}$ e $-\tfrac{e^2}{4}$: attraversando l'uguale cambiano segno e diventano $+\tfrac{d^2}{4}$ e $+\tfrac{e^2}{4}$, che si aggiungono al $-f$ già presente. Resta $\left(x+\tfrac{d}{2}\right)^2 + \left(y+\tfrac{e}{2}\right)^2 = \tfrac{d^2}{4} + \tfrac{e^2}{4} - f$.</span>
+          <span class="esempio__passo">Confrontiamo con la forma canonica $(x-a)^2+(y-b)^2=r^2$. A noi è venuto $\left(x+\tfrac{d}{2}\right)^2$: per poterlo leggere come $(x-a)^2$ lo riscrivo con il meno, $x+\tfrac{d}{2}=x-\left(-\tfrac{d}{2}\right)$, quindi $a=-\tfrac{d}{2}$; allo stesso modo $b=-\tfrac{e}{2}$. Il numero rimasto a destra occupa il posto di $r^2$, dunque $r^2 = \tfrac{d^2}{4}+\tfrac{e^2}{4}-f$.</span>
+          </p>
+          <p>Se $r^2 &gt; 0$ estraiamo la radice e otteniamo il raggio; se $r^2 \leq 0$ non esiste alcuna circonferenza reale. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Distanza e punto medio</span><span class="badge badge--base">Base</span></div>
+          <p>Dati $A=(1,2)$ e $B=(4,6)$, calcolare la distanza $\overline{AB}$ e il punto medio $M$ del segmento.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Distanza.</strong> Uso la formula della distanza del <span class="richiamo" data-sec="4.2">§4.2</span>: $\ \overline{AB}=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$. Dai dati leggo $x_A=1$, $y_A=2$ (coordinate di $A$) e $x_B=4$, $y_B=6$ (coordinate di $B$), e sostituisco ciascun numero al posto della sua lettera: $\ \overline{AB} = \sqrt{(4-1)^2 + (6-2)^2}$.</span>
+            <span class="esempio__passo">Da qui è solo aritmetica: dentro le parentesi $4-1=3$ e $6-2=4$, quindi $\sqrt{3^2+4^2}$; elevo al quadrato, $3^2=9$ e $4^2=16$, quindi $\sqrt{9+16}=\sqrt{25}=5$.</span>
+            <span class="esempio__passo"><strong>Punto medio.</strong> Uso la formula del punto medio del <span class="richiamo" data-sec="4.2">§4.2</span>, $\ M=\left(\frac{x_A+x_B}{2},\ \frac{y_A+y_B}{2}\right)$, con gli stessi quattro numeri: al posto di $x_A$ scrivo $1$, al posto di $x_B$ scrivo $4$, al posto di $y_A$ scrivo $2$, al posto di $y_B$ scrivo $6$. Ottengo $M = \left( \dfrac{1+4}{2},\ \dfrac{2+6}{2} \right) = \left( \dfrac{5}{2},\ 4 \right)$, perché la seconda frazione vale $\frac{8}{2}=4$.</span>
+          </p>
+          <div class="esempio__risultato">$\overline{AB} = 5$, $\quad M = \left( \tfrac{5}{2},\ 4 \right)$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Leggere pendenza e intercetta</span><span class="badge badge--base">Base</span></div>
+          <p>Data la retta $y = -\tfrac{1}{2}x + 3$, individuare $m$ e $q$, e stabilire se il punto $P=(2,2)$ le appartiene.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">La retta è già in forma esplicita: il numero davanti a $x$ è la pendenza, il termine noto è l'intercetta. Dunque $m = -\tfrac{1}{2}$ (retta discendente) e $q = 3$ (taglia l'asse $y$ in $(0,3)$).</span>
+            <span class="esempio__passo">Per verificare $P$, sostituiamo $x=2$: $y = -\tfrac{1}{2}\cdot 2 + 3 = -1 + 3 = 2$. Il valore ottenuto coincide con l'ordinata di $P$.</span>
+          </p>
+          <div class="esempio__risultato">$m=-\tfrac{1}{2}$, $\ q=3$; il punto $P=(2,2)$ appartiene alla retta.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Retta per due punti, parallela e perpendicolare</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Trovare la retta $r$ passante per $A=(1,2)$ e $B=(3,8)$; poi la parallela a $r$ per l'origine e la perpendicolare a $r$ per $A$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Pendenza di $r$.</strong> Uso la formula del coefficiente angolare per due punti (<span class="richiamo" data-sec="4.3">§4.3</span>), $\ m=\dfrac{y_B-y_A}{x_B-x_A}$, sostituendo $x_A=1$, $y_A=2$, $x_B=3$, $y_B=8$: $\ m = \dfrac{8-2}{3-1} = \dfrac{6}{2} = 3$.</span>
+            <span class="esempio__passo"><strong>Equazione di $r$.</strong> Uso la forma punto-pendenza (<span class="richiamo" data-sec="4.3">§4.3</span>), $\ y-y_A=m(x-x_A)$, mettendo $m=3$, $x_A=1$, $y_A=2$: $\ y - 2 = 3(x-1)$. Ora svolgo: moltiplico il $3$ dentro la parentesi, $3(x-1)=3x-3$, quindi $y-2=3x-3$; porto il $-2$ a destra cambiandogli segno e ottengo $y=3x-3+2=3x-1$. Questa è $r$.</span>
+            <span class="esempio__passo"><strong>Parallela.</strong> Condizione di parallelismo (<span class="richiamo" data-sec="4.3">§4.3</span>): stessa pendenza, quindi $m=3$. Per trovare $q$ impongo il passaggio per l'origine, cioè sostituisco $x=0$ e $y=0$ in $y=3x+q$: ottengo $0=3\cdot 0+q$, da cui $q=0$. La retta è $\ y = 3x$.</span>
+            <span class="esempio__passo"><strong>Perpendicolare.</strong> Condizione di perpendicolarità (<span class="richiamo" data-sec="4.3">§4.3</span>): $m\cdot m'=-1$. Con $m=3$ diventa $3m'=-1$; divido entrambi i membri per $3$ e trovo $m'=-\dfrac{1}{3}$. Uso di nuovo la forma punto-pendenza, stavolta con $m'=-\frac13$ e il punto $A=(1,2)$: $\ y - 2 = -\tfrac{1}{3}(x-1)$. Svolgo la parentesi: $-\frac13(x-1)=-\frac13x+\frac13$, quindi $y=-\frac13x+\frac13+2$; e $\frac13+2=\frac13+\frac63=\frac73$. Risultato: $\ y = -\tfrac{1}{3}x + \tfrac{7}{3}$.</span>
+          </p>
+          <div class="esempio__risultato">$r: y=3x-1$; $\ $ parallela: $y=3x$; $\ $ perpendicolare: $y=-\tfrac{1}{3}x+\tfrac{7}{3}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Studio di una parabola</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Analizzare la parabola $y = x^2 - 4x + 3$: concavità, vertice, asse, intersezioni con gli assi.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Leggo i coefficienti</strong> confrontando $y=x^2-4x+3$ con la forma generale $y=ax^2+bx+c$ (<span class="richiamo" data-sec="4.4">§4.4</span>): davanti a $x^2$ non c'è scritto nulla, e "niente" vuol dire $1$, quindi $a=1$; il numero che moltiplica $x$ è $-4$ (con il suo segno), quindi $b=-4$; il termine noto è $c=3$. Poiché $a = 1 &gt; 0$, la concavità è rivolta verso l'alto.</span>
+            <span class="esempio__passo"><strong>Ascissa del vertice.</strong> Applico $x_V=-\dfrac{b}{2a}$ (<span class="richiamo" data-sec="4.4">§4.4</span>) sostituendo $a=1$ e $b=-4$: $\ x_V = -\dfrac{-4}{2\cdot 1} = -\dfrac{-4}{2} = -(-2) = 2$ (due segni meno danno un più).</span>
+            <span class="esempio__passo"><strong>Ordinata del vertice.</strong> Invece della formula con il $\Delta$ sostituisco $x=2$ nell'equazione della parabola, perché il vertice è un punto della parabola: $\ y_V = 2^2 - 4\cdot 2 + 3 = 4 - 8 + 3 = -1$. Quindi $V=(2,-1)$.</span>
+            <span class="esempio__passo">Asse di simmetria: è la retta verticale che passa per il vertice, cioè $x=x_V$ (<span class="richiamo" data-sec="4.4">§4.4</span>). Qui: $x = 2$.</span>
+            <span class="esempio__passo"><strong>Intersezioni con l'asse $x$.</strong> I punti dell'asse $x$ hanno ordinata nulla, quindi impongo $y=0$, cioè risolvo $x^2-4x+3=0$. Scompongo il trinomio cercando due numeri che <em>sommati</em> diano $-4$ (il coefficiente di $x$) e <em>moltiplicati</em> diano $3$ (il termine noto): sono $-1$ e $-3$, quindi $x^2-4x+3=(x-1)(x-3)$ (Capitolo 5). Un prodotto vale zero solo se si annulla un fattore: da $x-1=0$ viene $x=1$, da $x-3=0$ viene $x=3$.</span>
+            <span class="esempio__passo"><strong>Intersezione con l'asse $y$.</strong> I punti dell'asse $y$ hanno ascissa nulla: sostituisco $x=0$ nell'equazione e ottengo $y=0-0+3=3$, cioè il punto $(0,3)$ — che è sempre il termine noto $c$.</span>
+          </p>
+          <div class="esempio__risultato">$V=(2,-1)$, asse $x=2$, interseca l'asse $x$ in $(1,0)$ e $(3,0)$, l'asse $y$ in $(0,3)$. La disequazione $x^2-4x+3&gt;0$ è quindi verificata per $x&lt;1$ oppure $x&gt;3$ (dove la parabola sta sopra l'asse).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Circonferenza: dalla forma generale a centro e raggio</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Determinare centro e raggio della circonferenza $x^2 + y^2 - 6x + 4y - 12 = 0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Raggruppo</strong> i termini con la $x$ da una parte e quelli con la $y$ dall'altra, e porto il termine noto $-12$ a destra, dove diventa $+12$: $\ (x^2 - 6x) + (y^2 + 4y) = 12$.</span>
+            <span class="esempio__passo"><strong>Completo il quadrato in $x$.</strong> Prendo metà del coefficiente di $x$, cioè $\frac{-6}{2}=-3$, e formo $(x-3)^2$. Ma sviluppando, $(x-3)^2=x^2-6x+9$: c'è un $+9$ di troppo rispetto a $x^2-6x$, quindi lo tolgo e scrivo $\ x^2-6x=(x-3)^2-9$.</span>
+            <span class="esempio__passo"><strong>Stessa cosa in $y$.</strong> Metà del coefficiente di $y$ è $\frac{4}{2}=2$, e $(y+2)^2=y^2+4y+4$ ha un $+4$ di troppo, quindi $\ y^2+4y=(y+2)^2-4$.</span>
+            <span class="esempio__passo">Sostituisco queste due espressioni al posto di $x^2-6x$ e di $y^2+4y$: $\ (x-3)^2 - 9 + (y+2)^2 - 4 = 12$. Poi porto $-9$ e $-4$ a destra, dove diventano $+9$ e $+4$: $\ (x-3)^2 + (y+2)^2 = 12+9+4 = 25$.</span>
+            <span class="esempio__passo">Confronto con la forma canonica $(x-a)^2+(y-b)^2=r^2$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Il primo blocco è già $(x-3)^2$, quindi $a=3$; il secondo è $(y+2)^2$, che riscrivo come $(y-(-2))^2$ per farlo somigliare a $(y-b)^2$, quindi $b=-2$. A destra $r^2=25$, e poiché il raggio è una lunghezza prendo la radice positiva: $r=\sqrt{25}=5$. (Verifica con le formule del <span class="richiamo" data-sec="4.5">§4.5</span>, leggendo $d=-6$, $e=4$, $f=-12$: $C=(-\tfrac{d}{2},-\tfrac{e}{2}) = (3,-2)$ e $r=\sqrt{\tfrac{36}{4}+\tfrac{16}{4}-(-12)}=\sqrt{9+4+12}=\sqrt{25}=5$.)</span>
+          </p>
+          <div class="esempio__risultato">$C=(3,-2)$, $\ r=5$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Riconoscere ellisse e iperbole</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Classificare e analizzare le due coniche: (a) $4x^2 + 9y^2 = 36$; (b) $\dfrac{x^2}{16} - \dfrac{y^2}{9} = 1$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">(a) La forma canonica dell'ellisse (<span class="richiamo" data-sec="4.6">§4.6</span>) ha $1$ a destra, mentre qui c'è $36$: divido allora <em>entrambi</em> i membri per $36$, così a destra resta $\frac{36}{36}=1$. Ottengo $\dfrac{4x^2}{36} + \dfrac{9y^2}{36} = 1$; semplifico le due frazioni ($\frac{4}{36}=\frac19$ e $\frac{9}{36}=\frac14$) e resta $\dfrac{x^2}{9} + \dfrac{y^2}{4} = 1$. Somma di due termini positivi $=1$: è un'<strong>ellisse</strong>.</span>
+            <span class="esempio__passo">Confronto con $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$: sotto $x^2$ c'è $9$, quindi $a^2=9$ e $a=3$ (semiasse lungo $x$); sotto $y^2$ c'è $4$, quindi $b^2=4$ e $b=2$ (semiasse lungo $y$). Attenzione: i numeri ai denominatori sono i <em>quadrati</em> dei semiassi, va estratta la radice.</span>
+            <span class="esempio__passo">Eccentricità: uso le formule del <span class="richiamo" data-sec="4.6">§4.6</span>, $\ c=\sqrt{a^2-b^2}$ e $\varepsilon=\frac{c}{a}$, sostituendo $a^2=9$ e $b^2=4$: $\ c=\sqrt{9-4}=\sqrt5$, quindi $\varepsilon = \dfrac{\sqrt5}{3}\approx 0{,}75$ (ellisse moderatamente schiacciata).</span>
+            <span class="esempio__passo">(b) È già in forma canonica, del tipo $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ con il segno $-$: è un'<strong>iperbole</strong> con i rami lungo l'asse $x$. Leggo i denominatori: $a^2=16$ quindi $a=4$, e $b^2=9$ quindi $b=3$. I vertici sono $(\pm a,0)$ (<span class="richiamo" data-sec="4.6">§4.6</span>), cioè $(\pm 4, 0)$.</span>
+            <span class="esempio__passo">Asintoti: la formula del <span class="richiamo" data-sec="4.6">§4.6</span> è $y=\pm\frac{b}{a}x$; sostituisco $b=3$ e $a=4$ e ottengo $y = \pm \dfrac{3}{4}x$. Eccentricità: per l'iperbole si usa $c=\sqrt{a^2+b^2}$, con il <em>più</em> (a differenza dell'ellisse), quindi $c=\sqrt{16+9}=\sqrt{25}=5$ e $\varepsilon=\dfrac{c}{a}=\dfrac{5}{4}=1{,}25 &gt; 1$.</span>
+          </p>
+          <div class="esempio__risultato">(a) Ellisse: semiassi $3$ e $2$, $\varepsilon=\tfrac{\sqrt5}{3}$. (b) Iperbole: vertici $(\pm4,0)$, asintoti $y=\pm\tfrac{3}{4}x$, $\varepsilon=\tfrac{5}{4}$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Circonferenza da centro e un punto</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Scrivere l'equazione della circonferenza di centro $C=(1,-2)$ passante per $P=(4,2)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il raggio è la distanza fra il centro e un qualunque punto della circonferenza, quindi uso la formula della distanza (<span class="richiamo" data-sec="4.2">§4.2</span>) con $x_C=1$, $y_C=-2$, $x_P=4$, $y_P=2$: $\ r = \overline{CP} = \sqrt{(4-1)^2 + (2-(-2))^2}$. Nella seconda parentesi c'è la sottrazione di un numero negativo, che diventa un'addizione: $2-(-2)=2+2=4$. Resta $\sqrt{3^2 + 4^2}=\sqrt{9+16}=\sqrt{25} = 5$.</span>
+            <span class="esempio__passo">Scrivo la forma canonica $(x-a)^2+(y-b)^2=r^2$ (<span class="richiamo" data-sec="4.5">§4.5</span>) sostituendo $a=1$, $b=-2$ e $r=5$. Attenzione al secondo termine: $(y-b)^2=(y-(-2))^2=(y+2)^2$, il meno davanti al $-2$ diventa un più; e a destra va $r^2=5^2=25$. Risultato: $\ (x-1)^2 + (y+2)^2 = 25$.</span>
+            <span class="esempio__passo">(Facoltativo) Per la forma generale sviluppo i due quadrati con i prodotti notevoli $(u-v)^2=u^2-2uv+v^2$ e $(u+v)^2=u^2+2uv+v^2$ (Capitolo 2): $(x-1)^2=x^2-2x+1$ e $(y+2)^2=y^2+4y+4$. Ottengo $x^2 - 2x + 1 + y^2 + 4y + 4 = 25$; porto il $25$ a sinistra (diventa $-25$) e sommo i termini noti, $1+4-25=-20$: $\ x^2 + y^2 - 2x + 4y - 20 = 0$.</span>
+          </p>
+          <div class="esempio__risultato">$(x-1)^2 + (y+2)^2 = 25$, ovvero $x^2 + y^2 - 2x + 4y - 20 = 0$.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere coefficiente angolare e intercetta</div>
+          <p>In $y = mx + q$, il coefficiente angolare $m$ è il numero che <strong>moltiplica</strong> $x$; l'intercetta $q$ è il <strong>termine noto</strong> (dove la retta taglia l'asse $y$). Nell'equazione $y = 5x - 2$ la pendenza è $5$, non $-2$! <em>Come evitarlo</em>: ripeti mentalmente "$m$ sta con la $x$, $q$ sta da solo". E ricorda che $q$ si legge subito come il valore di $y$ per $x=0$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Errore di segno completando il quadrato</div>
+          <p>Dalla forma $x^2+y^2+dx+ey+f=0$ il centro è $\left(-\dfrac{d}{2}, -\dfrac{e}{2}\right)$: i segni sono <strong>opposti</strong> a quelli dei coefficienti $d$ ed $e$. Da $x^2+y^2-6x+4y-12=0$ il centro è $(+3, -2)$, non $(-3, +2)$! <em>Come evitarlo</em>: dopo aver completato il quadrato, la parentesi è del tipo $(x-a)$; se leggi $(x-3)$ allora $a=+3$. Fidati della forma canonica, non "a occhio" dei coefficienti.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare la condizione $r^2 &gt; 0$</div>
+          <p>Non tutte le equazioni della forma $x^2+y^2+dx+ey+f=0$ sono circonferenze! Se dopo il completamento del quadrato ottieni $(x-a)^2+(y-b)^2 = k$ con $k &lt; 0$, <strong>nessun punto reale</strong> la soddisfa (una somma di quadrati non può essere negativa). Se $k=0$, hai un solo punto. <em>Come evitarlo</em>: calcola sempre $r^2$ e controlla che sia strettamente positivo prima di dichiarare "è una circonferenza di raggio...".</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scambiare parallelismo e perpendicolarità</div>
+          <p>Parallele $\Rightarrow$ <strong>stesso</strong> coefficiente angolare ($m_1 = m_2$). Perpendicolari $\Rightarrow$ <strong>prodotto</strong> uguale a $-1$ ($m_1 \cdot m_2 = -1$). Sono condizioni completamente diverse: non basta cambiare segno! <em>Come evitarlo</em>: la parallela "copia" la pendenza; la perpendicolare la "ribalta e cambia segno" ($m=\tfrac{2}{3} \to m'=-\tfrac{3}{2}$).</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Pendenza e intercetta a colpo d'occhio</div>
+          <p>Se la retta è in forma esplicita $y = mx + q$, non serve alcun calcolo: il coefficiente di $x$ è già la pendenza, il termine noto è già l'intercetta. Da $y = -\tfrac{3}{4}x + 5$ leggi immediatamente $m=-\tfrac{3}{4}$ e $q=5$. Se invece è in forma implicita, ricava $y$ oppure usa la formula lampo $m=-\dfrac{a}{b}$.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconoscere la conica dai coefficienti</div>
+          <p>Guarda solo i termini $x^2$ e $y^2$:</p>
+          <ul>
+            <li>compare <strong>uno solo</strong> tra $x^2$ e $y^2$ (l'altro manca) $\to$ <strong>parabola</strong>;</li>
+            <li>ci sono entrambi, con <strong>stesso coefficiente e stesso segno</strong> $\to$ <strong>circonferenza</strong>;</li>
+            <li>entrambi con lo <strong>stesso segno ma coefficienti diversi</strong> $\to$ <strong>ellisse</strong>;</li>
+            <li>entrambi con <strong>segni opposti</strong> $\to$ <strong>iperbole</strong>.</li>
+          </ul>
+          <p>Esempio: $3x^2 - 3y^2 = 12$ ha segni opposti $\Rightarrow$ iperbole; $2x^2 + 2y^2 = 8$ stesso coefficiente $\Rightarrow$ circonferenza.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il vertice con $-\dfrac{b}{2a}$</div>
+          <p>Per il vertice della parabola non serve ricordare la formula di $y_V$: calcola prima $x_V = -\dfrac{b}{2a}$ e poi <strong>sostituisci</strong> questo valore nell'equazione per ottenere $y_V$. Un solo numero da ricordare, e il resto è una sostituzione. Bonus: $x_V=-\tfrac{b}{2a}$ è anche l'ascissa del punto di massimo/minimo, informazione che ti servirà spessissimo in Analisi 1.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Perpendicolare = "ribalta e cambia segno"</div>
+          <p>Per trovare la pendenza perpendicolare a $m$, prendi il suo reciproco e cambiagli il segno (l'<em>anti-reciproco</em>): $m=2 \to m'=-\tfrac{1}{2}$; $m=-\tfrac{3}{5}\to m'=+\tfrac{5}{3}$. Verifica al volo: il prodotto deve fare $-1$.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Geometria Analitica</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Piano cartesiano</strong>
+              <ul><li>Punto P(x, y)</li><li>4 quadranti (segni)</li><li>Distanza √((Δx)²+(Δy)²)</li><li>Punto medio (medie)</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Retta</strong>
+              <ul><li>y = mx + q / ax+by+c=0</li><li>m = pendenza, q = intercetta</li><li>∥ : m₁ = m₂</li><li>⊥ : m₁·m₂ = −1</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Parabola</strong>
+              <ul><li>y = ax²+bx+c</li><li>Vertice x = −b/2a</li><li>a &gt; 0 su, a &lt; 0 giù</li><li>Lega equazioni/disequazioni 2° grado</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Coniche</strong>
+              <ul><li>Circonf. (x−a)²+(y−b)²=r²</li><li>Ellisse x²/a²+y²/b²=1</li><li>Iperbole x²/a²−y²/b²=1</li><li>Asintoti y=±(b/a)x</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Punto</strong>: $P=(x,y)$, coppia ordinata; i due assi dividono il piano in $4$ quadranti.</li>
+            <li><strong>Distanza</strong>: $\overline{AB} = \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2}$ (Pitagora). <strong>Punto medio</strong>: $M=\left(\tfrac{x_A+x_B}{2}, \tfrac{y_A+y_B}{2}\right)$.</li>
+            <li><strong>Retta</strong>: $y=mx+q$ ($m$ pendenza, $q$ intercetta) oppure $ax+by+c=0$; per due punti $m=\tfrac{y_B-y_A}{x_B-x_A}$.</li>
+            <li><strong>∥ e ⊥</strong>: parallele $\Leftrightarrow m_1=m_2$; perpendicolari $\Leftrightarrow m_1 m_2=-1$.</li>
+            <li><strong>Parabola</strong>: $y=ax^2+bx+c$; vertice $x_V=-\tfrac{b}{2a}$; concava verso l'alto se $a&gt;0$; è il grafico del trinomio di 2° grado.</li>
+            <li><strong>Circonferenza</strong>: canonica $(x-a)^2+(y-b)^2=r^2$; generale $x^2+y^2+dx+ey+f=0$ con $C=(-\tfrac{d}{2},-\tfrac{e}{2})$ e $r^2=\tfrac{d^2}{4}+\tfrac{e^2}{4}-f&gt;0$.</li>
+            <li><strong>Ellisse</strong> $\tfrac{x^2}{a^2}+\tfrac{y^2}{b^2}=1$ (semiassi $a,b$); <strong>iperbole</strong> $\tfrac{x^2}{a^2}-\tfrac{y^2}{b^2}=1$ (asintoti $y=\pm\tfrac{b}{a}x$).</li>
+            <li><strong>Ponte con l'Analisi</strong>: la pendenza $m$ è l'antenata della <a href="../parte1-analisi1/07-derivate.html">derivata</a>; le coniche riappariranno tra le <a href="../parte2-analisi2/07-curve-superfici.html">curve e superfici</a> di Analisi 2.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola la distanza tra i punti $A=(2,1)$ e $B=(5,5)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Applico la formula della distanza (<span class="richiamo" data-sec="4.2">§4.2</span>), $\ \overline{AB}=\sqrt{(x_B-x_A)^2+(y_B-y_A)^2}$, sostituendo $x_A=2$, $y_A=1$, $x_B=5$, $y_B=5$: $\ \overline{AB} = \sqrt{(5-2)^2 + (5-1)^2} = \sqrt{3^2+4^2} = \sqrt{9+16} = \sqrt{25}$.</p>
+              <p><strong>$\overline{AB} = 5$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina il punto medio del segmento di estremi $A=(-2,3)$ e $B=(4,-1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Applico la formula del punto medio (<span class="richiamo" data-sec="4.2">§4.2</span>), $\ M=\left(\frac{x_A+x_B}{2},\ \frac{y_A+y_B}{2}\right)$, sostituendo $x_A=-2$, $y_A=3$, $x_B=4$, $y_B=-1$; le coordinate si sommano con il loro segno, quindi $-2+4=2$ e $3+(-1)=3-1=2$: $\ M = \left( \dfrac{-2+4}{2},\ \dfrac{3+(-1)}{2} \right) = \left( \dfrac{2}{2},\ \dfrac{2}{2} \right)$.</p>
+              <p><strong>$M = (1,\ 1)$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Data la retta $y = 4x - 7$, indica il coefficiente angolare, l'intercetta e il punto in cui taglia l'asse $y$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La retta è già in forma esplicita $y=mx+q$ (<span class="richiamo" data-sec="4.3">§4.3</span>), quindi basta un confronto: $m$ è il numero che moltiplica $x$, $q$ è il termine noto preso con il suo segno. Il punto in cui taglia l'asse $y$ si ottiene sostituendo $x=0$: $\ y=4\cdot 0-7=-7$, cioè il punto $(0,-7)$.</p>
+              <p><strong>$m = 4$, $\ q = -7$; taglia l'asse $y$ in $(0,-7)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Stabilisci se il punto $P=(1,3)$ appartiene alla retta $y = 2x + 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Un punto appartiene a una retta quando le sue coordinate, sostituite nell'equazione, la rendono vera. Sostituisco allora l'ascissa di $P$, cioè $x=1$: $\ y = 2\cdot 1 + 1 = 3$. Il valore ottenuto va confrontato con l'ordinata di $P$, che è $3$: coincidono.</p>
+              <p><strong>Sì, $P$ appartiene alla retta.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scrivi l'equazione della retta passante per $A=(0,1)$ e $B=(2,5)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Formula del coefficiente angolare per due punti (<span class="richiamo" data-sec="4.3">§4.3</span>), $\ m=\frac{y_B-y_A}{x_B-x_A}$, con $x_A=0$, $y_A=1$, $x_B=2$, $y_B=5$: $\ m = \dfrac{5-1}{2-0} = \dfrac{4}{2} = 2$.</span>
+                <span class="esempio__passo">$q$ è per definizione l'ordinata del punto in cui la retta taglia l'asse $y$, cioè il valore di $y$ quando $x=0$ (<span class="richiamo" data-sec="4.3">§4.3</span>). Qui $A=(0,1)$ ha già ascissa $0$: sta sull'asse $y$, quindi si legge subito $q=1$ senza altri conti. (In alternativa: sostituendo $x=0$, $y=1$ in $y=2x+q$ si ottiene $1=0+q$.)</span>
+              </p>
+              <p><strong>$y = 2x + 1$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scrivi l'equazione della retta parallela a $y = -3x + 2$ e passante per il punto $(1,4)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Condizione di parallelismo (<span class="richiamo" data-sec="4.3">§4.3</span>): due rette parallele hanno lo stesso coefficiente angolare. Quello di $y=-3x+2$ è il numero davanti a $x$, cioè $m=-3$. Uso la forma punto-pendenza $y-y_0=m(x-x_0)$ con $m=-3$ e il punto $(x_0,y_0)=(1,4)$: $\ y - 4 = -3(x-1)$. Svolgo la parentesi, $-3(x-1)=-3x+3$, quindi $y-4=-3x+3$; porto il $-4$ a destra cambiandogli segno e ottengo $y=-3x+3+4$.</p>
+              <p><strong>$y = -3x + 7$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Scrivi l'equazione della retta perpendicolare a $y = \tfrac{1}{2}x - 1$ e passante per l'origine.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Condizione di perpendicolarità (<span class="richiamo" data-sec="4.3">§4.3</span>): $m\cdot m'=-1$. La retta data ha $m=\tfrac12$, quindi $\tfrac12\,m'=-1$; moltiplico entrambi i membri per $2$ e trovo $m'=-2$ (è l'"anti-reciproco": si capovolge la frazione e si cambia segno). La retta cercata è allora $y=-2x+q$; passa per l'origine, quindi sostituisco $x=0$ e $y=0$ e ottengo $0=-2\cdot 0+q$, cioè $q=0$.</p>
+              <p><strong>$y = -2x$</strong> (verifica: $\tfrac{1}{2}\cdot(-2) = -1$).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Della parabola $y = x^2 - 2x - 3$ determina vertice, asse di simmetria e intersezioni con gli assi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Confronto con $y=ax^2+bx+c$ (<span class="richiamo" data-sec="4.4">§4.4</span>) e leggo $a=1,\ b=-2,\ c=-3$. Formula dell'ascissa del vertice, $x_V=-\frac{b}{2a}$, con $a=1$ e $b=-2$: $\ x_V = -\dfrac{-2}{2\cdot 1} = -\dfrac{-2}{2} = 1$. Per l'ordinata sostituisco $x=1$ nell'equazione della parabola: $\ y_V = 1^2 - 2\cdot 1 - 3 = 1-2-3 = -4$. Vertice $V=(1,-4)$; l'asse di simmetria è la verticale che passa per il vertice, cioè $x=1$.</span>
+                <span class="esempio__passo">Intersezioni con l'asse $x$: impongo $y=0$, cioè risolvo $x^2-2x-3=0$. Scompongo cercando due numeri con somma $-2$ e prodotto $-3$: sono $-3$ e $+1$, quindi $(x-3)(x+1)=0$, che si annulla per $x=3$ oppure per $x=-1$. Intersezione con l'asse $y$: impongo $x=0$ e ottengo $y=0-0-3=-3$, cioè il punto $(0,-3)$.</span>
+              </p>
+              <p><strong>$V=(1,-4)$, asse $x=1$, interseca l'asse $x$ in $(-1,0)$ e $(3,0)$, l'asse $y$ in $(0,-3)$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina centro e raggio della circonferenza $x^2 + y^2 - 4x + 6y - 3 = 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Raggruppo i termini in $x$ e quelli in $y$, e porto il $-3$ a destra dove diventa $+3$: $\ (x^2-4x) + (y^2+6y) = 3$.</span>
+                <span class="esempio__passo">Completo i quadrati (<span class="richiamo" data-sec="4.5">§4.5</span>). In $x$: metà di $-4$ è $-2$, e $(x-2)^2=x^2-4x+4$ ha un $+4$ di troppo, quindi $x^2-4x=(x-2)^2-4$. In $y$: metà di $6$ è $3$, e $(y+3)^2=y^2+6y+9$ ha un $+9$ di troppo, quindi $y^2+6y=(y+3)^2-9$.</span>
+                <span class="esempio__passo">Sostituisco: $\ (x-2)^2 - 4 + (y+3)^2 - 9 = 3$; porto $-4$ e $-9$ a destra, dove diventano $+4$ e $+9$: $\ (x-2)^2 + (y+3)^2 = 3+4+9 = 16$. Confronto con $(x-a)^2+(y-b)^2=r^2$: $a=2$, $b=-3$ (perché $(y+3)^2=(y-(-3))^2$) e $r=\sqrt{16}=4$.</span>
+              </p>
+              <p><strong>$C=(2,-3)$, $\ r=4$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Scrivi l'equazione della circonferenza di centro $C=(2,1)$ passante per $P=(5,5)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Il raggio è la distanza fra centro e punto: formula della distanza (<span class="richiamo" data-sec="4.2">§4.2</span>) con $x_C=2$, $y_C=1$, $x_P=5$, $y_P=5$: $\ r = \overline{CP} = \sqrt{(5-2)^2 + (5-1)^2} = \sqrt{3^2+4^2} = \sqrt{9+16} = \sqrt{25} = 5$. Poi scrivo la forma canonica $(x-a)^2+(y-b)^2=r^2$ (<span class="richiamo" data-sec="4.5">§4.5</span>) sostituendo $a=2$, $b=1$ e $r^2=5^2=25$.</p>
+              <p><strong>$(x-2)^2 + (y-1)^2 = 25$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Riconosci la conica $9x^2 + 4y^2 = 36$, portala in forma canonica e indica i semiassi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La forma canonica (<span class="richiamo" data-sec="4.6">§4.6</span>) ha $1$ a destra, quindi divido entrambi i membri per $36$, così a destra resta $\frac{36}{36}=1$: $\ \dfrac{9x^2}{36} + \dfrac{4y^2}{36} = 1$. Semplifico le frazioni ($\frac{9}{36}=\frac14$ e $\frac{4}{36}=\frac19$) e ottengo $\dfrac{x^2}{4} + \dfrac{y^2}{9} = 1$. Somma di quadrati $=1$: è un'<strong>ellisse</strong>.</p>
+              <p>Confronto con $\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$: ai denominatori ci sono i <em>quadrati</em> dei semiassi, quindi $a^2=4 \Rightarrow a=2$ e $b^2=9 \Rightarrow b=3$.</p>
+              <p><strong>Semiasse lungo $x$: $a=2$; lungo $y$: $b=3$.</strong> Qui $b&gt;a$, quindi l'ellisse è "in piedi" (asse maggiore verticale).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Per l'iperbole $\dfrac{x^2}{9} - \dfrac{y^2}{16} = 1$ trova i vertici sull'asse $x$ e le equazioni degli asintoti.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Confronto con la forma canonica $\frac{x^2}{a^2}-\frac{y^2}{b^2}=1$ (<span class="richiamo" data-sec="4.6">§4.6</span>) e leggo i denominatori, ricordando che sono i quadrati dei semiassi: $a^2=9 \Rightarrow a=3$ e $b^2=16 \Rightarrow b=4$. I vertici (dove la curva taglia l'asse $x$) sono $(\pm a, 0)$, e gli asintoti hanno equazione $y=\pm\frac{b}{a}x$: sostituisco $b=4$ e $a=3$.</p>
+              <p><strong>Vertici $(\pm 3, 0)$; asintoti $y = \pm \dfrac{b}{a}x = \pm \dfrac{4}{3}x$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dati i vertici $A=(0,0)$, $B=(4,0)$, $C=(0,3)$: (a) calcola i tre lati; (b) determina il perimetro; (c) stabilisci se il triangolo è rettangolo.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) Uso tre volte la formula della distanza (<span class="richiamo" data-sec="4.2">§4.2</span>), cambiando ogni volta la coppia di punti. Per $\overline{AB}$, con $A=(0,0)$ e $B=(4,0)$: $\sqrt{(4-0)^2+(0-0)^2}=\sqrt{4^2+0^2}=\sqrt{16}=4$. Per $\overline{AC}$, con $A=(0,0)$ e $C=(0,3)$: $\sqrt{(0-0)^2+(3-0)^2}=\sqrt{0^2+3^2}=\sqrt9=3$. Per $\overline{BC}$, con $B=(4,0)$ e $C=(0,3)$: $\sqrt{(0-4)^2+(3-0)^2}=\sqrt{16+9}=\sqrt{25}=5$.</span>
+                <span class="esempio__passo">(b) Il perimetro è la somma dei tre lati appena calcolati: $4+3+5 = 12$.</span>
+                <span class="esempio__passo">(c) Verifica con il teorema di Pitagora (vale l'inverso: se il quadrato del lato più lungo è la somma dei quadrati degli altri due, il triangolo è rettangolo). Il lato più lungo è $\overline{BC}=5$, quindi controllo se $\overline{AB}^2+\overline{AC}^2$ fa $\overline{BC}^2$: a sinistra $4^2+3^2=16+9=25$, a destra $5^2=25$. La relazione è soddisfatta, e l'angolo retto sta nel vertice opposto al lato più lungo, cioè in $A$.</span>
+              </p>
+              <p><strong>Lati $3,4,5$; perimetro $12$; il triangolo è rettangolo, con l'angolo retto in $A$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Trova i punti di intersezione tra la retta $y = x + 1$ e la parabola $y = x^2 - 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Un punto di intersezione sta su entrambe le curve, quindi le sue coordinate devono soddisfare tutte e due le equazioni: alla stessa $x$ deve corrispondere la stessa $y$. Uguaglio allora le due espressioni di $y$: $\ x^2 - 1 = x + 1$. Porto tutto a sinistra (il $x$ e il $+1$ di destra attraversano l'uguale e cambiano segno): $\ x^2 - x - 1 - 1 = 0$, cioè $x^2 - x - 2 = 0$.</span>
+                <span class="esempio__passo">Scompongo cercando due numeri con somma $-1$ (il coefficiente di $x$) e prodotto $-2$ (il termine noto): sono $-2$ e $+1$. Quindi $(x-2)(x+1)=0$, che è vera quando $x-2=0$, cioè $x=2$, oppure quando $x+1=0$, cioè $x=-1$.</span>
+                <span class="esempio__passo">Per le ordinate sostituisco ciascuna $x$ in una delle due equazioni (conviene la retta, più semplice): con $x=2$ ottengo $y=2+1=3$; con $x=-1$ ottengo $y=-1+1=0$.</span>
+              </p>
+              <p><strong>I punti di intersezione sono $(2,3)$ e $(-1,0)$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Per quali valori del parametro $k$ l'equazione $x^2 + y^2 + 2x - 4y + k = 0$ rappresenta una circonferenza reale? Discuti anche i casi limite.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Completo il quadrato (<span class="richiamo" data-sec="4.5">§4.5</span>). In $x$: metà di $2$ è $1$, e $(x+1)^2=x^2+2x+1$ ha un $+1$ di troppo, quindi $x^2+2x=(x+1)^2-1$. In $y$: metà di $-4$ è $-2$, e $(y-2)^2=y^2-4y+4$ ha un $+4$ di troppo, quindi $y^2-4y=(y-2)^2-4$.</span>
+                <span class="esempio__passo">Sostituisco nell'equazione: $\ (x+1)^2 - 1 + (y-2)^2 - 4 + k = 0$. Porto a destra le costanti $-1$, $-4$ e $+k$, che attraversando l'uguale cambiano segno: $\ (x+1)^2 + (y-2)^2 = 1+4-k = 5 - k$.</span>
+                <span class="esempio__passo">Confronto con $(x-a)^2+(y-b)^2=r^2$: il centro è $C=(-1,2)$ (perché $(x+1)^2=(x-(-1))^2$) e $r^2 = 5 - k$. Perché la circonferenza sia reale serve $r^2 &gt; 0$, cioè $5-k &gt; 0$; porto $k$ a destra e ottengo $k &lt; 5$.</span>
+              </p>
+              <p><strong>Circonferenza reale se $k &lt; 5$.</strong> Casi limite: se $k = 5$ si riduce al solo punto $(-1,2)$ (raggio $0$); se $k &gt; 5$ nessun punto reale soddisfa l'equazione.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 7.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data la retta $r:\ 3x - 4y + 12 = 0$: (a) scrivila in forma esplicita; (b) indica pendenza e intersezioni con gli assi; (c) scrivi la retta perpendicolare a $r$ passante per l'origine.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">(a) Ricavo $y$ con il procedimento del <span class="richiamo" data-sec="4.3">§4.3</span>. Porto a destra i termini senza $y$, cioè $3x$ e $12$, che cambiano segno: $\ -4y = -3x - 12$. Divido entrambi i membri per $-4$: a sinistra resta $y$, a destra ogni addendo va diviso per $-4$ e cambia segno, perché $\frac{-3x}{-4}=\frac34x$ e $\frac{-12}{-4}=3$. Ottengo $\ y = \dfrac{3}{4}x + 3$.</span>
+                <span class="esempio__passo">(b) Confronto con $y=mx+q$: $m = \dfrac{3}{4}$ e $q=3$, quindi taglia l'asse $y$ in $(0,3)$. Per l'asse $x$ impongo $y=0$: $\ \dfrac{3}{4}x + 3 = 0$; porto il $3$ a destra, $\frac34x=-3$; moltiplico entrambi i membri per $\frac43$ e ottengo $x=-3\cdot\frac43=-4$, cioè il punto $(-4,0)$.</span>
+                <span class="esempio__passo">(c) Condizione di perpendicolarità $m\cdot m'=-1$ (<span class="richiamo" data-sec="4.3">§4.3</span>): con $m=\frac34$ ottengo $m'=-\dfrac{1}{3/4}=-\dfrac{4}{3}$ (si capovolge la frazione e si cambia segno). Passando per l'origine si ha $q=0$, quindi la retta è $y=-\frac43x$.</span>
+              </p>
+              <p><strong>(a) $y=\tfrac{3}{4}x+3$; (b) $m=\tfrac{3}{4}$, tagli in $(0,3)$ e $(-4,0)$; (c) $y=-\tfrac{4}{3}x$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) La distanza tra i punti $(0,0)$ e $(3,4)$ vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$7$</button>
+              <button class="quiz-option" data-correct="true">$5$</button>
+              <button class="quiz-option" data-correct="false">$\sqrt{7}$</button>
+              <button class="quiz-option" data-correct="false">$12$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$. È il classico triangolo rettangolo $3$-$4$-$5$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Nella retta $y = 3x - 2$, il coefficiente angolare è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="true">$3$</button>
+              <button class="quiz-option" data-correct="false">$-2$</button>
+              <button class="quiz-option" data-correct="false">$\tfrac{3}{-2}$</button>
+              <button class="quiz-option" data-correct="false">$2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il coefficiente angolare è il numero che moltiplica $x$: qui è $3$. Il $-2$ è l'intercetta $q$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Quale delle seguenti equazioni rappresenta una <strong>circonferenza</strong>?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\dfrac{x^2}{9} - \dfrac{y^2}{4} = 1$</button>
+              <button class="quiz-option" data-correct="false">$y = x^2 + 2x$</button>
+              <button class="quiz-option" data-correct="true">$x^2 + y^2 - 2x = 0$</button>
+              <button class="quiz-option" data-correct="false">$\dfrac{x^2}{9} + \dfrac{y^2}{4} = 1$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>La circonferenza ha $x^2$ e $y^2$ con stesso coefficiente e stesso segno, senza termine misto: è $x^2+y^2-2x=0$ (centro $(1,0)$, $r=1$). Le altre sono iperbole, parabola ed ellisse.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Una retta perpendicolare a $y = 2x + 1$ ha coefficiente angolare:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$2$</button>
+              <button class="quiz-option" data-correct="false">$-2$</button>
+              <button class="quiz-option" data-correct="true">$-\tfrac{1}{2}$</button>
+              <button class="quiz-option" data-correct="false">$\tfrac{1}{2}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Serve l'anti-reciproco: $m' = -\tfrac{1}{2}$, perché $2\cdot(-\tfrac{1}{2}) = -1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Due rette parallele hanno lo stesso coefficiente angolare.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: stessa pendenza significa stessa inclinazione, quindi non si incontrano mai (a meno di coincidere).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se nella parabola $y=ax^2+bx+c$ si ha $a &lt; 0$, allora la concavità è rivolta verso l'alto.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: con $a&lt;0$ la parabola è rivolta verso il basso ($\frown$), con un punto di massimo nel vertice. Verso l'alto ($\smile$) si ha per $a&gt;0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) L'equazione $x^2 + y^2 = -4$ rappresenta una circonferenza di raggio $2$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: una somma di quadrati non può essere negativa, quindi nessun punto reale soddisfa l'equazione. Manca la condizione $r^2 &gt; 0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Nell'ellisse $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} = 1$ i numeri $a$ e $b$ rappresentano i semiassi.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: l'ellisse taglia l'asse $x$ in $(\pm a,0)$ e l'asse $y$ in $(0,\pm b)$, quindi $a$ e $b$ sono le lunghezze dei semiassi.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="m|emme">
+            <p class="quiz-question__testo">9. (Completamento) Il coefficiente angolare di una retta si indica di solito con la lettera ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Nella forma $y = mx + q$ la pendenza è proprio $m$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="vertice|il vertice">
+            <p class="quiz-question__testo">10. (Completamento) Il punto in cui la parabola raggiunge il suo massimo o minimo, sul suo asse di simmetria, si chiama ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il vertice, di ascissa $x_V = -\tfrac{b}{2a}$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="asintoti|asintoto|gli asintoti">
+            <p class="quiz-question__testo">11. (Completamento) Le due rette a cui i rami dell'iperbole si avvicinano indefinitamente senza toccarle si chiamano ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Gli asintoti, di equazione $y = \pm \tfrac{b}{a}x$ per l'iperbole $\tfrac{x^2}{a^2}-\tfrac{y^2}{b^2}=1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché due rette perpendicolari (non parallele agli assi) soddisfano $m_1 \cdot m_2 = -1$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: la pendenza $m_1$ dice che, muovendosi lungo la retta, a ogni passo orizzontale di $1$ corrisponde un passo verticale di $m_1$; possiamo descrivere la direzione con il vettore $(1, m_1)$. Rendere la retta perpendicolare equivale a ruotarla di $90°$, e la rotazione di un quarto di giro trasforma $(1, m_1)$ in $(-m_1, 1)$: si scambiano le componenti e si cambia un segno. La nuova pendenza è quindi $m_2 = \tfrac{1}{-m_1} = -\tfrac{1}{m_1}$, da cui il prodotto $m_1 \cdot m_2 = -1$. In pratica, la pendenza perpendicolare è l'anti-reciproco: si ribalta la frazione e si cambia il segno.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Come si capisce, guardando solo l'equazione, se una conica è una circonferenza, un'ellisse o un'iperbole?</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: si guardano i coefficienti dei termini $x^2$ e $y^2$. Se ne compare uno solo (l'altro manca) è una parabola. Se compaiono entrambi con lo stesso segno: se hanno anche lo stesso coefficiente è una circonferenza, se hanno coefficienti diversi è un'ellisse. Se compaiono con segni opposti (uno $+$ e uno $-$) è un'iperbole. In forma canonica: $\tfrac{x^2}{a^2}+\tfrac{y^2}{b^2}=1$ (ellisse/circonferenza, con il $+$) contro $\tfrac{x^2}{a^2}-\tfrac{y^2}{b^2}=1$ (iperbole, con il $-$).</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="06-disequazioni.html"><span class="dir">← Capitolo precedente</span><strong>Disequazioni</strong></a>
+        <a class="next" href="08-trigonometria.html"><span class="dir">Capitolo successivo →</span><strong>Trigonometria</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

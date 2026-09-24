@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analisi Matematica 1 &amp; 2 — Il Manuale Interattivo</title>
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="index.html" class="is-active">Home</a>
+      <a href="#parte0">Parte 0</a>
+      <a href="#parte1">Analisi 1</a>
+      <a href="#parte2">Analisi 2</a>
+      <a href="glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <div class="hero">
+    <span class="eyebrow">Dalle basi assolute all'esame universitario</span>
+    <h1>Analisi Matematica 1 &amp; 2<br>Il Manuale Interattivo</h1>
+    <p class="lead">Il libro pensato per portarti da zero — davvero da zero — fino a superare con sicurezza gli esami di Analisi Matematica 1 e 2. Ogni concetto è spiegato prima con l'intuizione, poi con il rigore, sempre con un esempio dalla vita reale, esercizi con soluzioni nascoste e quiz di autoverifica.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="n">38</span><span class="l">capitoli completi</span></div>
+      <div class="stat"><span class="n">608</span><span class="l">esercizi con soluzione</span></div>
+      <div class="stat"><span class="n">494</span><span class="l">quiz interattivi</span></div>
+      <div class="stat"><span class="n">100%</span><span class="l">soluzioni commentate</span></div>
+    </div>
+  </div>
+
+  <section class="section" id="come-usare">
+    <h2 class="section__title"><span class="emoji">🧭</span> Come usare questo libro</h2>
+    <p>Ogni capitolo segue sempre la stessa struttura in 10 tappe, così saprai sempre "dove sei" nel percorso di apprendimento. Ecco la legenda dei simboli che incontrerai:</p>
+    <div class="come-usare">
+      <div class="voce"><span class="emoji">💡</span><h4>Introduzione intuitiva</h4><p>Il concetto spiegato a parole, prima di ogni formula.</p></div>
+      <div class="voce"><span class="emoji">🎯</span><h4>Motivazione</h4><p>Perché esiste questo argomento e quale problema risolve.</p></div>
+      <div class="voce"><span class="emoji">🌍</span><h4>Vita reale</h4><p>Un'analogia concreta: strade, tachimetri, montagne, temperature.</p></div>
+      <div class="voce"><span class="emoji">📚</span><h4>Teoria dettagliata</h4><p>Ogni simbolo di ogni formula, spiegato senza dare nulla per scontato.</p></div>
+      <div class="voce"><span class="emoji">🔍</span><h4>Dimostrazioni</h4><p>Il "perché è vero", spiegato in modo intuitivo oltre che rigoroso.</p></div>
+      <div class="voce"><span class="emoji">✏️</span><h4>Esempi svolti</h4><p>Dal più semplice al più difficile, ogni passaggio commentato.</p></div>
+      <div class="voce"><span class="emoji">⚠️</span><h4>Errori comuni</h4><p>Gli sbagli tipici, perché si commettono, come evitarli.</p></div>
+      <div class="voce"><span class="emoji">🔑</span><h4>Trucchi</h4><p>Scorciatoie pratiche per riconoscere ed impostare gli esercizi.</p></div>
+      <div class="voce"><span class="emoji">🗺️</span><h4>Mappa mentale</h4><p>Uno schema visivo che riassume tutto il capitolo a colpo d'occhio.</p></div>
+      <div class="voce"><span class="emoji">📝</span><h4>Riassunto</h4><p>Solo l'essenziale, perfetto per un ripasso last-minute.</p></div>
+      <div class="voce"><span class="emoji">▶️</span><h4>Soluzioni nascoste</h4><p>Ogni esercizio ha la soluzione dietro un click: prova prima da solo!</p></div>
+      <div class="voce"><span class="emoji">🧠</span><h4>Quiz interattivi</h4><p>Scelta multipla, vero/falso, completamento, domande aperte — con correzione immediata.</p></div>
+      <div class="voce"><span class="emoji">📖</span><h4>Glossario cliccabile</h4><p>Ogni termine sottolineato apre la sua definizione al volo.</p></div>
+      <div class="voce"><span class="emoji">🌓</span><h4>Tema chiaro/scuro</h4><p>Studia di giorno o di notte: il tema si ricorda automaticamente.</p></div>
+    </div>
+  </section>
+
+  <hr>
+
+  <!-- PARTE 0 -->
+  <section class="parte-block" id="parte0">
+    <div class="parte-block__head">
+      <span class="badge badge--parte0" style="font-size:.85rem;padding:.4em 1em;">Parte 0</span>
+      <div><h2>Prerequisiti</h2><p>Algebra, geometria, trigonometria, equazioni e disequazioni: le fondamenta senza le quali l'Analisi non si regge.</p></div>
+    </div>
+    <div class="capitoli-grid">
+
+      <a class="capitolo-card" href="parte0-prerequisiti/01-insiemi-logica-numeri.html">
+        <span class="n-cap">Capitolo 1</span>
+        <h3>Insiemi, logica e numeri</h3>
+        <p>Il linguaggio di base: insiemi, connettivi logici, quantificatori e la costruzione ℕ ⊂ ℤ ⊂ ℚ ⊂ ℝ.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/02-algebra-calcolo-letterale.html">
+        <span class="n-cap">Capitolo 2</span>
+        <h3>Algebra e calcolo letterale</h3>
+        <p>Monomi, polinomi, prodotti notevoli, scomposizione in fattori, frazioni algebriche.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/03-potenze-radicali-esponenziali.html">
+        <span class="n-cap">Capitolo 3</span>
+        <h3>Potenze, radicali ed esponenziali</h3>
+        <p>Proprietà delle potenze, semplificazione di radicali, razionalizzazione, funzione esponenziale.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/04-logaritmi.html">
+        <span class="n-cap">Capitolo 4</span>
+        <h3>Logaritmi</h3>
+        <p>Definizione come inversa dell'esponenziale, proprietà, cambio di base, grafico.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/05-equazioni.html">
+        <span class="n-cap">Capitolo 5</span>
+        <h3>Equazioni</h3>
+        <p>Primo e secondo grado, fratte, con valore assoluto, con radicali.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/06-disequazioni.html">
+        <span class="n-cap">Capitolo 6</span>
+        <h3>Disequazioni</h3>
+        <p>Primo e secondo grado, fratte, sistemi, con valore assoluto, esponenziali e logaritmiche.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/07-geometria-analitica.html">
+        <span class="n-cap">Capitolo 7</span>
+        <h3>Geometria analitica</h3>
+        <p>Piano cartesiano, retta, parabola, circonferenza, ellisse, iperbole.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/08-trigonometria.html">
+        <span class="n-cap">Capitolo 8</span>
+        <h3>Trigonometria</h3>
+        <p>Cerchio goniometrico, seno, coseno, tangente, identità e formule, equazioni goniometriche.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+      <a class="capitolo-card" href="parte0-prerequisiti/09-funzioni-elementari-grafici.html">
+        <span class="n-cap">Capitolo 9</span>
+        <h3>Funzioni elementari e grafici</h3>
+        <p>Anteprima del concetto di funzione, grafici di riferimento, traslazioni e trasformazioni.</p>
+        <div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- PARTE 1 -->
+  <section class="parte-block" id="parte1">
+    <div class="parte-block__head">
+      <span class="badge badge--parte1" style="font-size:.85rem;padding:.4em 1em;">Parte 1</span>
+      <div><h2>Analisi Matematica 1</h2><p>Funzioni di una variabile: limiti, continuità, derivate, studio di funzione, Taylor, successioni, serie e integrali.</p></div>
+    </div>
+    <div class="capitoli-grid">
+      <a class="capitolo-card" href="parte1-analisi1/01-numeri-reali-struttura.html"><span class="n-cap">Capitolo 1</span><h3>Numeri reali e struttura d'ordine</h3><p>Estremo superiore/inferiore, assioma di completezza: perché ℝ non ha "buchi".</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/02-valore-assoluto-topologia.html"><span class="n-cap">Capitolo 2</span><h3>Valore assoluto e topologia della retta</h3><p>Intorni, punti di accumulazione, insiemi aperti e chiusi.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/03-funzioni.html"><span class="n-cap">Capitolo 3</span><h3>Funzioni</h3><p>Dominio, codominio, immagine, iniettività, suriettività, funzione inversa e composta, grafici.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/04-limiti.html"><span class="n-cap">Capitolo 4</span><h3>Limiti di funzioni</h3><p>La porta che ci si avvicina senza aprire: definizione rigorosa, calcolo, forme indeterminate.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/05-infinitesimi-infiniti.html"><span class="n-cap">Capitolo 5</span><h3>Infinitesimi, infiniti e confronti</h3><p>Ordini di infinito/infinitesimo, gerarchie asintotiche, simboli di Landau.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/06-continuita.html"><span class="n-cap">Capitolo 6</span><h3>Continuità</h3><p>Funzioni "senza salti", punti di discontinuità, teoremi di Weierstrass e degli zeri.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/07-derivate.html"><span class="n-cap">Capitolo 7</span><h3>Derivate</h3><p>Il tachimetro delle funzioni: definizione, regole di derivazione, significato geometrico e fisico.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/08-teoremi-fondamentali.html"><span class="n-cap">Capitolo 8</span><h3>Teoremi fondamentali del calcolo differenziale</h3><p>Fermat, Rolle, Lagrange, De l'Hôpital: le regole che governano le derivate.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/09-studio-di-funzione.html"><span class="n-cap">Capitolo 9</span><h3>Studio completo di funzione</h3><p>Il "grande esercizio finale": dominio, segno, limiti, asintoti, derivate, grafico qualitativo.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/10-taylor-mclaurin.html"><span class="n-cap">Capitolo 10</span><h3>Sviluppi di Taylor e Mclaurin</h3><p>Approssimare funzioni complicate con polinomi: la base del calcolo numerico.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/11-successioni.html"><span class="n-cap">Capitolo 11</span><h3>Successioni numeriche</h3><p>Liste infinite di numeri, convergenza, teoremi di confronto, successioni ricorsive.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/12-serie-numeriche.html"><span class="n-cap">Capitolo 12</span><h3>Serie numeriche</h3><p>Sommare infiniti termini: criteri di convergenza, serie geometriche e armoniche.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/13-integrali-indefiniti.html"><span class="n-cap">Capitolo 13</span><h3>Integrali indefiniti</h3><p>Tornare indietro dalla derivata: primitive e tecniche di integrazione.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/14-integrali-definiti.html"><span class="n-cap">Capitolo 14</span><h3>Integrali definiti</h3><p>Il contachilometri delle funzioni: aree, teorema fondamentale del calcolo integrale.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte1-analisi1/15-applicazioni-integrali.html"><span class="n-cap">Capitolo 15</span><h3>Applicazioni degli integrali</h3><p>Aree tra curve, volumi di solidi di rotazione, lunghezze di curve, integrali impropri.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+    </div>
+  </section>
+
+  <!-- PARTE 2 -->
+  <section class="parte-block" id="parte2">
+    <div class="parte-block__head">
+      <span class="badge badge--parte2" style="font-size:.85rem;padding:.4em 1em;">Parte 2</span>
+      <div><h2>Analisi Matematica 2</h2><p>Il salto in più dimensioni: funzioni di più variabili, ottimizzazione, integrali multipli e calcolo vettoriale.</p></div>
+    </div>
+    <div class="capitoli-grid">
+      <a class="capitolo-card" href="parte2-analisi2/01-funzioni-piu-variabili.html"><span class="n-cap">Capitolo 1</span><h3>Funzioni di più variabili</h3><p>Dominio, grafico (superfici) e curve di livello: la temperatura in ogni punto di una stanza.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/02-limiti-continuita-piu-variabili.html"><span class="n-cap">Capitolo 2</span><h3>Limiti e continuità in più variabili</h3><p>Perché avvicinarsi da infinite direzioni cambia tutto rispetto a una sola variabile.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/03-derivate-parziali.html"><span class="n-cap">Capitolo 3</span><h3>Derivate parziali e differenziabilità</h3><p>Come cambia la temperatura muovendosi solo lungo un asse alla volta.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/04-gradiente.html"><span class="n-cap">Capitolo 4</span><h3>Gradiente e derivata direzionale</h3><p>La direzione di massima salita su una montagna, in formula.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/05-hessiano-massimi-minimi.html"><span class="n-cap">Capitolo 5</span><h3>Hessiano, massimi e minimi liberi</h3><p>Classificare i punti critici in più variabili: massimo, minimo o sella?</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/06-moltiplicatori-lagrange.html"><span class="n-cap">Capitolo 6</span><h3>Moltiplicatori di Lagrange</h3><p>Ottimizzare rispettando un vincolo: il cuore dell'ottimizzazione applicata.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/07-curve-superfici.html"><span class="n-cap">Capitolo 7</span><h3>Curve e superfici parametriche</h3><p>Descrivere traiettorie e forme nello spazio con un parametro.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/08-integrali-doppi.html"><span class="n-cap">Capitolo 8</span><h3>Integrali doppi</h3><p>L'area di un terreno dalla forma irregolare, calcolata esattamente.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/09-integrali-tripli-cambi-variabile.html"><span class="n-cap">Capitolo 9</span><h3>Integrali tripli e cambi di variabile</h3><p>Il volume di un lago, coordinate cilindriche e sferiche.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/10-integrali-curvilinei.html"><span class="n-cap">Capitolo 10</span><h3>Integrali curvilinei</h3><p>Lavoro di una forza lungo un percorso non rettilineo.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/11-integrali-superficie-campi-vettoriali.html"><span class="n-cap">Capitolo 11</span><h3>Integrali di superficie e campi vettoriali</h3><p>Flusso di un fluido attraverso una superficie: campi, divergenza, rotore.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/12-teoremi-green-gauss-stokes.html"><span class="n-cap">Capitolo 12</span><h3>Teoremi di Green, Gauss e Stokes</h3><p>I tre grandi teoremi che collegano bordo e interno di una regione.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/13-equazioni-differenziali.html"><span class="n-cap">Capitolo 13</span><h3>Equazioni differenziali ordinarie</h3><p>Equazioni la cui incognita è una funzione: modellare il cambiamento.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+      <a class="capitolo-card" href="parte2-analisi2/14-applicazioni-analisi2.html"><span class="n-cap">Capitolo 14</span><h3>Applicazioni: modelli fisici ed economici</h3><p>Come tutta l'Analisi 2 si usa davvero, in fisica, ingegneria ed economia.</p><div class="footer-row"><span class="badge badge--completo">✅ Completo</span></div></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo · costruito capitolo per capitolo</span>
+    <span><a href="glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="assets/js/glossary-data.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/interactive.js"></script>
+</body>
+</html>

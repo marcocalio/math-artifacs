@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>3. Derivate parziali e differenziabilità — Parte 2 · Analisi Matematica 2</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2" class="is-active">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte2">Parte 2 · Analisi Matematica 2</a><span class="sep">/</span>Capitolo 3</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
+      <nav>
+        <ul>
+          <li><a href="01-funzioni-piu-variabili.html">1. Funzioni di più variabili</a></li>
+          <li><a href="02-limiti-continuita-piu-variabili.html">2. Limiti e continuità in più variabili</a></li>
+          <li><a href="03-derivate-parziali.html" class="is-active">3. Derivate parziali e differenziabilità</a></li>
+          <li><a href="04-gradiente.html">4. Gradiente e derivata direzionale</a></li>
+          <li><a href="05-hessiano-massimi-minimi.html">5. Hessiano, massimi e minimi liberi</a></li>
+          <li><a href="06-moltiplicatori-lagrange.html">6. Massimi e minimi vincolati: moltiplicatori di Lagrange</a></li>
+          <li><a href="07-curve-superfici.html">7. Curve e superfici parametriche</a></li>
+          <li><a href="08-integrali-doppi.html">8. Integrali doppi</a></li>
+          <li><a href="09-integrali-tripli-cambi-variabile.html">9. Integrali tripli e cambi di variabile</a></li>
+          <li><a href="10-integrali-curvilinei.html">10. Integrali curvilinei</a></li>
+          <li><a href="11-integrali-superficie-campi-vettoriali.html">11. Integrali di superficie e campi vettoriali</a></li>
+          <li><a href="12-teoremi-green-gauss-stokes.html">12. Teoremi di Green, Gauss e Stokes</a></li>
+          <li><a href="13-equazioni-differenziali.html">13. Equazioni differenziali ordinarie</a></li>
+          <li><a href="14-applicazioni-analisi2.html">14. Applicazioni: modelli fisici ed economici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte2">Parte 2 · Analisi Matematica 2</span>
+          <span class="badge badge--base">Capitolo 3 di 14</span>
+        </div>
+        <h1>Derivate parziali e differenziabilità</h1>
+        <p class="subtitle">In Analisi 1 una funzione aveva una sola pendenza in ogni punto. Qui, su una superficie, di pendenze ce ne sono infinite: una per ogni direzione in cui puoi camminare. Le derivate parziali sono le due pendenze "ufficiali" — verso Est e verso Nord — e la differenziabilità è la promessa che, molto da vicino, la superficie è un piano.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🔄</span> Ripasso lampo — cosa ti serve di Analisi 1</div>
+          <p>Prima di partire, cinque cose. Spiegate proprio in parole poverissime. Se le hai chiare, il capitolo scorre da solo.</p>
+          <p><strong>1) La <a href="../parte1-analisi1/07-derivate.html">derivata</a> è una pendenza.</strong> Immagine mentale: sei in <em>bici</em> su una salita. La derivata è quanto è ripida la strada <em>esattamente</em> dove stai pedalando. Numero grande e positivo: salita dura. Numero negativo: discesa. Zero: pianura.</p>
+          <p><strong>2) La derivata è anche un tachimetro.</strong> Immagine mentale: il <em>cruscotto dell'auto</em>. Non ti dice quanta strada hai fatto, ti dice quanto in fretta la stai facendo <em>adesso</em>. In formula: $f'(x_0)=\lim_{h\to 0}\frac{f(x_0+h)-f(x_0)}{h}$. Si guarda un pezzettino di strada, si divide per il tempo impiegato, si stringe il pezzettino fino a zero.</p>
+          <p><strong>3) La <a href="../parte1-analisi1/07-derivate.html#teoria-geometrico">retta tangente</a> è la curva vista da vicinissimo.</strong> Immagine mentale: <em>zoom con due dita sullo schermo</em>. Ingrandisci un punto del grafico finché la curva sembra un rettilineo. Quel rettilineo è la retta tangente: $y=f(x_0)+f'(x_0)(x-x_0)$. Tradotto: "parti dall'altezza del punto e sali con la pendenza del punto".</p>
+          <p><strong>4) Le regole di derivazione sono una cassetta degli attrezzi.</strong> Immagine mentale: le <em>chiavi inglesi</em>, una per ogni bullone. $D(x^n)=nx^{n-1}$, $D(e^x)=e^x$, $D(\ln x)=\frac1x$, $D(\sin x)=\cos x$, $D(\cos x)=-\sin x$. Poi: prodotto $(fg)'=f'g+fg'$; quoziente $\left(\frac fg\right)'=\frac{f'g-fg'}{g^2}$; <strong>catena</strong> $\big(f(g(x))\big)'=f'(g(x))\cdot g'(x)$ — deriva il guscio, poi moltiplica per la derivata di quello che c'è dentro. In questo capitolo userai <em>esattamente</em> queste, nessuna nuova.</p>
+          <p><strong>5) La <a href="../parte1-analisi1/06-continuita.html">continuità</a> è "il grafico non si spezza".</strong> Immagine mentale: disegni la curva <em>senza staccare la matita</em> dal foglio. Niente salti, niente buchi. E ricorda la freccia giusta: derivabile $\Rightarrow$ continua, mai il contrario ($|x|$ è continua in $0$ ma ha uno spigolo). Questa freccia, in due variabili, si romperà in modo spettacolare: è il cuore del capitolo.</p>
+        </div>
+
+        <p>Adesso cambiamo mondo. In Analisi 1 il grafico di $f(x)$ era una <strong>curva</strong> disegnata su un foglio: in ogni punto c'era <em>una</em> pendenza, e basta. Qui il grafico di una <span class="glossario-term" data-term="funzione-piu-variabili">funzione di due variabili</span> $f(x,y)$ è una <strong>superficie</strong> nello spazio: una collina, un pendio, una sella. E su una collina la domanda "quanto è ripido qui?" <em>non ha una sola risposta</em>.</p>
+
+        <p>Fermati un attimo su questa immagine, perché è tutto il capitolo. <strong>Sei in piedi a mezza costa su una collina.</strong> Ti chiedo: quanto è ripido? Tu giustamente rispondi: "dipende da dove mi giro". Se cammini <strong>verso Est</strong> magari sali ripidissimo. Se cammini <strong>verso Nord</strong> magari sei quasi in piano. Se ti giri verso Ovest scendi. Stesso identico punto, pendenze completamente diverse.</p>
+
+        <svg viewBox="0 0 480 300" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Mappa a curve di livello di una collina con un punto P e due frecce: una verso Est e una verso Nord, che indicano due pendenze diverse">
+          <ellipse cx="240" cy="235" rx="195" ry="52" fill="var(--color-bg-alt)" stroke="var(--color-border)" stroke-width="1.4"/>
+          <ellipse cx="240" cy="218" rx="146" ry="39" fill="none" stroke="var(--color-border)" stroke-width="1.4"/>
+          <ellipse cx="240" cy="203" rx="99" ry="27" fill="none" stroke="var(--color-border)" stroke-width="1.4"/>
+          <ellipse cx="240" cy="190" rx="55" ry="16" fill="none" stroke="var(--color-border)" stroke-width="1.4"/>
+          <ellipse cx="240" cy="181" rx="19" ry="6" fill="var(--color-primary-light)" stroke="var(--color-primary)" stroke-width="1.4"/>
+          <text x="240" y="171" font-size="12" text-anchor="middle" fill="var(--color-text-muted)">cima</text>
+          <line x1="150" y1="226" x2="262" y2="248" stroke="var(--color-secondary)" stroke-width="3"/>
+          <polygon points="262,248 250,241 250,252" fill="var(--color-secondary)"/>
+          <line x1="150" y1="226" x2="128" y2="181" stroke="var(--color-accent)" stroke-width="3"/>
+          <polygon points="128,181 124,195 136,190" fill="var(--color-accent)"/>
+          <circle cx="150" cy="226" r="6" fill="var(--color-primary)"/>
+          <text x="128" y="243" font-size="15" font-weight="700" fill="var(--color-primary)">P</text>
+          <text x="252" y="272" font-size="13" font-weight="700" fill="var(--color-secondary)">solo verso Est</text>
+          <text x="42" y="172" font-size="13" font-weight="700" fill="var(--color-accent)">solo verso Nord</text>
+          <text x="300" y="292" font-size="12" fill="var(--color-text-muted)">le ellissi sono le curve di livello (quote costanti)</text>
+        </svg>
+
+        <p>Ecco l'idea, e dura una riga: <strong>per non impazzire, ci muoviamo lungo una direzione alla volta</strong>. Congeliamo tutte le variabili tranne una, e quella che resta viva la deriviamo <em>come in Analisi 1</em>. Nient'altro.</p>
+
+        <ul>
+          <li><strong>Derivata parziale rispetto a $x$</strong>: blocco $y$ (resta ferma, come se fosse il numero $7$) e mi muovo solo verso Est. Ottengo la pendenza in direzione $x$.</li>
+          <li><strong>Derivata parziale rispetto a $y$</strong>: blocco $x$ e mi muovo solo verso Nord. Ottengo la pendenza in direzione $y$.</li>
+        </ul>
+
+        <p>Due numeri, nello stesso punto, che di solito sono <strong>diversi</strong> — e va benissimo così: raccontano due storie diverse dello stesso posto. Si scrivono $\dfrac{\partial f}{\partial x}$ e $\dfrac{\partial f}{\partial y}$, oppure più rapidamente $f_x$ e $f_y$.</p>
+
+        <p>Poi arriverà la seconda grande idea, la <strong><span class="glossario-term" data-term="differenziabilita">differenziabilità</span></strong>: dire che, se ti avvicini abbastanza, la collina smette di essere curva e diventa <strong>un piano inclinato</strong>. È l'erede diretta della retta tangente. E scopriremo — colpo di scena — che avere le due pendenze $f_x$ e $f_y$ <em>non basta</em> a garantirlo. In una variabile derivabile implicava continua; in due variabili questa freccia si spezza, e vedremo esattamente perché.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>nella realtà quasi nulla dipende da una sola causa</strong>. Il prezzo di una casa dipende da metri quadri <em>e</em> distanza dal centro. La resa di un campo dipende da acqua <em>e</em> concime. La temperatura di una stanza dipende da dove sei, cioè da due o tre coordinate. Se vogliamo capire "cosa succede se muovo <em>questa</em> manopola tenendo ferme le altre", ci serve una derivata che sappia isolare una variabile per volta. Questa derivata è la <span class="glossario-term" data-term="derivata-parziale">derivata parziale</span>.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Il problema è che in più variabili la parola "pendenza" da sola è ambigua. Se in un punto ci sono infinite direzioni, ci sono infinite pendenze: una funzione che le racconta tutte sarebbe ingestibile. La soluzione, elegantissima, è <strong>scegliere una base di direzioni privilegiate</strong> — gli assi — calcolare la pendenza solo lungo di esse, e poi dimostrare che, se la funzione è abbastanza regolare, <em>da quelle due pendenze si ricavano tutte le altre</em>. Il "tutte le altre" è la <span class="glossario-term" data-term="derivata-direzionale">derivata direzionale</span>, che chiuderà questo capitolo e aprirà il prossimo.</p>
+        <p><strong>Perché è importante ora?</strong> Perché da qui in poi tutta l'Analisi 2 poggia su questo capitolo. Il <a href="04-gradiente.html"><span class="glossario-term" data-term="gradiente">gradiente</span></a> (Capitolo 4) è semplicemente il vettore che impacchetta $f_x$ e $f_y$. La ricerca di massimi e minimi (<a href="05-hessiano-massimi-minimi.html">Capitolo 5</a>) parte dall'annullare le derivate parziali e prosegue con le derivate <em>seconde</em>. I <a href="06-moltiplicatori-lagrange.html">moltiplicatori di Lagrange</a> confrontano gradienti. Le <a href="13-equazioni-differenziali.html">equazioni differenziali</a> alle derivate parziali — calore, onde, diffusione — sono scritte con i simboli che impari oggi. È il capitolo-cerniera: dopo, tutto è in discesa; prima, nulla sta in piedi.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌡️</span> La temperatura nella tua stanza</div>
+          <p>Sei seduto al centro di una stanza. Alla tua sinistra c'è una <strong>finestra aperta</strong> d'inverno, alla tua destra un <strong>termosifone acceso</strong>. La temperatura non è un numero solo: è una funzione $T(x,y)$ che a ogni punto del pavimento associa i suoi gradi.</p>
+          <p>Ora fai due micro-esperimenti, ciascuno con un solo movimento:</p>
+          <p>👉 <strong>Sposti la mano di 10 cm verso la finestra</strong> (cioè aumenti solo $x$, tenendo $y$ fermo). La temperatura <em>cala</em>. Se cala di $0{,}4$ gradi ogni $10$ cm, stai misurando $\dfrac{\partial T}{\partial x}\approx -4$ °C al metro: negativa, perché andando in quella direzione fa più freddo.</p>
+          <p>👉 <strong>Sposti la mano di 10 cm verso il termosifone</strong> (cioè aumenti solo $y$, tenendo $x$ fermo). La temperatura <em>sale</em>: magari $\dfrac{\partial T}{\partial y}\approx +6$ °C al metro.</p>
+          <p>Stesso punto di partenza, <strong>due numeri diversi, persino di segno opposto</strong>. Nessuna contraddizione: sono le pendenze di due cammini diversi. Ed ecco la parte utile: se ora ti sposti <em>in diagonale</em>, il risultato si ricava combinando i due — è esattamente quello che fa la derivata direzionale.</p>
+        </div>
+
+        <p><strong>Economia: il costo marginale.</strong> Una fabbrica produce $x$ tavoli e $y$ sedie, con costo totale $C(x,y)$. La domanda del direttore non è mai "quanto costa tutto?", ma "<em>quanto mi costa in più fabbricare un tavolo in più, lasciando invariate le sedie?</em>". Quella cifra si chiama <strong>costo marginale del tavolo</strong> ed è, alla lettera, $\dfrac{\partial C}{\partial x}$. Analogamente $\dfrac{\partial C}{\partial y}$ è il costo marginale della sedia. Tutta la microeconomia è scritta in derivate parziali: ricavo marginale, utilità marginale, produttività marginale del lavoro e del capitale. Il motivo è sempre lo stesso: un manager può muovere una leva per volta.</p>
+
+        <p><strong>Ingegneria e laboratorio: la sensibilità.</strong> Misuri il volume di un cilindro, $V(r,h)=\pi r^2 h$. Il tuo calibro sbaglia un pochino sul raggio e un pochino sull'altezza. Quale dei due errori ti rovina di più il risultato? Rispondono le derivate parziali: $\dfrac{\partial V}{\partial r}=2\pi r h$ e $\dfrac{\partial V}{\partial h}=\pi r^2$. Se $r$ è piccolo e $h$ grande, il primo numero è molto maggiore del secondo: <strong>sbagliare il raggio costa molto più che sbagliare l'altezza</strong>. La formula di propagazione degli errori, $\Delta V\approx\left|\frac{\partial V}{\partial r}\right|\Delta r+\left|\frac{\partial V}{\partial h}\right|\Delta h$, è il differenziale totale che vedremo tra poco. Lo stesso ragionamento, con nomi diversi, si chiama "analisi di sensibilità" in finanza, in climatologia e nel machine learning — dove l'addestramento di una rete neurale non è altro che il calcolo di milioni di derivate parziali della funzione errore rispetto a ciascun peso.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-congelare">4.1 L'idea operativa: congelare e derivare</h3>
+        <p>Prima l'intuizione, poi la formula. <strong>Intuizione:</strong> se voglio la pendenza verso Est, faccio finta che la coordinata Nord-Sud non esista. La tratto come un numero fissato, un parametro muto. A quel punto la funzione di due variabili diventa una funzione di <em>una sola</em> variabile, e su quella so già tutto dal <a href="../parte1-analisi1/07-derivate.html">Capitolo 7 di Analisi 1</a>.</p>
+        <p><strong>Esempio lampo.</strong> Sia $f(x,y)=x^2y+5y^3$. Per derivare rispetto a $x$, guardo $y$ come se fosse il numero $7$: la funzione diventa $7x^2+5\cdot 343$, la cui derivata è $14x$, cioè $2xy$ rimettendo $y$ al posto di $7$. Il termine $5y^3$, essendo "solo numeri", sparisce come qualunque costante. Quindi $f_x=2xy$. Per derivare rispetto a $y$ faccio il contrario: $x^2$ è una costante che moltiplica $y$, quindi dà $x^2$; e $5y^3$ dà $15y^2$. Quindi $f_y=x^2+15y^2$.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🧊</span> La regola in cinque parole</div>
+          <p><strong>Congela le altre, deriva quella.</strong> Non ci sono nuove regole di derivazione da imparare: potenza, prodotto, quoziente, catena sono le stesse identiche di Analisi 1. L'unica cosa nuova è ricordarsi <em>chi è la variabile e chi è la costante</em> in quel momento.</p>
+        </div>
+
+        <h3 id="teoria-definizione">4.2 La definizione rigorosa, simbolo per simbolo</h3>
+        <p>Formalizziamo l'idea del "congelare". Sia $f$ definita in un intorno del punto $P_0=(x_0,y_0)$.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Derivate parziali prime.</em> La <strong><span class="glossario-term" data-term="derivata-parziale">derivata parziale</span></strong> di $f$ rispetto a $x$ nel punto $P_0$ è</p>
+          <div class="formula-block">$$\frac{\partial f}{\partial x}(x_0,y_0)\;=\;\lim_{h\to 0}\frac{f(x_0+h,\;y_0)-f(x_0,\;y_0)}{h}$$</div>
+          <p>e la derivata parziale rispetto a $y$ è</p>
+          <div class="formula-block">$$\frac{\partial f}{\partial y}(x_0,y_0)\;=\;\lim_{k\to 0}\frac{f(x_0,\;y_0+k)-f(x_0,\;y_0)}{k}$$</div>
+          <p>quando tali limiti esistono <em>finiti</em>. Si scrivono anche $f_x(x_0,y_0)$ e $f_y(x_0,y_0)$.</p>
+        </div>
+        <p>Leggiamola pezzo per pezzo, perché ogni simbolo ha un ruolo preciso:</p>
+        <ul>
+          <li>$\mathbf{h}$ è il <strong>passetto</strong> che faccio verso Est: può essere positivo (avanti) o negativo (indietro), mai zero.</li>
+          <li>$\mathbf{f(x_0+h,\,y_0)}$: nella prima coordinata compare $x_0+h$, <strong>mi sono mosso</strong>; nella seconda compare $y_0$ e basta, <strong>non mi sono mosso di un millimetro verso Nord</strong>. È qui, in questa singola $y_0$ immobile, che vive tutta l'idea del "congelare".</li>
+          <li>Il <strong>numeratore</strong> è di quanto è cambiata l'altitudine; il <strong>denominatore</strong> $h$ è quanti metri ho camminato. Il rapporto è la pendenza <em>media</em> del tratto.</li>
+          <li>Il $\mathbf{\lim_{h\to 0}}$ stringe il tratto fino a un punto: la media diventa pendenza <em>istantanea</em>. Esattamente come il tachimetro del ripasso lampo.</li>
+          <li>Nella seconda formula il passetto si chiama $k$ e sta nella seconda coordinata: stavolta è $x_0$ a restare immobile.</li>
+        </ul>
+        <p>Tutto si estende senza cambiare una virgola a tre o più variabili: per $f(x,y,z)$ ci sono tre derivate parziali, e in ciascuna due delle tre coordinate restano ferme. Per una funzione di $n$ variabili, $\dfrac{\partial f}{\partial x_i}$ muove solo l'$i$-esima.</p>
+
+        <h3 id="teoria-notazione">4.3 Perché $\partial$ e non $d$</h3>
+        <p>Il simbolo $\partial$ (si legge "de tondo", o "del", o all'inglese "partial") non è un vezzo tipografico: è un <strong>avviso</strong>. Dice al lettore: attenzione, questa funzione ha più variabili e io sto guardando solo una direzione, tenendo le altre bloccate. La $d$ dritta di $\dfrac{df}{dx}$ resta riservata al caso in cui la variabile è davvero una sola, cioè quando quella derivata racconta <em>tutto</em> il cambiamento della funzione.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Notazione</th><th>Si legge</th><th>Quando si usa</th></tr></thead>
+          <tbody>
+            <tr><td>$\dfrac{df}{dx}$</td><td>"de f su de x"</td><td>una sola variabile: la derivata cattura tutta la variazione</td></tr>
+            <tr><td>$\dfrac{\partial f}{\partial x}$</td><td>"de tondo f su de tondo x"</td><td>più variabili: $y$ (e le altre) sono tenute costanti</td></tr>
+            <tr><td>$f_x$, &nbsp;$f_y$</td><td>"f con x", "f con y"</td><td>scrittura compatta, comodissima nelle derivate seconde</td></tr>
+            <tr><td>$D_x f$, &nbsp;$\partial_x f$</td><td>"D x di f"</td><td>notazione operatoriale, frequente in fisica</td></tr>
+            <tr><td>$\nabla f=(f_x,f_y)$</td><td>"nabla f"</td><td>il vettore delle parziali: è il <a href="04-gradiente.html">gradiente</a></td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Una frazione che non è una frazione</div>
+          <p>In Analisi 1 potevi permetterti di trattare $\frac{dy}{dx}$ quasi come una frazione (ricordi la regola della catena "che si semplifica"?). Con le derivate parziali <strong>questo non si può più fare</strong>: i simboli $\partial f$ e $\partial x$ presi da soli non significano nulla, e "semplificare" porta a errori clamorosi. $\dfrac{\partial f}{\partial x}$ va letto come un blocco unico, il nome di un'operazione.</p>
+        </div>
+
+        <h3 id="teoria-geometria">4.4 Significato geometrico: tagliare la superficie con un coltello</h3>
+        <p>Prima l'intuizione. Hai davanti la superficie $z=f(x,y)$, una collina. Prendi un <strong>coltello verticale</strong> e tagli la collina lungo la direzione Est-Ovest, passando per il tuo punto. Sulla parete del taglio compare un <strong>profilo</strong>: una curva, esattamente come i grafici di Analisi 1. La pendenza di quella curva nel punto è $f_x$.</p>
+        <p>Poi giri il coltello di $90°$ e tagli lungo Nord-Sud: compare un <em>altro</em> profilo, un'altra curva, e la sua pendenza è $f_y$.</p>
+        <p>In formule: il primo taglio è il piano verticale $y=y_0$, e su di esso la funzione diventa la funzione di una sola variabile $\varphi(x)=f(x,y_0)$; il secondo taglio è il piano $x=x_0$, con $\psi(y)=f(x_0,y)$. Allora</p>
+        <div class="formula-block">$$f_x(x_0,y_0)=\varphi'(x_0),\qquad f_y(x_0,y_0)=\psi'(y_0)$$</div>
+        <p>cioè <strong>le derivate parziali sono derivate ordinarie delle funzioni-sezione</strong>. Non c'è niente di più: tutto il nuovo sta nel scegliere quale sezione guardare.</p>
+
+        <svg viewBox="0 0 480 240" style="max-width:540px;margin:1.4em auto;display:block;" role="img" aria-label="Due sezioni verticali della stessa superficie nello stesso punto: la sezione lungo x mostra una tangente ripida, la sezione lungo y una tangente quasi orizzontale">
+          <line x1="20" y1="200" x2="220" y2="200" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="30" y1="30" x2="30" y2="212" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 35 190 C 90 185, 130 140, 210 45" fill="none" stroke="var(--color-secondary)" stroke-width="2.6"/>
+          <line x1="95" y1="200" x2="200" y2="72" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <circle cx="146" cy="138" r="5" fill="var(--color-primary)"/>
+          <text x="60" y="52" font-size="13" font-weight="700" fill="var(--color-secondary)">taglio y = y₀</text>
+          <text x="60" y="70" font-size="12" fill="var(--color-text-muted)">pendenza in x: grande</text>
+          <text x="196" y="214" font-size="12" fill="var(--color-text-muted)">x</text>
+
+          <line x1="262" y1="200" x2="462" y2="200" stroke="var(--color-border)" stroke-width="1.5"/>
+          <line x1="272" y1="30" x2="272" y2="212" stroke="var(--color-border)" stroke-width="1.5"/>
+          <path d="M 277 160 C 330 145, 390 140, 455 128" fill="none" stroke="var(--color-accent)" stroke-width="2.6"/>
+          <line x1="320" y1="152" x2="430" y2="133" stroke="var(--color-primary)" stroke-width="2.4"/>
+          <circle cx="375" cy="142" r="5" fill="var(--color-primary)"/>
+          <text x="300" y="52" font-size="13" font-weight="700" fill="var(--color-accent)">taglio x = x₀</text>
+          <text x="300" y="70" font-size="12" fill="var(--color-text-muted)">pendenza in y: quasi nulla</text>
+          <text x="438" y="214" font-size="12" fill="var(--color-text-muted)">y</text>
+        </svg>
+        <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Stessa superficie, stesso punto, due tagli perpendicolari: due profili diversi, due pendenze diverse.</p>
+
+        <h3 id="teoria-calcolo">4.5 Calcolo pratico: tutte le regole di Analisi 1, invariate</h3>
+        <p>Nessuna regola nuova. Solo tanta attenzione a chi è costante. Passiamo in rassegna i casi tipici.</p>
+        <p><strong>Polinomi.</strong> $f(x,y)=4x^3y^2-7xy+2y^4+9$. Derivando in $x$: $4y^2\cdot 3x^2=12x^2y^2$; poi $-7y$; poi $2y^4$ e $9$ sono costanti pure, danno $0$. Quindi $f_x=12x^2y^2-7y$. Derivando in $y$: $4x^3\cdot 2y=8x^3y$; poi $-7x$; poi $8y^3$. Quindi $f_y=8x^3y-7x+8y^3$.</p>
+        <p><strong>Esponenziali.</strong> $f(x,y)=e^{3x-2y}$. È una composta: derivo l'esponenziale (che resta sé stesso) e moltiplico per la derivata parziale dell'esponente. $f_x=3e^{3x-2y}$, $f_y=-2e^{3x-2y}$. Con $g(x,y)=e^{xy}$: l'esponente $xy$ derivato in $x$ dà $y$, quindi $g_x=y\,e^{xy}$; derivato in $y$ dà $x$, quindi $g_y=x\,e^{xy}$.</p>
+        <p><strong>Logaritmi.</strong> $f(x,y)=\ln(x^2+y^2)$, definita per $(x,y)\neq(0,0)$. La derivata del logaritmo è "uno fratto l'argomento, per la derivata dell'argomento": $f_x=\dfrac{2x}{x^2+y^2}$, $f_y=\dfrac{2y}{x^2+y^2}$.</p>
+        <p><strong>Quozienti.</strong> $f(x,y)=\dfrac{x}{x+y}$. Uso la <strong>regola del quoziente</strong> di <a href="../parte1-analisi1/07-derivate.html">Analisi 1, cap. 7</a>: $\left(\dfrac{A}{B}\right)'=\dfrac{A'B-AB'}{B^2}$. Rispetto a $x$ (con $y$ congelata) pongo $A=x$, quindi $A'=1$, e $B=x+y$, quindi $B'=1$ (la $y$ congelata deriva a $0$). Sostituisco nella regola: $f_x=\dfrac{1\cdot(x+y)-x\cdot 1}{(x+y)^2}$; al numeratore $x+y-x=y$, quindi $f_x=\dfrac{y}{(x+y)^2}$. Rispetto a $y$ (con $x$ congelata) il numeratore $A=x$ è costante, quindi $A'=0$, mentre $B'=1$: $f_y=\dfrac{0\cdot(x+y)-x\cdot 1}{(x+y)^2}=-\dfrac{x}{(x+y)^2}$.</p>
+        <p><strong><span class="glossario-term" data-term="funzione-composta">Funzioni composte</span>.</strong> È qui che si sbaglia di più. Lo strumento è la <strong>regola della catena</strong> (Analisi 1, cap. 7): $\big(F(G)\big)'=F'(G)\cdot G'$, cioè "derivata della funzione <em>esterna</em> calcolata nell'interna, per la derivata dell'<em>interna</em>". Esempio: $f(x,y)=\sin(x^2y)$, dove l'esterna è $F(t)=\sin t$ (il guscio) e l'interna è $G(x,y)=x^2y$ (il ripieno). Derivo il guscio ($\sin'=\cos$), lascio il ripieno intatto dentro, moltiplico per la derivata <em>parziale</em> del ripieno. In $x$ il ripieno $x^2y$ dà $2xy$ (con $y$ congelata): $f_x=\cos(x^2y)\cdot 2xy$. In $y$ dà $x^2$ (con $x$ congelata): $f_y=\cos(x^2y)\cdot x^2$. Altro caso: $f(x,y)=\sqrt{1+x^2+y^2}$, con esterna $F(t)=\sqrt t$ (la cui derivata è $\frac{1}{2\sqrt t}$) e interna $1+x^2+y^2$ (che derivata in $x$ dà $2x$): $f_x=\dfrac{1}{2\sqrt{1+x^2+y^2}}\cdot 2x=\dfrac{x}{\sqrt{1+x^2+y^2}}$ (il $2$ si semplifica), e analogamente $f_y=\dfrac{y}{\sqrt{1+x^2+y^2}}$.</p>
+        <p><strong>Tre variabili.</strong> $f(x,y,z)=x^2yz+z e^{y}$. Allora $f_x=2xyz$, $f_y=x^2z+ze^{y}$, $f_z=x^2y+e^{y}$. Si procede sempre allo stesso modo: una viva, tutte le altre congelate.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$f(x,y)$</th><th>$f_x$</th><th>$f_y$</th></tr></thead>
+          <tbody>
+            <tr><td>$x^2+y^2$</td><td>$2x$</td><td>$2y$</td></tr>
+            <tr><td>$xy$</td><td>$y$</td><td>$x$</td></tr>
+            <tr><td>$x^3y^2$</td><td>$3x^2y^2$</td><td>$2x^3y$</td></tr>
+            <tr><td>$e^{xy}$</td><td>$y\,e^{xy}$</td><td>$x\,e^{xy}$</td></tr>
+            <tr><td>$\ln(xy)$, &nbsp;$x,y&gt;0$</td><td>$\dfrac1x$</td><td>$\dfrac1y$</td></tr>
+            <tr><td>$\sin(x+y)$</td><td>$\cos(x+y)$</td><td>$\cos(x+y)$</td></tr>
+            <tr><td>$\dfrac{x}{y}$, &nbsp;$y\neq 0$</td><td>$\dfrac1y$</td><td>$-\dfrac{x}{y^2}$</td></tr>
+            <tr><td>$x^{y}$, &nbsp;$x&gt;0$</td><td>$y\,x^{y-1}$</td><td>$x^{y}\ln x$</td></tr>
+          </tbody>
+        </table>
+        <p>L'ultima riga merita uno sguardo: nella stessa funzione $x^y$, rispetto a $x$ si usa la regola della potenza (esponente costante!), rispetto a $y$ quella dell'esponenziale (base costante!). Due regole diverse per la stessa formula, a seconda di chi è congelato. È il miglior promemoria possibile.</p>
+
+        <h3 id="teoria-superiori">4.6 Derivate di ordine superiore e derivate miste</h3>
+        <p>$f_x$ e $f_y$ sono a loro volta funzioni di $(x,y)$: possiamo derivarle ancora. Con due variabili si ottengono <strong>quattro</strong> derivate seconde:</p>
+        <div class="formula-block">$$f_{xx}=\frac{\partial^2 f}{\partial x^2},\qquad f_{yy}=\frac{\partial^2 f}{\partial y^2},\qquad f_{xy}=\frac{\partial^2 f}{\partial y\,\partial x},\qquad f_{yx}=\frac{\partial^2 f}{\partial x\,\partial y}$$</div>
+        <p><strong>Convenzione di lettura</strong> (attenzione, è la fonte numero uno di confusione): in $f_{xy}$ si deriva <em>prima</em> rispetto a $x$ e <em>poi</em> rispetto a $y$, leggendo i pedici da sinistra a destra come un percorso. Nella notazione con i $\partial$ l'ordine è invece <em>da destra a sinistra</em>: in $\frac{\partial^2 f}{\partial y\,\partial x}$ la $\partial x$ più vicina a $f$ agisce per prima. Le due scritture dicono la stessa cosa.</p>
+        <p>Le due "estreme" $f_{xx}$ e $f_{yy}$ si chiamano <strong>derivate pure</strong>: misurano la concavità del profilo lungo un asse, esattamente come $f''$ in Analisi 1. Le due "incrociate" $f_{xy}$ e $f_{yx}$ si chiamano <strong>derivate miste</strong>: misurano <em>come la pendenza in una direzione cambia spostandosi nell'altra</em>. Immagine mentale: sei su una sella; la ripidità verso Est non è la stessa se ti sposti un po' a Nord. Quel "cambia" è $f_{xy}$.</p>
+        <p><strong>Esempio.</strong> $f(x,y)=x^3y^2$. Allora $f_x=3x^2y^2$ e $f_y=2x^3y$. Da qui: $f_{xx}=6xy^2$, $f_{yy}=2x^3$, $f_{xy}=\partial_y(3x^2y^2)=6x^2y$, $f_{yx}=\partial_x(2x^3y)=6x^2y$. Le due miste <strong>coincidono</strong>. Non è un caso fortunato: è la regola. Ed è un teorema.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome"><span class="glossario-term" data-term="teorema-di-schwarz">Teorema di Schwarz</span> (o di Clairaut).</em> Sia $f$ definita in un aperto $A$ contenente $P_0$. Se le derivate miste $f_{xy}$ e $f_{yx}$ esistono in un intorno di $P_0$ e sono <strong>continue in $P_0$</strong>, allora</p>
+          <div class="formula-block">$$f_{xy}(P_0)=f_{yx}(P_0)$$</div>
+          <p>cioè <strong>l'ordine di derivazione non conta</strong>.</p>
+        </div>
+        <p>Le ipotesi non sono decorative: se le miste non sono continue, l'uguaglianza può saltare. Vedremo enunciato, idea della dimostrazione e <strong>controesempio esplicito</strong> nella <a href="#dimostrazioni">sezione 5</a>. Nella pratica d'esame, però, quasi tutte le funzioni che incontri (polinomi, esponenziali, logaritmi, seni e coseni, e loro combinazioni sul dominio naturale) sono di classe $C^2$, cioè hanno tutte le derivate seconde continue: Schwarz si applica, e le miste sono uguali. Motivo per cui, in pratica, <strong>calcolarne una sola e controllare l'altra è un ottimo modo per accorgersi degli errori di conto</strong>.</p>
+
+        <h3 id="teoria-differenziabilita">4.7 Differenziabilità: "da vicino è un piano"</h3>
+        <p>Prima l'intuizione, come sempre. In Analisi 1 la retta tangente era la curva vista al massimo dello zoom. In due variabili la promessa è la stessa, ma con un oggetto più grande: <strong>se zoomo abbastanza su un punto della superficie, quello che vedo è un piano inclinato</strong>. Un pezzo di collina sotto la lente diventa una rampa liscia. Quando questo succede diciamo che la funzione è <strong>differenziabile</strong> in quel punto.</p>
+        <p>Attenzione a una sfumatura importante: non basta che il piano tocchi la superficie. Serve che l'errore fra i due <strong>tenda a zero più in fretta della distanza dal punto</strong> — cioè che, man mano che zoomi, lo scarto diventi invisibile <em>in proporzione</em>. Questo "più in fretta" è tutto ciò che la definizione aggiunge all'intuizione.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Differenziabilità in un punto.</em> $f$ si dice <strong>differenziabile</strong> in $P_0=(x_0,y_0)$ se esistono due numeri $a,b\in\mathbb{R}$ tali che</p>
+          <div class="formula-block">$$\lim_{(h,k)\to(0,0)}\frac{f(x_0+h,\,y_0+k)-f(x_0,y_0)-a\,h-b\,k}{\sqrt{h^2+k^2}}\;=\;0$$</div>
+          <p>Equivalentemente, usando gli infinitesimi: $\;f(x_0+h,y_0+k)=f(x_0,y_0)+a\,h+b\,k+o\!\left(\sqrt{h^2+k^2}\right)$.</p>
+        </div>
+        <p>Traduzione riga per riga: $a h + b k$ è la <strong>parte lineare</strong>, la rampa; il numeratore è <strong>l'errore</strong> che commetto sostituendo la superficie con la rampa; $\sqrt{h^2+k^2}$ è la <strong>distanza</strong> percorsa dal punto base. Chiedere che il rapporto vada a zero significa chiedere che l'errore sia <em>trascurabile rispetto allo spostamento</em>. E — differenza cruciale rispetto alle parziali — il limite è per $(h,k)\to(0,0)$ <strong>in tutte le direzioni contemporaneamente</strong>, non solo lungo gli assi.</p>
+        <p>Si dimostra (lo faremo) che i due numeri $a,b$ non sono liberi: se esistono, sono necessariamente $a=f_x(P_0)$ e $b=f_y(P_0)$.</p>
+
+        <h3 id="teoria-piano-tangente">4.8 Piano tangente e differenziale totale</h3>
+        <p>Quando $f$ è differenziabile in $P_0$, la rampa dello zoom ha un nome e un'equazione: è il <strong><span class="glossario-term" data-term="piano-tangente">piano tangente</span></strong> alla superficie $z=f(x,y)$ nel punto $\big(x_0,y_0,f(x_0,y_0)\big)$:</p>
+        <div class="formula-block">$$z\;=\;f(x_0,y_0)+f_x(x_0,y_0)\,(x-x_0)+f_y(x_0,y_0)\,(y-y_0)$$</div>
+        <p>Confrontala con la <span class="glossario-term" data-term="retta-tangente">retta tangente</span> di Analisi 1, $y=f(x_0)+f'(x_0)(x-x_0)$: è la stessa frase, con un addendo in più. "Parti dall'altezza del punto, poi sali con la pendenza $f_x$ per quanto ti sposti in $x$, e con la pendenza $f_y$ per quanto ti sposti in $y$."</p>
+
+        <svg viewBox="0 0 460 250" style="max-width:500px;margin:1.4em auto;display:block;" role="img" aria-label="Una superficie curva e il piano tangente che la tocca nel punto P, sovrapponendosi ad essa nelle vicinanze">
+          <path d="M 40 175 C 130 90, 300 80, 420 150 L 420 195 C 300 128, 130 138, 40 220 Z" fill="var(--color-primary-light)" stroke="var(--color-primary)" stroke-width="2" opacity="0.9"/>
+          <polygon points="120,150 340,112 400,148 180,186" fill="var(--color-accent-light)" stroke="var(--color-accent)" stroke-width="2" opacity="0.75"/>
+          <circle cx="260" cy="149" r="6" fill="var(--color-primary)"/>
+          <text x="268" y="168" font-size="14" font-weight="700" fill="var(--color-primary)">P</text>
+          <text x="45" y="60" font-size="13" font-weight="700" fill="var(--color-primary)">superficie z = f(x,y)</text>
+          <text x="300" y="216" font-size="13" font-weight="700" fill="var(--color-accent)">piano tangente in P</text>
+          <text x="45" y="238" font-size="12" fill="var(--color-text-muted)">vicino a P i due oggetti sono indistinguibili</text>
+        </svg>
+
+        <p>Lo stesso contenuto, scritto con gli incrementi, si chiama <strong>differenziale totale</strong>. Se $dx$ e $dy$ sono spostamenti infinitesimi nelle due direzioni:</p>
+        <div class="formula-block">$$df\;=\;\frac{\partial f}{\partial x}\,dx+\frac{\partial f}{\partial y}\,dy$$</div>
+        <p>Intuizione a parole: <strong>la variazione totale è la somma dei contributi di ciascuna variabile</strong>, ciascuno pesato dalla propria pendenza. Se avanzi $3$ cm verso Est dove la pendenza è $2$, guadagni $6$; se contemporaneamente avanzi $1$ cm verso Nord dove la pendenza è $-5$, perdi $5$; totale $+1$. Questa è la formula di propagazione degli errori vista nella sezione 3 ed è lo strumento standard per le <strong>stime approssimate</strong>: per piccoli incrementi, $\Delta f\approx f_x\,\Delta x+f_y\,\Delta y$.</p>
+
+        <h3 id="teoria-catena">4.9 La catena di implicazioni (e dove si spezza)</h3>
+        <p>Arriviamo al punto più delicato, e più bello, del capitolo. In Analisi 1 avevamo una catena semplice: derivabile $\Rightarrow$ continua. In due variabili la situazione è più ricca, e va memorizzata con precisione.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Schema</span>
+          <div class="formula-block">$$f\in C^1 \;\Longrightarrow\; f\ \text{differenziabile} \;\Longrightarrow\; \begin{cases} f\ \text{continua} \\[.25em] \exists\, f_x,\,f_y \end{cases}$$</div>
+          <p>Nessuna delle frecce si inverte. In particolare: <strong>l'esistenza di $f_x$ e $f_y$ non implica né la differenziabilità né la continuità.</strong></p>
+        </div>
+        <p><strong>Perché le parziali sono così deboli?</strong> Intuizione, prima della formula: le derivate parziali guardano solo <em>due</em> strade che escono dal punto, quella verso Est e quella verso Nord. Ma da un punto del piano escono <strong>infinite</strong> strade. Una funzione può essere perfettamente regolare lungo i due assi e comportarsi in modo mostruoso lungo una diagonale, e le parziali non se ne accorgono nemmeno. In una variabile questo non poteva succedere: da un punto della retta si esce solo a destra e a sinistra, e la derivata le controllava entrambe.</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Il controesempio da sapere a memoria</div>
+          <p>La funzione</p>
+          <div class="formula-block">$$f(x,y)=\begin{cases}\dfrac{xy}{x^2+y^2} &amp; (x,y)\neq(0,0)\\[.6em] 0 &amp; (x,y)=(0,0)\end{cases}$$</div>
+          <p>ha <strong>entrambe le derivate parziali nell'origine</strong>, e valgono $f_x(0,0)=f_y(0,0)=0$, eppure <strong>non è continua</strong> in $(0,0)$ — quindi a maggior ragione non è differenziabile. Dimostrazione completa nella <a href="#dimostrazioni">sezione 5</a>. Se ricordi una sola formula di questo capitolo oltre alla definizione, ricorda questa.</p>
+        </div>
+        <p>C'è però una buona notizia, che rende il tutto praticabile: la freccia più a sinistra dello schema. È il <strong>teorema del differenziale totale</strong>, detto anche criterio di differenziabilità o "teorema del $C^1$".</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Teorema del differenziale totale.</em> Se $f_x$ e $f_y$ <strong>esistono in un intorno</strong> di $P_0$ e sono <strong>continue in $P_0$</strong>, allora $f$ è <strong>differenziabile</strong> in $P_0$ (e dunque anche continua).</p>
+        </div>
+        <p>Tradotto in strategia d'esame: <em>calcola le due derivate parziali; se vengono funzioni continue (polinomi, esponenziali, logaritmi, ecc. sul loro dominio), hai finito — la funzione è differenziabile, e puoi scrivere il piano tangente senza altri controlli.</em> La verifica con la definizione serve solo nei punti sospetti: origini, punti in cui la funzione è definita "a pezzi", valori assoluti, radici.</p>
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> Neanche questa freccia si inverte</div>
+          <p>Esistono funzioni differenziabili che <em>non</em> sono di classe $C^1$: le parziali esistono e la funzione è differenziabile, ma le parziali non sono continue. L'esempio classico è $f(x,y)=(x^2+y^2)\sin\!\frac{1}{\sqrt{x^2+y^2}}$ prolungata con $f(0,0)=0$. È il fratello a due variabili di $x^2\sin(1/x)$ che forse hai già incontrato in Analisi 1. Quindi $C^1$ è una condizione <strong>sufficiente</strong> ma non necessaria: comodissima, non definitiva.</p>
+        </div>
+
+        <h3 id="teoria-direzionale">4.10 Derivata direzionale: tutte le altre strade</h3>
+        <p>Torniamo alla collina. Finora abbiamo camminato solo verso Est e verso Nord. Ma se voglio andare in <strong>diagonale</strong>, a Nord-Est? Serve una definizione che funzioni per una direzione qualsiasi.</p>
+        <p>Intuizione: scelgo una direzione, cioè una freccia di lunghezza $1$ (un <strong>versore</strong>) $\mathbf{v}=(v_1,v_2)$ con $v_1^2+v_2^2=1$; poi faccio un passetto di lunghezza $t$ in quella direzione e guardo di quanto cambia l'altitudine per metro percorso. La lunghezza $1$ serve proprio perché "per metro percorso" abbia senso.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="derivata-direzionale">Derivata direzionale</span>.</em> Sia $\mathbf{v}=(v_1,v_2)$ un versore. La derivata di $f$ in $P_0$ lungo $\mathbf{v}$ è</p>
+          <div class="formula-block">$$D_{\mathbf v}f(P_0)\;=\;\lim_{t\to 0}\frac{f(x_0+t\,v_1,\;y_0+t\,v_2)-f(x_0,y_0)}{t}$$</div>
+        </div>
+        <p>Nota che le derivate parziali sono <strong>casi particolari</strong>: con $\mathbf{v}=(1,0)$ si ritrova $f_x$, con $\mathbf{v}=(0,1)$ si ritrova $f_y$. Sono le due direzioni "ufficiali" fra le infinite possibili.</p>
+        <p>E qui arriva il regalo della differenziabilità. Se $f$ è differenziabile in $P_0$, non serve rifare il limite per ogni direzione: <strong>bastano le due pendenze di base</strong>. Vale infatti la <strong>formula del gradiente</strong>:</p>
+        <div class="formula-block">$$D_{\mathbf v}f(P_0)\;=\;\nabla f(P_0)\cdot\mathbf v\;=\;f_x(P_0)\,v_1+f_y(P_0)\,v_2$$</div>
+        <p>dove $\nabla f=(f_x,f_y)$ è il <span class="glossario-term" data-term="gradiente">gradiente</span>. In parole: <em>la pendenza in una direzione qualsiasi è la media pesata delle due pendenze cardinali, con pesi dati dalle componenti della direzione</em>. Camminando a Nord-Est prendi "metà" della pendenza Est e "metà" di quella Nord.</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> La formula del gradiente richiede la differenziabilità</div>
+          <p>Non è un'identità sempre vera: è una <strong>conseguenza</strong> della differenziabilità. Per funzioni non differenziabili le derivate direzionali possono esistere in tutte le direzioni e <em>non</em> essere date da quel prodotto scalare. Applicarla senza aver verificato le ipotesi è un errore classico da esame. Il <a href="04-gradiente.html">Capitolo 4</a> approfondisce questa formula e la sua conseguenza più famosa: il gradiente punta nella direzione di massima pendenza.</p>
+        </div>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <p><strong>Prima l'idea, poi i conti.</strong> Se la superficie da vicino è un piano, allora muovendosi di poco si cambia quota di poco: quindi niente salti, cioè continuità. È tutta qui la prima dimostrazione; la scrittura formale non fa che rendere preciso "di poco".</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Differenziabile implica continua.</em> Se $f$ è differenziabile in $P_0=(x_0,y_0)$, allora $f$ è <span class="glossario-term" data-term="continuita">continua</span> in $P_0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p>Per ipotesi, posto $\rho=\sqrt{h^2+k^2}$, si ha</p>
+          <div class="formula-block">$$f(x_0+h,\,y_0+k)-f(x_0,y_0)=a\,h+b\,k+o(\rho)$$</div>
+          <p>Facciamo tendere $(h,k)\to(0,0)$, cioè $\rho\to 0$, e guardiamo i tre addendi a destra:</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">$a\,h\to 0$ e $b\,k\to 0$, perché $a,b$ sono <em>numeri fissati</em> e $h,k\to 0$.</span>
+            <span class="esempio__passo">$o(\rho)\to 0$: per definizione $\dfrac{o(\rho)}{\rho}\to 0$, dunque $o(\rho)=\rho\cdot\dfrac{o(\rho)}{\rho}$ è prodotto di due quantità che tendono a zero.</span>
+            <span class="esempio__passo">Di conseguenza $\displaystyle\lim_{(h,k)\to(0,0)}\big[f(x_0+h,y_0+k)-f(x_0,y_0)\big]=0$.</span>
+          </p>
+          <p>Ma questo significa esattamente $\displaystyle\lim_{(x,y)\to(x_0,y_0)}f(x,y)=f(x_0,y_0)$, cioè la continuità di $f$ in $P_0$. <span class="qed">∎</span></p>
+        </div>
+
+        <p><strong>Idea della seconda dimostrazione.</strong> Se da vicino la superficie è quel piano, allora anche i suoi <em>tagli</em> sono rette: in particolare il taglio lungo $x$. Ma la pendenza del taglio lungo $x$ è per definizione $f_x$. Quindi il coefficiente $a$ del piano non può che essere $f_x$. Formalizziamolo scegliendo di avvicinarci lungo l'asse.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Differenziabile implica derivabile parzialmente, e $a=f_x$, $b=f_y$.</em> Se $f$ è differenziabile in $P_0$ con coefficienti $a,b$, allora esistono $f_x(P_0)$ e $f_y(P_0)$ e vale $a=f_x(P_0)$, $b=f_y(P_0)$. Il piano tangente è quindi $z=f(P_0)+f_x(P_0)(x-x_0)+f_y(P_0)(y-y_0)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (avvicinamento lungo gli assi)</span>
+          <p>Il limite della definizione di differenziabilità vale <em>comunque</em> $(h,k)$ tenda a $(0,0)$; in particolare vale lungo il cammino speciale $k=0$, $h\to 0$. Poniamolo:</p>
+          <div class="formula-block">$$0=\lim_{h\to 0}\frac{f(x_0+h,\,y_0)-f(x_0,y_0)-a\,h-b\cdot 0}{\sqrt{h^2+0}}=\lim_{h\to 0}\frac{f(x_0+h,y_0)-f(x_0,y_0)-a\,h}{|h|}$$</div>
+          <p>Poiché $\dfrac{1}{|h|}=\dfrac{\pm 1}{h}$ e il limite è $0$, possiamo sostituire $|h|$ con $h$ senza alterare la conclusione. Otteniamo</p>
+          <div class="formula-block">$$\lim_{h\to 0}\left[\frac{f(x_0+h,y_0)-f(x_0,y_0)}{h}-a\right]=0 \quad\Longrightarrow\quad \lim_{h\to 0}\frac{f(x_0+h,y_0)-f(x_0,y_0)}{h}=a$$</div>
+          <p>Ma il limite a sinistra è proprio la definizione di $f_x(P_0)$: esso dunque esiste finito e vale $a$. Scegliendo invece il cammino $h=0$, $k\to 0$, lo stesso conto dà $f_y(P_0)=b$. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Cosa ci ha insegnato questa dimostrazione</div>
+          <p>La differenziabilità è una richiesta <strong>su tutte le direzioni insieme</strong>; le parziali si ottengono guardandone solo due. È come dire che chi vede tutto vede anche le due strade principali — ma chi conosce solo le due strade principali non ha visto tutto. Ecco perché la freccia va in un verso solo, e il prossimo controesempio la spezza definitivamente nell'altro.</p>
+        </div>
+
+        <p><strong>Idea del controesempio.</strong> Costruiamo una funzione piatta lungo gli assi (così le parziali sono zero e sembra tutto a posto) ma che lungo le diagonali "si incolla" a un valore diverso da zero. Le parziali guardano solo gli assi e non vedono il problema; la continuità, che deve valere in <em>ogni</em> direzione, lo vede eccome.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Controesempio</span>
+          <p><em class="nome">Le derivate parziali NON implicano la continuità.</em> La funzione $f(x,y)=\dfrac{xy}{x^2+y^2}$ per $(x,y)\neq(0,0)$, $f(0,0)=0$, ammette $f_x(0,0)=f_y(0,0)=0$ ma non è continua in $(0,0)$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Passo 1 — le parziali nell'origine esistono e sono nulle.</strong> Sull'asse $x$ (cioè $y=0$) la funzione vale $f(x,0)=\dfrac{x\cdot 0}{x^2+0}=0$ per ogni $x\neq 0$, e vale $0$ anche in $x=0$ per definizione. Quindi la funzione ristretta all'asse $x$ è identicamente nulla e</p>
+          <div class="formula-block">$$f_x(0,0)=\lim_{h\to 0}\frac{f(h,0)-f(0,0)}{h}=\lim_{h\to 0}\frac{0-0}{h}=0$$</div>
+          <p>Per simmetria, $f(0,y)=0$ per ogni $y$, quindi anche $f_y(0,0)=0$. Le due pendenze cardinali esistono, sono finite e nulle: dal punto di vista delle parziali, nell'origine è tutto perfettamente liscio e piatto.</p>
+          <p><strong>Passo 2 — la funzione non è continua nell'origine.</strong> Avviciniamoci lungo la retta $y=mx$ (con $x\neq 0$). <em>Cosa sostituisco</em>: nella formula $f(x,y)=\frac{xy}{x^2+y^2}$ lascio $x$ com'è e scrivo $mx$ al posto di ogni $y$. Poi sviluppo: al numeratore $x\cdot mx=m\,x^2$; al denominatore $(mx)^2=m^2x^2$, e raccogliendo $x^2$ ottengo $x^2+m^2x^2=x^2(1+m^2)$; infine semplifico $x^2$ sopra e sotto (lecito perché $x\neq0$):</p>
+          <div class="formula-block">$$f(x,mx)=\frac{x\cdot mx}{x^2+(mx)^2}=\frac{m\,x^2}{x^2+m^2x^2}=\frac{m\,x^2}{x^2(1+m^2)}=\frac{m}{1+m^2}$$</div>
+          <p>Il risultato <strong>non dipende da $x$</strong>: lungo ogni retta per l'origine la funzione è <em>costante</em>, ma la costante cambia con la retta. Lungo l'asse $x$ ($m=0$) vale $0$; lungo la bisettrice $y=x$ ($m=1$) vale $\tfrac12$; lungo $y=-x$ vale $-\tfrac12$.</p>
+          <p>Quindi il limite per $(x,y)\to(0,0)$ <strong>non esiste</strong>: due restrizioni danno valori diversi ($0$ e $\tfrac12$), e per il criterio delle restrizioni visto nel <a href="02-limiti-continuita-piu-variabili.html">Capitolo 2</a> ciò basta a escludere l'esistenza del limite. A maggior ragione il limite non può valere $f(0,0)=0$: <strong>$f$ non è continua in $(0,0)$</strong>.</p>
+          <p><strong>Conclusione.</strong> Esistono entrambe le parziali, ma manca la continuità; per il primo teorema di questa sezione, $f$ non può essere differenziabile in $(0,0)$. La freccia "derivabile parzialmente $\Rightarrow$ continua" è definitivamente falsa in più variabili. <span class="qed">∎</span></p>
+        </div>
+        <p>Vale la pena fermarsi un attimo sul perché <em>visivamente</em>: il grafico di questa funzione è fatto di raggi uscenti dall'origine, ognuno a quota costante ma a quota <em>diversa</em> dagli altri. È una specie di elica schiacciata, una ventola. Camminando lungo gli assi cammini su due raggi di quota $0$ e non ti accorgi di nulla; ma appena giri di $45°$ salti di colpo a quota $\tfrac12$. La "buccia" è liscia in due direzioni e strappata in tutte le altre.</p>
+
+        <p><strong>Idea della dimostrazione di Schwarz.</strong> Prendiamo un rettangolino di lati $h$ e $k$ con un vertice in $P_0$ e consideriamo la combinazione "più-meno-meno-più" dei quattro valori agli angoli. Questa quantità si può leggere in due modi: prima come variazione in $x$ di una variazione in $y$, poi come variazione in $y$ di una variazione in $x$. Dividendola per $hk$ e stringendo il rettangolo, il primo modo dà $f_{yx}$ e il secondo $f_{xy}$: essendo la stessa quantità, i due limiti coincidono.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione intuitiva (Teorema di Schwarz)</span>
+          <p>Definiamo la <strong>differenza seconda mista</strong> sul rettangolino di vertici $(x_0,y_0)$, $(x_0+h,y_0)$, $(x_0,y_0+k)$, $(x_0+h,y_0+k)$:</p>
+          <div class="formula-block">$$\Delta(h,k)=f(x_0+h,y_0+k)-f(x_0+h,y_0)-f(x_0,y_0+k)+f(x_0,y_0)$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Prima lettura.</strong> Raggruppo per colonne: $\Delta=\big[f(x_0+h,y_0+k)-f(x_0+h,y_0)\big]-\big[f(x_0,y_0+k)-f(x_0,y_0)\big]$. Ogni parentesi è un incremento in $y$; la differenza fra le due è un incremento in $x$ di un incremento in $y$. Dividendo per $hk$ e applicando due volte il teorema di Lagrange (una in $y$, una in $x$) si ottiene $\dfrac{\Delta(h,k)}{hk}=f_{yx}(\xi,\eta)$ per un opportuno punto $(\xi,\eta)$ interno al rettangolino.</span>
+            <span class="esempio__passo"><strong>Seconda lettura.</strong> Raggruppo per righe: $\Delta=\big[f(x_0+h,y_0+k)-f(x_0,y_0+k)\big]-\big[f(x_0+h,y_0)-f(x_0,y_0)\big]$. Ora ogni parentesi è un incremento in $x$, e la loro differenza è un incremento in $y$. Con lo stesso argomento, $\dfrac{\Delta(h,k)}{hk}=f_{xy}(\xi',\eta')$ per un altro punto interno.</span>
+            <span class="esempio__passo"><strong>Passaggio al limite.</strong> La quantità $\Delta(h,k)$ è <em>la stessa</em> nelle due letture: cambiano solo i raggruppamenti. Quindi $f_{yx}(\xi,\eta)=f_{xy}(\xi',\eta')$ per ogni $h,k$ piccoli. Facendo $(h,k)\to(0,0)$, entrambi i punti $(\xi,\eta)$ e $(\xi',\eta')$ — schiacciati dentro il rettangolino — tendono a $P_0$.</span>
+            <span class="esempio__passo"><strong>Qui, e solo qui, serve la continuità delle miste:</strong> è essa che permette di concludere $f_{yx}(\xi,\eta)\to f_{yx}(P_0)$ e $f_{xy}(\xi',\eta')\to f_{xy}(P_0)$. Senza continuità, i valori nei punti intermedi non dicono nulla sul valore in $P_0$.</span>
+          </p>
+          <p>Per l'unicità del limite, $f_{xy}(P_0)=f_{yx}(P_0)$. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Controesempio</span>
+          <p><em class="nome">Quando Schwarz fallisce.</em> Per $f(x,y)=\dfrac{xy\,(x^2-y^2)}{x^2+y^2}$ se $(x,y)\neq(0,0)$ e $f(0,0)=0$, si ha $f_{xy}(0,0)=-1$ e $f_{yx}(0,0)=+1$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (le due miste sono diverse)</span>
+          <p><strong>Passo 1 — calcolo $f_x$ sull'asse $y$.</strong> Tengo $y$ fissato e uso la definizione di derivata parziale in $x$ nel punto $(0,y)$, cioè $\lim_{h\to0}\frac{f(0+h,\,y)-f(0,y)}{h}$. Mi servono i due valori: <em>al numeratore</em> $f(h,y)$ si ottiene sostituendo $x=h$ nella formula, cioè $\dfrac{h\,y\,(h^2-y^2)}{h^2+y^2}$, mentre $f(0,y)=\dfrac{0\cdot y\,(0-y^2)}{0+y^2}=0$ perché il numeratore contiene il fattore $x=0$. Divido per $h$ e semplifico il fattore $h$ del numeratore ($h\neq0$), ottenendo $\dfrac{y\,(h^2-y^2)}{h^2+y^2}$; solo ora mando $h\to0$, cioè sostituisco $h=0$:</p>
+          <div class="formula-block">$$f_x(0,y)=\lim_{h\to 0}\frac{f(h,y)-f(0,y)}{h}=\lim_{h\to 0}\frac{1}{h}\cdot\frac{h\,y\,(h^2-y^2)}{h^2+y^2}=\lim_{h\to 0}\frac{y\,(h^2-y^2)}{h^2+y^2}=\frac{y\,(0-y^2)}{0+y^2}=\frac{-y^3}{y^2}=-y$$</div>
+          <p>(nell'ultimo passaggio ho semplificato $y^2$ sopra e sotto, per $y\neq 0$; e $f_x(0,0)=0$, coerente con la formula). Dunque $f_x(0,y)=-y$ per ogni $y$.</p>
+          <p><strong>Passo 2 — derivo ancora rispetto a $y$.</strong> Per la convenzione del <span class="richiamo" data-sec="4.6">§4.6</span>, $f_{xy}$ significa "prima in $x$, poi in $y$": devo quindi derivare in $y$ la funzione $f_x(0,y)=-y$ appena trovata, e valutarla in $y=0$. La derivata di $-y$ rispetto a $y$ è $-1$ (costante, quindi vale $-1$ anche in $y=0$): $f_{xy}(0,0)=\dfrac{d}{dy}\Big[f_x(0,y)\Big]_{y=0}=\dfrac{d}{dy}(-y)\Big|_{y=0}=-1$.</p>
+          <p><strong>Passo 3 — calcolo $f_y$ sull'asse $x$.</strong> Simmetricamente: tengo $x$ fissato, sostituisco $y=k$ nella formula ottenendo $f(x,k)=\dfrac{x\,k\,(x^2-k^2)}{x^2+k^2}$, e osservo che $f(x,0)=0$ (il numeratore contiene il fattore $y=0$). Divido per $k$, semplifico il fattore $k$, e solo allora mando $k\to0$:</p>
+          <div class="formula-block">$$f_y(x,0)=\lim_{k\to 0}\frac{f(x,k)-f(x,0)}{k}=\lim_{k\to 0}\frac{1}{k}\cdot\frac{x\,k\,(x^2-k^2)}{x^2+k^2}=\lim_{k\to 0}\frac{x\,(x^2-k^2)}{x^2+k^2}=\frac{x\cdot x^2}{x^2}=x$$</div>
+          <p><strong>Passo 4 — derivo ancora rispetto a $x$.</strong> Stavolta $f_{yx}$ vuol dire "prima in $y$, poi in $x$": derivo in $x$ la funzione $f_y(x,0)=x$ e valuto in $x=0$. La derivata di $x$ rispetto a $x$ è $1$: $f_{yx}(0,0)=\dfrac{d}{dx}\Big[f_y(x,0)\Big]_{x=0}=\dfrac{d}{dx}(x)\Big|_{x=0}=+1$.</p>
+          <p><strong>Conclusione.</strong> $f_{xy}(0,0)=-1\neq +1=f_{yx}(0,0)$: <strong>l'ordine di derivazione conta</strong>. Nessuna contraddizione con Schwarz: si verifica infatti che le derivate miste di questa funzione <em>non sono continue</em> nell'origine, e l'ipotesi del teorema cade. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Derivate parziali di un polinomio</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $f_x$ e $f_y$ per $f(x,y)=x^2y+3y-6$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Rispetto a $x$: congelo $y$. Il termine $x^2y$ è "$y$ per $x^2$", quindi dà $y\cdot 2x=2xy$. I termini $3y$ e $-6$ non contengono $x$: sono costanti, danno $0$.</span>
+            <span class="esempio__passo">$f_x=2xy$.</span>
+            <span class="esempio__passo">Rispetto a $y$: congelo $x$. Il termine $x^2y$ è "$x^2$ per $y$", quindi dà $x^2$. Il termine $3y$ dà $3$; il $-6$ dà $0$.</span>
+            <span class="esempio__passo">$f_y=x^2+3$.</span>
+          </p>
+          <div class="esempio__risultato">$f_x=2xy$, &nbsp; $f_y=x^2+3$. Nota che $f_y$ non dipende da $y$: lungo Nord la pendenza è la stessa a ogni quota.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Derivata parziale dalla definizione</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $f_x(1,2)$ per $f(x,y)=x^2y$ usando il limite del rapporto incrementale.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Scrivo il rapporto incrementale in $x$, tenendo $y=2$ <strong>fisso</strong>: $\dfrac{f(1+h,\,2)-f(1,\,2)}{h}$.</span>
+            <span class="esempio__passo">Sostituisco: $f(1+h,2)=(1+h)^2\cdot 2=2(1+2h+h^2)$ e $f(1,2)=2$.</span>
+            <span class="esempio__passo">Numeratore: $2+4h+2h^2-2=4h+2h^2$.</span>
+            <span class="esempio__passo">Divido per $h$ (lecito, $h\neq 0$): $\dfrac{4h+2h^2}{h}=4+2h$.</span>
+            <span class="esempio__passo">Limite: $\lim_{h\to 0}(4+2h)=4$.</span>
+          </p>
+          <div class="esempio__risultato">$f_x(1,2)=4$. Verifica con le regole: $f_x=2xy$, quindi $f_x(1,2)=2\cdot1\cdot2=4$. ✔</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Esponenziali, logaritmi e composte</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Derivare parzialmente (a) $f(x,y)=e^{x^2y}$; &nbsp;(b) $g(x,y)=\ln(3x+y^2)$; &nbsp;(c) $u(x,y)=\sin(x^2y)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Per tutte e tre uso la <strong>regola della catena</strong> (<span class="richiamo" data-sec="4.5">§4.5</span>): $\big(F(G)\big)'=F'(G)\cdot G'$, dove $F$ è la funzione <em>esterna</em> (il guscio) e $G$ quella <em>interna</em> (il ripieno). L'unica novità rispetto ad Analisi 1 è che $G'$ è una derivata <em>parziale</em>.</span>
+            <span class="esempio__passo">(a) Esterna $F(t)=e^t$ (guscio), interna $G(x,y)=x^2y$ (ripieno). Siccome $F'(t)=e^t$, la parte esterna resta $e^{x^2y}$. Derivata parziale del ripieno in $x$, con $y$ congelata: $\partial_x(x^2y)=y\cdot2x=2xy$. Moltiplico: $f_x=2xy\,e^{x^2y}$.</span>
+            <span class="esempio__passo">(a) In $y$ il ripieno dà $x^2$: quindi $f_y=x^2e^{x^2y}$.</span>
+            <span class="esempio__passo">(b) Guscio $\ln(\cdot)$: derivata $\frac{1}{(\cdot)}$ per la derivata del ripieno. In $x$: $g_x=\dfrac{3}{3x+y^2}$.</span>
+            <span class="esempio__passo">(b) In $y$: la derivata del ripieno è $2y$, quindi $g_y=\dfrac{2y}{3x+y^2}$.</span>
+            <span class="esempio__passo">(c) Guscio $\sin(\cdot)\to\cos(\cdot)$, ripieno $x^2y$: $u_x=2xy\cos(x^2y)$ e $u_y=x^2\cos(x^2y)$.</span>
+          </p>
+          <div class="esempio__risultato">La regola della catena è identica a quella di Analisi 1: cambia solo che "la derivata dell'interno" è una derivata <em>parziale</em>.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Regola del quoziente</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Derivare $f(x,y)=\dfrac{xy}{x+y}$ (definita per $x+y\neq 0$).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Uso la <strong>regola del quoziente</strong> (<span class="richiamo" data-sec="4.5">§4.5</span>): $\left(\dfrac{A}{B}\right)'=\dfrac{A'B-AB'}{B^2}$. Attenzione all'ordine: al numeratore si parte sempre derivando l'<em>alto</em>.</span>
+            <span class="esempio__passo">Rispetto a $x$ (congelo $y$): $A=xy$, quindi $A'=y$ (la $y$ è una costante che moltiplica $x$); $B=x+y$, quindi $B'=1$ (la $y$ congelata dà $0$).</span>
+            <span class="esempio__passo">Sostituisco $A$, $A'$, $B$, $B'$ nella regola: $f_x=\dfrac{y(x+y)-xy\cdot 1}{(x+y)^2}$. Svolgo il numeratore: $y(x+y)=xy+y^2$, poi tolgo $xy$, e $xy-xy$ si cancella. Resta $f_x=\dfrac{y^2}{(x+y)^2}$.</span>
+            <span class="esempio__passo">Rispetto a $y$ (congelo $x$): $A=xy$ dà $A'=x$; $B=x+y$ dà $B'=1$.</span>
+            <span class="esempio__passo">Sostituisco: $f_y=\dfrac{x(x+y)-xy\cdot 1}{(x+y)^2}=\dfrac{x^2+xy-xy}{(x+y)^2}=\dfrac{x^2}{(x+y)^2}$ (di nuovo i due $xy$ si elidono).</span>
+          </p>
+          <div class="esempio__risultato">$f_x=\dfrac{y^2}{(x+y)^2}$, &nbsp; $f_y=\dfrac{x^2}{(x+y)^2}$. La simmetria della funzione (scambiando $x$ e $y$ non cambia) si riflette nella simmetria del risultato: un ottimo controllo.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Derivate seconde e verifica di Schwarz</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare tutte le derivate seconde di $f(x,y)=x^3y^2-4xy$ e verificare il teorema di Schwarz.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Derivate prime: $f_x=3x^2y^2-4y$ &nbsp;e&nbsp; $f_y=2x^3y-4x$.</span>
+            <span class="esempio__passo">Derivate pure: $f_{xx}=\partial_x(3x^2y^2-4y)=6xy^2$; &nbsp; $f_{yy}=\partial_y(2x^3y-4x)=2x^3$.</span>
+            <span class="esempio__passo">Prima mista: $f_{xy}=\partial_y(3x^2y^2-4y)=6x^2y-4$.</span>
+            <span class="esempio__passo">Seconda mista: $f_{yx}=\partial_x(2x^3y-4x)=6x^2y-4$.</span>
+            <span class="esempio__passo">Le due miste coincidono, come previsto: $f$ è un polinomio, quindi di classe $C^\infty$, e le ipotesi di Schwarz sono soddisfatte ovunque.</span>
+          </p>
+          <div class="esempio__risultato">$f_{xx}=6xy^2$, &nbsp;$f_{yy}=2x^3$, &nbsp;$f_{xy}=f_{yx}=6x^2y-4$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Piano tangente e stima approssimata</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Scrivere il piano tangente a $f(x,y)=x^2+y^2$ in $P_0=(1,2)$ e usarlo per stimare $f(1{,}01;\,1{,}98)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Quota del punto: sostituisco $x=1$ e $y=2$ in $x^2+y^2$, cioè $f(1,2)=1^2+2^2=1+4=5$.</span>
+            <span class="esempio__passo">Parziali: $f_x=2x\Rightarrow f_x(1,2)=2\cdot1=2$; &nbsp;$f_y=2y\Rightarrow f_y(1,2)=2\cdot2=4$. Sono polinomi, dunque continue: <strong>verifico così le ipotesi</strong> del teorema del differenziale totale (<span class="richiamo" data-sec="4.9">§4.9</span>), che richiede parziali esistenti in un intorno e continue nel punto. Quindi $f$ è differenziabile e il piano tangente esiste.</span>
+            <span class="esempio__passo">Ricopio la formula del piano tangente (<span class="richiamo" data-sec="4.8">§4.8</span>): $z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$. Sostituisco un valore alla volta: $x_0=1$, $y_0=2$, $f(x_0,y_0)=5$, $f_x(x_0,y_0)=2$, $f_y(x_0,y_0)=4$. Ottengo $z=5+2(x-1)+4(y-2)$.</span>
+            <span class="esempio__passo">Semplifico svolgendo le parentesi: $5+2x-2+4y-8$; sommo i numeri, $5-2-8=-5$. Quindi $z=2x+4y-5$.</span>
+            <span class="esempio__passo">Stima: uso il differenziale totale $\Delta f\approx f_x\,\Delta x+f_y\,\Delta y$ (<span class="richiamo" data-sec="4.8">§4.8</span>). Gli incrementi sono $\Delta x=1{,}01-1=+0{,}01$ e $\Delta y=1{,}98-2=-0{,}02$. Sostituisco $f_x=2$, $f_y=4$: $\Delta f\approx 2\cdot(0{,}01)+4\cdot(-0{,}02)=0{,}02-0{,}08=-0{,}06$.</span>
+            <span class="esempio__passo">Quindi $f(1{,}01;1{,}98)\approx 5-0{,}06=4{,}94$.</span>
+          </p>
+          <div class="esempio__risultato">Piano tangente $z=2x+4y-5$; &nbsp;stima $4{,}94$. Valore esatto: $1{,}0201+3{,}9204=4{,}9405$. L'errore è di $5$ decimillesimi: il piano tangente funziona benissimo da vicino.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Derivata direzionale</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare la derivata di $f(x,y)=x^2y$ in $P_0=(1,2)$ lungo la direzione Nord-Est, cioè $\mathbf v=\left(\tfrac{1}{\sqrt2},\tfrac{1}{\sqrt2}\right)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Controllo le ipotesi: $f_x=2xy$ e $f_y=x^2$ sono polinomi, quindi continue ovunque. Per il teorema del differenziale totale $f$ è differenziabile: posso usare la formula del gradiente.</span>
+            <span class="esempio__passo">Verifico che $\mathbf v$ sia un versore: $\left(\tfrac{1}{\sqrt2}\right)^2+\left(\tfrac{1}{\sqrt2}\right)^2=\tfrac12+\tfrac12=1$. ✔</span>
+            <span class="esempio__passo">Gradiente nel punto: $\nabla f=(f_x,f_y)=(2xy,\;x^2)$; sostituisco $x=1$ e $y=2$ in ciascuna componente: la prima dà $2\cdot1\cdot2=4$, la seconda $1^2=1$. Quindi $\nabla f(1,2)=(4,\,1)$.</span>
+            <span class="esempio__passo">Applico la <strong>formula del gradiente</strong> (<span class="richiamo" data-sec="4.10">§4.10</span>): $D_{\mathbf v}f(P_0)=f_x(P_0)\,v_1+f_y(P_0)\,v_2$. Sostituisco $f_x(P_0)=4$, $v_1=\tfrac{1}{\sqrt2}$, $f_y(P_0)=1$, $v_2=\tfrac{1}{\sqrt2}$: $\ D_{\mathbf v}f(1,2)=4\cdot\tfrac{1}{\sqrt2}+1\cdot\tfrac{1}{\sqrt2}$.</span>
+            <span class="esempio__passo">Sommo: i due addendi hanno lo stesso denominatore $\sqrt2$, quindi basta sommare i numeratori, $4+1=5$: $\ D_{\mathbf v}f(1,2)=\tfrac{5}{\sqrt2}$.</span>
+          </p>
+          <div class="esempio__risultato">$D_{\mathbf v}f(1,2)=\dfrac{5}{\sqrt2}=\dfrac{5\sqrt2}{2}\approx 3{,}54$. È un valore intermedio fra $f_x=4$ (Est) e $f_y=1$ (Nord): camminando in diagonale si prende un po' dell'una e un po' dell'altra pendenza.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticarsi di congelare l'altra variabile</div>
+          <p>Derivando $f(x,y)=x^2y$ rispetto a $x$, molti scrivono $2x$ oppure $2x+x^2$, come se anche $y$ dovesse essere derivata. Sbagliato: durante $\partial/\partial x$ la lettera $y$ <strong>è un numero</strong>, quindi $x^2y$ si deriva come $7x^2$ e dà $2xy$. <em>Come evitarlo</em>: nei primi esercizi, riscrivi materialmente la funzione sostituendo $y$ con un numero qualunque, deriva, e poi rimetti $y$. Dopo dieci esercizi non ti servirà più.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che "esistono $f_x$ e $f_y$" implichi continuità o differenziabilità</div>
+          <p>È l'errore concettuale più grave del capitolo, perché in Analisi 1 l'analogo era vero. In due variabili no: $f(x,y)=\frac{xy}{x^2+y^2}$ (con $f(0,0)=0$) ha entrambe le parziali nulle nell'origine e <strong>non è nemmeno continua</strong>. <em>Come evitarlo</em>: ricorda che le parziali controllano solo due strade su infinite. Quando un esercizio chiede "è differenziabile?", non rispondere mai "sì, perché esistono le derivate parziali": o verifichi la <em>continuità delle parziali</em>, o applichi la definizione con il limite.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Invocare Schwarz senza le ipotesi, o sbagliare l'ordine dei pedici</div>
+          <p>Due errori distinti. Il primo: scrivere "$f_{xy}=f_{yx}$ sempre". Non è vero — il controesempio $\frac{xy(x^2-y^2)}{x^2+y^2}$ dà $-1$ e $+1$. Serve la <strong>continuità delle miste</strong>. Il secondo: confondersi con l'ordine. In $f_{xy}$ si deriva <em>prima in $x$</em> (pedici da sinistra), mentre in $\frac{\partial^2 f}{\partial y\,\partial x}$ agisce prima la $\partial x$ (simboli da destra). <em>Come evitarlo</em>: quando Schwarz vale, l'ordine è irrilevante e il problema svanisce; quando non vale, l'esercizio te lo sta dicendo esplicitamente, quindi vai di definizione.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare che la direzione dev'essere un versore</div>
+          <p>Se l'esercizio chiede la derivata direzionale lungo il vettore $\mathbf w=(3,4)$, non si applica $\nabla f\cdot\mathbf w$ così com'è: $\mathbf w$ ha lunghezza $5$, non $1$, e il risultato verrebbe cinque volte troppo grande. Bisogna prima <strong>normalizzare</strong>: $\mathbf v=\frac{\mathbf w}{|\mathbf w|}=\left(\frac35,\frac45\right)$. <em>Come evitarlo</em>: la derivata direzionale è una pendenza, cioè un "dislivello per metro percorso"; se la freccia non è lunga un metro, il conto non torna.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scrivere il piano tangente con i segni sbagliati</div>
+          <p>Errore tipico: $z=f(P_0)+f_x\,x+f_y\,y$, dimenticando di <strong>traslare</strong> nel punto. La formula corretta usa gli <em>incrementi</em>: $z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$. <em>Come evitarlo</em>: verifica sempre sostituendo $x=x_0$ e $y=y_0$: devi ottenere esattamente $z=f(x_0,y_0)$. Se non torna, hai sbagliato la traslazione.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il trucco del "metti 7 al posto di y"</div>
+          <p>Quando una derivata parziale ti confonde, sostituisci mentalmente l'altra variabile con un numero brutto e concreto — $7$ va benissimo. $\partial_x\big(x^3y^2\big)$ diventa $\partial_x\big(49x^3\big)=147x^2$, cioè $3x^2y^2$. Nessuno sbaglia a derivare $49x^3$. Il cervello smette di "vedere una variabile" e applica le regole di Analisi 1 in automatico.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Usa la simmetria come correttore di bozze</div>
+          <p>Se $f(x,y)=f(y,x)$ — cioè la funzione è simmetrica nello scambio delle variabili, come $x^2+y^2$, $xy$, $\frac{xy}{x+y}$, $e^{xy}$ — allora anche il risultato deve esserlo: $f_y$ si ottiene da $f_x$ scambiando $x$ con $y$. È un controllo che costa due secondi e intercetta la maggior parte degli errori di distrazione. Analogamente, se $f$ è <em>antisimmetrica</em> le parziali si scambiano cambiando segno.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La checklist della differenziabilità</div>
+          <p>Davanti a "studiare la differenziabilità in $P_0$", segui sempre questo ordine, che va dal più veloce al più laborioso:</p>
+          <ul>
+            <li><strong>1)</strong> Le parziali sono funzioni elementari continue vicino a $P_0$? Se sì, <em>teorema del differenziale totale</em>: differenziabile, fine.</li>
+            <li><strong>2)</strong> Altrimenti, la funzione è continua in $P_0$? Se <strong>no</strong>, non è differenziabile, fine (e hai risparmiato tutto il resto).</li>
+            <li><strong>3)</strong> Esistono $f_x(P_0)$ e $f_y(P_0)$ (da calcolare con la definizione, se il punto è "sospetto")? Se <strong>no</strong>, non è differenziabile, fine.</li>
+            <li><strong>4)</strong> Solo se sei arrivato fin qui: verifica la definizione, cioè che $\dfrac{f(x_0+h,y_0+k)-f(P_0)-f_x h-f_y k}{\sqrt{h^2+k^2}}\to 0$. Spesso conviene passare in coordinate polari $h=\rho\cos\theta$, $k=\rho\sin\theta$ e mostrare che tutto tende a $0$ uniformemente in $\theta$.</li>
+          </ul>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come smascherare un punto sospetto</div>
+          <p>I punti dove serve la definizione sono quasi sempre riconoscibili a vista: dove la funzione è definita <strong>a pezzi</strong> (tipicamente l'origine), dove compare un <strong>valore assoluto</strong>, una <strong>radice</strong> di qualcosa che si annulla, o un <strong>denominatore</strong> che sparisce. Altrove — polinomi, esponenziali, seni e coseni, logaritmi nel loro dominio — la funzione è $C^\infty$ e non c'è nulla da verificare. Nel dubbio: guarda dove il testo dell'esercizio ti chiede di studiare. Se ti manda proprio in quel punto, un motivo c'è.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Le restrizioni come "sonda" rapida</div>
+          <p>Per capire in fretta se c'è un problema di continuità nell'origine, prova le rette $y=mx$ e la parabola $y=x^2$. Se il valore del limite <strong>dipende da $m$</strong>, il limite non esiste e la funzione non è continua: fine dell'esercizio in tre righe. È esattamente ciò che abbiamo fatto con $\frac{xy}{x^2+y^2}$. Attenzione però: se tutte le restrizioni danno lo stesso valore, <em>non</em> hai dimostrato che il limite esiste — devi passare alle polari o alle maggiorazioni.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Derivate parziali e differenziabilità</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Idea base</strong>
+              <ul><li>Congela le altre, deriva quella</li><li>Est = $x$, Nord = $y$</li><li>$f_x=\lim_{h\to0}\frac{f(x_0+h,y_0)-f(x_0,y_0)}{h}$</li><li>Nessuna regola nuova</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Notazione</strong>
+              <ul><li>$\frac{\partial f}{\partial x}$, &nbsp;$f_x$, &nbsp;$\partial_x f$</li><li>$\partial$ = "ci sono altre variabili"</li><li>Non è una frazione</li><li>$\nabla f=(f_x,f_y)$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Geometria</strong>
+              <ul><li>Taglio con piano verticale</li><li>$f_x$ = pendenza del profilo</li><li>Piano tangente $z=f_0+f_x\Delta x+f_y\Delta y$</li><li>Differenziale $df=f_xdx+f_ydy$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Ordine superiore</strong>
+              <ul><li>$f_{xx}$, $f_{yy}$ pure</li><li>$f_{xy}$, $f_{yx}$ miste</li><li>Schwarz: miste continue $\Rightarrow$ uguali</li><li>Controesempio: $\frac{xy(x^2-y^2)}{x^2+y^2}$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Catena di implicazioni</strong>
+              <ul><li>$C^1\Rightarrow$ differenziabile</li><li>Differenziabile $\Rightarrow$ continua</li><li>Differenziabile $\Rightarrow\exists f_x,f_y$</li><li>Parziali $\not\Rightarrow$ continua: $\frac{xy}{x^2+y^2}$</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Direzionale</strong>
+              <ul><li>$\mathbf v$ versore ($|\mathbf v|=1$)</li><li>$D_{\mathbf v}f=\lim_{t\to0}\frac{f(P_0+t\mathbf v)-f(P_0)}{t}$</li><li>Se differenziabile: $\nabla f\cdot\mathbf v$</li><li>$f_x,f_y$ sono casi particolari</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>L'idea in una frase</strong>: per derivare rispetto a una variabile, si congelano tutte le altre e si deriva come in Analisi 1. Sulla collina: cammini solo verso Est, oppure solo verso Nord.</li>
+            <li><strong>Definizione</strong>: $f_x(x_0,y_0)=\displaystyle\lim_{h\to 0}\frac{f(x_0+h,\,y_0)-f(x_0,y_0)}{h}$ (la $y_0$ ferma è tutto il segreto); analogamente $f_y$ con il passetto $k$ nella seconda coordinata.</li>
+            <li><strong>Notazione</strong>: $\partial$ segnala che ci sono altre variabili congelate; $\dfrac{\partial f}{\partial x}$ non è una frazione e non si semplifica.</li>
+            <li><strong>Geometria</strong>: $f_x$ è la pendenza del profilo che si ottiene tagliando la superficie con il piano verticale $y=y_0$; $f_y$ con il piano $x=x_0$.</li>
+            <li><strong>Derivate seconde</strong>: quattro, di cui due miste. <strong>Schwarz</strong>: se $f_{xy}$ e $f_{yx}$ sono continue, allora sono uguali. Senza continuità può fallire — controesempio $\frac{xy(x^2-y^2)}{x^2+y^2}$, che dà $-1$ e $+1$.</li>
+            <li><strong>Differenziabilità</strong>: $f(x_0+h,y_0+k)=f(x_0,y_0)+f_xh+f_yk+o\!\left(\sqrt{h^2+k^2}\right)$. Significato: da vicino la superficie è un piano.</li>
+            <li><strong>Piano tangente</strong>: $z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$. <strong>Differenziale totale</strong>: $df=f_x\,dx+f_y\,dy$, usato per le stime $\Delta f\approx f_x\Delta x+f_y\Delta y$.</li>
+            <li><strong>Catena di implicazioni</strong>: $C^1\Rightarrow$ differenziabile $\Rightarrow$ continua, e $\Rightarrow$ esistono le parziali. <strong>Nessuna freccia si inverte.</strong></li>
+            <li><strong>Il controesempio obbligatorio</strong>: $f(x,y)=\frac{xy}{x^2+y^2}$ con $f(0,0)=0$ ha $f_x(0,0)=f_y(0,0)=0$ ma non è continua nell'origine (lungo $y=mx$ vale $\frac{m}{1+m^2}$, che dipende da $m$).</li>
+            <li><strong>Teorema del differenziale totale</strong>: parziali esistenti in un intorno e continue nel punto $\Rightarrow$ differenziabile. È il criterio pratico da usare quasi sempre.</li>
+            <li><strong>Derivata direzionale</strong>: $D_{\mathbf v}f(P_0)=\lim_{t\to 0}\frac{f(P_0+t\mathbf v)-f(P_0)}{t}$ con $|\mathbf v|=1$; se $f$ è differenziabile, $D_{\mathbf v}f=\nabla f\cdot\mathbf v=f_xv_1+f_yv_2$. Approfondimento nel <a href="04-gradiente.html">Capitolo 4</a>.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $f_x$ e $f_y$ per $f(x,y)=x^3+4x^2y-5y^2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Rispetto a $x$ (congelo $y$): $D(x^3)=3x^2$; in $4x^2y$ il fattore $4y$ è costante, quindi $4y\cdot 2x=8xy$; il termine $-5y^2$ non contiene $x$, quindi $0$.</p>
+              <p>Rispetto a $y$ (congelo $x$): $x^3$ dà $0$; in $4x^2y$ il fattore $4x^2$ è costante, quindi $4x^2$; infine $-5y^2$ dà $-10y$.</p>
+              <p><strong>$f_x=3x^2+8xy$, &nbsp; $f_y=4x^2-10y$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Data $f(x,y)=3x^2y-7xy^2+2y$, calcola $f_x$ e $f_y$ e valutale nel punto $(1,2)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">$f_x=6xy-7y^2$ (il termine $2y$ è costante in $x$).</span>
+                <span class="esempio__passo">$f_y=3x^2-14xy+2$.</span>
+                <span class="esempio__passo">In $(1,2)$: $f_x=6\cdot1\cdot2-7\cdot4=12-28=-16$.</span>
+                <span class="esempio__passo">In $(1,2)$: $f_y=3-14\cdot1\cdot2+2=3-28+2=-23$.</span>
+              </p>
+              <p><strong>$f_x(1,2)=-16$, &nbsp; $f_y(1,2)=-23$.</strong> Entrambe negative: da lì si scende in tutte e due le direzioni cardinali.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola le derivate parziali di $f(x,y)=e^{2x+3y}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>È una composta: guscio $e^{(\cdot)}$, ripieno $2x+3y$. La derivata dell'esponenziale è sé stessa, poi moltiplico per la derivata parziale del ripieno.</p>
+              <p>In $x$ il ripieno dà $2$; in $y$ dà $3$.</p>
+              <p><strong>$f_x=2e^{2x+3y}$, &nbsp; $f_y=3e^{2x+3y}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $f_x$ e $f_y$ per $f(x,y)=x\sin y+y\cos x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">In $x$: nel primo termine $\sin y$ è costante, quindi resta $\sin y$. Nel secondo, $y$ è costante e $D(\cos x)=-\sin x$, quindi $-y\sin x$.</span>
+                <span class="esempio__passo">In $y$: nel primo termine $x$ è costante e $D(\sin y)=\cos y$, quindi $x\cos y$. Nel secondo, $\cos x$ è costante e $D(y)=1$, quindi $\cos x$.</span>
+              </p>
+              <p><strong>$f_x=\sin y-y\sin x$, &nbsp; $f_y=x\cos y+\cos x$</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Determina il dominio di $f(x,y)=\ln(x^2+y^2)$ e calcolane le derivate parziali.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Il logaritmo richiede argomento positivo: $x^2+y^2&gt;0$, cioè <strong>tutto il piano tranne l'origine</strong>.</p>
+              <p>Catena: derivata di $\ln$ è $\frac{1}{(\cdot)}$, moltiplicata per la derivata parziale dell'argomento ($2x$ in $x$, $2y$ in $y$).</p>
+              <p><strong>$f_x=\dfrac{2x}{x^2+y^2}$, &nbsp; $f_y=\dfrac{2y}{x^2+y^2}$</strong>, definite per $(x,y)\neq(0,0)$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola le derivate parziali di $f(x,y)=\dfrac{x+y}{x-y}$ (con $x\neq y$).</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">In $x$: alto $=x+y$ (derivata $1$), basso $=x-y$ (derivata $1$). Quindi $f_x=\dfrac{1\cdot(x-y)-(x+y)\cdot1}{(x-y)^2}$.</span>
+                <span class="esempio__passo">Numeratore: $(x-y)-(x+y)=-2y$.</span>
+                <span class="esempio__passo">In $y$: alto ha derivata $1$, basso ha derivata $-1$. Quindi $f_y=\dfrac{1\cdot(x-y)-(x+y)\cdot(-1)}{(x-y)^2}$.</span>
+                <span class="esempio__passo">Numeratore: $(x-y)+(x+y)=2x$.</span>
+              </p>
+              <p><strong>$f_x=\dfrac{-2y}{(x-y)^2}$, &nbsp; $f_y=\dfrac{2x}{(x-y)^2}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola le tre derivate parziali di $f(x,y,z)=xyz+x^2z$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Regola invariata: una viva, due congelate.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo">In $x$: $yz$ è costante, dà $yz$; in $x^2z$ il fattore $z$ è costante, dà $2xz$.</span>
+                <span class="esempio__passo">In $y$: solo $xyz$ contiene $y$, con $xz$ costante, quindi $xz$. Il termine $x^2z$ dà $0$.</span>
+                <span class="esempio__passo">In $z$: $xyz$ dà $xy$; $x^2z$ dà $x^2$.</span>
+              </p>
+              <p><strong>$f_x=yz+2xz$, &nbsp; $f_y=xz$, &nbsp; $f_z=xy+x^2$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per $f(x,y)=e^{xy}$ calcola tutte e quattro le derivate seconde e verifica il teorema di Schwarz.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Prime: $f_x=y\,e^{xy}$ e $f_y=x\,e^{xy}$.</span>
+                <span class="esempio__passo">$f_{xx}=\partial_x(y\,e^{xy})=y\cdot y\,e^{xy}=y^2e^{xy}$.</span>
+                <span class="esempio__passo">$f_{yy}=\partial_y(x\,e^{xy})=x\cdot x\,e^{xy}=x^2e^{xy}$.</span>
+                <span class="esempio__passo">$f_{xy}=\partial_y(y\,e^{xy})$: qui $y$ compare due volte, quindi serve la <strong>regola del prodotto</strong> $(AB)'=A'B+AB'$ con $A=y$ e $B=e^{xy}$. Ho $A'=1$ e, per la catena, $B'=\partial_y(e^{xy})=e^{xy}\cdot\partial_y(xy)=x\,e^{xy}$. Sostituisco: $1\cdot e^{xy}+y\cdot x\,e^{xy}$; raccolgo $e^{xy}$ e ottengo $e^{xy}(1+xy)$.</span>
+                <span class="esempio__passo">$f_{yx}=\partial_x(x\,e^{xy})$: stessa regola del prodotto con $A=x$ ($A'=1$) e $B=e^{xy}$ ($B'=\partial_x(e^{xy})=y\,e^{xy}$): $\ 1\cdot e^{xy}+x\cdot y\,e^{xy}=e^{xy}(1+xy)$.</span>
+              </p>
+              <p><strong>$f_{xx}=y^2e^{xy}$, $f_{yy}=x^2e^{xy}$, $f_{xy}=f_{yx}=e^{xy}(1+xy)$.</strong> Le miste coincidono: la funzione è $C^\infty$ su tutto il piano, quindi Schwarz si applica.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola tutte le derivate seconde di $f(x,y)=x^2y+\sin(xy)$ e verifica che le miste coincidono.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Prime: $f_x=2xy+y\cos(xy)$ &nbsp;e&nbsp; $f_y=x^2+x\cos(xy)$.</span>
+                <span class="esempio__passo">$f_{xx}=\partial_x\big(2xy+y\cos(xy)\big)=2y+y\cdot\big(-\sin(xy)\big)\cdot y=2y-y^2\sin(xy)$.</span>
+                <span class="esempio__passo">$f_{yy}=\partial_y\big(x^2+x\cos(xy)\big)=x\cdot\big(-\sin(xy)\big)\cdot x=-x^2\sin(xy)$.</span>
+                <span class="esempio__passo">$f_{xy}=\partial_y\big(2xy+y\cos(xy)\big)=2x+\big[\cos(xy)+y\cdot(-\sin(xy))\cdot x\big]=2x+\cos(xy)-xy\sin(xy)$.</span>
+                <span class="esempio__passo">$f_{yx}=\partial_x\big(x^2+x\cos(xy)\big)=2x+\big[\cos(xy)+x\cdot(-\sin(xy))\cdot y\big]=2x+\cos(xy)-xy\sin(xy)$.</span>
+              </p>
+              <p><strong>$f_{xy}=f_{yx}=2x+\cos(xy)-xy\sin(xy)$.</strong> Coincidono, come garantito da Schwarz: $f$ è combinazione di polinomi e funzioni trigonometriche, quindi $C^\infty$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Scrivi l'equazione del piano tangente alla superficie $z=x^2+3y^2$ nel punto di coordinate $(1,1)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Quota: $f(1,1)=1+3=4$, quindi il punto di tangenza è $(1,1,4)$.</span>
+                <span class="esempio__passo">Parziali: $f_x=2x$ e $f_y=6y$; nel punto, $f_x(1,1)=2$ e $f_y(1,1)=6$.</span>
+                <span class="esempio__passo">Sono polinomi continui: per il teorema del differenziale totale $f$ è differenziabile, il piano tangente esiste.</span>
+                <span class="esempio__passo">Ricopio la formula del piano tangente (<span class="richiamo" data-sec="4.8">§4.8</span>), $z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$, e sostituisco $x_0=1$, $y_0=1$, $f(x_0,y_0)=4$, $f_x=2$, $f_y=6$: $\ z=4+2(x-1)+6(y-1)$. Svolgo le parentesi: $4+2x-2+6y-6$, e sommo i numeri $4-2-6=-4$.</span>
+              </p>
+              <p><strong>$z=2x+6y-4$.</strong> Controllo: per $x=1,y=1$ si ottiene $2+6-4=4$. ✔</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Per $f(x,y)=\sqrt{x^2+y^2}$, calcola le derivate parziali dove esistono e mostra che <strong>non</strong> esistono nell'origine.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Fuori dall'origine uso la regola della catena (<span class="richiamo" data-sec="4.5">§4.5</span>) con esterna $F(t)=\sqrt t$ e interna $G(x,y)=x^2+y^2$. La derivata dell'esterna è $F'(t)=\dfrac{1}{2\sqrt t}$, calcolata in $t=x^2+y^2$; la derivata parziale dell'interna in $x$ (con $y$ congelata) è $2x$. Moltiplico: $f_x=\dfrac{1}{2\sqrt{x^2+y^2}}\cdot 2x=\dfrac{2x}{2\sqrt{x^2+y^2}}=\dfrac{x}{\sqrt{x^2+y^2}}$ (semplifico il $2$). Per simmetria, scambiando i ruoli di $x$ e $y$, $f_y=\dfrac{y}{\sqrt{x^2+y^2}}$.</span>
+                <span class="esempio__passo">Nell'origine devo usare la definizione: $f(h,0)=\sqrt{h^2}=|h|$ e $f(0,0)=0$.</span>
+                <span class="esempio__passo">Rapporto incrementale: $\dfrac{|h|-0}{h}=\dfrac{|h|}{h}$, che vale $+1$ per $h&gt;0$ e $-1$ per $h&lt;0$.</span>
+                <span class="esempio__passo">I due limiti laterali sono diversi, quindi il limite non esiste: $f_x(0,0)$ <strong>non esiste</strong>. Per simmetria nemmeno $f_y(0,0)$.</span>
+              </p>
+              <p><strong>Fuori dall'origine $f_x=\frac{x}{\sqrt{x^2+y^2}}$, $f_y=\frac{y}{\sqrt{x^2+y^2}}$; nell'origine non esistono.</strong> È il cono $z=\sqrt{x^2+y^2}$: la punta è l'analogo tridimensionale dello spigolo di $|x|$. La funzione è continua ovunque ma non differenziabile in $(0,0)$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola la derivata direzionale di $f(x,y)=x^2+xy$ nel punto $P_0=(1,2)$ lungo il vettore $\mathbf w=(3,4)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Normalizzo</strong> il vettore, perché la definizione di derivata direzionale (<span class="richiamo" data-sec="4.10">§4.10</span>) richiede un <em>versore</em>, cioè un vettore di lunghezza $1$. Calcolo la lunghezza di $\mathbf w=(3,4)$: $|\mathbf w|=\sqrt{3^2+4^2}=\sqrt{9+16}=\sqrt{25}=5$. Divido ogni componente per $5$: il versore è $\mathbf v=\left(\frac35,\frac45\right)$. Saltare questo passo è l'errore classico.</span>
+                <span class="esempio__passo">Parziali di $f(x,y)=x^2+xy$: in $x$ (congelo $y$) $x^2$ dà $2x$ e $xy$ dà $y$, quindi $f_x=2x+y$; in $y$ (congelo $x$) $x^2$ dà $0$ e $xy$ dà $x$, quindi $f_y=x$. Sono polinomi continui: per il teorema del differenziale totale (<span class="richiamo" data-sec="4.9">§4.9</span>) $f$ è differenziabile e posso usare la formula del gradiente.</span>
+                <span class="esempio__passo">Gradiente nel punto: sostituisco $x=1$, $y=2$ in ciascuna componente: $f_x(1,2)=2\cdot1+2=4$ e $f_y(1,2)=1$. Quindi $\nabla f(1,2)=(4,1)$.</span>
+                <span class="esempio__passo">Applico la formula del gradiente $D_{\mathbf v}f=f_x\,v_1+f_y\,v_2$ sostituendo $f_x=4$, $v_1=\frac35$, $f_y=1$, $v_2=\frac45$: $\ D_{\mathbf v}f=4\cdot\frac35+1\cdot\frac45=\frac{12}{5}+\frac45$. Le due frazioni hanno lo stesso denominatore, quindi sommo i numeratori: $\frac{12+4}{5}=\frac{16}{5}$.</span>
+              </p>
+              <p><strong>$D_{\mathbf v}f(1,2)=\dfrac{16}{5}=3{,}2$</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $f(x,y)=\dfrac{xy}{x^2+y^2}$ per $(x,y)\neq(0,0)$ e $f(0,0)=0$. Mostrare che $f_x(0,0)$ e $f_y(0,0)$ esistono, che $f$ non è continua in $(0,0)$ e dedurne che non è differenziabile.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Parziali.</strong> Sull'asse $x$: $f(h,0)=\frac{h\cdot 0}{h^2}=0$. Quindi $f_x(0,0)=\lim_{h\to0}\frac{0-0}{h}=0$. Per simmetria $f(0,k)=0$ e $f_y(0,0)=0$.</span>
+                <span class="esempio__passo"><strong>Continuità.</strong> Restringo alla retta $y=mx$ con $x\neq0$, cioè sostituisco $mx$ al posto di ogni $y$ nella formula $\frac{xy}{x^2+y^2}$: ottengo $\frac{x\cdot mx}{x^2+(mx)^2}=\frac{mx^2}{x^2+m^2x^2}$; raccolgo $x^2$ al denominatore e semplifico ($x\neq0$): $f(x,mx)=\frac{mx^2}{x^2(1+m^2)}=\frac{m}{1+m^2}$, indipendente da $x$.</span>
+                <span class="esempio__passo">Per $m=0$ il valore è $0$; per $m=1$ è $\frac12$. Due restrizioni, due limiti diversi: il limite in $(0,0)$ <strong>non esiste</strong>, quindi $f$ non è continua nell'origine.</span>
+                <span class="esempio__passo"><strong>Differenziabilità.</strong> Il teorema "differenziabile $\Rightarrow$ continua" si applica in contronominale: non essendo continua, $f$ non può essere differenziabile.</span>
+              </p>
+              <p><strong>$f_x(0,0)=f_y(0,0)=0$; $f$ non è continua né differenziabile in $(0,0)$.</strong> È il controesempio che dimostra che, in più variabili, l'esistenza delle derivate parziali è una condizione molto debole.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $f(x,y)=\dfrac{xy}{\sqrt{x^2+y^2}}$ per $(x,y)\neq(0,0)$ e $f(0,0)=0$. Studiare continuità, esistenza delle derivate parziali e differenziabilità in $(0,0)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Continuità: sì.</strong> Parto dalla maggiorazione $2|xy|\leq x^2+y^2$ (tabella del <a href="02-limiti-continuita-piu-variabili.html#teoria-confronto">cap. 2 §4.5</a>), che divisa per $2$ diventa $|xy|\leq\frac{x^2+y^2}{2}$. Sostituisco questo tetto al numeratore di $|f|$: $|f(x,y)|\leq\frac{x^2+y^2}{2\sqrt{x^2+y^2}}$. Ora semplifico: scrivo $x^2+y^2=\left(\sqrt{x^2+y^2}\right)^2$, così sopra e sotto compare lo stesso fattore $\sqrt{x^2+y^2}$ e ne resta uno solo al numeratore: $\frac{\sqrt{x^2+y^2}}{2}\to 0$. Per il teorema del confronto (cap. 2) il limite è $0=f(0,0)$: $f$ è continua.</span>
+                <span class="esempio__passo"><strong>Parziali: esistono.</strong> $f(h,0)=0$ e $f(0,k)=0$, quindi $f_x(0,0)=f_y(0,0)=0$ esattamente come prima.</span>
+                <span class="esempio__passo"><strong>Differenziabilità: no.</strong> Nella definizione (<span class="richiamo" data-sec="4.7">§4.7</span>) i coefficienti sono $a=f_x(0,0)=0$ e $b=f_y(0,0)=0$, e $f(0,0)=0$: il rapporto da studiare è quindi $\dfrac{f(h,k)-f(0,0)-a\,h-b\,k}{\sqrt{h^2+k^2}}=\dfrac{f(h,k)-0-0-0}{\sqrt{h^2+k^2}}$. Sostituisco $f(h,k)=\dfrac{hk}{\sqrt{h^2+k^2}}$: dividere per $\sqrt{h^2+k^2}$ equivale a moltiplicare per $\dfrac{1}{\sqrt{h^2+k^2}}$, e i due fattori uguali al denominatore si moltiplicano dando $h^2+k^2$. Resta $\dfrac{hk}{h^2+k^2}$.</span>
+                <span class="esempio__passo">Ma questa è proprio la funzione dell'esercizio precedente: lungo $k=0$ vale $0$, lungo $k=h$ vale $\frac12$. Il limite non esiste, quindi non è $0$.</span>
+              </p>
+              <p><strong>$f$ è continua in $(0,0)$, ha entrambe le parziali nulle, ma NON è differenziabile.</strong> Esempio prezioso: mostra che nemmeno "continua + parziali esistenti" basta. Serve davvero la definizione (o la continuità delle parziali).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Usando il differenziale totale, stimare $\sqrt{(3{,}02)^2+(3{,}96)^2}$ senza calcolatrice, partendo dal punto $(3,4)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Pongo $f(x,y)=\sqrt{x^2+y^2}$ e $P_0=(3,4)$, dove $f(3,4)=\sqrt{9+16}=5$ (valore comodo).</span>
+                <span class="esempio__passo">Parziali (esistono e sono continue vicino a $(3,4)$, quindi $f$ è differenziabile lì): $f_x=\dfrac{x}{\sqrt{x^2+y^2}}$, $f_y=\dfrac{y}{\sqrt{x^2+y^2}}$.</span>
+                <span class="esempio__passo">Nel punto: $f_x(3,4)=\frac35=0{,}6$ e $f_y(3,4)=\frac45=0{,}8$.</span>
+                <span class="esempio__passo">Incrementi: $\Delta x=3{,}02-3=+0{,}02$ e $\Delta y=3{,}96-4=-0{,}04$.</span>
+                <span class="esempio__passo">Applico il differenziale totale (<span class="richiamo" data-sec="4.8">§4.8</span>), $\Delta f\approx f_x(P_0)\,\Delta x+f_y(P_0)\,\Delta y$, sostituendo i quattro numeri appena trovati: $\Delta f\approx 0{,}6\cdot 0{,}02+0{,}8\cdot(-0{,}04)=0{,}012-0{,}032=-0{,}02$.</span>
+              </p>
+              <p><strong>Stima: $5-0{,}02=4{,}98$.</strong> Il valore esatto è $4{,}98004\ldots$: l'errore è inferiore a $10^{-4}$. È esattamente così che funziona la propagazione degli errori in laboratorio.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 3.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Verificare che $u(x,y)=\ln(x^2+y^2)$ soddisfa l'equazione di Laplace $u_{xx}+u_{yy}=0$ in ogni punto diverso dall'origine.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Derivate prime: $u_x=\dfrac{2x}{x^2+y^2}$ e $u_y=\dfrac{2y}{x^2+y^2}$.</span>
+                <span class="esempio__passo">$u_{xx}$ con la regola del quoziente $\left(\frac{A}{B}\right)'=\frac{A'B-AB'}{B^2}$: pongo $A=2x$ (derivata in $x$: $A'=2$) e $B=x^2+y^2$ (derivata in $x$, con $y$ congelata: $B'=2x$). Sostituisco: $u_{xx}=\dfrac{2(x^2+y^2)-2x\cdot 2x}{(x^2+y^2)^2}$. Svolgo il numeratore: $2x^2+2y^2-4x^2=2y^2-2x^2$. Quindi $u_{xx}=\dfrac{2y^2-2x^2}{(x^2+y^2)^2}$.</span>
+                <span class="esempio__passo">Per simmetria (scambio $x$ e $y$): $u_{yy}=\dfrac{2x^2-2y^2}{(x^2+y^2)^2}$.</span>
+                <span class="esempio__passo">Somma: $u_{xx}+u_{yy}=\dfrac{(2y^2-2x^2)+(2x^2-2y^2)}{(x^2+y^2)^2}=\dfrac{0}{(x^2+y^2)^2}=0$.</span>
+              </p>
+              <p><strong>$u_{xx}+u_{yy}=0$ per ogni $(x,y)\neq(0,0)$: $u$ è una funzione armonica.</strong> Le funzioni armoniche descrivono temperature all'equilibrio e potenziali elettrostatici: è uno dei motivi per cui le derivate parziali seconde contano così tanto in fisica.</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Calcolare $\dfrac{\partial f}{\partial x}$ significa:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">derivare sia rispetto a $x$ sia rispetto a $y$ e sommare</button>
+              <button class="quiz-option" data-correct="true">derivare rispetto a $x$ trattando $y$ come una costante</button>
+              <button class="quiz-option" data-correct="false">calcolare il limite lungo tutte le direzioni uscenti dal punto</button>
+              <button class="quiz-option" data-correct="false">derivare rispetto a $y$ trattando $x$ come una costante</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È l'idea del "congelare": si muove una sola variabile alla volta. Nella definizione, $f(x_0+h,\,y_0)$ ha la seconda coordinata ferma.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Se $f(x,y)=x^2y^3$, quanto vale $f_x$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$2x\cdot 3y^2=6xy^2$</button>
+              <button class="quiz-option" data-correct="true">$2xy^3$</button>
+              <button class="quiz-option" data-correct="false">$x^2\cdot 3y^2=3x^2y^2$</button>
+              <button class="quiz-option" data-correct="false">$2x+3y^2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$y^3$ è una costante moltiplicativa: $\partial_x(y^3\cdot x^2)=y^3\cdot 2x=2xy^3$. La terza risposta è invece $f_y$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) L'equazione del piano tangente a $z=f(x,y)$ in $(x_0,y_0)$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$z=f_x(x_0,y_0)\,x+f_y(x_0,y_0)\,y$</button>
+              <button class="quiz-option" data-correct="true">$z=f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0)$</button>
+              <button class="quiz-option" data-correct="false">$z=f(x_0,y_0)+f_x(x_0,y_0)\,f_y(x_0,y_0)$</button>
+              <button class="quiz-option" data-correct="false">$z=f(x_0,y_0)\cdot\big(f_x(x-x_0)+f_y(y-y_0)\big)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È l'analogo della retta tangente con un addendo in più. Controllo rapido: sostituendo $x=x_0$ e $y=y_0$ si deve ottenere $z=f(x_0,y_0)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Se $f$ è differenziabile e $\mathbf v$ è un versore, la derivata direzionale $D_{\mathbf v}f(P_0)$ vale:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$f_x(P_0)\cdot f_y(P_0)$</button>
+              <button class="quiz-option" data-correct="false">$|\nabla f(P_0)|\cdot|\mathbf v|$ sempre</button>
+              <button class="quiz-option" data-correct="true">$\nabla f(P_0)\cdot\mathbf v=f_x(P_0)v_1+f_y(P_0)v_2$</button>
+              <button class="quiz-option" data-correct="false">$f_x(P_0)+f_y(P_0)$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È la formula del gradiente: la pendenza in una direzione qualsiasi è la combinazione delle due pendenze cardinali, pesate dalle componenti del versore. Vale <strong>solo</strong> se $f$ è differenziabile.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se esistono entrambe le derivate parziali in un punto, allora la funzione è continua in quel punto.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, ed è la differenza chiave rispetto ad Analisi 1: $f(x,y)=\frac{xy}{x^2+y^2}$ con $f(0,0)=0$ ha $f_x(0,0)=f_y(0,0)=0$ ma non è continua nell'origine. Le parziali vedono solo due direzioni su infinite.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se $f$ è differenziabile in $P_0$, allora $f$ è continua in $P_0$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero, ed è dimostrato: nella scrittura $f(P_0+(h,k))-f(P_0)=ah+bk+o(\rho)$ tutti gli addendi a destra tendono a zero, quindi la funzione non fa salti.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Il teorema di Schwarz garantisce che $f_{xy}=f_{yx}$ per qualunque funzione, senza bisogno di ipotesi.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: servono le derivate miste <strong>continue</strong>. Il controesempio $f(x,y)=\frac{xy(x^2-y^2)}{x^2+y^2}$ (con $f(0,0)=0$) dà $f_{xy}(0,0)=-1$ e $f_{yx}(0,0)=+1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Se $f_x$ e $f_y$ esistono in un intorno di $P_0$ e sono continue in $P_0$, allora $f$ è differenziabile in $P_0$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è il <strong>teorema del differenziale totale</strong>, il criterio pratico più usato. È una condizione sufficiente, non necessaria: esistono funzioni differenziabili le cui parziali non sono continue.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="costante|costanti">
+            <p class="quiz-question__testo">9. (Completamento) Per calcolare $\partial f/\partial x$ si considera la variabile $y$ come una ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si congelano tutte le altre variabili: nella definizione, $f(x_0+h,\,y_0)$ mostra proprio che $y_0$ non si muove. Trucco pratico: sostituisci mentalmente $y$ con $7$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="piano|piano tangente">
+            <p class="quiz-question__testo">10. (Completamento) Ciò che in Analisi 1 era la retta tangente, in due variabili diventa il ______ tangente.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il piano tangente $z=f(x_0,y_0)+f_x(x-x_0)+f_y(y-y_0)$ è l'oggetto che si vede zoomando al massimo su un punto della superficie, quando $f$ è differenziabile.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="schwarz|teorema di schwarz|clairaut">
+            <p class="quiz-question__testo">11. (Completamento) Il teorema di ______ afferma che, se le derivate miste sono continue, allora $f_{xy}=f_{yx}$.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Teorema di <strong>Schwarz</strong> (detto anche di Clairaut): con le miste continue l'ordine di derivazione non conta. Senza quell'ipotesi può fallire.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché, in due variabili, l'esistenza delle derivate parziali non basta a garantire la continuità. Usa l'esempio $f(x,y)=\frac{xy}{x^2+y^2}$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: le derivate parziali sono definite muovendosi lungo <em>due sole</em> direzioni, quella dell'asse $x$ e quella dell'asse $y$. Ma da un punto del piano escono infinite direzioni, e la continuità richiede che la funzione si comporti bene lungo <strong>tutte</strong>. In una variabile il problema non si poneva, perché da un punto della retta si esce solo a destra e a sinistra, ed entrambe erano controllate dalla derivata. La funzione $f(x,y)=\frac{xy}{x^2+y^2}$ (prolungata con $f(0,0)=0$) è il controesempio perfetto: sull'asse $x$ vale $f(x,0)=0$ e sull'asse $y$ vale $f(0,y)=0$, quindi lungo gli assi è identicamente nulla e le due derivate parziali nell'origine esistono e valgono $0$. Se però ci si avvicina lungo la retta $y=mx$ si trova $f(x,mx)=\frac{m}{1+m^2}$, un valore costante che <em>dipende dalla retta scelta</em>: $0$ lungo l'asse $x$, ma $\frac12$ lungo la bisettrice $y=x$. Restrizioni diverse danno limiti diversi, quindi il limite in $(0,0)$ non esiste e la funzione non è continua. Le parziali "non hanno guardato" nella direzione giusta.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Spiega cosa significa che una funzione è differenziabile in un punto, usando l'immagine del piano, e dì perché è una richiesta più forte dell'esistenza delle derivate parziali.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: dire che $f$ è differenziabile in $P_0$ significa che, se zoomiamo abbastanza sulla superficie $z=f(x,y)$ attorno a quel punto, quello che vediamo è un <strong>piano inclinato</strong> — il piano tangente. Non basta che il piano tocchi la superficie: serve che l'errore commesso approssimando la superficie con il piano tenda a zero <em>più in fretta</em> della distanza dal punto, cioè $f(x_0+h,y_0+k)=f(x_0,y_0)+f_xh+f_yk+o(\sqrt{h^2+k^2})$. È la stessa promessa che in Analisi 1 faceva la retta tangente, con una dimensione in più. La richiesta è più forte dell'esistenza delle parziali perché il limite della definizione è fatto per $(h,k)\to(0,0)$ in <strong>tutte le direzioni contemporaneamente</strong>, mentre $f_x$ e $f_y$ controllano solo i due cammini lungo gli assi. Infatti si dimostra che differenziabile implica sia continua sia dotata di parziali (con $a=f_x$ e $b=f_y$), ma nessuna delle due implicazioni si inverte: $\frac{xy}{x^2+y^2}$ ha le parziali e non è nemmeno continua, e $\frac{xy}{\sqrt{x^2+y^2}}$ è continua, ha le parziali, e non è differenziabile. In pratica si usa il teorema del differenziale totale: se $f_x$ e $f_y$ esistono in un intorno e sono continue nel punto, la differenziabilità è garantita.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="02-limiti-continuita-piu-variabili.html"><span class="dir">← Capitolo precedente</span><strong>Limiti e continuità in più variabili</strong></a>
+        <a class="next" href="04-gradiente.html"><span class="dir">Capitolo successivo →</span><strong>Il gradiente</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

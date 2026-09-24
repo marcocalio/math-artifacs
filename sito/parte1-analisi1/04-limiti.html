@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4. Limiti di funzioni — Parte 1 · Analisi Matematica 1</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1" class="is-active">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte1">Parte 1 · Analisi Matematica 1</a><span class="sep">/</span>Capitolo 4</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
+      <nav>
+        <ul>
+          <li><a href="01-numeri-reali-struttura.html">1. Numeri reali e struttura d'ordine</a></li>
+          <li><a href="02-valore-assoluto-topologia.html">2. Valore assoluto e topologia della retta</a></li>
+          <li><a href="03-funzioni.html">3. Funzioni</a></li>
+          <li><a href="04-limiti.html" class="is-active">4. Limiti di funzioni</a></li>
+          <li><a href="05-infinitesimi-infiniti.html">5. Infinitesimi, infiniti e confronti</a></li>
+          <li><a href="06-continuita.html">6. Continuità</a></li>
+          <li><a href="07-derivate.html">7. Derivate</a></li>
+          <li><a href="08-teoremi-fondamentali.html">8. Teoremi fondamentali del calcolo differenziale</a></li>
+          <li><a href="09-studio-di-funzione.html">9. Studio completo di funzione</a></li>
+          <li><a href="10-taylor-mclaurin.html">10. Sviluppi di Taylor e Mclaurin</a></li>
+          <li><a href="11-successioni.html">11. Successioni numeriche</a></li>
+          <li><a href="12-serie-numeriche.html">12. Serie numeriche</a></li>
+          <li><a href="13-integrali-indefiniti.html">13. Integrali indefiniti</a></li>
+          <li><a href="14-integrali-definiti.html">14. Integrali definiti</a></li>
+          <li><a href="15-applicazioni-integrali.html">15. Applicazioni degli integrali</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte1">Parte 1 · Analisi Matematica 1</span>
+          <span class="badge badge--base">Capitolo 4 di 15</span>
+        </div>
+        <h1>Limiti di Funzioni</h1>
+        <p class="subtitle">Il concetto che tiene in piedi tutta l'Analisi. Impareremo a dire con precisione assoluta cosa significa che una funzione "si avvicina" a un valore — anche quando quel valore non viene mai raggiunto. È la porta che possiamo sfiorare senza mai aprirla.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~60 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Nei capitoli precedenti abbiamo seminato un'immagine che ora facciamo germogliare: il <span class="glossario-term" data-term="limite">limite</span> è come <strong>avvicinarsi a una porta senza necessariamente aprirla</strong>. Puoi arrivarci a un millimetro, a un micron, a un miliardesimo di millimetro — puoi avvicinarti <em>quanto vuoi</em> — eppure la domanda "cosa c'è esattamente <em>sulla</em> soglia?" resta una domanda diversa e separata.</p>
+        <p>Facciamo un esempio concreto. Considera la funzione</p>
+        <div class="formula-block">$$f(x) = \frac{x^2 - 1}{x - 1}.$$</div>
+        <p>In $x = 1$ questa funzione <strong>non esiste</strong>: sostituendo otteniamo $\frac{0}{0}$, che non è un numero. Il punto $x = 1$ è un buco, un'assenza, una porta chiusa. Eppure guarda cosa succede se ci avviciniamo a $1$ senza toccarlo. Per ogni $x \neq 1$ possiamo semplificare (perché $x^2 - 1 = (x-1)(x+1)$):</p>
+        <div class="formula-block">$$f(x) = \frac{(x-1)(x+1)}{x-1} = x + 1 \qquad (\text{valido per } x \neq 1).$$</div>
+        <p>Allora, per $x$ vicinissimo a $1$, il valore di $f(x)$ è vicinissimo a $2$. Se $x = 0{,}999$ allora $f(x) = 1{,}999$; se $x = 1{,}0001$ allora $f(x) = 2{,}0001$. La funzione <strong>tende a $2$</strong> pur non valendo $2$ (anzi: non valendo nulla) proprio in $x = 1$. Scriveremo:</p>
+        <div class="formula-block">$$\lim_{x \to 1} \frac{x^2 - 1}{x - 1} = 2.$$</div>
+
+        <svg viewBox="0 0 380 240" style="max-width:440px;margin:1.3em auto;display:block;" role="img" aria-label="Grafico della retta y uguale x più 1 con un buco aperto nel punto di coordinate 1 e 2">
+          <line x1="45" y1="205" x2="360" y2="205" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+          <line x1="60" y1="25" x2="60" y2="225" stroke="currentColor" stroke-width="1.2" opacity="0.55"/>
+          <text x="350" y="223" font-size="12" fill="currentColor" opacity="0.7">x</text>
+          <text x="44" y="30" font-size="12" fill="currentColor" opacity="0.7">y</text>
+          <line x1="50" y1="163" x2="285" y2="35" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <line x1="110" y1="205" x2="110" y2="120" stroke="var(--color-text-muted)" stroke-width="1" stroke-dasharray="4 3"/>
+          <line x1="60" y1="120" x2="110" y2="120" stroke="var(--color-text-muted)" stroke-width="1" stroke-dasharray="4 3"/>
+          <circle cx="110" cy="120" r="6" fill="var(--color-bg-elevated)" stroke="var(--color-primary)" stroke-width="2.5"/>
+          <text x="104" y="222" font-size="12" fill="currentColor">1</text>
+          <text x="40" y="124" font-size="12" fill="currentColor">2</text>
+          <text x="150" y="80" font-size="12" fill="var(--color-primary)" font-weight="700">y = x + 1</text>
+          <text x="120" y="112" font-size="11" fill="var(--color-text-muted)">buco in x = 1</text>
+        </svg>
+
+        <p>Questa è tutta l'idea, in una frase: <strong>il limite descrive il comportamento di una funzione <em>attorno</em> a un punto, non <em>nel</em> punto</strong>. È una distinzione sottile ma rivoluzionaria: ci permette di ragionare su ciò a cui una quantità "tende", anche laddove il calcolo diretto fallisce. Ed è esattamente questo il tipo di problema — il rapporto tra due quantità che <em>svaniscono contemporaneamente</em> — che darà vita alle derivate, agli integrali e a tutta l'Analisi.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> La frase da incorniciare</div>
+          <p>Il limite non ti dice "quanto vale la funzione lì": ti dice "verso quale valore la funzione punta man mano che ci si avvicina lì". Il punto di arrivo può essere un buco, un salto, o un valore diverso da quello a cui si tende. Tenere separati "il valore" e "la tendenza" è il salto concettuale di questo capitolo.</p>
+        </div>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>senza limiti l'Analisi Matematica semplicemente non esiste</strong>. La derivata è un limite (il rapporto tra una variazione di $y$ e una variazione di $x$ che tende a zero). L'integrale è un limite (di somme di rettangoli sempre più sottili). La continuità è definita tramite un limite. Le serie sono limiti di somme. Se questo capitolo è "il più importante e delicato" di tutta la Parte 1, è perché è la <em>radice</em> da cui crescono tutti gli altri.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Risolve il problema di dare senso rigoroso a espressioni "proibite" come $\frac{0}{0}$ o $\frac{\infty}{\infty}$. Quando calcoli la velocità istantanea di un'auto — non la velocità media su un tratto, ma la velocità <em>esatta in un istante</em> — stai dividendo uno spazio infinitesimo per un tempo infinitesimo: $\frac{0}{0}$. Il limite è lo strumento che trasforma questa espressione senza senso in un numero preciso.</p>
+        <p><strong>Perché è importante ora?</strong> Perché tutto ciò che vedrai dopo (capitoli 5–15) darà per scontato che tu sappia calcolare un limite e, soprattutto, che tu abbia capito <em>cosa significhi</em>. Uno studente che sa applicare le regole ma non ha assorbito l'idea dell'"avvicinarsi senza raggiungere" inciamperà su ogni forma indeterminata, su ogni funzione definita a tratti, su ogni <span class="glossario-term" data-term="asintoto">asintoto</span>. Investire tempo qui è l'investimento più redditizio dell'intero corso.</p>
+        <p>C'è anche una ragione storica affascinante. Per quasi due secoli — da Newton e Leibniz nel Seicento fino a Cauchy e Weierstrass nell'Ottocento — i matematici <em>usavano</em> i limiti con enorme successo pratico ma senza una definizione rigorosa, parlando vagamente di "quantità infinitamente piccole". Funzionava, ma nessuno sapeva spiegare <em>perché</em>. La definizione $\varepsilon$–$\delta$ che studierai tra poco è la conquista che ha finalmente messo l'Analisi su fondamenta di acciaio. Non è un tecnicismo: è la risposta a una domanda che ha tormentato i più grandi geni della matematica.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Il portiere del locale e la stanza sempre più piccola</div>
+          <p>Immagina un locale esclusivo. C'è una "sala VIP" (il valore $L$) e tu sostieni: "io appartengo a quella sala, ci finisco dentro di sicuro se mi avvicino abbastanza alla porta d'ingresso (il punto $x_0$)". Il <strong>portiere</strong>, scettico, ti mette alla prova. Ti sfida: <em>"Ti disegno attorno alla sala VIP una stanza di raggio $\varepsilon$; dimostrami che ci finisci dentro."</em> Tu rispondi indicando quanto ti devi avvicinare alla porta: <em>"Se resto entro un raggio $\delta$ dalla soglia, garantito che sono nella tua stanza."</em></p>
+        </div>
+        <p>La parte geniale è questa: il portiere può <strong>restringere la stanza quanto vuole</strong>. Ti dice $\varepsilon = 1$ metro, e tu trovi il tuo $\delta$. Ti dice $\varepsilon = 1$ centimetro, più severo, e tu — avvicinandoti di più alla porta — trovi un $\delta$ più piccolo che funziona ancora. Ti dice $\varepsilon = 1$ millimetro, e ancora una volta esiste un $\delta$ adatto. <strong>Il limite vale $L$ se, per quanto piccola sia la stanza $\varepsilon$ che il portiere pretende, tu riesci sempre a trovare una vicinanza $\delta$ sufficiente a starci dentro.</strong> Se anche un solo $\varepsilon$ ti mettesse in scacco — se esistesse una stanza così piccola in cui non riesci mai a garantire di entrare — allora il limite <em>non</em> sarebbe $L$.</p>
+        <p>Nota la logica: prima parla il portiere (sceglie $\varepsilon$), <strong>poi</strong> rispondi tu (trovi $\delta$). L'ordine è sacro. Il tuo $\delta$ può dipendere da quale $\varepsilon$ ti è stato imposto — più stretta la richiesta, più ti devi avvicinare — ma un $\delta$ che funziona deve <em>sempre</em> esistere.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚦</span> Il traffico che rallenta verso il semaforo rosso</div>
+          <p>Un'altra immagine: sei in coda verso un semaforo rosso. L'auto rallenta progressivamente — 30, 20, 10, 5, 2 km/h... — avvicinandosi sempre di più alla linea di stop <strong>senza mai fermarsi davvero</strong> finché il semaforo è rosso. La tua posizione <em>tende</em> alla linea di stop, la tua velocità <em>tende</em> a zero. Ma "tendere a fermarsi" e "essere fermi" restano due cose diverse: la porta (il verde) non si è ancora aperta. Il limite descrive proprio quel rallentamento asintotico, quel puntare verso un valore che il moto reale sfiora ma non tocca.</p>
+        </div>
+        <p>E ancora: il navigatore GPS che annuncia "sei a 500 metri, 200 metri, 50 metri dalla destinazione" descrive un <span class="glossario-term" data-term="intorno">intorno</span> della meta che si stringe; la carica di una batteria che si avvicina al 100% sempre più lentamente; la temperatura di un caffè che tende a quella della stanza. Ovunque qualcosa "punti verso" un valore avvicinandosi indefinitamente, c'è un limite nascosto.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-accumulazione">4.1 Prima di tutto: il punto di accumulazione</h3>
+        <p><strong>L'idea, prima della formula.</strong> Tutto il capitolo ruota attorno alla frase "$x$ si avvicina a $x_0$". Ma quella frase ha senso soltanto se attorno a $x_0$ ci sono <em>davvero</em> dei punti in cui la funzione è definita. Se attorno a $x_0$ non c'è niente, non c'è niente a cui avvicinarsi, e la domanda "verso quale valore va $f$?" non ha risposta. Il nome tecnico di questa condizione è <strong>punto di accumulazione</strong>: significa "per quanto piccola sia la lente con cui guardo attorno a $x_0$, dentro la lente trovo sempre almeno un punto del <span class="glossario-term" data-term="dominio">dominio</span>, diverso da $x_0$".</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🎤</span> L'immagine da tenere in mente</div>
+          <p>Un palco vuoto in mezzo a una piazza gremita. Sul palco non c'è nessuno, eppure a qualunque distanza dal palco — un metro, un centimetro, un millimetro — trovi qualcuno. Il palco è un <em>punto di accumulazione</em> della folla: la folla gli sta addosso da ogni lato, pur non stando <em>sopra</em> di esso. Invece una persona seduta da sola su una panchina, a cento metri da tutti, non è un punto di accumulazione: intorno a lei, per un bel pezzo, non c'è nessuno.</p>
+        </div>
+
+        <p><strong>Un esempio con i numeri.</strong> Prendiamo la funzione da cui siamo partiti, $f(x)=\dfrac{x^2-1}{x-1}$. Il suo dominio è $D=\mathbb{R}\setminus\{1\}$, cioè "tutti i numeri reali tranne l'$1$" (si toglie $1$ perché lì il denominatore si annulla). Chiediamoci: <em>il punto $x_0=1$ è di accumulazione per $D$?</em> Attenzione, $1$ non appartiene a $D$. Vediamo se comunque $D$ gli si stringe intorno. Procediamo come sempre: prima con una lente concreta, poi con una lente qualsiasi.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Prima lente: raggio $\delta=0{,}1$.</strong> Devo trovare un numero $x$ che stia in $D$ (cioè $x\neq1$) e disti da $1$ meno di $0{,}1$. Provo con $x=1{,}05$: la sua distanza da $1$ è $|1{,}05-1|=0{,}05$, che è positiva (quindi $x\neq1$) e minore di $0{,}1$. Trovato.</span>
+          <span class="esempio__passo"><strong>Seconda lente: raggio $\delta=0{,}000001$.</strong> Provo con $x=1{,}0000005$: la distanza è $0{,}0000005$, di nuovo positiva e minore del raggio. Trovato anche qui.</span>
+          <span class="esempio__passo"><strong>Lente qualsiasi.</strong> Non posso provare a mano tutti i raggi: mi serve una regola che funzioni per ogni $\delta\gt0$. La regola è "prendo il punto a metà strada", cioè $x=1+\dfrac{\delta}{2}$. Verifico che funzioni sempre:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+x &amp;= 1+\frac{\delta}{2} &amp;&amp;\text{(il punto che scelgo, a destra di }1\text{)}\\
+x-1 &amp;= \frac{\delta}{2} &amp;&amp;\text{(sottraggo }1\text{ da entrambi i membri)}\\
+|x-1| &amp;= \frac{\delta}{2} &amp;&amp;\text{(la quantità è positiva, quindi il modulo la lascia com'è)}\\
+0 \lt \frac{\delta}{2} &amp;\lt \delta &amp;&amp;\text{(metà di un numero positivo è positiva e più piccola del numero)}
+\end{aligned}$$</div>
+        <p>L'ultima riga dice proprio quello che volevamo: $0\lt|x-1|\lt\delta$. Quindi per <em>ogni</em> raggio $\delta$, per quanto minuscolo, dentro la lente c'è un punto di $D$ diverso da $1$. <strong>Conclusione: $x_0=1$ è un punto di accumulazione per $D$</strong>, anche se non appartiene a $D$. È il palco vuoto con la folla intorno — ed è esattamente per questo che ha senso chiedersi quanto vale il limite in $1$.</p>
+
+        <p><strong>Ora la definizione, con ogni pezzo tradotto.</strong></p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="punto-di-accumulazione">Punto di accumulazione</span>.</em> Sia $D \subseteq \mathbb{R}$ un insieme di numeri e sia $x_0$ un numero reale (può stare dentro o fuori $D$: non importa). Diciamo che $x_0$ è di <strong>accumulazione</strong> per $D$ se, comunque si scelga il raggio dell'<span class="glossario-term" data-term="intorno">intorno</span>, dentro quell'intorno c'è sempre almeno un punto di $D$ diverso da $x_0$. In simboli:</p>
+          <div class="formula-block">$$\underbrace{\forall\,\delta\gt0}_{\text{per ogni raggio, anche piccolissimo}}\quad \underbrace{\exists\,x\in D}_{\text{esiste un punto del dominio}}\ :\quad \underbrace{0\lt|x-x_0|}_{x\text{ è diverso da }x_0}\ \underbrace{\lt\ \delta}_{\text{e dista da }x_0\text{ meno di }\delta}$$</div>
+          <p>L'intorno da cui si esclude $x_0$ si chiama <strong>intorno bucato</strong> e si indica $\dot I_\delta(x_0)$: il "buco" serve a impedire di barare contando $x_0$ stesso come punto vicino.</p>
+        </div>
+
+        <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> Prendiamo $D=\mathbb{Z}$ (i numeri interi) e $x_0=3$. Scelgo il raggio $\delta=\frac12$: l'intorno è l'intervallo che va da $2{,}5$ a $3{,}5$. Quali interi ci stanno dentro? Solo il $3$ — ma il $3$ è proprio $x_0$, e il "buco" lo esclude. Dentro l'intorno bucato non c'è <em>nessun</em> punto di $D$. E questo basta: per negare la definizione serve <em>un solo</em> raggio che non funziona. Quindi $3$ <strong>non</strong> è un punto di accumulazione di $\mathbb{Z}$; si dice che è un <span class="glossario-term" data-term="punto-isolato">punto isolato</span>. È la persona sola sulla panchina: gli altri interi stanno tutti a distanza almeno $1$.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p><strong>Per dire SÌ</strong> (è di accumulazione): prendi un $\delta\gt0$ generico e <em>esibisci</em> un punto $x$ del dominio che soddisfi $0\lt|x-x_0|\lt\delta$. Quasi sempre basta la ricetta "mezzo raggio": $x=x_0+\frac{\delta}{2}$, come abbiamo fatto sopra. <strong>Per dire NO</strong> basta trovare <em>un solo</em> raggio $\delta$ tale che nell'intorno bucato non cada nessun punto del dominio.</p>
+        </div>
+        <p><strong>Fin qui:</strong> $x_0$ è di accumulazione se il dominio gli si stringe intorno. Non serve che $x_0$ appartenga al dominio — anzi, i casi più interessanti sono proprio quelli in cui non ci appartiene, come $x_0=1$ per $\frac{x^2-1}{x-1}$. <strong>Da qui in avanti, ogni volta che scriviamo $\lim_{x\to x_0}$ diamo per sottinteso che $x_0$ sia di accumulazione per il dominio di $f$</strong>: senza questa condizione la scrittura non avrebbe senso. Il concetto è ripreso dal <a href="02-valore-assoluto-topologia.html">capitolo 2 (topologia della retta)</a>, dove è trattato per esteso.</p>
+
+        <h3 id="teoria-definizione">4.2 La definizione rigorosa $\varepsilon$–$\delta$ (limite finito in un punto finito)</h3>
+        <p>Questa è la sezione più importante del capitolo, ed è il punto in cui quasi tutti si perdono. Non ci perderemo, perché <strong>non partiremo dai simboli</strong>. Faremo quattro passi, in quest'ordine: (1) diciamo a parole cosa vogliamo catturare; (2) giochiamo con numeri veri, con i conti scritti per intero; (3) <em>solo allora</em> scriviamo la formula, traducendo ogni simbolo; (4) vediamo un caso in cui la definizione dice "no", per capire dove sta il confine.</p>
+
+        <h4>Passo 1 — Cosa vogliamo catturare, detto a parole</h4>
+        <p>Vogliamo dare un senso preciso alla frase: <em>"più $x$ si avvicina a $x_0$, più $f(x)$ si avvicina a $L$"</em>. Il problema è la parola "si avvicina": è vaga. Quanto vicino? Proviamo a renderla precisa, in tre tentativi.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Primo tentativo:</strong> "$f(x)$ diventa vicino a $L$". Troppo vago: vicino <em>quanto</em>? Un millimetro è vicino per una strada, lontanissimo per un microchip.</span>
+          <span class="esempio__passo"><strong>Secondo tentativo:</strong> "$f(x)$ diventa vicino a $L$ quanto vogliamo". Meglio: introduce l'idea che non esiste una soglia di vicinanza che non riusciamo a battere. Ma manca il come.</span>
+          <span class="esempio__passo"><strong>Terzo tentativo (quello giusto):</strong> "<em>qualunque</em> livello di vicinanza mi venga richiesto per $f(x)$, io riesco a garantirlo, purché $x$ sia abbastanza vicino a $x_0$". Qui ci sono tutti gli ingredienti: una <strong>richiesta</strong> (quanto vicino deve stare $f(x)$ a $L$) e una <strong>risposta</strong> (quanto vicino deve stare $x$ a $x_0$ perché la richiesta sia soddisfatta).</span>
+        </p>
+        <p>La terza frase è già la definizione di limite, solo scritta in italiano. Le due quantità in gioco hanno un nome tradizionale: la richiesta si chiama $\varepsilon$ (epsilon), la risposta si chiama $\delta$ (delta). <strong>Sono due distanze, e sono entrambe numeri positivi piccoli.</strong> Ricorda la storia del portiere raccontata nella sezione 3 (<a href="#vita-reale">Collegamento con la vita reale</a>): $\varepsilon$ è il raggio della stanza che il portiere disegna attorno a $L$, $\delta$ è quanto ti devi avvicinare alla porta per finirci dentro.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🎯</span> Le due distanze, per non confonderle mai più</div>
+          <p>$\varepsilon$ vive <strong>sull'asse verticale</strong>, il mondo dei valori $f(x)$: misura quanto $f(x)$ può distare da $L$. $\delta$ vive <strong>sull'asse orizzontale</strong>, il mondo delle $x$: misura quanto $x$ può distare da $x_0$. Chi confonde i due assi non capirà mai la definizione; chi li tiene separati l'ha quasi capita.</p>
+        </div>
+
+        <h4>Passo 2 — Il gioco della sfida, con numeri veri</h4>
+        <p>Mettiamo alla prova l'affermazione $\lim\limits_{x\to2}(3x-1)=5$. Qui $f(x)=3x-1$, $x_0=2$, $L=5$. Il gioco ha due giocatori: <strong>il portiere</strong>, che sceglie quanto vicino a $5$ deve finire $f(x)$ (cioè sceglie $\varepsilon$), e <strong>tu</strong>, che devi rispondere dicendo quanto vicino a $2$ deve stare $x$ (cioè devi trovare $\delta$). Giochiamo tre partite.</p>
+
+        <p><strong>Partita 1 — il portiere dice: $\varepsilon = 0{,}1$.</strong> Traduzione: "voglio che $f(x)$ disti da $5$ meno di un decimo". Scrivo questa richiesta e la lavoro finché non compare la distanza $|x-2|$, che è l'unica cosa che io posso controllare.</p>
+        <div class="calcolo">$$\begin{aligned}
+|(3x-1)-5| &amp;\lt 0{,}1 &amp;&amp;\text{(la richiesta del portiere, scritta con i moduli)}\\
+|3x-6| &amp;\lt 0{,}1 &amp;&amp;\text{(faccio i conti dentro il modulo: }-1-5=-6\text{)}\\
+|3(x-2)| &amp;\lt 0{,}1 &amp;&amp;\text{(raccolgo }3\text{: infatti }3x-6=3(x-2)\text{)}\\
+3\,|x-2| &amp;\lt 0{,}1 &amp;&amp;\text{(regola }|ab|=|a|\cdot|b|\text{, cap. 2, con }a=3,\ b=x-2\text{; e }|3|=3\text{)}\\
+|x-2| &amp;\lt \frac{0{,}1}{3}\approx 0{,}0333 &amp;&amp;\text{(divido entrambi i membri per }3\text{, positivo: il verso non cambia)}
+\end{aligned}$$</div>
+        <p>Ecco la risposta: <strong>basta che $x$ disti da $2$ meno di $0{,}0333$</strong>. Per comodità annuncio un numero tondo e un po' più prudente: $\delta = 0{,}03$ (un $\delta$ più piccolo del necessario va sempre bene, perché chiede <em>di più</em> a $x$, non di meno). Controlliamo con un numero concreto: prendo $x=2{,}02$, che dista $0{,}02$ da $2$, quindi rispetta $|x-2|\lt0{,}03$.</p>
+        <div class="calcolo">$$\begin{aligned}
+f(2{,}02) &amp;= 3\cdot 2{,}02-1 &amp;&amp;\text{(sostituisco }x=2{,}02\text{ in }f(x)=3x-1\text{)}\\
+&amp;= 6{,}06-1 = 5{,}06 &amp;&amp;\text{(faccio la moltiplicazione, poi la sottrazione)}\\
+|f(2{,}02)-5| &amp;= |5{,}06-5| = 0{,}06 &amp;&amp;\text{(distanza fra il valore ottenuto e }L=5\text{)}\\
+0{,}06 &amp;\lt 0{,}1 &amp;&amp;\text{(è dentro la stanza richiesta: ho vinto la partita)}
+\end{aligned}$$</div>
+
+        <p><strong>Partita 2 — il portiere alza la posta: $\varepsilon = 0{,}01$.</strong> Ripeto identico il ragionamento, cambiando solo il numero a destra.</p>
+        <div class="calcolo">$$\begin{aligned}
+|(3x-1)-5| &amp;\lt 0{,}01 &amp;&amp;\text{(nuova richiesta)}\\
+3\,|x-2| &amp;\lt 0{,}01 &amp;&amp;\text{(stessi tre passaggi di prima: conti, raccoglimento, }|ab|=|a||b|\text{)}\\
+|x-2| &amp;\lt \frac{0{,}01}{3}\approx 0{,}00333 &amp;&amp;\text{(divido per }3\text{)}
+\end{aligned}$$</div>
+        <p>Rispondo $\delta = 0{,}003$. Controllo con $x=2{,}002$: viene $f(x)=3\cdot2{,}002-1=6{,}006-1=5{,}006$, che dista $0{,}006$ da $5$, e $0{,}006\lt0{,}01$. Vinta anche questa.</p>
+
+        <p><strong>Partita 3 — il portiere si arrende ai numeri e passa alle lettere: "$\varepsilon$ qualunque".</strong> Questo è il passo che rende la cosa un teorema e non una serie infinita di verifiche. Non so quanto vale $\varepsilon$: so solo che è un numero positivo. Rifaccio gli stessi conti con la lettera al posto del numero.</p>
+        <div class="calcolo">$$\begin{aligned}
+|(3x-1)-5| &amp;\lt \varepsilon &amp;&amp;\text{(la richiesta, con }\varepsilon\text{ generico)}\\
+3\,|x-2| &amp;\lt \varepsilon &amp;&amp;\text{(conti dentro il modulo, raccoglimento, }|ab|=|a||b|\text{)}\\
+|x-2| &amp;\lt \frac{\varepsilon}{3} &amp;&amp;\text{(divido entrambi i membri per }3\text{, positivo: il verso resta)}
+\end{aligned}$$</div>
+        <p>La risposta universale è dunque $\delta = \dfrac{\varepsilon}{3}$: <strong>una formula che, dato qualunque $\varepsilon$, sputa fuori il $\delta$ che serve</strong>. Se il portiere dice $0{,}1$, la formula dà $0{,}0333$; se dice $0{,}000001$, dà $0{,}000000333$. Non c'è sfida che possa metterti in difficoltà.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>La sfida ($\varepsilon$)</th><th>La mia risposta ($\delta=\varepsilon/3$)</th><th>Un controllo concreto</th></tr></thead>
+          <tbody>
+            <tr><td>$0{,}1$</td><td>$\approx 0{,}0333$ (uso $0{,}03$)</td><td>$x=2{,}02\ \Rightarrow\ f(x)=5{,}06$, dista $0{,}06\lt0{,}1$ ✔</td></tr>
+            <tr><td>$0{,}01$</td><td>$\approx 0{,}00333$ (uso $0{,}003$)</td><td>$x=2{,}002\ \Rightarrow\ f(x)=5{,}006$, dista $0{,}006\lt0{,}01$ ✔</td></tr>
+            <tr><td>$0{,}000001$</td><td>$\approx 0{,}000000333$</td><td>$x=2{,}0000002\ \Rightarrow\ f(x)=5{,}0000006$, dista $0{,}0000006$ ✔</td></tr>
+            <tr><td>$\varepsilon$ qualunque</td><td>$\varepsilon/3$</td><td>$3|x-2|\lt3\cdot\frac{\varepsilon}{3}=\varepsilon$ ✔</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Fin qui:</strong> abbiamo scoperto che dire "$\lim_{x\to2}(3x-1)=5$" significa esattamente "esiste una regola che, a ogni sfida $\varepsilon$, risponde con un $\delta$ che funziona". Quella regola, qui, è $\delta=\varepsilon/3$. Adesso — e solo adesso — scriviamo tutto questo in simboli.</p>
+
+        <h4>Passo 3 — La definizione formale, simbolo per simbolo</h4>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Limite finito in un punto finito.</em> Sia $f$ definita in un intorno di $x_0$ (tranne al più in $x_0$ stesso, dove può anche non esistere). Diciamo che il limite di $f(x)$ per $x$ che tende a $x_0$ è il numero $L$, e scriviamo</p>
+          <div class="formula-block">$$\lim_{x \to x_0} f(x) = L,$$</div>
+          <p>se è vera la frase seguente:</p>
+          <div class="formula-block">$$\underbrace{\forall \varepsilon \gt 0}_{\text{comunque il portiere scelga la tolleranza}}\ \ \underbrace{\exists\, \delta \gt 0}_{\text{io riesco a trovare una vicinanza}}\ :\ \ \underbrace{0 \lt |x - x_0| \lt \delta}_{\text{se }x\text{ sta vicino a }x_0\text{ ma è diverso da }x_0}\ \ \underbrace{\implies}_{\text{allora di sicuro}}\ \ \underbrace{|f(x) - L| \lt \varepsilon}_{f(x)\text{ dista da }L\text{ meno di }\varepsilon}$$</div>
+        </div>
+        <p>Rileggi la formula <em>lentamente</em>, confrontandola con le tre partite che abbiamo giocato: $\varepsilon$ era $0{,}1$, poi $0{,}01$, poi una lettera qualsiasi; $\delta$ era $0{,}03$, poi $0{,}003$, poi $\varepsilon/3$; l'implicazione era il controllo finale ("se $x$ dista meno di $\delta$, allora $f(x)$ dista meno di $\varepsilon$"). Ecco la traduzione pezzo per pezzo, in tabella:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Simbolo</th><th>Si legge</th><th>Cosa significa davvero</th></tr></thead>
+          <tbody>
+            <tr><td>$\forall \varepsilon &gt; 0$</td><td>"per ogni $\varepsilon$ positivo"</td><td>Per quanto piccola sia la stanza (tolleranza) che il portiere pretende attorno a $L$. È la <strong>sfida</strong>, e viene per prima.</td></tr>
+            <tr><td>$\exists\, \delta &gt; 0$</td><td>"esiste un $\delta$ positivo"</td><td>Io riesco a trovare un raggio di vicinanza attorno a $x_0$. È la <strong>risposta</strong>, e può dipendere da $\varepsilon$.</td></tr>
+            <tr><td>$0 &lt; |x - x_0| &lt; \delta$</td><td>"$x$ dista da $x_0$ più di zero ma meno di $\delta$"</td><td>$x$ è nell'<strong>intorno bucato</strong> di $x_0$: vicino a $x_0$ ma <em>diverso</em> da $x_0$.</td></tr>
+            <tr><td>$\implies$</td><td>"allora"</td><td>La garanzia: se rispetti la vicinanza richiesta...</td></tr>
+            <tr><td>$|f(x) - L| &lt; \varepsilon$</td><td>"$f(x)$ dista da $L$ meno di $\varepsilon$"</td><td>...allora $f(x)$ finisce dentro la stanza di raggio $\varepsilon$ attorno a $L$.</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Le due disuguaglianze, tradotte in intervalli.</strong> Le condizioni con il modulo si possono leggere come appartenenze a intervalli, ed è utile saperle girare in entrambi i modi. Usiamo la regola del valore assoluto vista nel cap. 2: $|t|\lt r$ equivale a $-r\lt t\lt r$.</p>
+        <div class="calcolo">$$\begin{aligned}
+|x-x_0| &amp;\lt \delta &amp;&amp;\text{(condizione di partenza)}\\
+-\delta \lt x-x_0 &amp;\lt \delta &amp;&amp;\text{(sciolgo il modulo con la regola }|t|\lt r \iff -r\lt t\lt r\text{, cap. 2)}\\
+x_0-\delta \lt x &amp;\lt x_0+\delta &amp;&amp;\text{(sommo }x_0\text{ a tutti e tre i membri)}
+\end{aligned}$$</div>
+        <p>Quindi "$|x-x_0|\lt\delta$" vuol dire "$x$ sta nell'intervallo $(x_0-\delta,\ x_0+\delta)$", che si chiama <strong>intorno di $x_0$ di raggio $\delta$</strong> e si scrive $I_\delta(x_0)$. Allo stesso modo "$|f(x)-L|\lt\varepsilon$" vuol dire "$f(x)$ sta nell'intervallo $(L-\varepsilon,\ L+\varepsilon)$". Con questo linguaggio la definizione suona così: <strong>per ogni intorno di $L$, comunque piccolo, esiste un intorno di $x_0$ i cui punti — escluso $x_0$ — vengono tutti mandati da $f$ dentro quell'intorno di $L$.</strong></p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🕳️</span> Perché l'intorno è BUCATO? La condizione $0 &lt; |x - x_0|$</div>
+          <p>Guarda bene: non chiediamo semplicemente $|x - x_0| \lt \delta$, ma $\mathbf{0 \lt |x - x_0|} \lt \delta$. Quel "$0 \lt$" a sinistra <strong>esclude esplicitamente il caso $x = x_0$</strong>, perché $|x-x_0|=0$ succede per un solo punto, e quel punto è proprio $x_0$. È la traduzione formale di tutta la filosofia del capitolo: <em>non ci interessa cosa fa $f$ esattamente in $x_0$</em>, ci interessa solo cosa fa <em>attorno</em>. La porta può essere chiusa (la funzione può non essere definita in $x_0$, come nel nostro $\frac{x^2-1}{x-1}$), oppure può aprirsi su una stanza sbagliata (la funzione può valere in $x_0$ un numero diverso da $L$): in entrambi i casi il limite se ne infischia, perché guarda solo l'intorno bucato. Senza quel "$0 \lt$", il concetto di limite collasserebbe su quello di valore della funzione, e perderebbe tutto il suo potere.</p>
+        </div>
+
+        <h4>Passo 4 — Un non-esempio: quando la definizione dice NO</h4>
+        <p>Una definizione si capisce davvero solo quando si vede <em>fallire</em>. Qualcuno sostiene che $\lim\limits_{x\to2}(3x-1)=6$. È falso, e la definizione ce lo fa vedere. Per negarla basta esibire <strong>una sola sfida $\varepsilon$ a cui nessun $\delta$ sa rispondere</strong>: scelgo $\varepsilon=\frac12$, cioè "voglio che $f(x)$ disti da $6$ meno di mezzo".</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">L'avversario mi proporrà un certo $\delta$. Io rispondo scegliendo un punto $x$ vicinissimo a $2$, dentro il suo intorno: scrivo $x=2+h$, dove $h$ è positivo, più piccolo di $\delta$ <em>e</em> più piccolo di $\frac16$ (posso sempre farlo: basta prendere $h$ minore del più piccolo dei due numeri).</span>
+          <span class="esempio__passo">Ora calcolo quanto dista $f(x)$ dal valore $6$ che l'avversario sostiene:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+f(2+h) &amp;= 3(2+h)-1 &amp;&amp;\text{(sostituisco }x=2+h\text{ in }f(x)=3x-1\text{)}\\
+&amp;= 6+3h-1 = 5+3h &amp;&amp;\text{(svolgo il prodotto e sommo)}\\
+|f(2+h)-6| &amp;= |5+3h-6| = |3h-1| &amp;&amp;\text{(distanza dal valore preteso }6\text{)}\\
+&amp;= 1-3h &amp;&amp;\text{(}3h\lt\tfrac12\lt1\text{, quindi }3h-1\text{ è negativo e il modulo lo cambia di segno)}\\
+1-3h &amp;\gt 1-\frac12 = \frac12 &amp;&amp;\text{(perché }3h\lt\tfrac12\text{: togliendo di meno resta di più)}
+\end{aligned}$$</div>
+        <p>Risultato: $|f(x)-6|\gt\frac12=\varepsilon$. Il punto $f(x)$ cade <strong>fuori</strong> dalla stanza richiesta, e questo succede per <em>qualunque</em> $\delta$ mi venga proposto, perché ho sempre potuto scegliere un $h$ abbastanza piccolo. Nessun $\delta$ funziona con $\varepsilon=\frac12$, quindi la definizione non è soddisfatta: <strong>$6$ non è il limite</strong>. (E infatti il limite è $5$: attorno a $x=2$ la funzione vale circa $5$, e $5$ dista $1$ da $6$ — troppo per starci dentro con una tolleranza di mezzo.)</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica un limite con la definizione</div>
+          <p>Cinque mosse, sempre le stesse:</p>
+          <p><strong>(1)</strong> Scrivi la disuguaglianza da ottenere: $|f(x)-L|\lt\varepsilon$, sostituendo l'espressione vera di $f$ e i numeri veri di $L$. <strong>(2)</strong> Lavora <em>dentro</em> il modulo (conti, raccoglimenti, fattorizzazioni) finché non compare il pezzo $|x-x_0|$: è l'unica quantità che $\delta$ controlla. <strong>(3)</strong> Isola $|x-x_0|$, portando tutto il resto a destra: ottieni $|x-x_0|\lt(\text{qualcosa che dipende da }\varepsilon)$. <strong>(4)</strong> Chiama $\delta$ quel "qualcosa" (o un qualunque numero positivo più piccolo: funziona ugualmente). <strong>(5)</strong> Ripercorri la catena al contrario, partendo da $0\lt|x-x_0|\lt\delta$ e arrivando a $|f(x)-L|\lt\varepsilon$: questo è il controllo che chiude la verifica.</p>
+        </div>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🤔</span> I quattro dubbi che vengono a tutti</div>
+          <p><strong>1) "Il $\delta$ dipende da $\varepsilon$?"</strong> Sì, quasi sempre — ed è giusto così: più stretta è la richiesta, più vicino devi stare. Nel nostro esempio $\delta=\varepsilon/3$: quando $\varepsilon$ si dimezza, anche $\delta$ si dimezza.</p>
+          <p><strong>2) "Devo trovare il $\delta$ più grande possibile?"</strong> No. La definizione chiede solo che <em>esista</em> un $\delta$ che funziona. Se $\delta=0{,}03$ funziona, funziona anche $\delta=0{,}001$: chiedere a $x$ di stare <em>ancora più</em> vicino non può guastare. Per questo si può sempre "arrotondare per difetto".</p>
+          <p><strong>3) "E se $f(x_0)$ è diverso da $L$, o non esiste?"</strong> Non cambia nulla: l'intorno è bucato, quel punto non viene mai guardato.</p>
+          <p><strong>4) "Perché prima $\varepsilon$ e poi $\delta$?"</strong> Perché l'ordine è la sostanza della definizione. Se potessi scegliere io $\delta$ per primo e poi il portiere adattasse $\varepsilon$, dimostrerei qualunque sciocchezza. La sfida viene prima, la risposta dopo: $\forall\varepsilon\ \exists\delta$, mai il contrario.</p>
+        </div>
+
+        <h3 id="teoria-varianti">4.3 Le altre tre varianti della definizione</h3>
+        <p><strong>Il problema.</strong> La definizione del <span class="richiamo" data-sec="4.2">§4.2</span> copre un caso solo: $x_0$ è un numero e anche $L$ è un numero. Ma capitano altre tre situazioni. La funzione può <em>esplodere</em> mentre $x$ si avvicina a un punto (pensa a $\frac1{x^2}$ vicino a zero). Oppure possiamo voler sapere che cosa fa la funzione quando $x$ se ne va verso destra all'infinito. Oppure tutte e due le cose insieme.</p>
+        <p><strong>L'idea che le unifica.</strong> Lo scheletro non cambia mai: <em>per ogni sfida esiste una risposta</em>. Cambia solo il modo di dire "vicino":</p>
+        <ul>
+          <li>vicino a un <strong>numero</strong> $a$ significa "dista da $a$ meno di un raggio piccolo" ($|t-a|\lt$ raggio);</li>
+          <li>vicino a <strong>$+\infty$</strong> significa "ha superato una soglia grande" ($t\gt$ soglia);</li>
+          <li>vicino a <strong>$-\infty$</strong> significa "è sceso sotto una soglia grande in negativo" ($t\lt-$ soglia).</li>
+        </ul>
+        <p>Per tradizione le tolleranze piccole si chiamano $\varepsilon$ (sulle $y$) e $\delta$ (sulle $x$), mentre le soglie grandi si chiamano $M$ (sulle $y$) e $K$ (sulle $x$). Ecco le quattro combinazioni, con la definizione formale di ciascuna.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Tipo di limite</th><th>Scrittura</th><th>Definizione formale</th><th>Significato geometrico</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Finito in punto finito</td>
+              <td>$\lim\limits_{x\to x_0} f(x) = L$</td>
+              <td>$\forall \varepsilon&gt;0\ \exists\delta&gt;0:\ 0&lt;|x-x_0|&lt;\delta \implies |f(x)-L|&lt;\varepsilon$</td>
+              <td>La curva si stringe verso l'altezza $L$.</td>
+            </tr>
+            <tr>
+              <td>Infinito in punto finito</td>
+              <td>$\lim\limits_{x\to x_0} f(x) = +\infty$</td>
+              <td>$\forall M&gt;0\ \exists\delta&gt;0:\ 0&lt;|x-x_0|&lt;\delta \implies f(x)&gt;M$</td>
+              <td>Asintoto verticale in $x_0$: la curva sale oltre ogni soglia.</td>
+            </tr>
+            <tr>
+              <td>Finito all'infinito</td>
+              <td>$\lim\limits_{x\to +\infty} f(x) = L$</td>
+              <td>$\forall \varepsilon&gt;0\ \exists K&gt;0:\ x&gt;K \implies |f(x)-L|&lt;\varepsilon$</td>
+              <td>Asintoto orizzontale $y=L$ a destra.</td>
+            </tr>
+            <tr>
+              <td>Infinito all'infinito</td>
+              <td>$\lim\limits_{x\to +\infty} f(x) = +\infty$</td>
+              <td>$\forall M&gt;0\ \exists K&gt;0:\ x&gt;K \implies f(x)&gt;M$</td>
+              <td>La curva cresce senza fine verso destra.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Osserva il filo comune: dove prima c'era "$\varepsilon$ piccolo attorno a $L$" ora può esserci "$M$ grande" (per dire "$f$ supera qualunque soglia", cioè tende a $+\infty$); dove prima c'era "$\delta$ piccolo attorno a $x_0$" ora può esserci "$K$ grande" (per dire "$x$ è andato oltre qualunque soglia", cioè verso $+\infty$). Le varianti con $-\infty$ si ottengono cambiando verso: per $f(x) \to -\infty$ si richiede $f(x) \lt -M$; per $x \to -\infty$ si richiede $x \lt -K$. Il collegamento con gli <span class="glossario-term" data-term="asintoto">asintoti</span> è diretto: un limite infinito in un punto finito è un <strong>asintoto verticale</strong>, un limite finito all'infinito è un <strong>asintoto orizzontale</strong>.</p>
+
+        <p><strong>Due verifiche con i numeri</strong>, per vedere che il gioco è lo stesso di prima. Sono brevi: vale la pena seguirle riga per riga.</p>
+        <p><em>Verifica A: $\lim\limits_{x\to0}\dfrac{1}{x^2}=+\infty$.</em> Qui la sfida non è più "stai vicino a $L$" ma "<strong>supera la soglia $M$</strong>". Il portiere dice per esempio $M=1000$: vuole che $\frac{1}{x^2}$ diventi più grande di mille. Devo trovare il raggio $\delta$ che me lo garantisce.</p>
+        <div class="calcolo">$$\begin{aligned}
+\frac{1}{x^2} &amp;\gt 1000 &amp;&amp;\text{(la richiesta del portiere)}\\
+1 &amp;\gt 1000\,x^2 &amp;&amp;\text{(moltiplico entrambi i membri per }x^2\gt0\text{: il verso resta)}\\
+x^2 &amp;\lt \frac{1}{1000} &amp;&amp;\text{(divido entrambi i membri per }1000\gt0\text{ e scambio i due lati)}\\
+|x| &amp;\lt \frac{1}{\sqrt{1000}} \approx 0{,}0316 &amp;&amp;\text{(estraggo la radice: }\sqrt{x^2}=|x|\text{, Parte 0, cap. 3)}
+\end{aligned}$$</div>
+        <p>Rispondo $\delta=0{,}03$. Controllo con $x=0{,}02$: viene $\frac{1}{0{,}02^2}=\frac{1}{0{,}0004}=2500$, che è davvero più grande di $1000$. Con una soglia generica $M$ gli stessi passaggi danno $\delta=\frac{1}{\sqrt M}$: c'è una risposta per ogni sfida, quindi il limite è $+\infty$.</p>
+        <p><em>Verifica B: $\lim\limits_{x\to+\infty}\dfrac{1}{x}=0$.</em> Qui la sfida torna a essere "stai vicino a $L=0$ meno di $\varepsilon$", ma la risposta non è più un raggio: è una <strong>soglia $K$</strong> oltre la quale mandare $x$. Il portiere dice $\varepsilon=0{,}001$.</p>
+        <div class="calcolo">$$\begin{aligned}
+\left|\frac{1}{x}-0\right| &amp;\lt 0{,}001 &amp;&amp;\text{(la richiesta, scritta con il modulo)}\\
+\frac{1}{x} &amp;\lt 0{,}001 &amp;&amp;\text{(per }x\to+\infty\text{ possiamo supporre }x\gt0\text{, quindi }\tfrac1x\gt0\text{ e il modulo sparisce)}\\
+x &amp;\gt \frac{1}{0{,}001} = 1000 &amp;&amp;\text{(passo ai reciproci fra numeri positivi: il verso si inverte)}
+\end{aligned}$$</div>
+        <p>Rispondo $K=1000$. Controllo con $x=2000$: viene $\frac{1}{2000}=0{,}0005$, che dista da $0$ meno di $0{,}001$. Con $\varepsilon$ generico la risposta è $K=\frac{1}{\varepsilon}$.</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Non-esempio: "tende a $+\infty$" non vuol dire "diventa grande"</div>
+          <p>La funzione $f(x)=x\sin x$ per $x\to+\infty$ assume valori enormi (quando $\sin x$ vale $1$) ma torna anche a zero infinite volte (quando $\sin x$ vale $0$). Non supera <em>definitivamente</em> nessuna soglia: appena scegli $M=10$, ci sono sempre $x$ grandissimi in cui $f(x)=0$, che è minore di $10$. Quindi $\lim_{x\to+\infty}x\sin x$ <strong>non esiste</strong>, e non è $+\infty$. La definizione chiede che la soglia sia superata da <em>tutti</em> gli $x$ oltre $K$, non da qualcuno.</p>
+        </div>
+
+        <h3 id="teoria-laterali">4.4 Limite destro e limite sinistro</h3>
+        <p><strong>Il problema, in una frase.</strong> Finora "avvicinarsi a $x_0$" voleva dire avvicinarsi <em>da tutte le direzioni insieme</em>. Ma sulla retta le direzioni sono due: da destra (con valori più grandi di $x_0$) e da sinistra (con valori più piccoli). Capita spesso che la funzione si comporti in due modi diversi nei due casi. Allora serve un limite per ciascun lato.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚪</span> L'immagine da tenere in mente</div>
+          <p>Una porta a vetri fra due stanze. Se ti avvicini alla porta venendo dalla stanza calda, la temperatura che senti tende a $25$ gradi; se ti avvicini dalla stanza fredda, tende a $15$. La porta è la stessa, ma "il valore verso cui tende la temperatura" dipende da <em>quale lato</em> stai arrivando. Quando i due lati danno numeri diversi, non ha senso dire "la temperatura alla porta tende a…" senza specificare da dove vieni: il limite complessivo non esiste.</p>
+        </div>
+        <p><strong>Un esempio con i numeri.</strong> Prendiamo $f(x)=\dfrac{|x|}{x}$ e avviciniamoci a $x_0=0$. Costruiamo una tabella di valori, avvicinandoci prima da destra e poi da sinistra. Ricorda la definizione di modulo (cap. 2): $|x|=x$ se $x\ge0$, e $|x|=-x$ se $x\lt0$.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$x$ (da sinistra)</th><th>$f(x)$</th><th>$x$ (da destra)</th><th>$f(x)$</th></tr></thead>
+          <tbody>
+            <tr><td>$-0{,}1$</td><td>$\dfrac{0{,}1}{-0{,}1}=-1$</td><td>$0{,}1$</td><td>$\dfrac{0{,}1}{0{,}1}=1$</td></tr>
+            <tr><td>$-0{,}01$</td><td>$-1$</td><td>$0{,}01$</td><td>$1$</td></tr>
+            <tr><td>$-0{,}0001$</td><td>$-1$</td><td>$0{,}0001$</td><td>$1$</td></tr>
+          </tbody>
+        </table>
+        <p>Da destra i valori sono <em>sempre</em> $1$, da sinistra <em>sempre</em> $-1$. La funzione non "punta" verso un unico numero: punta verso due numeri diversi a seconda del lato. Ecco perché servono due limiti separati.</p>
+        <p><strong>Ora le definizioni</strong>, che sono quella del <span class="richiamo" data-sec="4.2">§4.2</span> con una sola modifica: al posto dell'intorno bucato (che prende entrambi i lati) si mette mezzo intorno.</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome"><span class="glossario-term" data-term="limite-destro">Limite destro</span> e <span class="glossario-term" data-term="limite-sinistro">limite sinistro</span>.</em> Il limite <strong>destro</strong> guarda solo le $x$ maggiori di $x_0$:</p>
+          <div class="formula-block">$$\lim_{x \to x_0^{+}} f(x) = L \iff \forall \varepsilon\gt0\ \ \exists\delta\gt0:\ \ \underbrace{x_0 \lt x \lt x_0 + \delta}_{x\ \text{sta a destra di}\ x_0\text{, entro }\delta} \implies |f(x)-L| \lt \varepsilon$$</div>
+          <p>Il limite <strong>sinistro</strong> guarda solo le $x$ minori di $x_0$:</p>
+          <div class="formula-block">$$\lim_{x \to x_0^{-}} f(x) = L \iff \forall \varepsilon\gt0\ \ \exists\delta\gt0:\ \ \underbrace{x_0 - \delta \lt x \lt x_0}_{x\ \text{sta a sinistra di}\ x_0\text{, entro }\delta} \implies |f(x)-L| \lt \varepsilon$$</div>
+          <p>Nota che in entrambe le scritture $x=x_0$ resta escluso, perché le disuguaglianze sono strette: il buco c'è ancora.</p>
+        </div>
+        <p>Il simbolo $x_0^{+}$ si legge "$x_0$ più" e vuol dire "arrivando da destra"; $x_0^{-}$ si legge "$x_0$ meno" e vuol dire "arrivando da sinistra". Un trucco per non sbagliare: il segno indica da che parte stanno le $x$ che guardi, non il segno della funzione.</p>
+        <p><strong>Adesso il teorema che li collega</strong> al limite ordinario. Lo userai ogni volta che incontri il <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span>, la parte intera, o una funzione definita a tratti.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (di collegamento)</span>
+          <p>Il limite $\lim\limits_{x\to x_0} f(x)$ esiste ed è uguale a $L$ <strong>se e solo se</strong> esistono entrambi i limiti laterali e sono uguali fra loro (e quindi uguali a $L$):</p>
+          <div class="formula-block">$$\lim_{x \to x_0} f(x) = L \quad \iff \quad \lim_{x \to x_0^{-}} f(x) = \lim_{x \to x_0^{+}} f(x) = L.$$</div>
+        </div>
+        <p><strong>Perché è vero, in due righe.</strong> L'intorno bucato di $x_0$ è fatto esattamente di due pezzi: la metà sinistra e la metà destra. Chiedere che tutti i punti dell'intorno bucato finiscano nella stanza di raggio $\varepsilon$ è la stessa cosa che chiederlo per la metà sinistra <em>e</em> per la metà destra. Se entrambe le metà funzionano con raggi $\delta_1$ e $\delta_2$, basta prendere il più piccolo dei due e funziona tutto l'intorno.</p>
+        <p><strong>La conseguenza operativa</strong> è la più usata di tutto il capitolo: <strong>se i due limiti laterali sono diversi, il limite non esiste.</strong> È il modo più rapido per dimostrare che un limite <em>non</em> c'è, e nel nostro esempio numerico basta guardare la tabella: $1\neq-1$, quindi $\lim_{x\to0}\frac{|x|}{x}$ non esiste. Lo rivedremo per esteso nell'Esempio 4.</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Un non-esempio: laterali uguali non basta se non esistono</div>
+          <p>Il teorema chiede due cose: che i limiti laterali <em>esistano</em> e che <em>coincidano</em>. Per $f(x)=\sin\frac1x$ in $x_0=0$ nessuno dei due esiste (la funzione oscilla sempre più fitta fra $-1$ e $1$ e non punta verso niente), quindi il teorema non dice nulla e il limite completo non esiste. Non confondere "i due lati si comportano allo stesso modo" con "i due lati hanno limite".</p>
+        </div>
+
+        <h3 id="teoria-teoremi">4.5 I primi teoremi fondamentali</h3>
+        <p>Qui enunciamo tre risultati che governano il comportamento dei limiti. Tutti e tre saranno <strong>dimostrati per esteso nella sezione 5</strong>; in questa sezione ci limitiamo a capire che cosa dicono, perché sono ragionevoli e a che cosa servono.</p>
+
+        <h4>4.5.1 Unicità del limite</h4>
+        <p><strong>Cosa dice, in italiano.</strong> Una funzione non può puntare verso due numeri diversi nello stesso momento. Se il limite in $x_0$ esiste, è uno solo.</p>
+        <p><strong>L'immagine.</strong> Una freccia può indicare una sola direzione. Se qualcuno ti dice "la temperatura del caffè tende a $20$ gradi" e un altro "tende a $35$ gradi", uno dei due sbaglia di sicuro: non si può stare definitivamente vicinissimi a $20$ <em>e</em> vicinissimi a $35$.</p>
+        <p><strong>Con i numeri.</strong> Supponiamo che qualcuno sostenga contemporaneamente $L_1=2$ e $L_2=5$. La loro distanza è $|2-5|=3$; ne prendo la metà, $\varepsilon=1{,}5$, e disegno due stanze di quel raggio: attorno a $2$ ottengo l'intervallo da $0{,}5$ a $3{,}5$, attorno a $5$ l'intervallo da $3{,}5$ a $6{,}5$. Le due stanze <strong>non hanno nessun punto in comune</strong>. Ma se entrambi i limiti fossero veri, per $x$ abbastanza vicino a $x_0$ il numero $f(x)$ dovrebbe stare dentro tutte e due: impossibile. È esattamente questo il meccanismo della dimostrazione della sezione 5.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (unicità del limite)</span>
+          <p>Se $\lim\limits_{x\to x_0} f(x) = L_1$ e $\lim\limits_{x\to x_0} f(x) = L_2$, allora $L_1 = L_2$. In altre parole: quando il limite esiste, è <strong>unico</strong>.</p>
+        </div>
+        <p><strong>A cosa serve.</strong> A poter dire "<em>il</em> limite" e non "<em>un</em> limite": è ciò che rende legittima la scrittura $\lim_{x\to x_0}f(x)=L$ con il segno di uguale. Inoltre è lo strumento con cui si dimostra che certi limiti <em>non</em> esistono: se trovi due modi di avvicinarti a $x_0$ che danno risultati diversi, l'unicità è violata e quindi il limite non c'è.</p>
+
+        <h4>4.5.2 Permanenza del segno</h4>
+        <p><strong>Cosa dice, in italiano.</strong> Se una funzione tende a un numero positivo, allora <em>vicino</em> a quel punto la funzione è positiva. Il segno del limite si "trasmette" a tutto un intorno.</p>
+        <p><strong>L'immagine.</strong> Se un'auto sta rallentando verso una velocità di $30$ km/h, negli ultimi istanti la sua velocità sarà certamente positiva: non può essere ferma o andare all'indietro mentre punta a $30$. Il valore verso cui tendi ti costringe, da un certo momento in poi, a somigliargli.</p>
+        <p><strong>Con i numeri.</strong> Prendiamo $f(x)=x+3$ e $x_0=0$: il limite è $L=3$, positivo. Il teorema promette che vicino a $0$ la funzione è positiva. Troviamo quanto vicino. La mossa chiave è scegliere come tolleranza <strong>metà del limite</strong>, cioè $\varepsilon=\frac{L}{2}=1{,}5$: così la stanza attorno a $3$ è tutta sopra lo zero.</p>
+        <div class="calcolo">$$\begin{aligned}
+|f(x)-3| &amp;\lt 1{,}5 &amp;&amp;\text{(richiesta con }\varepsilon=\tfrac{L}{2}=1{,}5\text{)}\\
+|x+3-3| = |x| &amp;\lt 1{,}5 &amp;&amp;\text{(faccio i conti dentro il modulo)}\\
+-1{,}5 \lt x &amp;\lt 1{,}5 &amp;&amp;\text{(sciolgo il modulo, regola }|t|\lt r\iff -r\lt t\lt r\text{, cap. 2)}\\
+f(x) = x+3 &amp;\gt -1{,}5+3 = 1{,}5 &amp;&amp;\text{(sommo }3\text{ alla disuguaglianza di sinistra }x\gt-1{,}5\text{)}
+\end{aligned}$$</div>
+        <p>Quindi per ogni $x$ che dista da $0$ meno di $1{,}5$ si ha $f(x)\gt1{,}5\gt0$: la funzione è positiva in tutto quell'intorno, come promesso. Nota il ruolo del numero $\frac{L}{2}$: è la scelta che garantisce di restare al di sopra dello zero, e ricomparirà identica nella dimostrazione generale.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (permanenza del segno)</span>
+          <p>Se $\lim\limits_{x\to x_0} f(x) = L$ con $L \gt 0$, allora esiste un intorno bucato di $x_0$ in cui $f(x) \gt 0$. Simmetricamente, se $L \lt 0$ esiste un intorno bucato di $x_0$ in cui $f(x) \lt 0$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Non-esempio: con $L=0$ il teorema non dice nulla</div>
+          <p>Se il limite è $L=0$ non si può concludere niente sul segno. La funzione $f(x)=x$ ha limite $0$ in $x_0=0$, ed è positiva a destra e negativa a sinistra. La funzione $f(x)=x\sin\frac1x$ ha anch'essa limite $0$ e cambia segno infinite volte in ogni intorno di $0$. Il teorema serve solo quando il limite è <em>strettamente</em> positivo o <em>strettamente</em> negativo: è il "$\neq0$" a fare tutto il lavoro.</p>
+        </div>
+        <p><strong>A cosa serve.</strong> Soprattutto a dividere in pace: se sai che $g(x)\to M$ con $M\neq0$, il teorema ti assicura che vicino a $x_0$ la funzione $g$ non si annulla, e quindi la frazione $\frac{f(x)}{g(x)}$ ha senso in tutto un intorno. È la condizione nascosta dietro la regola del quoziente del <span class="richiamo" data-sec="4.6">§4.6</span>.</p>
+
+        <h4>4.5.3 Teorema del confronto (dei carabinieri)</h4>
+        <p><strong>Cosa dice, in italiano.</strong> Se una funzione è incastrata fra altre due che vanno allo stesso posto, allora ci va anche lei.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">👮</span> Perché "dei carabinieri"</div>
+          <p>Due carabinieri, $g$ e $h$, scortano un prigioniero $f$ tenendolo <em>stretto in mezzo</em> ($g \le f \le h$). Se entrambi i carabinieri si dirigono verso la stessa cella $L$, il prigioniero — schiacciato fra i due — non può che finire anche lui in $L$. Non ha scampo: è costretto dall'alto e dal basso.</p>
+        </div>
+        <p><strong>Con i numeri.</strong> Supponiamo di sapere che, per $x$ vicino a $0$, valga $3-x^2 \le f(x) \le 3+x^2$, senza conoscere la formula di $f$. Vediamo che succede avvicinandoci a zero:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>$x$</th><th>carabiniere di sotto $3-x^2$</th><th>carabiniere di sopra $3+x^2$</th><th>margine di manovra di $f(x)$</th></tr></thead>
+          <tbody>
+            <tr><td>$0{,}1$</td><td>$2{,}99$</td><td>$3{,}01$</td><td>ampio $0{,}02$</td></tr>
+            <tr><td>$0{,}01$</td><td>$2{,}9999$</td><td>$3{,}0001$</td><td>ampio $0{,}0002$</td></tr>
+            <tr><td>$0{,}001$</td><td>$2{,}999999$</td><td>$3{,}000001$</td><td>ampio $0{,}000002$</td></tr>
+          </tbody>
+        </table>
+        <p>La stretta si chiude: i due carabinieri convergono entrambi verso $3$ e lo spazio in cui $f$ può muoversi si riduce a niente. Qualunque sia $f$, è costretta a tendere a $3$.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (del confronto, "dei carabinieri")</span>
+          <p>Siano $g, f, h$ tre funzioni tali che, in un intorno bucato di $x_0$, valga $g(x) \le f(x) \le h(x)$. Se</p>
+          <div class="formula-block">$$\lim_{x\to x_0} g(x) = \lim_{x\to x_0} h(x) = L,$$</div>
+          <p>allora anche $f$ ha limite in $x_0$ e vale $\lim\limits_{x\to x_0} f(x) = L$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Non-esempio: i due carabinieri devono andare nella STESSA cella</div>
+          <p>Da $-1 \le \sin\frac1x \le 1$ non si può concludere niente sul limite di $\sin\frac1x$ per $x\to0$: i due estremi sono le costanti $-1$ e $1$, che tendono a due valori <em>diversi</em>. La stretta non si chiude, il prigioniero resta libero di oscillare — e infatti quel limite non esiste. Il teorema si applica solo quando i due carabinieri hanno lo <strong>stesso</strong> limite $L$.</p>
+        </div>
+        <p><strong>Come si usa in pratica.</strong> Serve quando la funzione contiene un pezzo che oscilla e non ha limite (tipicamente $\sin$ o $\cos$ di qualcosa di brutto), ma che è <em>limitato</em>. Allora: (1) parti dalla limitazione nota, per esempio $-1\le\sin(\text{qualsiasi cosa})\le1$; (2) moltiplica tutta la catena per il fattore che tende a zero, dichiarando se il verso cambia; (3) controlla che i due estremi tendano allo stesso $L$; (4) concludi. Sarà anche il grimaldello con cui dimostreremo il limite notevole di $\frac{\sin x}{x}$.</p>
+
+        <h3 id="teoria-algebra">4.6 Algebra dei limiti</h3>
+        <p><strong>Cosa stiamo per dire.</strong> Finora, per calcolare un limite, dovremmo ogni volta tornare alla definizione con $\varepsilon$ e $\delta$: un lavoro enorme. Questo teorema ci libera: dice che <em>se i pezzi hanno limite, il tutto si calcola combinando i limiti dei pezzi</em>, nel modo più naturale possibile. Il limite di una somma è la somma dei limiti, il limite di un prodotto è il prodotto dei limiti, e così via.</p>
+        <p><strong>L'immagine.</strong> Due persone camminano verso due punti di ritrovo: la prima verso il chilometro $3$, la seconda verso il chilometro $5$. Allora la loro "posizione media", la loro somma, la loro differenza tendono anch'esse a valori prevedibili ($8$ e $-2$). Finché entrambe puntano a un posto preciso, tutto ciò che costruisci con loro punta a un posto preciso.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (algebra dei limiti)</span>
+          <p>Se $\lim\limits_{x\to x_0} f(x) = L$ e $\lim\limits_{x\to x_0} g(x) = M$ (entrambi <strong>finiti</strong>), allora:</p>
+          <div class="formula-block">
+            $$\lim_{x\to x_0}\big(f(x) \pm g(x)\big) = L \pm M, \qquad \lim_{x\to x_0}\big(f(x)\cdot g(x)\big) = L \cdot M,$$
+            $$\lim_{x\to x_0}\frac{f(x)}{g(x)} = \frac{L}{M} \quad (\text{se } M \neq 0), \qquad \lim_{x\to x_0}\big(c\cdot f(x)\big) = c\cdot L.$$
+          </div>
+        </div>
+        <p><strong>Un esempio numerico, un pezzo alla volta.</strong> Calcoliamo $\lim\limits_{x\to2}\dfrac{x^2+1}{x+3}$. Prima di tutto controlliamo le due ipotesi: numeratore e denominatore hanno limite finito, e il limite del denominatore non è zero.</p>
+        <div class="calcolo">$$\begin{aligned}
+\lim_{x\to2}\ (x^2+1) &amp;= 2^2+1 = 5 &amp;&amp;\text{(limite di una somma: }x\cdot x\to2\cdot2=4\text{, più la costante }1\text{)}\\
+\lim_{x\to2}\ (x+3) &amp;= 2+3 = 5 &amp;&amp;\text{(limite di una somma)}\\
+5 &amp;\neq 0 &amp;&amp;\text{(la condizione }M\neq0\text{ è rispettata: posso dividere)}\\
+\lim_{x\to2}\frac{x^2+1}{x+3} &amp;= \frac{5}{5} = 1 &amp;&amp;\text{(regola del quoziente, con }L=5\text{ e }M=5\text{)}
+\end{aligned}$$</div>
+        <p>È questo teorema che giustifica la mossa più comune di tutte: <strong>"provo a sostituire il valore"</strong>. Sostituire funziona ogni volta che l'espressione è costruita con somme, prodotti e quozienti che restano finiti e con denominatore non nullo. Quando invece sostituendo esce una delle scritture proibite, il teorema <em>non si applica</em> e bisogna lavorare (<span class="richiamo" data-sec="4.7">§4.7</span>).</p>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Non-esempio: il teorema si usa solo quando le ipotesi valgono</div>
+          <p>Per $x\to0$ considera $f(x)=\frac1x$ e $g(x)=-\frac1x$. Qualcuno potrebbe scrivere "$\lim(f+g)=\lim f+\lim g$", ma $\lim f$ e $\lim g$ non esistono finiti: l'ipotesi del teorema è violata, e spezzare la somma è vietato. (Qui per fortuna $f(x)+g(x)=0$ per ogni $x\neq0$, quindi il limite della somma è $0$ — ma lo scopriamo semplificando, non applicando il teorema.)</p>
+        </div>
+        <p>Quando uno o entrambi i limiti sono infiniti, molte combinazioni restano comunque prevedibili. Le raccogliamo in tabella (con $L$ finito; per il prodotto e il quoziente valgono le usuali regole dei segni). Attenzione: <strong>le caselle "vietate" della riga finale non sono errori di stampa — sono le forme indeterminate</strong>, che studiamo subito dopo.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Operazione</th><th>Risultato</th><th>Esempio-tipo</th></tr></thead>
+          <tbody>
+            <tr><td>$L + (+\infty)$</td><td>$+\infty$</td><td>$5 + \infty = +\infty$</td></tr>
+            <tr><td>$(+\infty) + (+\infty)$</td><td>$+\infty$</td><td>la somma di due "esplosioni" esplode</td></tr>
+            <tr><td>$L \cdot (+\infty)$, con $L &gt; 0$</td><td>$+\infty$</td><td>$3 \cdot \infty = +\infty$</td></tr>
+            <tr><td>$L \cdot (+\infty)$, con $L &lt; 0$</td><td>$-\infty$</td><td>$-2 \cdot \infty = -\infty$</td></tr>
+            <tr><td>$(+\infty) \cdot (+\infty)$</td><td>$+\infty$</td><td>$\infty \cdot \infty = +\infty$</td></tr>
+            <tr><td>$\dfrac{L}{\pm\infty}$</td><td>$0$</td><td>una quantità limitata diviso l'infinito svanisce</td></tr>
+            <tr><td>$\dfrac{L}{0^{+}}$, con $L &gt; 0$</td><td>$+\infty$</td><td>dividere per qualcosa che svanisce fa esplodere</td></tr>
+            <tr><td>$\dfrac{\pm\infty}{L}$</td><td>$\pm\infty$</td><td>l'infinito diviso per un finito resta infinito</td></tr>
+            <tr><td colspan="3" style="text-align:center; color:var(--color-danger); font-weight:700;">VIETATE (forme indeterminate): $\ \dfrac{0}{0},\ \dfrac{\infty}{\infty},\ \infty - \infty,\ 0\cdot\infty,\ 1^{\infty},\ 0^{0},\ \infty^{0}$</td></tr>
+          </tbody>
+        </table>
+
+        <h3 id="teoria-forme">4.7 Le sette forme indeterminate</h3>
+        <p><strong>Cosa sono, in italiano.</strong> Quando sostituisci il valore e ottieni una scrittura come $\frac00$ oppure $\infty-\infty$, non hai sbagliato i conti: hai solo scoperto che <em>quell'informazione non basta</em>. Una <span class="glossario-term" data-term="forma-indeterminata">forma indeterminata</span> è una combinazione simbolica a cui <strong>non si può assegnare un valore fisso</strong>, perché cambiando le funzioni il risultato cambia. Attenzione a non confondere: "indeterminata" <em>non</em> vuol dire "il limite non esiste"; vuol dire "la scrittura simbolica, da sola, non decide il limite — devi lavorare".</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏃</span> L'immagine: due corridori che rallentano</div>
+          <p>Due corridori si avvicinano entrambi al traguardo e rallentano entrambi fino a fermarsi. Chiedere "quanto vale il rapporto fra le loro velocità all'arrivo?" è come scrivere $\frac00$: dipende da <em>come</em> rallentano. Se uno dimezza la velocità ogni secondo e l'altro la divide per dieci, il rapporto tende a un numero enorme; se rallentano allo stesso modo, tende a $1$. I due zeri, da soli, non dicono chi vince la gara del rallentamento.</p>
+        </div>
+        <p><strong>La prova con i numeri: stessa forma, quattro risultati diversi.</strong> Guardiamo quattro limiti per $x\to+\infty$, tutti della forma $\infty-\infty$ (ogni pezzo tende a $+\infty$), e calcoliamoli uno per uno.</p>
+        <div class="calcolo">$$\begin{aligned}
+(x+1)-x &amp;= 1 \longrightarrow 1 &amp;&amp;\text{(semplifico }x\text{ con }-x\text{: resta la costante }1\text{)}\\
+x-x &amp;= 0 \longrightarrow 0 &amp;&amp;\text{(la differenza è identicamente nulla)}\\
+x^2-x &amp;= x(x-1) \longrightarrow +\infty &amp;&amp;\text{(raccolgo }x\text{: due fattori che esplodono)}\\
+\sqrt{x^2+x}-x &amp;\longrightarrow \tfrac12 &amp;&amp;\text{(lo calcoleremo nell'Esempio 5, razionalizzando)}
+\end{aligned}$$</div>
+        <p>Quattro volte la stessa scrittura $\infty-\infty$, quattro risposte diverse: $1$, $0$, $+\infty$, $\frac12$. Ecco perché la scrittura non può valere come risultato. <strong>La regola pratica è una sola: quando riconosci una forma indeterminata, fermati e trasforma l'espressione</strong> (raccogli, semplifica, razionalizza, usa un limite notevole) finché la forma non è più indeterminata.</p>
+        <p>Le forme indeterminate sono sette, ed è bene conoscerle a memoria come i sette colori dell'arcobaleno.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>#</th><th>Forma</th><th>Esempio orientativo</th><th>A cosa tende (in quell'esempio)</th></tr></thead>
+          <tbody>
+            <tr><td>1</td><td>$\dfrac{0}{0}$</td><td>$\lim\limits_{x\to 0}\dfrac{\sin x}{x}$</td><td>$1$</td></tr>
+            <tr><td>2</td><td>$\dfrac{\infty}{\infty}$</td><td>$\lim\limits_{x\to +\infty}\dfrac{2x^2+1}{x^2+x}$</td><td>$2$</td></tr>
+            <tr><td>3</td><td>$\infty - \infty$</td><td>$\lim\limits_{x\to +\infty}\big(\sqrt{x^2+x}-x\big)$</td><td>$\tfrac12$</td></tr>
+            <tr><td>4</td><td>$0 \cdot \infty$</td><td>$\lim\limits_{x\to 0^{+}} x\ln x$</td><td>$0$</td></tr>
+            <tr><td>5</td><td>$1^{\infty}$</td><td>$\lim\limits_{x\to +\infty}\big(1+\tfrac1x\big)^x$</td><td>$e$</td></tr>
+            <tr><td>6</td><td>$0^{0}$</td><td>$\lim\limits_{x\to 0^{+}} x^{x}$</td><td>$1$</td></tr>
+            <tr><td>7</td><td>$\infty^{0}$</td><td>$\lim\limits_{x\to +\infty} x^{1/x}$</td><td>$1$</td></tr>
+          </tbody>
+        </table>
+        <p>Il punto cruciale — che ripeteremo negli errori comuni — è che questi esempi mostrano <em>un</em> possibile esito, ma cambiando le funzioni la stessa forma può dare risultati completamente diversi. Per questo si chiamano "indeterminate".</p>
+
+        <h3 id="teoria-notevoli">4.8 I limiti notevoli</h3>
+        <p><strong>A cosa servono.</strong> Alcune forme indeterminate $\frac00$ ricorrono così spesso che sarebbe assurdo rifare ogni volta il ragionamento da capo. Allora si calcolano una volta per tutte, con cura, e poi si riutilizzano come <em>mattoni</em>: sono i <strong>limiti notevoli</strong>. Funzionano come le tabelline: nessuno rifà la somma $7+7+7$ ogni volta, si sa che $3\times7=21$. Questi cinque sono il kit di sopravvivenza minimo di ogni esame di Analisi 1.</p>
+        <div class="formula-block">
+          $$\boxed{\ \lim_{x\to 0}\frac{\sin x}{x} = 1\ } \qquad \lim_{x\to 0}\frac{1-\cos x}{x^2} = \frac{1}{2} \qquad \lim_{x\to \pm\infty}\Big(1+\frac1x\Big)^{x} = e$$
+          $$\lim_{x\to 0}\frac{\ln(1+x)}{x} = 1 \qquad \lim_{x\to 0}\frac{e^{x}-1}{x} = 1$$
+        </div>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Limite notevole</th><th>Cosa dice, a parole</th></tr></thead>
+          <tbody>
+            <tr><td>$\dfrac{\sin x}{x}\to1$</td><td>Per angoli piccolissimi, il seno e l'angolo sono quasi la stessa cosa. In radianti, $\sin(0{,}01)=0{,}00999\ldots$: il rapporto è quasi $1$.</td></tr>
+            <tr><td>$\dfrac{1-\cos x}{x^2}\to\dfrac12$</td><td>Il coseno si stacca da $1$ molto più lentamente: la differenza $1-\cos x$ è dell'ordine di metà del <em>quadrato</em> dell'angolo.</td></tr>
+            <tr><td>$\Big(1+\dfrac1x\Big)^{x}\to e$</td><td>La gara fra una base che scende verso $1$ e un esponente che sale verso $\infty$ finisce in pareggio, su un numero preciso: il <span class="glossario-term" data-term="numero-di-nepero">numero di Nepero</span> $e\approx2{,}71828$.</td></tr>
+            <tr><td>$\dfrac{\ln(1+x)}{x}\to1$</td><td>Vicino a zero, $\ln(1+x)$ è quasi uguale a $x$: per esempio $\ln(1{,}001)=0{,}0009995$.</td></tr>
+            <tr><td>$\dfrac{e^{x}-1}{x}\to1$</td><td>Vicino a zero, $e^x$ è quasi $1+x$: per esempio $e^{0{,}001}=1{,}0010005$.</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Come si usano: il gioco del riconoscimento.</strong> Un limite notevole funziona anche quando al posto di $x$ c'è un'altra quantità, purché <em>quella stessa quantità</em> compaia in tutte e due le posizioni e tenda a zero. Chiamiamola $t$. La regola è:</p>
+        <div class="formula-block">$$\frac{\sin\big(\underbrace{t}_{\text{stessa quantità}}\big)}{\underbrace{t}_{\text{stessa quantità}}} \longrightarrow 1 \qquad \text{a patto che } t\to 0$$</div>
+        <p>Il problema pratico è che spesso l'espressione <em>non</em> ha già la forma giusta: sopra c'è $\sin 3x$ e sotto solo $x$. La cura è sempre la stessa mossa: <strong>moltiplico e divido per il pezzo che manca</strong>, così da far comparire lo stesso argomento sopra e sotto, e il fattore in eccesso resta fuori. Vediamola su $\dfrac{\sin 3x}{x}$.</p>
+        <div class="calcolo">$$\begin{aligned}
+\frac{\sin 3x}{x} &amp;= \frac{\sin 3x}{x}\cdot\frac{3}{3} &amp;&amp;\text{(moltiplico e divido per }3\text{: non cambio nulla, }\tfrac33=1\text{)}\\
+&amp;= \frac{\sin 3x}{3x}\cdot 3 &amp;&amp;\text{(porto un }3\text{ al denominatore e lascio l'altro fuori)}\\
+&amp;\longrightarrow 1\cdot 3 = 3 &amp;&amp;\text{(il primo fattore è il notevole con }t=3x\to0\text{)}
+\end{aligned}$$</div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">⚠️</span> Non-esempio: quando il notevole NON si applica</div>
+          <p>Nella scrittura $\dfrac{\sin\frac1x}{\frac1x}$ per $x\to0$ l'argomento è lo stesso sopra e sotto, ma <strong>non tende a zero</strong>: $\frac1x$ esplode. Il notevole richiede $t\to0$, quindi qui non vale nulla. Allo stesso modo $\dfrac{\sin 3x}{2x}$ non fa $1$: gli argomenti sono diversi ($3x$ sopra, $2x$ sotto) e bisogna prima sistemarli. Prima di invocare un notevole, controlla sempre due cose: <em>stesso argomento sopra e sotto</em>, e <em>quell'argomento tende a zero</em>.</p>
+        </div>
+        <p>Nella sezione 5 dimostreremo geometricamente il primo notevole — il capostipite — e da esso ricaveremo il secondo, mostrando che non sono formule calate dall'alto ma conseguenze di cose che già sappiamo.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Unicità del limite.</em> Se $\lim\limits_{x\to x_0} f(x) = L_1$ e $\lim\limits_{x\to x_0} f(x) = L_2$, allora $L_1 = L_2$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per assurdo)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che una funzione non può "puntare" verso due numeri diversi nello stesso punto. Se qualcuno trova un valore limite e qualcun altro ne trova un altro, allora i due valori devono per forza essere lo stesso numero.</p>
+          <p><strong>Idea della strategia.</strong> Procediamo <em>per assurdo</em>. Il motivo è pratico: dimostrare direttamente "$L_1$ e $L_2$ sono uguali" è difficile, perché due numeri uguali non danno nessun appiglio. Se invece supponiamo che siano <strong>diversi</strong>, otteniamo subito una cosa concreta con cui lavorare: la loro distanza, che è un numero positivo. Con quella distanza costruiamo due stanze che non si toccano, una attorno a $L_1$ e una attorno a $L_2$, e facciamo vedere che $f(x)$ dovrebbe stare dentro tutte e due contemporaneamente — cosa impossibile. È la stessa tecnica con cui, nel <a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">capitolo 1 della Parte 0</a>, si dimostra che $\sqrt2$ è irrazionale.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La definizione di limite, <span class="richiamo" data-sec="4.2">§4.2</span>, applicata <em>due volte</em>, una per ciascun presunto limite. (2) Il fatto che $x_0$ sia un punto di accumulazione, <span class="richiamo" data-sec="4.1">§4.1</span>, che ci garantisce l'esistenza di almeno un punto $x$ vicino a $x_0$ su cui fare i conti. (3) Tre proprietà del valore assoluto dal cap. 2: "$|t|=0$ soltanto se $t=0$", la simmetria "$|-t|=|t|$" e la disuguaglianza triangolare "$|A+B|\le|A|+|B|$". (4) Un fatto elementare: il più piccolo fra due numeri positivi è positivo.</p>
+
+          <p><strong>Passo 1 — Facciamo l'ipotesi assurda e ricaviamone un numero positivo.</strong> Supponiamo, contro quello che vogliamo dimostrare, che i due limiti siano <em>diversi</em>: $L_1 \neq L_2$. Allora la loro distanza non è nulla, e siccome un modulo non è mai negativo, è positiva: $|L_1-L_2| \gt 0$ (per la proprietà "$|t|=0$ solo se $t=0$" del cap. 2, usata con $t=L_1-L_2$, che non è nullo). <em>Abbiamo ottenuto un numero positivo su cui costruire tutto il resto.</em></p>
+
+          <p><strong>Passo 2 — Scegliamo la sfida $\varepsilon$ su misura.</strong> La definizione di limite vale "per <em>ogni</em> $\varepsilon$", quindi siamo liberi di usarla con il valore che ci fa più comodo. Scegliamo <strong>metà della distanza fra i due presunti limiti</strong>:</p>
+          <div class="calcolo">$$\begin{aligned}
+\varepsilon &amp;= \frac{|L_1-L_2|}{2} &amp;&amp;\text{(la sfida che scegliamo noi)}\\
+\varepsilon &amp;\gt 0 &amp;&amp;\text{(è metà di un numero positivo, quindi è positivo: scelta lecita)}
+\end{aligned}$$</div>
+          <p><em>Perché proprio la metà?</em> Perché così le due stanze non si toccano: una stanza di raggio "mezza distanza" attorno a $L_1$ e una attorno a $L_2$ non hanno punti in comune. Con un raggio più grande si sovrapporrebbero e l'assurdo non verrebbe fuori. <strong>Attenzione: qui è dove ci si confonde.</strong> Non stiamo dicendo "sia $\varepsilon$ piccolo a piacere": stiamo <em>scegliendo</em> un valore preciso, costruito con i dati del problema. È una mossa legittima proprio perché la definizione vale per ogni $\varepsilon$, quindi in particolare per questo.</p>
+
+          <p><strong>Passo 3 — Applichiamo la definizione al primo limite.</strong> Poiché $f\to L_1$, con il nostro $\varepsilon$ esiste un raggio $\delta_1\gt0$ tale che</p>
+          <div class="calcolo">$$\begin{aligned}
+0 \lt |x-x_0| \lt \delta_1 &amp;\implies |f(x)-L_1| \lt \varepsilon &amp;&amp;\text{(definizione di limite, sez. 4.2, applicata a }L_1\text{)}
+\end{aligned}$$</div>
+          <p><strong>Passo 4 — Applichiamo la definizione al secondo limite.</strong> Poiché $f\to L_2$, con lo <em>stesso</em> $\varepsilon$ esiste un raggio $\delta_2\gt0$ tale che</p>
+          <div class="calcolo">$$\begin{aligned}
+0 \lt |x-x_0| \lt \delta_2 &amp;\implies |f(x)-L_2| \lt \varepsilon &amp;&amp;\text{(definizione di limite, sez. 4.2, applicata a }L_2\text{)}
+\end{aligned}$$</div>
+          <p><em>Abbiamo ottenuto due informazioni, ciascuna valida nel suo intorno.</em> Il guaio è che valgono in due intorni diversi: per usarle insieme dobbiamo farle vivere nello stesso posto.</p>
+
+          <p><strong>Passo 5 — Mettiamo le due informazioni nello stesso intorno.</strong> Prendiamo $\delta = \min\{\delta_1,\delta_2\}$, cioè il <em>più piccolo</em> dei due raggi. Allora $\delta \le \delta_1$ e $\delta \le \delta_2$, quindi chi rispetta $|x-x_0|\lt\delta$ rispetta automaticamente entrambe le condizioni dei passi 3 e 4. Inoltre $\delta\gt0$, perché è il più piccolo fra due numeri positivi. Poiché $x_0$ è di accumulazione (<span class="richiamo" data-sec="4.1">§4.1</span>), <em>esiste davvero</em> almeno un punto $x$ con $0\lt|x-x_0|\lt\delta$. Fissiamo quel punto: per esso valgono contemporaneamente</p>
+          <div class="calcolo">$$\begin{aligned}
+|f(x)-L_1| &amp;\lt \varepsilon &amp;&amp;\text{(dal passo 3, perché }\delta\le\delta_1\text{)}\\
+|f(x)-L_2| &amp;\lt \varepsilon &amp;&amp;\text{(dal passo 4, perché }\delta\le\delta_2\text{)}
+\end{aligned}$$</div>
+
+          <p><strong>Passo 6 — Facciamo comparire la distanza $|L_1-L_2|$.</strong> Le due informazioni del passo 5 parlano di $f(x)$; la tesi parla di $L_1$ e $L_2$. Per collegarle usiamo il trucco "aggiungi e togli" (cap. 2): inseriamo $-f(x)+f(x)$, che vale zero e quindi non cambia niente.</p>
+          <div class="calcolo">$$\begin{aligned}
+L_1-L_2 &amp;= \big(L_1-f(x)\big)+\big(f(x)-L_2\big) &amp;&amp;\text{(aggiungo e tolgo }f(x)\text{: }-f(x)+f(x)=0\text{)}\\
+|L_1-L_2| &amp;= \big|\big(L_1-f(x)\big)+\big(f(x)-L_2\big)\big| &amp;&amp;\text{(prendo il modulo di entrambi i membri)}\\
+&amp;\le |L_1-f(x)|+|f(x)-L_2| &amp;&amp;\text{(disuguaglianza triangolare }|A+B|\le|A|+|B|\text{, cap. 2, con }A=L_1-f(x),\ B=f(x)-L_2\text{)}\\
+&amp;= |f(x)-L_1|+|f(x)-L_2| &amp;&amp;\text{(simmetria }|-t|=|t|\text{, cap. 2: il primo modulo non cambia se inverto i termini)}\\
+&amp;\lt \varepsilon+\varepsilon = 2\varepsilon &amp;&amp;\text{(sostituisco le due maggiorazioni del passo 5)}\\
+&amp;= 2\cdot\frac{|L_1-L_2|}{2} = |L_1-L_2| &amp;&amp;\text{(rimetto il valore di }\varepsilon\text{ scelto al passo 2 e semplifico il }2\text{)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto.</em> Leggendo la prima e l'ultima riga: $|L_1-L_2| \lt |L_1-L_2|$. Cioè un numero è strettamente minore di sé stesso, il che è impossibile per qualunque numero.</p>
+
+          <p>L'unica cosa che abbiamo <em>supposto</em>, e che quindi può essere falsa, è l'ipotesi del passo 1: che $L_1$ e $L_2$ fossero diversi. Dunque quell'ipotesi è sbagliata e vale $L_1=L_2$. <span class="qed">∎</span></p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo supposto che i limiti fossero due numeri diversi; abbiamo usato come tolleranza la metà della loro distanza, ottenendo due stanze separate; abbiamo trovato un punto $x$ in cui $f(x)$ avrebbe dovuto stare in entrambe; da lì è saltato fuori che un numero sarebbe minore di sé stesso. Quindi i due limiti non possono essere diversi.</p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Permanenza del segno.</em> Se $\lim\limits_{x\to x_0} f(x) = L$ con $L \gt 0$, allora esiste un intorno bucato di $x_0$ in cui $f(x) \gt 0$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (scegliendo la tolleranza giusta)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che se una funzione punta verso un numero positivo, allora un po' prima di arrivarci è già positiva. Cioè: esiste tutta una zona attorno a $x_0$ (escluso $x_0$) in cui la funzione sta sopra lo zero.</p>
+          <p><strong>Idea della strategia.</strong> Non serve nessun trucco nuovo: basta <em>scegliere bene $\varepsilon$</em>. La definizione di limite ci dice che $f(x)$ finisce dentro una stanza attorno a $L$, e la stanza la scegliamo noi. Se la scegliamo abbastanza stretta da restare tutta sopra lo zero, allora anche $f(x)$ sarà sopra lo zero. La scelta che funziona è $\varepsilon = \frac{L}{2}$, cioè metà del limite: è la stessa mossa "prendo la metà" della dimostrazione precedente, usata qui per un altro scopo.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La definizione di limite, <span class="richiamo" data-sec="4.2">§4.2</span>. (2) La regola del valore assoluto "$|t|\lt r \iff -r\lt t\lt r$" (cap. 2), per sciogliere il modulo. (3) Il fatto che la metà di un numero positivo è positiva.</p>
+
+          <p><strong>Passo 1 — Scegliamo la tolleranza.</strong> Poniamo $\varepsilon = \dfrac{L}{2}$. È un numero positivo, perché $L\gt0$ per ipotesi, quindi è una scelta lecita nella definizione di limite.</p>
+          <p><strong>Passo 2 — Applichiamo la definizione con questa scelta.</strong> Esiste allora $\delta\gt0$ tale che, per ogni $x$ con $0\lt|x-x_0|\lt\delta$, valga $|f(x)-L|\lt\frac{L}{2}$. Sciogliamo il modulo e isoliamo $f(x)$.</p>
+          <div class="calcolo">$$\begin{aligned}
+|f(x)-L| &amp;\lt \frac{L}{2} &amp;&amp;\text{(definizione di limite, sez. 4.2, con }\varepsilon=\tfrac{L}{2}\text{)}\\
+-\frac{L}{2} \lt f(x)-L &amp;\lt \frac{L}{2} &amp;&amp;\text{(regola }|t|\lt r\iff -r\lt t\lt r\text{, cap. 2, con }t=f(x)-L\text{)}\\
+L-\frac{L}{2} \lt f(x) &amp;\lt L+\frac{L}{2} &amp;&amp;\text{(sommo }L\text{ a tutti e tre i membri)}\\
+\frac{L}{2} \lt f(x) &amp;\lt \frac{3L}{2} &amp;&amp;\text{(svolgo le somme: }L-\tfrac{L}{2}=\tfrac{L}{2}\text{ e }L+\tfrac{L}{2}=\tfrac{3L}{2}\text{)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto.</em> Della doppia disuguaglianza ci interessa solo la metà sinistra: $f(x) \gt \frac{L}{2}$. E $\frac{L}{2}$ è positivo, perché $L$ lo è. Quindi $f(x) \gt \frac{L}{2} \gt 0$ per ogni $x$ dell'intorno bucato di raggio $\delta$: è esattamente la tesi. <span class="qed">∎</span></p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo scelto come tolleranza metà del limite; la definizione ci ha allora garantito che $f(x)$ finisce in una stanza che sta tutta sopra $\frac{L}{2}$; poiché $\frac{L}{2}\gt0$, la funzione è positiva in tutto quell'intorno.</p>
+          <p><strong>Il caso $L\lt0$</strong> si tratta allo stesso modo, scegliendo $\varepsilon=-\frac{L}{2}$ (che è positivo, perché $L$ è negativo) e arrivando a $f(x)\lt\frac{L}{2}\lt0$. In alternativa si applica il caso già dimostrato alla funzione $-f$, che tende a $-L\gt0$.</p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Del confronto (carabinieri).</em> Se $g(x) \le f(x) \le h(x)$ in un intorno bucato di $x_0$ e $\lim\limits_{x\to x_0} g(x) = \lim\limits_{x\to x_0} h(x) = L$, allora $\lim\limits_{x\to x_0} f(x) = L$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (incollando le disuguaglianze)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che una funzione stretta fra due funzioni che vanno nello stesso posto è costretta ad andarci anche lei. In termini di definizione: dobbiamo far vedere che, data una tolleranza qualsiasi attorno a $L$, esiste un intorno di $x_0$ in cui $f(x)$ ci finisce dentro.</p>
+          <p><strong>Idea della strategia.</strong> Dimostrazione <em>diretta</em>: non sappiamo nulla di $f$, non possiamo manipolarla; l'unica cosa che sappiamo è che sta in mezzo. Quindi partiamo dalla sfida $\varepsilon$, chiediamo ai due carabinieri cosa ci garantiscono (ciascuno di loro ha limite $L$, quindi la definizione vale per entrambi), e poi <strong>incolliamo le informazioni in un'unica catena di disuguaglianze</strong>. Di ciascun carabiniere useremo solo metà dell'informazione: del carabiniere di sotto ci serve che non scenda troppo, di quello di sopra che non salga troppo.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La definizione di limite, <span class="richiamo" data-sec="4.2">§4.2</span>, applicata a $g$ e ad $h$. (2) La regola "$|t|\lt\varepsilon \iff -\varepsilon\lt t\lt\varepsilon$" (cap. 2), usata in un verso e poi nell'altro. (3) La proprietà transitiva delle disuguaglianze (se $a\lt b$ e $b\le c$ allora $a\lt c$). (4) Il minimo di tre numeri positivi, che è positivo.</p>
+
+          <p><strong>Passo 1 — Fissiamo la sfida.</strong> Sia $\varepsilon\gt0$ un numero qualsiasi. Da qui in avanti non lo cambieremo più: dobbiamo trovare un $\delta$ che funzioni per <em>questo</em> $\varepsilon$.</p>
+
+          <p><strong>Passo 2 — Interroghiamo il carabiniere di sotto.</strong> Poiché $g\to L$, esiste $\delta_1\gt0$ tale che, per $0\lt|x-x_0|\lt\delta_1$:</p>
+          <div class="calcolo">$$\begin{aligned}
+|g(x)-L| &amp;\lt \varepsilon &amp;&amp;\text{(definizione di limite, sez. 4.2, applicata a }g\text{)}\\
+-\varepsilon \lt g(x)-L &amp;\lt \varepsilon &amp;&amp;\text{(sciolgo il modulo, regola del cap. 2 con }t=g(x)-L\text{)}\\
+L-\varepsilon \lt g(x) &amp;\lt L+\varepsilon &amp;&amp;\text{(sommo }L\text{ a tutti e tre i membri)}
+\end{aligned}$$</div>
+          <p><em>Cosa ci serve di questo.</em> Solo la metà sinistra: $L-\varepsilon \lt g(x)$. Cioè: il carabiniere di sotto, da un certo punto in poi, non scende sotto $L-\varepsilon$.</p>
+
+          <p><strong>Passo 3 — Interroghiamo il carabiniere di sopra.</strong> Poiché $h\to L$, con lo stesso $\varepsilon$ esiste $\delta_2\gt0$ tale che, per $0\lt|x-x_0|\lt\delta_2$:</p>
+          <div class="calcolo">$$\begin{aligned}
+|h(x)-L| &amp;\lt \varepsilon &amp;&amp;\text{(definizione di limite, sez. 4.2, applicata a }h\text{)}\\
+L-\varepsilon \lt h(x) &amp;\lt L+\varepsilon &amp;&amp;\text{(stessi due passaggi del passo 2)}
+\end{aligned}$$</div>
+          <p><em>Cosa ci serve di questo.</em> Solo la metà destra: $h(x) \lt L+\varepsilon$. Cioè: il carabiniere di sopra, da un certo punto in poi, non sale sopra $L+\varepsilon$.</p>
+
+          <p><strong>Passo 4 — Facciamo valere tutto nello stesso intorno.</strong> Abbiamo tre informazioni valide in tre zone diverse: quella del passo 2 (raggio $\delta_1$), quella del passo 3 (raggio $\delta_2$) e l'incastro $g\le f\le h$, valido per ipotesi in un intorno bucato di un certo raggio che chiamiamo $\delta_3$. Prendiamo il più piccolo dei tre:</p>
+          <div class="calcolo">$$\begin{aligned}
+\delta &amp;= \min\{\delta_1,\ \delta_2,\ \delta_3\} &amp;&amp;\text{(il raggio in cui valgono tutte e tre le cose)}\\
+\delta &amp;\gt 0 &amp;&amp;\text{(è il più piccolo di tre numeri positivi)}
+\end{aligned}$$</div>
+
+          <p><strong>Passo 5 — Incolliamo la catena.</strong> Sia ora $x$ un punto qualsiasi con $0\lt|x-x_0|\lt\delta$. Per quel punto valgono contemporaneamente le tre informazioni, e possiamo metterle in fila:</p>
+          <div class="calcolo">$$\begin{aligned}
+L-\varepsilon &amp;\lt g(x) &amp;&amp;\text{(passo 2, metà sinistra)}\\
+g(x) &amp;\le f(x) \le h(x) &amp;&amp;\text{(ipotesi del teorema: }f\text{ è incastrata)}\\
+h(x) &amp;\lt L+\varepsilon &amp;&amp;\text{(passo 3, metà destra)}\\
+L-\varepsilon \lt g(x) \le f(x) &amp;\le h(x) \lt L+\varepsilon &amp;&amp;\text{(unisco le tre righe in un'unica catena)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto.</em> Guardando solo il primo e l'ultimo anello della catena (per la transitività delle disuguaglianze) resta $L-\varepsilon \lt f(x) \lt L+\varepsilon$: la funzione $f$, di cui non sappiamo nulla, è finita anche lei nella stanza di raggio $\varepsilon$.</p>
+
+          <p><strong>Passo 6 — Torniamo alla forma con il modulo.</strong> Rifacciamo al contrario i passaggi del passo 2, per riconoscere la definizione di limite.</p>
+          <div class="calcolo">$$\begin{aligned}
+L-\varepsilon \lt f(x) &amp;\lt L+\varepsilon &amp;&amp;\text{(quello che abbiamo ottenuto)}\\
+-\varepsilon \lt f(x)-L &amp;\lt \varepsilon &amp;&amp;\text{(sottraggo }L\text{ a tutti e tre i membri)}\\
+|f(x)-L| &amp;\lt \varepsilon &amp;&amp;\text{(riavvolgo il modulo con la regola del cap. 2, con }t=f(x)-L\text{)}
+\end{aligned}$$</div>
+          <p>Abbiamo dunque trovato, per la sfida $\varepsilon$ fissata al passo 1, un raggio $\delta\gt0$ tale che $0\lt|x-x_0|\lt\delta$ implica $|f(x)-L|\lt\varepsilon$. Ma $\varepsilon$ era arbitrario, quindi questo vale per ogni sfida: è esattamente la definizione di $\lim\limits_{x\to x_0}f(x)=L$. Il prigioniero è finito nella cella $L$. <span class="qed">∎</span></p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo fissato una tolleranza $\varepsilon$; abbiamo chiesto ai due carabinieri dove si trovano per $x$ vicino a $x_0$, tenendo di ciascuno solo la metà utile dell'informazione; abbiamo scelto un raggio in cui valgono entrambe le risposte e anche l'incastro; incollando le disuguaglianze abbiamo scoperto che anche $f(x)$ dista da $L$ meno di $\varepsilon$.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Limite notevole</span>
+          <p><em class="nome">Il capostipite.</em> $\displaystyle \lim_{x\to 0}\frac{\sin x}{x} = 1$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (geometrica, con le aree sul cerchio goniometrico)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che per angoli piccolissimi il seno di un angolo e l'angolo stesso sono quasi la stessa cosa, al punto che il loro rapporto si avvicina a $1$ quanto vogliamo.</p>
+          <p><strong>Idea della strategia.</strong> Qui l'algebra non serve a niente: $\frac{\sin x}{x}$ non si può semplificare, il seno non è un polinomio e non c'è nessun fattore da raccogliere. Cambiamo allora arma e usiamo la <em>geometria</em>. Sul cerchio di raggio $1$ disegniamo tre figure <strong>incastrate una dentro l'altra</strong>: un triangolo piccolo, uno spicchio di cerchio, un triangolo grande. Poiché ciascuna sta dentro la successiva, anche le loro aree sono in ordine crescente — e il bello è che quelle tre aree contengono esattamente $\sin x$, $x$ e $\tan x$. Da quella catena di disuguaglianze ricaveremo due "carabinieri" che stringono $\frac{\sin x}{x}$, e concluderemo con il teorema del confronto appena dimostrato.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) L'area del triangolo, $\frac{\text{base}\times\text{altezza}}{2}$ (Parte 0, cap. 7). (2) L'area del settore circolare, $\frac12 r^2\theta$, con l'angolo <em>in radianti</em> (Parte 0, <a href="../parte0-prerequisiti/08-trigonometria.html">cap. 8</a>). (3) Le definizioni di seno, coseno e tangente sul cerchio goniometrico, e la relazione $\tan x=\frac{\sin x}{\cos x}$ (Parte 0, cap. 8). (4) Le regole sulle disuguaglianze: moltiplicare o dividere per un numero positivo non cambia il verso, passare ai reciproci fra numeri positivi lo inverte (Parte 0, cap. 6). (5) Il teorema del confronto, <span class="richiamo" data-sec="4.5">§4.5</span>. (6) Il teorema di collegamento fra limiti laterali, <span class="richiamo" data-sec="4.4">§4.4</span>. (7) Il fatto che il seno è una funzione dispari, $\sin(-x)=-\sin x$ (Parte 0, cap. 8).</p>
+          <p><strong>Impostazione.</strong> Lavoriamo sul <span class="glossario-term" data-term="cerchio-goniometrico">cerchio goniometrico</span> (raggio $1$), per un angolo $x$ con $0 \lt x \lt \frac{\pi}{2}$ misurato in <strong>radianti</strong>. Per il momento guardiamo dunque solo il lato destro dello zero: i disegni hanno senso per angoli positivi. Del lato sinistro ci occuperemo alla fine, con un argomento di simmetria.</p>
+
+          <svg viewBox="0 0 300 250" style="max-width:340px;margin:1.2em auto;display:block;" role="img" aria-label="Cerchio goniometrico con triangolo interno, settore circolare e triangolo tangente per il confronto delle aree">
+            <path d="M 60 210 A 150 150 0 0 0 90 121" fill="var(--color-secondary)" opacity="0.18"/>
+            <line x1="60" y1="210" x2="240" y2="210" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+            <line x1="60" y1="30" x2="60" y2="215" stroke="currentColor" stroke-width="1.2" opacity="0.5"/>
+            <path d="M 60 210 A 150 150 0 0 0 90 121" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+            <line x1="60" y1="210" x2="210" y2="210" stroke="var(--color-text-muted)" stroke-width="1.5"/>
+            <line x1="60" y1="210" x2="90" y2="121" stroke="var(--color-primary)" stroke-width="2"/>
+            <line x1="90" y1="121" x2="90" y2="210" stroke="var(--color-accent)" stroke-width="2"/>
+            <line x1="210" y1="210" x2="210" y2="110" stroke="var(--color-danger)" stroke-width="2"/>
+            <line x1="60" y1="210" x2="210" y2="110" stroke="var(--color-primary)" stroke-width="1.4" stroke-dasharray="3 3"/>
+            <text x="52" y="228" font-size="12" fill="currentColor">O</text>
+            <text x="205" y="228" font-size="12" fill="currentColor">A</text>
+            <text x="78" y="116" font-size="12" fill="var(--color-primary)" font-weight="700">P</text>
+            <text x="215" y="110" font-size="12" fill="var(--color-danger)" font-weight="700">T</text>
+            <text x="93" y="175" font-size="11" fill="var(--color-accent)">sin x</text>
+            <text x="215" y="165" font-size="11" fill="var(--color-danger)">tan x</text>
+            <text x="105" y="200" font-size="11" fill="currentColor" opacity="0.7">x</text>
+          </svg>
+
+          <p><strong>Passo 1 — Calcoliamo le tre aree, una alla volta.</strong> Nel disegno $O$ è il centro, $A=(1,0)$, $P$ è il punto del cerchio corrispondente all'angolo $x$, e $T$ è il punto in cui il prolungamento di $OP$ incontra la retta tangente in $A$.</p>
+          <div class="calcolo">
+            <p>Triangolo $OAP$: la base è il raggio $OA=1$, l'altezza è il segmento verticale che scende da $P$, cioè l'ordinata di $P$, che per definizione di seno vale $\sin x$.</p>
+            $$\begin{aligned}
+\text{area}(OAP) &amp;= \frac{\text{base}\times\text{altezza}}{2} = \frac{1\cdot\sin x}{2} = \frac{1}{2}\sin x
+\end{aligned}$$
+            <p>Settore circolare $OAP$ (lo "spicchio" di cerchio): uso la formula $\frac12 r^2\theta$ con $r=1$ e $\theta=x$.</p>
+            $$\begin{aligned}
+\text{area(settore)} &amp;= \frac{1}{2}r^2 x = \frac{1}{2}\cdot 1^2\cdot x = \frac{1}{2}x
+\end{aligned}$$
+            <p>Triangolo $OAT$: la base è ancora $OA=1$, l'altezza è il segmento $AT$ sulla tangente, che per definizione di tangente vale $\tan x$.</p>
+            $$\begin{aligned}
+\text{area}(OAT) &amp;= \frac{1\cdot\tan x}{2} = \frac{1}{2}\tan x
+\end{aligned}$$
+          </div>
+          <p><strong>Attenzione: qui è dove ci si confonde.</strong> La formula dell'area del settore, $\frac12 r^2\theta$, vale <em>solo</em> se l'angolo è misurato in radianti. È questo il motivo per cui il limite notevole vale $1$ soltanto in radianti: se misurassi $x$ in gradi, il risultato sarebbe $\frac{\pi}{180}$. Tutta l'Analisi usa i radianti proprio per questo.</p>
+
+          <p><strong>Passo 2 — Ordiniamo le aree.</strong> Guarda il disegno: il triangolo $OAP$ sta <em>dentro</em> il settore, e il settore sta <em>dentro</em> il triangolo $OAT$. Una figura contenuta in un'altra ha area minore, quindi le tre aree sono in ordine crescente. Da qui in poi è solo algebra: trasformiamo la catena finché non compare $\frac{\sin x}{x}$.</p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{1}{2}\sin x \lt \frac{1}{2}x &amp;\lt \frac{1}{2}\tan x &amp;&amp;\text{(le tre aree, in ordine di grandezza)}\\
+\sin x \lt x &amp;\lt \tan x &amp;&amp;\text{(moltiplico tutti e tre i membri per }2\gt0\text{: i versi non cambiano)}\\
+\sin x \lt x &amp;\lt \frac{\sin x}{\cos x} &amp;&amp;\text{(riscrivo }\tan x=\tfrac{\sin x}{\cos x}\text{, Parte 0, cap. 8)}
+\end{aligned}$$</div>
+
+          <p><strong>Passo 3 — Dividiamo per $\sin x$ per far comparire il rapporto che ci interessa.</strong> Per $0\lt x\lt\frac{\pi}{2}$ il seno è positivo, quindi dividere per $\sin x$ non cambia il verso delle disuguaglianze. Facciamo la divisione membro per membro.</p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{\sin x}{\sin x} \lt \frac{x}{\sin x} &amp;\lt \frac{\sin x}{\cos x}\cdot\frac{1}{\sin x} &amp;&amp;\text{(divido i tre membri per }\sin x\gt0\text{)}\\
+1 \lt \frac{x}{\sin x} &amp;\lt \frac{1}{\cos x} &amp;&amp;\text{(a sinistra }\tfrac{\sin x}{\sin x}=1\text{; a destra si semplifica }\sin x\text{)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto.</em> Una catena che stringe $\frac{x}{\sin x}$. Peccato che a noi serva il rapporto <em>rovesciato</em>, cioè $\frac{\sin x}{x}$. Rimediamo al passo successivo.</p>
+
+          <p><strong>Passo 4 — Passiamo ai reciproci.</strong> Tutti e tre i membri sono positivi, e <strong>fra numeri positivi il reciproco inverte il verso</strong>: se $a\lt b$ allora $\frac1a\gt\frac1b$ (Parte 0, cap. 6). Quindi la catena si capovolge.</p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{1}{1} \gt \frac{1}{\ x/\sin x\ } &amp;\gt \frac{1}{\ 1/\cos x\ } &amp;&amp;\text{(prendo i reciproci: tutti i versi si invertono)}\\
+1 \gt \frac{\sin x}{x} &amp;\gt \cos x &amp;&amp;\text{(il reciproco di una frazione è la frazione rovesciata)}\\
+\cos x \lt \frac{\sin x}{x} &amp;\lt 1 &amp;&amp;\text{(riscrivo la catena da sinistra a destra, per leggerla meglio)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto e perché serve.</em> Abbiamo trovato i due carabinieri: sotto c'è $g(x)=\cos x$, sopra c'è la costante $h(x)=1$, e in mezzo, prigioniero, proprio il rapporto $\frac{\sin x}{x}$ di cui vogliamo il limite.</p>
+
+          <p><strong>Passo 5 — Facciamo scattare il teorema del confronto (a destra dello zero).</strong> Mandiamo $x\to0^{+}$ e guardiamo dove vanno i due carabinieri. Quello di sopra è la costante $1$, e una costante tende a sé stessa. Quello di sotto è $\cos x$: avvicinando l'angolo a zero, sul cerchio goniometrico il punto $P$ scivola verso $A=(1,0)$, e la sua ascissa — che è proprio $\cos x$ — si avvicina a $1$. Quindi entrambi i carabinieri tendono allo stesso valore $L=1$, e per il teorema del confronto (<span class="richiamo" data-sec="4.5">§4.5</span>) anche il prigioniero ci va:</p>
+          <div class="formula-block">$$\lim_{x\to 0^{+}}\frac{\sin x}{x}=1$$</div>
+
+          <p><strong>Passo 6 — Il lato sinistro, per simmetria.</strong> Finora abbiamo lavorato solo con angoli positivi. Per il lato sinistro non serve rifare tutto: basta osservare che la funzione $\frac{\sin x}{x}$ vale lo stesso in $x$ e in $-x$ (si dice che è <em>pari</em>). Verifichiamolo sostituendo $-x$ al posto di $x$:</p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{\sin(-x)}{-x} &amp;= \frac{-\sin x}{-x} &amp;&amp;\text{(uso }\sin(-x)=-\sin x\text{: il seno è dispari, Parte 0, cap. 8)}\\
+&amp;= \frac{\sin x}{x} &amp;&amp;\text{(i due segni meno, sopra e sotto, si semplificano)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto.</em> Il grafico a sinistra dello zero è lo specchio di quello a destra, quindi anche $\lim\limits_{x\to0^{-}}\frac{\sin x}{x}=1$.</p>
+
+          <p><strong>Passo 7 — Chiudiamo con il teorema di collegamento.</strong> I due limiti laterali esistono e valgono entrambi $1$; per il teorema di collegamento (<span class="richiamo" data-sec="4.4">§4.4</span>) esiste allora il limite completo e vale $1$:</p>
+          <div class="formula-block">$$\lim_{x\to 0}\frac{\sin x}{x}=1$$</div>
+          <p><span class="qed">∎</span></p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo confrontato le aree di tre figure incastrate sul cerchio di raggio $1$, ottenendo $\sin x\lt x\lt\tan x$; dividendo per $\sin x$ e passando ai reciproci abbiamo incastrato $\frac{\sin x}{x}$ fra $\cos x$ e $1$; poiché entrambi tendono a $1$, il teorema dei carabinieri dà il risultato a destra dello zero, e la simmetria della funzione lo estende a sinistra.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Limite notevole</span>
+          <p><em class="nome">Il secondo notevole.</em> $\displaystyle \lim_{x\to 0}\frac{1-\cos x}{x^2} = \frac{1}{2}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (dal capostipite, con il coniugato)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che vicino a zero la differenza $1-\cos x$ è circa la metà del quadrato dell'angolo.</p>
+          <p><strong>Idea della strategia.</strong> Non ricominciamo dalla geometria: <em>riduciamo il problema a uno già risolto</em>. Nell'espressione compare un coseno, nel limite che sappiamo compare un seno: l'identità fondamentale $\sin^2x+\cos^2x=1$ è il ponte fra i due. Per poterla usare ci serve però $\cos^2 x$, non $\cos x$; il modo standard per far comparire un quadrato a partire da una differenza è moltiplicare per il <strong>coniugato</strong>, cioè la stessa espressione con il segno centrale cambiato.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) Il prodotto notevole $(a-b)(a+b)=a^2-b^2$ (Parte 0, cap. 2). (2) L'identità fondamentale $\sin^2x+\cos^2x=1$ (Parte 0, cap. 8). (3) Il limite notevole appena dimostrato, $\frac{\sin x}{x}\to1$. (4) L'algebra dei limiti, <span class="richiamo" data-sec="4.6">§4.6</span>, per il prodotto di due fattori.</p>
+
+          <p><strong>Passo 1 — Moltiplichiamo sopra e sotto per il coniugato $(1+\cos x)$.</strong> Vicino a zero $\cos x$ è prossimo a $1$, quindi $1+\cos x$ non è nullo e la mossa è lecita: moltiplicare numeratore e denominatore per la stessa quantità non nulla non cambia il valore di una frazione.</p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{1-\cos x}{x^2} &amp;= \frac{(1-\cos x)(1+\cos x)}{x^2\,(1+\cos x)} &amp;&amp;\text{(moltiplico sopra e sotto per }1+\cos x\text{)}\\
+&amp;= \frac{1-\cos^2 x}{x^2\,(1+\cos x)} &amp;&amp;\text{(prodotto notevole }(a-b)(a+b)=a^2-b^2\text{ con }a=1,\ b=\cos x\text{)}\\
+&amp;= \frac{\sin^2 x}{x^2\,(1+\cos x)} &amp;&amp;\text{(identità fondamentale nella forma }1-\cos^2x=\sin^2x\text{, Parte 0, cap. 8)}
+\end{aligned}$$</div>
+          <p><em>Cosa abbiamo ottenuto.</em> Il coseno al numeratore è sparito ed è comparso $\sin^2x$ sopra, con $x^2$ sotto: sono esattamente i pezzi del capostipite, elevati al quadrato.</p>
+
+          <p><strong>Passo 2 — Separiamo i due fattori.</strong> Scriviamo la frazione come prodotto, in modo da isolare il limite notevole.</p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{\sin^2 x}{x^2\,(1+\cos x)} &amp;= \frac{\sin^2 x}{x^2}\cdot\frac{1}{1+\cos x} &amp;&amp;\text{(spezzo la frazione in due fattori)}\\
+&amp;= \left(\frac{\sin x}{x}\right)^{2}\cdot\frac{1}{1+\cos x} &amp;&amp;\text{(}\tfrac{\sin^2x}{x^2}=\left(\tfrac{\sin x}{x}\right)^2\text{, proprietà delle potenze, Parte 0, cap. 3)}
+\end{aligned}$$</div>
+
+          <p><strong>Passo 3 — Passiamo al limite fattore per fattore.</strong></p>
+          <div class="calcolo">$$\begin{aligned}
+\left(\frac{\sin x}{x}\right)^{2} &amp;\longrightarrow 1^2 = 1 &amp;&amp;\text{(capostipite, elevato al quadrato: algebra dei limiti, sez. 4.6)}\\
+\frac{1}{1+\cos x} &amp;\longrightarrow \frac{1}{1+\cos 0} = \frac{1}{1+1} = \frac{1}{2} &amp;&amp;\text{(}\cos x\to1\text{ per }x\to0\text{)}\\
+\frac{1-\cos x}{x^2} &amp;\longrightarrow 1\cdot\frac{1}{2} = \frac{1}{2} &amp;&amp;\text{(limite di un prodotto, sez. 4.6)}
+\end{aligned}$$</div>
+          <p>Il limite vale dunque $\frac12$. <span class="qed">∎</span></p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo moltiplicato per il coniugato per far comparire $1-\cos^2x$; l'identità fondamentale lo ha trasformato in $\sin^2x$; spezzando la frazione sono comparsi il capostipite al quadrato e un secondo fattore che tende a $\frac12$. È il bello dei limiti notevoli: sono un effetto domino, e ogni nuovo risultato nasce da quelli già dimostrati.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Verifica di un limite con la definizione</span><span class="badge badge--base">Base</span></div>
+          <p>Dimostrare, usando la definizione $\varepsilon$–$\delta$, che $\lim\limits_{x\to 2}(3x - 1) = 5$.</p>
+          <p>Questa verifica l'abbiamo già esplorata giocando con i numeri al <span class="richiamo" data-sec="4.2">§4.2</span>. Qui vediamo come si <strong>mette per iscritto</strong> in un compito: prima la ricerca del $\delta$, poi il controllo. Sono due fasi diverse e vanno tenute separate.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Scrivo la definizione con i dati del problema.</strong> Nella definizione del <span class="richiamo" data-sec="4.2">§4.2</span> sostituisco: al posto di $f(x)$ metto $3x-1$, al posto di $x_0$ metto $2$, al posto di $L$ metto $5$. Devo far vedere che, fissato un qualunque $\varepsilon\gt0$, esiste $\delta\gt0$ tale che $0\lt|x-2|\lt\delta$ implica $|(3x-1)-5|\lt\varepsilon$.</span>
+            <span class="esempio__passo"><strong>Fase 1: cerco il $\delta$.</strong> Lavoro sulla quantità $|(3x-1)-5|$ per farci comparire dentro $|x-2|$, che è l'unica cosa che $\delta$ controlla.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+|(3x-1)-5| &amp;\lt \varepsilon &amp;&amp;\text{(la condizione da ottenere)}\\
+|3x-6| &amp;\lt \varepsilon &amp;&amp;\text{(faccio i conti dentro il modulo: }-1-5=-6\text{)}\\
+|3(x-2)| &amp;\lt \varepsilon &amp;&amp;\text{(raccolgo }3\text{: infatti }3x-6=3(x-2)\text{)}\\
+3\,|x-2| &amp;\lt \varepsilon &amp;&amp;\text{(regola }|ab|=|a|\cdot|b|\text{, cap. 2, con }a=3,\ b=x-2\text{)}\\
+|x-2| &amp;\lt \frac{\varepsilon}{3} &amp;&amp;\text{(divido entrambi i membri per }3\gt0\text{: il verso resta)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Annuncio la scelta:</strong> $\delta = \dfrac{\varepsilon}{3}$. È positivo, perché $\varepsilon$ lo è, quindi è una scelta ammissibile.</span>
+            <span class="esempio__passo"><strong>Fase 2: controllo che funzioni</strong>, ripercorrendo la catena al contrario. Parto dall'ipotesi e devo arrivare alla tesi.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+0 \lt |x-2| &amp;\lt \delta = \frac{\varepsilon}{3} &amp;&amp;\text{(ipotesi: }x\text{ sta nell'intorno bucato)}\\
+3\,|x-2| &amp;\lt 3\cdot\frac{\varepsilon}{3} = \varepsilon &amp;&amp;\text{(moltiplico per }3\gt0\text{ e semplifico)}\\
+|3(x-2)| &amp;\lt \varepsilon &amp;&amp;\text{(riavvolgo la regola }|a|\cdot|b|=|ab|\text{)}\\
+|(3x-1)-5| &amp;\lt \varepsilon &amp;&amp;\text{(}3(x-2)=3x-6=(3x-1)-5\text{)}
+\end{aligned}$$</div>
+          <div class="esempio__risultato">Con $\delta = \varepsilon/3$ la definizione è soddisfatta per ogni $\varepsilon$: il limite vale $5$. (Nota: qui $f(2)=5$ davvero, ma alla definizione non interessa — conta solo l'intorno bucato.)</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Forma $\frac{0}{0}$ per fattorizzazione</span><span class="badge badge--base">Base</span></div>
+          <p>Calcolare $\lim\limits_{x\to 1}\dfrac{x^2 - 1}{x - 1}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Primo: provo a sostituire.</strong> È sempre la prima mossa, perché se funziona abbiamo finito.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\text{numeratore in }x=1:\quad &amp; 1^2-1 = 0 &amp;&amp;\text{(sostituisco }x=1\text{)}\\
+\text{denominatore in }x=1:\quad &amp; 1-1 = 0 &amp;&amp;\text{(sostituisco }x=1\text{)}\\
+&amp;\frac{0}{0} &amp;&amp;\text{(forma indeterminata, sez. 4.7: NON posso concludere)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco la forma indeterminata</strong> $\frac00$. Il fatto che sopra e sotto si annullino entrambi in $x=1$ è un indizio prezioso: significa che sia il numeratore sia il denominatore contengono il fattore $(x-1)$, e quel fattore si potrà semplificare.</span>
+            <span class="esempio__passo"><strong>Fattorizzo il numeratore</strong> con il prodotto notevole "differenza di quadrati" $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2), usato con $a=x$ e $b=1$, perché $x^2-1=x^2-1^2$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{x^2-1}{x-1} &amp;= \frac{(x-1)(x+1)}{x-1} &amp;&amp;\text{(scompongo }x^2-1\text{ con }a^2-b^2=(a-b)(a+b)\text{)}\\
+&amp;= x+1 &amp;&amp;\text{(semplifico il fattore }(x-1)\text{: lecito perché }x\neq1\text{)}\\
+\lim_{x\to1}(x+1) &amp;= 1+1 = 2 &amp;&amp;\text{(ora non c'è più forma indeterminata: sostituisco)}
+\end{aligned}$$</div>
+          <p><strong>Perché è lecito semplificare?</strong> Perché nel limite $x$ si <em>avvicina</em> a $1$ ma resta sempre diverso da $1$ (è l'intorno bucato del <span class="richiamo" data-sec="4.2">§4.2</span>), quindi $x-1\neq0$ e si può dividere per esso. Questa è la mossa che risolve quasi tutte le forme $\frac00$ fra polinomi.</p>
+          <div class="esempio__risultato">$\lim\limits_{x\to 1}\dfrac{x^2-1}{x-1} = 2$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Forma $\frac{\infty}{\infty}$: raccogliere il termine dominante</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare $\lim\limits_{x\to +\infty}\dfrac{2x^2 - 3x + 1}{5x^2 + x - 4}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco la forma.</strong> Per $x\to+\infty$ il numeratore tende a $+\infty$ (comanda il termine $2x^2$) e anche il denominatore tende a $+\infty$ (comanda $5x^2$). La scrittura è $\frac{\infty}{\infty}$: <strong>forma indeterminata</strong> (<span class="richiamo" data-sec="4.7">§4.7</span>), quindi non posso concludere e devo trasformare.</span>
+            <span class="esempio__passo"><strong>L'idea.</strong> Quando $x$ è enorme, fra $2x^2$ e $-3x$ vince di gran lunga il primo. Allora metto in evidenza, sopra e sotto, la potenza più alta — qui $x^2$ — così tutto il resto diventa "briciole" che tendono a zero.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+2x^2-3x+1 &amp;= x^2\left(2-\frac{3}{x}+\frac{1}{x^2}\right) &amp;&amp;\text{(raccolgo }x^2\text{ al numeratore: }\tfrac{3x}{x^2}=\tfrac3x\text{)}\\
+5x^2+x-4 &amp;= x^2\left(5+\frac{1}{x}-\frac{4}{x^2}\right) &amp;&amp;\text{(raccolgo }x^2\text{ al denominatore: }\tfrac{x}{x^2}=\tfrac1x\text{)}\\
+\frac{2x^2-3x+1}{5x^2+x-4} &amp;= \frac{x^2\left(2-\frac{3}{x}+\frac{1}{x^2}\right)}{x^2\left(5+\frac{1}{x}-\frac{4}{x^2}\right)} &amp;&amp;\text{(riscrivo la frazione con i raccoglimenti)}\\
+&amp;= \frac{2-\frac{3}{x}+\frac{1}{x^2}}{5+\frac{1}{x}-\frac{4}{x^2}} &amp;&amp;\text{(semplifico }x^2\text{, identico sopra e sotto: lecito perché }x\neq0\text{)}
+\end{aligned}$$</div>
+          <p>Se hai dubbi sul raccoglimento, svolgi il prodotto: $x^2\cdot2=2x^2$, $x^2\cdot(-\frac3x)=-3x$, $x^2\cdot\frac{1}{x^2}=1$. Si ritrova l'espressione di partenza, quindi è corretto.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo al limite.</strong> Ogni termine della forma "numero fisso diviso $x$ o $x^2$" è un finito diviso qualcosa che esplode, quindi tende a $0$ (riga "$\frac{L}{\pm\infty}$" della tabella del <span class="richiamo" data-sec="4.6">§4.6</span>).</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{3}{x},\ \frac{1}{x^2},\ \frac{1}{x},\ \frac{4}{x^2} &amp;\longrightarrow 0 &amp;&amp;\text{(finito diviso infinito, sez. 4.6)}\\
+\frac{2-\frac{3}{x}+\frac{1}{x^2}}{5+\frac{1}{x}-\frac{4}{x^2}} &amp;\longrightarrow \frac{2-0+0}{5+0-0} &amp;&amp;\text{(algebra dei limiti, sez. 4.6: sostituisco gli zeri)}\\
+&amp;= \frac{2}{5} &amp;&amp;\text{(ora non c'è più forma indeterminata: il denominatore tende a }5\neq0\text{)}
+\end{aligned}$$</div>
+          <div class="esempio__risultato">$\lim\limits_{x\to +\infty}\dfrac{2x^2-3x+1}{5x^2+x-4} = \dfrac{2}{5}$ (regola pratica: fra polinomi dello stesso grado, il limite è il rapporto dei coefficienti direttivi).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Limiti laterali con il valore assoluto</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Studiare $\lim\limits_{x\to 0}\dfrac{|x|}{x}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco il segnale d'allarme.</strong> C'è un valore assoluto, e il valore assoluto è definito <em>per casi</em>: si comporta in un modo per $x$ positivo e in un altro per $x$ negativo. Quindi non calcolo il limite "alla cieca": separo i due lati (<span class="richiamo" data-sec="4.4">§4.4</span>).</span>
+            <span class="esempio__passo"><strong>Richiamo la definizione</strong> di modulo (cap. 2): $|x| = x$ se $x \geq 0$, e $|x| = -x$ se $x \lt 0$. Nota che $-x$, quando $x$ è negativo, è un numero <em>positivo</em>.</span>
+            <span class="esempio__passo"><strong>Limite destro</strong> ($x \to 0^{+}$, quindi $x \gt 0$): uso il primo caso della definizione, $|x|=x$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{|x|}{x} &amp;= \frac{x}{x} &amp;&amp;\text{(per }x\gt0\text{ vale }|x|=x\text{)}\\
+&amp;= 1 &amp;&amp;\text{(semplifico: lecito perché }x\neq0\text{)}\\
+\lim_{x\to0^{+}}\frac{|x|}{x} &amp;= 1 &amp;&amp;\text{(la funzione vale costantemente }1\text{ a destra dello zero)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Limite sinistro</strong> ($x \to 0^{-}$, quindi $x \lt 0$): uso il secondo caso della definizione, $|x|=-x$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{|x|}{x} &amp;= \frac{-x}{x} &amp;&amp;\text{(per }x\lt0\text{ vale }|x|=-x\text{)}\\
+&amp;= -1 &amp;&amp;\text{(semplifico }x\text{ e resta il segno meno)}\\
+\lim_{x\to0^{-}}\frac{|x|}{x} &amp;= -1 &amp;&amp;\text{(la funzione vale costantemente }-1\text{ a sinistra dello zero)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Confronto e concludo.</strong> I due limiti laterali esistono entrambi ma sono <strong>diversi</strong>: $1 \neq -1$. Per il teorema di collegamento (<span class="richiamo" data-sec="4.4">§4.4</span>), il limite completo non esiste.</span>
+          </p>
+          <div class="esempio__risultato">$\lim\limits_{x\to 0}\dfrac{|x|}{x}$ <strong>non esiste</strong> (salto tra $-1$ e $+1$). Questa è la funzione "segno".</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Forma $\infty - \infty$ con razionalizzazione</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\lim\limits_{x\to +\infty}\big(\sqrt{x^2 + x} - x\big)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco la forma.</strong> Per $x\to+\infty$ il primo termine $\sqrt{x^2+x}$ tende a $+\infty$ e anche il secondo, $x$, tende a $+\infty$. La scrittura è $\infty-\infty$: <strong>forma indeterminata</strong> (<span class="richiamo" data-sec="4.7">§4.7</span>). Non posso concludere "fa zero": devo trasformare.</span>
+            <span class="esempio__passo"><strong>L'idea: razionalizzo.</strong> Il problema è la radice. Il modo standard per farla sparire è moltiplicare per il <em>coniugato</em>, cioè la stessa espressione con il segno centrale cambiato, sfruttando il prodotto notevole $(A-B)(A+B)=A^2-B^2$ (Parte 0, cap. 2): il quadrato annulla la radice. Qui $A=\sqrt{x^2+x}$ e $B=x$, quindi il coniugato è $\sqrt{x^2+x}+x$. Moltiplico e divido per esso (non cambio nulla: sto moltiplicando per $1$).</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\sqrt{x^2+x}-x &amp;= \frac{\big(\sqrt{x^2+x}-x\big)\big(\sqrt{x^2+x}+x\big)}{\sqrt{x^2+x}+x} &amp;&amp;\text{(moltiplico e divido per il coniugato)}\\
+&amp;= \frac{\big(\sqrt{x^2+x}\big)^2-x^2}{\sqrt{x^2+x}+x} &amp;&amp;\text{(prodotto notevole }(A-B)(A+B)=A^2-B^2\text{)}\\
+&amp;= \frac{(x^2+x)-x^2}{\sqrt{x^2+x}+x} &amp;&amp;\text{(il quadrato annulla la radice: }(\sqrt{t})^2=t\text{)}\\
+&amp;= \frac{x}{\sqrt{x^2+x}+x} &amp;&amp;\text{(al numeratore }x^2\text{ si cancella con }-x^2\text{)}
+\end{aligned}$$</div>
+          <p><strong>Attenzione: la forma indeterminata è cambiata, non è sparita.</strong> Ora sopra c'è $x\to+\infty$ e sotto una somma che tende a $+\infty$: siamo passati da $\infty-\infty$ a $\frac{\infty}{\infty}$. È un progresso, perché la seconda sappiamo trattarla: si raccoglie il termine dominante, come nell'Esempio 3.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Raccolgo $x$ al denominatore.</strong> La difficoltà è che una $x$ è nascosta dentro la radice: la tiro fuori raccogliendo $x^2$ sotto il segno di radice.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\sqrt{x^2+x} &amp;= \sqrt{x^2\left(1+\frac{1}{x}\right)} &amp;&amp;\text{(raccolgo }x^2\text{ dentro la radice)}\\
+&amp;= \sqrt{x^2}\cdot\sqrt{1+\frac{1}{x}} &amp;&amp;\text{(la radice di un prodotto è il prodotto delle radici, Parte 0, cap. 3)}\\
+&amp;= |x|\cdot\sqrt{1+\frac{1}{x}} = x\sqrt{1+\frac{1}{x}} &amp;&amp;\text{(}\sqrt{x^2}=|x|\text{, e }|x|=x\text{ perché }x\to+\infty\text{, quindi }x\gt0\text{)}\\
+\sqrt{x^2+x}+x &amp;= x\sqrt{1+\frac{1}{x}}+x = x\left(\sqrt{1+\frac{1}{x}}+1\right) &amp;&amp;\text{(raccolgo }x\text{ in tutto il denominatore)}\\
+\frac{x}{\sqrt{x^2+x}+x} &amp;= \frac{x}{x\left(\sqrt{1+\frac{1}{x}}+1\right)} = \frac{1}{\sqrt{1+\frac{1}{x}}+1} &amp;&amp;\text{(semplifico }x\text{ sopra e sotto)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo al limite.</strong> Ora non c'è più forma indeterminata: basta vedere dove va $\frac1x$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{1}{x} &amp;\longrightarrow 0 &amp;&amp;\text{(finito diviso infinito, riga }\tfrac{L}{\pm\infty}\text{ del sez. 4.6)}\\
+\frac{1}{\sqrt{1+\frac{1}{x}}+1} &amp;\longrightarrow \frac{1}{\sqrt{1+0}+1} &amp;&amp;\text{(sostituisco lo zero, algebra dei limiti sez. 4.6)}\\
+&amp;= \frac{1}{1+1} = \frac{1}{2} &amp;&amp;\text{(}\sqrt1=1\text{, poi faccio la somma)}
+\end{aligned}$$</div>
+          <div class="esempio__risultato">$\lim\limits_{x\to +\infty}\big(\sqrt{x^2+x}-x\big) = \dfrac{1}{2}$</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Uso di un limite notevole</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Calcolare $\lim\limits_{x\to 0}\dfrac{\sin 3x}{x}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riconosco la forma.</strong> Sostituendo $x=0$: sopra $\sin 0 = 0$, sotto $0$. È la <strong>forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>).</span>
+            <span class="esempio__passo"><strong>Riconosco lo schema.</strong> C'è un seno diviso qualcosa, quindi penso al limite notevole $\frac{\sin t}{t}\to1$. Ma il controllo del <span class="richiamo" data-sec="4.8">§4.8</span> fallisce: l'argomento del seno è $3x$, mentre sotto c'è $x$. <em>Non sono la stessa quantità</em>, quindi il notevole non si applica così com'è.</span>
+            <span class="esempio__passo"><strong>La cura:</strong> moltiplico e divido per il pezzo mancante, cioè per $3$, in modo che sotto compaia $3x$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{\sin 3x}{x} &amp;= \frac{\sin 3x}{x}\cdot\frac{3}{3} &amp;&amp;\text{(moltiplico e divido per }3\text{: }\tfrac33=1\text{, non cambio nulla)}\\
+&amp;= \frac{3\sin 3x}{3x} &amp;&amp;\text{(porto un }3\text{ sopra e uno sotto)}\\
+&amp;= \frac{\sin 3x}{3x}\cdot 3 &amp;&amp;\text{(isolo il fattore }3\text{ fuori dalla frazione)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Ora il controllo passa:</strong> nel primo fattore l'argomento del seno è $3x$ e il denominatore è $3x$, la <em>stessa</em> quantità; inoltre $3x\to0$ quando $x\to0$ (il triplo di qualcosa che svanisce svanisce). Posso applicare il notevole con la <strong>sostituzione $t=3x$</strong>, cioè scrivendo $3x$ al posto di ogni $t$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{\sin 3x}{3x} &amp;= \frac{\sin t}{t} \longrightarrow 1 &amp;&amp;\text{(limite notevole sez. 4.8 con }t=3x\to0\text{)}\\
+\frac{\sin 3x}{3x}\cdot 3 &amp;\longrightarrow 1\cdot 3 = 3 &amp;&amp;\text{(limite di un prodotto, sez. 4.6: il secondo fattore è la costante }3\text{)}
+\end{aligned}$$</div>
+          <div class="esempio__risultato">$\lim\limits_{x\to 0}\dfrac{\sin 3x}{x} = 3$ (in generale $\lim\limits_{x\to 0}\dfrac{\sin kx}{x} = k$).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Verifica $\varepsilon$–$\delta$ quando la funzione non è una retta</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Dimostrare con la definizione che $\lim\limits_{x\to 3} x^2 = 9$.</p>
+          <p>Questo esempio mostra la difficoltà tipica: con $f(x)=3x-1$ il $\delta$ usciva da una semplice divisione, qui invece compare un fattore che <em>dipende da $x$</em>. Si risolve con un trucco standard, che vale la pena imparare: <strong>prima si restringe il campo</strong>, poi si conclude.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Scrivo la condizione</strong> e la lavoro per far comparire $|x-3|$, usando la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ con $a=x$ e $b=3$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+|x^2-9| &amp;\lt \varepsilon &amp;&amp;\text{(la condizione da ottenere)}\\
+|(x-3)(x+3)| &amp;\lt \varepsilon &amp;&amp;\text{(scompongo }x^2-9=x^2-3^2\text{, Parte 0, cap. 2)}\\
+|x-3|\cdot|x+3| &amp;\lt \varepsilon &amp;&amp;\text{(regola }|ab|=|a|\cdot|b|\text{, cap. 2)}
+\end{aligned}$$</div>
+          <p><strong>Attenzione: qui è dove ci si perde.</strong> Vorrei dividere per $|x+3|$ e dire "$\delta=\frac{\varepsilon}{|x+3|}$", ma <em>non posso</em>: il $\delta$ deve essere un numero fisso, deciso prima di sapere quale $x$ verrà scelto, mentre $|x+3|$ cambia con $x$. La soluzione è maggiorare $|x+3|$ con un numero fisso, e per farlo mi concedo una restrizione gratuita: <strong>decido che $\delta$ non sarà mai più grande di $1$</strong>. Posso farlo perché un $\delta$ più piccolo va sempre bene (<span class="richiamo" data-sec="4.2">§4.2</span>, dubbio 2).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Restringo il campo</strong> supponendo $|x-3|\lt1$ e vedo quanto può valere al massimo $|x+3|$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+|x-3| &amp;\lt 1 &amp;&amp;\text{(la restrizione che mi concedo)}\\
+-1 \lt x-3 &amp;\lt 1 &amp;&amp;\text{(sciolgo il modulo, cap. 2)}\\
+2 \lt x &amp;\lt 4 &amp;&amp;\text{(sommo }3\text{ a tutti e tre i membri)}\\
+5 \lt x+3 &amp;\lt 7 &amp;&amp;\text{(sommo }3\text{ di nuovo a tutti i membri)}\\
+|x+3| &amp;\lt 7 &amp;&amp;\text{(la quantità è positiva, quindi il modulo non cambia nulla)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Uso la maggiorazione</strong> per sostituire il fattore variabile con il numero fisso $7$: se $|x-3|\cdot 7 \lt \varepsilon$, a maggior ragione $|x-3|\cdot|x+3| \lt \varepsilon$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+|x-3|\cdot 7 &amp;\lt \varepsilon &amp;&amp;\text{(condizione più forte, ma con un numero fisso)}\\
+|x-3| &amp;\lt \frac{\varepsilon}{7} &amp;&amp;\text{(divido entrambi i membri per }7\gt0\text{)}\\
+\delta &amp;= \min\left\{1,\ \frac{\varepsilon}{7}\right\} &amp;&amp;\text{(prendo il più piccolo: così valgono ENTRAMBE le condizioni)}
+\end{aligned}$$</div>
+          <p><strong>Controllo finale.</strong> Se $0\lt|x-3|\lt\delta$, allora da un lato $|x-3|\lt1$, quindi $|x+3|\lt7$; dall'altro $|x-3|\lt\frac{\varepsilon}{7}$. Moltiplicando le due informazioni: $|x^2-9|=|x-3|\cdot|x+3| \lt \frac{\varepsilon}{7}\cdot 7 = \varepsilon$. Con $\varepsilon=0{,}7$ viene $\delta=\min\{1;\ 0{,}1\}=0{,}1$; prova con $x=3{,}05$: $x^2=9{,}3025$, che dista $0{,}3025$ da $9$, meno di $0{,}7$.</p>
+          <div class="esempio__risultato">Con $\delta = \min\left\{1,\ \dfrac{\varepsilon}{7}\right\}$ la definizione è soddisfatta: $\lim\limits_{x\to3}x^2=9$. Ricorda lo schema: <em>restringo con $\delta\le1$ → maggioro il fattore variabile → prendo il minimo</em>.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere il limite con il valore della funzione nel punto</div>
+          <p>L'errore numero uno, e il più insidioso: pensare che $\lim\limits_{x\to x_0} f(x)$ sia "il valore di $f$ in $x_0$". <strong>Falso.</strong> Il limite descrive il comportamento <em>attorno</em> a $x_0$, e il punto $x_0$ può persino non appartenere al dominio (come in $\frac{x^2-1}{x-1}$ per $x=1$). Può accadere che $f(x_0)$ esista ma sia <em>diverso</em> dal limite (funzione con un "punto isolato" spostato), oppure che $f(x_0)$ non esista affatto mentre il limite esiste benissimo. <em>Come evitarlo:</em> ricorda sempre l'intorno bucato $0 &lt; |x - x_0|$. Solo quando limite e valore coincidono la funzione è <a href="06-continuita.html">continua</a> — ma è un caso speciale, non la regola.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Trattare le forme indeterminate come se avessero un valore fisso</div>
+          <p>Scrivere "$\infty - \infty = 0$" è un errore gravissimo. Guarda questi quattro limiti, <strong>tutti della forma $\infty - \infty$</strong> per $x\to+\infty$: $(x+1) - x \to 1$; $\ x - x \to 0$; $\ x^2 - x \to +\infty$; $\ \sqrt{x^2+x} - x \to \frac12$. Stessa forma, quattro risultati diversi ($1$, $0$, $+\infty$, $\frac12$)! Ecco perché si chiama <em>indeterminata</em>: la scrittura simbolica da sola non decide nulla. <em>Come evitarlo:</em> quando riconosci una delle sette forme, NON concludere — è un segnale che devi manipolare l'espressione (raccogliere, semplificare, razionalizzare, usare notevoli).</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Applicare l'algebra dei limiti quando non è lecito</div>
+          <p>L'algebra dei limiti (limite della somma = somma dei limiti, ecc.) vale solo quando i singoli limiti esistono <strong>finiti</strong>, o quando la combinazione all'infinito non è indeterminata. Spezzare $\lim(f - g)$ in $\lim f - \lim g$ quando entrambi valgono $+\infty$ produce il "mostro" $\infty - \infty$ e porta a conclusioni sbagliate. <em>Come evitarlo:</em> prima verifica che ogni pezzo abbia limite lecito; se compare una forma indeterminata, il teorema non si applica e devi trasformare l'espressione.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare i limiti laterali</div>
+          <p>Con funzioni definite a tratti, con il valore assoluto o con la parte intera, concludere "il limite esiste" senza controllare i due lati è un classico. In $\frac{|x|}{x}$ il limite <em>non</em> esiste in $0$ perché i lati valgono $-1$ e $+1$: chi salta il controllo laterale sbaglia. <em>Come evitarlo:</em> ogni volta che vedi $|\cdot|$, $\lfloor x \rfloor$ o una definizione "a pezzi", calcola SEMPRE prima $\lim_{x\to x_0^-}$ e $\lim_{x\to x_0^+}$ e confrontali.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Tabella: quale tecnica per quale forma</div>
+          <p>Riconosci la forma indeterminata, poi applica la tecnica corrispondente. Questa tabella vale come una "bussola" da tenere sotto mano durante i compiti.</p>
+        </div>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Situazione</th><th>Tecnica consigliata</th></tr></thead>
+          <tbody>
+            <tr><td>$\frac{\infty}{\infty}$ tra polinomi o radici</td><td>Raccogli il <strong>termine dominante</strong> (la potenza più alta) sopra e sotto, poi semplifica.</td></tr>
+            <tr><td>$\infty - \infty$ con radici</td><td><strong>Razionalizza</strong>: moltiplica e dividi per il coniugato per far sparire la sottrazione di radici.</td></tr>
+            <tr><td>$\frac{0}{0}$ polinomiale/fratta</td><td><strong>Fattorizza</strong> numeratore e denominatore e semplifica il fattore che si annulla (es. $x - x_0$).</td></tr>
+            <tr><td>$\frac{0}{0}$ trigonometrica</td><td>Riconduci ai notevoli $\frac{\sin x}{x}\to 1$ e $\frac{1-\cos x}{x^2}\to\frac12$ (moltiplica/dividi per l'argomento giusto).</td></tr>
+            <tr><td>$\frac{0}{0}$ esponenziale/logaritmica</td><td>Usa $\frac{e^x - 1}{x}\to 1$ e $\frac{\ln(1+x)}{x}\to 1$.</td></tr>
+            <tr><td>$1^{\infty}$</td><td>Riconduci al notevole $\big(1+\frac1x\big)^x \to e$ (spesso con un cambio di variabile).</td></tr>
+            <tr><td>$0\cdot\infty$</td><td>Riscrivi il prodotto come quoziente ($f\cdot g = \frac{f}{1/g}$) per ricadere in $\frac00$ o $\frac{\infty}{\infty}$.</td></tr>
+          </tbody>
+        </table>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Quando conviene partire dai limiti laterali</div>
+          <p>Non calcolare mai "alla cieca" un limite completo se nella funzione compare uno di questi ingredienti: il <strong>valore assoluto</strong> $|\cdot|$, la <strong>parte intera</strong> $\lfloor x \rfloor$, una <strong>definizione a tratti</strong>, oppure un denominatore che cambia segno attorno a $x_0$ (che dà $\pm\infty$ a seconda del lato). In tutti questi casi la funzione può comportarsi diversamente a destra e a sinistra: calcola prima i due limiti laterali e applica il teorema di collegamento.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Il "grado vince" per i rapporti all'infinito</div>
+          <p>Per un rapporto di polinomi con $x\to\pm\infty$: se il grado sopra è <em>maggiore</em>, il limite è $\pm\infty$; se è <em>minore</em>, è $0$; se sono <em>uguali</em>, è il rapporto dei coefficienti direttivi. Un colpo d'occhio ti dà spesso la risposta prima ancora di calcolare. Il confronto sistematico tra "velocità di crescita" (polinomi vs esponenziali vs logaritmi) è il tema del prossimo capitolo, <a href="05-infinitesimi-infiniti.html">Infinitesimi, infiniti e confronti</a>.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Limiti di funzioni</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Definizione</strong>
+              <ul><li>∀ε&gt;0 ∃δ&gt;0</li><li>Intorno bucato 0&lt;|x−x₀|</li><li>4 varianti (finito/∞)</li><li>Limiti laterali ⁺ / ⁻</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Teoremi</strong>
+              <ul><li>Unicità del limite</li><li>Permanenza del segno</li><li>Confronto (carabinieri)</li><li>Algebra dei limiti</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Forme indeterminate</strong>
+              <ul><li>0/0, ∞/∞, ∞−∞</li><li>0·∞, 1^∞</li><li>0⁰, ∞⁰</li><li>→ manipolare, non concludere</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Limiti notevoli</strong>
+              <ul><li>sin x / x → 1</li><li>(1−cos x)/x² → ½</li><li>(1+1/x)ˣ → e</li><li>(eˣ−1)/x, ln(1+x)/x → 1</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Idea centrale:</strong> il limite descrive il comportamento di $f$ <em>attorno</em> a $x_0$, non il valore in $x_0$ (intorno bucato $0 &lt; |x-x_0|$).</li>
+            <li><strong>Definizione $\varepsilon$–$\delta$:</strong> $\lim\limits_{x\to x_0} f = L$ significa che $\forall\varepsilon&gt;0\ \exists\delta&gt;0:\ 0&lt;|x-x_0|&lt;\delta \implies |f(x)-L|&lt;\varepsilon$. Prima la sfida ($\varepsilon$), poi la risposta ($\delta$).</li>
+            <li><strong>Quattro varianti:</strong> si sostituisce l'intorno finito con "oltre una soglia $M$/$K$" quando entrano in gioco gli infiniti (asintoti verticali e orizzontali).</li>
+            <li><strong>Teorema di collegamento:</strong> il limite esiste $\iff$ i due limiti laterali esistono e coincidono. Se differiscono, il limite non esiste.</li>
+            <li><strong>Teoremi:</strong> unicità (per assurdo), permanenza del segno, confronto (carabinieri), algebra dei limiti (somma/prodotto/quoziente).</li>
+            <li><strong>Sette forme indeterminate:</strong> $\frac00,\ \frac{\infty}{\infty},\ \infty-\infty,\ 0\cdot\infty,\ 1^\infty,\ 0^0,\ \infty^0$ — non hanno valore fisso, vanno risolte manipolando.</li>
+            <li><strong>Cinque notevoli:</strong> $\frac{\sin x}{x}\to1$, $\frac{1-\cos x}{x^2}\to\frac12$, $(1+\frac1x)^x\to e$, $\frac{\ln(1+x)}{x}\to1$, $\frac{e^x-1}{x}\to1$.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola per sostituzione diretta $\lim\limits_{x\to 2}\big(x^2 + 3x - 1\big)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La funzione è un polinomio, costruito con somme e prodotti di cose che hanno limite finito. Provo a sostituire $x=2$: se non esce nessuna forma indeterminata, l'algebra dei limiti (<span class="richiamo" data-sec="4.6">§4.6</span>) mi autorizza a fermarmi lì. Calcolo un pezzo alla volta.</p>
+              <div class="calcolo">$$\begin{aligned}
+x^2 &amp;\longrightarrow 2^2 = 4 &amp;&amp;\text{(sostituisco }x=2\text{ ed elevo al quadrato)}\\
+3x &amp;\longrightarrow 3\cdot 2 = 6 &amp;&amp;\text{(sostituisco }x=2\text{ e moltiplico)}\\
+-1 &amp;\longrightarrow -1 &amp;&amp;\text{(è una costante: non dipende da }x\text{)}\\
+x^2+3x-1 &amp;\longrightarrow 4+6-1 = 9 &amp;&amp;\text{(limite di una somma, sez. 4.6)}
+\end{aligned}$$</div>
+              <p>Nessun pezzo è infinito e non compare nessuna scrittura proibita: il risultato è valido.</p>
+              <p><strong>$\lim\limits_{x\to 2}(x^2+3x-1) = 9$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to 3}\dfrac{x-3}{x^2 - 9}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Provo a sostituire $x=3$: sopra viene $3-3=0$, sotto $3^2-9=0$. È la <strong>forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>), quindi devo trasformare l'espressione. Poiché sopra e sotto si annullano entrambi in $3$, entrambi contengono il fattore $(x-3)$: lo faccio comparire scomponendo il denominatore.</p>
+              <div class="calcolo">$$\begin{aligned}
+x^2-9 &amp;= (x-3)(x+3) &amp;&amp;\text{(differenza di quadrati }a^2-b^2=(a-b)(a+b)\text{ con }a=x,\ b=3\text{)}\\
+\frac{x-3}{x^2-9} &amp;= \frac{x-3}{(x-3)(x+3)} &amp;&amp;\text{(riscrivo la frazione con il denominatore scomposto)}\\
+&amp;= \frac{1}{x+3} &amp;&amp;\text{(semplifico }(x-3)\text{: lecito perché }x\neq3\text{, intorno bucato sez. 4.2)}\\
+&amp;\longrightarrow \frac{1}{3+3} = \frac{1}{6} &amp;&amp;\text{(niente più forma indeterminata: sostituisco }x=3\text{)}
+\end{aligned}$$</div>
+              <p><strong>$\lim\limits_{x\to 3}\dfrac{x-3}{x^2-9} = \dfrac{1}{6}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to +\infty}\dfrac{3x + 2}{x - 5}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Per $x\to+\infty$ il numeratore tende a $+\infty$ e il denominatore pure: <strong>forma indeterminata</strong> $\frac{\infty}{\infty}$ (<span class="richiamo" data-sec="4.7">§4.7</span>). I due polinomi hanno lo stesso grado (il primo). Raccolgo sopra e sotto il termine dominante, che qui è $x$.</p>
+              <div class="calcolo">$$\begin{aligned}
+3x+2 &amp;= x\left(3+\frac{2}{x}\right) &amp;&amp;\text{(raccolgo }x\text{ al numeratore)}\\
+x-5 &amp;= x\left(1-\frac{5}{x}\right) &amp;&amp;\text{(raccolgo }x\text{ al denominatore)}\\
+\frac{3x+2}{x-5} &amp;= \frac{x\left(3+\frac{2}{x}\right)}{x\left(1-\frac{5}{x}\right)} = \frac{3+\frac{2}{x}}{1-\frac{5}{x}} &amp;&amp;\text{(semplifico }x\text{, identico sopra e sotto)}\\
+&amp;\longrightarrow \frac{3+0}{1-0} = 3 &amp;&amp;\text{(}\tfrac2x\to0\text{ e }\tfrac5x\to0\text{: finito diviso infinito, sez. 4.6)}
+\end{aligned}$$</div>
+              <p>Se vuoi controllare il raccoglimento, svolgi il prodotto: $x\cdot3=3x$ e $x\cdot\frac2x=2$, si ritrova $3x+2$. È questo conto a giustificare la regola pratica "fra polinomi dello stesso grado il limite è il rapporto dei coefficienti direttivi": qui $\frac31=3$.</p>
+              <p><strong>$= 3$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Determina $\lim\limits_{x\to 0^{+}}\dfrac1x$ e $\lim\limits_{x\to 0^{-}}\dfrac1x$, e stabilisci se esiste $\lim\limits_{x\to 0}\dfrac1x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>C'è un denominatore che si annulla in $x=0$ e cambia segno passando da sinistra a destra: è uno dei casi in cui bisogna <em>sempre</em> separare i due lati (<span class="richiamo" data-sec="4.4">§4.4</span>). Guardo prima qualche valore concreto, poi concludo con la tabella del <span class="richiamo" data-sec="4.6">§4.6</span>.</p>
+              <div class="calcolo">$$\begin{aligned}
+x = 0{,}1 \ &amp;\Rightarrow\ \frac1x = 10 &amp;&amp;\text{(da destra: valori positivi e sempre più grandi)}\\
+x = 0{,}001 \ &amp;\Rightarrow\ \frac1x = 1000 &amp;&amp;\text{(più }x\text{ si avvicina a }0\text{, più il valore esplode)}\\
+x = -0{,}1 \ &amp;\Rightarrow\ \frac1x = -10 &amp;&amp;\text{(da sinistra: valori negativi)}\\
+x = -0{,}001 \ &amp;\Rightarrow\ \frac1x = -1000 &amp;&amp;\text{(esplode verso il basso)}
+\end{aligned}$$</div>
+              <p>Da destra il denominatore tende a $0$ restando <em>positivo</em>: uso la riga "$\frac{L}{0^{+}}=+\infty$ con $L\gt0$" della tabella del <span class="richiamo" data-sec="4.6">§4.6</span>, qui con $L=1$. Da sinistra il denominatore tende a $0$ restando <em>negativo</em>, e la stessa riga con il segno cambiato dà $-\infty$. I due limiti laterali sono diversi, quindi per il teorema di collegamento (<span class="richiamo" data-sec="4.4">§4.4</span>) il limite completo non esiste.</p>
+              <p><strong>$\lim\limits_{x\to0^+}\frac1x=+\infty$, $\ \lim\limits_{x\to0^-}\frac1x=-\infty$; poiché i lati differiscono, $\lim\limits_{x\to0}\frac1x$ non esiste</strong> (in $x=0$ c'è un asintoto verticale).</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to +\infty}\dfrac{4x^3 - x}{2x^3 + 5x^2}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituendo mentalmente $x\to+\infty$: sopra $+\infty$, sotto $+\infty$. <strong>Forma indeterminata</strong> $\frac{\infty}{\infty}$ (<span class="richiamo" data-sec="4.7">§4.7</span>), con polinomi dello stesso grado (il terzo). Raccolgo sopra e sotto il termine dominante $x^3$.</p>
+              <div class="calcolo">$$\begin{aligned}
+4x^3-x &amp;= x^3\left(4-\frac{x}{x^3}\right) = x^3\left(4-\frac{1}{x^2}\right) &amp;&amp;\text{(raccolgo }x^3\text{; }\tfrac{x}{x^3}=\tfrac{1}{x^2}\text{, proprietà delle potenze)}\\
+2x^3+5x^2 &amp;= x^3\left(2+\frac{5x^2}{x^3}\right) = x^3\left(2+\frac{5}{x}\right) &amp;&amp;\text{(raccolgo }x^3\text{; }\tfrac{x^2}{x^3}=\tfrac1x\text{)}\\
+\frac{4x^3-x}{2x^3+5x^2} &amp;= \frac{4-\frac{1}{x^2}}{2+\frac{5}{x}} &amp;&amp;\text{(semplifico il fattore }x^3\text{ comune)}\\
+&amp;\longrightarrow \frac{4-0}{2+0} = \frac{4}{2} = 2 &amp;&amp;\text{(}\tfrac{1}{x^2}\to0\text{ e }\tfrac5x\to0\text{, sez. 4.6)}
+\end{aligned}$$</div>
+              <p>Il denominatore tende a $2\neq0$, quindi la divisione è lecita e la forma indeterminata è sciolta.</p>
+              <p><strong>$= 2$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to 0}\dfrac{\sin 5x}{2x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituendo $x=0$: sopra $\sin0=0$, sotto $0$. <strong>Forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>). C'è un seno, quindi penso al notevole $\frac{\sin t}{t}\to1$; ma il controllo del <span class="richiamo" data-sec="4.8">§4.8</span> fallisce, perché l'argomento del seno è $5x$ mentre sotto c'è $2x$. Sistemo facendo comparire $5x$ al denominatore.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{\sin 5x}{2x} &amp;= \frac{\sin 5x}{5x}\cdot\frac{5x}{2x} &amp;&amp;\text{(moltiplico e divido per }5x\text{: il prodotto delle due frazioni ridà l'originale)}\\
+\frac{5x}{2x} &amp;= \frac{5}{2} &amp;&amp;\text{(semplifico }x\text{: lecito perché }x\neq0\text{)}\\
+\frac{\sin 5x}{5x} &amp;\longrightarrow 1 &amp;&amp;\text{(notevole sez. 4.8 con la sostituzione }t=5x\text{, e }5x\to0\text{ quando }x\to0\text{)}\\
+\frac{\sin 5x}{2x} &amp;\longrightarrow 1\cdot\frac{5}{2} = \frac{5}{2} &amp;&amp;\text{(limite di un prodotto, sez. 4.6)}
+\end{aligned}$$</div>
+              <p><strong>$= \dfrac52$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to +\infty}\big(\sqrt{x+1} - \sqrt{x}\big)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Per $x\to+\infty$ entrambe le radici tendono a $+\infty$: <strong>forma indeterminata</strong> $\infty-\infty$ (<span class="richiamo" data-sec="4.7">§4.7</span>). Attenzione a non concludere "fa zero perché le due radici si somigliano": va trasformata. Poiché c'è una differenza di radici, razionalizzo moltiplicando e dividendo per il coniugato $\sqrt{x+1}+\sqrt x$.</p>
+              <div class="calcolo">$$\begin{aligned}
+\sqrt{x+1}-\sqrt x &amp;= \frac{\big(\sqrt{x+1}-\sqrt x\big)\big(\sqrt{x+1}+\sqrt x\big)}{\sqrt{x+1}+\sqrt x} &amp;&amp;\text{(moltiplico e divido per il coniugato)}\\
+&amp;= \frac{\big(\sqrt{x+1}\big)^2-\big(\sqrt x\big)^2}{\sqrt{x+1}+\sqrt x} &amp;&amp;\text{(prodotto notevole }(A-B)(A+B)=A^2-B^2\text{)}\\
+&amp;= \frac{(x+1)-x}{\sqrt{x+1}+\sqrt x} &amp;&amp;\text{(il quadrato annulla la radice)}\\
+&amp;= \frac{1}{\sqrt{x+1}+\sqrt x} &amp;&amp;\text{(al numeratore }x\text{ si cancella con }-x\text{)}\\
+&amp;\longrightarrow 0 &amp;&amp;\text{(numeratore fisso, denominatore }\to+\infty\text{: riga }\tfrac{L}{\pm\infty}\text{ del sez. 4.6)}
+\end{aligned}$$</div>
+              <p>Il numeratore è diventato la costante $1$ mentre il denominatore cresce senza limite: la frazione si schiaccia su zero. Nota la differenza con l'Esempio 5, dove al numeratore restava una $x$ e il risultato non era zero.</p>
+              <p><strong>$= 0$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to 2}\dfrac{x^2 - 4}{x^2 - 5x + 6}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituendo $x=2$: sopra $4-4=0$, sotto $4-10+6=0$. <strong>Forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>). Come sempre in questi casi, sopra e sotto contengono il fattore $(x-2)$: lo faccio emergere scomponendo entrambi.</p>
+              <div class="calcolo">$$\begin{aligned}
+x^2-4 &amp;= (x-2)(x+2) &amp;&amp;\text{(differenza di quadrati }a^2-b^2=(a-b)(a+b)\text{ con }a=x,\ b=2\text{)}\\
+x^2-5x+6 &amp;= (x-2)(x-3) &amp;&amp;\text{(trinomio: cerco due numeri con somma }5\text{ e prodotto }6\text{, sono }2\text{ e }3\text{)}\\
+\frac{x^2-4}{x^2-5x+6} &amp;= \frac{(x-2)(x+2)}{(x-2)(x-3)} = \frac{x+2}{x-3} &amp;&amp;\text{(semplifico }(x-2)\text{: lecito perché }x\neq2\text{)}\\
+&amp;\longrightarrow \frac{2+2}{2-3} = \frac{4}{-1} = -4 &amp;&amp;\text{(niente più forma indeterminata: sostituisco }x=2\text{)}
+\end{aligned}$$</div>
+              <p>Controllo della scomposizione del trinomio: $(x-2)(x-3)=x^2-3x-2x+6=x^2-5x+6$. Corretta.</p>
+              <p><strong>$= -4$</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to 0}\dfrac{\tan x - \sin x}{x^3}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituendo $x=0$: sopra $\tan0-\sin0=0$, sotto $0$. <strong>Forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>). L'idea è trasformare il numeratore finché non compaiono i due limiti notevoli del <span class="richiamo" data-sec="4.8">§4.8</span>. Primo passo: riscrivo la tangente e raccolgo.</p>
+              <div class="calcolo">$$\begin{aligned}
+\tan x-\sin x &amp;= \frac{\sin x}{\cos x}-\sin x &amp;&amp;\text{(definizione }\tan x=\tfrac{\sin x}{\cos x}\text{, Parte 0, cap. 8)}\\
+&amp;= \sin x\left(\frac{1}{\cos x}-1\right) &amp;&amp;\text{(raccolgo }\sin x\text{, comune ai due addendi)}\\
+&amp;= \sin x\cdot\frac{1-\cos x}{\cos x} &amp;&amp;\text{(denominatore comune dentro la parentesi)}
+\end{aligned}$$</div>
+              <p>Ora divido per $x^3$. Per far comparire i notevoli spezzo $x^3=x\cdot x^2$ e do la $x$ al fattore con il seno, la $x^2$ al fattore con il coseno.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{\tan x-\sin x}{x^3} &amp;= \frac{\sin x\cdot\frac{1-\cos x}{\cos x}}{x\cdot x^2} &amp;&amp;\text{(scrivo }x^3\text{ come }x\cdot x^2\text{)}\\
+&amp;= \frac{\sin x}{x}\cdot\frac{1-\cos x}{x^2}\cdot\frac{1}{\cos x} &amp;&amp;\text{(distribuisco i denominatori: moltiplicando i tre fattori si ritrova l'originale)}\\
+\frac{\sin x}{x} &amp;\longrightarrow 1 &amp;&amp;\text{(primo notevole, sez. 4.8)}\\
+\frac{1-\cos x}{x^2} &amp;\longrightarrow \frac{1}{2} &amp;&amp;\text{(secondo notevole, sez. 4.8)}\\
+\frac{1}{\cos x} &amp;\longrightarrow \frac{1}{\cos 0} = \frac{1}{1} = 1 &amp;&amp;\text{(}\cos0=1\text{)}\\
+\frac{\tan x-\sin x}{x^3} &amp;\longrightarrow 1\cdot\frac{1}{2}\cdot 1 = \frac{1}{2} &amp;&amp;\text{(limite di un prodotto, sez. 4.6)}
+\end{aligned}$$</div>
+              <p><strong>$= \dfrac12$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to +\infty}\Big(1 + \dfrac3x\Big)^{x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Per $x\to+\infty$ la base $1+\frac3x$ tende a $1$ e l'esponente $x$ tende a $+\infty$: <strong>forma indeterminata</strong> $1^{\infty}$ (<span class="richiamo" data-sec="4.7">§4.7</span>). Attenzione: non si può dire "$1$ elevato a qualsiasi cosa fa $1$", perché la base non è esattamente $1$, ci si avvicina soltanto. Il notevole di riferimento è $\big(1+\frac1t\big)^t\to e$ (<span class="richiamo" data-sec="4.8">§4.8</span>), e per usarlo servono due cose: dentro la parentesi deve esserci $\frac1t$, e l'esponente deve essere proprio quel $t$.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{3}{x} &amp;= \frac{1}{\ x/3\ } &amp;&amp;\text{(guardo la parentesi e la riscrivo come un reciproco)}\\
+t &amp;= \frac{x}{3} &amp;&amp;\text{(scelgo questa sostituzione; se }x\to+\infty\text{ allora }t\to+\infty\text{)}\\
+x &amp;= 3\cdot\frac{x}{3} &amp;&amp;\text{(sistemo l'esponente: lo scrivo come }3\text{ volte }t\text{)}\\
+\left(1+\frac{3}{x}\right)^{x} &amp;= \left(1+\frac{3}{x}\right)^{3\cdot\frac{x}{3}} = \left[\left(1+\frac{3}{x}\right)^{x/3}\right]^{3} &amp;&amp;\text{(proprietà delle potenze }a^{mn}=(a^m)^n\text{, Parte 0, cap. 3)}\\
+\left(1+\frac{3}{x}\right)^{x/3} &amp;= \left(1+\frac{1}{t}\right)^{t} \longrightarrow e &amp;&amp;\text{(è esattamente il notevole, con }t=\tfrac{x}{3}\text{)}\\
+\left(1+\frac{3}{x}\right)^{x} &amp;\longrightarrow e^{3} &amp;&amp;\text{(resta l'elevamento alla terza, fuori dalle parentesi quadre)}
+\end{aligned}$$</div>
+              <p>Regola generale che conviene ricordare: $\lim\limits_{x\to+\infty}\big(1+\frac kx\big)^x = e^{k}$, e qui $k=3$.</p>
+              <p><strong>$= e^{3}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to 0}\dfrac{e^{2x} - 1}{x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituendo $x=0$: sopra $e^{0}-1=1-1=0$, sotto $0$. <strong>Forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>). Il notevole adatto è $\frac{e^t-1}{t}\to1$ (<span class="richiamo" data-sec="4.8">§4.8</span>): all'esponente ho $2x$, quindi mi serve $2x$ anche al denominatore.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{e^{2x}-1}{x} &amp;= \frac{e^{2x}-1}{x}\cdot\frac{2}{2} &amp;&amp;\text{(moltiplico e divido per }2\text{: non cambio nulla)}\\
+&amp;= \frac{e^{2x}-1}{2x}\cdot 2 &amp;&amp;\text{(porto un }2\text{ al denominatore e lascio l'altro fuori)}\\
+\frac{e^{2x}-1}{2x} &amp;= \frac{e^{t}-1}{t} \longrightarrow 1 &amp;&amp;\text{(notevole sez. 4.8 con la sostituzione }t=2x\text{, e }2x\to0\text{)}\\
+\frac{e^{2x}-1}{x} &amp;\longrightarrow 1\cdot 2 = 2 &amp;&amp;\text{(limite di un prodotto, sez. 4.6)}
+\end{aligned}$$</div>
+              <p><strong>$= 2$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Calcola $\lim\limits_{x\to 0}\dfrac{\ln(1 + 3x)}{\sin 2x}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Sostituendo $x=0$: sopra $\ln(1+0)=\ln1=0$, sotto $\sin0=0$. <strong>Forma indeterminata</strong> $\frac00$ (<span class="richiamo" data-sec="4.7">§4.7</span>). Qui i notevoli da usare sono due, uno sopra e uno sotto. La tecnica è sempre la stessa: riscrivo ciascun pezzo come "notevole $\times$ il fattore che gli serve".</p>
+              <div class="calcolo">$$\begin{aligned}
+\ln(1+3x) &amp;= \frac{\ln(1+3x)}{3x}\cdot 3x &amp;&amp;\text{(moltiplico e divido per }3x\text{, l'argomento del logaritmo meno }1\text{)}\\
+\sin 2x &amp;= \frac{\sin 2x}{2x}\cdot 2x &amp;&amp;\text{(moltiplico e divido per }2x\text{, l'argomento del seno)}\\
+\frac{\ln(1+3x)}{\sin 2x} &amp;= \frac{\frac{\ln(1+3x)}{3x}\cdot 3x}{\frac{\sin 2x}{2x}\cdot 2x} &amp;&amp;\text{(rimetto insieme i due pezzi)}\\
+&amp;= \frac{\frac{\ln(1+3x)}{3x}}{\frac{\sin 2x}{2x}}\cdot\frac{3x}{2x} &amp;&amp;\text{(separo i due notevoli dal rapporto dei fattori)}\\
+\frac{3x}{2x} &amp;= \frac{3}{2} &amp;&amp;\text{(semplifico }x\text{: lecito perché }x\neq0\text{)}
+\end{aligned}$$</div>
+              <p>Ora applico i due limiti notevoli del <span class="richiamo" data-sec="4.8">§4.8</span>, ciascuno con la sua sostituzione, entrambe legittime perché $3x\to0$ e $2x\to0$ quando $x\to0$.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{\ln(1+3x)}{3x} &amp;\longrightarrow 1 &amp;&amp;\text{(notevole }\tfrac{\ln(1+t)}{t}\to1\text{ con }t=3x\text{)}\\
+\frac{\sin 2x}{2x} &amp;\longrightarrow 1 &amp;&amp;\text{(notevole }\tfrac{\sin t}{t}\to1\text{ con }t=2x\text{)}\\
+\frac{\ln(1+3x)}{\sin 2x} &amp;\longrightarrow \frac{1}{1}\cdot\frac{3}{2} = \frac{3}{2} &amp;&amp;\text{(algebra dei limiti, sez. 4.6: quoziente con denominatore }1\neq0\text{)}
+\end{aligned}$$</div>
+              <p><strong>$= \dfrac32$</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determina il valore del parametro $a \in \mathbb{R}$ per cui $\lim\limits_{x\to +\infty}\big(\sqrt{x^2 + ax} - x\big) = 2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>L'esercizio si fa in due tempi: <em>prima</em> calcolo il limite lasciando $a$ come lettera, <em>poi</em> impongo che il risultato sia $2$ e ricavo $a$. Il limite ha la <strong>forma indeterminata</strong> $\infty-\infty$ (<span class="richiamo" data-sec="4.7">§4.7</span>), e la strategia è la stessa dell'Esempio 5: razionalizzo con il coniugato $\sqrt{x^2+ax}+x$.</p>
+              <div class="calcolo">$$\begin{aligned}
+\sqrt{x^2+ax}-x &amp;= \frac{\big(\sqrt{x^2+ax}-x\big)\big(\sqrt{x^2+ax}+x\big)}{\sqrt{x^2+ax}+x} &amp;&amp;\text{(moltiplico e divido per il coniugato)}\\
+&amp;= \frac{(x^2+ax)-x^2}{\sqrt{x^2+ax}+x} &amp;&amp;\text{(}(A-B)(A+B)=A^2-B^2\text{; il quadrato annulla la radice)}\\
+&amp;= \frac{ax}{\sqrt{x^2+ax}+x} &amp;&amp;\text{(}x^2\text{ si cancella con }-x^2\text{)}
+\end{aligned}$$</div>
+              <p>Come nell'Esempio 5, la forma è diventata $\frac{\infty}{\infty}$: raccolgo $x$ al denominatore, tirandolo fuori dalla radice.</p>
+              <div class="calcolo">$$\begin{aligned}
+\sqrt{x^2+ax} &amp;= \sqrt{x^2\left(1+\frac{a}{x}\right)} = |x|\sqrt{1+\frac{a}{x}} = x\sqrt{1+\frac{a}{x}} &amp;&amp;\text{(}\sqrt{x^2}=|x|=x\text{ perché }x\to+\infty\text{)}\\
+\frac{ax}{\sqrt{x^2+ax}+x} &amp;= \frac{ax}{x\left(\sqrt{1+\frac{a}{x}}+1\right)} = \frac{a}{\sqrt{1+\frac{a}{x}}+1} &amp;&amp;\text{(raccolgo }x\text{ e semplifico)}\\
+&amp;\longrightarrow \frac{a}{\sqrt{1+0}+1} = \frac{a}{2} &amp;&amp;\text{(}\tfrac{a}{x}\to0\text{ perché }a\text{ è un numero fisso, sez. 4.6)}
+\end{aligned}$$</div>
+              <p>Il testo chiede che questo limite valga $2$: impongo l'uguaglianza e risolvo.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{a}{2} &amp;= 2 &amp;&amp;\text{(condizione richiesta dal testo)}\\
+a &amp;= 4 &amp;&amp;\text{(moltiplico entrambi i membri per }2\text{)}
+\end{aligned}$$</div>
+              <p><strong>$a = 4$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Data $f(x) = \begin{cases} \frac{\sin x}{x} &amp; \text{se } x &lt; 0 \\[2pt] x + 1 &amp; \text{se } x \ge 0 \end{cases}$, stabilisci se esiste $\lim\limits_{x\to 0} f(x)$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La funzione è definita <em>a tratti</em>: è uno dei casi in cui bisogna sempre separare i due lati (<span class="richiamo" data-sec="4.4">§4.4</span>), perché a destra e a sinistra di $0$ la formula da usare è diversa. Calcolo i due limiti laterali, ciascuno con la sua formula.</p>
+              <div class="calcolo">$$\begin{aligned}
+\lim_{x\to0^{-}} f(x) &amp;= \lim_{x\to0^{-}}\frac{\sin x}{x} = 1 &amp;&amp;\text{(per }x\lt0\text{ vale il primo ramo; è il notevole del sez. 4.8)}\\
+\lim_{x\to0^{+}} f(x) &amp;= \lim_{x\to0^{+}}(x+1) = 0+1 = 1 &amp;&amp;\text{(per }x\ge0\text{ vale il secondo ramo: sostituisco)}\\
+1 &amp;= 1 &amp;&amp;\text{(i due limiti laterali coincidono)}
+\end{aligned}$$</div>
+              <p>Poiché entrambi i limiti laterali esistono e sono uguali, il teorema di collegamento (<span class="richiamo" data-sec="4.4">§4.4</span>) garantisce che esiste anche il limite completo e vale quel valore comune.</p>
+              <p><strong>Il limite esiste e vale $1$</strong> (per il teorema di collegamento).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Verifica con la definizione $\varepsilon$–$\delta$ che $\lim\limits_{x\to 1}(2x + 3) = 5$, esplicitando $\delta$ in funzione di $\varepsilon$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Scrivo la definizione del <span class="richiamo" data-sec="4.2">§4.2</span> con i dati del problema: al posto di $f(x)$ metto $2x+3$, al posto di $x_0$ metto $1$, al posto di $L$ metto $5$. <strong>Fase 1: cerco il $\delta$</strong>, lavorando sulla quantità $|(2x+3)-5|$ finché non compare $|x-1|$, che è ciò che $\delta$ controlla.</p>
+              <div class="calcolo">$$\begin{aligned}
+|(2x+3)-5| &amp;\lt \varepsilon &amp;&amp;\text{(la condizione da ottenere)}\\
+|2x-2| &amp;\lt \varepsilon &amp;&amp;\text{(faccio i conti dentro il modulo: }3-5=-2\text{)}\\
+|2(x-1)| &amp;\lt \varepsilon &amp;&amp;\text{(raccolgo }2\text{: infatti }2x-2=2(x-1)\text{)}\\
+2\,|x-1| &amp;\lt \varepsilon &amp;&amp;\text{(regola }|ab|=|a|\cdot|b|\text{, cap. 2, con }a=2,\ b=x-1\text{)}\\
+|x-1| &amp;\lt \frac{\varepsilon}{2} &amp;&amp;\text{(divido entrambi i membri per }2\gt0\text{: il verso resta)}
+\end{aligned}$$</div>
+              <p><strong>Fase 2: controllo.</strong> Scelgo $\delta=\frac{\varepsilon}{2}$ (positivo, quindi ammissibile) e ripercorro la catena al contrario.</p>
+              <div class="calcolo">$$\begin{aligned}
+0 \lt |x-1| &amp;\lt \frac{\varepsilon}{2} &amp;&amp;\text{(ipotesi: }x\text{ nell'intorno bucato di raggio }\delta\text{)}\\
+2\,|x-1| &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per }2\gt0\text{)}\\
+|(2x+3)-5| &amp;\lt \varepsilon &amp;&amp;\text{(}2(x-1)=2x-2=(2x+3)-5\text{)}
+\end{aligned}$$</div>
+              <p><strong>Basta scegliere $\delta = \dfrac{\varepsilon}{2}$:</strong> per ogni $\varepsilon\gt0$, se $0\lt|x-1|\lt\delta$ allora $|(2x+3)-5|\lt\varepsilon$. Il limite è verificato. (In generale, per $f(x)=mx+q$ con $m\neq0$ si trova $\delta=\frac{\varepsilon}{|m|}$.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 4.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Dimostra, usando il teorema del confronto, che $\lim\limits_{x\to 0} x^2 \sin\!\big(\tfrac1x\big) = 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Perché serve il confronto e non l'algebra dei limiti.</strong> Il fattore $\sin\frac1x$ non ha limite per $x\to0$: oscilla sempre più fitto fra $-1$ e $1$. Quindi non posso spezzare il prodotto (<span class="richiamo" data-sec="4.6">§4.6</span> richiede che ogni pezzo abbia limite). Però quel fattore, pur non avendo limite, è <em>limitato</em>: sta sempre fra $-1$ e $1$. È esattamente la situazione in cui il teorema del confronto (<span class="richiamo" data-sec="4.5">§4.5</span>) funziona.</p>
+              <div class="calcolo">$$\begin{aligned}
+-1 \le \sin\!\left(\frac{1}{x}\right) &amp;\le 1 &amp;&amp;\text{(il seno di qualsiasi cosa sta fra }-1\text{ e }1\text{, Parte 0, cap. 8)}\\
+-x^2 \le x^2\sin\!\left(\frac{1}{x}\right) &amp;\le x^2 &amp;&amp;\text{(moltiplico i tre membri per }x^2\ge0\text{: il verso NON cambia)}\\
+-x^2 &amp;\longrightarrow 0 &amp;&amp;\text{(carabiniere di sotto: sostituisco }x=0\text{)}\\
+x^2 &amp;\longrightarrow 0 &amp;&amp;\text{(carabiniere di sopra: stesso valore }L=0\text{)}
+\end{aligned}$$</div>
+              <p>I due carabinieri $g(x)=-x^2$ e $h(x)=x^2$ tendono allo <em>stesso</em> valore $L=0$, e in mezzo c'è il prigioniero $f(x)=x^2\sin\frac1x$: sono i tre ingredienti richiesti dal teorema. La stretta si chiude e il prigioniero è costretto a finire in $0$.</p>
+              <p><strong>Per il teorema del confronto, $\lim\limits_{x\to0} x^2\sin\!\big(\tfrac1x\big) = 0$. ∎</strong> (Nota: qui il notevole $\frac{\sin x}{x}$ NON si applica, perché l'argomento $\frac1x$ tende a $\infty$, non a $0$: rivedi il non-esempio del <span class="richiamo" data-sec="4.8">§4.8</span>.)</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) La scrittura $\lim\limits_{x\to x_0} f(x) = L$ descrive principalmente:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">il valore esatto di $f$ in $x_0$</button>
+              <button class="quiz-option" data-correct="true">il comportamento di $f$ per $x$ vicino a $x_0$ ma diverso da $x_0$</button>
+              <button class="quiz-option" data-correct="false">il massimo di $f$ vicino a $x_0$</button>
+              <button class="quiz-option" data-correct="false">la pendenza di $f$ in $x_0$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Il limite guarda l'intorno <em>bucato</em> $0&lt;|x-x_0|$: conta la tendenza attorno a $x_0$, non il valore nel punto (che può mancare o essere diverso).</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quanto vale $\lim\limits_{x\to +\infty}\dfrac{3x^2 + 1}{x^2 - 2}$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$0$</button>
+              <button class="quiz-option" data-correct="true">$3$</button>
+              <button class="quiz-option" data-correct="false">$+\infty$</button>
+              <button class="quiz-option" data-correct="false">$\dfrac12$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Polinomi dello stesso grado (2): il limite è il rapporto dei coefficienti direttivi, $3/1 = 3$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) La forma $\infty - \infty$ è:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">sempre uguale a $0$</button>
+              <button class="quiz-option" data-correct="false">sempre uguale a $+\infty$</button>
+              <button class="quiz-option" data-correct="true">una forma indeterminata: il risultato dipende dalle funzioni</button>
+              <button class="quiz-option" data-correct="false">impossibile da calcolare in ogni caso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$(x+1)-x\to1$, $\ x-x\to0$, $\ x^2-x\to+\infty$: stessa forma, risultati diversi. Va sempre manipolata.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Quanto vale $\lim\limits_{x\to 0}\dfrac{\sin x}{x}$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$0$</button>
+              <button class="quiz-option" data-correct="true">$1$</button>
+              <button class="quiz-option" data-correct="false">non esiste</button>
+              <button class="quiz-option" data-correct="false">$+\infty$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È il limite notevole capostipite, dimostrato con le aree sul cerchio goniometrico: vale $1$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se i due limiti laterali in $x_0$ esistono ma sono diversi, allora il limite in $x_0$ non esiste.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: per il teorema di collegamento il limite esiste solo se i due lati coincidono.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Il valore di $\lim\limits_{x\to x_0} f(x)$ dipende sempre dal valore $f(x_0)$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: l'intorno è bucato, quindi $f(x_0)$ non entra nel calcolo. Può anche non esistere (es. $\frac{x^2-1}{x-1}$ in $x=1$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Vale $\lim\limits_{x\to 0}\dfrac{1-\cos x}{x^2} = \dfrac12$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: è un limite notevole, ricavabile dal capostipite moltiplicando per $(1+\cos x)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) Poiché $\infty - \infty = 0$, ogni limite di questa forma vale $0$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso, e doppiamente: $\infty-\infty$ è indeterminata (non "fa 0"). Es. $\sqrt{x^2+x}-x\to\frac12$, non $0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="epsilon">
+            <p class="quiz-question__testo">9. (Completamento) Nella definizione di limite, il numero positivo piccolo a piacere che rappresenta la "tolleranza" attorno a $L$ si indica di solito con la lettera greca ______ (scrivi il nome per esteso).</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>È $\varepsilon$ (epsilon); il portiere lo sceglie per primo, e tu rispondi con $\delta$ (delta).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="bucato|intorno bucato|forato">
+            <p class="quiz-question__testo">10. (Completamento) L'intorno di $x_0$ da cui si esclude il punto $x_0$ stesso (condizione $0 &lt; |x - x_0|$) si dice intorno ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Intorno "bucato": è ciò che rende il limite indipendente dal valore in $x_0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="carabinieri|dei carabinieri">
+            <p class="quiz-question__testo">11. (Completamento) Il teorema del confronto, che "stringe" una funzione tra altre due con lo stesso limite, è noto anche come teorema dei ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Dei "carabinieri": due funzioni scortano la terza verso la stessa cella $L$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché nella definizione di limite si usa l'intorno "bucato" $0 &lt; |x - x_0|$ e non semplicemente $|x - x_0| &lt; \delta$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: la condizione $0 &lt; |x-x_0|$ esclude il caso $x = x_0$, perché il limite descrive come si comporta $f$ <em>avvicinandosi</em> a $x_0$, non quanto vale esattamente lì. Il punto $x_0$ può non appartenere al dominio (es. $\frac{x^2-1}{x-1}$ in $x=1$) oppure $f(x_0)$ può essere un valore "isolato" diverso dalla tendenza. Senza il "buco", il concetto di limite si ridurrebbe a quello di valore della funzione e perderebbe il suo scopo: studiare il comportamento locale attorno a un punto, anche dove la funzione non è definita.</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Spiega perché $\infty - \infty$ è una forma indeterminata, portando almeno un esempio numerico che lo mostri.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: due quantità che tendono entrambe a $+\infty$ possono "correre" a velocità diverse, quindi la loro differenza può tendere a qualsiasi cosa. Esempi, tutti della forma $\infty-\infty$ per $x\to+\infty$: $(x+1)-x = 1 \to 1$; $\ x - x = 0 \to 0$; $\ x^2 - x \to +\infty$; $\ \sqrt{x^2+x}-x \to \frac12$. Poiché la stessa scrittura simbolica produce risultati diversi ($1$, $0$, $+\infty$, $\frac12$), non le si può assegnare un valore fisso: bisogna trasformare l'espressione (raccoglimento del termine dominante, razionalizzazione) per scoprire il vero limite.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="03-funzioni.html"><span class="dir">← Capitolo precedente</span><strong>Funzioni</strong></a>
+        <a class="next" href="05-infinitesimi-infiniti.html"><span class="dir">Capitolo successivo →</span><strong>Infinitesimi, infiniti e confronti</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5. Equazioni — Parte 0 · Prerequisiti</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0" class="is-active">Parte 0</a>
+      <a href="../index.html#parte1">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte0">Parte 0 · Prerequisiti</a><span class="sep">/</span>Capitolo 5</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 0 · Prerequisiti</p>
+      <nav>
+        <ul>
+          <li><a href="01-insiemi-logica-numeri.html">1. Insiemi, logica e numeri</a></li>
+          <li><a href="02-algebra-calcolo-letterale.html">2. Algebra e calcolo letterale</a></li>
+          <li><a href="03-potenze-radicali-esponenziali.html">3. Potenze, radicali, esponenziali</a></li>
+          <li><a href="04-logaritmi.html">4. Logaritmi</a></li>
+          <li><a href="05-equazioni.html" class="is-active">5. Equazioni</a></li>
+          <li><a href="06-disequazioni.html">6. Disequazioni</a></li>
+          <li><a href="07-geometria-analitica.html">7. Geometria analitica</a></li>
+          <li><a href="08-trigonometria.html">8. Trigonometria</a></li>
+          <li><a href="09-funzioni-elementari-grafici.html">9. Funzioni elementari e grafici</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte0">Parte 0 · Prerequisiti</span>
+          <span class="badge badge--base">Capitolo 5 di 9</span>
+        </div>
+        <h1>Equazioni: trovare l'incognita che bilancia l'uguaglianza</h1>
+        <p class="subtitle">Un'equazione è una domanda travestita da uguaglianza: "quale valore devo mettere al posto della lettera perché i due lati diventino davvero identici?". In questo capitolo impariamo a rispondere a quella domanda per ogni tipo di equazione che incontrerai agli esami di Analisi.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina una <strong>bilancia a due piatti</strong>, di quelle antiche, perfettamente in equilibrio. Sul piatto di sinistra c'è un pacchetto misterioso di peso sconosciuto — chiamiamolo $x$ — più tre monete da un grammo. Sul piatto di destra ci sono otto monete da un grammo. La bilancia è ferma, orizzontale: i due piatti pesano <em>esattamente</em> uguale.</p>
+        <p>Questa scena è, parola per parola, l'equazione $x + 3 = 8$. La domanda "quanto pesa il pacchetto?" è la stessa domanda che in matematica scriviamo "<strong>quanto vale $x$?</strong>".</p>
+
+        <svg viewBox="0 0 440 230" style="max-width:440px;margin:1.4em auto;display:block;" role="img" aria-label="Bilancia a due piatti in equilibrio: a sinistra un pacchetto x più 3 grammi, a destra 8 grammi">
+          <line x1="220" y1="70" x2="220" y2="150" stroke="currentColor" stroke-width="4"/>
+          <polygon points="220,150 196,200 244,200" fill="var(--color-text-muted)"/>
+          <rect x="150" y="200" width="140" height="8" rx="3" fill="var(--color-text-muted)"/>
+          <line x1="110" y1="70" x2="330" y2="70" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+          <line x1="120" y1="70" x2="100" y2="130" stroke="var(--color-text-muted)" stroke-width="2"/>
+          <line x1="120" y1="70" x2="140" y2="130" stroke="var(--color-text-muted)" stroke-width="2"/>
+          <path d="M95 130 Q120 158 145 130 Z" fill="var(--color-primary)" opacity="0.35" stroke="var(--color-primary)" stroke-width="2"/>
+          <text x="120" y="122" font-size="15" font-weight="700" fill="currentColor" text-anchor="middle">x + 3</text>
+          <line x1="320" y1="70" x2="300" y2="130" stroke="var(--color-text-muted)" stroke-width="2"/>
+          <line x1="320" y1="70" x2="340" y2="130" stroke="var(--color-text-muted)" stroke-width="2"/>
+          <path d="M295 130 Q320 158 345 130 Z" fill="var(--color-secondary)" opacity="0.35" stroke="var(--color-secondary)" stroke-width="2"/>
+          <text x="320" y="122" font-size="15" font-weight="700" fill="currentColor" text-anchor="middle">8</text>
+          <text x="220" y="30" font-size="15" font-weight="800" fill="var(--color-primary)" text-anchor="middle">x + 3 = 8</text>
+        </svg>
+
+        <p>Il segreto per rispondere è tanto banale quanto potente: <strong>tutto ciò che faccio a un piatto, devo farlo identico all'altro</strong>, altrimenti rompo l'equilibrio. Se tolgo tre monete da sinistra, devo togliere tre monete anche da destra. A quel punto sul piatto sinistro resta solo il pacchetto $x$, e sul destro restano cinque monete: la bilancia mi dice, senza più misteri, che $x = 5$.</p>
+        <p>Questo è <strong>letteralmente</strong> tutto ciò che faremo in questo capitolo, con equazioni via via più elaborate. Cambieranno gli "oggetti sui piatti" — potenze, frazioni, valori assoluti, radici — ma la regola d'oro resterà sempre la stessa: <em>ogni operazione lecita, applicata a entrambi i membri, produce un'equazione equivalente</em>, cioè con le stesse identiche soluzioni. Risolvere significa fare una catena di questi passi finché la bilancia non ci confessa il valore dell'incognita.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> L'idea in una frase</div>
+          <p>Un'<span class="glossario-term" data-term="equazione">equazione</span> è un'uguaglianza che contiene una lettera incognita; <strong>risolverla</strong> vuol dire trovare tutti e soli i valori che, sostituiti alla lettera, rendono l'uguaglianza <em>vera</em>. Il segno "$=$" non è un comando ("calcola"), ma una promessa di equilibrio da mantenere.</p>
+        </div>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché quasi ogni problema quantitativo del mondo si presenta nella forma: "<em>conosco una relazione tra alcune grandezze e voglio ricavare quella che non conosco</em>". La parola stessa <strong>algebra</strong> viene dall'arabo <em>al-jabr</em> ("ricomposizione, riequilibrio"), il titolo del trattato con cui nel IX secolo al-Khwarizmi codificò proprio il metodo per isolare l'incognita spostando termini da un membro all'altro. Le equazioni sono la macchina che trasforma una relazione nota in un valore incognito.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> Fino al capitolo scorso abbiamo imparato a <em>costruire</em> espressioni: dato un valore, calcolare un risultato. L'equazione fa il percorso inverso: dato il risultato desiderato, <strong>scoprire quale valore lo produce</strong>. È la differenza tra "so che a 60 km/h in 2 ore percorro 120 km" e "voglio percorrere 300 km in 4 ore: a che velocità devo andare?". La seconda domanda è un'equazione.</p>
+        <p><strong>Perché è importante <em>ora</em>?</strong> Perché praticamente ogni tecnica dell'Analisi 1 e 2 si riduce, a un certo punto, a risolvere un'equazione. Trovare il <strong>dominio</strong> di una funzione significa risolvere (dis)equazioni sui denominatori e sotto le radici. Cercare le <strong>intersezioni con gli assi</strong> significa porre $y=0$ e risolvere. I <strong>punti stazionari</strong> di una funzione derivabile sono le soluzioni di $f'(x)=0$. Persino i limiti notevoli e le serie nascondono equazioni. Se la risoluzione delle equazioni non è automatica, ogni studio di funzione diventa un incubo: per questo le consolidiamo adesso, una volta per tutte. Il capitolo di <a href="../parte1-analisi1/09-studio-di-funzione.html">studio di funzione</a> darà per scontato tutto ciò che vedi qui.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🌍</span> Il punto di pareggio: quando un'attività smette di perdere soldi</div>
+          <p>Apri un piccolo laboratorio artigianale. Hai dei <strong>costi fissi</strong> (affitto, macchinari): diciamo $2000$ € al mese, che paghi comunque. Ogni pezzo che produci ha un <strong>costo variabile</strong> di $8$ € (materiali) e lo vendi a $18$ €. La domanda da un milione è: <em>quanti pezzi devo vendere per non essere più in perdita?</em></p>
+          <p>Il costo totale per $x$ pezzi è $C(x) = 2000 + 8x$; il ricavo è $R(x) = 18x$. Il <strong>punto di pareggio</strong> (in inglese <em>break-even point</em>) è il momento in cui i ricavi eguagliano i costi, cioè la soluzione dell'equazione $R(x) = C(x)$:</p>
+          <div class="formula-block">$$18x = 2000 + 8x \;\Longrightarrow\; 10x = 2000 \;\Longrightarrow\; x = 200.$$</div>
+          <p>Servono <strong>200 pezzi</strong>: sotto sei in rosso, sopra inizi a guadagnare. Questa è, letteralmente, un'equazione di primo grado risolta con il metodo della bilancia. Ogni piano industriale, ogni business plan, ogni foglio di calcolo di un'azienda contiene, sotto il cofano, break-even point come questo.</p>
+        </div>
+        <p>Ma le equazioni sono ben oltre l'economia. In <strong>fisica</strong>, "a che istante il proiettile tocca terra?" è l'equazione $h(t)=0$, tipicamente di secondo grado. In <strong>chimica</strong>, bilanciare una reazione è risolvere un sistema di equazioni. Quando dividi il conto del ristorante ("35 € a testa, in quanti eravamo se il totale è 280 €?") o adatti le dosi di una ricetta, stai risolvendo equazioni senza chiamarle così. E il GPS calcola la tua posizione risolvendo equazioni di distanza dai satelliti. L'incognita è ovunque: imparare a isolarla è una competenza per la vita, non solo per l'esame.</p>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-principi">4.1 Definizioni e principi di equivalenza</h3>
+        <p>Un'<strong><span class="glossario-term" data-term="equazione">equazione</span></strong> nell'incognita $x$ è un'uguaglianza tra due espressioni, il <em>primo membro</em> e il <em>secondo membro</em>, che risulta vera solo per certi valori di $x$. Una <strong>soluzione</strong> (o <em>radice</em>) è un valore che, sostituito all'incognita, rende l'uguaglianza vera. <strong>Risolvere</strong> un'equazione significa trovarne l'insieme di tutte le soluzioni, detto <em>insieme delle soluzioni</em>.</p>
+        <p>Due equazioni si dicono <strong>equivalenti</strong> se hanno esattamente lo stesso insieme di soluzioni. Tutto il lavoro consiste nel trasformare l'equazione data in una più semplice ma <em>equivalente</em>, grazie a due regole (i "movimenti leciti sulla bilancia"):</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Principi di equivalenza</span>
+          <p><em class="nome">1° principio (addizione).</em> Aggiungendo o sottraendo a entrambi i membri una stessa quantità (numero o espressione), si ottiene un'equazione equivalente. Conseguenza pratica: un termine si può <strong>spostare da un membro all'altro cambiandogli il segno</strong> ("trasporto").</p>
+          <p><em class="nome">2° principio (moltiplicazione).</em> Moltiplicando o dividendo entrambi i membri per una stessa quantità <strong>diversa da zero</strong>, si ottiene un'equazione equivalente.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Il "diversa da zero" non è un dettaglio</div>
+          <p>Il secondo principio vale solo se il fattore è $\neq 0$. Moltiplicare per $0$ trasformerebbe qualunque equazione nell'identità $0=0$ (perdendo l'informazione); <strong>dividere</strong> per un'espressione che contiene l'incognita è ancora più pericoloso, perché quell'espressione potrebbe valere zero proprio per una delle soluzioni, che così andrebbe persa. Ci torneremo negli errori comuni: è la trappola numero uno.</p>
+        </div>
+
+        <h3 id="teoria-primo-grado">4.2 Equazioni di primo grado</h3>
+        <p>Dopo aver svolto calcoli, spostato termini e sommato i simili, ogni equazione di primo grado si riconduce alla <strong>forma normale</strong>:</p>
+        <div class="formula-block">$$ax + b = 0, \qquad \text{con } a, b \in \mathbb{R}.$$</div>
+        <p>La discussione dipende <strong>interamente</strong> dal coefficiente $a$. Isolando idealmente $x$ scriveremmo $x = -\dfrac{b}{a}$, ma questo passaggio richiede $a\neq0$: ecco perché va fatta una discussione per casi.</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Caso</th><th>Equazione</th><th>Soluzioni</th><th>Nome</th></tr></thead>
+          <tbody>
+            <tr><td>$a \neq 0$</td><td>$ax+b=0$</td><td>una sola: $x = -\dfrac{b}{a}$</td><td>determinata</td></tr>
+            <tr><td>$a = 0,\ b = 0$</td><td>$0 = 0$</td><td>infinite (ogni $x \in \mathbb{R}$)</td><td>indeterminata (identità)</td></tr>
+            <tr><td>$a = 0,\ b \neq 0$</td><td>$b = 0$ (falso)</td><td>nessuna</td><td>impossibile</td></tr>
+          </tbody>
+        </table>
+        <p>Il caso $a=0, b=0$ produce l'uguaglianza $0=0$, vera sempre: qualunque numero è soluzione, e l'equazione è in realtà un'<strong>identità</strong>. Il caso $a=0, b\neq0$ produce invece qualcosa come $5=0$, falso sempre: nessun numero può renderlo vero, l'equazione è <strong>impossibile</strong> (insieme delle soluzioni vuoto, $\varnothing$). Questa discussione sembra pedante, ma è esattamente ciò che ti chiederanno negli esercizi "con parametro" (vedi Esercizio 5.13).</p>
+
+        <h3 id="teoria-secondo-grado">4.3 Equazioni di secondo grado</h3>
+        <p>La forma normale è ora:</p>
+        <div class="formula-block">$$ax^2 + bx + c = 0, \qquad a \neq 0.$$</div>
+        <p>(Se fosse $a=0$ ricadremmo nel primo grado.) Il numero $a$ è il coefficiente <em>direttivo</em>, $b$ il coefficiente del termine di primo grado, $c$ il <em>termine noto</em>. La chiave di tutto è una singola quantità, il <strong><span class="glossario-term" data-term="discriminante">discriminante</span></strong>:</p>
+        <div class="formula-block">$$\Delta = b^2 - 4ac.$$</div>
+        <p>Il suo segno decide il numero di soluzioni <em>reali</em>, che poi si ottengono con la celebre <strong>formula risolutiva</strong> (la dimostriamo nella prossima sezione):</p>
+        <div class="formula-block">$$x_{1,2} = \frac{-b \pm \sqrt{\Delta}}{2a} = \frac{-b \pm \sqrt{b^2-4ac}}{2a}.$$</div>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Segno di $\Delta$</th><th>Soluzioni reali</th><th>Formula</th></tr></thead>
+          <tbody>
+            <tr><td>$\Delta &gt; 0$</td><td>due distinte</td><td>$x_{1,2} = \dfrac{-b \pm \sqrt{\Delta}}{2a}$</td></tr>
+            <tr><td>$\Delta = 0$</td><td>una doppia (coincidente)</td><td>$x = -\dfrac{b}{2a}$</td></tr>
+            <tr><td>$\Delta &lt; 0$</td><td>nessuna reale</td><td>$\sqrt{\Delta}$ non esiste in $\mathbb{R}$</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Interpretazione geometrica: la parabola e l'asse x</div>
+          <p>Le soluzioni di $ax^2+bx+c=0$ sono <strong>le ascisse dei punti in cui la <span class="glossario-term" data-term="parabola">parabola</span> $y=ax^2+bx+c$ incontra l'asse $x$</strong> (dove cioè $y=0$). Il discriminante misura "quanto in basso o in alto" sta la parabola rispetto all'asse: due intersezioni se $\Delta&gt;0$, una sola (vertice appoggiato sull'asse) se $\Delta=0$, nessuna se $\Delta&lt;0$. È lo stesso disegno che ritroverai nella <a href="07-geometria-analitica.html">geometria analitica</a> e nello studio del segno delle disequazioni.</p>
+        </div>
+
+        <svg viewBox="0 0 600 210" style="max-width:600px;margin:1.4em auto;display:block;" role="img" aria-label="Tre parabole: due intersezioni con l'asse x quando delta è positivo, una quando è zero, nessuna quando è negativo">
+          <line x1="20" y1="150" x2="180" y2="150" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M40 55 Q100 310 160 55" fill="none" stroke="var(--color-primary)" stroke-width="3"/>
+          <circle cx="72" cy="150" r="5" fill="var(--color-secondary)"/>
+          <circle cx="128" cy="150" r="5" fill="var(--color-secondary)"/>
+          <text x="100" y="195" font-size="14" font-weight="800" fill="currentColor" text-anchor="middle">Δ &gt; 0</text>
+
+          <line x1="220" y1="150" x2="380" y2="150" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M240 55 Q300 245 360 55" fill="none" stroke="var(--color-primary)" stroke-width="3"/>
+          <circle cx="300" cy="150" r="5" fill="var(--color-secondary)"/>
+          <text x="300" y="195" font-size="14" font-weight="800" fill="currentColor" text-anchor="middle">Δ = 0</text>
+
+          <line x1="420" y1="150" x2="580" y2="150" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M440 60 Q500 180 560 60" fill="none" stroke="var(--color-primary)" stroke-width="3"/>
+          <text x="500" y="195" font-size="14" font-weight="800" fill="currentColor" text-anchor="middle">Δ &lt; 0</text>
+        </svg>
+
+        <p><strong>Casi particolari (da riconoscere a colpo d'occhio).</strong> Quando manca qualche coefficiente, conviene <em>non</em> usare la formula generale ma scorciatoie immediate:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Tipo</th><th>Forma</th><th>Metodo rapido</th><th>Soluzioni</th></tr></thead>
+          <tbody>
+            <tr><td>Pura</td><td>$ax^2 + c = 0$ (b=0)</td><td>isolo $x^2 = -\dfrac{c}{a}$</td><td>$x = \pm\sqrt{-c/a}$ se $-c/a \geq 0$, altrimenti nessuna</td></tr>
+            <tr><td>Spuria</td><td>$ax^2 + bx = 0$ (c=0)</td><td>raccolgo $x(ax+b)=0$</td><td>$x=0$ oppure $x=-\dfrac{b}{a}$</td></tr>
+            <tr><td>Monomia</td><td>$ax^2 = 0$ (b=c=0)</td><td>divido per $a$</td><td>$x=0$ (doppia)</td></tr>
+          </tbody>
+        </table>
+        <p>Nella spuria lo $0$ è <strong>sempre</strong> una soluzione (raccogliendo $x$ resta un fattore $x$): è l'errore più frequente dimenticarselo dividendo tutto per $x$. Ne parliamo tra gli errori comuni.</p>
+
+        <h3 id="teoria-viete">4.4 Relazioni tra radici e coefficienti (formule di Viète)</h3>
+        <p>Se un'equazione di secondo grado ha due soluzioni reali $x_1$ e $x_2$, esse sono legate ai coefficienti da due formule elegantissime, dette <strong>formule di Viète</strong>:</p>
+        <div class="formula-block">$$x_1 + x_2 = -\frac{b}{a}, \qquad\qquad x_1 \cdot x_2 = \frac{c}{a}.$$</div>
+        <p>Nel caso comodo $a=1$ (equazione $x^2 + bx + c = 0$) si legge ancora meglio: <strong>la somma delle radici è $-b$, il prodotto è $c$</strong>. Da qui una scorciatoia potentissima: per risolvere $x^2 - 5x + 6 = 0$ posso cercare "a mente" due numeri che sommati diano $5$ e moltiplicati diano $6$ &rarr; sono $2$ e $3$. Fatto, senza formula risolutiva. Le stesse formule servono a <strong>verificare</strong> in tre secondi se una coppia di valori trovati è corretta (dimostrazione nella sezione seguente).</p>
+
+        <h3 id="teoria-grado-superiore">4.5 Equazioni di grado superiore</h3>
+        <p>Per il grado $\geq 3$ non esistono formule "comode" da mandare a memoria (per il grado 5 in su, un famoso teorema di Abel-Ruffini dimostra che una formula generale <em>non può</em> esistere). La strategia da esame è sempre la stessa: <strong>abbassare il grado</strong> trasformando l'equazione in un prodotto di fattori uguagliato a zero, e poi usare la <strong>legge di annullamento del prodotto</strong> ("un prodotto è nullo se e solo se almeno uno dei fattori è nullo"). Due tecniche principali:</p>
+        <p><strong>1) Raccoglimento a fattore comune.</strong> Se ogni termine contiene una potenza di $x$, si raccoglie: da $x^3 - 3x^2 + 2x = 0$ raccolgo $x$ e ottengo $x(x^2 - 3x + 2) = 0$, quindi $x=0$ oppure $x^2-3x+2=0$ (che poi risolvo di secondo grado). È lo stesso spirito della <span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione in fattori</span> vista con i <span class="glossario-term" data-term="polinomio">polinomi</span>.</p>
+        <p><strong>2) Regola di Ruffini.</strong> Quando non c'è fattore comune, si cerca una radice "facile" tra i divisori del termine noto (i candidati $\pm1, \pm2, \dots$). Se $x=r$ annulla il polinomio, allora $(x-r)$ lo divide esattamente, e la divisione di Ruffini abbassa il grado di uno. Esempio: per $x^3 - 6x^2 + 11x - 6 = 0$ provo $x=1$, cioè <em>sostituisco $1$ al posto di $x$</em>: $1^3-6\cdot1^2+11\cdot1-6 = 1-6+11-6=0$, funziona. Dividendo per $(x-1)$ resta il quoziente di secondo grado $x^2 - 5x + 6$, quindi l'equazione è $(x-1)(x^2-5x+6)=0$. Il trinomio si scompone cercando due numeri con somma $5$ e prodotto $6$ (formule di Viète, <span class="richiamo" data-sec="4.4">§4.4</span>), cioè $2$ e $3$: $x^2-5x+6 = (x-2)(x-3)$. Per la legge di annullamento del prodotto le tre radici sono $1, 2, 3$.</p>
+
+        <h3 id="teoria-fratte">4.6 Equazioni fratte</h3>
+        <p>Un'equazione è <strong>fratta</strong> quando l'incognita compare in almeno un denominatore. Qui l'ordine dei passaggi è vincolante e non negoziabile:</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Procedura</span>
+          <p><em class="nome">Passo 1 — Dominio (condizioni di esistenza).</em> <strong>Prima</strong> di ogni calcolo, imponi che ogni denominatore sia $\neq 0$ e determina i valori <em>proibiti</em>.</p>
+          <p><em class="nome">Passo 2 — Risoluzione.</em> Riduci allo stesso denominatore e, poiché il denominatore è ora non nullo, l'equazione si riduce a "numeratore $= 0$"; risolvi.</p>
+          <p><em class="nome">Passo 3 — Verifica.</em> Confronta ogni soluzione con il dominio: quelle che coincidono con un valore proibito vanno <strong>scartate</strong>.</p>
+        </div>
+        <p>Esempio-lampo: $\dfrac{x+2}{x-3} = \dfrac{5}{x-3}$. Dominio: $x \neq 3$. I denominatori sono uguali, quindi $x+2 = 5$, cioè $x=3$. Ma $x=3$ è proprio il valore proibito! Conclusione: <strong>nessuna soluzione</strong>. Se avessimo saltato il dominio, avremmo scritto trionfanti "$x=3$", che è invece un valore in cui l'equazione nemmeno esiste.</p>
+
+        <h3 id="teoria-valore-assoluto">4.7 Equazioni con valore assoluto</h3>
+        <p>Ricordiamo dal Capitolo 1 la definizione di <span class="glossario-term" data-term="valore-assoluto">valore assoluto</span>: $|A| = A$ se $A \geq 0$, e $|A| = -A$ se $A &lt; 0$. Poiché un valore assoluto "cancella il segno", esistono due strade.</p>
+        <p><strong>Metodo diretto</strong> (quando a destra c'è una costante). Per l'equazione $|A| = k$:</p>
+        <div class="formula-block">$$|A| = k \;\Longleftrightarrow\; \begin{cases} A = k \ \text{ oppure } \ A = -k &amp; \text{se } k \geq 0, \\[4pt] \text{nessuna soluzione} &amp; \text{se } k &lt; 0. \end{cases}$$</div>
+        <p>La condizione $k\geq0$ è essenziale: un valore assoluto non è mai negativo, quindi $|A| = -3$ è <strong>impossibile</strong>. Esempio: $|2x-1| = 5$ dà $2x-1=5$ (&rarr; $x=3$) oppure $2x-1=-5$ (&rarr; $x=-2$).</p>
+        <p><strong>Metodo per casi</strong> (quando la $x$ compare anche a destra, o ci sono più valori assoluti). Si spezza l'asse reale secondo il segno dell'argomento: dove $A\geq0$ si scrive $|A|=A$, dove $A&lt;0$ si scrive $|A|=-A$; si risolve in ciascun intervallo e si <strong>accettano solo le soluzioni compatibili con l'ipotesi di quel caso</strong>. Questo è il metodo che generalizza tutto e che userai anche per le <a href="06-disequazioni.html">disequazioni con valore assoluto</a>.</p>
+
+        <h3 id="teoria-radicali">4.8 Equazioni con radicali (irrazionali)</h3>
+        <p>Sono equazioni in cui l'incognita compare sotto una radice. La strategia per un <span class="glossario-term" data-term="radicale">radicale</span> quadratico è <strong>isolare la radice ed elevare al quadrato</strong>, per liberarsene. Ma questo passaggio nasconde un tranello: elevare al quadrato <em>non</em> è un'operazione reversibile e può <strong>introdurre soluzioni estranee</strong> (false), perché $A=B$ implica $A^2=B^2$, ma non viceversa (ad esempio $-2 \neq 2$ però $(-2)^2 = 2^2$).</p>
+        <div class="box-teorema box-teorema--definizione">
+          <span class="box-teorema__label">Procedura per $\sqrt{A(x)} = B(x)$</span>
+          <p><em class="nome">Condizioni di accettabilità.</em> Serve $A(x)\geq 0$ (esistenza della radice) e $B(x)\geq 0$ (perché una radice quadrata è sempre $\geq 0$: il secondo membro non può essere negativo).</p>
+          <p><em class="nome">Elevamento al quadrato.</em> Si ottiene $A(x) = \big(B(x)\big)^2$, un'equazione senza radice.</p>
+          <p><em class="nome">Verifica finale.</em> Ogni valore trovato va <strong>sostituito nell'equazione di partenza</strong> (o confrontato con le condizioni): le soluzioni che non le rispettano sono estranee e si scartano.</p>
+        </div>
+        <p>Esempio: $\sqrt{x+2} = x$. Condizione $x \geq 0$ (è il secondo membro, che deve essere non negativo). Elevando al quadrato entrambi i membri, a sinistra radice e quadrato si annullano e resta $x+2 = x^2$; porto tutto a destra cambiando segno a quel che trasloca, $0 = x^2 - x - 2$, cioè $x^2 - x - 2 = 0$. Scompongo cercando due numeri con somma $1$ e prodotto $-2$ (<span class="richiamo" data-sec="4.4">§4.4</span>), cioè $2$ e $-1$: $(x-2)(x+1)=0$, da cui $x=2$ oppure $x=-1$. Il valore $x=-1$ viola $x\geq0$ (a sinistra la radice darebbe $1$, a destra $-1$: falso): è <strong>estraneo</strong>, si scarta. Resta la sola $x=2$, che verifica $\sqrt{4}=2$. La morale, valida per tutto il capitolo: <strong>dopo un elevamento a potenza, la verifica non è facoltativa</strong>.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Formula risolutiva dell'equazione di secondo grado.</em> Se $a \neq 0$ e $\Delta = b^2 - 4ac \geq 0$, le soluzioni reali di $ax^2+bx+c=0$ sono $x_{1,2} = \dfrac{-b \pm \sqrt{b^2-4ac}}{2a}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (completamento del quadrato)</span>
+          <p>L'idea è trasformare il primo membro in un <strong>quadrato perfetto</strong>, così da poter poi estrarre la radice. È la stessa tecnica con cui, storicamente, si è ricavata la formula.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Poiché $a\neq0$, divido tutto per $a$: $\ x^2 + \dfrac{b}{a}x + \dfrac{c}{a} = 0$.</span>
+          <span class="esempio__passo">Porto il termine noto a destra: $\ x^2 + \dfrac{b}{a}x = -\dfrac{c}{a}$.</span>
+          <span class="esempio__passo">Aggiungo a <em>entrambi</em> i membri la quantità $\left(\dfrac{b}{2a}\right)^2 = \dfrac{b^2}{4a^2}$, scelta apposta per completare il quadrato a sinistra: $\ x^2 + \dfrac{b}{a}x + \dfrac{b^2}{4a^2} = \dfrac{b^2}{4a^2} - \dfrac{c}{a}$.</span>
+          <span class="esempio__passo">Il primo membro è ora il quadrato di un binomio. Uso il prodotto notevole $(A+B)^2 = A^2 + 2AB + B^2$ (cap. 2) letto <em>al contrario</em>, con $A = x$ e $B = \dfrac{b}{2a}$: infatti $A^2 = x^2$ ✓, $2AB = 2\cdot x\cdot\dfrac{b}{2a} = \dfrac{b}{a}x$ ✓, $B^2 = \dfrac{b^2}{4a^2}$ ✓. I tre pezzi coincidono esattamente con quelli che ho a sinistra, quindi posso scrivere $x^2 + \dfrac{b}{a}x + \dfrac{b^2}{4a^2} = \left(x + \dfrac{b}{2a}\right)^2$.</span>
+          <span class="esempio__passo">A destra faccio il minimo comune denominatore, che è $4a^2$: la prima frazione ce l'ha già, la seconda va moltiplicata sopra e sotto per $4a$, cioè $\dfrac{c}{a} = \dfrac{4ac}{4a^2}$. Quindi $\dfrac{b^2}{4a^2} - \dfrac{c}{a} = \dfrac{b^2}{4a^2} - \dfrac{4ac}{4a^2} = \dfrac{b^2 - 4ac}{4a^2}$, e riconosco al numeratore proprio il discriminante: $=\dfrac{\Delta}{4a^2}$.</span>
+          <span class="esempio__passo">Ottengo $\left(x + \dfrac{b}{2a}\right)^2 = \dfrac{\Delta}{4a^2}$. Se $\Delta \geq 0$ posso estrarre la radice, ricordando il doppio segno $\pm$: $\ x + \dfrac{b}{2a} = \pm\dfrac{\sqrt{\Delta}}{2a}$ (uso $\sqrt{4a^2}=2|a|$, e il segno viene assorbito dal $\pm$).</span>
+          <span class="esempio__passo">Isolo $x$ portando $\dfrac{b}{2a}$ a destra e cambiandogli segno (1° principio): $\ x = -\dfrac{b}{2a} \pm \dfrac{\sqrt{\Delta}}{2a}$. Le due frazioni hanno già lo stesso denominatore $2a$, quindi le unisco in una sola: $x = \dfrac{-b \pm \sqrt{\Delta}}{2a}$.</span>
+          </p>
+          <p>Abbiamo così ricavato la formula da zero, usando solo i principi di equivalenza e i prodotti notevoli. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché spunta il ±</div>
+          <p>Il $\pm$ non è un vezzo: nasce dal fatto che l'equazione $t^2 = k$ (con $k\geq0$) ha <strong>due</strong> soluzioni, $t = +\sqrt{k}$ e $t = -\sqrt{k}$, perché due numeri opposti hanno lo stesso quadrato. Dimenticare uno dei due segni significa perdere metà delle soluzioni: è l'errore comune n. 2.</p>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Formule di Viète.</em> Se $x_1, x_2$ sono le radici (reali, con $\Delta\geq0$) di $ax^2+bx+c=0$, allora $x_1 + x_2 = -\dfrac{b}{a}$ e $x_1 x_2 = \dfrac{c}{a}$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (calcolo diretto dalla formula)</span>
+          <p>Scriviamo esplicitamente le due radici e calcoliamone somma e prodotto.</p>
+          <p class="esempio__passi">
+          <span class="esempio__passo">Scrivo le due radici come le dà la formula appena dimostrata: $x_1 = \dfrac{-b+\sqrt{\Delta}}{2a}$ e $x_2 = \dfrac{-b-\sqrt{\Delta}}{2a}$ (differiscono solo per il segno davanti alla radice).</span>
+          <span class="esempio__passo">Somma: $x_1 + x_2 = \dfrac{-b+\sqrt{\Delta}}{2a} + \dfrac{-b-\sqrt{\Delta}}{2a}$. Il denominatore è già lo stesso, quindi sommo solo i numeratori: $(-b+\sqrt\Delta)+(-b-\sqrt\Delta) = -b-b+\sqrt\Delta-\sqrt\Delta = -2b$ (i due termini con $\sqrt\Delta$ si elidono perché sono opposti). Resta $\dfrac{-2b}{2a}$, e semplificando il $2$ sopra e sotto ottengo $-\dfrac{b}{a}$.</span>
+          <span class="esempio__passo">Prodotto: moltiplico numeratori con numeratori e denominatori con denominatori, $x_1 x_2 = \dfrac{(-b+\sqrt\Delta)(-b-\sqrt\Delta)}{(2a)\cdot(2a)} = \dfrac{(-b+\sqrt\Delta)(-b-\sqrt\Delta)}{4a^2}$.</span>
+          <span class="esempio__passo">Al numeratore riconosco il prodotto notevole $(A+B)(A-B) = A^2 - B^2$ (cap. 2) con $A = -b$ e $B = \sqrt\Delta$: viene $(-b)^2 - (\sqrt\Delta)^2$. Ora $(-b)^2 = b^2$ (il quadrato toglie il segno) e $(\sqrt\Delta)^2 = \Delta$ (radice e quadrato si annullano, lecito perché $\Delta\geq0$). Numeratore: $b^2 - \Delta$.</span>
+          <span class="esempio__passo">Sostituisco la definizione $\Delta = b^2 - 4ac$ al posto di $\Delta$: $b^2 - (b^2 - 4ac)$. Tolgo la parentesi cambiando i segni al suo interno: $b^2 - b^2 + 4ac = 4ac$. Dunque $x_1 x_2 = \dfrac{4ac}{4a^2}$, e semplificando $4a$ sopra e sotto resta $\dfrac{c}{a}$.</span>
+          </p>
+          <p>Entrambe le formule sono così dimostrate. Come regalo, ne segue che ogni trinomio si fattorizza come $ax^2+bx+c = a(x-x_1)(x-x_2)$: basta svolgere il prodotto a destra, $a\big(x^2 - (x_1+x_2)x + x_1x_2\big)$, e sostituire $x_1+x_2 = -\frac{b}{a}$ e $x_1x_2 = \frac{c}{a}$, ottenendo $a\left(x^2 + \frac{b}{a}x + \frac{c}{a}\right) = ax^2+bx+c$. <span class="qed">∎</span></p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Primo grado con trasporto</span><span class="badge badge--base">Base</span></div>
+          <p>Risolvere $\ 4x - 7 = 2x + 5$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Porto le $x$ a sinistra e i numeri a destra (cambiando segno a chi trasloca): $4x - 2x = 5 + 7$.</span>
+            <span class="esempio__passo">Sommo i simili: $2x = 12$.</span>
+            <span class="esempio__passo">Divido entrambi i membri per $2$ (lecito, $2\neq0$): $x = 6$.</span>
+          </p>
+          <div class="esempio__risultato">$x = 6$. Verifica: $4\cdot6-7 = 17$ e $2\cdot6+5=17$. ✓</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Primo grado con parentesi</span><span class="badge badge--base">Base</span></div>
+          <p>Risolvere $\ 3(x-2) - (x+4) = 0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Sciolgo le parentesi, attento ai segni: $3x - 6 - x - 4 = 0$.</span>
+            <span class="esempio__passo">Sommo i simili: $2x - 10 = 0$.</span>
+            <span class="esempio__passo">Trasporto e divido: $2x = 10 \Rightarrow x = 5$.</span>
+          </p>
+          <div class="esempio__risultato">$x = 5$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — Secondo grado completa</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere $\ 2x^2 - 7x + 3 = 0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Identifico i coefficienti: $a=2$, $b=-7$, $c=3$.</span>
+            <span class="esempio__passo">Calcolo il discriminante con la formula $\Delta = b^2-4ac$ (<span class="richiamo" data-sec="4.3">§4.3</span>), sostituendo $b=-7$, $a=2$, $c=3$: $\Delta = (-7)^2 - 4\cdot2\cdot3 = 49 - 24 = 25 &gt; 0$. Essendo positivo, le soluzioni reali sono due.</span>
+            <span class="esempio__passo">Applico la formula risolutiva $x = \dfrac{-b \pm \sqrt{\Delta}}{2a}$ mettendo $-b = -(-7) = 7$, $\Delta = 25$ e $2a = 2\cdot2 = 4$: $x = \dfrac{-(-7) \pm \sqrt{25}}{2\cdot2} = \dfrac{7 \pm 5}{4}$ (perché $\sqrt{25}=5$).</span>
+            <span class="esempio__passo">Sdoppio: $x_1 = \dfrac{7+5}{4} = 3$ e $x_2 = \dfrac{7-5}{4} = \dfrac{1}{2}$.</span>
+          </p>
+          <div class="esempio__risultato">$x_1 = 3,\quad x_2 = \tfrac{1}{2}$. Controllo Viète: somma $3+\tfrac12=\tfrac72=-\tfrac{b}{a}$ ✓, prodotto $3\cdot\tfrac12=\tfrac32=\tfrac{c}{a}$ ✓.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Pura e spuria a confronto</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Risolvere $\ 3x^2 - 27 = 0$ (pura) e $\ 3x^2 - 27x = 0$ (spuria).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Pura</strong>: manca $b$. Isolo: $3x^2 = 27 \Rightarrow x^2 = 9 \Rightarrow x = \pm 3$ (mai dimenticare il $\pm$).</span>
+            <span class="esempio__passo"><strong>Spuria</strong>: manca $c$. Raccolgo $x$: $x(3x - 27) = 0$.</span>
+            <span class="esempio__passo">Per la legge di annullamento: $x = 0$ oppure $3x - 27 = 0 \Rightarrow x = 9$.</span>
+          </p>
+          <div class="esempio__risultato">Pura: $x=\pm3$. Spuria: $x=0$ e $x=9$ (lo zero è sempre soluzione di una spuria!).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Equazione fratta con verifica del dominio</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere $\ \dfrac{2}{x-1} - \dfrac{1}{x} = \dfrac{1}{x(x-1)}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Dominio</strong>: i denominatori si annullano per $x=1$ e $x=0$. Condizioni: $x \neq 0$ e $x \neq 1$.</span>
+            <span class="esempio__passo">Scelgo come denominatore comune $x(x-1)$: è il prodotto dei denominatori che compaiono, e contiene tutti e tre. Adesso riscrivo ogni frazione con quel denominatore, moltiplicando sopra e sotto per il pezzo che manca. Alla prima, $\dfrac{2}{x-1}$, manca la $x$: diventa $\dfrac{2x}{x(x-1)}$. Alla seconda, $\dfrac{1}{x}$, manca $(x-1)$: diventa $\dfrac{x-1}{x(x-1)}$. La terza ha già il denominatore giusto.</span>
+            <span class="esempio__passo">L'equazione è quindi $\dfrac{2x}{x(x-1)} - \dfrac{x-1}{x(x-1)} = \dfrac{1}{x(x-1)}$, cioè, unendo le due frazioni di sinistra in una sola, $\dfrac{2x - (x-1)}{x(x-1)} = \dfrac{1}{x(x-1)}$. La parentesi serve perché il segno meno si applica a <em>tutto</em> il numeratore.</span>
+            <span class="esempio__passo">I denominatori sono identici e (nel dominio) diversi da zero, quindi le due frazioni sono uguali solo se lo sono i numeratori: $2x - (x-1) = 1$. Tolgo la parentesi cambiando i segni dentro: $2x - x + 1 = 1$, cioè $x + 1 = 1$; sottraggo $1$ da entrambi i membri e ottengo $x = 0$.</span>
+            <span class="esempio__passo"><strong>Verifica col dominio</strong>: $x=0$ è un valore proibito! Va scartato.</span>
+          </p>
+          <div class="esempio__risultato">Nessuna soluzione ($S = \varnothing$). Senza il controllo del dominio si sarebbe scritto, sbagliando, $x=0$.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Valore assoluto, metodo per casi</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere $\ |x - 1| = 2x$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">A destra compare la $x$: uso il metodo per casi. L'argomento $x-1$ cambia segno in $x=1$.</span>
+            <span class="esempio__passo"><strong>Caso A</strong> ($x \geq 1$): qui $|x-1| = x-1$, quindi $x-1 = 2x \Rightarrow -1 = x$. Ma $x=-1$ non rispetta $x\geq1$: scartata.</span>
+            <span class="esempio__passo"><strong>Caso B</strong> ($x &lt; 1$): qui $|x-1| = -(x-1) = 1-x$, quindi $1-x = 2x \Rightarrow 1 = 3x \Rightarrow x = \tfrac13$. Verifico: $\tfrac13 &lt; 1$: accettabile.</span>
+            <span class="esempio__passo">Controllo nell'originale: $|\tfrac13 - 1| = \tfrac23$ e $2\cdot\tfrac13 = \tfrac23$. ✓</span>
+          </p>
+          <div class="esempio__risultato">$x = \dfrac{1}{3}$ (unica soluzione accettabile).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 7 — Radicale con soluzione estranea</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Risolvere $\ \sqrt{x + 7} = x - 5$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Condizioni</strong>: esistenza radice $x+7\geq0 \Rightarrow x\geq-7$; secondo membro non negativo $x-5\geq0 \Rightarrow x\geq5$. In sintesi serve $x\geq5$.</span>
+            <span class="esempio__passo">Elevo al quadrato entrambi i membri: a sinistra quadrato e radice si annullano e resta $x+7$; a destra sviluppo con il prodotto notevole $(A-B)^2 = A^2 - 2AB + B^2$ (cap. 2), con $A = x$ e $B = 5$: $(x-5)^2 = x^2 - 2\cdot x\cdot 5 + 5^2 = x^2 - 10x + 25$. L'equazione è $x+7 = x^2 - 10x + 25$.</span>
+            <span class="esempio__passo">Porto tutto a destra, cambiando segno a ciò che trasloca: $0 = x^2 - 10x + 25 - x - 7$. Sommo i termini simili, $-10x - x = -11x$ e $25-7 = 18$: $x^2 - 11x + 18 = 0$.</span>
+            <span class="esempio__passo">Ora è di secondo grado con $a=1$, $b=-11$, $c=18$. Discriminante: $\Delta = b^2-4ac = (-11)^2 - 4\cdot1\cdot18 = 121 - 72 = 49$.</span>
+            <span class="esempio__passo">Formula risolutiva con $-b = 11$, $\sqrt{49} = 7$, $2a = 2$: $x = \dfrac{11 \pm 7}{2}$, cioè $x = \dfrac{18}{2} = 9$ oppure $x = \dfrac{4}{2} = 2$.</span>
+            <span class="esempio__passo"><strong>Verifica</strong>: $x=2$ non rispetta $x\geq5$ &rarr; estranea. $x=9$: $\sqrt{16}=4$ e $9-5=4$ ✓.</span>
+          </p>
+          <div class="esempio__risultato">$x = 9$ (la soluzione $x=2$ è estranea, introdotta dall'elevamento al quadrato).</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dividere per un'espressione che potrebbe valere zero</div>
+          <p>Data $x^2 = 3x$, la tentazione è dividere per $x$ e concludere $x=3$. <strong>Sbagliato</strong>: così si perde la soluzione $x=0$! Dividere per $x$ è lecito solo se $x\neq0$, e proprio $x=0$ era una radice. <em>Come evitarlo</em>: mai dividere per un'espressione con l'incognita; porta tutto a un membro e raccogli — $x^2-3x=0 \Rightarrow x(x-3)=0 \Rightarrow x=0 \lor x=3$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Dimenticare il ± estraendo una radice quadrata</div>
+          <p>Da $x^2 = 25$ scrivere solo $x=5$ è metà risposta: manca $x=-5$. L'equazione $x^2=k$ (con $k&gt;0$) ha <strong>sempre due</strong> soluzioni opposte. <em>Come evitarlo</em>: ogni volta che "togli il quadrato" isolando $x^2$, scrivi meccanicamente $x = \pm\sqrt{k}$.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Non verificare le soluzioni estranee dopo l'elevamento al quadrato</div>
+          <p>Elevare al quadrato può creare soluzioni fasulle: $\sqrt{x}=-2$ non ha soluzioni (una radice non è mai negativa), ma elevando si ottiene $x=4$, che è estraneo. <em>Come evitarlo</em>: dopo ogni elevamento a potenza pari, <strong>sostituisci sempre</strong> i valori trovati nell'equazione di partenza e tieni solo quelli che la verificano.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Errori di segno nella formula risolutiva</div>
+          <p>Nella formula $x = \dfrac{-b \pm \sqrt{\Delta}}{2a}$ compare $-b$: se $b=-7$, allora $-b = +7$, non $-7$. Inoltre il $2a$ sta sotto <strong>tutta</strong> la frazione, non solo sotto la radice. <em>Come evitarlo</em>: scrivi prima esplicitamente $a$, $b$, $c$ con i loro segni, poi sostituisci con le parentesi: $-(-7)$, $(-7)^2$, ecc.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Risolvere un'equazione fratta senza porre il dominio</div>
+          <p>Saltare le condizioni di esistenza porta ad "accettare" valori che annullano un denominatore, dove l'equazione non è nemmeno definita (vedi Esempio 5). <em>Come evitarlo</em>: scrivi le condizioni $\text{denominatore}\neq0$ come <strong>prima riga</strong> dello svolgimento, prima ancora di toccare i calcoli, e confrontale con le soluzioni alla fine.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riconoscere pura e spuria a colpo d'occhio</div>
+          <p>Prima di scrivere il discriminante, guarda quali termini mancano. <strong>Manca il termine noto</strong> ($c=0$)? È spuria: raccogli $x$, una soluzione è $x=0$ e l'altra la trovi in un colpo. <strong>Manca il termine di primo grado</strong> ($b=0$)? È pura: isola $x^2$ ed estrai la radice con il $\pm$. Usare la formula generale qui è come prendere l'autostrada per andare dal vicino di casa.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Verifica sempre dopo un elevamento a potenza</div>
+          <p>Ogni volta che elevi al quadrato (radicali) o moltiplichi per un fattore con l'incognita (fratte), l'equazione finale può avere soluzioni in più. La <strong>sostituzione nell'originale</strong> è il tuo antivirus: 20 secondi che salvano il risultato. Se un valore non torna, non è un tuo errore di calcolo — è una soluzione estranea, e va scartata.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Usa Viète per verificare (e a volte risolvere) al volo</div>
+          <p>Trovate $x_1, x_2$, controlla in tre secondi che $x_1+x_2 = -\tfrac{b}{a}$ e $x_1 x_2 = \tfrac{c}{a}$: se una delle due non torna, hai sbagliato un conto. Per i trinomi "semplici" con $a=1$ puoi persino saltare la formula: in $x^2-5x+6=0$ cerca due numeri con somma $5$ e prodotto $6$ ($2$ e $3$) e hai finito.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La regola del "$x=1$ radice"</div>
+          <p>In un'equazione polinomiale, se la <strong>somma di tutti i coefficienti è zero</strong>, allora $x=1$ è una radice (perché sostituendo $1$ ogni potenza vale $1$ e resta appunto la somma dei coefficienti). Idem: se sommando i coefficienti a segni alterni ottieni zero, allora $x=-1$ è radice. Prezioso per innescare Ruffini senza tentativi alla cieca.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Equazioni</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Primo grado</strong>
+              <ul><li>ax + b = 0</li><li>a≠0 → x = -b/a</li><li>a=0, b=0 → identità</li><li>a=0, b≠0 → impossibile</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Secondo grado</strong>
+              <ul><li>ax² + bx + c = 0</li><li>Δ = b² - 4ac</li><li>x = (-b ± √Δ)/(2a)</li><li>Δ&gt;0, =0, &lt;0</li><li>Viète: -b/a, c/a</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Casi speciali</strong>
+              <ul><li>Pura / spuria / monomia</li><li>Grado sup.: raccolta, Ruffini</li><li>Fratte: dominio ≠ 0</li><li>|A|=k, radicali</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Regole d'oro</strong>
+              <ul><li>Stessa operazione a sinistra e destra</li><li>Mai dividere per 0 (o per x)</li><li>± estraendo radici</li><li>Verifica: estranee!</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Bilancia</strong>: risolvere = fare la stessa operazione lecita su entrambi i membri per isolare $x$; equazioni equivalenti = stesse soluzioni.</li>
+            <li><strong>Primo grado</strong> $ax+b=0$: se $a\neq0$ soluzione unica $x=-\tfrac{b}{a}$; se $a=0,b=0$ identità; se $a=0,b\neq0$ impossibile.</li>
+            <li><strong>Secondo grado</strong> $ax^2+bx+c=0$: $\Delta=b^2-4ac$ e $x=\tfrac{-b\pm\sqrt\Delta}{2a}$; $\Delta&gt;0$ due soluzioni, $\Delta=0$ una doppia, $\Delta&lt;0$ nessuna reale (parabola vs asse $x$).</li>
+            <li><strong>Casi rapidi</strong>: pura $ax^2+c=0 \Rightarrow x=\pm\sqrt{-c/a}$; spuria $ax^2+bx=0 \Rightarrow x=0 \lor x=-\tfrac{b}{a}$.</li>
+            <li><strong>Viète</strong>: $x_1+x_2=-\tfrac{b}{a}$, $\ x_1x_2=\tfrac{c}{a}$ — per verifica o risoluzione a mente.</li>
+            <li><strong>Grado superiore</strong>: raccoglimento o Ruffini + legge di annullamento del prodotto.</li>
+            <li><strong>Fratte</strong>: dominio (denominatori $\neq0$) <em>prima</em>, poi risolvi, poi scarta le soluzioni proibite.</li>
+            <li><strong>Valore assoluto</strong>: $|A|=k \Leftrightarrow A=\pm k$ solo se $k\geq0$; altrimenti metodo per casi.</li>
+            <li><strong>Radicali</strong>: isola ed eleva al quadrato, ma <em>verifica</em> sempre (soluzioni estranee!).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione di primo grado $\ 3x - 12 = 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Trasporto e divido per $3$: $3x = 12 \Rightarrow x = 4$.</p>
+              <p><strong>$x = 4$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ 5(x - 2) = 2x + 4$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Prima sciolgo la parentesi moltiplicando il $5$ per ciascun termine: $5\cdot x - 5\cdot 2 = 5x-10$, quindi $5x - 10 = 2x + 4$. Poi sposto le $x$ a sinistra e i numeri a destra cambiando segno a chi trasloca (1° principio, <span class="richiamo" data-sec="4.1">§4.1</span>): $5x - 2x = 4 + 10$, cioè $3x = 14$. Infine divido entrambi i membri per $3$.</p>
+              <p><strong>$x = \dfrac{14}{3}$</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione pura $\ x^2 - 9 = 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Isolo: $x^2 = 9$. Estraggo la radice ricordando il $\pm$.</p>
+              <p><strong>$x = \pm 3$</strong> (due soluzioni: $x=3$ e $x=-3$).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione spuria $\ x^2 - 5x = 0$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Raccolgo $x$: $x(x - 5) = 0$. Per la legge di annullamento del prodotto un fattore deve essere nullo.</p>
+              <p><strong>$x = 0$ oppure $x = 5$.</strong> (Attenzione a non "dividere per $x$": si perderebbe lo zero!)</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi con la formula $\ 2x^2 - 7x + 3 = 0$ e verifica con Viète.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Identifico i coefficienti: $a=2$, $b=-7$, $c=3$. Sostituisco in $\Delta = b^2-4ac$: $\Delta = (-7)^2 - 4\cdot2\cdot3 = 49-24 = 25$. Sostituisco poi in $x = \dfrac{-b\pm\sqrt\Delta}{2a}$, con $-b=7$, $\sqrt{25}=5$, $2a=4$: $x = \dfrac{7\pm5}{4}$, che sdoppiata dà $\dfrac{12}{4}$ e $\dfrac{2}{4}$.</p>
+              <p><strong>$x_1 = 3,\ x_2 = \tfrac12$.</strong> Viète: $3+\tfrac12 = \tfrac72 = -\tfrac{b}{a}$ ✓, $3\cdot\tfrac12=\tfrac32=\tfrac{c}{a}$ ✓.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ x^2 + 4x + 4 = 0$ e commenta il valore del discriminante.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Coefficienti: $a=1$, $b=4$, $c=4$. Sostituisco in $\Delta=b^2-4ac$: $\Delta = 4^2 - 4\cdot1\cdot4 = 16 - 16 = 0$. Discriminante nullo significa una sola soluzione, detta doppia, data da $x = -\dfrac{b}{2a}$ (nella formula generale la radice di $0$ sparisce): $x = -\dfrac{4}{2\cdot1} = -2$.</p>
+              <p><strong>$x = -2$ (doppia).</strong> Geometricamente la parabola è tangente all'asse $x$. Nota: $x^2+4x+4=(x+2)^2$.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione fratta $\ \dfrac{x}{x-1} = 2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Dominio: il denominatore deve essere $\neq 0$, cioè $x-1\neq0$, quindi $x \neq 1$. Moltiplico entrambi i membri per $(x-1)$ — lecito (2° principio) perché nel dominio è diverso da zero — e a sinistra la frazione si semplifica: $x = 2(x-1)$. Svolgo il prodotto a destra: $x = 2x - 2$. Porto $2x$ a sinistra cambiandogli segno: $x - 2x = -2$, cioè $-x = -2$; moltiplico entrambi i membri per $-1$ e ottengo $x = 2$.</p>
+              <p>$x=2$ rispetta $x\neq1$: <strong>$x = 2$</strong> (accettabile).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione con valore assoluto $\ |3x - 6| = 9$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Uso lo schema $|A| = k$ del <span class="richiamo" data-sec="4.7">§4.7</span>: poiché $k=9\geq0$, l'equazione si sdoppia in $A = k$ oppure $A = -k$. Qui $A = 3x-6$ e $k = 9$, quindi: $3x-6 = 9$ oppure $3x-6 = -9$. (Motivo: due numeri opposti hanno lo stesso valore assoluto, quindi l'argomento può valere sia $9$ sia $-9$.)</p>
+              <p>Prima: $3x = 15 \Rightarrow x = 5$. Seconda: $3x = -3 \Rightarrow x = -1$.</p>
+              <p><strong>$x = 5$ oppure $x = -1$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione di terzo grado $\ x^3 - 4x = 0$ con il raccoglimento.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Raccolgo $x$: $x(x^2 - 4) = 0$. Il secondo fattore è una pura: $x^2 - 4 = 0 \Rightarrow x = \pm 2$.</p>
+              <p><strong>$x = 0,\ x = 2,\ x = -2$</strong> (tre soluzioni).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi $\ x^3 - 2x^2 - 5x + 6 = 0$ usando la regola di Ruffini.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Cerco una radice "facile" tra i divisori del termine noto $6$ (<span class="richiamo" data-sec="4.5">§4.5</span>). Provo $x=1$, cioè sostituisco $1$ al posto di $x$: il risultato è semplicemente la somma dei coefficienti, $1-2-5+6 = 0$. Poiché viene zero, $x=1$ è radice e quindi $(x-1)$ divide il polinomio.</span>
+                <span class="esempio__passo">Divido per $(x-1)$ con Ruffini: incolonno i coefficienti $1,\ -2,\ -5,\ 6$ e uso la radice $1$. Abbasso $1$; $1\cdot1=1$ sommato a $-2$ dà $-1$; $-1\cdot1=-1$ sommato a $-5$ dà $-6$; $-6\cdot1=-6$ sommato a $6$ dà $0$ (il resto, che conferma la divisione esatta). I numeri rimasti, $1,\ -1,\ -6$, sono i coefficienti del quoziente: $x^2 - x - 6$.</span>
+                <span class="esempio__passo">L'equazione è ora $(x-1)(x^2-x-6)=0$, quindi per la legge di annullamento del prodotto risolvo $x^2 - x - 6 = 0$: con $a=1$, $b=-1$, $c=-6$ ottengo $\Delta = (-1)^2 - 4\cdot1\cdot(-6) = 1+24 = 25$, e $x = \dfrac{-(-1)\pm\sqrt{25}}{2\cdot1} = \dfrac{1\pm5}{2}$, cioè $x=3$ e $x=-2$.</span>
+              </p>
+              <p><strong>$x = 1,\ x = 3,\ x = -2$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi l'equazione irrazionale $\ \sqrt{2x + 3} = x$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Condizioni: $2x+3\geq0$ e $x\geq0$ (il secondo membro è una radice, non può essere negativo). In sintesi $x\geq0$.</span>
+                <span class="esempio__passo">Elevo al quadrato entrambi i membri: a sinistra quadrato e radice si annullano, a destra $x^2$. Ottengo $2x+3 = x^2$; porto tutto a destra cambiando segno a chi trasloca: $0 = x^2 - 2x - 3$.</span>
+                <span class="esempio__passo">Con $a=1$, $b=-2$, $c=-3$: $\Delta = (-2)^2 - 4\cdot1\cdot(-3) = 4+12 = 16$, quindi $x = \dfrac{-(-2)\pm\sqrt{16}}{2\cdot1} = \dfrac{2\pm4}{2}$, cioè $x=\dfrac{6}{2}=3$ oppure $x=\dfrac{-2}{2}=-1$.</span>
+                <span class="esempio__passo">$x=-1$ viola $x\geq0$: estranea. $x=3$: $\sqrt{9}=3$ ✓.</span>
+              </p>
+              <p><strong>$x = 3$</strong> (la soluzione $x=-1$ è estranea).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Risolvi la fratta $\ \dfrac{1}{x-2} + \dfrac{1}{x+2} = \dfrac{4}{x^2 - 4}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Scompongo il terzo denominatore con il prodotto notevole $A^2-B^2 = (A-B)(A+B)$ (cap. 2), con $A=x$ e $B=2$: $x^2-4=(x-2)(x+2)$. Ora vedo che tutti i denominatori sono fatti con questi due fattori. Dominio: nessun denominatore può annullarsi, quindi $x\neq2$ e $x\neq-2$.</span>
+                <span class="esempio__passo">Denominatore comune: $(x-2)(x+2)$. Alla prima frazione, $\dfrac{1}{x-2}$, manca il fattore $(x+2)$: diventa $\dfrac{x+2}{(x-2)(x+2)}$. Alla seconda, $\dfrac{1}{x+2}$, manca $(x-2)$: diventa $\dfrac{x-2}{(x-2)(x+2)}$. La terza ha già il denominatore giusto.</span>
+                <span class="esempio__passo">Con lo stesso denominatore da entrambe le parti, uguaglio i numeratori: $(x+2)+(x-2) = 4$. A sinistra tolgo le parentesi e sommo i simili: $x+2+x-2 = 2x$ (i due numeri si elidono). Resta $2x = 4$, e dividendo entrambi i membri per $2$ ottengo $x = 2$.</span>
+                <span class="esempio__passo">Ma $x=2$ è proibito dal dominio: va scartato.</span>
+              </p>
+              <p><strong>Nessuna soluzione ($S=\varnothing$).</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Discutere, al variare del parametro reale $k$, l'equazione $\ (k-1)\,x = k^2 - 1$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Porto tutto a sinistra per riconoscere la forma normale $ax+b=0$ del <span class="richiamo" data-sec="4.2">§4.2</span>: $(k-1)x - (k^2-1) = 0$, quindi il coefficiente dell'incognita è $a = k-1$ e il termine noto è $b = -(k^2-1)$. La tabella del <span class="richiamo" data-sec="4.2">§4.2</span> dice che tutto dipende dal fatto che $a$ sia nullo o no: $k-1 = 0$ succede solo per $k=1$, ed è lì che devo separare i casi.</span>
+                <span class="esempio__passo"><strong>Se $k\neq1$</strong> (allora $a = k-1\neq0$ e posso dividere): $x = \dfrac{k^2-1}{k-1}$. Scompongo il numeratore con il prodotto notevole $A^2-B^2=(A-B)(A+B)$ (cap. 2), con $A=k$ e $B=1$: $k^2-1 = (k-1)(k+1)$. Semplifico il fattore $(k-1)$ presente sopra e sotto (lecito: è diverso da zero): $x = \dfrac{(k-1)(k+1)}{k-1} = k+1$ (soluzione unica).</span>
+                <span class="esempio__passo"><strong>Se $k=1$</strong>: l'equazione diventa $0\cdot x = 0$, cioè $0=0$: identità, infinite soluzioni (ogni $x\in\mathbb{R}$).</span>
+              </p>
+              <p><strong>$k\neq1 \Rightarrow x = k+1$ (determinata); $\ k=1 \Rightarrow$ indeterminata (identità). Non esiste alcun $k$ che la renda impossibile.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Determinare il valore del parametro $m$ affinché l'equazione $\ 2x^2 - 3x + m = 0$ abbia due soluzioni reali e coincidenti; trovare poi tale soluzione.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Due soluzioni coincidenti $\Leftrightarrow \Delta = 0$. Qui $\Delta = (-3)^2 - 4\cdot2\cdot m = 9 - 8m$.</p>
+              <p>Impongo $9 - 8m = 0$: porto $8m$ a destra cambiandogli segno, $9 = 8m$, e divido entrambi i membri per $8$, ottenendo $m = \dfrac{9}{8}$. Quando $\Delta=0$ la formula risolutiva si riduce a $x = -\dfrac{b}{2a}$; sostituisco $b=-3$ e $a=2$: $x = -\dfrac{-3}{2\cdot2} = \dfrac{3}{4}$.</p>
+              <p><strong>$m = \dfrac{9}{8}$, con soluzione doppia $x = \dfrac{3}{4}$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Usando le formule di Viète (senza tentativi), determinare due numeri la cui somma è $7$ e il cui prodotto è $12$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Due numeri con somma $s$ e prodotto $p$ sono le radici di $t^2 - s\,t + p = 0$ (perché $-b/a=s$ e $c/a=p$ con $a=1$).</p>
+              <p>Sostituisco $s=7$ e $p=12$ in $t^2 - s\,t + p = 0$: ottengo $t^2 - 7t + 12 = 0$. Con $a=1$, $b=-7$, $c=12$: $\Delta = (-7)^2 - 4\cdot1\cdot12 = 49 - 48 = 1$, quindi $t = \dfrac{-(-7)\pm\sqrt{1}}{2\cdot1} = \dfrac{7\pm1}{2}$, cioè $t=\dfrac{8}{2}=4$ e $t=\dfrac{6}{2}=3$.</p>
+              <p><strong>I due numeri sono $3$ e $4$</strong> (infatti $3+4=7$ e $3\cdot4=12$).</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 5.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Risolvere l'equazione $\ |x^2 - 4| = 3$, discutendo tutti i casi.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p class="esempio__passi">
+                <span class="esempio__passo">Uso lo schema $|A|=k$ del <span class="richiamo" data-sec="4.7">§4.7</span> con $A = x^2-4$ e $k = 3$. Poiché $k=3\geq0$ si applica il metodo diretto, che sdoppia in $A = k$ oppure $A = -k$: $x^2-4 = 3$ oppure $x^2 - 4 = -3$.</span>
+                <span class="esempio__passo">Primo caso: sommo $4$ a entrambi i membri, $x^2 = 7$; estraggo la radice ricordando i due segni (due numeri opposti hanno lo stesso quadrato): $x = \pm\sqrt{7}$.</span>
+                <span class="esempio__passo">Secondo caso: sommo $4$ a entrambi i membri, $x^2 = -3+4 = 1$, quindi $x = \pm 1$.</span>
+              </p>
+              <p><strong>Quattro soluzioni: $x = \pm\sqrt{7}$ e $x = \pm 1$.</strong> (Tutte accettabili: nessuna radice da verificare, l'equazione non è irrazionale.)</p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Qual è la soluzione dell'equazione $2x - 8 = 0$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$x = -4$</button>
+              <button class="quiz-option" data-correct="true">$x = 4$</button>
+              <button class="quiz-option" data-correct="false">$x = 16$</button>
+              <button class="quiz-option" data-correct="false">$x = 2$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$2x = 8 \Rightarrow x = 4$. Trasporto il $-8$ (diventa $+8$) e divido per $2$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) L'equazione $x^2 - 6x + 9 = 0$ ha discriminante $\Delta=0$. Quante soluzioni reali possiede?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Due distinte</button>
+              <button class="quiz-option" data-correct="true">Una sola (doppia)</button>
+              <button class="quiz-option" data-correct="false">Nessuna</button>
+              <button class="quiz-option" data-correct="false">Infinite</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Se $\Delta=0$ la formula dà un unico valore $x=-\tfrac{b}{2a}=3$: soluzione doppia. Infatti $x^2-6x+9=(x-3)^2$, e la parabola è tangente all'asse $x$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) Nell'equazione $ax+b=0$ con $a=0$ e $b\neq0$, cosa possiamo dire?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">Ha soluzione unica $x=-b$</button>
+              <button class="quiz-option" data-correct="true">È impossibile (nessuna soluzione)</button>
+              <button class="quiz-option" data-correct="false">È un'identità (infinite soluzioni)</button>
+              <button class="quiz-option" data-correct="false">Ha soluzione $x=0$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Diventa $b=0$ con $b\neq0$: un'affermazione falsa, quindi nessun valore di $x$ può renderla vera. Equazione impossibile.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Quali sono le soluzioni dell'equazione pura $x^2 - 16 = 0$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">solo $x = 4$</button>
+              <button class="quiz-option" data-correct="true">$x = 4$ e $x = -4$</button>
+              <button class="quiz-option" data-correct="false">$x = 8$</button>
+              <button class="quiz-option" data-correct="false">$x = \pm 16$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$x^2 = 16 \Rightarrow x = \pm\sqrt{16} = \pm 4$. Il doppio segno è obbligatorio: due numeri opposti hanno lo stesso quadrato.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Dopo aver elevato al quadrato un'equazione con un radicale, è obbligatorio verificare le soluzioni nell'equazione originale.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: l'elevamento al quadrato può introdurre soluzioni estranee (false), perché da $A=B$ segue $A^2=B^2$ ma non viceversa. La verifica è indispensabile.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) Se il discriminante di un'equazione di secondo grado è negativo, l'equazione ha due soluzioni reali.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: se $\Delta&lt;0$ la radice $\sqrt{\Delta}$ non esiste in $\mathbb{R}$, quindi non ci sono soluzioni reali (la parabola non tocca l'asse $x$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) In un'equazione fratta bisogna imporre il dominio (denominatori $\neq 0$) prima di accettare le soluzioni trovate.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: una soluzione che annulla un denominatore rende l'equazione priva di senso in quel punto, quindi va scartata (vedi Esempio 5 ed Esercizio 5.12).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) L'equazione $|x| = -3$ ha come soluzioni $x = 3$ e $x = -3$.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: un valore assoluto non è mai negativo, quindi $|x|=-3$ non ha alcuna soluzione. Il metodo diretto $|A|=k$ richiede $k\geq0$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="2a">
+            <p class="quiz-question__testo">9. (Completamento) Nella formula risolutiva $x = \dfrac{-b \pm \sqrt{\Delta}}{\square}$, al posto del quadrato va scritto ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il denominatore è $2a$, e sta sotto tutta la frazione (non solo sotto la radice).</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="spuria|spurie">
+            <p class="quiz-question__testo">10. (Completamento) Un'equazione di secondo grado priva del termine noto (cioè con $c=0$), come $ax^2+bx=0$, si dice ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si chiama spuria; si risolve raccogliendo $x$, e $x=0$ è sempre una delle soluzioni.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="c/a|c su a|ca">
+            <p class="quiz-question__testo">11. (Completamento) Per le formule di Viète, il prodotto delle radici di $ax^2+bx+c=0$ vale ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>$x_1 x_2 = \dfrac{c}{a}$ (mentre la somma vale $-\dfrac{b}{a}$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue perché, dopo aver elevato al quadrato entrambi i membri di un'equazione con un radicale, può comparire una soluzione "estranea".</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: l'elevamento al quadrato non è un'operazione reversibile. Da $A=B$ segue sempre $A^2=B^2$, ma il viceversa è falso, perché due numeri opposti hanno lo stesso quadrato ($(-2)^2=2^2$). Quadrando, quindi, si "dimentica il segno": l'equazione risultante è soddisfatta anche da valori per cui i due membri originali erano opposti (ad esempio la radice, sempre positiva, uguale a un secondo membro negativo). Questi valori risolvono l'equazione quadrata ma non quella di partenza: sono soluzioni estranee. Per questo dopo il quadrato si sostituisce ogni valore nell'equazione originale e si scartano quelli che non la verificano (o che violano le condizioni $A\geq0$, $B\geq0$).</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Descrivi l'interpretazione geometrica del discriminante di un'equazione di secondo grado in termini di parabola e asse $x$.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: le soluzioni reali di $ax^2+bx+c=0$ sono le ascisse dei punti in cui la parabola $y=ax^2+bx+c$ interseca l'asse $x$ (dove $y=0$). Il segno del discriminante $\Delta=b^2-4ac$ dice quante intersezioni ci sono: se $\Delta&gt;0$ la parabola taglia l'asse in due punti distinti (due soluzioni); se $\Delta=0$ lo tocca in un solo punto, il vertice appoggiato sull'asse (una soluzione doppia, tangenza); se $\Delta&lt;0$ la parabola sta tutta sopra o tutta sotto l'asse senza toccarlo (nessuna soluzione reale). Il discriminante, in sostanza, misura la posizione della parabola rispetto all'asse delle ascisse.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="04-logaritmi.html"><span class="dir">← Capitolo precedente</span><strong>Logaritmi</strong></a>
+        <a class="next" href="06-disequazioni.html"><span class="dir">Capitolo successivo →</span><strong>Disequazioni</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>

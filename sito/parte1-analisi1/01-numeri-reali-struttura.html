@@ -1,0 +1,1651 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>1. Numeri Reali e Struttura d'Ordine — Parte 1 · Analisi Matematica 1</title>
+<link rel="stylesheet" href="../assets/vendor/katex/katex.min.css">
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container navbar">
+    <a href="../index.html" class="navbar__brand">
+      <span class="logo-badge">∫</span>
+      <span>Analisi 1 &amp; 2</span>
+    </a>
+    <nav class="navbar__links">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#parte0">Parte 0</a>
+      <a href="../index.html#parte1" class="is-active">Analisi 1</a>
+      <a href="../index.html#parte2">Analisi 2</a>
+      <a href="../glossario.html">Glossario</a>
+    </nav>
+    <div class="navbar__actions">
+      <button class="theme-toggle" aria-label="Cambia tema" title="Cambia tema chiaro/scuro">
+        <span class="icon-moon">🌙</span><span class="icon-sun">☀️</span>
+      </button>
+      <button class="nav-toggle" aria-label="Apri menu">☰</button>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+  <p class="breadcrumb"><a href="../index.html">Home</a><span class="sep">/</span><a href="../index.html#parte1">Parte 1 · Analisi Matematica 1</a><span class="sep">/</span>Capitolo 1</p>
+
+  <div class="chapter-layout">
+    <aside class="chapter-sidebar">
+      <p class="chapter-sidebar__title">In questo capitolo</p>
+      <nav>
+        <ul>
+          <li><a href="#intuizione">1. Introduzione intuitiva</a></li>
+          <li><a href="#motivazione">2. Motivazione</a></li>
+          <li><a href="#vita-reale">3. Nella vita reale</a></li>
+          <li><a href="#teoria">4. Teoria dettagliata</a></li>
+          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
+          <li><a href="#esempi">6. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">7. Errori comuni</a></li>
+          <li><a href="#trucchi">8. Trucchi</a></li>
+          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
+          <li><a href="#riassunto">10. Riassunto</a></li>
+          <li><a href="#esercizi">11. Esercizi</a></li>
+          <li><a href="#quiz">12. Quiz</a></li>
+        </ul>
+      </nav>
+      <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
+      <nav>
+        <ul>
+          <li><a href="01-numeri-reali-struttura.html" class="is-active">1. Numeri reali e struttura d'ordine</a></li>
+          <li><a href="02-valore-assoluto-topologia.html">2. Valore assoluto e topologia della retta</a></li>
+          <li><a href="03-funzioni.html">3. Funzioni</a></li>
+          <li><a href="04-limiti.html">4. Limiti di funzioni</a></li>
+          <li><a href="05-infinitesimi-infiniti.html">5. Infinitesimi, infiniti e confronti</a></li>
+          <li><a href="06-continuita.html">6. Continuità</a></li>
+          <li><a href="07-derivate.html">7. Derivate</a></li>
+          <li><a href="08-teoremi-fondamentali.html">8. Teoremi fondamentali del calcolo differenziale</a></li>
+          <li><a href="09-studio-di-funzione.html">9. Studio completo di funzione</a></li>
+          <li><a href="10-taylor-mclaurin.html">10. Sviluppi di Taylor e Mclaurin</a></li>
+          <li><a href="11-successioni.html">11. Successioni numeriche</a></li>
+          <li><a href="12-serie-numeriche.html">12. Serie numeriche</a></li>
+          <li><a href="13-integrali-indefiniti.html">13. Integrali indefiniti</a></li>
+          <li><a href="14-integrali-definiti.html">14. Integrali definiti</a></li>
+          <li><a href="15-applicazioni-integrali.html">15. Applicazioni degli integrali</a></li>
+        </ul>
+      </nav>
+    </aside>
+
+    <article class="chapter-content prose">
+      <div class="chapter-hero">
+        <div class="kicker">
+          <span class="badge badge--parte1">Parte 1 · Analisi Matematica 1</span>
+          <span class="badge badge--base">Capitolo 1 di 15</span>
+        </div>
+        <h1>Numeri Reali e Struttura d'Ordine</h1>
+        <p class="subtitle">In Parte 0 abbiamo costruito i numeri reali; adesso capiamo cosa li rende speciali. La risposta è una sola parola — <em>completezza</em> — e da essa dipenderà, letteralmente, ogni teorema di questo corso: limiti, continuità, derivate, integrali. Tutto poggia sull'idea che ℝ non abbia buchi.</p>
+        <div class="reading-meta">
+          <span>⏱️ ~50 min di lettura</span>
+          <span>✏️ 16 esercizi</span>
+          <span>🧠 13 quiz</span>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn--primary" id="toggle-tutte-soluzioni">👁 Mostra tutte le soluzioni</button>
+          <a class="btn btn--ghost" href="#quiz">🧠 Vai ai quiz</a>
+        </div>
+      </div>
+
+      <!-- 1. INTRODUZIONE INTUITIVA -->
+      <section class="section" id="intuizione">
+        <h2 class="section__title"><span class="num">1.</span> <span class="emoji">💡</span> Introduzione intuitiva</h2>
+        <p>Immagina una collezione di numeri sulla retta — chiamiamola $A$ — e chiediti: "fin dove arriva verso destra?". A volte la risposta si legge a colpo d'occhio: se $A = \{1, 4, 7\}$, il numero più a destra è $7$, punto e basta. Ma prova con $A$ = "tutti i numeri strettamente minori di $1$", cioè l'intervallo $(-\infty, 1)$. Qual è il più grande? Non c'è: qualunque numero tu proponga, diciamo $0{,}9999$, ce n'è sempre uno ancora più grande e ancora dentro $A$ ($0{,}99999$, e così via). Eppure un <strong>confine</strong> c'è: il numero $1$, contro cui l'insieme "si appoggia" senza mai toccarlo.</p>
+        <p>Questo numero-confine — <em>il più stretto muro che riesce a contenere tutto l'insieme</em> — è l'idea centrale del capitolo e si chiama <strong><span class="glossario-term" data-term="estremo-superiore">estremo superiore</span></strong>. Non è "il massimo" (che qui non esiste): è qualcosa di più sottile e più potente. Simmetricamente, il muro più stretto <em>da sotto</em> è l'<strong><span class="glossario-term" data-term="estremo-inferiore">estremo inferiore</span></strong>.</p>
+        <p>La grande promessa dell'insieme dei <span class="glossario-term" data-term="numero-reale">numeri reali</span> ℝ è questa: <strong>ogni</strong> insieme di numeri che non "scappa verso destra all'infinito" possiede questo confine, e il confine è a sua volta un numero reale. Non ci sono eccezioni, non ci sono buchi. È una promessa che i <span class="glossario-term" data-term="numero-razionale">numeri razionali</span> ℚ, da soli, <strong>non</strong> riescono a mantenere — e capire <em>perché</em> falliscono è metà del lavoro di questo capitolo.</p>
+      </section>
+
+      <!-- 2. MOTIVAZIONE -->
+      <section class="section" id="motivazione">
+        <h2 class="section__title"><span class="num">2.</span> <span class="emoji">🎯</span> Motivazione</h2>
+        <div class="callout callout--motivazione">
+          <div class="callout__title"><span class="emoji">🎯</span> Perché esiste questo argomento?</div>
+          <p>Perché <strong>l'intera Analisi Matematica è un edificio, e la completezza di ℝ è il terreno solido su cui è costruito</strong>. Ogni volta che diremo "il limite esiste", "la funzione continua assume il valore massimo", "la successione crescente e limitata converge", staremo in realtà usando, sotto il cofano, l'assioma di completezza. Toglilo, e tutti quei teoremi crollano.</p>
+        </div>
+        <p><strong>Quale problema risolve?</strong> In Parte 0 abbiamo visto la catena <span class="glossario-term" data-term="numero-reale">$\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$</span> e abbiamo dimostrato che $\sqrt{2}$ non è razionale. Quella dimostrazione lasciava però una domanda aperta e inquietante: se prendo tutti i razionali il cui quadrato è minore di $2$, essi "si accalcano" verso un confine — ma quel confine, $\sqrt 2$, <em>non è un razionale</em>. Dentro ℚ, in quel punto, c'è letteralmente un <strong>buco</strong>. I numeri reali nascono proprio per tappare tutti questi buchi contemporaneamente, e lo strumento tecnico per farlo è l'estremo superiore.</p>
+        <p><strong>Perché è importante ora?</strong> Perché sup e inf sono il primo concetto "adulto" di Analisi 1, quello che distingue un liceale da uno studente universitario. Non basta più saper calcolare: bisogna saper <em>dimostrare</em> che un certo numero è l'estremo superiore verificando due condizioni precise. È anche il concetto che userai, tradotto, per definire il <span class="glossario-term" data-term="limite">limite</span> di una <span class="glossario-term" data-term="successione">successione</span> monotona e per capire perché una funzione continua su un intervallo chiuso ha per forza un massimo. Impararlo bene ora significa non arrancare per il resto del corso.</p>
+      </section>
+
+      <!-- 3. VITA REALE -->
+      <section class="section" id="vita-reale">
+        <h2 class="section__title"><span class="num">3.</span> <span class="emoji">🌍</span> Collegamento con la vita reale</h2>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏃</span> Il record del mondo e il limite dell'atleta</div>
+          <p>Pensa al record del mondo dei $100$ metri. Ogni anno l'asticella dei tempi si abbassa di qualche centesimo: $9{,}72$, poi $9{,}69$, poi $9{,}58$… La domanda affascinante è: <em>esiste un tempo minimo assoluto</em> che nessun essere umano potrà mai battere, dettato dalla fisiologia dei muscoli e dei tendini? Quel tempo-limite, verso cui i record si avvicinano sempre di più senza magari raggiungerlo <strong>mai esattamente</strong>, è esattamente un <span class="glossario-term" data-term="estremo-inferiore">estremo inferiore</span>: il confine più stretto sotto cui i tempi non possono scendere. L'insieme dei tempi realmente corsi potrebbe non contenerlo (nessuno lo corre <em>esattamente</em>), eppure quel confine <em>esiste</em> ed è ben definito. Nel salto in alto è lo stesso, ribaltato: l'altezza-limite che il corpo umano può superare è l'<strong>estremo superiore</strong> delle altezze saltate.</p>
+        </div>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏠</span> La stanza dal soffitto irregolare</div>
+          <p>Sei in una vecchia soffitta con il tetto spiovente: il soffitto è più alto al centro e scende verso i lati. Ti chiedi: "qual è l'altezza massima garantita sotto cui riesco a stare in piedi <em>ovunque</em> nella stanza?". È il punto più basso del soffitto — l'<strong>estremo inferiore</strong> dell'altezza. Magari quel punto minimo è proprio sullo spigolo del muro, un punto che "non fa parte" della zona calpestabile: eppure è lui a dettare il limite. È l'esempio perfetto di un estremo inferiore che detta la regola pur trovandosi sul bordo. E se il soffitto scendesse con una curva sempre più dolce senza mai avere un vero punto più basso "raggiunto", l'estremo inferiore sarebbe comunque definito: il valore a cui l'altezza tende, anche se in nessun punto è esattamente quello.</p>
+        </div>
+      </section>
+
+      <!-- 4. TEORIA -->
+      <section class="section" id="teoria">
+        <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
+
+        <h3 id="teoria-ripasso">4.1 Ripasso lampo: da ℕ a ℝ, e la domanda che rimane</h3>
+        <p>Nel <a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">primo capitolo della Parte 0</a> abbiamo costruito gli insiemi numerici uno dentro l'altro, $\mathbb{N}\subset\mathbb{Z}\subset\mathbb{Q}\subset\mathbb{R}$, ciascuno per risolvere un problema che il precedente non gestiva, e abbiamo dimostrato per assurdo che $\sqrt 2 \notin \mathbb{Q}$. Diamo tutto questo per acquisito. Qui partiamo dalla domanda successiva, molto più profonda: <strong>cosa distingue davvero ℝ da ℚ?</strong> Entrambi sono infiniti, entrambi sono "densi" (tra due qualsiasi ce n'è sempre un terzo). La differenza non è la quantità di numeri, ma la loro <em>compattezza</em>: ℝ non ha buchi, ℚ sì. Formalizzare questa frase è l'obiettivo del capitolo.</p>
+
+        <h3 id="teoria-maggioranti">4.2 Maggioranti, minoranti e insiemi limitati</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Hai davanti un insieme di numeri. La domanda è una sola: <em>esiste un numero che sta a destra di tutti i numeri dell'insieme?</em> Se sì, quel numero si chiama <strong>maggiorante</strong>. Non deve essere uno dei numeri dell'insieme: il suo unico compito è essere grande abbastanza da stare dopo tutti. Allo stesso modo, un numero che sta a sinistra di tutti si chiama <strong>minorante</strong>. Sono due parole per dire "sta sopra a tutti" e "sta sotto a tutti", niente di più.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚗</span> L'immagine da tenere in mente</div>
+          <p>All'ingresso di un parcheggio sotterraneo c'è il cartello "<em>altezza massima 2,10 m</em>". Quel cartello dice una cosa sola: nessuna delle auto che entrano è più alta di $2{,}10$ metri. Il numero $2{,}10$ è un <strong>maggiorante</strong> dell'insieme delle altezze delle auto. Nota due cose, perché sono esattamente le due cose che confondono gli studenti.</p>
+          <p>Primo: il cartello <em>non</em> promette che esista un'auto alta esattamente $2{,}10$ m. Magari la più alta è $1{,}95$ m. Il maggiorante può non appartenere all'insieme.</p>
+          <p>Secondo: anche un cartello "altezza massima 3 m" direbbe una cosa vera, solo meno precisa. E così "4 m", "10 m"… <strong>I maggioranti sono infiniti.</strong> Più avanti ci interesserà il più preciso di tutti, cioè il più piccolo: sarà l'estremo superiore.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo l'insieme finito</p>
+        <div class="formula-block">$$A=\{-3,\ 0,\ 2,\ 5\}$$</div>
+        <p>e mettiamo alla prova tre candidati maggioranti: $7$, poi $5$, poi $4$. La regola è che il candidato deve stare a destra (cioè essere $\ge$) di <em>tutti</em> gli elementi, nessuno escluso: quindi li controlliamo uno per uno.</p>
+        <p><strong>Candidato $M=7$.</strong> L'insieme ha quattro elementi, quindi devo controllare quattro disuguaglianze:</p>
+        <div class="calcolo">$$\begin{aligned}
+-3 &amp;\le 7 &amp;&amp;\text{(vera)}\\
+0 &amp;\le 7 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 7 &amp;&amp;\text{(vera)}\\
+5 &amp;\le 7 &amp;&amp;\text{(vera)}
+\end{aligned}$$</div>
+        <p>Tutte e quattro vere, quindi <strong>$7$ è un maggiorante di $A$</strong>. Nota che $7\notin A$: il maggiorante sta fuori dall'insieme, e va benissimo così.</p>
+        <p><strong>Candidato $M=5$.</strong> Stesse quattro verifiche:</p>
+        <div class="calcolo">$$\begin{aligned}
+-3 &amp;\le 5 &amp;&amp;\text{(vera)}\\
+0 &amp;\le 5 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 5 &amp;&amp;\text{(vera)}\\
+5 &amp;\le 5 &amp;&amp;\text{(vera: nella definizione c'è } \le \text{, non } \lt \text{)}
+\end{aligned}$$</div>
+        <p>Anche $5$ è un maggiorante. L'ultima riga è quella su cui ci si inceppa: la definizione chiede $a\le M$, cioè "minore <em>o uguale</em>". Un elemento può coincidere con il maggiorante senza rovinare nulla. Qui, per di più, $5\in A$: un maggiorante può anche appartenere all'insieme.</p>
+        <p><strong>Candidato $M=4$.</strong> Ricomincio:</p>
+        <div class="calcolo">$$\begin{aligned}
+-3 &amp;\le 4 &amp;&amp;\text{(vera)}\\
+0 &amp;\le 4 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 4 &amp;&amp;\text{(vera)}\\
+5 &amp;\le 4 &amp;&amp;\textbf{(falsa)}
+\end{aligned}$$</div>
+        <p>Basta <em>una</em> riga falsa per bocciare il candidato: <strong>$4$ non è un maggiorante di $A$</strong>. L'elemento $5$ "sfora" e lo smentisce.</p>
+        <p><strong>Fin qui:</strong> per dire che un numero <em>è</em> maggiorante bisogna controllare tutti gli elementi; per dire che <em>non</em> lo è basta esibirne uno solo che lo supera.</p>
+
+        <p><strong>Ora la definizione, parola per parola.</strong> Fissiamo un sottoinsieme $A \subseteq \mathbb{R}$ non vuoto.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Maggiorante e minorante.</em> Un numero $M \in \mathbb{R}$ è un <strong><span class="glossario-term" data-term="maggiorante">maggiorante</span></strong> di $A$ se $\ a \leq M$ per ogni $a \in A$. Un numero $m \in \mathbb{R}$ è un <strong><span class="glossario-term" data-term="minorante">minorante</span></strong> di $A$ se $\ m \leq a$ per ogni $a \in A$.</p>
+          <p>In simboli, con la traduzione sotto ogni pezzo:</p>
+          <div class="formula-block">$$\underbrace{\forall\,a\in A}_{\text{comunque scelga un elemento } a \text{ di } A}\qquad \underbrace{a\le M}_{a \text{ non supera } M}$$</div>
+          <ul>
+            <li>$\forall$ si legge "per ogni": è un <em>obbligo per tutti</em>, non una richiesta di trovarne uno.</li>
+            <li>$a\in A$ si legge "$a$ appartiene ad $A$", cioè "$a$ è uno degli elementi dell'insieme".</li>
+            <li>$M$ non compare mai con la scritta "$M\in A$": <strong>al maggiorante non è richiesto di stare dentro $A$</strong>.</li>
+          </ul>
+        </div>
+
+        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> L'insieme dei numeri naturali $\mathbb{N}=\{0,1,2,3,\dots\}$ <strong>non ha nessun maggiorante</strong>. Perché? Prendi un candidato qualsiasi, per esempio $M=1\,000\,000$. Il numero naturale $1\,000\,001$ appartiene a $\mathbb{N}$ e non soddisfa $1\,000\,001\le 1\,000\,000$: il candidato è bocciato. Lo stesso ragionamento funziona con qualunque $M$, perché dopo ogni naturale ce n'è sempre un altro più grande (basta sommare $1$). Quindi nessun numero può stare a destra di tutti i naturali. Questo fatto ha un nome e lo dimostreremo in <span class="richiamo" data-sec="4.7">§4.7</span>: è la <strong>proprietà di Archimede</strong>.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p><strong>Per dire SÌ</strong> ($M$ è maggiorante): se l'insieme è finito, controlla una per una tutte le disuguaglianze $a\le M$. Se l'insieme è infinito, non puoi controllarle a mano: devi prendere un elemento <em>generico</em> $a\in A$ (cioè "uno qualunque, senza sceglierlo") e dimostrare con un calcolo che $a\le M$.</p>
+          <p><strong>Per dire NO</strong> basta invece esibire <em>un solo</em> elemento $a\in A$ con $a\gt M$. Un solo controesempio abbatte il candidato.</p>
+        </div>
+
+        <p><strong>I maggioranti formano una semiretta.</strong> Questa osservazione tornerà utile fra poco. Se $M$ è un maggiorante di $A$ e prendi un numero $M_2\ge M$, allora anche $M_2$ è un maggiorante. Ecco il motivo, in una riga: preso un qualunque $a\in A$, so che $a\le M$ (perché $M$ è maggiorante) e so che $M\le M_2$ (per come ho scelto $M_2$); incollando le due disuguaglianze (proprietà transitiva dell'ordine, Parte 0, cap. 6) ottengo $a\le M_2$. Quindi:</p>
+        <div class="calcolo">$$\begin{aligned}
+a &amp;\le M &amp;&amp;\text{(}M\text{ è maggiorante di }A\text{)}\\
+M &amp;\le M_2 &amp;&amp;\text{(scelta di }M_2\text{)}\\
+a &amp;\le M_2 &amp;&amp;\text{(transitività: incollo le due righe sopra)}
+\end{aligned}$$</div>
+        <p>Morale: l'insieme dei maggioranti, quando non è vuoto, è tutta una semiretta che si estende verso destra. Per i minoranti vale lo stesso ribaltato: sono una semiretta verso sinistra.</p>
+
+        <p><strong>Insiemi limitati: dare un nome alla situazione "ci sono i muri".</strong></p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Insiemi limitati.</em> $A$ è <strong>limitato superiormente</strong> se ammette almeno un maggiorante; <strong>limitato inferiormente</strong> se ammette almeno un minorante; <strong>limitato</strong> se lo è sia superiormente sia inferiormente. Equivalentemente, $A$ è limitato se esiste $K &gt; 0$ tale che $|a| \leq K$ per ogni $a \in A$.</p>
+        </div>
+        <p>L'ultima frase merita una spiegazione, perché sembra un'altra cosa e invece è la stessa. Ricorda (Parte 0, cap. 4) che la disuguaglianza $|a|\le K$ significa $-K\le a\le K$, cioè "$a$ sta nella fascia fra $-K$ e $K$". Dire che $A$ è limitato significa proprio che riesci a rinchiuderlo tutto dentro una fascia di questo tipo, con un solo numero $K$ a fare da muro sia a destra sia a sinistra.</p>
+        <p><strong>Esempi, con i conti.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">$A=(0,1)$ è limitato. Ogni numero $\ge 1$ è maggiorante (se $x\in A$ allora $x\lt 1$, e $1$ è il primo muro utile); ogni numero $\le 0$ è minorante. Scegliendo $K=1$ si ha $|x|\le 1$ per ogni $x\in A$.</span>
+          <span class="esempio__passo">$\mathbb{N}$ è limitato <em>inferiormente</em> (il numero $0$ è un minorante, e lo è anche $-7$, e $-100$…) ma <strong>non</strong> superiormente, come abbiamo appena visto. Quindi $\mathbb{N}$ non è limitato.</span>
+          <span class="esempio__passo">$A=\{-3,0,2,5\}$ è limitato: ogni insieme finito lo è, perché basta prendere come $K$ il più grande dei valori assoluti dei suoi elementi. Qui i valori assoluti sono $3,\,0,\,2,\,5$ e il più grande è $5$, quindi $|a|\le 5$ per ogni $a\in A$.</span>
+        </p>
+
+        <h3 id="teoria-max-min">4.3 Massimo e minimo</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Il <strong>massimo</strong> è "il più grande fra gli elementi dell'insieme". La differenza rispetto al maggiorante è una sola, ma è decisiva: il massimo deve <em>essere uno degli elementi</em>. È un maggiorante che gioca in casa.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🏅</span> L'immagine da tenere in mente</div>
+          <p>Il vincitore di una gara deve essere uno dei partecipanti. Puoi dire "nessuno ha corso sotto i $9$ secondi" (è un minorante dei tempi), ma il <em>vincitore</em> è per forza una persona che era in pista. Un maggiorante è come un cartello sul muro; il massimo è come il partecipante che sale sul gradino più alto del podio: deve esistere davvero, in gara.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Riprendiamo $A=\{-3,\ 0,\ 2,\ 5\}$ e chiediamoci se $5$ è il massimo. Le condizioni da verificare sono <em>due</em> e le facciamo una alla volta.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Condizione 1: $5$ è un maggiorante?</strong> L'abbiamo già verificato in <span class="richiamo" data-sec="4.2">§4.2</span>, riga per riga: sì.</span>
+          <span class="esempio__passo"><strong>Condizione 2: $5$ appartiene ad $A$?</strong> Guardo l'elenco $\{-3,0,2,5\}$: il $5$ c'è. Sì.</span>
+          <span class="esempio__passo">Entrambe vere, quindi $\max A = 5$. Con lo stesso identico procedimento (minorante $+$ appartenenza) si trova $\min A=-3$.</span>
+        </p>
+
+        <p><strong>Ora la definizione, parola per parola.</strong></p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Massimo e minimo.</em> Un numero $M$ è il <strong>massimo</strong> di $A$, e si scrive $M = \max A$, se: (i) $M$ è un maggiorante di $A$, <strong>e</strong> (ii) $M \in A$. Analogamente $m = \min A$ se $m$ è un minorante di $A$ e $m \in A$.</p>
+          <p>In simboli, con la traduzione sotto ogni pezzo:</p>
+          <div class="formula-block">$$\underbrace{M\in A}_{\text{(ii) } M \text{ è uno degli elementi}}\qquad\text{e}\qquad \underbrace{\forall\,a\in A:\ a\le M}_{\text{(i) nessun elemento lo supera}}$$</div>
+        </div>
+
+        <p><strong>Un non-esempio, anzi due, per capire dov'è il confine.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>$7$ non è il massimo di $A=\{-3,0,2,5\}$.</strong> La condizione (i) è soddisfatta ($7$ è maggiorante, l'abbiamo controllato). Ma salta la (ii): $7\notin A$. Basta che una delle due condizioni cada perché il candidato sia bocciato.</span>
+          <span class="esempio__passo"><strong>$2$ non è il massimo di $A=\{-3,0,2,5\}$.</strong> Qui è vera la (ii) ($2\in A$) ma salta la (i): $5\in A$ e $5\le 2$ è falsa, quindi $2$ non è maggiorante.</span>
+        </p>
+        <p>Questi due non-esempi mostrano che le condizioni servono <em>tutte e due</em>: una sola non basta mai.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
+          <p><strong>Per dire SÌ</strong> ($M=\max A$): due controlli in quest'ordine. (1) $M$ appartiene ad $A$? Se non ci appartiene, fermati subito: non è il massimo. (2) $M$ è maggiorante, cioè $a\le M$ per ogni $a\in A$?</p>
+          <p><strong>Per dire NO</strong> hai due strade: far vedere che $M\notin A$, oppure esibire un elemento di $A$ più grande di $M$.</p>
+        </div>
+
+        <p><strong>Il massimo, se c'è, è uno solo.</strong> Supponi che $M_1$ e $M_2$ siano entrambi massimi di $A$. Allora $M_1\in A$ e $M_2$ è maggiorante, quindi $M_1\le M_2$; ma anche $M_2\in A$ e $M_1$ è maggiorante, quindi $M_2\le M_1$. Due numeri che sono ciascuno minore o uguale all'altro sono uguali: $M_1=M_2$.</p>
+
+        <p><strong>E adesso il problema che fa nascere questo capitolo: il massimo può non esistere.</strong> Prendiamo l'intervallo aperto $A=(0,1)$, cioè tutti i numeri strettamente compresi fra $0$ e $1$, estremi esclusi. Proviamo a nominare un massimo e guardiamo cosa succede.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Provo con $1$.</strong> È maggiorante, ma $1\notin(0,1)$ perché l'estremo è escluso. Condizione (ii) fallita: non è il massimo.</span>
+          <span class="esempio__passo"><strong>Provo con $0{,}999$.</strong> Stavolta appartiene ad $A$, ma non è maggiorante: il numero $0{,}9995$ sta in $A$ ed è più grande. Condizione (i) fallita.</span>
+          <span class="esempio__passo"><strong>Provo con un candidato qualunque $x\in(0,1)$.</strong> Costruisco esplicitamente un elemento più grande: prendo il punto medio fra $x$ e $1$, cioè $\dfrac{x+1}{2}$. Verifico che è davvero più grande di $x$ e che sta ancora in $A$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+\frac{x+1}{2}-x &amp;= \frac{x+1-2x}{2} &amp;&amp;\text{(porto } x \text{ sullo stesso denominatore: } x=\tfrac{2x}{2}\text{)}\\
+&amp;= \frac{1-x}{2} &amp;&amp;\text{(sommo i termini simili: } x-2x=-x\text{)}\\
+&amp;\gt 0 &amp;&amp;\text{(perché } x\lt 1 \text{, quindi } 1-x\gt 0 \text{, diviso } 2\gt 0\text{)}
+\end{aligned}$$</div>
+        <p>La differenza è positiva, quindi $\dfrac{x+1}{2}\gt x$. Resta da controllare che il nuovo numero sia ancora dentro $(0,1)$:</p>
+        <div class="calcolo">$$\begin{aligned}
+0 \lt x &amp;\lt 1 &amp;&amp;\text{(ipotesi: } x \text{ sta in } A\text{)}\\
+1 \lt x+1 &amp;\lt 2 &amp;&amp;\text{(sommo 1 a tutti e tre i membri)}\\
+\tfrac12 \lt \frac{x+1}{2} &amp;\lt 1 &amp;&amp;\text{(divido tutto per } 2\gt 0\text{: il verso non cambia)}
+\end{aligned}$$</div>
+        <p>Il risultato, $\frac{x+1}{2}$, è compreso fra $\frac12$ e $1$, quindi in particolare è compreso fra $0$ e $1$: appartiene ad $A$. <strong>Conclusione:</strong> qualunque elemento tu proponga come massimo, io ne costruisco uno più grande ancora dentro $A$. Perciò $(0,1)$ <strong>non ha massimo</strong>. Allo stesso modo non ha minimo (basta prendere $\frac{x}{2}$, che è più piccolo di $x$ e ancora in $A$).</p>
+        <p><strong>Fin qui:</strong> ci sono insiemi perfettamente limitati che però non hanno né massimo né minimo. Il "confine" però si vede benissimo: è $1$ a destra e $0$ a sinistra. Ci serve un concetto che sopravviva anche quando il massimo sparisce, e che catturi quel confine. È l'estremo superiore.</p>
+
+        <h3 id="teoria-sup-inf">4.4 Estremo superiore e inferiore</h3>
+        <p><strong>Prima l'idea, poi la definizione.</strong> Abbiamo visto in <span class="richiamo" data-sec="4.3">§4.3</span> che il massimo a volte non esiste. Ma i <em>maggioranti</em>, quelli sì che ci sono, e sono infiniti (<span class="richiamo" data-sec="4.2">§4.2</span>). L'idea è: se non possiamo scegliere il più grande degli <em>elementi</em>, scegliamo il più piccolo dei <em>maggioranti</em>. Quel numero si chiama <strong>estremo superiore</strong> e cattura il "confine destro" dell'insieme, che l'insieme lo raggiunga oppure no.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🚗</span> L'immagine da tenere in mente (di nuovo il parcheggio)</div>
+          <p>Torniamo al cartello "altezza massima". Se l'auto più alta che entra è $1{,}95$ m, allora i cartelli veri sono tantissimi: $1{,}95$, $2$, $2{,}10$, $3$, $10$… Ma il cartello <em>più informativo</em> è uno solo: quello con il numero più piccolo fra tutti quelli veri. Quel numero è l'<strong>estremo superiore</strong> delle altezze. È il muro spinto in avanti fin dove si riesce, senza tagliare fuori nessuno.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo di nuovo $A=(0,1)$ e facciamo l'elenco dei suoi maggioranti, provando un candidato alla volta.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo">$M=5$: è maggiorante (ogni $x\in A$ è $\lt 1\lt 5$). ✓</span>
+          <span class="esempio__passo">$M=2$: è maggiorante. ✓</span>
+          <span class="esempio__passo">$M=1{,}001$: è maggiorante. ✓</span>
+          <span class="esempio__passo">$M=1$: è maggiorante, perché ogni $x\in A$ soddisfa $x\lt 1$, e "$\lt$" implica "$\le$". ✓</span>
+          <span class="esempio__passo">$M=0{,}999$: <strong>non</strong> è maggiorante. Basta un controesempio: il numero $0{,}9995$ appartiene ad $A$ (sta fra $0$ e $1$) ed è più grande di $0{,}999$. ✗</span>
+          <span class="esempio__passo">$M=0{,}99999$: stesso problema, prendo $0{,}999995$. ✗</span>
+        </p>
+        <p>Si vede il quadro: i maggioranti di $(0,1)$ sono tutti e soli i numeri $\ge 1$, cioè la semiretta $[1,+\infty)$. Qual è il più piccolo di questa semiretta? È $1$, ed è incluso. Quindi il "muro più stretto" è $1$: scriveremo $\sup(0,1)=1$.</p>
+
+        <p><strong>Ora la definizione, parola per parola.</strong></p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Definizione</span>
+          <p><em class="nome">Estremo superiore e inferiore.</em> L'<strong><span class="glossario-term" data-term="estremo-superiore">estremo superiore</span></strong> di $A$, scritto $\sup A$, è il <strong>minimo dei maggioranti</strong> di $A$. L'<strong><span class="glossario-term" data-term="estremo-inferiore">estremo inferiore</span></strong> $\inf A$ è il <strong>massimo dei minoranti</strong> di $A$.</p>
+          <p>Attenzione a non fare confusione fra i due insiemi in gioco: il minimo <em>non</em> si cerca dentro $A$, si cerca dentro l'insieme dei maggioranti di $A$, che è un altro insieme. In formule, chiamato $\mathcal{M}=\{M\in\mathbb{R}\ :\ M \text{ è maggiorante di } A\}$, la definizione dice $\sup A=\min \mathcal{M}$.</p>
+        </div>
+
+        <p>Questa definizione è precisa, ma per usarla dovresti prima costruire tutto l'insieme dei maggioranti e poi cercarne il minimo: scomodo. Per fortuna c'è una riformulazione <em>operativa</em>, fatta di due condizioni che si controllano una alla volta. È quella che userai in ogni esercizio e in ogni esame; la dimostreremo nel Teorema 2 della sezione <a href="#dimostrazioni">Dimostrazioni</a>.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Caratterizzazione operativa del sup</span>
+          <p><em class="nome"></em> Un numero $L$ è l'estremo superiore di $A$ se e solo se valgono <strong>entrambe</strong> le condizioni:</p>
+          <div class="formula-block">
+            $$\textbf{(i)}\quad \underbrace{a \leq L \ \text{ per ogni } a \in A}_{L \text{ è un maggiorante: nessun elemento lo supera}}$$
+            $$\textbf{(ii)}\quad \underbrace{\forall\, \varepsilon \gt 0}_{\text{comunque scelga un margine piccolo}}\ \ \underbrace{\exists\, a \in A}_{\text{riesco a trovare un elemento}}\ :\ \underbrace{a \gt L - \varepsilon}_{\text{che sta oltre il muro abbassato}}$$
+          </div>
+        </div>
+        <p>Leggiamole con calma, una alla volta, perché sono il cuore del capitolo.</p>
+        <p><strong>La (i) dice che $L$ tiene.</strong> È la solita verifica di maggiorante di <span class="richiamo" data-sec="4.2">§4.2</span>: l'insieme sta tutto a sinistra di $L$.</p>
+        <p><strong>La (ii) dice che $L$ non si può abbassare.</strong> La lettera greca $\varepsilon$ (si legge "epsilon") è solo un nome per un numero positivo, pensato piccolo: chiamiamolo <em>margine</em>. Il numero $L-\varepsilon$ è il muro spostato indietro di quel margine. La condizione chiede: comunque scelga il margine, dentro $A$ c'è sempre almeno un elemento che sta <em>oltre</em> il muro abbassato. Se così è, abbassare il muro taglierebbe fuori qualcuno: quindi nessun numero più piccolo di $L$ può essere maggiorante, e $L$ è davvero il più piccolo.</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> La (ii) in parole povere: "l'insieme si avvicina a $L$ quanto vuoi"</div>
+          <p>Traccia il muro in $L$ e poi indietreggia di una distanza qualsiasi $\varepsilon$: nella sottile striscia $(L-\varepsilon,\ L]$ trovi sempre almeno un elemento di $A$. Più stretta fai la striscia, più vicino a $L$ devi andare a pescare l'elemento — ma uno lo trovi sempre. È lo stesso identico spirito dell'$\varepsilon$ che incontrerai nella definizione di <span class="glossario-term" data-term="limite">limite</span> (cap. 4): qui stai facendo il primo allenamento con quel linguaggio.</p>
+        </div>
+
+        <p><strong>Due non-esempi, per capire dov'è il confine.</strong> Prendiamo sempre $A=(0,1)$ e proviamo due candidati sbagliati, per vedere <em>quale</em> delle due condizioni salta.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>$L=1{,}2$ non è il sup.</strong> La (i) è vera: $1{,}2$ è maggiorante. Ma la (ii) è falsa. Per dimostrarlo devo esibire <em>un</em> margine $\varepsilon$ per cui non trovo nessun elemento oltre $L-\varepsilon$. Scelgo $\varepsilon=0{,}1$: allora $L-\varepsilon=1{,}2-0{,}1=1{,}1$, e nessun elemento di $(0,1)$ supera $1{,}1$ (sono tutti minori di $1$). Condizione (ii) fallita: $1{,}2$ è un maggiorante, ma non il più piccolo.</span>
+          <span class="esempio__passo"><strong>$L=0{,}9$ non è il sup.</strong> Qui salta subito la (i): $0{,}95\in A$ e $0{,}95\le 0{,}9$ è falsa, quindi $0{,}9$ non è nemmeno maggiorante. Un numero che non supera l'insieme non può certo esserne il confine destro.</span>
+        </p>
+        <p>I due errori sono opposti: nel primo il candidato è <em>troppo grande</em>, nel secondo <em>troppo piccolo</em>. Le due condizioni servono esattamente a escludere questi due casi.</p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica che $L=\sup A$</div>
+          <p><strong>Passo 1 (condizione i).</strong> Prendi un elemento generico $a\in A$ e dimostra con un calcolo che $a\le L$.</p>
+          <p><strong>Passo 2 (condizione ii).</strong> Prendi un margine generico $\varepsilon\gt0$ e <em>costruisci</em> un elemento $a\in A$ che soddisfi $a\gt L-\varepsilon$. In pratica: scrivi la disuguaglianza $a\gt L-\varepsilon$, risolvila rispetto alla variabile che descrive gli elementi (di solito $n$ o $x$), e fai vedere che una soluzione esiste sempre.</p>
+          <p>Fatti entrambi i passi, hai finito. Per l'$\inf$ le due condizioni sono le stesse con le disuguaglianze rovesciate.</p>
+        </div>
+
+        <h4>4.4.1 Quattro verifiche guidate, una condizione alla volta</h4>
+        <p>Adesso applichiamo la ricetta a quattro insiemi diversi, dal più facile al più delicato. Segui il metodo: è sempre lo stesso.</p>
+
+        <p><strong>Verifica 1 — un insieme finito: $A=\{-3,\ 0,\ 2,\ 5\}$. Affermo che $\sup A=5$.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Condizione (i).</strong> Già verificata riga per riga in <span class="richiamo" data-sec="4.2">§4.2</span>: tutti e quattro gli elementi sono $\le 5$. ✓</span>
+          <span class="esempio__passo"><strong>Condizione (ii).</strong> Fisso un margine qualunque $\varepsilon\gt 0$ e devo trovare un elemento di $A$ maggiore di $5-\varepsilon$. Scelgo l'elemento $a=5$, che sta in $A$. Funziona?</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+\varepsilon &amp;\gt 0 &amp;&amp;\text{(ipotesi sul margine)}\\
+-\varepsilon &amp;\lt 0 &amp;&amp;\text{(moltiplico per } -1 \text{: il verso si inverte)}\\
+5-\varepsilon &amp;\lt 5 &amp;&amp;\text{(sommo 5 a entrambi i membri)}\\
+5 &amp;\gt 5-\varepsilon &amp;&amp;\text{(rileggo la riga precedente da destra a sinistra)}
+\end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">L'elemento $a=5$ supera $5-\varepsilon$ qualunque sia $\varepsilon\gt0$. ✓ Quindi $\sup A=5$. E poiché $5\in A$, questo sup è anche il massimo.</span>
+        </p>
+        <p>Nota il meccanismo: quando il massimo esiste, la condizione (ii) si verifica sempre così, prendendo come elemento proprio il massimo. Ecco perché <em>sup e max coincidono quando il max c'è</em> (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
+
+        <p><strong>Verifica 2 — un intervallo aperto: $A=(0,1)$. Affermo che $\sup A=1$.</strong></p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Condizione (i).</strong> Prendo $x\in A$ generico. Per definizione di intervallo aperto, $0\lt x\lt 1$; in particolare $x\lt 1$, e da "$\lt$" segue "$\le$". Quindi $x\le 1$ per ogni $x\in A$. ✓</span>
+          <span class="esempio__passo"><strong>Condizione (ii), prima con un margine concreto.</strong> Prendo $\varepsilon=0{,}2$. Il muro abbassato è $1-0{,}2=0{,}8$. Mi serve un elemento di $(0,1)$ maggiore di $0{,}8$: per esempio $0{,}9$. ✓</span>
+          <span class="esempio__passo"><strong>Con un margine più piccolo.</strong> Prendo $\varepsilon=0{,}001$. Il muro abbassato è $0{,}999$. Mi serve un elemento maggiore: per esempio $0{,}9995$. ✓ Si intuisce la regola: prendo un numero a metà strada fra il muro abbassato e $1$.</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Fisso $\varepsilon\gt 0$ qualunque e scelgo come elemento il punto medio fra $1-\varepsilon$ e $1$, cioè $a=1-\dfrac{\varepsilon}{2}$. Devo controllare due cose: che $a\in A$ e che $a\gt 1-\varepsilon$. Partiamo dalla seconda.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+a-(1-\varepsilon) &amp;= \left(1-\frac{\varepsilon}{2}\right)-1+\varepsilon &amp;&amp;\text{(tolgo la parentesi cambiando i segni)}\\
+&amp;= \varepsilon-\frac{\varepsilon}{2} &amp;&amp;\text{(i due } 1 \text{ si elidono)}\\
+&amp;= \frac{\varepsilon}{2} &amp;&amp;\text{(} \varepsilon = \tfrac{2\varepsilon}{2}\text{, quindi } \tfrac{2\varepsilon}{2}-\tfrac{\varepsilon}{2}=\tfrac{\varepsilon}{2}\text{)}\\
+&amp;\gt 0 &amp;&amp;\text{(perché } \varepsilon\gt0 \text{ diviso } 2\gt 0\text{)}
+\end{aligned}$$</div>
+        <p>La differenza è positiva, quindi $a\gt 1-\varepsilon$: è quello che volevamo.</p>
+        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Manca ancora un pezzo, che quasi tutti saltano: bisogna controllare che l'elemento scelto appartenga davvero ad $A$. Se $\varepsilon$ fosse enorme, diciamo $\varepsilon=10$, allora $a=1-5=-4$, che <em>non</em> sta in $(0,1)$. Si rimedia così: se $\varepsilon\ge 1$ il muro abbassato $1-\varepsilon$ è $\le 0$, quindi va bene qualunque elemento, per esempio $a=\frac12$; se invece $\varepsilon\lt 1$ allora $\frac{\varepsilon}{2}\lt\frac12$ e quindi $a=1-\frac{\varepsilon}{2}\gt\frac12\gt0$, mentre $a\lt1$ perché stiamo togliendo una quantità positiva a $1$: dunque $a\in(0,1)$. In entrambi i casi l'elemento esiste. ✓</p>
+        <p>Valgono (i) e (ii), quindi $\sup(0,1)=1$. E poiché $1\notin(0,1)$, il massimo non esiste: <strong>questo è l'esempio-modello di sup senza max</strong>.</p>
+
+        <p><strong>Verifica 3 — l'insieme $A=\left\{\dfrac1n\ :\ n\in\mathbb{N},\ n\ge1\right\}=\left\{1,\ \tfrac12,\ \tfrac13,\ \tfrac14,\dots\right\}$.</strong> Qui calcoliamo sia il sup sia l'inf.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Guardo i numeri.</strong> Scrivo i primi termini in decimale: $1$, $0{,}5$, $0{,}333\ldots$, $0{,}25$, $0{,}2$, $0{,}1666\ldots$ Vanno giù, e il più grande è il primo. Candidati: $\sup A=1$ e $\inf A=0$.</span>
+          <span class="esempio__passo"><strong>Sup, condizione (i).</strong> Prendo un elemento generico $\frac1n$ con $n\ge1$. Da $n\ge1$, passando ai reciproci fra numeri positivi (il verso si inverte, Parte 0, cap. 6), ottengo $\frac1n\le\frac11=1$. Quindi $1$ è maggiorante. ✓</span>
+          <span class="esempio__passo"><strong>Sup, condizione (ii).</strong> L'elemento $1$ appartiene ad $A$ (si ottiene con $n=1$) e, come nella Verifica 1, $1\gt1-\varepsilon$ per ogni $\varepsilon\gt0$. ✓ Dunque $\sup A=1$, ed essendo $1\in A$ è anche $\max A=1$.</span>
+          <span class="esempio__passo"><strong>Inf, condizione (i').</strong> Devo mostrare che $0$ è minorante, cioè $0\le\frac1n$ per ogni $n\ge1$. Vero: una frazione con numeratore e denominatore positivi è positiva. ✓</span>
+          <span class="esempio__passo"><strong>Inf, condizione (ii'), prima con un margine concreto.</strong> La condizione per l'inf chiede: per ogni $\varepsilon\gt0$ esiste un elemento <em>minore</em> di $0+\varepsilon=\varepsilon$. Provo con $\varepsilon=0{,}01$: mi serve $\frac1n\lt0{,}01$, e con $n=101$ ottengo $\frac1{101}\approx0{,}0099$, che è minore di $0{,}01$. ✓</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Fisso $\varepsilon\gt0$ e risolvo la disuguaglianza $\frac1n\lt\varepsilon$ rispetto a $n$:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+\frac1n &amp;\lt \varepsilon &amp;&amp;\text{(cosa voglio)}\\
+1 &amp;\lt \varepsilon\, n &amp;&amp;\text{(moltiplico entrambi i membri per } n\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n &amp;&amp;\text{(divido entrambi i membri per } \varepsilon\gt0\text{: verso invariato)}
+\end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Mi serve quindi un numero naturale $n$ più grande di $\frac1\varepsilon$. Esiste sempre, perché $\mathbb{N}$ non è limitato superiormente: è la <strong>proprietà di Archimede</strong>, che enunciamo e dimostriamo in <span class="richiamo" data-sec="4.7">§4.7</span>. ✓</span>
+          <span class="esempio__passo">Valgono (i') e (ii'), quindi $\inf A=0$. Ma $0\notin A$: nessuna frazione $\frac1n$ vale zero, perché una frazione è nulla solo se ha numeratore nullo, e qui il numeratore è $1$. Quindi il minimo non esiste.</span>
+        </p>
+
+        <p><strong>Verifica 4 — l'insieme $A=\left\{\dfrac{n}{n+1}\ :\ n\in\mathbb{N}\right\}=\left\{0,\ \tfrac12,\ \tfrac23,\ \tfrac34,\dots\right\}$. Affermo che $\sup A=1$.</strong></p>
+        <p>Qui conviene prima <em>riscrivere</em> il termine generico in una forma più parlante, con il trucco di far comparire il denominatore anche al numeratore. Al numeratore aggiungo e tolgo $1$ (operazione sempre lecita: non cambia il valore), cioè scrivo $n=(n+1)-1$:</p>
+        <div class="calcolo">$$\begin{aligned}
+\frac{n}{n+1} &amp;= \frac{(n+1)-1}{n+1} &amp;&amp;\text{(ho scritto } n \text{ come } (n+1)-1\text{)}\\
+&amp;= \frac{n+1}{n+1}-\frac{1}{n+1} &amp;&amp;\text{(spezzo la frazione: denominatore comune, cap. 2 Parte 0)}\\
+&amp;= 1-\frac{1}{n+1} &amp;&amp;\text{(perché } \tfrac{n+1}{n+1}=1\text{)}
+\end{aligned}$$</div>
+        <p>Adesso ogni elemento si legge come "$1$ meno qualcosa di piccolo e positivo". Procediamo.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Condizione (i).</strong> La quantità $\frac{1}{n+1}$ è positiva (numeratore e denominatore positivi, dato che $n\ge0$ implica $n+1\ge1$). Togliere una quantità positiva a $1$ dà un risultato minore di $1$: quindi $1-\frac{1}{n+1}\lt1$ per ogni $n$, e $1$ è maggiorante. ✓</span>
+          <span class="esempio__passo"><strong>Condizione (ii), prima con un margine concreto.</strong> Prendo $\varepsilon=0{,}1$, quindi il muro abbassato è $0{,}9$. Provo $n=10$: l'elemento vale $\frac{10}{11}\approx0{,}909$, che è maggiore di $0{,}9$. ✓</span>
+          <span class="esempio__passo"><strong>Il caso generale.</strong> Fisso $\varepsilon\gt0$ e risolvo rispetto a $n$ la disuguaglianza che mi serve:</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+1-\frac{1}{n+1} &amp;\gt 1-\varepsilon &amp;&amp;\text{(cosa voglio)}\\
+-\frac{1}{n+1} &amp;\gt -\varepsilon &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}\\
+\frac{1}{n+1} &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per } -1 \text{: il verso si inverte)}\\
+1 &amp;\lt \varepsilon\,(n+1) &amp;&amp;\text{(moltiplico per } n+1\gt0 \text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n+1 &amp;&amp;\text{(divido per } \varepsilon\gt0 \text{: verso invariato)}\\
+\frac{1}{\varepsilon}-1 &amp;\lt n &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}
+\end{aligned}$$</div>
+        <p class="esempio__passi">
+          <span class="esempio__passo">Un naturale $n$ più grande di $\frac1\varepsilon-1$ esiste sempre (proprietà di Archimede, <span class="richiamo" data-sec="4.7">§4.7</span>). ✓ Quindi $\sup A=1$.</span>
+          <span class="esempio__passo">Nessun elemento vale esattamente $1$: servirebbe $\frac{1}{n+1}=0$, impossibile perché il numeratore è $1$. Quindi $\max A$ non esiste.</span>
+          <span class="esempio__passo">Per completezza: il più piccolo elemento è quello con $n=0$, cioè $\frac{0}{1}=0$, che appartiene ad $A$. Dunque $\inf A=\min A=0$.</span>
+        </p>
+        <p><strong>Fin qui:</strong> le quattro verifiche hanno tutte la stessa ossatura. Cambia solo l'algebra del passo 2, cioè come si risolve la disuguaglianza rispetto a $n$.</p>
+
+        <h4>4.4.2 L'estremo inferiore, simmetrico in tutto</h4>
+        <p>Tutto quello che abbiamo detto per il sup vale per l'inf, con le disuguaglianze rovesciate. Ecco l'enunciato, per non doverlo ricostruire ogni volta.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Caratterizzazione operativa dell'inf</span>
+          <p><em class="nome"></em> Un numero $\ell$ è l'estremo inferiore di $A$ se e solo se valgono <strong>entrambe</strong> le condizioni:</p>
+          <div class="formula-block">
+            $$\textbf{(i')}\quad \underbrace{\ell \leq a \ \text{ per ogni } a \in A}_{\ell \text{ è un minorante: nessun elemento gli sta sotto}}$$
+            $$\textbf{(ii')}\quad \underbrace{\forall\, \varepsilon \gt 0}_{\text{comunque scelga un margine piccolo}}\ \ \underbrace{\exists\, a \in A}_{\text{riesco a trovare un elemento}}\ :\ \underbrace{a \lt \ell + \varepsilon}_{\text{che sta sotto il muro alzato}}$$
+          </div>
+        </div>
+        <p>Il significato è lo stesso ribaltato: la (i') dice che $\ell$ sta sotto a tutti; la (ii') dice che alzando il muro anche di pochissimo qualcuno resterebbe fuori, quindi $\ell$ è il più grande dei minoranti.</p>
+
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">🤔</span> I dubbi tipici, sciolti</div>
+          <p><strong>"Il sup deve stare dentro l'insieme?"</strong> No. Può starci ($\sup\{-3,0,2,5\}=5\in A$) oppure no ($\sup(0,1)=1\notin A$). Quando ci sta, si chiama anche massimo.</p>
+          <p><strong>"L'$\varepsilon$ è un numero preciso che devo scegliere io?"</strong> No, è il contrario: l'$\varepsilon$ te lo dà l'avversario, piccolo quanto vuole lui, e tu devi cavartela <em>per ogni</em> valore. Sei tu invece a scegliere l'elemento $a$, e puoi sceglierlo <em>in funzione di</em> $\varepsilon$ (infatti nelle verifiche il nostro $n$ dipendeva da $\varepsilon$).</p>
+          <p><strong>"Perché nella (ii) c'è $\gt$ stretto e non $\ge$?"</strong> Perché deve essere "oltre" il muro abbassato: con $\ge$ la condizione sarebbe più debole e non escluderebbe i maggioranti più piccoli di $L$.</p>
+          <p><strong>"E se l'insieme è illimitato superiormente?"</strong> Allora non ha maggioranti, quindi non ha sup: si scrive per convenzione $\sup A=+\infty$ (vedi <span class="richiamo" data-sec="4.6">§4.6</span>).</p>
+        </div>
+
+        <h3 id="teoria-sup-vs-max">4.5 sup contro max: la differenza che fa la differenza</h3>
+        <p><strong>La frase da incorniciare.</strong> Il massimo è un estremo superiore che ha la fortuna di appartenere all'insieme. Sono lo stesso numero quando il massimo esiste; ma il sup esiste anche quando il massimo non c'è. Vediamo perché, con calma.</p>
+
+        <p><strong>Primo fatto: se il massimo esiste, allora coincide con il sup.</strong> Non è una coincidenza, si dimostra in tre righe. Sia $M=\max A$. Verifichiamo le due condizioni della caratterizzazione operativa (<span class="richiamo" data-sec="4.4">§4.4</span>) per il numero $L=M$.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Condizione (i).</strong> $M$ è maggiorante per definizione stessa di massimo (è la condizione (i) della definizione di massimo, <span class="richiamo" data-sec="4.3">§4.3</span>). ✓</span>
+          <span class="esempio__passo"><strong>Condizione (ii).</strong> Fisso $\varepsilon\gt0$ e devo trovare un elemento di $A$ maggiore di $M-\varepsilon$. Scelgo proprio $a=M$: appartiene ad $A$ per definizione di massimo, e $M\gt M-\varepsilon$ perché stiamo togliendo a $M$ una quantità positiva. ✓</span>
+          <span class="esempio__passo">Valgono entrambe, quindi $\sup A=M=\max A$.</span>
+        </p>
+        <p><strong>Secondo fatto: il viceversa è falso.</strong> Il sup può esistere senza che esista il massimo, e succede esattamente quando $\sup A\notin A$. L'abbiamo visto con $(0,1)$ e con $\left\{\frac{n}{n+1}\right\}$ in <span class="richiamo" data-sec="4.4">§4.4</span>.</p>
+        <p>Ecco il confronto in tabella:</p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Domanda</th><th>Massimo $\max A$</th><th>Estremo superiore $\sup A$</th></tr></thead>
+          <tbody>
+            <tr><td>Deve appartenere ad $A$?</td><td><strong>Sì</strong>, per definizione</td><td><strong>No</strong>, può stare fuori</td></tr>
+            <tr><td>Esiste sempre (per $A$ limitato sup.)?</td><td>No</td><td><strong>Sì</strong> (in ℝ, per l'assioma di completezza)</td></tr>
+            <tr><td>Se esiste il massimo, quanto vale il sup?</td><td colspan="2" style="text-align:center;">Coincidono: $\ \max A$ esiste $\ \Rightarrow\ \sup A = \max A$</td></tr>
+          </tbody>
+        </table>
+        <p><strong>Esempi e non-esempi affiancati.</strong> La domanda da farsi è sempre la stessa: <em>il confine appartiene all'insieme?</em></p>
+        <table class="tabella-comparativa">
+          <thead><tr><th>Insieme</th><th>$\sup$</th><th>Il sup sta dentro?</th><th>$\max$</th></tr></thead>
+          <tbody>
+            <tr><td>$\{-3,0,2,5\}$</td><td>$5$</td><td>Sì, $5\in A$</td><td>$\max A=5$</td></tr>
+            <tr><td>$[2,7]$</td><td>$7$</td><td>Sì, quadra chiusa</td><td>$\max A=7$</td></tr>
+            <tr><td>$[2,7)$</td><td>$7$</td><td>No, tonda aperta</td><td><strong>non esiste</strong></td></tr>
+            <tr><td>$(0,1)$</td><td>$1$</td><td>No</td><td><strong>non esiste</strong></td></tr>
+            <tr><td>$\left\{\tfrac1n:n\ge1\right\}$</td><td>$1$</td><td>Sì ($n=1$)</td><td>$\max A=1$</td></tr>
+            <tr><td>$\left\{\tfrac{n}{n+1}:n\in\mathbb{N}\right\}$</td><td>$1$</td><td>No</td><td><strong>non esiste</strong></td></tr>
+          </tbody>
+        </table>
+        <p>Guarda le ultime due righe: due insiemi con lo <em>stesso</em> estremo superiore $1$, ma uno ha il massimo e l'altro no. Il valore del sup da solo non ti dice niente sull'esistenza del massimo: devi sempre controllare l'appartenenza.</p>
+        <p>L'esempio-modello da memorizzare è il terzo e il quarto caso, e lo richiamiamo qui per intero:</p>
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Il caso $(0,1)$</span><span class="badge badge--base">Da memorizzare</span></div>
+          <p>Sia $A = (0,1) = \{x \in \mathbb{R} : 0 &lt; x &lt; 1\}$. Allora $\sup A = 1$ ma $\max A$ <strong>non esiste</strong>; $\inf A = 0$ ma $\min A$ non esiste. La verifica completa delle due condizioni è la Verifica 2 di <span class="richiamo" data-sec="4.4">§4.4</span>; qui riassumiamo il perché non c'è il massimo.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Il candidato naturale al massimo sarebbe $1$, ma $1\notin(0,1)$: bocciato per la condizione di appartenenza.</span>
+            <span class="esempio__passo">Nessun altro candidato funziona: preso $x\in(0,1)$ qualunque, il punto medio fra $x$ e $1$ è più grande di $x$ e sta ancora in $A$ (conto svolto in <span class="richiamo" data-sec="4.3">§4.3</span>).</span>
+            <span class="esempio__passo">Quindi l'insieme non ha un elemento "più grande di tutti": il massimo non esiste. L'estremo superiore invece c'è ed è $1$.</span>
+          </p>
+          <div class="esempio__risultato">$\sup(0,1) = 1 \notin A \ \Rightarrow\ \nexists \max(0,1)$; simmetricamente $\inf(0,1)=0$, nessun minimo.</div>
+        </div>
+
+        <svg viewBox="0 0 480 150" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Retta reale con l'insieme A, la regione dei maggioranti e l'estremo superiore L">
+          <line x1="30" y1="90" x2="450" y2="90" stroke="currentColor" stroke-width="1.5"/>
+          <polygon points="450,90 440,85 440,95" fill="currentColor"/>
+          <rect x="150" y="82" width="150" height="16" fill="var(--color-primary)" opacity="0.30"/>
+          <rect x="300" y="70" width="150" height="40" fill="var(--color-secondary)" opacity="0.18"/>
+          <circle cx="150" cy="90" r="5" fill="none" stroke="var(--color-primary)" stroke-width="2"/>
+          <circle cx="300" cy="90" r="5" fill="none" stroke="var(--color-secondary)" stroke-width="2.5"/>
+          <line x1="300" y1="55" x2="300" y2="110" stroke="var(--color-secondary)" stroke-width="2" stroke-dasharray="4 3"/>
+          <text x="215" y="118" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">insieme A</text>
+          <text x="150" y="72" font-size="12" fill="currentColor" text-anchor="middle">inf A</text>
+          <text x="300" y="48" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">sup A = L</text>
+          <text x="375" y="135" font-size="12" fill="currentColor" text-anchor="middle">maggioranti</text>
+        </svg>
+        <p style="text-align:center;" class="text-muted">Il sup è il bordo sinistro della regione dei maggioranti: il muro più stretto che contiene $A$ da destra.</p>
+
+        <h3 id="teoria-completezza">4.6 L'assioma di completezza di ℝ</h3>
+        <p><strong>Prima l'idea, in italiano, senza simboli.</strong> Finora abbiamo <em>definito</em> l'estremo superiore. Ma chi ci garantisce che esista davvero? Potrebbe capitare che l'insieme sia limitato, che i maggioranti si stringano verso un certo punto… e che in quel punto <em>non ci sia nessun numero</em>. La proprietà che esclude questa disgrazia si chiama <strong>completezza</strong>, e in una frase dice:</p>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> La completezza in una frase</div>
+          <p><strong>I numeri reali non hanno buchi.</strong> Ogni volta che un insieme di numeri reali "punta" verso un confine, quel confine è a sua volta un numero reale. Non capita mai di allungare la mano verso il muro e trovare il vuoto.</p>
+        </div>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">📏</span> L'immagine da tenere in mente: due righelli</div>
+          <p>Immagina due righelli. Il primo è un'asta di legno piena: qualunque punto tu indichi con la punta di una matita, lì c'è del legno. Il secondo è un'asta tarlata: sembra piena, ma è piena di forellini microscopici, e se punti la matita proprio su un forellino… non c'è niente.</p>
+          <p>ℝ è il righello pieno. ℚ è il righello tarlato: i razionali sono fittissimi (fra due qualsiasi ce n'è sempre un altro, lo vedremo in <span class="richiamo" data-sec="4.8">§4.8</span>), eppure hanno dei buchi. Uno di questi buchi sta esattamente dove dovrebbe esserci $\sqrt2$.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri: guardiamo un buco da vicino.</strong> Consideriamo i numeri razionali positivi il cui quadrato non arriva a $2$, e costruiamoli a colpi di cifre decimali. A ogni passo aggiungo una cifra, restando sempre con il quadrato sotto $2$:</p>
+        <div class="calcolo">$$\begin{aligned}
+1^2 &amp;= 1 &amp;&amp;\lt 2 \quad\text{(va bene: } 1 \text{ è un candidato)}\\
+1{,}4^2 &amp;= 1{,}96 &amp;&amp;\lt 2 \quad\text{(va bene)}\\
+1{,}41^2 &amp;= 1{,}9881 &amp;&amp;\lt 2 \quad\text{(va bene)}\\
+1{,}414^2 &amp;= 1{,}999396 &amp;&amp;\lt 2 \quad\text{(va bene)}\\
+1{,}4142^2 &amp;= 1{,}99996164 &amp;&amp;\lt 2 \quad\text{(va bene)}
+\end{aligned}$$</div>
+        <p>Questi numeri sono tutti razionali (sono decimali finiti, quindi frazioni: $1{,}4142=\frac{14142}{10000}$) e salgono verso un confine. Dall'altra parte, i maggioranti razionali scendono:</p>
+        <div class="calcolo">$$\begin{aligned}
+2^2 &amp;= 4 &amp;&amp;\gt 2 \quad\text{(}2\text{ è un maggiorante)}\\
+1{,}5^2 &amp;= 2{,}25 &amp;&amp;\gt 2 \quad\text{(maggiorante più piccolo)}\\
+1{,}42^2 &amp;= 2{,}0164 &amp;&amp;\gt 2 \quad\text{(più piccolo ancora)}\\
+1{,}415^2 &amp;= 2{,}002225 &amp;&amp;\gt 2 \quad\text{(e così via)}
+\end{aligned}$$</div>
+        <p>Le due colonne si avvicinano da sotto e da sopra e si stringono su un unico punto, quello il cui quadrato fa esattamente $2$. In ℝ quel punto c'è e si chiama $\sqrt2$. In ℚ <em>non c'è</em>, perché $\sqrt2$ non è razionale (dimostrato in <a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">Parte 0, cap. 1</a>). Ecco il buco, visto da vicino. La dimostrazione completa è in <span class="richiamo" data-sec="4.9">§4.9</span> e nella Proposizione 5 della sezione <a href="#dimostrazioni">Dimostrazioni</a>.</p>
+
+        <p><strong>Ora l'enunciato formale.</strong></p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Assioma di completezza (o dell'estremo superiore)</span>
+          <p><em class="nome"></em> Ogni sottoinsieme di ℝ <strong>non vuoto</strong> e <strong>limitato superiormente</strong> ammette estremo superiore in ℝ.</p>
+          <p>In simboli, con la traduzione sotto ogni pezzo:</p>
+          <div class="formula-block">$$\underbrace{A\subseteq\mathbb{R},\ A\neq\varnothing}_{\text{ipotesi 1: } A \text{ ha almeno un elemento}},\quad \underbrace{A \text{ limitato superiormente}}_{\text{ipotesi 2: } A \text{ ha almeno un maggiorante}}\ \Longrightarrow\ \underbrace{\exists\,\sup A\in\mathbb{R}}_{\text{tesi: il minimo dei maggioranti esiste ed è un numero reale}}$$</div>
+        </div>
+        <p>Tre osservazioni sulle parole usate.</p>
+        <ul>
+          <li><strong>"Assioma"</strong> vuol dire che non si dimostra: è una proprietà che si <em>richiede</em> a ℝ, parte della sua definizione. Non è un capriccio: è esattamente ciò che rende ℝ il palcoscenico giusto per l'Analisi.</li>
+          <li><strong>"in ℝ"</strong> è la parte che fa tutta la differenza. L'assioma non dice solo che il sup esiste, dice che è <em>un numero reale</em>. È qui che ℚ fallisce: in ℚ certi sup semplicemente non sono numeri razionali.</li>
+          <li>Per l'estremo inferiore vale l'enunciato simmetrico (ogni insieme non vuoto e limitato inferiormente ha $\inf$ in ℝ), che non è un secondo assioma ma una <em>conseguenza</em> del primo: si ottiene ribaltando l'insieme con la formula $\inf A=-\sup(-A)$, dimostrata nell'Esercizio 1.11.</li>
+        </ul>
+
+        <p><strong>Due non-esempi: cosa succede se togli un'ipotesi.</strong> Le due ipotesi non sono cavilli da giuristi. Se ne salta una, la conclusione salta con lei.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Senza "limitato superiormente":</strong> $A=\mathbb{N}$. È non vuoto, ma non ha maggioranti (<span class="richiamo" data-sec="4.2">§4.2</span>). Quindi non c'è nessun insieme di maggioranti di cui prendere il minimo: $\sup\mathbb{N}$ non è un numero reale. Si scrive per convenzione $\sup\mathbb{N}=+\infty$, che <em>non</em> è un numero: è solo un modo compatto per dire "nessun muro finito".</span>
+          <span class="esempio__passo"><strong>Senza "non vuoto":</strong> $A=\varnothing$. Qui succede una cosa strana: <em>ogni</em> numero reale è maggiorante dell'insieme vuoto, perché la condizione "$a\le M$ per ogni $a\in A$" non ha nessun elemento da controllare e quindi è vera a vuoto. L'insieme dei maggioranti è allora tutto ℝ, che non ha minimo. Quindi $\sup\varnothing$ non esiste.</span>
+        </p>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si usa in pratica</div>
+          <p>L'assioma si usa come un <em>permesso di esistenza</em>. Quando in una dimostrazione hai bisogno di un numero che sia "il confine" di qualcosa, controlli due caselle — l'insieme è non vuoto? è limitato superiormente? — e se entrambe sono spuntate puoi scrivere "sia $L=\sup A$" senza doverlo costruire. Da questo permesso discenderanno, come tessere di un domino, il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, il <span class="glossario-term" data-term="teorema-dei-valori-intermedi">teorema dei valori intermedi</span>, la convergenza delle <span class="glossario-term" data-term="successione">successioni</span> monotone limitate e molto altro.</p>
+        </div>
+
+        <h3 id="teoria-archimede">4.7 La proprietà di Archimede: i naturali arrivano ovunque</h3>
+        <p><strong>Prima l'idea, poi l'enunciato.</strong> Nelle verifiche di <span class="richiamo" data-sec="4.4">§4.4</span> abbiamo usato più volte la stessa frase: "un numero naturale $n$ più grande di $\frac1\varepsilon$ esiste sempre". È ora di guardarla in faccia. Quella frase dice che $\mathbb{N}$ non è limitato superiormente, cioè che <em>contando si arriva oltre qualunque numero</em>. Detta in un altro modo, equivalente: <em>un passo piccolo, ripetuto abbastanza volte, supera qualunque distanza</em>.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🥄</span> L'immagine da tenere in mente</div>
+          <p>Vuoi svuotare una piscina con un cucchiaino. Il cucchiaino è ridicolmente piccolo rispetto alla piscina; eppure, se hai pazienza infinita, prima o poi la svuoti: basta ripetere il gesto abbastanza volte. La proprietà di Archimede dice proprio questo, in matematica: per quanto sia piccolo il passo $y$ e per quanto sia grande la distanza $x$, esiste un numero di passi $n$ che basta, cioè $n\,y\gt x$.</p>
+        </div>
+        <p><strong>Un esempio concreto, con i numeri.</strong> Passo $y=0{,}3$ metri, distanza $x=5$ metri. Quanti passi servono?</p>
+        <div class="calcolo">$$\begin{aligned}
+n\cdot 0{,}3 &amp;\gt 5 &amp;&amp;\text{(cosa voglio)}\\
+n &amp;\gt \frac{5}{0{,}3} &amp;&amp;\text{(divido entrambi i membri per } 0{,}3\gt0\text{: verso invariato)}\\
+n &amp;\gt 16{,}66\ldots &amp;&amp;\text{(eseguo la divisione)}
+\end{aligned}$$</div>
+        <p>Basta $n=17$: infatti $17\cdot0{,}3=5{,}1\gt5$. Con un passo più piccolo, $y=0{,}001$, servirebbe $n\gt5000$, per esempio $n=5001$: sempre un numero naturale, sempre esistente.</p>
+
+        <p><strong>Ora l'enunciato, parola per parola.</strong></p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (proprietà di Archimede)</span>
+          <p><em class="nome"></em> Per ogni coppia di numeri reali $x$ e $y$ con $y\gt0$, esiste un numero naturale $n$ tale che $n\,y\gt x$.</p>
+          <div class="formula-block">$$\underbrace{\forall\,x\in\mathbb{R}}_{\text{per quanto grande sia la distanza}}\ \ \underbrace{\forall\,y\gt0}_{\text{per quanto piccolo sia il passo}}\ \ \underbrace{\exists\,n\in\mathbb{N}}_{\text{esiste un numero di ripetizioni}}\ :\ \underbrace{n\,y\gt x}_{\text{che supera la distanza}}$$</div>
+        </div>
+        <p>Da questo enunciato discendono due riformulazioni che useremo continuamente. Sono la stessa cosa detta con sostituzioni diverse, e le scriviamo qui perché nei conti compaiono proprio in questa forma.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Forma 1: $\mathbb{N}$ non è limitato superiormente.</strong> Nell'enunciato metto $y=1$: per ogni $x$ esiste $n$ con $n\cdot1\gt x$, cioè $n\gt x$. Quindi nessun numero reale $x$ può essere maggiorante di $\mathbb{N}$.</span>
+          <span class="esempio__passo"><strong>Forma 2: si può rendere $\frac1n$ piccolo quanto si vuole.</strong> Nell'enunciato metto $x=1$ e $y=\varepsilon$ con $\varepsilon\gt0$: esiste $n$ con $n\varepsilon\gt1$. Dividendo entrambi i membri per $n\gt0$ (verso invariato) ottengo $\varepsilon\gt\frac1n$, cioè $\frac1n\lt\varepsilon$. È esattamente la disuguaglianza che risolvevamo nelle Verifiche 3 e 4 di <span class="richiamo" data-sec="4.4">§4.4</span>.</span>
+        </p>
+        <p><strong>Un non-esempio, per capire cosa la proprietà NON dice.</strong> Non dice che esiste un unico $n$ universale, buono per tutti gli $\varepsilon$. Il numero $n$ <em>dipende</em> da $\varepsilon$: per $\varepsilon=0{,}1$ basta $n=11$, per $\varepsilon=0{,}001$ serve $n=1001$. Ogni margine ha il suo $n$.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si usa in pratica</div>
+          <p>Nel $99\%$ dei casi la userai così: hai una disuguaglianza da soddisfare, la risolvi rispetto a $n$ ottenendo qualcosa del tipo $n\gt(\text{un numero che dipende da }\varepsilon)$, e chiudi scrivendo "un tale $n$ esiste per la proprietà di Archimede (<span class="richiamo" data-sec="4.7">§4.7</span>)". La dimostrazione, che usa la completezza, è il Teorema 3 della sezione <a href="#dimostrazioni">Dimostrazioni</a>.</p>
+        </div>
+
+        <h3 id="teoria-densita">4.8 Densità di ℚ in ℝ: fra due reali c'è sempre una frazione</h3>
+        <p><strong>Prima l'idea, poi l'enunciato.</strong> I razionali, pur avendo dei buchi, sono sparsi ovunque: non esiste un tratto di retta, per quanto corto, che ne sia privo. Questo si dice: ℚ è <strong>denso</strong> in ℝ.</p>
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🧮</span> L'immagine da tenere in mente</div>
+          <p>La tua calcolatrice mostra solo numeri decimali finiti, cioè frazioni. Eppure con essa puoi approssimare qualunque numero reale quanto ti pare: basta aggiungere cifre. La densità di ℚ è la garanzia teorica che questo funzioni sempre: per quanto stretta sia la finestra, dentro c'è una frazione.</p>
+        </div>
+        <p><strong>Un esempio concreto, con i numeri.</strong> Cerchiamo un razionale strettamente compreso fra $a=2{,}7$ e $b=2{,}71$. La finestra è larga $b-a=0{,}01$, quindi mi serve un "passo" più fine di $0{,}01$. Uso passi di ampiezza $\frac{1}{1000}=0{,}001$, che è più piccolo della finestra, e conto quanti passi servono per superare $a$:</p>
+        <div class="calcolo">$$\begin{aligned}
+a\cdot 1000 &amp;= 2{,}7\cdot 1000 = 2700 &amp;&amp;\text{(quanti millesimi stanno in } a\text{)}\\
+m &amp;= 2701 &amp;&amp;\text{(il primo intero che supera } 2700\text{)}\\
+q &amp;= \frac{m}{1000}=\frac{2701}{1000}=2{,}701 &amp;&amp;\text{(il candidato razionale)}
+\end{aligned}$$</div>
+        <p>Controllo che sia davvero dentro la finestra: $2{,}7\lt2{,}701$ ✓ e $2{,}701\lt2{,}71$ ✓. Trovato. Il metodo è generale: <em>scegli un passo più piccolo della finestra, poi conta i passi</em>. Se il passo è più corto della finestra, è impossibile scavalcarla in un colpo solo.</p>
+
+        <p><strong>Ora l'enunciato, parola per parola.</strong></p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (densità di ℚ in ℝ)</span>
+          <p><em class="nome"></em> Per ogni coppia di numeri reali $a$ e $b$ con $a\lt b$, esiste un numero razionale $q$ tale che $a\lt q\lt b$.</p>
+          <div class="formula-block">$$\underbrace{\forall\,a,b\in\mathbb{R},\ a\lt b}_{\text{comunque scelga due reali distinti}}\ \ \underbrace{\exists\,q\in\mathbb{Q}}_{\text{esiste una frazione}}\ :\ \underbrace{a\lt q\lt b}_{\text{che sta in mezzo}}$$</div>
+        </div>
+        <p>Una conseguenza immediata: fra $a$ e $b$ non c'è <em>un</em> razionale, ce ne sono infiniti. Trovato $q_1$ fra $a$ e $b$, riapplico il teorema alla coppia $(a,q_1)$ e trovo $q_2$; poi alla coppia $(a,q_2)$ e trovo $q_3$; e così via, senza fine.</p>
+        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> L'insieme ℤ dei numeri interi <strong>non</strong> è denso in ℝ. Prendi $a=2{,}3$ e $b=2{,}4$: fra questi due numeri non c'è nessun intero, perché gli interi distano almeno $1$ l'uno dall'altro e la finestra è larga solo $0{,}1$. La densità non è una proprietà scontata: ℚ ce l'ha, ℤ no.</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si usa in pratica</div>
+          <p>Serve ogni volta che devi "infilare" un razionale in uno spazio stretto, tipicamente per costruire approssimazioni o per mostrare che un certo insieme di razionali si accalca contro un numero irrazionale. La useremo subito in <span class="richiamo" data-sec="4.9">§4.9</span>. La dimostrazione, che usa Archimede, è il Teorema 4 della sezione <a href="#dimostrazioni">Dimostrazioni</a>.</p>
+        </div>
+
+        <h3 id="teoria-buco-q">4.9 Il buco di ℚ: l'esempio che cambia tutto</h3>
+        <p>Ora la domanda decisiva: <strong>e se lavorassimo dentro ℚ invece che dentro ℝ?</strong> L'assioma di completezza vale anche per i razionali? La risposta è <strong>no</strong>, e questo è esattamente ciò che rende ℝ necessario. Consideriamo l'insieme, ambientato nei razionali:</p>
+        <div class="formula-block">$$A = \{\, x \in \mathbb{Q} \ : \ x \gt 0,\ x^2 \lt 2 \,\}$$</div>
+        <p>Si legge: "tutte le frazioni positive il cui quadrato non arriva a $2$". Chiediamo la positività solo per comodità: ci interessa il lato destro dell'insieme, e togliere i negativi non cambia nulla per il sup.</p>
+
+        <p><strong>Primo controllo: $A$ è non vuoto.</strong> Basta esibire un elemento. Prendo $x=1$:</p>
+        <div class="calcolo">$$\begin{aligned}
+1 &amp;\gt 0 &amp;&amp;\text{(prima condizione soddisfatta)}\\
+1^2 = 1 &amp;\lt 2 &amp;&amp;\text{(seconda condizione soddisfatta)}
+\end{aligned}$$</div>
+        <p>Quindi $1\in A$ e l'insieme non è vuoto. ✓</p>
+
+        <p><strong>Secondo controllo: $A$ è limitato superiormente, e $2$ è un maggiorante razionale.</strong> Devo mostrare che ogni $x\in A$ soddisfa $x\le 2$. Lo faccio per assurdo, perché negare è più facile che dimostrare direttamente: <em>suppongo</em> che esista $x\in A$ con $x\gt2$ e cerco una contraddizione.</p>
+        <div class="calcolo">$$\begin{aligned}
+x &amp;\gt 2 &amp;&amp;\text{(ipotesi assurda)}\\
+x\cdot x &amp;\gt 2\cdot x &amp;&amp;\text{(moltiplico entrambi i membri per } x\gt0\text{: verso invariato)}\\
+x^2 &amp;\gt 2x &amp;&amp;\text{(riscrivo } x\cdot x = x^2\text{)}\\
+2x &amp;\gt 2\cdot 2 = 4 &amp;&amp;\text{(riparto da } x\gt2 \text{ e moltiplico per } 2\gt0\text{)}\\
+x^2 &amp;\gt 4 &amp;&amp;\text{(incollo le due righe precedenti: } x^2\gt2x\gt4\text{)}
+\end{aligned}$$</div>
+        <p>Ma $x\in A$ significa $x^2\lt2$, e $2\lt4$: avremmo contemporaneamente $x^2\gt4$ e $x^2\lt2$, impossibile. L'ipotesi assurda cade, quindi ogni $x\in A$ soddisfa $x\le2$: <strong>$2$ è un maggiorante di $A$, ed è razionale</strong>. ✓</p>
+
+        <p><strong>Fin qui:</strong> l'insieme $A$ ha entrambe le proprietà che l'assioma di completezza richiede — non vuoto e limitato superiormente. Se ℚ fosse completo, $A$ dovrebbe avere un estremo superiore razionale. Vediamo se ce l'ha.</p>
+
+        <div class="callout callout--vita-reale">
+          <div class="callout__title"><span class="emoji">🕳️</span> Cosa succede se ci ostiniamo a restare in ℚ</div>
+          <p>Cerchiamo il minimo dei maggioranti <em>razionali</em> di $A$, e scopriamo che non esiste. Il meccanismo è questo, e ha due metà simmetriche.</p>
+          <p><strong>Prima metà.</strong> Preso un razionale $p\gt0$ con $p^2\lt2$ (cioè un elemento di $A$), se ne può sempre costruire uno più grande, $p'$, ancora con $p'^2\lt2$: quindi $A$ non ha massimo, i suoi elementi continuano a salire.</p>
+          <p><strong>Seconda metà.</strong> Preso un razionale $s\gt0$ con $s^2\gt2$ (cioè un maggiorante), se ne può sempre costruire uno più piccolo, $s'$, ancora con $s'^2\gt2$: quindi i maggioranti razionali continuano a scendere, e <strong>non c'è un maggiorante razionale minimo</strong>.</p>
+          <p>Le due metà si stringono verso un unico valore, quello il cui quadrato fa esattamente $2$. Ma nessun razionale ha quadrato $2$ (Parte 0, cap. 1): proprio lì, dove dovrebbe esserci l'estremo superiore, ℚ ha un buco. In ℝ quel buco è tappato: $\sup A=\sqrt2$.</p>
+        </div>
+        <p>La costruzione esplicita di $p'$ e di $s'$ — cioè la macchina che "migliora" ogni candidato — è la Proposizione 5 della sezione <a href="#dimostrazioni">Dimostrazioni</a>, con tutti i conti. Il messaggio concettuale, invece, tienilo stretto fin da ora: <strong>ℚ non è completo, ℝ sì. La completezza è precisamente la capacità di riempire ogni buco lasciato da un insieme limitato.</strong> Nel <a href="02-valore-assoluto-topologia.html">prossimo capitolo</a> useremo questa solidità di ℝ per costruire la topologia della retta — intorni, punti di accumulazione, insiemi aperti e chiusi.</p>
+      </section>
+
+      <!-- 5. DIMOSTRAZIONI -->
+      <section class="section" id="dimostrazioni">
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema 1</span>
+          <p><em class="nome">Unicità dell'estremo superiore.</em> Se un insieme $A \subseteq \mathbb{R}$ non vuoto ammette estremo superiore, allora esso è unico.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per assurdo)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che un insieme non può avere due estremi superiori diversi. In pratica: una volta che hai trovato "il muro più stretto", quello è l'unico, e ha senso dire <em>il</em> sup e non <em>un</em> sup.</p>
+          <p><strong>Idea della strategia.</strong> Procediamo per assurdo. Dimostrare direttamente che due oggetti sono uguali è scomodo; supporre invece che siano <em>diversi</em> è comodissimo, perché due numeri reali diversi sono automaticamente uno più piccolo dell'altro, e da quell'ordine tiriamo fuori una contraddizione in tre righe.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La definizione di estremo superiore come <em>minimo dei maggioranti</em>, <span class="richiamo" data-sec="4.4">§4.4</span>. (2) Il fatto che due numeri reali distinti sono sempre confrontabili, cioè uno è minore dell'altro (Parte 0, cap. 1).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1 — faccio l'ipotesi assurda e do i nomi.</strong> Supponiamo che $A$ abbia <strong>due</strong> estremi superiori distinti $L_1$ e $L_2$, con $L_1 \neq L_2$. Essendo due numeri reali diversi, uno dei due è per forza il minore: chiamo $L_1$ quello più piccolo, così da poter scrivere $L_1 \lt L_2$. (È tutto qui il significato della formula "senza perdita di generalità": non aggiungo ipotesi, decido soltanto quale dei due chiamare $L_1$; se fosse il contrario basterebbe scambiare i due nomi e la dimostrazione resterebbe identica.) <em>Cosa ho ottenuto:</em> ora ho un ordine fra i due, e posso usarlo.</span>
+            <span class="esempio__passo"><strong>Passo 2 — uso la prima metà della definizione su $L_1$.</strong> Per definizione, $\sup A$ è il <em>minimo</em> dei maggioranti; e un minimo è prima di tutto un elemento dell'insieme in cui si cerca. Poiché $L_1$ è un estremo superiore, in particolare $L_1$ è un maggiorante di $A$. <em>Cosa ho ottenuto:</em> $L_1$ sta nell'insieme dei maggioranti.</span>
+            <span class="esempio__passo"><strong>Passo 3 — uso la seconda metà della definizione su $L_2$.</strong> Poiché $L_2$ è un estremo superiore, cioè il <em>più piccolo</em> dei maggioranti, esso deve essere minore o uguale a ogni maggiorante. Il Passo 2 dice che $L_1$ è un maggiorante, quindi in particolare $L_2 \leq L_1$. <em>Cosa ho ottenuto:</em> una disuguaglianza che punta nel verso opposto a quella del Passo 1.</span>
+            <span class="esempio__passo"><strong>Passo 4 — la contraddizione.</strong> Ho contemporaneamente:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+L_1 &amp;\lt L_2 &amp;&amp;\text{(Passo 1)}\\
+L_2 &amp;\le L_1 &amp;&amp;\text{(Passo 3)}
+\end{aligned}$$</div>
+          <p>Due numeri non possono essere ciascuno strettamente prima e insieme dopo o uguale all'altro: è una contraddizione.</p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo supposto che ci fossero due sup diversi; dall'esser diversi abbiamo ricavato un ordine fra loro; usando due volte la definizione di sup abbiamo ottenuto l'ordine opposto. L'unica ipotesi che possiamo scartare è quella di partenza: i due sup coincidono. L'estremo superiore, quando esiste, è unico. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema 2</span>
+          <p><em class="nome">Caratterizzazione operativa del sup.</em> Sia $A \subseteq \mathbb{R}$ non vuoto e sia $L \in \mathbb{R}$. Allora $L = \sup A$ se e solo se: (i) $a \leq L$ per ogni $a \in A$; (ii) per ogni $\varepsilon &gt; 0$ esiste $a \in A$ con $a &gt; L - \varepsilon$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (doppia implicazione)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che le due condizioni (i) e (ii) dicono esattamente la stessa cosa della definizione "$L$ è il minimo dei maggioranti", solo in una forma che si può controllare con i conti. È il ponte fra la definizione elegante e la ricetta pratica.</p>
+          <p><strong>Idea della strategia.</strong> L'enunciato contiene un "se e solo se", cioè due affermazioni in una. Le dimostriamo separatamente, con due frecce: prima ($\Rightarrow$) dalla definizione alle due condizioni, poi ($\Leftarrow$) dalle due condizioni alla definizione. Nella seconda freccia useremo di nuovo l'assurdo, perché "$L$ è il <em>più piccolo</em>" è una frase che si nega bene: negarla significa avere un maggiorante più piccolo, un oggetto concreto con cui lavorare.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La definizione di maggiorante, <span class="richiamo" data-sec="4.2">§4.2</span>. (2) La definizione di sup come minimo dei maggioranti, <span class="richiamo" data-sec="4.4">§4.4</span>. (3) La negazione di "è maggiorante", che scriviamo qui perché è il passaggio delicato di tutta la dimostrazione.</p>
+          <div class="callout callout--errore">
+            <div class="callout__title"><span class="emoji">⚠️</span> Attenzione: qui è dove ci si confonde</div>
+            <p>"$M$ è maggiorante di $A$" significa: <em>per ogni</em> $a\in A$ vale $a\le M$. La sua negazione <strong>non</strong> è "per ogni $a$ vale $a\gt M$". Negare un "per ogni" produce un "esiste": la negazione corretta è <em>esiste almeno un</em> $a\in A$ con $a\gt M$. Basta un solo elemento ribelle per smentire un "per ogni" (Parte 0, cap. 1, logica dei quantificatori).</p>
+          </div>
+          <p><strong>Prima freccia ($\Rightarrow$): se $L=\sup A$, allora valgono (i) e (ii).</strong></p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>La (i) è gratis.</strong> $L$ è il minimo dei maggioranti, quindi in particolare è un maggiorante, quindi $a\le L$ per ogni $a\in A$. ✓</span>
+            <span class="esempio__passo"><strong>La (ii).</strong> Fisso un margine $\varepsilon\gt0$ e guardo il numero $L-\varepsilon$. Prima osservo che è strettamente minore di $L$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\varepsilon &amp;\gt 0 &amp;&amp;\text{(scelta del margine)}\\
+-\varepsilon &amp;\lt 0 &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+L-\varepsilon &amp;\lt L &amp;&amp;\text{(sommo } L \text{ a entrambi i membri: il verso non cambia)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Siccome $L$ è il <em>minimo</em> dei maggioranti, nessun numero più piccolo di $L$ può essere maggiorante. Quindi $L-\varepsilon$ non è maggiorante.</span>
+            <span class="esempio__passo">Applico la negazione scritta sopra: "non è maggiorante" significa che esiste almeno un $a\in A$ con $a\gt L-\varepsilon$. È esattamente la (ii). ✓ <em>Cosa abbiamo ottenuto:</em> la prima freccia è completa.</span>
+          </p>
+          <p><strong>Seconda freccia ($\Leftarrow$): se valgono (i) e (ii), allora $L=\sup A$.</strong></p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1.</strong> La (i) dice che $L$ è un maggiorante. Resta quindi da mostrare una cosa sola: che è il <em>più piccolo</em> dei maggioranti.</span>
+            <span class="esempio__passo"><strong>Passo 2 — ipotesi assurda.</strong> Supponiamo che esista un maggiorante $L'$ con $L'\lt L$, cioè un maggiorante più piccolo.</span>
+            <span class="esempio__passo"><strong>Passo 3 — la scelta furba del margine.</strong> La (ii) vale per <em>ogni</em> $\varepsilon\gt0$, quindi posso sceglierlo io come mi conviene. Scelgo come margine proprio la distanza fra i due, $\varepsilon=L-L'$. È una scelta lecita perché $L'\lt L$ implica $L-L'\gt0$. Vediamo dove porta:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+L-\varepsilon &amp;= L-(L-L') &amp;&amp;\text{(sostituisco } \varepsilon = L-L'\text{)}\\
+&amp;= L-L+L' &amp;&amp;\text{(tolgo la parentesi cambiando i segni interni)}\\
+&amp;= L' &amp;&amp;\text{(i due } L \text{ si elidono)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 4 — la contraddizione.</strong> Con questo $\varepsilon$, la (ii) garantisce che esiste $a\in A$ con $a\gt L-\varepsilon$, cioè $a\gt L'$. Ma allora $L'$ ha un elemento di $A$ che lo supera: per la negazione scritta sopra, $L'$ <em>non</em> è un maggiorante. Contraddice il Passo 2.</span>
+            <span class="esempio__passo"><strong>Passo 5 — conclusione.</strong> Non esiste alcun maggiorante minore di $L$. Unito al Passo 1 ($L$ è maggiorante), questo dice che $L$ è il minimo dei maggioranti, cioè $L=\sup A$. ✓</span>
+          </p>
+          <p><strong>Riassunto della dimostrazione.</strong> Nella prima freccia abbiamo usato che $L$ è il minimo per dedurre che $L-\varepsilon$ non è maggiorante, e da lì l'esistenza dell'elemento richiesto. Nella seconda abbiamo supposto un maggiorante più piccolo, abbiamo usato la (ii) con il margine uguale alla loro distanza, e abbiamo trovato un elemento che lo supera: assurdo. Le due condizioni sono quindi equivalenti alla definizione. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema 3</span>
+          <p><em class="nome">Proprietà di Archimede.</em> L'insieme $\mathbb{N}$ non è limitato superiormente in ℝ. Di conseguenza, per ogni $x\in\mathbb{R}$ e ogni $y\gt0$ esiste $n\in\mathbb{N}$ con $n\,y\gt x$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per assurdo, usando la completezza)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che contando $0,1,2,3,\dots$ si supera prima o poi qualunque numero, per quanto grande. Cioè: non esiste un numero reale che stia a destra di tutti i naturali.</p>
+          <p><strong>Idea della strategia.</strong> Procediamo per assurdo. Dimostrare direttamente che "non esiste un maggiorante" richiederebbe di esaminare infiniti candidati, uno per uno: impossibile. Supporre invece che un maggiorante esista ci regala subito, grazie all'assioma di completezza, un oggetto ben preciso su cui lavorare: l'estremo superiore di $\mathbb{N}$. Da quello tiriamo fuori la contraddizione con una mossa sola: sfruttiamo che $\mathbb{N}$ ha la strana proprietà di contenere il successore di ogni suo elemento.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) L'assioma di completezza, <span class="richiamo" data-sec="4.6">§4.6</span>. (2) La caratterizzazione operativa del sup, Teorema 2, usata con il margine $\varepsilon=1$. (3) Il fatto che se $n\in\mathbb{N}$ allora anche $n+1\in\mathbb{N}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1 — ipotesi assurda.</strong> Supponiamo che $\mathbb{N}$ sia limitato superiormente, cioè che esista almeno un maggiorante.</span>
+            <span class="esempio__passo"><strong>Passo 2 — invoco la completezza.</strong> $\mathbb{N}$ è non vuoto (contiene $0$) e, per il Passo 1, limitato superiormente. Le due ipotesi dell'assioma sono soddisfatte, quindi esiste $L=\sup\mathbb{N}$ ed è un numero reale. <em>Cosa abbiamo ottenuto:</em> un numero concreto con cui fare i conti.</span>
+            <span class="esempio__passo"><strong>Passo 3 — uso la condizione (ii) con $\varepsilon=1$.</strong> Il Teorema 2 vale per ogni margine positivo, quindi in particolare per $\varepsilon=1$. Esiste allora un elemento $n\in\mathbb{N}$ con $n\gt L-1$. <em>Perché proprio $1$?</em> Perché il "passo" fra un naturale e il successivo è $1$: scegliendo quel margine, l'elemento che troviamo è abbastanza vicino a $L$ da poterlo scavalcare con un solo passo.</span>
+            <span class="esempio__passo"><strong>Passo 4 — faccio il passo.</strong> Sommo $1$ a entrambi i membri della disuguaglianza trovata:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+n &amp;\gt L-1 &amp;&amp;\text{(Passo 3)}\\
+n+1 &amp;\gt L-1+1 &amp;&amp;\text{(sommo 1 a entrambi i membri: il verso non cambia)}\\
+n+1 &amp;\gt L &amp;&amp;\text{(semplifico } -1+1=0\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 5 — la contraddizione.</strong> Il numero $n+1$ è ancora un numero naturale (il successore di un naturale è un naturale). Ma $L$ è un maggiorante di $\mathbb{N}$, quindi dovrebbe valere $n+1\le L$. Abbiamo invece appena ottenuto $n+1\gt L$: impossibile.</span>
+            <span class="esempio__passo"><strong>Passo 6 — dalla forma "ℕ illimitato" alla forma generale.</strong> Siano ora $x\in\mathbb{R}$ e $y\gt0$. Il numero $\frac{x}{y}$ è un numero reale, e per quanto appena dimostrato non è un maggiorante di $\mathbb{N}$: esiste dunque $n\in\mathbb{N}$ con $n\gt\frac{x}{y}$. Moltiplico entrambi i membri per $y$, che è positivo, quindi il verso non cambia:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+n &amp;\gt \frac{x}{y} &amp;&amp;\text{(} \tfrac{x}{y} \text{ non è maggiorante di } \mathbb{N}\text{)}\\
+n\,y &amp;\gt \frac{x}{y}\cdot y &amp;&amp;\text{(moltiplico per } y\gt0\text{: verso invariato)}\\
+n\,y &amp;\gt x &amp;&amp;\text{(semplifico: } \tfrac{x}{y}\cdot y = x\text{)}
+\end{aligned}$$</div>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo supposto che $\mathbb{N}$ avesse un muro a destra; la completezza ci ha dato il muro più stretto, $L=\sup\mathbb{N}$; la caratterizzazione con margine $1$ ci ha dato un naturale a meno di un passo dal muro; facendo quel passo abbiamo scavalcato il muro restando dentro $\mathbb{N}$, che è assurdo. Quindi il muro non esiste, e dividendo per $y$ si ottiene la forma generale. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema 4</span>
+          <p><em class="nome">Densità di ℚ in ℝ.</em> Per ogni coppia di numeri reali $a\lt b$ esiste un numero razionale $q$ con $a\lt q\lt b$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (costruttiva: la frazione la fabbrichiamo)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che per quanto vicini siano due numeri, fra loro c'è sempre una frazione. Nessun tratto di retta, per corto che sia, è privo di razionali.</p>
+          <p><strong>Idea della strategia.</strong> Non procediamo per assurdo: costruiamo la frazione esplicitamente, perché è più istruttivo e perché il metodo è lo stesso che useresti con una calcolatrice. L'immagine è quella di una scala a gradini tutti uguali di altezza $\frac1n$: se il gradino è più basso della finestra $(a,b)$, allora salendo la scala è impossibile scavalcare la finestra in un colpo solo, e il primo gradino che supera $a$ deve per forza cadere dentro la finestra. Restano due cose da procurarsi: un gradino abbastanza basso (ce lo dà Archimede) e "il primo gradino che supera $a$" (ce lo dà il buon ordinamento degli interi).</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La proprietà di Archimede, Teorema 3. (2) Il principio del buon ordinamento: ogni insieme non vuoto di numeri interi limitato inferiormente ha un minimo (Parte 0, cap. 1). (3) Le regole per moltiplicare e dividere una disuguaglianza per un numero positivo (Parte 0, cap. 6).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1 — scelgo il gradino.</strong> Poiché $a\lt b$, la larghezza della finestra $b-a$ è positiva. Applico Archimede con $x=1$ e $y=b-a$: esiste $n\in\mathbb{N}$, $n\ge1$, con $n(b-a)\gt1$. Divido entrambi i membri per $n\gt0$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+n(b-a) &amp;\gt 1 &amp;&amp;\text{(Archimede con } x=1,\ y=b-a\text{)}\\
+b-a &amp;\gt \frac{1}{n} &amp;&amp;\text{(divido entrambi i membri per } n\gt0\text{: verso invariato)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><em>Cosa abbiamo ottenuto:</em> un gradino di altezza $\frac1n$ più basso della finestra. Questa è la disuguaglianza chiave, la useremo alla fine.</span>
+            <span class="esempio__passo"><strong>Passo 2 — trovo il primo gradino che supera $a$.</strong> Considero l'insieme $S=\{k\in\mathbb{Z}\ :\ k\gt n\,a\}$ degli interi che superano $n\,a$. Non è vuoto (per Archimede esiste un naturale più grande di $n\,a$) ed è limitato inferiormente (tutti i suoi elementi sono $\gt n\,a$). Per il buon ordinamento ha un minimo: lo chiamo $m$. <em>Cosa abbiamo ottenuto:</em> il più piccolo intero strettamente maggiore di $n\,a$.</span>
+            <span class="esempio__passo"><strong>Passo 3 — traduco "è il più piccolo" in una disuguaglianza.</strong> Essendo $m$ il minimo di $S$, l'intero precedente $m-1$ non appartiene a $S$, cioè non soddisfa la condizione $m-1\gt n\,a$. Quindi $m-1\le n\,a$. Mettendo insieme le due informazioni:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+m &amp;\gt n\,a &amp;&amp;\text{(}m\in S\text{)}\\
+m-1 &amp;\le n\,a &amp;&amp;\text{(}m-1\notin S\text{, perché } m \text{ è il minimo)}\\
+m &amp;\le n\,a+1 &amp;&amp;\text{(sommo 1 a entrambi i membri della riga precedente)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 4 — definisco il candidato e controllo il lato sinistro.</strong> Pongo $q=\dfrac{m}{n}$. È un numero razionale, perché è il quoziente di due interi con denominatore diverso da zero. Dalla prima riga del Passo 3, dividendo per $n\gt0$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+m &amp;\gt n\,a &amp;&amp;\text{(Passo 3)}\\
+\frac{m}{n} &amp;\gt a &amp;&amp;\text{(divido entrambi i membri per } n\gt0\text{: verso invariato)}\\
+q &amp;\gt a &amp;&amp;\text{(per definizione } q=\tfrac{m}{n}\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 5 — controllo il lato destro.</strong> Parto dall'ultima riga del Passo 3 e divido per $n\gt0$; poi uso la disuguaglianza chiave del Passo 1.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+m &amp;\le n\,a+1 &amp;&amp;\text{(Passo 3)}\\
+\frac{m}{n} &amp;\le a+\frac{1}{n} &amp;&amp;\text{(divido tutto per } n\gt0 \text{; } \tfrac{n a}{n}=a\text{)}\\
+a+\frac{1}{n} &amp;\lt a+(b-a) &amp;&amp;\text{(uso } \tfrac1n\lt b-a \text{ del Passo 1, sommando } a\text{)}\\
+a+(b-a) &amp;= b &amp;&amp;\text{(semplifico: } a-a=0\text{)}\\
+q=\frac{m}{n} &amp;\lt b &amp;&amp;\text{(incollo le tre righe precedenti)}
+\end{aligned}$$</div>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo scelto un denominatore $n$ così grande che il passo $\frac1n$ fosse più corto della finestra; abbiamo preso il primo multiplo di $\frac1n$ che supera $a$; poiché il passo è più corto della finestra, quel multiplo non può aver scavalcato anche $b$. Quindi $a\lt q\lt b$ con $q$ razionale. <span class="qed">∎</span></p>
+          <div class="callout callout--intuizione">
+            <div class="callout__title"><span class="emoji">💡</span> Ritrova l'esempio numerico</div>
+            <p>Nell'esempio di <span class="richiamo" data-sec="4.8">§4.8</span> avevamo $a=2{,}7$ e $b=2{,}71$. Il Passo 1 chiede $\frac1n\lt0{,}01$: abbiamo preso $n=1000$. Il Passo 2 chiede il primo intero maggiore di $n\,a=2700$: è $m=2701$. Il Passo 4 costruisce $q=\frac{2701}{1000}=2{,}701$. La dimostrazione è esattamente quel conto, scritto con le lettere al posto dei numeri.</p>
+          </div>
+        </div>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione 5</span>
+          <p><em class="nome">ℚ non è completo.</em> L'insieme $A = \{x \in \mathbb{Q} : x &gt; 0,\ x^2 &lt; 2\}$ è non vuoto e limitato superiormente in ℚ, ma <strong>non</strong> ammette estremo superiore in ℚ.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (costruzione esplicita)</span>
+          <p><strong>Cosa vogliamo dimostrare.</strong> Che dentro i soli numeri razionali esiste un insieme perfettamente "per bene" — non vuoto e con un muro a destra — che però non possiede il muro più stretto. In quel punto ℚ ha un buco.</p>
+          <p><strong>Idea della strategia.</strong> Ricordiamo che il sup è il <em>minimo</em> dei maggioranti (<span class="richiamo" data-sec="4.4">§4.4</span>). Per far vedere che non esiste, basta dimostrare che l'insieme dei maggioranti razionali non ha minimo, cioè che <em>ogni</em> maggiorante ne ha sopra uno più piccolo ancora maggiorante. Non lo faremo per assurdo: costruiremo esplicitamente, con una formula, il maggiorante più piccolo. La stessa formula, usata dall'altro lato, mostrerà che anche gli elementi di $A$ non hanno un massimo. È una "macchina che migliora i candidati": le diamo in pasto un numero e ci restituisce un numero migliore dalla stessa parte.</p>
+          <p><strong>Cosa ci servirà.</strong> (1) La definizione di sup come minimo dei maggioranti, <span class="richiamo" data-sec="4.4">§4.4</span>. (2) L'irrazionalità di $\sqrt2$, cioè "nessun razionale ha quadrato $2$" (<a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">Parte 0, cap. 1</a>). (3) Il prodotto notevole $(a+b)^2=a^2+2ab+b^2$ (Parte 0, cap. 2). (4) La regola dei segni di una frazione: una frazione è positiva quando numeratore e denominatore hanno lo stesso segno.</p>
+
+          <p><strong>La macchina.</strong> Dato un razionale $t \gt 0$, poniamo</p>
+          <div class="formula-block">$$t' = \frac{2t + 2}{t + 2}\,.$$</div>
+          <p>Se $t$ è razionale anche $t'$ lo è, perché somme, prodotti e quozienti di razionali sono razionali (il denominatore $t+2$ non è mai nullo, dato che $t\gt0$). Ora facciamo due conti, una volta per tutte: serviranno entrambi, due volte ciascuno.</p>
+
+          <p><strong>Primo conto: quanto vale $t'-t$?</strong> Serve a capire se il nuovo numero è più grande o più piccolo del vecchio.</p>
+          <div class="calcolo">$$\begin{aligned}
+t'-t &amp;= \frac{2t+2}{t+2}-t &amp;&amp;\text{(definizione di } t'\text{)}\\
+&amp;= \frac{2t+2}{t+2}-\frac{t(t+2)}{t+2} &amp;&amp;\text{(porto } t \text{ sul denominatore comune } t+2\text{)}\\
+&amp;= \frac{2t+2-t(t+2)}{t+2} &amp;&amp;\text{(unico denominatore, sottraggo i numeratori)}\\
+&amp;= \frac{2t+2-t^2-2t}{t+2} &amp;&amp;\text{(svolgo } t(t+2)=t^2+2t \text{ e cambio segno a entrambi i termini)}\\
+&amp;= \frac{2-t^2}{t+2} &amp;&amp;\text{(i due } 2t \text{ si elidono)}
+\end{aligned}$$</div>
+
+          <p><strong>Secondo conto: quanto vale $t'^2-2$?</strong> Serve a capire da che parte di $2$ sta il quadrato del nuovo numero.</p>
+          <div class="calcolo">$$\begin{aligned}
+t'^2-2 &amp;= \left(\frac{2t+2}{t+2}\right)^2-2 &amp;&amp;\text{(definizione di } t'\text{)}\\
+&amp;= \frac{(2t+2)^2}{(t+2)^2}-2 &amp;&amp;\text{(il quadrato di una frazione: numeratore e denominatore al quadrato)}\\
+&amp;= \frac{(2t+2)^2-2(t+2)^2}{(t+2)^2} &amp;&amp;\text{(porto } 2 \text{ sul denominatore comune } (t+2)^2\text{)}\\
+&amp;= \frac{(4t^2+8t+4)-2(t^2+4t+4)}{(t+2)^2} &amp;&amp;\text{(sviluppo i due quadrati con } (a+b)^2=a^2+2ab+b^2\text{)}\\
+&amp;= \frac{4t^2+8t+4-2t^2-8t-8}{(t+2)^2} &amp;&amp;\text{(moltiplico per } 2 \text{ e cambio segno a ogni termine)}\\
+&amp;= \frac{2t^2-4}{(t+2)^2} &amp;&amp;\text{(} 8t \text{ si elide; } 4t^2-2t^2=2t^2 \text{; } 4-8=-4\text{)}\\
+&amp;= \frac{2(t^2-2)}{(t+2)^2} &amp;&amp;\text{(raccolgo il fattore } 2 \text{ al numeratore)}
+\end{aligned}$$</div>
+
+          <p><strong>A cosa servono questi due conti.</strong> Non ci interessa il loro <em>valore</em>, ci interessa solo il loro <em>segno</em>. Nel primo conto il denominatore $t+2$ è positivo (stiamo lavorando con $t\gt0$, quindi $t+2\gt2$), perciò il segno di $t'-t$ è deciso solo dal numeratore $2-t^2$. Nel secondo conto il denominatore $(t+2)^2$ è un quadrato e quindi è positivo, perciò il segno di $t'^2-2$ è deciso solo dal numeratore, che a sua volta ha il segno di $t^2-2$. Riassumendo in una tabella:</p>
+          <table class="tabella-comparativa">
+            <thead><tr><th>Se parto da…</th><th>segno di $2-t^2$</th><th>quindi $t'$…</th><th>segno di $t^2-2$</th><th>quindi $t'^2$…</th></tr></thead>
+            <tbody>
+              <tr><td>$t^2\lt2$ (un elemento di $A$)</td><td>positivo</td><td>è <strong>più grande</strong> di $t$</td><td>negativo</td><td>è ancora $\lt 2$</td></tr>
+              <tr><td>$t^2\gt2$ (un maggiorante)</td><td>negativo</td><td>è <strong>più piccolo</strong> di $t$</td><td>positivo</td><td>è ancora $\gt 2$</td></tr>
+            </tbody>
+          </table>
+          <p>È esattamente la macchina che ci serve: spinge gli elementi di $A$ verso l'alto senza farli uscire da $A$, e spinge i maggioranti verso il basso senza far loro perdere il ruolo di maggiorante.</p>
+
+          <p><strong>Prima metà: $A$ non ha massimo.</strong> Sia $p\in A$, quindi $p$ è razionale, $p\gt0$ e $p^2\lt2$. Applico i due conti con $t=p$.</p>
+          <div class="calcolo">$$\begin{aligned}
+p^2 &amp;\lt 2 &amp;&amp;\text{(ipotesi: } p\in A\text{)}\\
+2-p^2 &amp;\gt 0 &amp;&amp;\text{(porto } p^2 \text{ a destra: il numeratore del primo conto è positivo)}\\
+p+2 &amp;\gt 2 \gt 0 &amp;&amp;\text{(da } p\gt0\text{: il denominatore è positivo)}\\
+p'-p = \frac{2-p^2}{p+2} &amp;\gt 0 &amp;&amp;\text{(frazione con numeratore e denominatore positivi)}\\
+p' &amp;\gt p &amp;&amp;\text{(sommo } p \text{ a entrambi i membri)}
+\end{aligned}$$</div>
+          <p>Il nuovo numero è più grande. Resta da controllare che sia ancora dentro $A$, cioè che il suo quadrato stia sotto $2$:</p>
+          <div class="calcolo">$$\begin{aligned}
+p^2-2 &amp;\lt 0 &amp;&amp;\text{(di nuovo da } p^2\lt2\text{)}\\
+2(p^2-2) &amp;\lt 0 &amp;&amp;\text{(moltiplico per } 2\gt0\text{: verso invariato)}\\
+(p+2)^2 &amp;\gt 0 &amp;&amp;\text{(è un quadrato di un numero non nullo)}\\
+p'^2-2 = \frac{2(p^2-2)}{(p+2)^2} &amp;\lt 0 &amp;&amp;\text{(numeratore negativo, denominatore positivo)}\\
+p'^2 &amp;\lt 2 &amp;&amp;\text{(sommo 2 a entrambi i membri)}
+\end{aligned}$$</div>
+          <p>Inoltre $p'\gt p\gt0$ ed è razionale, quindi $p'\in A$. <em>Cosa abbiamo ottenuto:</em> per ogni elemento di $A$ ne esiste uno strettamente più grande ancora in $A$. Nessun elemento è il massimo.</p>
+
+          <p><strong>Seconda metà: i maggioranti razionali non hanno minimo.</strong> Sia $s$ un maggiorante razionale di $A$ con $s\gt0$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 1 — dimostro che $s^2\gt2$, per esclusione.</strong> Ci sono solo tre possibilità: $s^2=2$, $s^2\lt2$, $s^2\gt2$. La prima è impossibile, perché vorrebbe dire $s=\sqrt2$ e nessun razionale ha quadrato $2$ (Parte 0, cap. 1). La seconda è impossibile perché $s$ apparterrebbe ad $A$ e, per la prima metà, in $A$ ci sarebbe un elemento più grande di $s$: ma allora $s$ non sarebbe maggiorante. Resta solo $s^2\gt2$.</span>
+            <span class="esempio__passo"><strong>Passo 2 — applico la macchina con $t=s$.</strong> Guardo i segni dei due conti:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+s^2 &amp;\gt 2 &amp;&amp;\text{(Passo 1)}\\
+2-s^2 &amp;\lt 0 &amp;&amp;\text{(numeratore del primo conto: negativo)}\\
+s'-s = \frac{2-s^2}{s+2} &amp;\lt 0 &amp;&amp;\text{(numeratore negativo, denominatore } s+2\gt0\text{)}\\
+s' &amp;\lt s &amp;&amp;\text{(sommo } s \text{ a entrambi i membri)}\\
+s'^2-2 = \frac{2(s^2-2)}{(s+2)^2} &amp;\gt 0 &amp;&amp;\text{(numeratore positivo perché } s^2-2\gt0\text{, denominatore positivo)}\\
+s'^2 &amp;\gt 2 &amp;&amp;\text{(sommo 2 a entrambi i membri)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Passo 3 — verifico che $s'$ è ancora un maggiorante.</strong> Devo mostrare che ogni $x\in A$ soddisfa $x\lt s'$. Prendo $x\in A$: allora $x\gt0$ e $x^2\lt2$, mentre $s'\gt0$ e $s'^2\gt2$. Confronto i due quadrati:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+x^2 &amp;\lt 2 &amp;&amp;\text{(}x\in A\text{)}\\
+2 &amp;\lt s'^2 &amp;&amp;\text{(Passo 2)}\\
+x^2 &amp;\lt s'^2 &amp;&amp;\text{(incollo le due righe)}\\
+x &amp;\lt s' &amp;&amp;\text{(fra numeri positivi, chi ha il quadrato minore è il minore)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><em>Cosa abbiamo ottenuto:</em> $s'$ è un maggiorante razionale di $A$ strettamente più piccolo di $s$.</span>
+            <span class="esempio__passo"><strong>Passo 4 — conclusione.</strong> Per ogni maggiorante razionale ne esiste uno più piccolo, quindi l'insieme dei maggioranti razionali <strong>non ha minimo</strong>. Ma l'estremo superiore è per definizione il minimo dei maggioranti: dunque in ℚ non esiste $\sup A$.</span>
+          </p>
+          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo costruito una formula che, dato un razionale positivo, ne restituisce un altro "spostato dalla parte giusta": più grande se il quadrato era sotto $2$, più piccolo se era sopra. Applicandola agli elementi di $A$ abbiamo visto che $A$ non ha massimo; applicandola ai maggioranti abbiamo visto che i maggioranti non hanno minimo. Quindi in ℚ manca l'estremo superiore. In ℝ, invece, l'assioma di completezza garantisce che esista, e le due successioni costruite si stringono proprio sul numero il cui quadrato vale $2$, cioè $\sqrt2$: il buco di ℚ è tappato esattamente da un <span class="glossario-term" data-term="numero-irrazionale">numero irrazionale</span>. <span class="qed">∎</span></p>
+        </div>
+        <div class="callout callout--intuizione">
+          <div class="callout__title"><span class="emoji">💡</span> Perché questa è una dimostrazione e non un disegno</div>
+          <p>Nota la potenza del metodo: non abbiamo "guardato un grafico", abbiamo <em>costruito</em> algebricamente, per ogni candidato, un candidato migliore. È la stessa logica del "per ogni $\varepsilon$…" della caratterizzazione: in Analisi non ci si accontenta mai di "sembra avvicinarsi", si esibisce sempre l'oggetto esplicito che realizza l'avvicinamento.</p>
+        </div>
+      </section>
+
+      <!-- 6. ESEMPI SVOLTI -->
+      <section class="section" id="esempi">
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 1 — Un insieme finito</span><span class="badge badge--base">Base</span></div>
+          <p>Determinare $\sup$, $\inf$, $\max$, $\min$ dell'insieme $A = \{-3,\ 0,\ 2,\ 5\}$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Cerco il candidato.</strong> L'insieme è finito, quindi posso guardarlo tutto: ordinando i quattro numeri ottengo $-3\lt0\lt2\lt5$. Candidati: $5$ per il sup, $-3$ per l'inf.</span>
+            <span class="esempio__passo"><strong>Il candidato $5$ è maggiorante?</strong> Controllo le quattro disuguaglianze una per una:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+-3 &amp;\le 5 &amp;&amp;\text{(vera)}\\
+0 &amp;\le 5 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 5 &amp;&amp;\text{(vera)}\\
+5 &amp;\le 5 &amp;&amp;\text{(vera: la definizione chiede } \le \text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Tutte vere, quindi $5$ è maggiorante: condizione (i) di <span class="richiamo" data-sec="4.4">§4.4</span> soddisfatta.</span>
+            <span class="esempio__passo"><strong>$5$ appartiene ad $A$?</strong> Sì, è il quarto elemento dell'elenco. Quindi $5=\max A$ (definizione di massimo, <span class="richiamo" data-sec="4.3">§4.3</span>), e per il primo fatto di <span class="richiamo" data-sec="4.5">§4.5</span> il massimo coincide con il sup: $\sup A=5$.</span>
+            <span class="esempio__passo"><strong>Dall'altro lato.</strong> Con lo stesso procedimento, $-3$ è minorante (le quattro disuguaglianze $-3\le-3$, $-3\le0$, $-3\le2$, $-3\le5$ sono tutte vere) e appartiene ad $A$: quindi $-3=\min A=\inf A$.</span>
+          </p>
+          <div class="esempio__risultato">$\max A = \sup A = 5$; $\ \min A = \inf A = -3$. <strong>Regola generale:</strong> un insieme finito e non vuoto ha sempre massimo e minimo, quindi per gli insiemi finiti sup coincide sempre con max e inf con min.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 2 — Un intervallo semiaperto</span><span class="badge badge--base">Base</span></div>
+          <p>Determinare $\sup$, $\inf$, $\max$, $\min$ di $A = [2,\ 7)$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Leggo le parentesi.</strong> La quadra a sinistra dice che $2$ è <em>incluso</em>; la tonda a destra dice che $7$ è <em>escluso</em>. In simboli $A=\{x\in\mathbb{R}\ :\ 2\le x\lt 7\}$.</span>
+            <span class="esempio__passo"><strong>Lato sinistro.</strong> Il numero $2$ è minorante (ogni $x\in A$ soddisfa $2\le x$, è scritto nella definizione dell'insieme) e appartiene ad $A$. Quindi $\min A=\inf A=2$.</span>
+            <span class="esempio__passo"><strong>Lato destro, condizione (i).</strong> Ogni $x\in A$ soddisfa $x\lt7$, e da "$\lt$" segue "$\le$": quindi $7$ è maggiorante. ✓</span>
+            <span class="esempio__passo"><strong>Lato destro, condizione (ii), prima con un margine concreto.</strong> Prendo $\varepsilon=1$: il muro abbassato è $7-1=6$, e l'elemento $6{,}5$ sta in $A$ ed è maggiore di $6$. ✓</span>
+            <span class="esempio__passo"><strong>Il caso generale.</strong> Fisso $\varepsilon\gt0$ e propongo l'elemento $a=7-\dfrac{\varepsilon}{2}$, cioè il punto medio fra il muro abbassato e $7$. Verifico che supera $7-\varepsilon$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+a-(7-\varepsilon) &amp;= \left(7-\frac{\varepsilon}{2}\right)-7+\varepsilon &amp;&amp;\text{(tolgo la parentesi cambiando i segni)}\\
+&amp;= \varepsilon-\frac{\varepsilon}{2} &amp;&amp;\text{(i due } 7 \text{ si elidono)}\\
+&amp;= \frac{\varepsilon}{2} &amp;&amp;\text{(} \varepsilon=\tfrac{2\varepsilon}{2}\text{, quindi resta } \tfrac{\varepsilon}{2}\text{)}\\
+&amp;\gt 0 &amp;&amp;\text{(perché } \varepsilon\gt0\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">La differenza è positiva, quindi $a\gt7-\varepsilon$. ✓</span>
+            <span class="esempio__passo"><strong>Controllo che $a$ stia davvero in $A$</strong> (il passaggio che quasi tutti dimenticano). Se $\varepsilon\ge10$ il muro abbassato $7-\varepsilon$ è $\le-3$, quindi va bene un elemento qualunque, per esempio $a=2$. Se invece $\varepsilon\lt10$, allora $\frac{\varepsilon}{2}\lt5$ e quindi $a=7-\frac{\varepsilon}{2}\gt7-5=2$, mentre $a\lt7$ perché a $7$ stiamo togliendo una quantità positiva: dunque $a\in[2,7)$. ✓</span>
+            <span class="esempio__passo">Valgono (i) e (ii): $\sup A=7$. Ma $7\notin A$, quindi il massimo non esiste.</span>
+          </p>
+          <div class="esempio__risultato">$\inf A = \min A = 2$; $\ \sup A = 7$; $\ \max A$ non esiste. La quadra "regala" il massimo, la tonda no.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 3 — La successione $1/n$</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Sia $A = \left\{\dfrac{1}{n} : n \in \mathbb{N},\ n \geq 1\right\} = \left\{1,\ \tfrac12,\ \tfrac13,\ \tfrac14,\ \dots\right\}$. Determinare $\sup$ e $\inf$, e stabilire quali sono raggiunti.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Guardo i numeri per fiutare i candidati.</strong> Scrivo i primi termini in decimale: $1$, $0{,}5$, $0{,}333\ldots$, $0{,}25$, $0{,}2$. Scendono, e il più grande è il primo. Candidati: $\sup A=1$, $\inf A=0$.</span>
+            <span class="esempio__passo"><strong>Sup: il candidato $1$ appartiene ad $A$?</strong> Sì, si ottiene con $n=1$. Allora mi basta verificare che sia maggiorante e ho finito (<span class="richiamo" data-sec="4.5">§4.5</span>). Prendo $\frac1n$ generico con $n\ge1$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+n &amp;\ge 1 &amp;&amp;\text{(condizione sull'indice)}\\
+\frac1n &amp;\le \frac11 &amp;&amp;\text{(passo ai reciproci fra positivi: il verso si inverte, Parte 0, cap. 6)}\\
+\frac1n &amp;\le 1 &amp;&amp;\text{(perché } \tfrac11=1\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Quindi $1$ è maggiorante e appartiene ad $A$: $\max A=\sup A=1$.</span>
+            <span class="esempio__passo"><strong>Inf, condizione (i').</strong> Il numero $0$ è minorante, perché ogni $\frac1n$ con $n\ge1$ ha numeratore e denominatore positivi, quindi è positivo: $0\lt\frac1n$. ✓</span>
+            <span class="esempio__passo"><strong>Inf, condizione (ii'), prima con un margine concreto.</strong> Con $\varepsilon=0{,}25$ mi serve un elemento minore di $0{,}25$: prendo $n=5$ e ottengo $\frac15=0{,}2\lt0{,}25$. ✓</span>
+            <span class="esempio__passo"><strong>Il caso generale.</strong> Fissato $\varepsilon\gt0$, cerco un elemento minore di $0+\varepsilon$, cioè un $n$ con $\frac1n\lt\varepsilon$. Risolvo rispetto a $n$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac1n &amp;\lt \varepsilon &amp;&amp;\text{(cosa voglio)}\\
+1 &amp;\lt \varepsilon\,n &amp;&amp;\text{(moltiplico entrambi i membri per } n\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n &amp;&amp;\text{(divido entrambi i membri per } \varepsilon\gt0\text{: verso invariato)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Un naturale $n$ più grande di $\frac1\varepsilon$ esiste sempre per la proprietà di Archimede (<span class="richiamo" data-sec="4.7">§4.7</span>). ✓ Quindi $\inf A=0$.</span>
+            <span class="esempio__passo"><strong>È anche minimo?</strong> No: $0\notin A$, perché $\frac1n=0$ richiederebbe numeratore nullo, mentre il numeratore è $1$. Quindi il minimo non esiste.</span>
+          </p>
+          <div class="esempio__risultato">$\sup A = \max A = 1$; $\ \inf A = 0$ (non raggiunto), $\min A$ non esiste.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 4 — Definito da una disequazione</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Sia $A = \{x \in \mathbb{R} : x^2 &lt; 5\}$. Determinare $\sup$, $\inf$, $\max$, $\min$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Primo passo: capire che insieme è.</strong> L'insieme è descritto da una disequazione, quindi la risolvo. Uso la regola delle disequazioni di secondo grado elementari (<a href="../parte0-prerequisiti/06-disequazioni.html">Parte 0, cap. 6</a>): per $k\gt0$, la disequazione $x^2\lt k$ equivale a $-\sqrt k\lt x\lt\sqrt k$. Qui $k=5$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+x^2 &amp;\lt 5 &amp;&amp;\text{(condizione che definisce } A\text{)}\\
+-\sqrt5 \lt x &amp;\lt \sqrt5 &amp;&amp;\text{(regola } x^2\lt k \Leftrightarrow -\sqrt k\lt x\lt\sqrt k \text{, con } k=5\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Quindi $A=(-\sqrt5,\ \sqrt5)$: è un intervallo <strong>aperto</strong>, perché la disequazione è stretta. Numericamente $\sqrt5\approx2{,}236$.</span>
+            <span class="esempio__passo"><strong>Condizione (i).</strong> Ogni $x\in A$ soddisfa $x\lt\sqrt5$, quindi $\sqrt5$ è maggiorante. ✓</span>
+            <span class="esempio__passo"><strong>Condizione (ii).</strong> Siamo nella stessa situazione dell'Esempio 2: l'estremo destro di un intervallo aperto. Fissato $\varepsilon\gt0$, prendo $a=\sqrt5-\frac{\varepsilon}{2}$ se $\varepsilon$ è abbastanza piccolo da tenerlo dentro l'intervallo (altrimenti basta $a=0$, che sta in $A$ ed è già maggiore di $\sqrt5-\varepsilon$ quando $\varepsilon$ è grande). Il conto è identico a quello dell'Esempio 2, con $\sqrt5$ al posto di $7$: la differenza $a-(\sqrt5-\varepsilon)$ vale $\frac{\varepsilon}{2}\gt0$. ✓</span>
+            <span class="esempio__passo">Quindi $\sup A=\sqrt5$. Non è massimo: $x=\sqrt5$ darebbe $x^2=5$, che <strong>non</strong> soddisfa $x^2\lt5$. Dunque $\sqrt5\notin A$.</span>
+            <span class="esempio__passo"><strong>Lato sinistro.</strong> Per simmetria (l'insieme è simmetrico rispetto a $0$, perché $x$ e $-x$ hanno lo stesso quadrato) si ha $\inf A=-\sqrt5$, anch'esso escluso: niente minimo.</span>
+          </p>
+          <div class="esempio__risultato">$\sup A = \sqrt 5$, $\ \inf A = -\sqrt 5$; né massimo né minimo. Nota: gli estremi sono numeri irrazionali, ma esistono in ℝ grazie alla completezza — proprio come nell'esempio del buco di ℚ (<span class="richiamo" data-sec="4.9">§4.9</span>).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 5 — Una successione crescente verso un limite</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Sia $A = \left\{\dfrac{2n-1}{n} : n \in \mathbb{N},\ n \geq 1\right\}$. Determinare $\sup$ e $\inf$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Primo passo: riscrivo il termine generico.</strong> Quando il denominatore è unico, la frazione si può spezzare addendo per addendo (Parte 0, cap. 2):</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{2n-1}{n} &amp;= \frac{2n}{n}-\frac{1}{n} &amp;&amp;\text{(spezzo la frazione sul denominatore comune } n\text{)}\\
+&amp;= 2-\frac{1}{n} &amp;&amp;\text{(semplifico } \tfrac{2n}{n}=2\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Questa forma è molto più parlante: ogni termine è "$2$ meno qualcosa di piccolo e positivo".</span>
+            <span class="esempio__passo"><strong>Secondo passo: guardo i numeri.</strong> Sostituendo $n=1,2,3,4$ ottengo $2-1=1$, $2-\frac12=\frac32$, $2-\frac13=\frac53$, $2-\frac14=\frac74$. I valori crescono, perché al crescere di $n$ la quantità sottratta $\frac1n$ rimpicciolisce. Candidati: $\inf A=1$ e $\sup A=2$.</span>
+            <span class="esempio__passo"><strong>Inf.</strong> Il valore più piccolo si ha con il più piccolo $n$ ammesso, cioè $n=1$, e vale $1$. Appartiene ad $A$, quindi $\min A=\inf A=1$.</span>
+            <span class="esempio__passo"><strong>Sup, condizione (i).</strong> La quantità $\frac1n$ è positiva, e togliere un numero positivo a $2$ dà meno di $2$: quindi $2-\frac1n\lt2$ per ogni $n\ge1$, e $2$ è maggiorante. ✓</span>
+            <span class="esempio__passo"><strong>Sup, condizione (ii), con un margine concreto.</strong> Prendo $\varepsilon=0{,}5$: il muro abbassato è $1{,}5$. Con $n=3$ l'elemento vale $\frac53\approx1{,}667$, che è maggiore di $1{,}5$. ✓</span>
+            <span class="esempio__passo"><strong>Il caso generale.</strong> Fisso $\varepsilon\gt0$ e risolvo rispetto a $n$ la disuguaglianza che mi serve:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+2-\frac{1}{n} &amp;\gt 2-\varepsilon &amp;&amp;\text{(cosa voglio)}\\
+-\frac{1}{n} &amp;\gt -\varepsilon &amp;&amp;\text{(sottraggo 2 a entrambi i membri)}\\
+\frac{1}{n} &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+1 &amp;\lt \varepsilon\,n &amp;&amp;\text{(moltiplico per } n\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n &amp;&amp;\text{(divido per } \varepsilon\gt0\text{: verso invariato)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo">Un naturale $n$ più grande di $\frac1\varepsilon$ esiste sempre (proprietà di Archimede, <span class="richiamo" data-sec="4.7">§4.7</span>). ✓ Quindi $\sup A=2$.</span>
+            <span class="esempio__passo">Nessun termine vale esattamente $2$: servirebbe $\frac1n=0$, impossibile. Quindi il massimo non esiste.</span>
+          </p>
+          <div class="esempio__risultato">$\inf A = \min A = 1$; $\ \sup A = 2$ (non raggiunto). Anticipazione: $2$ è anche il <span class="glossario-term" data-term="limite">limite</span> della <span class="glossario-term" data-term="successione">successione</span> — per le successioni monotone sup e limite coincidono (cap. 11).</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 6 — Dimostrazione rigorosa di un sup</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Dimostrare, con la caratterizzazione operativa, che $\sup A = 1$ per $A = \left\{\dfrac{n}{n+1} : n \in \mathbb{N}\right\} = \left\{0,\ \tfrac12,\ \tfrac23,\ \tfrac34,\dots\right\}$.</p>
+          <p>Questo è lo schema-tipo che ti verrà chiesto all'esame. Lo svolgiamo con tutti i passaggi: prima la riscrittura del termine, poi le due condizioni una alla volta.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Riscrittura del termine generico.</strong> Voglio far comparire il denominatore anche al numeratore. Al numeratore aggiungo e tolgo $1$, operazione sempre lecita perché non cambia il valore: scrivo $n=(n+1)-1$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+\frac{n}{n+1} &amp;= \frac{(n+1)-1}{n+1} &amp;&amp;\text{(ho scritto } n \text{ come } (n+1)-1\text{)}\\
+&amp;= \frac{n+1}{n+1}-\frac{1}{n+1} &amp;&amp;\text{(spezzo la frazione sul denominatore comune)}\\
+&amp;= 1-\frac{1}{n+1} &amp;&amp;\text{(perché } \tfrac{n+1}{n+1}=1\text{)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Condizione (i) — $1$ è maggiorante.</strong> Poiché $n\ge0$, si ha $n+1\ge1\gt0$, quindi $\frac{1}{n+1}\gt0$. Togliere una quantità positiva a $1$ dà meno di $1$: $\ 1-\frac{1}{n+1}\lt1$ per ogni $n$. Dunque ogni elemento è minore di $1$ e la (i) è verificata. ✓</span>
+            <span class="esempio__passo"><strong>Condizione (ii) — nessun numero minore di $1$ è maggiorante.</strong> Fisso $\varepsilon\gt0$ e devo trovare $n$ con $\frac{n}{n+1}\gt1-\varepsilon$. Sostituisco la forma riscritta e risolvo rispetto a $n$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+1-\frac{1}{n+1} &amp;\gt 1-\varepsilon &amp;&amp;\text{(cosa voglio, con il termine riscritto)}\\
+-\frac{1}{n+1} &amp;\gt -\varepsilon &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}\\
+\frac{1}{n+1} &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+1 &amp;\lt \varepsilon\,(n+1) &amp;&amp;\text{(moltiplico per } n+1\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n+1 &amp;&amp;\text{(divido per } \varepsilon\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon}-1 &amp;\lt n &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}
+\end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Chiudo con Archimede.</strong> Un naturale $n$ più grande di $\frac1\varepsilon-1$ esiste sempre, perché $\mathbb{N}$ non è limitato superiormente (<span class="richiamo" data-sec="4.7">§4.7</span>). Scelto quel $n$, tutte le righe del calcolo si leggono all'indietro e danno $\frac{n}{n+1}\gt1-\varepsilon$. La (ii) è verificata. ✓</span>
+            <span class="esempio__passo"><strong>Verifica numerica di controllo.</strong> Con $\varepsilon=0{,}05$ la condizione dà $n\gt\frac{1}{0{,}05}-1=20-1=19$: prendo $n=20$ e ottengo $\frac{20}{21}\approx0{,}952$, che è maggiore di $1-0{,}05=0{,}95$. ✓</span>
+          </p>
+          <div class="esempio__risultato">Valendo (i) e (ii), per il Teorema 2 si conclude $\sup A = 1$. E poiché $1 \notin A$ (servirebbe $\frac{1}{n+1}=0$), il massimo non esiste. Questa è la struttura-tipo di ogni dimostrazione di estremo superiore all'esame.</div>
+        </div>
+      </section>
+
+      <!-- 7. ERRORI COMUNI -->
+      <section class="section" id="errori-comuni">
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Confondere massimo ed estremo superiore</div>
+          <p>Scrivere "$\max(0,1) = 1$" è <strong>sbagliato</strong>: $1 \notin (0,1)$, quindi il massimo <em>non esiste</em>; il numero $1$ è l'estremo <em>superiore</em>. <em>Perché capita</em>: al liceo max e sup coincidevano quasi sempre (insiemi finiti, intervalli chiusi). In Analisi 1 la distinzione è sostanziale. <em>Come evitarlo</em>: prima di scrivere "max", controlla sempre se il candidato <strong>appartiene</strong> all'insieme.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Pretendere che il sup appartenga all'insieme</div>
+          <p>Falso: l'estremo superiore <strong>può stare fuori</strong> dall'insieme, ed è proprio il caso interessante ($\sup(0,1)=1\notin(0,1)$; $\sup\{1-\tfrac1n\}=1$ mai raggiunto). <em>Come evitarlo</em>: ricorda che il sup è il minimo dei <em>maggioranti</em>, e i maggioranti vivono fuori o al bordo dell'insieme, non necessariamente dentro.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Credere che ogni insieme limitato abbia max e min</div>
+          <p>Un insieme può essere perfettamente limitato e non avere <em>né</em> massimo <em>né</em> minimo: $(0,1)$ ne è l'esempio-manifesto. La limitatezza garantisce (in ℝ) l'esistenza di $\sup$ e $\inf$, <strong>non</strong> di $\max$ e $\min$. <em>Come evitarlo</em>: tieni separate le due domande "è limitato?" e "il confine è raggiunto?".</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Scambiare "un maggiorante" con "l'estremo superiore"</div>
+          <p>Per $A = (0,1)$, i numeri $5$, $10$, $100$ sono tutti maggioranti, ma <strong>nessuno</strong> di essi è il sup: il sup è il più piccolo, cioè $1$. <em>Perché capita</em>: si trova <em>un</em> maggiorante e ci si ferma. <em>Come evitarlo</em>: dopo aver trovato un maggiorante, verifica sempre la seconda condizione (l'argomento con $\varepsilon$) per assicurarti che sia il più piccolo.</p>
+        </div>
+        <div class="callout callout--errore">
+          <div class="callout__title"><span class="emoji">❌</span> Applicare la completezza a insiemi vuoti o illimitati</div>
+          <p>L'assioma richiede $A$ <strong>non vuoto</strong> e <strong>limitato superiormente</strong>. Dire "$\sup \mathbb{N}$ è un numero reale" è sbagliato: ℕ non è limitato superiormente, quindi $\sup \mathbb{N} = +\infty$, che non è un numero. <em>Come evitarlo</em>: prima di invocare l'esistenza del sup finito, verifica le due ipotesi.</p>
+        </div>
+      </section>
+
+      <!-- 8. TRUCCHI -->
+      <section class="section" id="trucchi">
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> La ricetta in due passi per dimostrare $L = \sup A$</div>
+          <p>Ogni dimostrazione di estremo superiore ha <strong>sempre</strong> la stessa ossatura. <strong>Passo 1</strong>: mostra che $L$ è maggiorante ($a \leq L$ per ogni $a \in A$). <strong>Passo 2</strong>: fissa un generico $\varepsilon &gt; 0$ ed <em>esibisci</em> un elemento $a \in A$ con $a &gt; L - \varepsilon$ (di solito risolvendo quella disuguaglianza rispetto a $n$ o a $x$). Se completi entrambi i passi, hai finito. Per l'inf, stessa cosa con le disuguaglianze rovesciate ($a &lt; \ell + \varepsilon$).</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Chiuso a destra → c'è il massimo; aperto a destra → solo il sup</div>
+          <p>Regola pratica velocissima: se l'insieme "include il suo bordo destro" (intervallo tipo $[a,b]$, insieme finito, o una successione il cui valore estremo è raggiunto) allora il massimo esiste e coincide col sup. Se il bordo destro è "aperto" ($[a,b)$, $(a,b)$, oppure un valore avvicinato ma mai toccato come in $\{1-\tfrac1n\}$) allora c'è solo il sup, il massimo no. Stesso ragionamento a sinistra per min/inf.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Sfrutta la simmetria: $\inf A = -\sup(-A)$</div>
+          <p>Se sai calcolare i sup, ottieni gli inf gratis. Definito $-A = \{-a : a \in A\}$ (l'insieme "specchiato" rispetto allo zero), vale $\inf A = -\sup(-A)$. Comodo quando l'insieme è più facile da studiare "verso destra": lo ribalti, trovi il sup, cambi segno.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Prima indovina il candidato, poi dimostra</div>
+          <p>Non partire a cieco con le disuguaglianze. Prima <em>fiuta</em> il valore: scrivi qualche termine dell'insieme, guarda verso quale numero si accalcano (spesso è il <span class="glossario-term" data-term="limite">limite</span> della successione), e prendi quello come candidato $L$. Solo dopo verifica le due condizioni. Cercare di dimostrare il valore giusto è mille volte più facile che cercarlo alla cieca.</p>
+        </div>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Riscrivi il termine come "$L$ meno qualcosa che tende a zero"</div>
+          <p>Trucco algebrico ricorrente: manipola $\dfrac{n}{n+1}$ in $1 - \dfrac{1}{n+1}$, oppure $\dfrac{2n-1}{n}$ in $2 - \dfrac1n$. In questa forma il candidato per il sup (il numero "$L$" davanti) e il "residuo" che lo separa dal muro diventano lampanti, e la disuguaglianza della condizione (ii) si risolve in due righe.</p>
+        </div>
+      </section>
+
+      <!-- 9. MAPPA MENTALE -->
+      <section class="section" id="mappa-mentale">
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <div class="mappa-mentale">
+          <div class="mappa-mentale__centro">Numeri reali e struttura d'ordine</div>
+          <div class="mappa-mentale__rami">
+            <div class="mappa-mentale__ramo">
+              <strong>Maggioranti / minoranti</strong>
+              <ul><li>M ≥ ogni elemento (magg.)</li><li>m ≤ ogni elemento (minor.)</li><li>Limitato sup./inf./limitato</li><li>Stanno anche fuori da A</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Massimo / minimo</strong>
+              <ul><li>Maggiorante che ∈ A</li><li>Non sempre esiste</li><li>Se esiste, = sup / = inf</li><li>(0,1): niente max né min</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Estremo sup / inf</strong>
+              <ul><li>sup = min dei maggioranti</li><li>(i) maggiorante</li><li>(ii) ∀ε&gt;0 ∃a: a&gt;L−ε</li><li>Può stare fuori da A</li></ul>
+            </div>
+            <div class="mappa-mentale__ramo">
+              <strong>Completezza di ℝ</strong>
+              <ul><li>∅ ≠ A limitato sup ⇒ ∃ sup in ℝ</li><li>ℚ NON ce l'ha</li><li>{x∈ℚ: x²&lt;2}: buco in √2</li><li>Fondamento di tutta l'Analisi</li></ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. RIASSUNTO -->
+      <section class="section" id="riassunto">
+        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <div class="riassunto-finale">
+          <h3>Da ricordare assolutamente</h3>
+          <ul>
+            <li><strong>Maggiorante</strong>: $M \geq a$ per ogni $a \in A$ (può stare fuori da $A$); <strong>minorante</strong>: simmetrico. $A$ è <strong>limitato</strong> se ha sia maggioranti sia minoranti.</li>
+            <li><strong>Massimo/minimo</strong>: maggiorante/minorante che <em>appartiene</em> ad $A$. Non sempre esistono.</li>
+            <li><strong>Estremo superiore</strong> $\sup A$ = minimo dei maggioranti. Caratterizzazione: (i) $a \leq L$ ∀$a$; (ii) ∀$\varepsilon &gt; 0$ ∃$a \in A$ con $a &gt; L - \varepsilon$.</li>
+            <li><strong>sup vs max</strong>: se $\max A$ esiste allora $\sup A = \max A$; ma il sup può esistere senza max (es. $\sup(0,1)=1\notin A$).</li>
+            <li><strong>Assioma di completezza</strong>: ogni $A \subseteq \mathbb{R}$ non vuoto e limitato superiormente ha $\sup A \in \mathbb{R}$. È ciò che ℝ ha e ℚ no.</li>
+            <li><strong>Il buco di ℚ</strong>: $\{x \in \mathbb{Q} : x^2 &lt; 2\}$ è limitato ma senza sup in ℚ; in ℝ il sup è $\sqrt 2$ (irrazionale, dimostrato in Parte 0).</li>
+            <li><strong>Per dimostrare un sup</strong>: sempre due passi — è maggiorante, e nessuno più piccolo lo è (argomento con $\varepsilon$).</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ESERCIZI -->
+      <section class="section" id="esercizi">
+        <h2 class="section__title"><span class="emoji">✏️</span> Esercizi</h2>
+        <p class="text-muted">16 esercizi in ordine di difficoltà crescente. Prova a risolverli da solo prima di aprire la soluzione.</p>
+
+        <h3>Livello base</h3>
+        <div class="esercizi-grid">
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.1</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Dato $A = \{-1,\ 2,\ 3,\ 8\}$, determina $\max A$, $\min A$, $\sup A$, $\inf A$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>L'insieme è finito, quindi posso esaminarlo tutto. Ordino i quattro numeri: $-1\lt2\lt3\lt8$. Il candidato per il sup è $8$, quello per l'inf è $-1$.</p>
+              <p><strong>Verifico che $8$ è maggiorante</strong>, una disuguaglianza per riga:</p>
+              <div class="calcolo">$$\begin{aligned}
+-1 &amp;\le 8 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 8 &amp;&amp;\text{(vera)}\\
+3 &amp;\le 8 &amp;&amp;\text{(vera)}\\
+8 &amp;\le 8 &amp;&amp;\text{(vera: la definizione chiede } \le\text{)}
+\end{aligned}$$</div>
+              <p>Tutte vere, quindi $8$ è maggiorante. Inoltre $8\in A$, quindi è il massimo (definizione di massimo, <span class="richiamo" data-sec="4.3">§4.3</span>) e per il primo fatto di <span class="richiamo" data-sec="4.5">§4.5</span> coincide con il sup.</p>
+              <p>Con lo stesso procedimento dal lato opposto: $-1$ è minorante (le disuguaglianze $-1\le-1$, $-1\le2$, $-1\le3$, $-1\le8$ sono tutte vere) e appartiene ad $A$, quindi è il minimo e coincide con l'inf.</p>
+              <p><strong>$\max A = \sup A = 8$; $\ \min A = \inf A = -1$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.2</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Per l'intervallo chiuso $A = [-2,\ 5]$, determina $\sup$, $\inf$, $\max$, $\min$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Leggo le parentesi: sono entrambe quadre, quindi entrambi gli estremi sono <strong>inclusi</strong>. In simboli $A=\{x\in\mathbb{R}\ :\ -2\le x\le5\}$.</p>
+              <p><strong>Lato destro.</strong> La condizione che definisce l'insieme dice già $x\le5$ per ogni $x\in A$: quindi $5$ è maggiorante (condizione (i), <span class="richiamo" data-sec="4.4">§4.4</span>). E $5\in A$, perché la quadra lo include. Due condizioni su due: $5=\max A$, e quindi $\sup A=5$ (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
+              <p><strong>Lato sinistro.</strong> Allo stesso modo la condizione dice $-2\le x$ per ogni $x\in A$, quindi $-2$ è minorante; e $-2\in A$. Dunque $-2=\min A=\inf A$.</p>
+              <p><strong>$\sup A = \max A = 5$; $\ \inf A = \min A = -2$.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.3</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Per $A = (0,\ 4]$, determina $\sup$, $\inf$, $\max$, $\min$, indicando quali esistono.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>Leggo le parentesi: tonda a sinistra (estremo $0$ <em>escluso</em>), quadra a destra (estremo $4$ <em>incluso</em>). In simboli $A=\{x\in\mathbb{R}\ :\ 0\lt x\le4\}$.</p>
+              <p><strong>Lato destro.</strong> Ogni $x\in A$ soddisfa $x\le4$, quindi $4$ è maggiorante; e $4\in A$ perché la quadra lo include. Dunque $\max A=4$ e $\sup A=4$.</p>
+              <p><strong>Lato sinistro, condizione (i').</strong> Ogni $x\in A$ soddisfa $0\lt x$, quindi $0$ è minorante. ✓</p>
+              <p><strong>Lato sinistro, condizione (ii').</strong> Fisso $\varepsilon\gt0$ e devo trovare un elemento di $A$ minore di $0+\varepsilon=\varepsilon$. Propongo $a=\dfrac{\varepsilon}{2}$ quando $\varepsilon\le8$ (così $a\le4$ e $a\gt0$: sta in $A$); se invece $\varepsilon\gt8$ va bene un elemento qualunque, per esempio $a=1$, che è già minore di $\varepsilon$. Controllo il caso principale:</p>
+              <div class="calcolo">$$\begin{aligned}
+\varepsilon-\frac{\varepsilon}{2} &amp;= \frac{2\varepsilon}{2}-\frac{\varepsilon}{2} &amp;&amp;\text{(porto } \varepsilon \text{ sul denominatore 2)}\\
+&amp;= \frac{\varepsilon}{2} &amp;&amp;\text{(sottraggo i numeratori)}\\
+&amp;\gt 0 &amp;&amp;\text{(perché } \varepsilon\gt0\text{)}
+\end{aligned}$$</div>
+              <p>La differenza è positiva, quindi $\frac{\varepsilon}{2}\lt\varepsilon$. ✓ Valgono (i') e (ii'): $\inf A=0$. Ma $0\notin A$ (la tonda lo esclude), quindi il minimo non esiste.</p>
+              <p><strong>$\sup A = \max A = 4$; $\ \inf A = 0$; $\ \min A$ non esiste.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.4</span><span class="badge badge--base">Base</span></div>
+            <p class="esercizio-card__testo">Dato $A = \{1,\ 2,\ 3\}$: il numero $10$ è un maggiorante? E $3$? Qual è il più piccolo maggiorante?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Il candidato $10$.</strong> Controllo le tre disuguaglianze una per riga:</p>
+              <div class="calcolo">$$\begin{aligned}
+1 &amp;\le 10 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 10 &amp;&amp;\text{(vera)}\\
+3 &amp;\le 10 &amp;&amp;\text{(vera)}
+\end{aligned}$$</div>
+              <p>Tutte vere: $10$ è un maggiorante. Nota che $10\notin A$, e non importa: al maggiorante non si chiede di appartenere all'insieme (§4.2).</p>
+              <p><strong>Il candidato $3$.</strong> Stesso controllo:</p>
+              <div class="calcolo">$$\begin{aligned}
+1 &amp;\le 3 &amp;&amp;\text{(vera)}\\
+2 &amp;\le 3 &amp;&amp;\text{(vera)}\\
+3 &amp;\le 3 &amp;&amp;\text{(vera: la definizione chiede } \le \text{, non } \lt\text{)}
+\end{aligned}$$</div>
+              <p>Anche $3$ è maggiorante. L'ultima riga è quella che trae in inganno: un elemento può coincidere con il maggiorante.</p>
+              <p><strong>Il più piccolo maggiorante.</strong> Nessun numero minore di $3$ può esserlo, perché $3\in A$ e un maggiorante $M\lt3$ non soddisferebbe la richiesta $3\le M$. Quindi il minimo dei maggioranti è $3$, cioè $\sup A=3$; e poiché $3\in A$, è anche il massimo.</p>
+              <p><strong>Entrambi maggioranti; $\sup A = 3 = \max A$.</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello intermedio</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.5</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per $A = \left\{\dfrac{1}{n} : n \geq 1\right\}$ determina $\sup$ e $\inf$, precisando quali sono raggiunti.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Scrivo i primi termini</strong> per fiutare i candidati: $1$, $\frac12=0{,}5$, $\frac13\approx0{,}333$, $\frac14=0{,}25$. Scendono. Candidati: $\sup A=1$, $\inf A=0$.</p>
+              <p><strong>Sup.</strong> Il termine più grande si ottiene con il più piccolo $n$ ammesso, cioè $n=1$, e vale $\frac11=1$. Verifico che è maggiorante partendo dalla condizione sull'indice:</p>
+              <div class="calcolo">$$\begin{aligned}
+n &amp;\ge 1 &amp;&amp;\text{(ipotesi su } n\text{)}\\
+\frac1n &amp;\le \frac11 &amp;&amp;\text{(reciproci di numeri positivi: il verso si inverte, Parte 0, cap. 6)}\\
+\frac1n &amp;\le 1 &amp;&amp;\text{(perché } \tfrac11=1\text{)}
+\end{aligned}$$</div>
+              <p>Quindi $1$ è maggiorante e appartiene ad $A$ (si ottiene con $n=1$): dunque $\sup A=\max A=1$.</p>
+              <p><strong>Inf, condizione (i').</strong> Ogni $\frac1n$ con $n\ge1$ ha numeratore e denominatore positivi, quindi è positivo: $0\lt\frac1n$. Il numero $0$ è minorante. ✓</p>
+              <p><strong>Inf, condizione (ii').</strong> Fisso $\varepsilon\gt0$ e cerco un elemento minore di $\varepsilon$, cioè un $n$ con $\frac1n\lt\varepsilon$. Risolvo rispetto a $n$:</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac1n &amp;\lt \varepsilon &amp;&amp;\text{(cosa voglio)}\\
+1 &amp;\lt \varepsilon\,n &amp;&amp;\text{(moltiplico per } n\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n &amp;&amp;\text{(divido per } \varepsilon\gt0\text{: verso invariato)}
+\end{aligned}$$</div>
+              <p>Un naturale $n$ più grande di $\frac1\varepsilon$ esiste sempre per la proprietà di Archimede (<span class="richiamo" data-sec="4.7">§4.7</span>). ✓ Dunque $\inf A=0$. Non è minimo, perché $0\notin A$: la frazione $\frac1n$ è nulla solo se il numeratore è nullo, e qui vale $1$.</p>
+              <p><strong>$\sup A = \max A = 1$; $\ \inf A = 0$; $\min A$ non esiste.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.6</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per $A = \left\{\dfrac{n}{n+2} : n \in \mathbb{N}\right\}$ determina $\sup$ e $\inf$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Scrivo i primi termini.</strong> Sostituendo $n=0,1,2,3$ ottengo $\frac{0}{2}=0$, $\frac13$, $\frac24=\frac12$, $\frac35$. Crescono. Candidati: $\inf A=0$, $\sup A=1$.</p>
+              <p><strong>Inf.</strong> Il valore più piccolo si ha con $n=0$ e vale $0$, che appartiene ad $A$. Ed è minorante, perché ogni $\frac{n}{n+2}$ con $n\ge0$ ha numeratore $\ge0$ e denominatore $\gt0$, quindi è $\ge0$. Dunque $\inf A=\min A=0$.</p>
+              <p><strong>Riscrivo il termine generico</strong> per il calcolo del sup, facendo comparire il denominatore anche al numeratore: scrivo $n=(n+2)-2$.</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{n}{n+2} &amp;= \frac{(n+2)-2}{n+2} &amp;&amp;\text{(ho scritto } n \text{ come } (n+2)-2\text{)}\\
+&amp;= \frac{n+2}{n+2}-\frac{2}{n+2} &amp;&amp;\text{(spezzo la frazione sul denominatore comune)}\\
+&amp;= 1-\frac{2}{n+2} &amp;&amp;\text{(perché } \tfrac{n+2}{n+2}=1\text{)}
+\end{aligned}$$</div>
+              <p><strong>Condizione (i).</strong> Poiché $n\ge0$ si ha $n+2\ge2\gt0$, quindi $\frac{2}{n+2}\gt0$; togliendo una quantità positiva a $1$ si ottiene meno di $1$. Dunque ogni termine è $\lt1$ e $1$ è maggiorante. ✓</p>
+              <p><strong>Condizione (ii).</strong> Fisso $\varepsilon\gt0$ e risolvo rispetto a $n$ la disuguaglianza che mi serve:</p>
+              <div class="calcolo">$$\begin{aligned}
+1-\frac{2}{n+2} &amp;\gt 1-\varepsilon &amp;&amp;\text{(cosa voglio)}\\
+-\frac{2}{n+2} &amp;\gt -\varepsilon &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}\\
+\frac{2}{n+2} &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+2 &amp;\lt \varepsilon\,(n+2) &amp;&amp;\text{(moltiplico per } n+2\gt0\text{: verso invariato)}\\
+\frac{2}{\varepsilon} &amp;\lt n+2 &amp;&amp;\text{(divido per } \varepsilon\gt0\text{: verso invariato)}\\
+\frac{2}{\varepsilon}-2 &amp;\lt n &amp;&amp;\text{(sottraggo 2 a entrambi i membri)}
+\end{aligned}$$</div>
+              <p>Un naturale $n$ più grande di $\frac{2}{\varepsilon}-2$ esiste sempre (proprietà di Archimede, <span class="richiamo" data-sec="4.7">§4.7</span>). ✓ Quindi $\sup A=1$, non raggiunto perché nessun termine vale esattamente $1$: servirebbe $\frac{2}{n+2}=0$, impossibile con numeratore $2$.</p>
+              <p><strong>$\inf A = \min A = 0$; $\ \sup A = 1$; $\max A$ non esiste.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.7</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Per $A = \{x \in \mathbb{R} : x^2 \leq 3\}$ determina $\sup$, $\inf$, $\max$, $\min$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Primo passo: risolvo la disequazione</strong> per capire che insieme è. Uso la stessa regola dell'Esempio 4 (disequazioni di secondo grado elementari, <a href="../parte0-prerequisiti/06-disequazioni.html">Parte 0, cap. 6</a>): per $k\gt0$, la disequazione $x^2\le k$ equivale a $-\sqrt k\le x\le\sqrt k$. Qui $k=3$:</p>
+              <div class="calcolo">$$\begin{aligned}
+x^2 &amp;\le 3 &amp;&amp;\text{(condizione che definisce } A\text{)}\\
+-\sqrt3 \le x &amp;\le \sqrt3 &amp;&amp;\text{(regola } x^2\le k \Leftrightarrow -\sqrt k\le x\le\sqrt k \text{, con } k=3\text{)}
+\end{aligned}$$</div>
+              <p>Quindi $A=[-\sqrt3,\ \sqrt3]$, un intervallo <strong>chiuso</strong>. <strong>Attenzione: qui è dove ci si confonde.</strong> La disuguaglianza nel testo è $\le$, non $\lt$: quindi gli estremi soddisfano la condizione e <strong>sono inclusi</strong>. Infatti $x=\sqrt3$ dà $x^2=3$, e $3\le3$ è vera.</p>
+              <p><strong>Lato destro.</strong> Ogni $x\in A$ soddisfa $x\le\sqrt3$: quindi $\sqrt3$ è maggiorante. E $\sqrt3\in A$. Due condizioni su due: $\max A=\sqrt3$, quindi $\sup A=\sqrt3$.</p>
+              <p><strong>Lato sinistro.</strong> Simmetricamente $-\sqrt3$ è minorante e appartiene ad $A$: $\min A=\inf A=-\sqrt3$.</p>
+              <p><strong>$\sup A = \max A = \sqrt 3$; $\ \inf A = \min A = -\sqrt 3$.</strong> (Confronta con l'Esempio 4, dove con $&lt;$ stretto gli estremi erano esclusi e il massimo non esisteva: cambia un solo simbolo, cambia la risposta.)</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.8</span><span class="badge badge--intermedio">Intermedio</span></div>
+            <p class="esercizio-card__testo">Sia $A = \{x \in \mathbb{Q} : 0 &lt; x &lt; \sqrt 2\}$. È limitato superiormente? Esibisci un maggiorante razionale. Esiste un maggiorante razionale minimo?</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Prima domanda: è limitato superiormente?</strong> Sì, e per dimostrarlo basta esibire un maggiorante. Propongo $q_0=\frac32=1{,}5$. Verifico che è maggiorante: se $x\in A$ allora $x\lt\sqrt2$, e $\sqrt2\approx1{,}41421\lt1{,}5$, quindi $x\lt1{,}5$. Incollando le due disuguaglianze (transitività) si ha $x\le q_0$ per ogni $x\in A$. ✓ Ed è razionale, perché è una frazione di interi.</p>
+              <p><strong>Seconda domanda: esiste un maggiorante razionale minimo?</strong> No. Ecco il ragionamento, un passo alla volta.</p>
+              <p>Sia $q$ un maggiorante razionale qualunque di $A$; possiamo supporre $q\gt0$, perché $A$ contiene numeri positivi (per esempio $1$). Mostro prima che $q\gt\sqrt2$, escludendo gli altri due casi possibili.</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Può essere $q\lt\sqrt2$?</strong> No. Per la densità di ℚ in ℝ (<span class="richiamo" data-sec="4.8">§4.8</span>) esisterebbe un razionale $r$ con $q\lt r\lt\sqrt2$; ma allora $r\in A$ (è razionale, positivo e minore di $\sqrt2$) e $r\gt q$, quindi $q$ non sarebbe maggiorante.</span>
+                <span class="esempio__passo"><strong>Può essere $q=\sqrt2$?</strong> No: $q$ è razionale e $\sqrt2$ non lo è (Parte 0, cap. 1).</span>
+                <span class="esempio__passo">Resta l'unica possibilità: $q\gt\sqrt2$.</span>
+              </p>
+              <p>Ora applico la densità di ℚ in ℝ (<span class="richiamo" data-sec="4.8">§4.8</span>) alla coppia di reali $\sqrt2\lt q$: esiste un razionale $q'$ con $\sqrt2\lt q'\lt q$. Questo $q'$ è ancora un maggiorante di $A$ (ogni $x\in A$ soddisfa $x\lt\sqrt2\lt q'$), ed è strettamente più piccolo di $q$.</p>
+              <p>Quindi per ogni maggiorante razionale ne esiste uno più piccolo: l'insieme dei maggioranti razionali non ha minimo, cioè non c'è $\sup A$ in ℚ. Il candidato naturale sarebbe $\sqrt2$, che però non è razionale: ecco il buco di ℚ (<span class="richiamo" data-sec="4.9">§4.9</span>). In ℝ, invece, $\sup A=\sqrt2$.</p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Livello avanzato</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.9</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra con la caratterizzazione operativa che $\sup A = 1$ per $A = \left\{1 - \dfrac{1}{n^2} : n \geq 1\right\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Scrivo i primi termini</strong> per orientarmi: con $n=1,2,3$ ottengo $1-1=0$, $1-\frac14=\frac34$, $1-\frac19=\frac89\approx0{,}889$. Crescono verso $1$.</p>
+              <p><strong>Condizione (i) — $1$ è maggiorante.</strong> Poiché $n\ge1$, il quadrato $n^2$ è positivo, quindi $\frac{1}{n^2}\gt0$. Togliendo una quantità positiva a $1$ si ottiene meno di $1$: $\ 1-\frac{1}{n^2}\lt1$ per ogni $n\ge1$. ✓</p>
+              <p><strong>Condizione (ii).</strong> Fisso $\varepsilon\gt0$ e risolvo rispetto a $n$:</p>
+              <div class="calcolo">$$\begin{aligned}
+1-\frac{1}{n^2} &amp;\gt 1-\varepsilon &amp;&amp;\text{(cosa voglio)}\\
+-\frac{1}{n^2} &amp;\gt -\varepsilon &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}\\
+\frac{1}{n^2} &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+1 &amp;\lt \varepsilon\,n^2 &amp;&amp;\text{(moltiplico per } n^2\gt0\text{: verso invariato)}\\
+\frac{1}{\varepsilon} &amp;\lt n^2 &amp;&amp;\text{(divido per } \varepsilon\gt0\text{: verso invariato)}\\
+\frac{1}{\sqrt\varepsilon} &amp;\lt n &amp;&amp;\text{(estraggo la radice: fra numeri positivi l'ordine si conserva)}
+\end{aligned}$$</div>
+              <p>Un naturale $n$ più grande di $\frac{1}{\sqrt\varepsilon}$ esiste sempre per la proprietà di Archimede (<span class="richiamo" data-sec="4.7">§4.7</span>). ✓</p>
+              <p><strong>Controllo numerico.</strong> Con $\varepsilon=0{,}01$ la condizione dà $n\gt\frac{1}{\sqrt{0{,}01}}=\frac{1}{0{,}1}=10$: prendo $n=11$ e ottengo $1-\frac{1}{121}\approx0{,}9917$, maggiore di $1-0{,}01=0{,}99$. ✓</p>
+              <p><strong>Valgono (i) e (ii), quindi $\sup A = 1$; non è raggiunto (servirebbe $\frac{1}{n^2}=0$), quindi niente massimo. ∎</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.10</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Determina $\sup$ e $\inf$ di $A = \left\{(-1)^n + \dfrac{1}{n} : n \geq 1\right\}$, precisando se sono raggiunti.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Strategia.</strong> Il termine contiene $(-1)^n$, che cambia valore a seconda che $n$ sia pari o dispari. Separo quindi i due casi e studio due insiemi più semplici. Ricorda (Parte 0, cap. 3): una potenza di $-1$ vale $+1$ quando l'esponente è pari (i segni meno si accoppiano a due a due) e $-1$ quando è dispari.</p>
+              <p><strong>Caso $n$ pari:</strong> $(-1)^n=1$ e il termine diventa $1+\frac1n$. Calcolo i primi valori:</p>
+              <div class="calcolo">$$\begin{aligned}
+n=2:\quad 1+\tfrac12 &amp;= \tfrac32 = 1{,}5\\
+n=4:\quad 1+\tfrac14 &amp;= \tfrac54 = 1{,}25\\
+n=6:\quad 1+\tfrac16 &amp;= \tfrac76 \approx 1{,}167
+\end{aligned}$$</div>
+              <p>Decrescono verso $1$ restando sopra $1$. Il più grande si ha con il più piccolo pari disponibile, $n=2$, e vale $\frac32$.</p>
+              <p><strong>Caso $n$ dispari:</strong> $(-1)^n=-1$ e il termine diventa $-1+\frac1n$. Calcolo i primi valori:</p>
+              <div class="calcolo">$$\begin{aligned}
+n=1:\quad -1+1 &amp;= 0\\
+n=3:\quad -1+\tfrac13 &amp;= -\tfrac23 \approx -0{,}667\\
+n=5:\quad -1+\tfrac15 &amp;= -\tfrac45 = -0{,}8
+\end{aligned}$$</div>
+              <p>Decrescono verso $-1$ restando sopra $-1$, perché $\frac1n\gt0$ e quindi $-1+\frac1n\gt-1$ sempre.</p>
+              <p><strong>Sup.</strong> Il valore più grande di tutto l'insieme è $\frac32$: i termini pari non lo superano (sono $\le\frac32$) e quelli dispari sono negativi o nulli. Poiché $\frac32\in A$ (lo si ottiene con $n=2$), è il massimo, e quindi anche il sup.</p>
+              <p><strong>Inf, condizione (i').</strong> Devo mostrare che $-1$ è minorante, cioè che $-1\le(-1)^n+\frac1n$ per ogni $n$. Nel caso pari il termine è $\ge1\gt-1$; nel caso dispari il termine è $-1+\frac1n\gt-1$ perché $\frac1n\gt0$. ✓</p>
+              <p><strong>Inf, condizione (ii').</strong> Fisso $\varepsilon\gt0$ e cerco un elemento minore di $-1+\varepsilon$. Lo cerco fra i dispari:</p>
+              <div class="calcolo">$$\begin{aligned}
+-1+\frac1n &amp;\lt -1+\varepsilon &amp;&amp;\text{(cosa voglio)}\\
+\frac1n &amp;\lt \varepsilon &amp;&amp;\text{(sommo 1 a entrambi i membri)}\\
+\frac{1}{\varepsilon} &amp;\lt n &amp;&amp;\text{(come nell'Esercizio 1.5: moltiplico per } n\gt0 \text{ e divido per } \varepsilon\gt0\text{)}
+\end{aligned}$$</div>
+              <p>Basta scegliere un $n$ <em>dispari</em> più grande di $\frac1\varepsilon$: esiste sempre, perché dopo un naturale qualunque c'è sempre un dispari (proprietà di Archimede, <span class="richiamo" data-sec="4.7">§4.7</span>, più il fatto che i dispari si susseguono di $2$ in $2$). ✓ Quindi $\inf A=-1$, non raggiunto perché nessun termine vale $-1$: servirebbe $\frac1n=0$.</p>
+              <p><strong>$\sup A = \max A = \dfrac32$ (raggiunto in $n=2$); $\ \inf A = -1$ (non raggiunto: i termini dispari vi tendono senza toccarlo), $\min A$ non esiste.</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.11</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Dimostra che, se $A$ è non vuoto e limitato, allora $\inf A = -\sup(-A)$, dove $-A = \{-a : a \in A\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Cosa vogliamo dimostrare.</strong> Che l'estremo inferiore di un insieme si ottiene ribaltando l'insieme rispetto allo zero, calcolando il sup del ribaltato e cambiando segno al risultato. È il modo per ottenere tutti gli inf "gratis" dai sup.</p>
+              <p><strong>Idea della strategia.</strong> Poniamo $L=\sup(-A)$ e dimostriamo che $-L$ è il massimo dei minoranti di $A$, cioè che soddisfa le due proprietà dell'inf. Prima parte: $-L$ è minorante. Seconda parte: nessun minorante è più grande, e questa la facciamo per assurdo, perché negare "è il più grande" dà subito un oggetto concreto con cui lavorare.</p>
+              <p><strong>Cosa ci servirà.</strong> La regola "moltiplicando per un numero negativo il verso della disuguaglianza si inverte" (Parte 0, cap. 6), e la definizione di sup e inf come minimo dei maggioranti e massimo dei minoranti (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
+              <p><strong>Parte 1: $-L$ è un minorante di $A$.</strong> Gli elementi di $-A$ sono esattamente i numeri della forma $-a$ con $a\in A$. Dire che $L$ è maggiorante di $-A$ significa quindi:</p>
+              <div class="calcolo">$$\begin{aligned}
+-a &amp;\le L &amp;&amp;\text{per ogni } a\in A \text{ (}L \text{ maggiorante di } -A\text{)}\\
+a &amp;\ge -L &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}
+\end{aligned}$$</div>
+              <p>Vale per ogni $a\in A$, dunque $-L$ è un minorante di $A$. ✓</p>
+              <p><strong>Parte 2: nessun minorante è più grande di $-L$.</strong> Supponiamo per assurdo che esista un minorante $m$ di $A$ con $m\gt-L$. Traduco entrambe le informazioni in disuguaglianze su $-A$:</p>
+              <div class="calcolo">$$\begin{aligned}
+m &amp;\gt -L &amp;&amp;\text{(ipotesi assurda)}\\
+-m &amp;\lt L &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+a &amp;\ge m &amp;&amp;\text{per ogni } a\in A \text{ (}m \text{ è minorante di } A\text{)}\\
+-a &amp;\le -m &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}
+\end{aligned}$$</div>
+              <p>L'ultima riga dice che $-m$ è un maggiorante di $-A$; la seconda dice che $-m\lt L$. Avremmo quindi un maggiorante di $-A$ strettamente minore di $L$, contro il fatto che $L=\sup(-A)$ è il <em>minimo</em> dei maggioranti di $-A$. Contraddizione.</p>
+              <p><strong>Riassunto.</strong> Abbiamo mostrato che $-L$ è minorante di $A$ e che nessun minorante lo supera: quindi è il massimo dei minoranti.</p>
+              <p><strong>Quindi $\inf A = -L = -\sup(-A)$. ∎</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.12</span><span class="badge badge--avanzato">Avanzato</span></div>
+            <p class="esercizio-card__testo">Siano $\emptyset \neq B \subseteq A$ con $A$ limitato superiormente. Dimostra che $\sup B \leq \sup A$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Cosa vogliamo dimostrare.</strong> Che un insieme più piccolo non può avere un confine destro più lontano. In parole povere: se $B$ sta dentro $A$, il muro di $B$ non può stare oltre il muro di $A$.</p>
+              <p><strong>Idea della strategia.</strong> Non serve l'assurdo. Basta far vedere che $\sup A$ è un maggiorante <em>di $B$</em>, e poi usare che $\sup B$ è il <em>minimo</em> dei maggioranti di $B$: un minimo è minore o uguale a ogni elemento del suo insieme, quindi in particolare a $\sup A$.</p>
+              <p><strong>Cosa ci servirà.</strong> L'assioma di completezza (<span class="richiamo" data-sec="4.6">§4.6</span>) per garantire l'esistenza dei due sup, e la definizione di sup come minimo dei maggioranti (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Passo 1 — i due sup esistono.</strong> $A$ è non vuoto (contiene $B$, che è non vuoto) e limitato superiormente per ipotesi. Anche $B$ è non vuoto per ipotesi, ed è limitato superiormente: ogni maggiorante di $A$ è automaticamente maggiorante di $B$, perché gli elementi di $B$ sono anche elementi di $A$. Per l'assioma di completezza esistono $\sup A$ e $\sup B$ in ℝ.</span>
+                <span class="esempio__passo"><strong>Passo 2 — $\sup A$ è maggiorante di $B$.</strong> Ecco la catena, una implicazione per riga:</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+b &amp;\in B &amp;&amp;\text{(prendo un elemento generico di } B\text{)}\\
+b &amp;\in A &amp;&amp;\text{(perché } B\subseteq A\text{)}\\
+b &amp;\le \sup A &amp;&amp;\text{(}\sup A \text{ è maggiorante di } A\text{)}
+\end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo">Vale per ogni $b\in B$, quindi $\sup A$ è un maggiorante di $B$. <em>Cosa abbiamo ottenuto:</em> $\sup A$ appartiene all'insieme dei maggioranti di $B$.</span>
+                <span class="esempio__passo"><strong>Passo 3 — conclusione.</strong> $\sup B$ è il <em>minimo</em> dell'insieme dei maggioranti di $B$, quindi è minore o uguale a ogni suo elemento. Poiché $\sup A$ è uno di quegli elementi (Passo 2), si ha $\sup B\le\sup A$.</span>
+              </p>
+              <p><strong>Riassunto.</strong> Il muro di $A$ funziona anche come muro di $B$; il muro più stretto di $B$ non può quindi essere più lontano. <strong>∎</strong></p>
+            </div></details>
+          </div>
+        </div>
+
+        <h3>Stile esame universitario</h3>
+        <div class="esercizi-grid">
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.13</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Sia $A = \left\{\dfrac{3n+1}{n+1} : n \in \mathbb{N}\right\}$. Determina $\sup A$ e $\inf A$, stabilisci se sono massimo/minimo, e dimostra rigorosamente il valore del $\sup$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Passo 1 — riscrivo il termine generico.</strong> Voglio far comparire il denominatore $n+1$ anche al numeratore. Osservo che $3(n+1)=3n+3$, cioè $2$ in più di $3n+1$; quindi posso scrivere $3n+1=3(n+1)-2$. Sostituisco:</p>
+              <div class="calcolo">$$\begin{aligned}
+\frac{3n+1}{n+1} &amp;= \frac{3(n+1)-2}{n+1} &amp;&amp;\text{(ho scritto } 3n+1 \text{ come } 3(n+1)-2\text{)}\\
+&amp;= \frac{3(n+1)}{n+1}-\frac{2}{n+1} &amp;&amp;\text{(spezzo la frazione sul denominatore comune)}\\
+&amp;= 3-\frac{2}{n+1} &amp;&amp;\text{(semplifico } \tfrac{3(n+1)}{n+1}=3\text{)}
+\end{aligned}$$</div>
+              <p><strong>Passo 2 — guardo i numeri.</strong> Sostituendo $n=0,1,2,3$ ottengo $3-2=1$, $3-1=2$, $3-\frac23=\frac73\approx2{,}33$, $3-\frac12=\frac52=2{,}5$. Crescono, perché al crescere di $n$ la quantità sottratta $\frac{2}{n+1}$ rimpicciolisce. Candidati: $\inf A=1$, $\sup A=3$.</p>
+              <p><strong>Passo 3 — l'estremo inferiore.</strong> Il valore più piccolo si ha con il più piccolo $n$ ammesso, cioè $n=0$, e vale $1$. È minorante (tutti gli altri termini sono più grandi, perché la successione cresce) e appartiene ad $A$: dunque $\inf A=\min A=1$.</p>
+              <p><strong>Passo 4 — condizione (i).</strong> Poiché $n\ge0$ si ha $n+1\ge1\gt0$, quindi $\frac{2}{n+1}\gt0$; togliendo una quantità positiva a $3$ si ottiene meno di $3$. Dunque $3-\frac{2}{n+1}\lt3$ per ogni $n$, e $3$ è maggiorante. ✓</p>
+              <p><strong>Passo 5 — condizione (ii).</strong> Fisso $\varepsilon\gt0$ e risolvo rispetto a $n$:</p>
+              <div class="calcolo">$$\begin{aligned}
+3-\frac{2}{n+1} &amp;\gt 3-\varepsilon &amp;&amp;\text{(cosa voglio)}\\
+-\frac{2}{n+1} &amp;\gt -\varepsilon &amp;&amp;\text{(sottraggo 3 a entrambi i membri)}\\
+\frac{2}{n+1} &amp;\lt \varepsilon &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
+2 &amp;\lt \varepsilon\,(n+1) &amp;&amp;\text{(moltiplico per } n+1\gt0\text{: verso invariato)}\\
+\frac{2}{\varepsilon} &amp;\lt n+1 &amp;&amp;\text{(divido per } \varepsilon\gt0\text{: verso invariato)}\\
+\frac{2}{\varepsilon}-1 &amp;\lt n &amp;&amp;\text{(sottraggo 1 a entrambi i membri)}
+\end{aligned}$$</div>
+              <p>Un naturale $n$ più grande di $\frac{2}{\varepsilon}-1$ esiste sempre (proprietà di Archimede, <span class="richiamo" data-sec="4.7">§4.7</span>). ✓ Valgono (i) e (ii), quindi per il Teorema 2 si ha $\sup A=3$. Non è massimo: servirebbe $\frac{2}{n+1}=0$, impossibile.</p>
+              <p><strong>Controllo numerico.</strong> Con $\varepsilon=0{,}2$ la condizione dà $n\gt\frac{2}{0{,}2}-1=10-1=9$: prendo $n=10$ e ottengo $3-\frac{2}{11}\approx2{,}818$, maggiore di $3-0{,}2=2{,}8$. ✓</p>
+              <p><strong>$\inf A = \min A = 1$; $\ \sup A = 3$ (non raggiunto, quindi niente massimo).</strong></p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.14</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Spiega rigorosamente perché $A = \{x \in \mathbb{Q} : x^2 &lt; 2\}$ non ammette estremo superiore in ℚ ma lo ammette in ℝ, collegando il fatto all'irrazionalità di $\sqrt 2$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p>La risposta si costruisce in quattro blocchi. Li scriviamo nell'ordine in cui vanno esposti all'esame.</p>
+              <p><strong>Blocco 1 — $A$ soddisfa le ipotesi dell'assioma.</strong> È non vuoto, perché $1\in A$:</p>
+              <div class="calcolo">$$\begin{aligned}
+1 &amp;\in \mathbb{Q} &amp;&amp;\text{(}1=\tfrac11\text{ è una frazione di interi)}\\
+1^2 = 1 &amp;\lt 2 &amp;&amp;\text{(condizione soddisfatta)}
+\end{aligned}$$</div>
+              <p>Ed è limitato superiormente, perché $2$ è un maggiorante: se fosse $x\gt2$ con $x\in A$, moltiplicando $x\gt2$ per $x\gt0$ si otterrebbe $x^2\gt2x\gt4$, in contrasto con $x^2\lt2$ (conto completo in <span class="richiamo" data-sec="4.9">§4.9</span>).</p>
+              <p><strong>Blocco 2 — in ℝ il sup esiste e vale $\sqrt2$.</strong> Le due ipotesi dell'assioma di completezza (<span class="richiamo" data-sec="4.6">§4.6</span>) sono soddisfatte, quindi $\sup A$ esiste ed è un numero reale. Il suo valore è il numero positivo il cui quadrato vale $2$, cioè $\sqrt2$: infatti gli elementi di $A$ si avvicinano a $\sqrt2$ da sotto e i maggioranti da sopra, come mostra la costruzione decimale di <span class="richiamo" data-sec="4.6">§4.6</span>.</p>
+              <p><strong>Blocco 3 — in ℚ il sup non esiste.</strong> Il candidato sarebbe $\sqrt2$, ma $\sqrt2\notin\mathbb{Q}$ (dimostrato in <a href="../parte0-prerequisiti/01-insiemi-logica-numeri.html">Parte 0, cap. 1</a>). E non c'è nessun altro candidato: la Proposizione 5 della sezione <a href="#dimostrazioni">Dimostrazioni</a> costruisce esplicitamente, dato un maggiorante razionale $s$, un maggiorante razionale $s'\lt s$ tramite la formula $s'=\frac{2s+2}{s+2}$. Quindi i maggioranti razionali non hanno minimo, e l'estremo superiore è per definizione il minimo dei maggioranti: in ℚ non esiste.</p>
+              <p><strong>Blocco 4 — il collegamento con l'irrazionalità di $\sqrt2$.</strong> Il punto verso cui tutto converge è proprio il numero il cui quadrato fa $2$. Se quel numero fosse razionale, sarebbe lui il sup in ℚ e ℚ si comporterebbe bene. È esattamente la sua irrazionalità a lasciare il posto vuoto: lì ℚ ha un buco, e la completezza di ℝ è la proprietà che lo tappa.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.15</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Enuncia con precisione l'assioma di completezza di ℝ e discuti perché entrambe le ipotesi ("non vuoto" e "limitato superiormente") sono necessarie, con un controesempio per ciascuna.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Enunciato:</strong> ogni sottoinsieme di ℝ non vuoto e limitato superiormente ammette estremo superiore in ℝ. In simboli:</p>
+              <div class="formula-block">$$A\subseteq\mathbb{R},\quad A\neq\varnothing,\quad A \text{ limitato superiormente}\ \Longrightarrow\ \exists\,\sup A\in\mathbb{R}$$</div>
+              <p><strong>Controesempio per l'ipotesi "limitato superiormente".</strong> Prendo $A=\mathbb{N}$. È non vuoto (contiene $0$), quindi la prima ipotesi è soddisfatta; ma non è limitato superiormente. Verifico che non ha maggioranti: preso un candidato $M$ qualunque, per la proprietà di Archimede (<span class="richiamo" data-sec="4.7">§4.7</span>) esiste $n\in\mathbb{N}$ con $n\gt M$, e quell'$n$ smentisce il candidato. Non esistendo maggioranti, non c'è nessun insieme di cui prendere il minimo: $\sup\mathbb{N}$ non è un numero reale. Si scrive $\sup\mathbb{N}=+\infty$, che è una notazione, non un numero.</p>
+              <p><strong>Controesempio per l'ipotesi "non vuoto".</strong> Prendo $A=\varnothing$. È limitato superiormente, anzi lo è in modo estremo: <em>ogni</em> numero reale è maggiorante dell'insieme vuoto. Il motivo è logico: la condizione "$a\le M$ per ogni $a\in A$" non ha nessun elemento da controllare, quindi è vera a vuoto (Parte 0, cap. 1, quantificatori). L'insieme dei maggioranti è allora tutto ℝ, che non ha minimo (per ogni reale ce n'è uno più piccolo). Quindi $\sup\varnothing$ non esiste.</p>
+              <p><strong>Conclusione.</strong> Le due ipotesi servono per due motivi diversi: "limitato superiormente" garantisce che l'insieme dei maggioranti <em>non sia vuoto</em>; "non vuoto" garantisce che l'insieme dei maggioranti <em>non sia troppo grande</em>, cioè che abbia un bordo sinistro. Entrambe sono indispensabili.</p>
+            </div></details>
+          </div>
+
+          <div class="esercizio-card">
+            <div class="esercizio-card__head"><span class="titolo">Esercizio 1.16</span><span class="badge badge--esame">Esame</span></div>
+            <p class="esercizio-card__testo">Siano $A, B$ sottoinsiemi non vuoti di ℝ, entrambi limitati superiormente. Dimostra che $\sup(A \cup B) = \max\{\sup A,\ \sup B\}$.</p>
+            <details class="soluzione"><summary></summary><div class="soluzione__corpo">
+              <p><strong>Cosa vogliamo dimostrare.</strong> Che unendo due insiemi il confine destro dell'unione è il più lontano dei due confini. È intuitivo; il lavoro sta nello scriverlo con le due condizioni della caratterizzazione operativa.</p>
+              <p><strong>Idea della strategia.</strong> Usiamo la caratterizzazione operativa (Teorema 2, sezione <a href="#dimostrazioni">Dimostrazioni</a>) applicata all'insieme $A\cup B$ e al candidato $M=\max\{\sup A,\sup B\}$: verifichiamo la (i) e poi la (ii), una alla volta. Per non scrivere due volte le stesse cose, diamo un nome ai due sup e supponiamo di sapere quale dei due è il maggiore.</p>
+              <p><strong>Cosa ci servirà.</strong> L'assioma di completezza (<span class="richiamo" data-sec="4.6">§4.6</span>) per l'esistenza dei sup, la caratterizzazione operativa (Teorema 2) e la definizione di unione: $x\in A\cup B$ significa "$x\in A$ oppure $x\in B$".</p>
+              <p class="esempio__passi">
+                <span class="esempio__passo"><strong>Passo 0 — nomi e ipotesi.</strong> Poniamo $\alpha=\sup A$ e $\beta=\sup B$ (esistono per l'assioma di completezza: entrambi gli insiemi sono non vuoti e limitati superiormente) e $M=\max\{\alpha,\beta\}$. Supponiamo $\alpha\le\beta$, cioè $M=\beta$: è lecito, perché se fosse il contrario basterebbe scambiare i nomi di $A$ e $B$ e la dimostrazione resterebbe identica.</span>
+                <span class="esempio__passo"><strong>Passo 1 — condizione (i): $M$ è maggiorante di $A\cup B$.</strong> Prendo $x\in A\cup B$. Per definizione di unione ci sono due casi, e li tratto separatamente:</span>
+              </p>
+              <div class="calcolo">$$\begin{aligned}
+\text{se } x\in A:\quad x &amp;\le \alpha \le \beta = M &amp;&amp;\text{(}\alpha \text{ maggiorante di } A\text{, poi } \alpha\le\beta \text{ dal Passo 0)}\\
+\text{se } x\in B:\quad x &amp;\le \beta = M &amp;&amp;\text{(}\beta \text{ maggiorante di } B\text{)}
+\end{aligned}$$</div>
+              <p class="esempio__passi">
+                <span class="esempio__passo">In entrambi i casi $x\le M$, quindi $M$ è maggiorante di $A\cup B$. ✓</span>
+                <span class="esempio__passo"><strong>Passo 2 — condizione (ii).</strong> Fisso $\varepsilon\gt0$ e devo trovare un elemento di $A\cup B$ maggiore di $M-\varepsilon$. Poiché $M=\beta=\sup B$, applico la condizione (ii) all'insieme $B$: esiste $b\in B$ con $b\gt\beta-\varepsilon=M-\varepsilon$. E $b\in B$ implica $b\in A\cup B$, perché $B$ è contenuto nell'unione. ✓</span>
+                <span class="esempio__passo"><strong>Passo 3 — conclusione.</strong> Valgono (i) e (ii), quindi per il Teorema 2 il numero $M$ è l'estremo superiore di $A\cup B$.</span>
+              </p>
+              <p><strong>Riassunto.</strong> Il più grande dei due sup fa da muro per entrambi gli insiemi, quindi per l'unione; e l'insieme che lo ha generato continua ad avvicinarglisi quanto si vuole, quindi non si può abbassare.</p>
+              <p><strong>Perciò $\sup(A \cup B) = M = \max\{\sup A, \sup B\}$. ∎</strong></p>
+            </div></details>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="quiz">
+        <h2 class="section__title"><span class="emoji">🧠</span> Quiz di autoverifica</h2>
+        <div class="quiz-block">
+          <div class="quiz-block__head"><h3 class="mt-0 mb-0">Metti alla prova la tua comprensione</h3><span class="quiz-score" data-quiz-score>Punteggio: 0/0</span></div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">1. (Scelta multipla) Quanto vale $\sup(0,1)$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$0$</button>
+              <button class="quiz-option" data-correct="true">$1$</button>
+              <button class="quiz-option" data-correct="false">$0{,}999\ldots$ (un numero minore di 1)</button>
+              <button class="quiz-option" data-correct="false">Non esiste</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$1$ è maggiorante e nessun numero più piccolo lo è (per ogni $\varepsilon$ c'è un punto di $(0,1)$ oltre $1-\varepsilon$). Il massimo però non esiste, perché $1 \notin (0,1)$.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">2. (Scelta multipla) Quale insieme ha estremo superiore ma <strong>non</strong> ha massimo?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$\{1,2,3\}$</button>
+              <button class="quiz-option" data-correct="false">$[0,1]$</button>
+              <button class="quiz-option" data-correct="true">$[0,1)$</button>
+              <button class="quiz-option" data-correct="false">$\{-5\}$</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>$[0,1)$ ha $\sup = 1$ ma $1 \notin [0,1)$, quindi niente massimo. Gli altri sono chiusi a destra o finiti, quindi il massimo esiste e coincide col sup.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">3. (Scelta multipla) L'assioma di completezza di ℝ afferma che:</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">ogni insieme di numeri reali ha un massimo</button>
+              <button class="quiz-option" data-correct="true">ogni sottoinsieme non vuoto e limitato superiormente ammette estremo superiore in ℝ</button>
+              <button class="quiz-option" data-correct="false">tra due reali ce n'è sempre un terzo</button>
+              <button class="quiz-option" data-correct="false">ogni numero reale è razionale o irrazionale</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>È esattamente questo: non vuoto + limitato superiormente ⇒ esiste il sup in ℝ. La densità (terza opzione) vale anche in ℚ e non basta a garantire la completezza.</div>
+          </div>
+
+          <div class="quiz-question" data-type="mc">
+            <p class="quiz-question__testo">4. (Scelta multipla) Qual è l'estremo inferiore di $A = \left\{\dfrac1n : n \geq 1\right\}$?</p>
+            <div class="quiz-options">
+              <button class="quiz-option" data-correct="false">$1$</button>
+              <button class="quiz-option" data-correct="true">$0$</button>
+              <button class="quiz-option" data-correct="false">$-1$</button>
+              <button class="quiz-option" data-correct="false">non esiste</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>I termini $\tfrac1n$ decrescono verso $0$ senza mai raggiungerlo: $0$ è il più grande dei minoranti, quindi $\inf A = 0$ (ma non è minimo, perché $0 \notin A$).</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">5. (Vero/Falso) Se un insieme ha massimo, allora il suo estremo superiore coincide col massimo.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="true">Vero</button>
+              <button class="quiz-option" data-correct="false">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Vero: il massimo è un maggiorante che appartiene all'insieme, e nessun maggiorante può essere più piccolo di un elemento dell'insieme, quindi è il minimo dei maggioranti, cioè il sup.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">6. (Vero/Falso) L'estremo superiore di un insieme appartiene sempre all'insieme.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: $\sup(0,1) = 1 \notin (0,1)$. Il sup può stare fuori dall'insieme; quando invece vi appartiene, è anche il massimo.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">7. (Vero/Falso) Ogni insieme limitato di numeri reali possiede massimo e minimo.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: $(0,1)$ è limitato ma non ha né massimo né minimo. La limitatezza garantisce (in ℝ) sup e inf, non max e min.</div>
+          </div>
+
+          <div class="quiz-question" data-type="tf">
+            <p class="quiz-question__testo">8. (Vero/Falso) L'insieme $\{x \in \mathbb{Q} : x^2 &lt; 2\}$ possiede estremo superiore in ℚ.</p>
+            <div class="quiz-options quiz-tf">
+              <button class="quiz-option" data-correct="false">Vero</button>
+              <button class="quiz-option" data-correct="true">Falso</button>
+            </div>
+            <div class="quiz-feedback" data-feedback>Falso: il candidato al sup è $\sqrt 2$, che non è razionale. I maggioranti razionali non hanno minimo, quindi non c'è sup in ℚ. In ℝ, invece, $\sup = \sqrt 2$: è la non-completezza di ℚ.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="superiore|estremo superiore|sup">
+            <p class="quiz-question__testo">9. (Completamento) Il più piccolo dei maggioranti di un insieme si chiama estremo ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Il minimo dei maggioranti è l'estremo superiore ($\sup$); simmetricamente, il massimo dei minoranti è l'estremo inferiore.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="completezza|assioma di completezza">
+            <p class="quiz-question__testo">10. (Completamento) La proprietà che distingue ℝ da ℚ si chiama assioma di ______.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>L'assioma di completezza (o dell'estremo superiore): garantisce che ℝ non abbia "buchi" come invece accade in ℚ.</div>
+          </div>
+
+          <div class="quiz-question" data-type="fill" data-answer="maggiorante">
+            <p class="quiz-question__testo">11. (Completamento) Un numero maggiore o uguale a ogni elemento di $A$ si chiama ______ di $A$.</p>
+            <div class="quiz-fill"><input type="text" placeholder="Scrivi la risposta"><button class="btn btn--sm btn--primary" data-verifica>Verifica</button></div>
+            <div class="quiz-feedback" data-feedback>Si chiama maggiorante. Non deve appartenere ad $A$; il più piccolo dei maggioranti è l'estremo superiore.</div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">12. (Domanda aperta) Spiega con parole tue la differenza tra massimo ed estremo superiore, usando un esempio concreto.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: il massimo è il più grande elemento che <em>appartiene</em> all'insieme, mentre l'estremo superiore è il più piccolo dei maggioranti, che può anche stare fuori dall'insieme. Nell'insieme $(0,1)$ non esiste massimo (per ogni $x &lt; 1$ ce n'è uno più grande ancora dentro), ma esiste l'estremo superiore, $1$, che fa da "muro" pur non appartenendo all'insieme. Quando il sup appartiene all'insieme, allora coincide col massimo (es. in $[0,1]$ il sup è $1$ ed è anche il massimo).</div>
+            </div>
+          </div>
+
+          <div class="quiz-question" data-type="open">
+            <p class="quiz-question__testo">13. (Domanda aperta) Perché si dice che "ℚ ha un buco in $\sqrt 2$"? Collega la risposta all'assioma di completezza.</p>
+            <div class="quiz-open">
+              <textarea placeholder="Scrivi qui il tuo ragionamento..."></textarea>
+              <button class="btn btn--sm btn--ghost" data-mostra-modello>Mostra risposta modello</button>
+              <div class="quiz-feedback info" data-modello>Risposta modello: l'insieme $\{x \in \mathbb{Q} : x^2 &lt; 2\}$ è non vuoto e limitato superiormente, quindi "dovrebbe" avere un estremo superiore. Quel confine è il numero il cui quadrato vale $2$, cioè $\sqrt 2$, che però non è razionale. Dentro ℚ, i maggioranti razionali si stringono verso $\sqrt 2$ senza che esista un maggiorante minimo: proprio lì manca un numero, c'è un "buco". L'assioma di completezza è la proprietà, posseduta da ℝ e non da ℚ, che garantisce l'esistenza dell'estremo superiore per ogni insieme non vuoto e limitato superiormente: in ℝ quel buco è riempito da $\sqrt 2$, e ℝ risulta "senza buchi".</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <nav class="prev-next-nav">
+        <a class="prev" href="../parte0-prerequisiti/09-funzioni-elementari-grafici.html"><span class="dir">← Capitolo precedente</span><strong>Funzioni elementari e grafici</strong></a>
+        <a class="next" href="02-valore-assoluto-topologia.html"><span class="dir">Capitolo successivo →</span><strong>Valore assoluto e topologia della retta</strong></a>
+      </nav>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container flex items-center" style="justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+    <span>Analisi 1 &amp; 2 — Il Manuale Interattivo</span>
+    <span><a href="../index.html">Torna all'indice generale</a> · <a href="../glossario.html">Glossario</a></span>
+  </div>
+</footer>
+
+<script src="../assets/vendor/katex/katex.min.js"></script>
+<script src="../assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script src="../assets/js/glossary-data.js"></script>
+<script src="../assets/js/main.js"></script>
+<script src="../assets/js/interactive.js"></script>
+</body>
+</html>
