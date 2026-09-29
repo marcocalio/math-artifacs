@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Salite, cime e corde tese</title>
+<meta name="description" content="Fermat, Rolle, Lagrange e de l’Hôpital spiegati con un sentiero di montagna: grafici da muovere e il perché di ogni passaggio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&amp;family=Caveat:wght@500;700&amp;family=STIX+Two+Text:ital,wght@0,400;1,400;1,600&amp;display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --sheet:#f7f9fc;
+  --sheet-2:#ffffff;
+  --grid:rgba(70,110,175,.13);
+  --ink:#1b2533;
+  --pencil:#667085;
+  --rule:rgba(27,37,51,.16);
+  --blue:#1f4fd1;
+  --red:#d0342c;
+  --green:#14875a;
+  --flat:#d99a00;
+  --hl-yellow:rgba(255,214,0,.35);
+  --hl-green:rgba(20,135,90,.10);
+  --hill:rgba(31,79,209,.07);
+  --tri:rgba(208,52,44,.09);
+  --margin:rgba(208,52,44,.42);
+  --f-hand:"Caveat","Segoe Print","Bradley Hand","Chalkboard SE",cursive;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --f-math:"STIX Two Text","Cambria Math",Cambria,"Times New Roman",Times,serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --sheet:#1c2925;
+    --sheet-2:#22322d;
+    --grid:rgba(236,242,236,.06);
+    --ink:#edf2ec;
+    --pencil:#a9b8b0;
+    --rule:rgba(237,242,236,.18);
+    --blue:#9dc0ff;
+    --red:#ff968b;
+    --green:#8ee2b3;
+    --flat:#ffd866;
+    --hl-yellow:rgba(255,216,102,.22);
+    --hl-green:rgba(142,226,179,.10);
+    --hill:rgba(157,192,255,.10);
+    --tri:rgba(255,150,139,.13);
+    --margin:rgba(255,150,139,.35);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --sheet:#1c2925;
+  --sheet-2:#22322d;
+  --grid:rgba(236,242,236,.06);
+  --ink:#edf2ec;
+  --pencil:#a9b8b0;
+  --rule:rgba(237,242,236,.18);
+  --blue:#9dc0ff;
+  --red:#ff968b;
+  --green:#8ee2b3;
+  --flat:#ffd866;
+  --hl-yellow:rgba(255,216,102,.22);
+  --hl-green:rgba(142,226,179,.10);
+  --hill:rgba(157,192,255,.10);
+  --tri:rgba(255,150,139,.13);
+  --margin:rgba(255,150,139,.35);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{
+  margin:0;
+  background-color:var(--sheet);
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:24px 24px;
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:1.125rem;
+  line-height:1.6;
+}
+::selection{background:var(--hl-yellow)}
+img,svg{max-width:100%}
+a{color:var(--blue);text-decoration-thickness:1.5px;text-underline-offset:4px}
+strong{font-weight:700}
+p{margin:0 0 1em}
+p,li,dd{max-width:68ch;text-wrap:pretty}
+h1,h2,h3{text-wrap:balance}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:3px}
+
+/* Pagina: foglio a quadretti con il margine rosso */
+.page{max-width:780px;margin:0 auto;padding:22px 20px 88px;position:relative}
+@media (min-width:820px){
+  .page{max-width:900px;padding-left:112px;padding-right:40px}
+  .page::before{content:"";position:absolute;top:0;bottom:0;left:84px;width:2px;background:var(--margin)}
+}
+
+/* Apertura */
+.hero h1{font-family:var(--f-hand);font-weight:700;font-size:clamp(3.4rem,12vw,6.2rem);line-height:.9;color:var(--blue);margin:.2em 0 .3em}
+.lead{font-size:1.25rem;line-height:1.5;max-width:34em;margin:0 0 1.2em}
+.hero-fig{display:block;width:100%;height:auto;margin:0 0 .4em}
+.hero .lbl{stroke:var(--sheet)}
+.hero .lbl.m{font-size:26px}
+.hero .lbl.hand{font-size:27px}
+.hero .emoji{font-size:34px}
+.hero-draw{stroke-dasharray:1;stroke-dashoffset:1;animation:draw 1.8s cubic-bezier(.45,.05,.3,1) .25s forwards}
+.hero-late{opacity:0;animation:appear .7s ease-out 1.95s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes appear{to{opacity:1}}
+
+.intro{margin-top:1.2em}
+.qs{margin:1.3em 0 1.5em}
+.qs dt{font-family:var(--f-hand);font-weight:700;font-size:1.7rem;line-height:1.1;color:var(--blue);margin-top:.55em}
+.qs dd{margin:.1em 0 0}
+.chain{display:flex;flex-wrap:wrap;align-items:baseline;gap:.05em .5em;font-family:var(--f-hand);font-weight:700;font-size:1.65rem;line-height:1.35;margin:1em 0 0}
+.chain a{color:var(--blue)}
+.chain .to{font-family:var(--f-math);font-weight:400;font-size:.78em;color:var(--pencil)}
+.chain-note{color:var(--pencil);font-size:1rem}
+
+/* Titoli dei capitoli, numero appeso nel margine */
+h2{font-family:var(--f-hand);font-weight:700;font-size:2.75rem;line-height:1.05;margin:0 0 .55em}
+h2 .m,h3 .m{font-size:.78em;font-weight:400}
+.ch{margin-top:4.2em}
+.ch-head{position:relative}
+.num{display:block;font-family:var(--f-hand);font-weight:700;color:var(--red);font-size:2.8rem;line-height:1;margin-bottom:.05em}
+@media (min-width:820px){
+  .num{position:absolute;left:-112px;top:-.1em;width:72px;text-align:right;font-size:3.9rem;margin:0}
+}
+h3.sub{font-family:var(--f-hand);font-weight:700;font-size:2rem;line-height:1.1;margin:1.9em 0 .45em}
+
+/* Glossario */
+.gloss{display:grid;grid-template-columns:minmax(7em,max-content) minmax(0,1fr);gap:.6em 1.4em;margin:1.2em 0 0}
+.gloss dt{font-weight:700}
+.gloss dd{margin:0}
+
+/* Elenchi */
+ul.plain{padding-left:1.2em;margin:0 0 1em}
+ul.plain>li{margin:0 0 .55em}
+ul.plain>li::marker{color:var(--pencil)}
+ol.steps,ol.cases,ol.recap{list-style:none;padding:0;margin:1.1em 0 1.2em;counter-reset:n}
+ol.steps>li,ol.cases>li,ol.recap>li{counter-increment:n;position:relative;padding-left:2.3em;margin:0 0 .75em}
+ol.steps>li::before,ol.cases>li::before,ol.recap>li::before{content:counter(n);position:absolute;left:0;top:-.3em;width:1.4em;text-align:center;font-family:var(--f-hand);font-weight:700;font-size:1.8rem;line-height:1.3;color:var(--blue)}
+ol.recap>li::before{color:var(--red)}
+.no{color:var(--red);font-weight:700}
+.yes{color:var(--green);font-weight:700}
+
+/* Matematica */
+.m{font-family:var(--f-math);font-style:italic;font-size:1.1em;line-height:1;white-space:nowrap}
+.eq{font-family:var(--f-math);font-style:italic;font-size:1.45rem;line-height:1.35;text-align:center;white-space:nowrap;overflow-x:auto;overflow-y:hidden;padding:.45em .25em;margin:.9em 0}
+.eq .m{font-size:1em}
+.eq .w{font-family:var(--f-body);font-style:normal;font-size:.72em}
+.eq .w i{font-family:var(--f-math);font-style:italic;font-size:1.25em}
+.up{font-style:normal}
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;margin:0 .12em}
+.frac>span{display:block;padding:0 .3em}
+.frac>span:first-child{border-bottom:1.5px solid var(--ink);padding-bottom:.1em}
+.frac>span:last-child{padding-top:.08em}
+.lim{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;font-style:normal;line-height:1;margin-right:.2em}
+.lim small{font-size:.58em;font-style:italic;margin-top:.2em}
+.cancel{text-decoration:line-through;text-decoration-color:var(--red);text-decoration-thickness:2px}
+.c-red{color:var(--red)}
+.c-blue{color:var(--blue)}
+
+/* Riquadri: enunciato, perché, attenzione, curiosità */
+.formal{position:relative;margin:2.4em 0 2em;padding:1.45em 1.3em 1.05em;border:1.5px solid var(--ink);border-radius:3px;background:var(--sheet-2)}
+.formal>.tag{position:absolute;top:-.62em;left:.9em;padding:0 .45em;font-family:var(--f-hand);font-weight:700;font-size:1.5rem;line-height:1.2;color:var(--ink);background:linear-gradient(to bottom,transparent calc(50% - 3px),var(--sheet-2) calc(50% - 3px))}
+.why{margin:2em 0;padding:1.15em 1.3em 1.1em;background:var(--hl-green);border-radius:18px 6px 20px 5px/7px 18px 6px 20px}
+.why>h3,.warn>h3{font-family:var(--f-hand);font-weight:700;font-size:1.8rem;line-height:1.1;margin:0 0 .4em}
+.why>h3{color:var(--green)}
+.warn{margin:2em 0;padding:.1em 0 .1em 1.1em;border-left:4px solid var(--red)}
+.warn>h3{color:var(--red)}
+details.curious{margin:2em 0;padding:.8em 1.15em;border:1.5px dashed var(--pencil);border-radius:10px}
+details.curious>summary{font-family:var(--f-hand);font-weight:700;font-size:1.6rem;line-height:1.25;cursor:pointer}
+details.curious[open]>summary{margin-bottom:.45em}
+.why>:last-child,.warn>:last-child,.formal>:last-child,details.curious>:last-child{margin-bottom:0}
+
+/* Grafici interattivi */
+.demo{margin:1.8em 0 2em;padding:12px 14px 14px;background:var(--sheet-2);border:1px solid var(--rule);border-radius:6px}
+.demo svg{display:block;width:100%;height:auto}
+.controls{display:flex;flex-wrap:wrap;align-items:center;gap:.55em 1em;margin-top:.75em}
+.controls label{font-weight:700;font-size:1rem}
+.controls input[type=range]{flex:1 1 240px;min-width:180px;height:30px;margin:0;accent-color:var(--blue);cursor:pointer}
+.btns{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.6em}
+.btn{font:inherit;font-size:.98rem;font-weight:700;line-height:1.2;padding:.5em 1.05em;color:var(--ink);background:transparent;border:1.5px solid var(--ink);border-radius:999px;cursor:pointer}
+.btn:hover{background:var(--hl-yellow)}
+.btn:active{transform:translateY(1px)}
+.cap{min-height:3.3em;margin:.75em 0 0;font-size:1.02rem;line-height:1.5;max-width:none}
+.legend{display:flex;flex-wrap:wrap;gap:.3em 1.4em;margin:.55em 0 0;font-size:.94rem;line-height:1.4;color:var(--pencil);max-width:none}
+.sw{display:inline-block;width:26px;border-top:3px solid var(--ink);vertical-align:middle;margin-right:.45em;position:relative;top:-2px}
+.sw-red{border-color:var(--red)}
+.sw-green{border-color:var(--green)}
+.sw-amber{border-color:var(--flat)}
+.sw-blue{border-color:var(--blue)}
+.sw-ink{border-top-width:2px}
+.sw-dash{border-top:2px dashed var(--pencil)}
+.sw-gap{border-top:2px dotted var(--pencil)}
+.zoom-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.zoom-pair svg{border:1px solid var(--rule);border-radius:4px}
+.cmp{display:grid;grid-template-columns:minmax(0,17em) minmax(0,1fr);align-items:center;gap:.55em 1em;margin-top:.9em;font-size:.96rem}
+.track{height:12px;border-radius:6px;background:var(--rule);overflow:hidden}
+.fill{height:100%;width:0;border-radius:6px}
+#barR{background:var(--flat)}
+#barS{background:var(--green)}
+
+/* Controesempi piccoli */
+.minis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px;margin:1.2em 0 1.8em}
+.mini{margin:0;padding:8px 10px 12px;background:var(--sheet-2);border:1px solid var(--rule);border-radius:6px}
+.mini svg{display:block;width:100%;height:auto}
+.mini figcaption{font-size:.96rem;line-height:1.45;margin-top:.35em}
+.mini figcaption b{display:block;font-family:var(--f-hand);font-weight:700;font-size:1.5rem;line-height:1.1;margin-bottom:.2em}
+
+/* Disegni SVG */
+svg text{font-family:var(--f-body)}
+.curve,.curve-g{fill:none;stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.curve{stroke:var(--blue)}
+.curve-g{stroke:var(--red)}
+.hill{fill:var(--hill);stroke:none}
+.axis{stroke:var(--pencil);stroke-opacity:.55;stroke-width:1.5}
+.cross{stroke-opacity:.3;stroke-dasharray:3 6}
+.secant{stroke:var(--red);stroke-width:2.6;stroke-linecap:round}
+.tangent{stroke:var(--green);stroke-width:3;stroke-linecap:round}
+.ghost{stroke:var(--green);stroke-width:2;stroke-dasharray:7 7;opacity:.85}
+.ghost-f,.ghost-g{stroke-width:1.6;stroke-dasharray:5 6;opacity:.7}
+.ghost-f{stroke:var(--blue)}
+.ghost-g{stroke:var(--red)}
+.slope-up,.slope-down,.flat{stroke-width:3.6;stroke-linecap:round}
+.slope-up{stroke:var(--green)}
+.slope-down{stroke:var(--red)}
+.flat{stroke:var(--flat)}
+.chord{stroke:var(--ink);stroke-width:2.2;stroke-linecap:round}
+.gap{stroke:var(--pencil);stroke-width:1.6;stroke-dasharray:3 4}
+.gap.strong{stroke:var(--flat);stroke-width:2.6;stroke-dasharray:none}
+.same{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:6 6}
+.edge{stroke:var(--pencil);stroke-width:1.5;stroke-dasharray:2 5}
+.dx,.dy{stroke-width:2.4}
+.dx{stroke:var(--blue)}
+.dy{stroke:var(--red)}
+.tri{fill:var(--tri);stroke:none}
+.pt{fill:var(--sheet-2);stroke:var(--ink);stroke-width:2.4}
+.pt-flat{fill:var(--flat);stroke:var(--ink);stroke-width:2}
+.pt-solid{fill:var(--ink);stroke:none}
+.open{fill:var(--sheet-2);stroke:var(--ink);stroke-width:2}
+.bar-f,.bar-g{stroke-width:9;stroke-linecap:round;opacity:.5}
+.bar-f{stroke:var(--blue)}
+.bar-g{stroke:var(--red)}
+.arr-up{fill:var(--green)}
+.arr-down{fill:var(--red)}
+.emoji{font-size:30px;font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif}
+.lbl{fill:var(--ink);font-size:17px;paint-order:stroke;stroke:var(--sheet-2);stroke-width:5px;stroke-linejoin:round}
+.lbl.m{font-family:var(--f-math);font-style:italic;font-size:22px}
+.lbl.hand{font-family:var(--f-hand);font-weight:700;font-size:24px}
+.lbl.soft{fill:var(--pencil)}
+.lbl.g{fill:var(--green)}
+.lbl.r{fill:var(--red)}
+.lbl.b{fill:var(--blue)}
+.zoom .lbl.hand{font-size:26px}
+.mini .lbl.hand{font-size:19px}
+
+@media (max-width:560px){
+  h2{font-size:2.3rem}
+  .eq{font-size:1.2rem}
+  .gloss{grid-template-columns:minmax(0,1fr);gap:0}
+  .gloss dd{margin:0 0 .8em}
+  .cmp{grid-template-columns:minmax(0,1fr);gap:.25em}
+  .cmp .track{margin-bottom:.55em}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .hero-draw{animation:none;stroke-dasharray:none}
+  .hero-late{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+<main class="page">
+
+<header class="hero">
+  <h1>Salite, cime e corde tese</h1>
+  <p class="lead">Fermat, Rolle, Lagrange e de l’Hôpital raccontati con un sentiero di montagna. Niente conti da fare e niente «è così e basta»: ogni regola ha un perché, e lo scopriamo passo dopo passo.</p>
+  <svg id="svgHero" class="hero-fig" viewBox="0 0 680 236" role="img" aria-label="Un sentiero parte dal punto A e arriva al punto B alla stessa altezza. In cima alla collina un omino cammina su un tratto in piano, dove la pendenza f primo vale zero.">
+    <path id="heroHill" class="hill hero-late" d=""/>
+    <line class="same" x1="34" y1="196" x2="646" y2="196"/>
+    <text class="lbl hand soft" x="340" y="224" text-anchor="middle">stessa altezza</text>
+    <path id="heroPath" class="curve hero-draw" pathLength="1" d=""/>
+    <g class="hero-late">
+      <line class="flat" x1="200" y1="68" x2="346" y2="68"/>
+      <text class="emoji" text-anchor="middle" transform="translate(272.6,63) scale(-1,1)">🚶</text>
+      <text class="lbl m" x="306" y="50" text-anchor="start">f′ = 0</text>
+    </g>
+    <circle class="pt" cx="34" cy="196" r="6.5"/>
+    <circle class="pt" cx="646" cy="196" r="6.5"/>
+    <text class="lbl m" x="34" y="226" text-anchor="middle">A</text>
+    <text class="lbl m" x="646" y="226" text-anchor="middle">B</text>
+  </svg>
+</header>
+
+<section class="intro">
+  <p>Immagina di camminare su un sentiero di montagna e di guardarlo di lato. Mentre vai avanti verso destra (è la <span class="m">x</span>) sali e scendi (è la <span class="m">y</span>). In matematica quel sentiero si chiama <strong>grafico di una funzione</strong>, e i quattro teoremi rispondono a domande che si farebbe chiunque, camminando.</p>
+  <dl class="qs">
+    <dt>Fermat</dt>
+    <dd>Quando sono in cima, il sentiero sotto i miei piedi com’è: in salita, in discesa o in piano?</dd>
+    <dt>Rolle</dt>
+    <dd>Se arrivo alla stessa altezza da cui sono partito, sono passato per forza da un tratto in piano?</dd>
+    <dt>Lagrange</dt>
+    <dd>Se in media sono salito con una certa pendenza, c’è stato un momento in cui salivo esattamente con quella?</dd>
+    <dt>de l’Hôpital</dt>
+    <dd>Due sentieri arrivano a zero nello stesso punto: se divido uno per l’altro, cosa succede proprio lì?</dd>
+  </dl>
+  <p>Non sono quattro cose separate: sono una catena. Ognuno si dimostra usando quello prima, e tutti poggiano sullo stesso mattoncino, la pendenza. Si parte da lì.</p>
+  <nav class="chain" aria-label="I capitoli, in ordine">
+    <a href="#c1">Pendenza</a><span class="to" aria-hidden="true">→</span>
+    <a href="#c2">Derivata</a><span class="to" aria-hidden="true">→</span>
+    <a href="#c3">Fermat</a><span class="to" aria-hidden="true">→</span>
+    <a href="#c4">Rolle</a><span class="to" aria-hidden="true">→</span>
+    <a href="#c5">Lagrange</a><span class="to" aria-hidden="true">→</span>
+    <a href="#c6">de l’Hôpital</a>
+  </nav>
+</section>
+
+<section class="ch" id="parole" aria-labelledby="t-parole">
+  <h2 id="t-parole">Prima, le parole difficili</h2>
+  <p>Nei libri le trovi scritte così. Ecco cosa vogliono dire, tradotte in lingua da sentiero.</p>
+  <dl class="gloss">
+    <dt>Funzione</dt>
+    <dd>Una macchinetta: le dai un numero <span class="m">x</span> e lei te ne restituisce un altro, <span class="m">f(x)</span>. Per noi <span class="m">f(x)</span> è l’altezza del sentiero nel punto <span class="m">x</span>.</dd>
+    <dt>Grafico</dt>
+    <dd>Il disegno di tutte le coppie <span class="m">(x, f(x))</span>: il sentiero visto di lato.</dd>
+    <dt>Continua</dt>
+    <dd>Si disegna senza mai staccare la penna dal foglio: niente salti, niente buchi.</dd>
+    <dt>Derivabile</dt>
+    <dd>Liscia: niente spigoli e niente punte. In ogni punto ha una pendenza precisa (nel capitolo 2 vediamo cosa vuol dire davvero).</dd>
+    <dt><span class="m">[a, b]</span></dt>
+    <dd>Il tratto di sentiero che va da <span class="m">a</span> a <span class="m">b</span>, con i due estremi compresi. Parentesi quadre: «la porta è inclusa».</dd>
+    <dt><span class="m">(a, b)</span></dt>
+    <dd>Lo stesso tratto senza i due estremi: solo i punti che stanno dentro.</dd>
+    <dt>Limite</dt>
+    <dd>Dove va a finire un valore quando ti avvicini sempre di più a qualcosa, senza mai arrivarci del tutto. È un «guardare sempre più da vicino».</dd>
+  </dl>
+</section>
+
+<section class="ch" id="c1" aria-labelledby="t-c1">
+  <div class="ch-head"><span class="num" aria-hidden="true">1</span><h2 id="t-c1">La pendenza: perché proprio <span class="m">Δy/Δx</span>?</h2></div>
+  <p>Parti da un punto del sentiero e fai qualche passo in avanti. Rispetto a prima sono cambiate due cose:</p>
+  <ul class="plain">
+    <li><span class="m c-blue">Δx</span> (si legge «delta x») è <strong>quanto sei andato avanti</strong>. La lettera greca <span class="m">Δ</span> in matematica vuol dire semplicemente «di quanto è cambiato».</li>
+    <li><span class="m c-red">Δy</span> è <strong>quanto sei salito</strong>. Se invece sei sceso, è un numero negativo.</li>
+  </ul>
+  <p>Un sentiero è ripido quando sali tanto facendo pochi passi. Per confrontare due sentieri non basta sapere quanto sei salito in tutto: salire di parecchio in tantissimi passi è una passeggiata, salire della stessa altezza in pochissimi passi è una scalata. Quello che conta è <strong>quanto sali per ogni singolo passo in avanti</strong>.</p>
+  <p>E questa è proprio una divisione. Se in <span class="m c-blue">Δx</span> passi sei salito di <span class="m c-red">Δy</span>, dividi la salita in parti uguali tra i passi, e a ciascun passo tocca <span class="m">Δy/Δx</span> di salita. È come dividere le caramelle tra i bambini: <span class="m c-red">Δy</span> caramelle, <span class="m c-blue">Δx</span> bambini, a ognuno ne toccano <span class="m">Δy/Δx</span>.</p>
+  <div class="eq"><span class="w">pendenza</span> = <span class="frac"><span class="c-red">Δy</span><span class="c-blue">Δx</span></span> = <span class="frac"><span class="w">salita</span><span class="w">passi in avanti</span></span></div>
+  <p>Il segno racconta la direzione: pendenza <strong>positiva</strong> vuol dire che sali, <strong>negativa</strong> che scendi, <strong>zero</strong> che sei in piano. Tienilo a mente, perché tutti e quattro i teoremi si reggono su questo segno.</p>
+
+  <figure class="demo">
+    <svg id="svgSlope" role="img" aria-label="Una retta che puoi inclinare, con due triangoli di pendenza: uno piccolo e uno con i lati doppi."></svg>
+    <div class="controls">
+      <label for="inSlope">Inclina la retta</label>
+      <input type="range" id="inSlope" min="-1.1" max="1.1" step="0.01" value="0.55">
+    </div>
+    <p class="cap" id="capSlope" aria-live="polite"></p>
+  </figure>
+
+  <div class="why">
+    <h3>Perché è vero: i due triangoli</h3>
+    <p>Sulla retta ci sono due triangoli, uno piccolo e uno grande. Il grande è la <strong>fotocopia ingrandita</strong> del piccolo: stessi angoli, stessa forma, lati doppi (i matematici dicono <em>triangoli simili</em>). Quindi ha il doppio dei passi <em>e</em> il doppio della salita:</p>
+    <div class="eq"><span class="frac"><span><span class="up">2</span>&#8201;<span class="c-red">Δy</span></span><span><span class="up">2</span>&#8201;<span class="c-blue">Δx</span></span></span> = <span class="frac"><span class="c-red">Δy</span><span class="c-blue">Δx</span></span></div>
+    <p>Se raddoppi sia quello che sta sopra sia quello che sta sotto una divisione, il risultato non cambia: il doppio delle caramelle per il doppio dei bambini, e a ognuno ne tocca la stessa quantità. Per questo una retta ha <strong>una pendenza sola</strong>: comunque scegli i due punti, piccolo o grande che sia il triangolo, la divisione dà sempre lo stesso risultato. Ed è questo che ci permette di dire «la pendenza della retta», al singolare.</p>
+    <p>Vale anche al contrario: due triangoli con lo stesso rapporto tra salita e passi hanno la stessa forma, quindi lo stesso angolo. Stesso <span class="m">Δy/Δx</span> vuol dire stessa inclinazione, e viceversa. Ecco perché quel rapporto misura proprio quanto si inclina il grafico.</p>
+  </div>
+
+  <div class="warn">
+    <h3>Occhio all’ordine: <span class="m">Δy</span> sopra, <span class="m">Δx</span> sotto</h3>
+    <p>È facile confondersi e scrivere <span class="m">Δx/Δy</span>, ma quella è un’altra misura: quanti passi devi fare per ogni gradino di salita. Con lei un sentiero ripidissimo darebbe un numero piccolissimo, e un sentiero in piano ti costringerebbe a dividere per zero, perché lì <span class="m">Δy = 0</span>. Con la salita sopra, invece, più il sentiero è ripido più il numero è grande, e il piano vale esattamente zero. Tutto quello che viene dopo funziona solo con questo ordine.</p>
+  </div>
+
+  <details class="curious">
+    <summary>Due cose che adesso sai spiegare da solo</summary>
+    <p>I cartelli stradali che indicano la pendenza in percentuale fanno esattamente questa divisione: salita diviso strada fatta in avanti, scritta come percentuale. Un numero più grande sul cartello vuol dire più salita per ogni metro di strada.</p>
+    <p>E una parete verticale? Lì sali senza andare avanti neanche di un millimetro: <span class="m">Δx = 0</span>. Dividere per zero non si può, e infatti una parete verticale non ha una pendenza: è «più ripida di qualsiasi numero».</p>
+  </details>
+</section>
+
+<section class="ch" id="c2" aria-labelledby="t-c2">
+  <div class="ch-head"><span class="num" aria-hidden="true">2</span><h2 id="t-c2">La derivata: la pendenza sotto i piedi</h2></div>
+  <p>Una retta ha la stessa pendenza dappertutto. Un sentiero vero invece curva: qui sale forte, là è quasi in piano, poi scende. Allora ha senso chiedersi: <strong>quanto è ripido proprio qui, nel punto dove ho i piedi?</strong></p>
+  <p>C’è un problema. Per fare <span class="m">Δy/Δx</span> servono due punti, e qui ne abbiamo uno solo. Con un punto solo non ti sposti: <span class="m">Δx = 0</span> e <span class="m">Δy = 0</span>, e <span class="m">0/0</span> non vuol dire niente.</p>
+  <p>Il trucco è questo. Prendi un secondo punto <span class="m">B</span> un po’ più avanti di <span class="m">A</span> e traccia la retta che li unisce: si chiama <strong>secante</strong>, e la sua pendenza la sai calcolare, perché i punti sono due. Poi avvicina <span class="m">B</span> ad <span class="m">A</span>, sempre di più. La secante gira, gira… e a un certo punto smette di cambiare: si assesta su una posizione precisa. Quella retta è la <strong>tangente</strong> in <span class="m">A</span>, e la sua pendenza è la pendenza del sentiero proprio lì.</p>
+
+  <figure class="demo">
+    <svg id="svgSec" role="img" aria-label="Un sentiero curvo con un punto fisso A e un punto B che si avvicina ad A. La retta rossa che li unisce ruota fino a coincidere con la tangente verde in A."></svg>
+    <p class="legend"><span><span class="sw sw-red"></span>secante <span class="m">AB</span></span><span><span class="sw sw-green"></span>tangente in <span class="m">A</span></span></p>
+    <div class="controls">
+      <label for="inSec">Avvicina <span class="m">B</span> ad <span class="m">A</span></label>
+      <input type="range" id="inSec" min="0" max="1" step="0.001" value="0">
+    </div>
+    <p class="cap" id="capSec" aria-live="polite"></p>
+  </figure>
+
+  <div class="formal">
+    <span class="tag">Detto da grandi</span>
+    <p>La <strong>derivata</strong> di <span class="m">f</span> nel punto <span class="m">a</span> è la pendenza della tangente, cioè il valore a cui si avvicina <span class="m">Δy/Δx</span> quando <span class="m">Δx</span> diventa sempre più piccolo:</p>
+    <div class="eq">f′(a) = <span class="lim">lim<small>Δx → 0</small></span><span class="frac"><span class="c-red">Δy</span><span class="c-blue">Δx</span></span> = <span class="lim">lim<small>Δx → 0</small></span><span class="frac"><span class="c-red">f(a + Δx) − f(a)</span><span class="c-blue">Δx</span></span></div>
+    <p>Si legge «<span class="m">f</span> primo di <span class="m">a</span>», e «lim» è il «guardare sempre più da vicino» del glossario. Sopra la riga c’è proprio <span class="m">Δy</span>: l’altezza di <span class="m">B</span> meno l’altezza di <span class="m">A</span>.</p>
+  </div>
+
+  <div class="why">
+    <h3>Perché la tangente è davvero la pendenza sotto i piedi</h3>
+    <p>Fai uno zoom sul sentiero, sempre più forte, attorno al punto <span class="m">A</span>. Più ingrandisci, più la curva sembra dritta: come la Terra, che è una palla, ma sotto i tuoi piedi sembra piatta. Con uno zoom fortissimo il sentiero e la sua tangente non si distinguono più. Per chi cammina lì il sentiero <em>è</em> la sua tangente, e quindi la pendenza della tangente è proprio quella che senti sotto i piedi.</p>
+  </div>
+
+  <figure class="demo">
+    <div class="zoom-pair">
+      <svg id="svgZ1" class="zoom" role="img" aria-label="Zoom su un punto di una curva liscia: ingrandendo diventa una retta."></svg>
+      <svg id="svgZ2" class="zoom" role="img" aria-label="Zoom su un punto con uno spigolo: ingrandendo resta uno spigolo."></svg>
+    </div>
+    <div class="controls">
+      <label for="inZoom">Ingrandisci</label>
+      <input type="range" id="inZoom" min="0" max="1" step="0.001" value="0">
+    </div>
+    <p class="cap">A sinistra, più ingrandisci più la curva si raddrizza, fino a diventare una retta: la tangente. A destra lo spigolo resta uno spigolo, per quanto tu possa zoomare: da una parte il sentiero ha una pendenza, dall’altra un’altra.</p>
+  </figure>
+
+  <p>Ecco cosa vuol dire <strong>derivabile</strong>: zoomando su qualsiasi punto, il grafico diventa una retta. Dove c’è uno spigolo non esiste una retta sola che vada bene da tutte e due le parti, quindi lì la derivata non esiste.</p>
+
+  <div class="formal">
+    <span class="tag">La regola d’oro</span>
+    <ul class="plain">
+      <li><span class="m">f′(x) &gt; 0</span>: lì il sentiero <strong>sale</strong>.</li>
+      <li><span class="m">f′(x) &lt; 0</span>: lì il sentiero <strong>scende</strong>.</li>
+      <li><span class="m">f′(x) = 0</span>: lì la tangente è orizzontale, il sentiero è <strong>in piano</strong>.</li>
+    </ul>
+    <p>Perché? Per lo zoom di prima: vicinissimo al punto, sentiero e tangente sono praticamente la stessa cosa. Se la tangente sale, lì attorno sale anche il sentiero: un passettino avanti sei più su, un passettino indietro sei più giù. Questa regola la useremo in continuazione.</p>
+  </div>
+</section>
+
+<section class="ch" id="c3" aria-labelledby="t-c3">
+  <div class="ch-head"><span class="num" aria-hidden="true">3</span><h2 id="t-c3">Fermat: in cima si è sempre in piano</h2></div>
+  <p>Sei sulla cima di una collina, nel punto più alto del sentiero. Com’è il terreno sotto i tuoi piedi? Facciamo i detective e procediamo per esclusione, usando la regola d’oro.</p>
+  <ol class="steps">
+    <li>Se lì il sentiero salisse (<span class="m">f′ &gt; 0</span>), con un passettino in avanti saresti più in alto. Ma eri già nel punto più alto! <span class="no">Impossibile.</span></li>
+    <li>Se lì il sentiero scendesse (<span class="m">f′ &lt; 0</span>), con un passettino indietro saresti più in alto. <span class="no">Impossibile anche questo.</span></li>
+    <li>Non sale e non scende: resta una sola possibilità, il piano. <span class="yes">Quindi <span class="m">f′ = 0</span>.</span></li>
+  </ol>
+  <p>Per il fondo di una valle, il punto più basso, vale lo stesso ragionamento capovolto: se il sentiero salisse, un passettino indietro saresti più in basso; se scendesse, un passettino in avanti. Anche lì resta solo il piano.</p>
+
+  <figure class="demo">
+    <svg id="svgFer" role="img" aria-label="Un omino cammina su un sentiero con una cima e una valle. Ai suoi piedi un trattino mostra se lì il sentiero sale, scende o è in piano."></svg>
+    <p class="legend"><span><span class="sw sw-green"></span>sale</span><span><span class="sw sw-red"></span>scende</span><span><span class="sw sw-amber"></span>in piano</span></p>
+    <div class="controls">
+      <label for="inFer">Cammina sul sentiero</label>
+      <input type="range" id="inFer" min="0.3" max="9.7" step="0.01" value="1.4">
+    </div>
+    <div class="btns">
+      <button type="button" class="btn" id="btTop">Portami in cima</button>
+      <button type="button" class="btn" id="btBot">Portami in fondo valle</button>
+    </div>
+    <p class="cap" id="capFer" aria-live="polite"></p>
+  </figure>
+
+  <div class="formal">
+    <span class="tag">Detto da grandi</span>
+    <p><strong>Teorema di Fermat.</strong> Se <span class="m">f</span> ha un massimo o un minimo in un punto <span class="m">c</span> che sta dentro l’intervallo (non su un bordo), e in <span class="m">c</span> è derivabile, allora</p>
+    <div class="eq">f′(c) = 0</div>
+    <p>Vale anche per le cime «di zona», che i matematici chiamano <em>massimi locali</em>: basta che <span class="m">c</span> sia più alto di tutti i punti lì vicino, anche se più in là c’è una montagna più alta.</p>
+  </div>
+
+  <div class="why">
+    <h3>Perché è vero, detto con le secanti</h3>
+    <p>Il detective ha usato la regola d’oro, ma si può vedere anche direttamente, con le secanti del capitolo 2. Sei in cima, nel punto <span class="m">c</span>.</p>
+    <p>Prendi un punto un po’ <strong>a destra</strong>: è più basso di te, o al massimo alto uguale, quindi la secante che scende dalla cima verso di lui ha pendenza <span class="m">≤ 0</span>. Prendi un punto un po’ <strong>a sinistra</strong>: anche lui è più basso, ma stavolta per andare da lui alla cima <em>sali</em>, quindi la pendenza è <span class="m">≥ 0</span>.</p>
+    <p>Ora avvicina entrambi i punti alla cima. Le secanti di destra si avvicinano alla tangente restando sempre <span class="m">≤ 0</span>; quelle di sinistra si avvicinano alla <em>stessa</em> tangente restando sempre <span class="m">≥ 0</span>. Un numero che è insieme <span class="m">≤ 0</span> e <span class="m">≥ 0</span> può essere uno solo: lo zero.</p>
+  </div>
+
+  <h3 class="sub">Dove il ragionamento si rompe</h3>
+  <p>Ogni parola del teorema serve a qualcosa. Ecco cosa succede se ne togli una, più un errore che fanno in tanti.</p>
+  <div class="minis">
+    <figure class="mini">
+      <svg id="mF1" role="img" aria-label="Un sentiero che sale fino alla fine: il punto più alto è l’ultimo."></svg>
+      <figcaption><b>Cima sul bordo</b>Il punto più alto è l’ultimo del sentiero, e lì il sentiero sta ancora salendo. Il passettino in avanti del detective non si può fare, perché il sentiero è finito. Per questo <span class="m">c</span> deve stare <em>dentro</em>.</figcaption>
+    </figure>
+    <figure class="mini">
+      <svg id="mF2" role="img" aria-label="Una cima appuntita, con uno spigolo in alto."></svg>
+      <figcaption><b>Cima a punta</b>La cima c’è, ma è uno spigolo: a sinistra la pendenza è positiva, a destra negativa, e una pendenza unica non esiste. Per questo serve che <span class="m">f</span> sia <em>derivabile</em> in <span class="m">c</span>.</figcaption>
+    </figure>
+    <figure class="mini">
+      <svg id="mF3" role="img" aria-label="Un sentiero che si ferma un attimo in piano e poi riprende a salire."></svg>
+      <figcaption><b>Al contrario non vale</b>Qui <span class="m">f′ = 0</span> in un punto, ma non è né una cima né una valle: il sentiero si ferma un attimo in piano e poi riprende a salire. In cima si è in piano, ma essere in piano non vuol dire essere in cima.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<section class="ch" id="c4" aria-labelledby="t-c4">
+  <div class="ch-head"><span class="num" aria-hidden="true">4</span><h2 id="t-c4">Rolle: se torni alla stessa altezza, in piano ci sei passato</h2></div>
+  <p>Parti dal punto <span class="m">a</span> e arrivi al punto <span class="m">b</span>, e partenza e arrivo sono alla stessa altezza: <span class="m">f(a) = f(b)</span>. In mezzo il sentiero può fare quello che vuole, salire, scendere, fare su e giù, purché senza salti e senza spigoli. Rolle dice che da qualche parte, in mezzo, c’è <strong>almeno un punto in piano</strong>.</p>
+
+  <figure class="demo">
+    <svg id="svgRol" role="img" aria-label="Un sentiero che parte e arriva alla stessa altezza e che puoi deformare. I punti in piano sono segnati in giallo."></svg>
+    <p class="legend"><span><span class="sw sw-dash"></span>stessa altezza di partenza e arrivo</span><span><span class="sw sw-amber"></span>punto in piano</span></p>
+    <div class="controls">
+      <label for="inRol">Cambia la forma del sentiero</label>
+      <input type="range" id="inRol" min="0" max="360" step="1" value="25">
+    </div>
+    <p class="cap" id="capRol" aria-live="polite"></p>
+  </figure>
+
+  <div class="formal">
+    <span class="tag">Detto da grandi</span>
+    <p><strong>Teorema di Rolle.</strong> Se <span class="m">f</span> è continua su <span class="m">[a, b]</span>, derivabile su <span class="m">(a, b)</span> e <span class="m">f(a) = f(b)</span>, allora esiste almeno un punto <span class="m">c</span> dentro <span class="m">(a, b)</span> tale che</p>
+    <div class="eq">f′(c) = 0</div>
+  </div>
+
+  <div class="why">
+    <h3>Perché è vero: guardiamo tutti i casi</h3>
+    <p>Il sentiero parte e arriva alla stessa altezza. In mezzo le possibilità sono solo tre:</p>
+    <ol class="cases">
+      <li><strong>È tutto piatto.</strong> Allora è in piano dappertutto, e qualsiasi punto va bene.</li>
+      <li><strong>Da qualche parte sale sopra l’altezza di partenza.</strong> Allora ha un punto più alto di tutti, e siccome i due estremi stanno più in basso, quella cima sta <em>dentro</em>. Per Fermat, lì <span class="m">f′ = 0</span>.</li>
+      <li><strong>Da qualche parte scende sotto l’altezza di partenza.</strong> Allora ha un punto più basso di tutti, anche lui dentro. Per Fermat, versione valle, lì <span class="m">f′ = 0</span>.</li>
+    </ol>
+    <p>Un quarto caso non esiste: se non è tutto piatto, da qualche parte deve essere salito o sceso. Se fa tutte e due le cose valgono sia il secondo caso sia il terzo, e i punti in piano sono almeno due. Comunque vada, il punto in piano c’è sempre.</p>
+  </div>
+
+  <details class="curious" open>
+    <summary>Ma chi mi garantisce che il punto più alto esista?</summary>
+    <p>Ottima domanda: è l’unico mattoncino che prendiamo con l’intuizione. Si chiama <strong>teorema di Weierstrass</strong> e dice che un sentiero disegnato senza staccare la penna, su un tratto con entrambi gli estremi inclusi, cioè <span class="m">[a, b]</span>, ha per forza un punto più alto di tutti e uno più basso di tutti.</p>
+    <p>Perché servono proprio queste due condizioni? Con un salto, il sentiero potrebbe avvicinarsi sempre di più a un’altezza e saltare via proprio quando stava per toccarla: la cima «mancherebbe» (lo vedi nel primo disegno qui sotto). Con un estremo escluso, il sentiero potrebbe salire sempre di più verso quel bordo senza mai arrivare a un punto più alto di tutti. Senza salti e con i bordi inclusi, la cima non ha modo di scappare. La dimostrazione completa usa il fatto che la retta dei numeri non ha buchi: è una storia da grandi, qui ci basta l’idea.</p>
+  </details>
+
+  <h3 class="sub">Togli una condizione e il punto in piano può sparire</h3>
+  <div class="minis">
+    <figure class="mini">
+      <svg id="mR1" role="img" aria-label="Un sentiero che sale sempre e alla fine salta giù all’altezza di partenza."></svg>
+      <figcaption><b>Un salto</b>Il sentiero sale sempre e all’ultimo salta giù all’altezza di partenza. Estremi alla stessa altezza, ma nessun punto in piano: senza continuità Rolle non vale.</figcaption>
+    </figure>
+    <figure class="mini">
+      <svg id="mR2" role="img" aria-label="Un sentiero a forma di tenda, con uno spigolo in cima."></svg>
+      <figcaption><b>Una tenda</b>Sale e poi scende, ma la cima è uno spigolo: la pendenza passa da positiva a negativa senza mai valere zero. Senza derivabilità Rolle non vale.</figcaption>
+    </figure>
+    <figure class="mini">
+      <svg id="mR3" role="img" aria-label="Un sentiero liscio che arriva più in alto di dove è partito."></svg>
+      <figcaption><b>Altezze diverse</b>Liscio e senza salti, ma arriva più in alto di dove è partito, e così può salire sempre senza fermarsi mai. Serve proprio <span class="m">f(a) = f(b)</span>.</figcaption>
+    </figure>
+  </div>
+  <p>Una finezza: perché <strong>continua su <span class="m">[a, b]</span></strong> ma <strong>derivabile solo su <span class="m">(a, b)</span></strong>? La continuità serve su tutto il tratto, bordi compresi, per essere sicuri che la cima esista: è Weierstrass. La derivabilità serve solo dentro, perché Fermat lo usiamo solo su una cima interna, e cosa succede esattamente sui bordi non ci interessa.</p>
+</section>
+
+<section class="ch" id="c5" aria-labelledby="t-c5">
+  <div class="ch-head"><span class="num" aria-hidden="true">5</span><h2 id="t-c5">Lagrange: Rolle con il foglio inclinato</h2></div>
+  <p>Hai presente il Tutor in autostrada? Registra quando entri in un tratto e quando esci, e calcola la tua <strong>velocità media</strong>: strada fatta diviso tempo impiegato. Se la media supera il limite arriva la multa, anche se nessuno ti ha mai visto correre. È giusto? Sì, e il motivo è Lagrange: se in media sei andato a una certa velocità, c’è stato almeno un istante in cui il tachimetro segnava <strong>esattamente</strong> quella velocità.</p>
+  <p>Sul sentiero funziona così. Chiama <span class="m">A</span> il punto di partenza e <span class="m">B</span> quello di arrivo, e uniscili con una retta: è la <strong>corda</strong>, tesa tra partenza e arrivo. La sua pendenza è la pendenza media di tutto il viaggio, salita totale diviso passi totali:</p>
+  <div class="eq"><span class="w">pendenza della corda</span> = <span class="frac"><span class="c-red">f(b) − f(a)</span><span class="c-blue">b − a</span></span></div>
+  <p>Lagrange dice che da qualche parte in mezzo c’è un punto <span class="m">c</span> dove la tangente è <strong>parallela alla corda</strong>: lì, in quel momento, il sentiero sale esattamente come «in media».</p>
+
+  <figure class="demo">
+    <svg id="svgLag" role="img" aria-label="Un sentiero con la corda che unisce partenza e arrivo. Nel punto c la tangente è parallela alla corda. Il cursore inclina il disegno finché la corda diventa orizzontale."></svg>
+    <p class="legend"><span><span class="sw sw-ink"></span>corda</span><span><span class="sw sw-green"></span>tangente in <span class="m">c</span></span><span><span class="sw sw-gap"></span>distanza tra sentiero e corda</span></p>
+    <div class="controls">
+      <label for="inLag">Raddrizza la corda</label>
+      <input type="range" id="inLag" min="0" max="1" step="0.005" value="0">
+    </div>
+    <p class="cap" id="capLag" aria-live="polite"></p>
+  </figure>
+
+  <div class="formal">
+    <span class="tag">Detto da grandi</span>
+    <p><strong>Teorema di Lagrange</strong>, detto anche del valor medio. Se <span class="m">f</span> è continua su <span class="m">[a, b]</span> e derivabile su <span class="m">(a, b)</span>, allora esiste almeno un punto <span class="m">c</span> dentro <span class="m">(a, b)</span> tale che</p>
+    <div class="eq">f′(c) = <span class="frac"><span class="c-red">f(b) − f(a)</span><span class="c-blue">b − a</span></span></div>
+    <p>Le condizioni sono quelle di Rolle meno una: non serve più che partenza e arrivo siano alla stessa altezza.</p>
+  </div>
+
+  <div class="why">
+    <h3>Perché è vero: misura quanto sei sopra la corda</h3>
+    <p>In ogni punto misura la distanza in verticale tra il sentiero e la corda: sono le lineette nel disegno. All’inizio e alla fine questa distanza è zero, perché sentiero e corda partono insieme e arrivano insieme.</p>
+    <p>Ecco il trucco: questa «altezza sopra la corda» è a sua volta un sentiero, senza salti e senza spigoli, che parte da zero e arriva a zero. Stessa altezza agli estremi: è Rolle! Quindi c’è un punto <span class="m">c</span> dove la sua pendenza è zero, cioè dove la distanza dalla corda, per un attimo, non cambia. E se la distanza non cambia, in quel punto sentiero e corda stanno salendo allo stesso modo: stessa pendenza, tangente parallela alla corda.</p>
+    <p>Il cursore fa proprio questo: abbassa ogni punto del disegno, sempre di più andando verso destra, come se inclinassi il foglio, finché la corda diventa orizzontale. Le lineette restano identiche, il punto <span class="m">c</span> non si sposta, e quello che rimane è esattamente il disegno di Rolle. Lagrange è Rolle guardato storto.</p>
+  </div>
+
+  <h3 class="sub">A cosa serve</h3>
+  <p>Lagrange è il ponte tra la pendenza in un punto e quello che succede su un tratto intero. Per esempio dimostra due cose che sembrano ovvie, ma che senza di lui non sapremmo giustificare:</p>
+  <ul class="plain">
+    <li><strong>Se <span class="m">f′ = 0</span> dappertutto, <span class="m">f</span> è costante.</strong> Prendi due punti qualsiasi: per Lagrange la pendenza della corda tra loro è uguale a <span class="m">f′</span> in qualche punto in mezzo, cioè zero. Quindi i due punti sono alla stessa altezza. Tutti i punti alla stessa altezza: sentiero piatto.</li>
+    <li><strong>Se <span class="m">f′ &gt; 0</span> dappertutto, <span class="m">f</span> sale sempre.</strong> Stesso ragionamento: ogni corda ha la pendenza di qualche tangente, quindi positiva, e il punto più avanti sta sempre più in alto.</li>
+  </ul>
+</section>
+
+<section class="ch" id="c6" aria-labelledby="t-c6">
+  <div class="ch-head"><span class="num" aria-hidden="true">6</span><h2 id="t-c6">de l’Hôpital: chi arriva a zero più in fretta?</h2></div>
+  <p>Hai due funzioni, <span class="m">f</span> e <span class="m">g</span>, che nello stesso punto <span class="m">a</span> valgono entrambe zero. Vuoi sapere cosa fa il rapporto <span class="m">f(x)/g(x)</span> quando <span class="m">x</span> si avvicina ad <span class="m">a</span>. Se provi a sostituire ottieni <span class="m">0/0</span>, e <span class="m">0/0</span> non è una risposta: è una domanda. Può venire fuori qualsiasi cosa, dipende da <em>come</em> le due funzioni arrivano a zero. Per questo si chiama <strong>forma indeterminata</strong>.</p>
+
+  <h3 class="sub">La storia delle due macchinine</h3>
+  <p>Due macchinine partono nello stesso istante dallo stesso punto. Un attimo dopo la partenza hanno fatto pochissima strada tutte e due: le due strade sono quasi zero. Ma quanta ne ha fatta una rispetto all’altra?</p>
+  <p>Nei primissimi istanti la velocità non fa in tempo a cambiare, quindi ognuna ha fatto più o meno <em>velocità per tempo</em>. E il tempo è lo stesso per tutte e due, quindi nel rapporto si semplifica:</p>
+  <div class="eq"><span class="frac"><span class="w">strada di <i>f</i></span><span class="w">strada di <i>g</i></span></span> ≈ <span class="frac"><span class="w">velocità di <i>f</i> × <span class="cancel">tempo</span></span><span class="w">velocità di <i>g</i> × <span class="cancel">tempo</span></span></span> = <span class="frac"><span class="w">velocità di <i>f</i></span><span class="w">velocità di <i>g</i></span></span></div>
+  <p>E la velocità è proprio una derivata: è la pendenza del grafico «strada in funzione del tempo». Quindi, vicino al punto in cui valgono entrambe zero, il rapporto tra due funzioni è il rapporto tra le loro velocità, cioè tra le loro derivate. Tutto qui: questa è l’idea di de l’Hôpital.</p>
+
+  <div class="formal">
+    <span class="tag">Detto da grandi</span>
+    <p><strong>Teorema di de l’Hôpital.</strong> Se <span class="m">f(x)</span> e <span class="m">g(x)</span> tendono entrambe a <span class="m">0</span> (oppure entrambe a <span class="m">∞</span>) quando <span class="m">x → a</span>, sono derivabili vicino ad <span class="m">a</span> e lì <span class="m">g′(x) ≠ 0</span>, e il limite di <span class="m">f′(x)/g′(x)</span> esiste, allora</p>
+    <div class="eq"><span class="lim">lim<small>x → a</small></span><span class="frac"><span>f(x)</span><span>g(x)</span></span> = <span class="lim">lim<small>x → a</small></span><span class="frac"><span>f′(x)</span><span>g′(x)</span></span></div>
+  </div>
+
+  <figure class="demo">
+    <svg id="svgHop" role="img" aria-label="Due curve f e g che valgono entrambe zero nel punto a, con due barre che mostrano le loro altezze. Zoomando verso a, il rapporto tra le barre diventa il rapporto tra le pendenze."></svg>
+    <p class="legend"><span><span class="sw sw-blue"></span><span class="m">f</span></span><span><span class="sw sw-red"></span><span class="m">g</span></span><span><span class="sw sw-dash"></span>le loro tangenti in <span class="m">a</span></span></p>
+    <div class="controls">
+      <label for="inHop">Avvicinati ad <span class="m">a</span></label>
+      <input type="range" id="inHop" min="0" max="1" step="0.001" value="0">
+    </div>
+    <div class="cmp">
+      <span>Rapporto delle altezze, <span class="m">f(x)/g(x)</span></span>
+      <div class="track"><div class="fill" id="barR"></div></div>
+      <span>Rapporto delle pendenze, <span class="m">f′(a)/g′(a)</span></span>
+      <div class="track"><div class="fill" id="barS"></div></div>
+    </div>
+    <p class="cap" id="capHop" aria-live="polite"></p>
+  </figure>
+
+  <div class="why">
+    <h3>Perché è vero: lo zoom, ancora lui</h3>
+    <p>Ricordi il capitolo 2? Zoomando vicino ad <span class="m">a</span>, ogni curva liscia diventa la sua tangente. Siccome <span class="m">f(a) = 0</span>, vicino ad <span class="m">a</span> l’altezza <span class="m">f(x)</span> è quasi uguale a «pendenza per passi», cioè <span class="m">f′(a) · (x − a)</span>: è il solito <span class="m">Δy</span>, pendenza per <span class="m">Δx</span>. Lo stesso vale per <span class="m">g</span>. Quindi:</p>
+    <div class="eq"><span class="frac"><span>f(x)</span><span>g(x)</span></span> ≈ <span class="frac"><span>f′(a) · <span class="cancel">(x − a)</span></span><span>g′(a) · <span class="cancel">(x − a)</span></span></span> = <span class="frac"><span>f′(a)</span><span>g′(a)</span></span></div>
+    <p>Il pezzo <span class="m">(x − a)</span> sta sopra e sotto e si semplifica, esattamente come il tempo delle macchinine.</p>
+  </div>
+
+  <div class="warn">
+    <h3>Tre trappole</h3>
+    <ul class="plain">
+      <li>Si derivano sopra e sotto <strong>separatamente</strong>, <span class="m">f′/g′</span>. Non è la derivata della frazione intera: quella è un’altra regola e qui non c’entra.</li>
+      <li>Si usa <strong>solo</strong> con <span class="m">0/0</span> o <span class="m">∞/∞</span>. Se il rapporto non è indeterminato basta sostituire, e usare la regola lo stesso dà risultati sbagliati.</li>
+      <li>Se il limite di <span class="m">f′/g′</span> non esiste, la regola non dice niente. Non vuol dire che il limite di <span class="m">f/g</span> non esista: vuol dire solo che questa strada non porta da nessuna parte.</li>
+    </ul>
+  </div>
+
+  <details class="curious">
+    <summary>Per i curiosi: la dimostrazione vera passa da Lagrange</summary>
+    <p>Lo zoom funziona quando le derivate in <span class="m">a</span> esistono e <span class="m">g′(a) ≠ 0</span>. Per il caso generale serve un cugino di Lagrange, il <strong>teorema di Cauchy</strong>, e l’idea è bellissima.</p>
+    <p>Immagina un puntino che si muove sul foglio: all’istante <span class="m">t</span> si trova nella posizione <span class="m">(g(t), f(t))</span>, cioè in orizzontale si muove come <span class="m">g</span> e in verticale come <span class="m">f</span>. All’istante <span class="m">a</span> è nell’origine, perché <span class="m">f(a) = g(a) = 0</span>; all’istante <span class="m">x</span> è nel punto <span class="m">(g(x), f(x))</span>.</p>
+    <p>La corda che va dall’origine a quel punto ha pendenza <span class="m">f(x)/g(x)</span>: salita diviso passi, cioè proprio il nostro rapporto! Lagrange, applicato alla strada del puntino, dice che a un certo istante <span class="m">c</span> tra <span class="m">a</span> e <span class="m">x</span> il puntino si muove parallelo alla corda. E in quell’istante la sua direzione ha pendenza <span class="m">f′(c)/g′(c)</span>: quanto va su diviso quanto va di lato. Quindi</p>
+    <div class="eq"><span class="frac"><span>f(x)</span><span>g(x)</span></span> = <span class="frac"><span>f′(c)</span><span>g′(c)</span></span></div>
+    <p>Ora avvicina <span class="m">x</span> ad <span class="m">a</span>: <span class="m">c</span> è intrappolato tra i due, quindi va verso <span class="m">a</span> anche lui, e <span class="m">f′(c)/g′(c)</span> va verso il limite di <span class="m">f′/g′</span>. Fatto. La condizione <span class="m">g′ ≠ 0</span> serve proprio qui: così il puntino va sempre di lato nello stesso verso, e la sua strada è un sentiero vero a cui Lagrange si può applicare. Il caso <span class="m">∞/∞</span> si dimostra in modo simile, ma è più tecnico.</p>
+  </details>
+
+  <p>Una curiosità per chiudere: anche la derivata era un <span class="m">0/0</span>. Quando in <span class="m">Δy/Δx</span> facciamo tendere <span class="m">Δx</span> a zero, anche <span class="m">Δy</span> va a zero: sopra e sotto spariscono insieme, eppure il rapporto ha un valore preciso. Buona parte dell’analisi è l’arte di dare un senso agli <span class="m">0/0</span>.</p>
+</section>
+
+<section class="ch" id="fine" aria-labelledby="t-fine">
+  <h2 id="t-fine">Tutto in cinque frasi</h2>
+  <ol class="recap">
+    <li>La <strong>pendenza</strong> è <span class="m">Δy/Δx</span>, quanto sali per ogni passo in avanti; la <strong>derivata</strong> è la pendenza sotto i piedi, trovata avvicinando due punti finché la secante diventa tangente.</li>
+    <li><strong>Fermat</strong>: in cima, o in fondo, a un sentiero liscio si è in piano, perché altrimenti un passettino avanti o indietro ti porterebbe più su.</li>
+    <li><strong>Rolle</strong>: se parti e arrivi alla stessa altezza, o il sentiero è piatto o hai toccato una cima o un fondo, e lì eri in piano.</li>
+    <li><strong>Lagrange</strong>: è Rolle con il foglio inclinato, e dice che c’è sempre un momento in cui vai esattamente alla pendenza media.</li>
+    <li><strong>de l’Hôpital</strong>: se due funzioni valgono zero nello stesso punto, lì vicino il loro rapporto è il rapporto delle loro velocità, cioè delle derivate.</li>
+  </ol>
+  <p>E la catena intera, dall’inizio alla fine. Ogni anello regge quello dopo:</p>
+  <p class="chain">Weierstrass<span class="to" aria-hidden="true">→</span>Fermat<span class="to" aria-hidden="true">→</span>Rolle<span class="to" aria-hidden="true">→</span>Lagrange<span class="to" aria-hidden="true">→</span>Cauchy<span class="to" aria-hidden="true">→</span>de l’Hôpital</p>
+  <p class="chain-note">Weierstrass garantisce che la cima esista, Fermat dice com’è fatta, e tutti gli altri sono Fermat travestito.</p>
+</section>
+
+</main>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  function F(v) { if (!isFinite(v)) v = 0; return Math.max(-1e5, Math.min(1e5, v)).toFixed(2); }
+  function M(W, H, pad, xmin, xmax, ymin, ymax) {
+    var sx = (W - 2 * pad) / (xmax - xmin), sy = (H - 2 * pad) / (ymax - ymin);
+    return {
+      W: W, H: H, pad: pad, xmin: xmin, xmax: xmax, ymin: ymin, ymax: ymax, sx: sx, sy: sy,
+      X: function (x) { return pad + (x - xmin) * sx; },
+      Y: function (y) { return H - pad - (y - ymin) * sy; }
+    };
+  }
+  function curvePath(m, f, x0, x1, n) {
+    n = n || 260;
+    var d = '';
+    for (var i = 0; i <= n; i++) {
+      var x = x0 + (x1 - x0) * i / n;
+      d += (i ? 'L' : 'M') + F(m.X(x)) + ',' + F(m.Y(f(x)));
+    }
+    return d;
+  }
+  function hillPath(m, f, x0, x1, n) {
+    return curvePath(m, f, x0, x1, n) + 'L' + F(m.X(x1)) + ',' + F(m.H) + 'L' + F(m.X(x0)) + ',' + F(m.H) + 'Z';
+  }
+  function path(d, cls) { return '<path class="' + cls + '" d="' + d + '"/>'; }
+  function line(x1, y1, x2, y2, cls) {
+    return '<line class="' + cls + '" x1="' + F(x1) + '" y1="' + F(y1) + '" x2="' + F(x2) + '" y2="' + F(y2) + '"/>';
+  }
+  function poly(pts, cls) {
+    return '<polygon class="' + cls + '" points="' + pts.map(function (p) { return F(p[0]) + ',' + F(p[1]); }).join(' ') + '"/>';
+  }
+  function dot(x, y, r, cls) { return '<circle class="' + cls + '" cx="' + F(x) + '" cy="' + F(y) + '" r="' + r + '"/>'; }
+  function txt(x, y, s, cls, anchor) {
+    return '<text class="lbl ' + (cls || '') + '" x="' + F(x) + '" y="' + F(y) + '" text-anchor="' + (anchor || 'middle') + '">' + s + '</text>';
+  }
+  function walker(x, y) {
+    return '<text class="emoji" text-anchor="middle" transform="translate(' + F(x) + ',' + F(y) + ') scale(-1,1)">\uD83D\uDEB6</text>';
+  }
+  function segPts(m, x, y, slope, L) {
+    var dx = m.sx, dy = -slope * m.sy, n = Math.sqrt(dx * dx + dy * dy);
+    var ux = dx / n * L / 2, uy = dy / n * L / 2, cx = m.X(x), cy = m.Y(y);
+    return [cx - ux, cy - uy, cx + ux, cy + uy];
+  }
+  function seg(m, x, y, slope, L, cls) { var p = segPts(m, x, y, slope, L); return line(p[0], p[1], p[2], p[3], cls); }
+  function fullLine(m, x0, y0, slope, cls) {
+    return line(m.X(m.xmin), m.Y(y0 + slope * (m.xmin - x0)), m.X(m.xmax), m.Y(y0 + slope * (m.xmax - x0)), cls);
+  }
+  function arrow(x1, y1, x2, y2, cls, s) {
+    s = s || 14;
+    var dx = x2 - x1, dy = y2 - y1, n = Math.sqrt(dx * dx + dy * dy) || 1, ux = dx / n, uy = dy / n;
+    var bx = x2 - ux * s, by = y2 - uy * s, px = -uy * s * 0.55, py = ux * s * 0.55;
+    return poly([[x2 + ux * 4, y2 + uy * 4], [bx + px, by + py], [bx - px, by - py]], cls);
+  }
+  function setup(svg, W, H) { svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); }
+  function live(inp, render) { inp.addEventListener('input', render); render(); }
+
+  /* Apertura: la collina con A e B alla stessa altezza */
+  (function hero() {
+    var p = $('heroPath'), h = $('heroHill');
+    if (!p) return;
+    var f = function (u) { return Math.sin(Math.PI * u) + 0.22 * Math.sin(2 * Math.PI * u); };
+    var c = (-1 + Math.sqrt(1 + 4 * 0.88 * 0.44)) / 1.76, uTop = Math.acos(c) / Math.PI, fTop = f(uTop);
+    var d = '';
+    for (var i = 0; i <= 140; i++) {
+      var u = i / 140;
+      d += (i ? 'L' : 'M') + (34 + 612 * u).toFixed(1) + ',' + (196 - 128 * f(u) / fTop).toFixed(1);
+    }
+    p.setAttribute('d', d);
+    if (h) h.setAttribute('d', d + 'Z');
+  })();
+
+  /* 1. La pendenza di una retta e i triangoli simili */
+  (function slope() {
+    var svg = $('svgSlope'), inp = $('inSlope'), cap = $('capSlope');
+    if (!svg || !inp) return;
+    var W = 560, H = 380, m = M(W, H, 16, 0, 10, -0.4, 6.4);
+    setup(svg, W, H);
+    function tri(s, x1, d, k) {
+      var y = function (x) { return 3 + s * (x - 5); };
+      var X1 = m.X(x1), X2 = m.X(x1 + d), Y1 = m.Y(y(x1)), Y2 = m.Y(y(x1 + d));
+      var o = poly([[X1, Y1], [X2, Y1], [X2, Y2]], 'tri');
+      o += line(X1, Y1, X2, Y1, 'dx') + line(X2, Y1, X2, Y2, 'dy');
+      o += txt((X1 + X2) / 2, s >= 0 ? Y1 + 26 : Y1 - 12, k + 'Δx', 'm b');
+      if (Math.abs(Y2 - Y1) > 20) o += txt(X2 + 8, (Y1 + Y2) / 2 + 7, k + 'Δy', 'm r', 'start');
+      return o;
+    }
+    function render() {
+      var s = parseFloat(inp.value);
+      var f = function (x) { return 3 + s * (x - 5); };
+      var o = path(hillPath(m, f, 0, 10, 2), 'hill') + path(curvePath(m, f, 0, 10, 2), 'curve');
+      o += tri(s, 2.6, 1, '') + tri(s, 5.4, 2, '2');
+      svg.innerHTML = o;
+      cap.textContent = s > 0.03
+        ? 'Salita: andando avanti guadagni altezza, quindi Δy è positivo e la pendenza è un numero positivo. Più inclini la retta, più i triangoli diventano alti rispetto alla loro base.'
+        : s < -0.03
+          ? 'Discesa: andando avanti perdi altezza, quindi Δy è negativo e anche la pendenza è negativa. I triangoli ora stanno sopra la retta, ma il grande è ancora la fotocopia ingrandita del piccolo.'
+          : 'Piano: vai avanti ma non sali e non scendi. Δy vale zero, quindi anche la pendenza vale zero, e i triangoli si schiacciano fino a sparire.';
+    }
+    live(inp, render);
+  })();
+
+  /* 2. Dalla secante alla tangente */
+  (function secant() {
+    var svg = $('svgSec'), inp = $('inSec'), cap = $('capSec');
+    if (!svg || !inp) return;
+    var W = 560, H = 360, m = M(W, H, 14, 0, 10, 0, 5.4);
+    setup(svg, W, H);
+    var f = function (x) { return 2.2 + 1.6 * Math.sin(0.62 * x - 0.3) + 0.12 * x; };
+    var fp = function (x) { return 0.992 * Math.cos(0.62 * x - 0.3) + 0.12; };
+    var a = 1.5, fa = f(a), sa = fp(a);
+    var base = path(hillPath(m, f, 0, 10), 'hill') + path(curvePath(m, f, 0, 10), 'curve');
+    function render() {
+      var t = parseFloat(inp.value);
+      var d = 0.02 + 6.48 * (1 - t) * (1 - t), b = a + d, fb = f(b), s = (fb - fa) / d;
+      var XA = m.X(a), YA = m.Y(fa), XB = m.X(b), YB = m.Y(fb);
+      var o = base;
+      if (d > 0.45) {
+        o += poly([[XA, YA], [XB, YA], [XB, YB]], 'tri');
+        o += line(XA, YA, XB, YA, 'dx') + line(XB, YA, XB, YB, 'dy');
+        o += txt((XA + XB) / 2, fb < fa ? YA - 10 : YA + 24, 'Δx', 'm b');
+        if (Math.abs(YB - YA) > 22) o += txt(XB + 8, (YA + YB) / 2 + 7, 'Δy', 'm r', 'start');
+      }
+      o += fullLine(m, a, fa, sa, d < 0.25 ? 'tangent' : 'ghost');
+      o += fullLine(m, a, fa, s, 'secant');
+      o += dot(XA, YA, 6.5, 'pt') + txt(XA - 12, YA - 14, 'A', 'm', 'end');
+      if (d >= 0.12) o += dot(XB, YB, 6.5, 'pt') + txt(XB, YB - 16, 'B', 'm');
+      svg.innerHTML = o;
+      cap.textContent = d > 2.2
+        ? 'B è lontano da A: la secante misura la pendenza media di tutto il tratto da A a B, dove il sentiero prima sale e poi scende. Con la pendenza sotto i piedi in A c’entra poco.'
+        : d > 0.25
+          ? 'Avvicina ancora B ad A: la secante gira e si avvicina sempre di più alla tangente tratteggiata. Δx e Δy diventano piccoli, ma la loro divisione no.'
+          : 'B è ormai attaccato ad A. Δx e Δy sono minuscoli, ma il loro rapporto si è assestato: la secante è diventata la tangente, e la sua pendenza è la derivata in A.';
+    }
+    live(inp, render);
+  })();
+
+  /* 2. Zoom: liscio contro spigolo */
+  (function zoom() {
+    var s1 = $('svgZ1'), s2 = $('svgZ2'), inp = $('inZoom');
+    if (!s1 || !s2 || !inp) return;
+    var W = 300, H = 300;
+    setup(s1, W, H); setup(s2, W, H);
+    var fs = function (x) { return 0.9 * Math.sin(1.3 * x) + 0.35 * x; };
+    var fc = function (x) { return 0.85 * Math.abs(x) - 0.2 * x * x + 0.25 * Math.sin(1.7 * x); };
+    function panel(svg, f, x0, label, w) {
+      var y0 = f(x0), m = M(W, H, 12, x0 - w, x0 + w, y0 - w, y0 + w);
+      var o = line(m.X(x0), 0, m.X(x0), H, 'axis cross') + line(0, m.Y(y0), W, m.Y(y0), 'axis cross');
+      o += path(curvePath(m, f, x0 - w, x0 + w, 300), 'curve');
+      o += dot(m.X(x0), m.Y(y0), 5.5, 'pt');
+      o += txt(16, 34, label, 'hand', 'start');
+      svg.innerHTML = o;
+    }
+    function render() {
+      var z = parseFloat(inp.value), w = 2.5 * Math.pow(10, -2.6 * z);
+      panel(s1, fs, 0.9, 'liscio', w);
+      panel(s2, fc, 0, 'con spigolo', w);
+    }
+    live(inp, render);
+  })();
+
+  /* 3. Fermat: cammina fino in cima */
+  (function fermat() {
+    var svg = $('svgFer'), inp = $('inFer'), cap = $('capFer');
+    if (!svg || !inp) return;
+    var W = 560, H = 360, m = M(W, H, 14, 0, 10, 0, 6);
+    setup(svg, W, H);
+    var f = function (x) { return 3.2 + 1.7 * Math.sin(0.7 * x - 0.6); };
+    var fp = function (x) { return 1.19 * Math.cos(0.7 * x - 0.6); };
+    var XT = (Math.PI / 2 + 0.6) / 0.7, XB = (3 * Math.PI / 2 + 0.6) / 0.7;
+    var base = path(hillPath(m, f, 0, 10), 'hill') + path(curvePath(m, f, 0, 10), 'curve');
+    function render() {
+      var x = parseFloat(inp.value), y = f(x), s = fp(x), flat = Math.abs(s) < 0.07;
+      var P = segPts(m, x, y, flat ? 0 : s, 84), cx = m.X(x), cy = m.Y(y);
+      var o = base + line(P[0], P[1], P[2], P[3], flat ? 'flat' : (s > 0 ? 'slope-up' : 'slope-down'));
+      if (!flat) {
+        var hx = s > 0 ? P[2] : P[0], hy = s > 0 ? P[3] : P[1];
+        o += arrow(cx, cy, hx, hy, s > 0 ? 'arr-up' : 'arr-down', 14);
+        o += txt(Math.min(Math.max(hx, 36), W - 36), hy - 18, 'più su', s > 0 ? 'hand g' : 'hand r');
+      }
+      o += dot(cx, cy, 6.5, flat ? 'pt-flat' : 'pt') + walker(cx, cy - 14);
+      svg.innerHTML = o;
+      cap.textContent = flat
+        ? (y > 3.2
+          ? 'Sei in cima: né avanti né indietro puoi salire di più. E infatti qui il sentiero è in piano, la tangente è orizzontale: f′ = 0.'
+          : 'Sei in fondo valle: qualsiasi passo, avanti o indietro, ti porta più su. Anche qui il sentiero è in piano: f′ = 0.')
+        : s > 0
+          ? 'Qui il sentiero sale: un passettino avanti ti porta più su, uno indietro più giù. Quindi non sei né in cima né in fondo valle.'
+          : 'Qui il sentiero scende: un passettino indietro ti porta più su, uno avanti più giù. Quindi non sei né in cima né in fondo valle.';
+    }
+    live(inp, render);
+    var bt = $('btTop'), bb = $('btBot');
+    if (bt) bt.addEventListener('click', function () { inp.value = XT.toFixed(2); render(); });
+    if (bb) bb.addEventListener('click', function () { inp.value = XB.toFixed(2); render(); });
+  })();
+
+  /* 4. Rolle: la collina che cambia forma */
+  (function rolle() {
+    var svg = $('svgRol'), inp = $('inRol'), cap = $('capRol');
+    if (!svg || !inp) return;
+    var W = 560, H = 360, m = M(W, H, 14, 0, 10, 0, 5.4);
+    setup(svg, W, H);
+    var a = 1, b = 9, h0 = 2.6, A = 1.75, PI = Math.PI;
+    function render() {
+      var th = parseFloat(inp.value) * PI / 180, c = Math.cos(th), s = Math.sin(th);
+      var f = function (x) { var u = (x - a) / (b - a); return h0 + A * (c * Math.sin(PI * u) + s * Math.sin(2 * PI * u)); };
+      var g = function (u) { return c * PI * Math.cos(PI * u) + 2 * s * PI * Math.cos(2 * PI * u); };
+      var roots = [], N = 600, u0 = 1e-4, g0 = g(u0);
+      for (var i = 1; i <= N; i++) {
+        var u1 = i === N ? 1 - 1e-4 : i / N, g1 = g(u1);
+        if (g0 === 0) roots.push(u0);
+        else if (g0 * g1 < 0) {
+          var lo = u0, hi = u1, glo = g0;
+          for (var k = 0; k < 40; k++) {
+            var mid = (lo + hi) / 2, gm = g(mid);
+            if (glo * gm <= 0) hi = mid; else { lo = mid; glo = gm; }
+          }
+          roots.push((lo + hi) / 2);
+        }
+        u0 = u1; g0 = g1;
+      }
+      roots = roots.slice(0, 2);
+      var o = path(hillPath(m, f, a, b), 'hill');
+      o += line(m.X(a), m.Y(h0), m.X(b), m.Y(h0), 'same');
+      o += path(curvePath(m, f, a, b), 'curve');
+      roots.forEach(function (u) {
+        var x = a + (b - a) * u, X = m.X(x), Y = m.Y(f(x));
+        o += line(X - 44, Y, X + 44, Y, 'flat') + dot(X, Y, 6, 'pt-flat');
+      });
+      o += dot(m.X(a), m.Y(h0), 6.5, 'pt') + dot(m.X(b), m.Y(h0), 6.5, 'pt');
+      o += txt(m.X(a) - 12, m.Y(h0) + 7, 'A', 'm', 'end') + txt(m.X(b) + 12, m.Y(h0) + 7, 'B', 'm', 'start');
+      svg.innerHTML = o;
+      if (roots.length === 2) {
+        cap.textContent = 'Adesso i punti in piano sono due: una cima e un fondo valle. Rolle promette «almeno uno», e a volte ce n’è più di uno.';
+      } else if (roots.length === 1) {
+        var yr = f(a + (b - a) * roots[0]);
+        cap.textContent = 'C’è un solo punto in piano: ' + (yr > h0 ? 'la cima' : 'il fondo') + ' del sentiero. Muovi il cursore: la forma cambia, ma il punto giallo non sparisce mai.';
+      } else {
+        cap.textContent = 'Muovi il cursore: la forma cambia, ma un punto in piano c’è sempre.';
+      }
+    }
+    live(inp, render);
+  })();
+
+  /* 5. Lagrange: raddrizza la corda e ottieni Rolle */
+  (function lagrange() {
+    var svg = $('svgLag'), inp = $('inLag'), cap = $('capLag');
+    if (!svg || !inp) return;
+    var W = 560, H = 380, m = M(W, H, 16, 0, 10, 0, 6.4);
+    setup(svg, W, H);
+    var a = 1, b = 9, ya = 1.2, sl = 0.45, B = 3.5, k = 1.5;
+    var gU = function (u) { return u * (1 - u) * (1 + k * u); };
+    var uc = (2 * (k - 1) + Math.sqrt(4 * (k - 1) * (k - 1) + 12 * k)) / (6 * k), xc = a + (b - a) * uc;
+    var f = function (x) { return ya + sl * (x - a) + B * gU((x - a) / (b - a)); };
+    var us = [0.14, 0.3, 0.45, uc, 0.76, 0.9];
+    function render() {
+      var t = parseFloat(inp.value), cs = (1 - t) * sl;
+      var F2 = function (x) { return f(x) - t * sl * (x - a); };
+      var ch = function (x) { return ya + cs * (x - a); };
+      var o = path(hillPath(m, F2, a, b), 'hill');
+      us.forEach(function (u) {
+        var x = a + (b - a) * u;
+        o += line(m.X(x), m.Y(ch(x)), m.X(x), m.Y(F2(x)), u === uc ? 'gap strong' : 'gap');
+      });
+      o += line(m.X(a), m.Y(ch(a)), m.X(b), m.Y(ch(b)), 'chord');
+      o += path(curvePath(m, F2, a, b), 'curve');
+      o += seg(m, xc, F2(xc), cs, 130, 'tangent');
+      var XC = m.X(xc), YC = m.Y(F2(xc)), xl = a + (b - a) * 0.52;
+      o += dot(m.X(a), m.Y(ya), 6.5, 'pt') + dot(m.X(b), m.Y(ch(b)), 6.5, 'pt') + dot(XC, YC, 6, 'pt-flat');
+      o += txt(m.X(a) - 12, m.Y(ya) + 7, 'A', 'm', 'end') + txt(m.X(b) + 12, m.Y(ch(b)) + 7, 'B', 'm', 'start');
+      o += txt(XC, YC - 18, 'c', 'm') + txt(m.X(xl), m.Y(ch(xl)) + 30, 'corda', 'hand soft');
+      svg.innerHTML = o;
+      cap.textContent = t < 0.03
+        ? 'Questo è Lagrange: la corda unisce partenza e arrivo, e nel punto c la tangente è parallela alla corda. Lì il sentiero sale esattamente come «in media».'
+        : t > 0.97
+          ? 'Ecco Rolle! La corda è orizzontale, partenza e arrivo sono alla stessa altezza, e nel punto c la tangente è in piano. È lo stesso disegno di prima, solo inclinato.'
+          : 'Stai inclinando il foglio: la corda si raddrizza, ma le lineette tra sentiero e corda restano identiche, e il punto c resta lì, con la tangente sempre parallela alla corda.';
+    }
+    live(inp, render);
+  })();
+
+  /* 6. de l’Hôpital: zoom verso a */
+  (function hopital() {
+    var svg = $('svgHop'), inp = $('inHop'), cap = $('capHop'), bR = $('barR'), bS = $('barS');
+    if (!svg || !inp) return;
+    var W = 560, H = 380;
+    setup(svg, W, H);
+    var f = function (x) { return 1.2 * Math.tanh(x); };
+    var g = function (x) { return 0.25 * Math.sinh(2 * x); };
+    var target = 2.4, full = 3;
+    if (bS) bS.style.width = (target / full * 100) + '%';
+    function render() {
+      var z = parseFloat(inp.value), w = 2 * Math.pow(10, -2 * z);
+      var m = M(W, H, 16, -w, w, -1.25 * w, 1.25 * w);
+      var o = line(m.X(-w), m.Y(0), m.X(w), m.Y(0), 'axis') + line(m.X(0), m.Y(-1.25 * w), m.X(0), m.Y(1.25 * w), 'axis');
+      o += fullLine(m, 0, 0, 1.2, 'ghost-f') + fullLine(m, 0, 0, 0.5, 'ghost-g');
+      o += path(curvePath(m, g, -w, w), 'curve-g') + path(curvePath(m, f, -w, w), 'curve');
+      var xb = 0.72 * w, fb = f(xb), gb = g(xb), X = m.X(xb), Y0 = m.Y(0);
+      o += line(X - 8, Y0, X - 8, m.Y(fb), 'bar-f') + line(X + 8, Y0, X + 8, m.Y(gb), 'bar-g');
+      o += txt(X - 16, m.Y(fb) - 10, 'f(x)', 'm b', 'end') + txt(X + 16, m.Y(gb) + 20, 'g(x)', 'm r', 'start');
+      o += dot(m.X(0), Y0, 6, 'pt') + txt(m.X(0) - 10, Y0 + 26, 'a', 'm', 'end') + txt(X, Y0 + 26, 'x', 'm');
+      svg.innerHTML = o;
+      var r = fb / gb;
+      if (bR) bR.style.width = (Math.min(r / full, 1) * 100) + '%';
+      cap.textContent = Math.abs(r - target) / target < 0.03
+        ? 'Vicinissimo ad a le due curve sono diventate praticamente le loro tangenti, e il rapporto tra le altezze coincide con il rapporto tra le pendenze. È esattamente quello che dice de l’Hôpital.'
+        : r < 1
+          ? 'Da lontano vince g: la sua barra è più alta. Ma a noi interessa cosa succede vicino ad a, dove tutte e due valgono quasi zero. Avvicinati.'
+          : 'Più ti avvicini, più le due curve somigliano alle loro tangenti, e il rapporto tra le barre si avvicina al rapporto tra le pendenze.';
+    }
+    live(inp, render);
+  })();
+
+  /* Controesempi piccoli */
+  (function minis() {
+    var W = 240, H = 160;
+    function mk(id, draw) {
+      var svg = $(id);
+      if (!svg) return;
+      setup(svg, W, H);
+      svg.innerHTML = draw(M(W, H, 12, 0, 10, 0, 7));
+    }
+    mk('mF1', function (m) {
+      var f = function (x) { return 1.2 + 0.25 * x + 0.022 * x * x; };
+      var o = path(hillPath(m, f, 1, 9), 'hill') + line(m.X(9), 6, m.X(9), H - 6, 'edge') + path(curvePath(m, f, 1, 9), 'curve');
+      o += dot(m.X(9), m.Y(f(9)), 5.5, 'pt') + txt(m.X(9), m.Y(f(9)) - 12, 'cima', 'hand');
+      o += txt(m.X(9) - 8, H - 16, 'fine del sentiero', 'hand soft', 'end');
+      return o;
+    });
+    mk('mF2', function (m) {
+      var f = function (x) { var d = x - 5; return 5.8 - 0.85 * Math.abs(d) - 0.05 * d * d; };
+      var o = path(hillPath(m, f, 0.4, 9.6, 200), 'hill') + path(curvePath(m, f, 0.4, 9.6, 200), 'curve');
+      o += dot(m.X(5), m.Y(5.8), 5.5, 'pt') + txt(m.X(5), m.Y(5.8) - 12, 'cima a punta', 'hand');
+      o += txt(m.X(3.4) - 6, m.Y(f(3.4)) - 6, 'sale', 'hand g', 'end');
+      o += txt(m.X(6.6) + 6, m.Y(f(6.6)) - 6, 'scende', 'hand r', 'start');
+      return o;
+    });
+    mk('mF3', function (m) {
+      var f = function (x) { return 3.5 + 0.09 * Math.pow(x - 5, 3); };
+      var o = path(hillPath(m, f, 1.8, 8.2), 'hill') + path(curvePath(m, f, 1.8, 8.2), 'curve');
+      o += line(m.X(5) - 30, m.Y(3.5), m.X(5) + 30, m.Y(3.5), 'flat') + dot(m.X(5), m.Y(3.5), 5.5, 'pt-flat');
+      o += txt(m.X(5) - 10, m.Y(3.5) - 14, 'in piano…', 'hand', 'end');
+      o += txt(W - 8, 102, '…e poi risale', 'hand soft', 'end');
+      return o;
+    });
+    mk('mR1', function (m) {
+      var h0 = 1.6, top = 6.0;
+      var o = line(m.X(1), m.Y(h0), m.X(9), m.Y(h0), 'same');
+      o += line(m.X(1), m.Y(h0), m.X(9), m.Y(top), 'curve');
+      o += line(m.X(9), m.Y(top) + 7, m.X(9), m.Y(h0) - 7, 'edge');
+      o += dot(m.X(9), m.Y(top), 5, 'open') + dot(m.X(9), m.Y(h0), 5, 'pt-solid') + dot(m.X(1), m.Y(h0), 5, 'pt-solid');
+      o += txt(m.X(9) - 10, m.Y(3.6), 'salto!', 'hand r', 'end');
+      return o;
+    });
+    mk('mR2', function (m) {
+      var pts = [[1, 1.6], [5, 5.8], [9, 1.6]];
+      var d = 'M' + pts.map(function (p) { return F(m.X(p[0])) + ',' + F(m.Y(p[1])); }).join('L');
+      var o = path(d + 'L' + F(m.X(9)) + ',' + H + 'L' + F(m.X(1)) + ',' + H + 'Z', 'hill');
+      o += line(m.X(1), m.Y(1.6), m.X(9), m.Y(1.6), 'same') + path(d, 'curve');
+      o += dot(m.X(1), m.Y(1.6), 5, 'pt-solid') + dot(m.X(9), m.Y(1.6), 5, 'pt-solid');
+      o += txt(m.X(5), m.Y(5.8) - 12, 'spigolo', 'hand');
+      return o;
+    });
+    mk('mR3', function (m) {
+      var f = function (x) { return 1.2 + 0.62 * (x - 1) - 0.012 * (x - 1) * (x - 1); };
+      var o = path(hillPath(m, f, 1, 9), 'hill') + line(m.X(1), m.Y(1.2), m.X(9), m.Y(1.2), 'same') + path(curvePath(m, f, 1, 9), 'curve');
+      o += dot(m.X(1), m.Y(1.2), 5, 'pt-solid') + dot(m.X(9), m.Y(f(9)), 5, 'pt-solid');
+      o += txt(m.X(9) - 10, m.Y(f(9)) - 12, 'arrivo più in alto', 'hand', 'end');
+      return o;
+    });
+  })();
+})();
+</script>
+</body>
+</html>
