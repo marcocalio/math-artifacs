@@ -43,14 +43,13 @@
           <li><a href="#motivazione">2. Motivazione</a></li>
           <li><a href="#vita-reale">3. Nella vita reale</a></li>
           <li><a href="#teoria">4. Teoria dettagliata</a></li>
-          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
-          <li><a href="#esempi">6. Esempi svolti</a></li>
-          <li><a href="#errori-comuni">7. Errori comuni</a></li>
-          <li><a href="#trucchi">8. Trucchi</a></li>
-          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
-          <li><a href="#riassunto">10. Riassunto</a></li>
-          <li><a href="#esercizi">11. Esercizi</a></li>
-          <li><a href="#quiz">12. Quiz</a></li>
+          <li><a href="#esempi">5. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">6. Errori comuni</a></li>
+          <li><a href="#trucchi">7. Trucchi</a></li>
+          <li><a href="#mappa-mentale">8. Mappa mentale</a></li>
+          <li><a href="#riassunto">9. Riassunto</a></li>
+          <li><a href="#esercizi">10. Esercizi</a></li>
+          <li><a href="#quiz">11. Quiz</a></li>
         </ul>
       </nav>
       <p class="chapter-sidebar__title">Parte 2 · Analisi Matematica 2</p>
@@ -288,7 +287,21 @@
           <li><strong>Curve che si incrociano formando una X</strong>: non è un errore di disegno, è un <span class="glossario-term" data-term="punto-di-sella">punto di sella</span> — sali in una direzione e scendi nell'altra (lo vedremo con $z=x^2-y^2$).</li>
           <li><strong>Livello vuoto</strong>: se $L_c=\varnothing$ vuol dire semplicemente che la funzione quel valore non lo assume mai; l'insieme dei $c$ per cui $L_c \neq \varnothing$ è esattamente l'<span class="glossario-term" data-term="immagine-funzione">immagine</span> di $f$. È un modo rapidissimo per calcolarla.</li>
         </ul>
-        <p>E una proprietà strutturale, che dimostreremo nella <a href="#dimostrazioni">sezione 5</a>: <strong>due curve di livello di quote diverse non si incontrano mai</strong>. Sulla carta escursionistica infatti la curva dei 1300 e quella dei 1400 non possono toccarsi: significherebbe che in uno stesso punto il terreno sta a due altezze diverse.</p>
+        <p>E una proprietà strutturale: <strong>due curve di livello di quote diverse non si incontrano mai</strong>.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Disgiunzione dei livelli.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e siano $c_1\neq c_2$ due quote. Allora $L_{c_1}\cap L_{c_2}=\varnothing$: le due curve di livello non hanno alcun punto in comune.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per assurdo)</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che nessun punto del piano può stare su due livelli di quota diversa.</p>
+          <p><strong>L'idea.</strong> Sulla carta escursionistica la curva dei 1300 m e quella dei 1400 m non si toccano: in un punto d'incontro il terreno starebbe contemporaneamente a due altezze. Ma una funzione, per definizione, in ogni punto ha <em>un solo</em> valore. Procediamo per assurdo: supponiamo che il punto comune esista e vediamo che questo contraddice la definizione di funzione.</p>
+          <p><strong>Passo 1 — suppongo che esista un punto comune.</strong> Sia $P=(x_0,y_0)$ con $P\in L_{c_1}$ e $P\in L_{c_2}$.</p>
+          <p><strong>Passo 2 — traduco con la definizione di livello.</strong> $P\in L_{c_1}$ significa $f(x_0,y_0)=c_1$, e $P\in L_{c_2}$ significa $f(x_0,y_0)=c_2$.</p>
+          <p><strong>Passo 3 — uso che $f$ è una funzione.</strong> Il numero $f(x_0,y_0)$ è uno solo, quindi $c_1=f(x_0,y_0)=c_2$. Ma per ipotesi $c_1\neq c_2$: contraddizione.</p>
+          <p><strong>Conclusione.</strong> Il punto $P$ non può esistere: i due livelli sono disgiunti. <span class="qed">∎</span></p>
+          <p>Conseguenza: ogni punto di $A$ sta in uno e un solo livello (quello di quota $f(x,y)$), quindi i livelli riempiono il dominio senza sovrapporsi, come le curve di quota di una carta.</p>
+        </div>
         <h3 id="teoria-superfici">4.5 Le superfici notevoli da riconoscere a memoria</h3>
         <p>All'esame non ti verrà chiesto di disegnare superfici esotiche: circolano sempre le stesse sei o sette. Impararle a riconoscere dalla formula è un investimento che rende tantissimo.</p>
 
@@ -296,7 +309,7 @@
 
         <p><strong>2) Il paraboloide ellittico: $z = x^2+y^2$.</strong> È la conca per eccellenza. Per trovare i livelli pongo $f(x,y)=c$, cioè scrivo l'equazione $x^2+y^2=c$; la confronto con l'equazione della circonferenza di centro l'origine, $x^2+y^2=r^2$ (<span class="richiamo" data-sec="4.2">§4.2</span>), e vedo che le due coincidono se $r^2=c$, da cui $r=\sqrt c$. Le curve di livello $x^2+y^2=c$ sono dunque <strong>circonferenze</strong> di raggio $\sqrt{c}$ per $c &gt; 0$, un solo punto (l'origine) per $c=0$, e l'insieme vuoto per $c &lt; 0$ (una somma di quadrati non può essere negativa) — quindi l'immagine è $[0,+\infty)$. Il punto $(0,0)$ è un <strong>minimo assoluto</strong>: vale $0$, e altrove la funzione è positiva. <em>Immagine mentale</em>: una parabola $z=x^2$ fatta ruotare attorno all'asse $z$, cioè una coppa da champagne. Con coefficienti diversi, $z=\frac{x^2}{a^2}+\frac{y^2}{b^2}$, le circonferenze diventano ellissi (da cui il nome).</p>
 
-        <p><strong>3) Il paraboloide iperbolico (la sella): $z = x^2-y^2$.</strong> Il pezzo forte del capitolo. Il segno meno cambia tutto: lungo l'asse $x$ (cioè per $y=0$) la funzione vale $x^2$ e <em>sale</em>; lungo l'asse $y$ (cioè per $x=0$) vale $-y^2$ e <em>scende</em>. Nell'origine, quindi, la funzione ha un minimo se la guardi in una direzione e un massimo se la guardi nell'altra: non è né l'uno né l'altro, ed è il prototipo del <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>. Le curve di livello si trovano ponendo $f(x,y)=c$, cioè $x^2-y^2=c$: per $c\neq0$ divido entrambi i membri per $c$ e ottengo $\frac{x^2}{c}-\frac{y^2}{c}=1$, che è la forma canonica di un'<strong>iperbole</strong>. Per $c=0$ resta $x^2-y^2=0$, che si spezza con la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2) in $(x-y)(x+y)=0$: un prodotto è nullo se lo è un fattore, quindi $y=x$ oppure $y=-x$. Il livello zero degenera così nella coppia di rette $y=\pm x$, cioè nella famosa "X".</p>
+        <p><strong>3) Il paraboloide iperbolico (la sella): $z = x^2-y^2$.</strong> Il pezzo forte del capitolo. Il segno meno cambia tutto: lungo l'asse $x$ (cioè per $y=0$) la funzione vale $x^2$ e <em>sale</em>; lungo l'asse $y$ (cioè per $x=0$) vale $-y^2$ e <em>scende</em>. Nell'origine, quindi, la funzione ha un minimo se la guardi in una direzione e un massimo se la guardi nell'altra: non è né l'uno né l'altro, ed è il prototipo del <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>. Le curve di livello si trovano ponendo $f(x,y)=c$, cioè $x^2-y^2=c$: per $c &gt; 0$ divido entrambi i membri per $c$ e ottengo $\frac{x^2}{c}-\frac{y^2}{c}=1$, la forma canonica di un'<strong>iperbole</strong> con i rami a destra e a sinistra; per $c &lt; 0$ divido per $-c$ e ottengo $\frac{y^2}{-c}-\frac{x^2}{-c}=1$, ancora un'iperbole, con i rami in alto e in basso. Per $c=0$ resta $x^2-y^2=0$, che si spezza con la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2) in $(x-y)(x+y)=0$: un prodotto è nullo se lo è un fattore, quindi $y=x$ oppure $y=-x$. Il livello zero degenera così nella coppia di rette $y=\pm x$, cioè nella famosa "X".</p>
 
         <svg viewBox="0 0 420 250" style="max-width:470px;margin:1.4em auto;display:block;" role="img" aria-label="Schizzo prospettico della sella z uguale a x quadro meno y quadro, con le due sezioni principali a forma di U e di arco rovesciato">
           <path d="M 40 170 Q 160 266 280 170" fill="none" stroke="var(--color-border)" stroke-width="2"/>
@@ -362,7 +375,7 @@
         <ul>
           <li><strong>Positività</strong>: $d(P,Q)\geq 0$, e $d(P,Q)=0$ solo se $P=Q$ (distanza zero vuol dire stesso punto).</li>
           <li><strong>Simmetria</strong>: $d(P,Q)=d(Q,P)$ (da Roma a Milano o da Milano a Roma, i chilometri sono gli stessi).</li>
-          <li><strong>Disuguaglianza triangolare</strong>: $d(P,R)\leq d(P,Q)+d(Q,R)$. In parole: passare da un punto intermedio non accorcia mai il viaggio. La useremo per dimostrare che le palle aperte sono insiemi aperti.</li>
+          <li><strong>Disuguaglianza triangolare</strong>: $d(P,R)\leq d(P,Q)+d(Q,R)$. In parole: passare da un punto intermedio non accorcia mai il viaggio. In $\mathbb{R}^2$ è il fatto che in un triangolo ogni lato è al più la somma degli altri due; per $n$ qualsiasi segue dalla disuguaglianza di Cauchy–Schwarz (non la dimostriamo). La useremo per dimostrare che la palla aperta è un insieme aperto e quella chiusa un insieme chiuso (<span class="richiamo" data-sec="4.8">§4.8</span>).</li>
         </ul>
         <p>Con la distanza in mano possiamo finalmente dire cosa vuol dire "lì attorno".</p>
         <div class="box-teorema box-teorema--definizione">
@@ -405,69 +418,28 @@
             <li><strong><span class="glossario-term" data-term="insieme-aperto">aperto</span></strong> se ogni suo punto è interno (equivalentemente: $A$ non contiene nessun punto della propria frontiera);</li>
             <li><strong><span class="glossario-term" data-term="insieme-chiuso">chiuso</span></strong> se il suo complementare $\mathbb{R}^n\setminus A$ è aperto (equivalentemente: $A$ contiene tutta la propria frontiera, ovvero tutti i propri punti di accumulazione);</li>
             <li><strong>limitato</strong> se esiste $R &gt; 0$ tale che $A\subseteq B_R(O)$, cioè se sta tutto dentro una palla abbastanza grande;</li>
-            <li><strong>compatto</strong> se è <em>chiuso e limitato</em> insieme (in $\mathbb{R}^n$ le due cose bastano: è il teorema di Heine–Borel).</li>
+            <li><strong>compatto</strong> se è <em>chiuso e limitato</em> insieme (per noi è la definizione: in $\mathbb{R}^n$ coincide con quella generale, teorema di Heine–Borel, che non dimostriamo).</li>
           </ul>
         </div>
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> "Aperto" e "chiuso" non sono opposti</div>
           <p>Questa è la trappola linguistica più insidiosa del capitolo. "Chiuso" <strong>non</strong> significa "non aperto". Ci sono insiemi che sono <em>entrambe</em> le cose ($\varnothing$ e $\mathbb{R}^n$ stesso, gli unici due in $\mathbb{R}^n$) e insiemi che non sono <em>né</em> l'una <em>né</em> l'altra: per esempio la corona $\{1\leq x^2+y^2 &lt; 4\}$, che contiene una parte del bordo (la circonferenza interna) ma non l'altra. Un insieme non è una porta: può stare a metà.</p>
         </div>
-        <p><strong>Perché tutto questo ci interessa davvero?</strong> Per un motivo molto concreto: <strong>i compatti sono gli insiemi su cui le funzioni continue si comportano bene</strong>. Il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, che in Analisi 1 richiedeva un intervallo $[a,b]$ chiuso e limitato, si estende parola per parola: <em>una funzione continua su un insieme compatto di $\mathbb{R}^n$ ammette massimo e minimo assoluti</em>. Togli "chiuso" o togli "limitato" e la garanzia salta — $f(x,y)=x$ sul disco aperto non ha massimo, $f(x,y)=x$ su tutto il piano nemmeno. È l'ipotesi che userai in ogni esercizio di <a href="05-hessiano-massimi-minimi.html">massimi e minimi vincolati</a>.</p>
-        <p>Un'ultima nozione che incontrerai di sfuggita: un insieme si dice <strong>connesso (per archi)</strong> se due suoi punti qualsiasi si possono unire con un cammino che resta dentro l'insieme — "è fatto di un pezzo solo". E si dice <strong>convesso</strong> se addirittura il <em>segmento</em> fra due punti qualsiasi resta dentro: un disco è convesso, una mezzaluna no. La convessità servirà quando parleremo di funzioni con gradiente nullo e di primitive.</p>
-      </section>
-      <!-- 5. DIMOSTRAZIONI -->
-      <section class="section" id="dimostrazioni">
-        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
-        <p>Tre risultati, tutti brevi, tutti utili. Per ciascuno spieghiamo <em>prima</em> l'idea in italiano e <em>poi</em> la scriviamo in simboli: se l'idea è chiara, la scrittura formale diventa una semplice traduzione.</p>
-
-        <h3>5.1 Ogni palla aperta è un insieme aperto</h3>
-        <div class="callout callout--intuizione">
-          <div class="callout__title"><span class="emoji">🧭</span> L'idea della strategia</div>
-          <p>Sembra ovvio ("si chiama aperta!"), ma i due usi della parola sono diversi: uno è un <em>nome</em>, l'altro una <em>proprietà</em> da verificare. L'idea è elementare: prendi un punto $P$ dentro il disco. Fra $P$ e il bordo c'è ancora un po' di spazio, precisamente $r - d(P,P_0)$ metri. Allora disegna attorno a $P$ un dischetto di raggio più piccolo di quello spazio: non può sbordare. Il fatto che "non sbordi" è esattamente ciò che garantisce la disuguaglianza triangolare.</p>
-        </div>
+        <p>Verifichiamo la definizione sui due esempi più importanti, le palle.</p>
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Le palle aperte sono aperte.</em> Per ogni $P_0\in\mathbb{R}^n$ e ogni $r &gt; 0$, l'insieme $B_r(P_0)$ è un <span class="glossario-term" data-term="insieme-aperto">insieme aperto</span>.</p>
         </div>
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
-          <p>Dobbiamo mostrare che ogni punto di $B_r(P_0)$ è interno, cioè che ammette un intorno tutto contenuto in $B_r(P_0)$.</p>
-          <p class="esempio__passi">
-            <span class="esempio__passo">Sia $P\in B_r(P_0)$. Per definizione di palla aperta, $d(P,P_0) &lt; r$. Poniamo allora $\rho = r - d(P,P_0)$: per quanto appena detto $\rho &gt; 0$, quindi è un raggio ammissibile. È lo "spazio che avanza" fino al bordo.</span>
-            <span class="esempio__passo">Prendiamo un punto qualunque $Q\in B_\rho(P)$, cioè $d(Q,P) &lt; \rho$. Vogliamo far vedere che $Q$ sta ancora dentro $B_r(P_0)$.</span>
-            <span class="esempio__passo">Applichiamo la disuguaglianza triangolare passando per $P$: $\ d(Q,P_0)\ \leq\ d(Q,P)+d(P,P_0)$.</span>
-            <span class="esempio__passo">Maggioriamo il primo addendo con $\rho$: $\ d(Q,P_0) &lt; \rho + d(P,P_0) = \big(r-d(P,P_0)\big)+d(P,P_0) = r$.</span>
-            <span class="esempio__passo">Dunque $d(Q,P_0) &lt; r$, cioè $Q\in B_r(P_0)$. Poiché $Q$ era arbitrario, abbiamo $B_\rho(P)\subseteq B_r(P_0)$.</span>
-          </p>
-          <p>Ogni punto di $B_r(P_0)$ possiede quindi un intorno interamente contenuto nell'insieme: $B_r(P_0)$ è aperto. <span class="qed">∎</span></p>
-          <p><strong>Dove serve davvero.</strong> Questo risultato è il mattone con cui si dimostra che gli insiemi definiti da disuguaglianze <em>strette</em> sono aperti: è il motivo per cui, negli esercizi, potrai dire "$&gt;$ oppure $&lt;$ dappertutto, quindi aperto" senza rifare ogni volta il conto.</p>
-        </div>
-
-        <h3>5.2 Insiemi di livello di quote diverse sono disgiunti</h3>
-        <div class="callout callout--intuizione">
-          <div class="callout__title"><span class="emoji">🧭</span> L'idea della strategia</div>
-          <p>Sulla carta escursionistica, la curva dei 1300 m e quella dei 1400 m non si toccano mai. Perché? Perché in un punto di incontro il terreno dovrebbe stare <em>contemporaneamente</em> a 1300 e a 1400 metri. Assurdo. La dimostrazione non fa altro che dire questo usando la definizione di funzione: <strong>a ogni punto corrisponde un solo valore</strong>. Tecnicamente si procede per assurdo: si suppone che un punto comune esista e si arriva a una contraddizione.</p>
-        </div>
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Proposizione</span>
-          <p><em class="nome">Disgiunzione dei livelli.</em> Sia $f:A\subseteq\mathbb{R}^2\to\mathbb{R}$ e siano $c_1\neq c_2$ due quote. Allora $L_{c_1}\cap L_{c_2}=\varnothing$: le due curve di livello non hanno alcun punto in comune.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (per assurdo)</span>
-          <p class="esempio__passi">
-            <span class="esempio__passo">Supponiamo, per assurdo, che esista un punto $P=(x_0,y_0)$ appartenente a entrambi gli insiemi, cioè $P\in L_{c_1}$ e $P\in L_{c_2}$.</span>
-            <span class="esempio__passo">Da $P\in L_{c_1}$, per definizione di insieme di livello, segue $f(x_0,y_0)=c_1$.</span>
-            <span class="esempio__passo">Da $P\in L_{c_2}$, analogamente, segue $f(x_0,y_0)=c_2$.</span>
-            <span class="esempio__passo">Ma $f(x_0,y_0)$ è <em>un solo</em> numero reale, perché $f$ è una funzione. Quindi $c_1=f(x_0,y_0)=c_2$, in contraddizione con l'ipotesi $c_1\neq c_2$.</span>
-          </p>
-          <p>L'assurdo nasce dall'aver supposto l'esistenza di $P$: tale punto non può esistere, e i due insiemi di livello sono disgiunti. <span class="qed">∎</span></p>
-          <p><strong>Conseguenza operativa.</strong> Al variare di $c$, gli insiemi di livello formano una <em>partizione</em> del dominio: ogni punto di $A$ sta in uno e un solo livello (quello di quota $f(x,y)$). È per questo che una famiglia di curve di livello "riempie" ordinatamente il dominio senza sovrapposizioni — proprio come le curve di quota su una carta.</p>
-        </div>
-
-        <h3>5.3 Il disco chiuso è un insieme chiuso</h3>
-        <div class="callout callout--intuizione">
-          <div class="callout__title"><span class="emoji">🧭</span> L'idea della strategia</div>
-          <p>Per definizione, "chiuso" significa "il complementare è aperto". Quindi non lavoriamo sul disco: lavoriamo su <em>ciò che gli sta fuori</em>. Un punto esterno dista dal centro più di $R$: gli avanza un margine, e in quel margine ci sta un dischetto tutto esterno. Stessa identica idea della dimostrazione 5.1, applicata "al rovescio".</p>
+          <p><strong>Cosa vogliamo mostrare.</strong> Il nome "aperta" è solo un nome: dobbiamo verificare la definizione, cioè che ogni punto $P$ della palla è interno, con una palla piccola attorno a $P$ tutta dentro $B_r(P_0)$.</p>
+          <p><strong>L'idea.</strong> Se $P$ sta dentro la palla, fra $P$ e il bordo avanza un po' di spazio: $r-d(P,P_0)$. Una palla attorno a $P$ con raggio uguale a quello spazio non può sbordare. Il motivo è la disuguaglianza triangolare (<span class="richiamo" data-sec="4.7">§4.7</span>): per andare da un punto $Q$ al centro, passare da $P$ non accorcia il viaggio.</p>
+          <p><strong>Passo 1 — scelgo il raggio.</strong> Sia $P\in B_r(P_0)$, cioè $d(P,P_0) &lt; r$. Pongo $\rho=r-d(P,P_0)$: è positivo, quindi è un raggio ammissibile.</p>
+          <p><strong>Passo 2 — prendo un punto qualsiasi della palla piccola.</strong> Sia $Q\in B_\rho(P)$, cioè $d(Q,P) &lt; \rho$. Dobbiamo mostrare che $d(Q,P_0) &lt; r$.</p>
+          <p><strong>Passo 3 — passo da $P$.</strong> Uso la disuguaglianza triangolare, poi $d(Q,P) &lt; \rho$ e infine la definizione di $\rho$:</p>
+          <div class="calcolo">$$d(Q,P_0)\ \leq\ d(Q,P)+d(P,P_0)\ &lt;\ \rho+d(P,P_0)\ =\ r.$$</div>
+          <p><strong>Conclusione.</strong> Ogni $Q\in B_\rho(P)$ sta in $B_r(P_0)$, cioè $B_\rho(P)\subseteq B_r(P_0)$: ogni punto della palla è interno, quindi la palla è aperta. <span class="qed">∎</span></p>
+          <p>È il caso più semplice della regola "disuguaglianze strette $\Rightarrow$ insieme aperto" che userai negli esercizi; il caso generale ($\{f &gt; c\}$ con $f$ continua) è nel <a href="02-limiti-continuita-piu-variabili.html">capitolo 2</a>.</p>
         </div>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Proposizione</span>
@@ -475,21 +447,22 @@
         </div>
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
-          <p class="esempio__passi">
-            <span class="esempio__passo">Consideriamo il complementare $C=\{P : d(P,O) &gt; R\}$ e mostriamo che è aperto. Sia $P\in C$, dunque $d(P,O) &gt; R$.</span>
-            <span class="esempio__passo">Poniamo $\rho = d(P,O)-R &gt; 0$: è il margine di cui $P$ eccede il bordo.</span>
-            <span class="esempio__passo">Sia $Q\in B_\rho(P)$, cioè $d(Q,P) &lt; \rho$. Per la disuguaglianza triangolare (<span class="richiamo" data-sec="4.7">§4.7</span>) applicata al percorso $O\to Q\to P$ vale $d(P,O)\leq d(P,Q)+d(Q,O)$. Isolo $d(Q,O)$: sottraggo $d(P,Q)$ a entrambi i membri, ottenendo $d(P,O)-d(P,Q)\leq d(Q,O)$, che letto al contrario è $d(Q,O)\geq d(P,O)-d(P,Q)$.</span>
-            <span class="esempio__passo">Sostituiamo la maggiorazione $d(P,Q) &lt; \rho$: $\ d(Q,O) &gt; d(P,O)-\rho = d(P,O)-\big(d(P,O)-R\big)=R$.</span>
-            <span class="esempio__passo">Quindi $Q\in C$, e perciò $B_\rho(P)\subseteq C$: il complementare è aperto, cioè $\overline{B}_R(O)$ è chiuso.</span>
-            <span class="esempio__passo">La limitatezza è immediata: per costruzione $\overline{B}_R(O)\subseteq B_{R+1}(O)$, quindi l'insieme sta dentro una palla. Chiuso $+$ limitato $=$ compatto.</span>
-          </p>
-          <p><span class="qed">∎</span></p>
-          <p><strong>Perché è importante.</strong> Da questa proposizione discende, per esempio, che ogni funzione continua sul disco chiuso ammette massimo e minimo assoluti (Weierstrass). Sul disco <em>aperto</em> la stessa conclusione è falsa: la differenza di un solo bordo cambia completamente la teoria.</p>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che il complementare del disco è aperto (è la definizione di chiuso) e che il disco sta dentro una palla (limitato).</p>
+          <p><strong>L'idea.</strong> Lavoriamo su ciò che sta <em>fuori</em>. Un punto $P$ fuori dal disco dista dal centro più di $R$: gli avanza un margine $d(P,O)-R$, e una palla attorno a $P$ con quel raggio non raggiunge il disco. È l'idea della dimostrazione precedente, applicata "al rovescio".</p>
+          <p><strong>Passo 1 — scelgo il raggio.</strong> Sia $C=\{P : d(P,O) &gt; R\}$ il complementare e sia $P\in C$. Pongo $\rho=d(P,O)-R$, che è positivo.</p>
+          <p><strong>Passo 2 — prendo un punto della palla piccola.</strong> Sia $Q\in B_\rho(P)$, cioè $d(Q,P) &lt; \rho$. Dobbiamo mostrare che $Q$ è ancora fuori dal disco: $d(Q,O) &gt; R$.</p>
+          <p><strong>Passo 3 — stimo $d(Q,O)$ dal basso.</strong> Ci serve un limite inferiore, quindi uso la disuguaglianza triangolare nel verso giusto: andare da $P$ a $O$ passando per $Q$ non è più breve del tragitto diretto, $d(P,O)\leq d(P,Q)+d(Q,O)$. Sottraggo $d(P,Q)$ a entrambi i membri e poi uso $d(P,Q) &lt; \rho$:</p>
+          <div class="calcolo">$$d(Q,O)\ \geq\ d(P,O)-d(P,Q)\ &gt;\ d(P,O)-\rho\ =\ R.$$</div>
+          <p><strong>Passo 4 — il disco è chiuso.</strong> Quindi $Q\in C$, cioè $B_\rho(P)\subseteq C$: ogni punto di $C$ è interno, $C$ è aperto e il disco è chiuso.</p>
+          <p><strong>Passo 5 — il disco è limitato.</strong> Ogni suo punto ha $d(P,O)\leq R &lt; R+1$, quindi il disco sta dentro la palla $B_{R+1}(O)$.</p>
+          <p><strong>Conclusione.</strong> Il disco è chiuso e limitato, cioè compatto. <span class="qed">∎</span></p>
         </div>
+        <p><strong>Perché tutto questo ci interessa davvero?</strong> Per un motivo molto concreto: <strong>i compatti sono gli insiemi su cui le funzioni continue si comportano bene</strong>. Il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, che in Analisi 1 richiedeva un intervallo $[a,b]$ chiuso e limitato, si estende parola per parola: <em>una funzione continua su un insieme compatto di $\mathbb{R}^n$ ammette massimo e minimo assoluti</em> (la dimostrazione è fuori portata qui; lo trovi enunciato per intero nel <a href="02-limiti-continuita-piu-variabili.html">capitolo 2</a>). Togli "chiuso" o togli "limitato" e la garanzia salta — $f(x,y)=x$ sul disco aperto non ha massimo, $f(x,y)=x$ su tutto il piano nemmeno. È l'ipotesi che userai in ogni esercizio di <a href="05-hessiano-massimi-minimi.html">massimi e minimi vincolati</a>.</p>
+        <p>Un'ultima nozione che incontrerai di sfuggita: un insieme si dice <strong>connesso (per archi)</strong> se due suoi punti qualsiasi si possono unire con un cammino che resta dentro l'insieme — "è fatto di un pezzo solo". E si dice <strong>convesso</strong> se addirittura il <em>segmento</em> fra due punti qualsiasi resta dentro: un disco è convesso, una mezzaluna no. La convessità servirà quando parleremo di funzioni con gradiente nullo e di primitive.</p>
       </section>
-      <!-- 6. ESEMPI SVOLTI -->
+      <!-- 5. ESEMPI SVOLTI -->
       <section class="section" id="esempi">
-        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 1 — Leggere e valutare una funzione di due variabili</span><span class="badge badge--base">Base</span></div>
@@ -537,7 +510,7 @@
           <p class="esempio__passi">
             <span class="esempio__passo">Applico la definizione di insieme di livello del <span class="richiamo" data-sec="4.4">§4.4</span>, $L_c=\{(x,y):f(x,y)=c\}$: <em>sostituisco l'espressione di $f$</em> al posto di $f(x,y)$ e ottengo l'equazione $x^2+y^2=c$. Da qui in poi il lavoro è riconoscere che curva è, e dipende dal segno di $c$.</span>
             <span class="esempio__passo"><strong>Caso $c &lt; 0$</strong>: nessuna soluzione, perché una somma di quadrati non è mai negativa. Quindi $L_c=\varnothing$ e la funzione non assume valori negativi.</span>
-            <span class="esempio__passo"><strong>Caso $c=0$</strong>: $x^2+y^2=0$ obbliga $x=0$ e $y=0$. Il livello si riduce al <em>singolo punto</em> $(0,0)$: è la "cima" — anzi, qui il fondo della conca.</span>
+            <span class="esempio__passo"><strong>Caso $c=0$</strong>: $x^2+y^2=0$ obbliga $x=0$ e $y=0$. Il livello si riduce al <em>singolo punto</em> $(0,0)$: è il fondo della conca.</span>
             <span class="esempio__passo"><strong>Caso $c &gt; 0$</strong>: confronto $x^2+y^2=c$ con l'equazione della circonferenza di centro l'origine, $x^2+y^2=r^2$ (<span class="richiamo" data-sec="4.2">§4.2</span>). Le due coincidono se $r^2=c$; estraendo la radice (il raggio è positivo) ottengo $r=\sqrt c$. Dunque è una circonferenza di centro l'origine e raggio $\sqrt{c}$.</span>
             <span class="esempio__passo"><strong>Spaziatura</strong>: per $c=1,4,9,16$ i raggi sono $1,2,3,4$. Le quote crescono come i <em>quadrati</em> dei raggi: allontanandosi, la funzione sale sempre più in fretta, quindi le curve di livello <em>si infittiscono</em> verso l'esterno. Pendio via via più ripido.</span>
             <span class="esempio__passo"><strong>Immagine</strong>: $L_c\neq\varnothing$ esattamente per $c\geq 0$, dunque $\mathrm{Im}(f)=[0,+\infty)$.</span>
@@ -549,14 +522,14 @@
           <div class="esempio__header"><span class="titolo">Esempio 5 — La sella: livelli e sezioni</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Studiare $f(x,y)=x^2-y^2$: curve di livello, sezioni con i piani coordinati, natura dell'origine, immagine.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Livelli</strong>: pongo $f(x,y)=c$, cioè $x^2-y^2=c$. Per $c\neq0$ divido entrambi i membri per $c$ e ottengo la forma canonica $\frac{x^2}{c}-\frac{y^2}{c}=1$: è un'iperbole. Per $c &gt; 0$ i rami sono "aperti" verso destra e sinistra (se pongo $y=0$ trovo $x=\pm\sqrt c$, cioè l'iperbole taglia l'asse $x$: l'asse trasverso è l'asse $x$); per $c &lt; 0$ invece è $y=0$ a non dare soluzioni mentre $x=0$ dà $y=\pm\sqrt{-c}$, quindi i rami puntano verso l'alto e il basso.</span>
+            <span class="esempio__passo"><strong>Livelli</strong>: pongo $f(x,y)=c$, cioè $x^2-y^2=c$. Per $c &gt; 0$ divido per $c$ e ottengo $\frac{x^2}{c}-\frac{y^2}{c}=1$: un'iperbole che taglia l'asse $x$ in $x=\pm\sqrt c$ (pongo $y=0$), con i rami a destra e a sinistra. Per $c &lt; 0$ divido per $-c$ e ottengo $\frac{y^2}{-c}-\frac{x^2}{-c}=1$: ancora un'iperbole, ma ora è $x=0$ a dare soluzioni, $y=\pm\sqrt{-c}$, quindi i rami stanno in alto e in basso.</span>
             <span class="esempio__passo"><strong>Livello zero</strong>: $x^2-y^2=0$. Uso la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2) con $a=x$ e $b=y$, che la fattorizza come $(x-y)(x+y)=0$; un prodotto si annulla quando si annulla un fattore, quindi $x-y=0$ oppure $x+y=0$, cioè $y=x$ oppure $y=-x$: due rette incrociate, la "X". È il caso degenere dell'iperbole e segna il confine fra la zona in cui $f &gt; 0$ e quella in cui $f &lt; 0$.</span>
             <span class="esempio__passo"><strong>Sezione $y=0$</strong>: $z=x^2$, parabola verso l'alto. Muovendosi lungo l'asse $x$ l'origine è un <em>minimo</em>.</span>
             <span class="esempio__passo"><strong>Sezione $x=0$</strong>: $z=-y^2$, parabola verso il basso. Muovendosi lungo l'asse $y$ l'origine è un <em>massimo</em>.</span>
             <span class="esempio__passo"><strong>Conclusione sull'origine</strong>: in ogni intorno dell'origine esistono punti in cui $f &gt; 0$ (sull'asse $x$) e punti in cui $f &lt; 0$ (sull'asse $y$), mentre $f(0,0)=0$. Quindi l'origine non è né massimo né minimo, nemmeno locale: è un <span class="glossario-term" data-term="punto-di-sella">punto di sella</span>.</span>
             <span class="esempio__passo"><strong>Immagine</strong>: per ogni $c\in\mathbb{R}$ il livello è non vuoto (basta prendere $y=0$ e $x=\sqrt{c}$ se $c\geq 0$, oppure $x=0$ e $y=\sqrt{-c}$ se $c &lt; 0$), quindi $\mathrm{Im}(f)=\mathbb{R}$.</span>
           </p>
-          <div class="esempio__risultato">Grafico: <strong>paraboloide iperbolico</strong>. Livelli: iperboli, degeneri nelle rette $y=\pm x$ per $c=0$. L'origine è un punto di sella; $\mathrm{Im}(f)=\mathbb{R}$. Questo esempio è il controesempio classico al ragionamento "se lungo ogni asse c'è un minimo, allora c'è un minimo": qui il comportamento dipende dalla direzione.</div>
+          <div class="esempio__risultato">Grafico: <strong>paraboloide iperbolico</strong>. Livelli: iperboli, degeneri nelle rette $y=\pm x$ per $c=0$. L'origine è un punto di sella; $\mathrm{Im}(f)=\mathbb{R}$. Morale: lungo $x$ l'origine è un minimo e lungo $y$ un massimo, quindi guardare una sola direzione non basta.</div>
         </div>
 
         <div class="esempio">
@@ -587,9 +560,9 @@
           <div class="esempio__risultato">$A$ è limitato ma <strong>né aperto né chiuso</strong>, quindi non compatto. Morale da incorniciare: basta un solo pezzo di frontiera "di segno sbagliato" per far cadere entrambe le proprietà.</div>
         </div>
       </section>
-      <!-- 7. ERRORI COMUNI -->
+      <!-- 6. ERRORI COMUNI -->
       <section class="section" id="errori-comuni">
-        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">❌</span> Confondere la curva di livello con il grafico</div>
@@ -622,9 +595,9 @@
         </div>
       </section>
 
-      <!-- 8. TRUCCHI -->
+      <!-- 7. TRUCCHI -->
       <section class="section" id="trucchi">
-        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Il test del punto: mai più dubbi sul lato giusto</div>
@@ -671,9 +644,9 @@
         </div>
       </section>
 
-      <!-- 9. MAPPA MENTALE -->
+      <!-- 8. MAPPA MENTALE -->
       <section class="section" id="mappa-mentale">
-        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
         <div class="mappa-mentale">
           <div class="mappa-mentale__centro">Funzioni di più variabili $f(x,y)$</div>
           <div class="mappa-mentale__rami">
@@ -739,9 +712,9 @@
         </div>
       </section>
 
-      <!-- 10. RIASSUNTO -->
+      <!-- 9. RIASSUNTO -->
       <section class="section" id="riassunto">
-        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
         <div class="riassunto-finale">
           <h3>Da ricordare assolutamente</h3>
           <ul>
@@ -1069,7 +1042,7 @@
               <button class="quiz-option" data-correct="false">Vero</button>
               <button class="quiz-option" data-correct="true">Falso</button>
             </div>
-            <div class="quiz-feedback" data-feedback>Falso, ed è la Proposizione 5.2: in un punto comune la funzione dovrebbe valere $c_1$ e $c_2$ contemporaneamente, contro la definizione di funzione. Sulla carta escursionistica la curva dei 1300 m e quella dei 1400 m non si toccano mai.</div>
+            <div class="quiz-feedback" data-feedback>Falso, ed è la proposizione dimostrata nel <span class="richiamo" data-sec="4.4">§4.4</span>: in un punto comune la funzione dovrebbe valere $c_1$ e $c_2$ contemporaneamente, contro la definizione di funzione. Sulla carta escursionistica la curva dei 1300 m e quella dei 1400 m non si toccano mai.</div>
           </div>
 
           <div class="quiz-question" data-type="tf">
