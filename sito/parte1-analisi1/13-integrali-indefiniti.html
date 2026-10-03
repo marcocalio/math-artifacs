@@ -43,14 +43,13 @@
           <li><a href="#motivazione">2. Motivazione</a></li>
           <li><a href="#vita-reale">3. Nella vita reale</a></li>
           <li><a href="#teoria">4. Teoria dettagliata</a></li>
-          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
-          <li><a href="#esempi">6. Esempi svolti</a></li>
-          <li><a href="#errori-comuni">7. Errori comuni</a></li>
-          <li><a href="#trucchi">8. Trucchi</a></li>
-          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
-          <li><a href="#riassunto">10. Riassunto</a></li>
-          <li><a href="#esercizi">11. Esercizi</a></li>
-          <li><a href="#quiz">12. Quiz</a></li>
+          <li><a href="#esempi">5. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">6. Errori comuni</a></li>
+          <li><a href="#trucchi">7. Trucchi</a></li>
+          <li><a href="#mappa-mentale">8. Mappa mentale</a></li>
+          <li><a href="#riassunto">9. Riassunto</a></li>
+          <li><a href="#esercizi">10. Esercizi</a></li>
+          <li><a href="#quiz">11. Quiz</a></li>
         </ul>
       </nav>
       <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
@@ -84,7 +83,7 @@
         <h1>Integrali Indefiniti</h1>
         <p class="subtitle">Fino a qui abbiamo sempre camminato in una direzione: data una funzione, calcolarne la derivata. Adesso torniamo indietro. Conosciamo il <em>tasso di variazione</em> e vogliamo ricostruire la funzione che lo produce. È l'operazione inversa della derivata, e apre la porta a tutto ciò che verrà: aree, volumi, il Teorema Fondamentale del Calcolo. Qui impari a "sderivare".</p>
         <div class="reading-meta">
-          <span>⏱️ ~55 min di lettura</span>
+          <span>⏱️ ~75 min di lettura</span>
           <span>✏️ 16 esercizi</span>
           <span>🧠 13 quiz</span>
         </div>
@@ -190,7 +189,7 @@
         &amp;= x + 0 &amp;&amp;\text{(il primo pezzo l'abbiamo appena calcolato; la derivata di una costante è } 0)\\
         &amp;= x &amp;&amp;\text{(sommare zero non cambia nulla)}
         \end{aligned}$$</div>
-        <p>Viene ancora $x$. E lo stesso succederebbe con $-3$, con $\sqrt7$, con qualunque numero: <strong>una costante sparisce sempre derivando</strong>, quindi non lascia nessuna traccia dentro $f$. Le primitive di $x$ sono dunque infinite. La domanda seria diventa un'altra: <em>sono tutte di questa forma — una primitiva fissa più un numero — oppure ce ne sono anche di fatte in modo diverso?</em> La risposta, dimostrata per intero nella <a href="#dimostrazioni">sezione 5</a>, è che su un intervallo sono tutte di questa forma. È il contenuto del prossimo paragrafo.</p>
+        <p>Viene ancora $x$. E lo stesso succederebbe con $-3$, con $\sqrt7$, con qualunque numero: <strong>una costante sparisce sempre derivando</strong>, quindi non lascia nessuna traccia dentro $f$. Le primitive di $x$ sono dunque infinite. La domanda seria diventa un'altra: <em>sono tutte di questa forma — una primitiva fissa più un numero — oppure ce ne sono anche di fatte in modo diverso?</em> La risposta è che su un intervallo sono tutte di questa forma: lo dimostriamo per intero nel prossimo paragrafo (<span class="richiamo" data-sec="4.2">§4.2</span>).</p>
 
         <h3 id="teoria-integrale">4.2 L'integrale indefinito e la costante $+C$</h3>
         <p><strong>Prima l'idea.</strong> Abbiamo appena visto che le primitive di una stessa funzione sono infinite. Invece di sceglierne una a caso e far finta di niente, la matematica fa una cosa più onesta: <strong>le tiene tutte insieme</strong> e dà un nome a questo pacchetto. Il pacchetto si chiama <strong>integrale indefinito</strong>, e il modo di scriverlo tutto in una volta è aggiungere in fondo una lettera che significa "più un numero qualunque": la famosa <strong>$+C$</strong>.</p>
@@ -220,7 +219,39 @@
         </table>
         <p>Il distacco resta $100$ metri per sempre, e il tachimetro non lo vede: segna gli stessi numeri sulle due auto. La velocità (la derivata) racconta il movimento, non il punto da cui è cominciato.</p>
 
-        <p><strong>Il teorema che sistema le cose</strong> (lo dimostriamo per intero nella <a href="#dimostrazioni">sezione 5</a>): se $F$ e $G$ sono due primitive della stessa $f$ <em>su un intervallo</em>, allora la loro differenza è una costante, cioè $G(x)=F(x)+C$. In parole semplici: <strong>non esistono primitive "strane"</strong>, tutte si ottengono da una sola aggiungendo un numero. Grazie a questo, l'insieme di tutte le primitive è esattamente</p>
+        <p><strong>Il teorema che sistema le cose.</strong> Sommare una costante a una primitiva dà ancora una primitiva: lo abbiamo appena visto. Ma potrebbero esistere primitive di forma <em>diversa</em>, che non si ottengono in questo modo? Il teorema seguente dice di no: <strong>non esistono primitive "strane"</strong>, tutte si ottengono da una sola aggiungendo un numero.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Due primitive differiscono per una costante.</em> Se $F$ e $G$ sono entrambe primitive di $f$ su un <strong>intervallo</strong> $I$, allora esiste un numero $C\in\mathbb{R}$ tale che $G(x)=F(x)+C$ per ogni $x\in I$.</p>
+        </div>
+
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Abbiamo due primitive $F$ e $G$ della stessa funzione $f$ su un intervallo $I$, e non sappiamo com'è fatta né l'una né l'altra. Vogliamo concludere che $G$ si ottiene da $F$ aggiungendo un numero fisso.</p>
+          <p><strong>L'idea.</strong> Confrontare $F$ e $G$ direttamente è impossibile, perché non conosciamo le loro formule. Di tutte e due, però, conosciamo una cosa sola, che ci basta: la derivata, ed è la stessa $f$. Allora guardiamo la loro <em>differenza</em> $H=G-F$. Se due funzioni hanno la stessa pendenza in ogni punto, la loro differenza ha pendenza $f-f=0$ in ogni punto. E una funzione con pendenza zero dappertutto, su un intervallo, "non si muove": è costante. Questo fatto è il corollario del teorema di Lagrange del cap. 8; lo rivediamo qui in due righe, perché è proprio lì che serve la parola "intervallo".</p>
+          <p><strong>Passo 1 — calcolo la derivata della differenza.</strong> Pongo $H(x)=G(x)-F(x)$ per $x\in I$. Le funzioni $F$ e $G$ sono derivabili (è parte della definizione di primitiva), quindi lo è anche $H$. La derivata di una differenza è la differenza delle derivate (cap. 7):</p>
+          <div class="calcolo">$$\begin{aligned}
+          H'(x) &amp;= G'(x)-F'(x)\\
+          &amp;= f(x)-f(x)\\
+          &amp;= 0
+          \end{aligned}$$</div>
+          <p>Nel passaggio centrale abbiamo usato che $F'=f$ e che $G'=f$: è qui che entra l'ipotesi "primitive della <em>stessa</em> $f$". Abbiamo ottenuto $H'(x)=0$ per ogni $x\in I$.</p>
+          <p><strong>Passo 2 — mostro che $H$ ha lo stesso valore in due punti qualsiasi.</strong> Scelgo due punti $x_1\lt x_2$ dell'intervallo $I$. Il teorema di Lagrange (cap. 8) dice che la pendenza media fra $x_1$ e $x_2$ coincide con la pendenza in qualche punto intermedio $\xi$. Possiamo applicarlo: $H$ è derivabile, quindi continua, su tutto $[x_1,x_2]$, e questo segmento sta dentro $I$ perché $I$ è un intervallo.</p>
+          <div class="calcolo">$$\begin{aligned}
+          H(x_2)-H(x_1) &amp;= H'(\xi)\,(x_2-x_1)\\
+          &amp;= 0\cdot(x_2-x_1)\\
+          &amp;= 0
+          \end{aligned}$$</div>
+          <p>La prima riga è Lagrange. Nella seconda usiamo il Passo 1, che vale in <em>ogni</em> punto di $I$: quindi anche in $\xi$, che non sappiamo individuare. Risultato: $H(x_2)=H(x_1)$.</p>
+          <p><strong>Passo 3 — concludo che $H$ è costante e torno a $G$.</strong> Il Passo 2 vale per qualunque coppia di punti di $I$, quindi $H$ assume lo stesso valore dappertutto. Chiamo $C$ quel valore. Allora $G(x)-F(x)=C$, e portando $F(x)$ dall'altra parte:</p>
+          <div class="calcolo">$$G(x)=F(x)+C\qquad\text{per ogni } x\in I.$$</div>
+          <p><strong>Conclusione.</strong> Ipotesi: $F$ e $G$ hanno la stessa derivata su un intervallo. Passi: la loro differenza ha derivata nulla (Passo 1); per Lagrange assume lo stesso valore in ogni coppia di punti (Passo 2); quindi è un numero fisso (Passo 3). Tesi: $G=F+C$. <span class="qed">∎</span></p>
+          <p><strong>Controllo numerico.</strong> Prendiamo $f(x)=3x^2$, $F(x)=x^3$ e $G(x)=x^3+5$. La differenza è $G(x)-F(x)=5$ per ogni $x$: un numero fisso, come previsto.</p>
+          <p><strong>Dove serve ogni ipotesi.</strong> Senza "stessa $f$" la differenza non avrebbe derivata nulla. Senza "intervallo" il segmento fra $x_1$ e $x_2$ potrebbe passare per un "buco" del dominio, dove $H$ non è né derivabile né continua, e Lagrange non si potrebbe applicare: nel riquadro "Perché serve l'ipotesi intervallo", più sotto, c'è un controesempio concreto.</p>
+        </div>
+
+        <p>Grazie a questo teorema, l'insieme di <em>tutte</em> le primitive di $f$ è esattamente</p>
         <div class="formula-block">$$\{\, F(x)+C \;:\; C \in \mathbb{R} \,\}.$$</div>
         <p>Questa famiglia di funzioni — tutte della stessa forma, traslate verticalmente l'una rispetto all'altra — è ciò che chiamiamo integrale indefinito. Le si assegna un simbolo apposito.</p>
 
@@ -263,7 +294,7 @@
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> Perché serve l'ipotesi "intervallo"</div>
-          <p>Il fatto che due primitive differiscano per <em>una sola</em> costante vale su un <strong>intervallo</strong>, cioè su un pezzo di retta tutto attaccato. Su un <span class="glossario-term" data-term="dominio">dominio</span> spezzato in due tronconi separati la costante può essere diversa su ciascun troncone, perché i due pezzi non "si parlano". Ad esempio $\int \frac{1}{x}\,dx=\ln|x|+C$ va inteso separatamente su $(-\infty,0)$ e su $(0,+\infty)$: nulla obbliga la costante a essere la stessa nei due rami. In Analisi 1 lavoreremo quasi sempre su un intervallo, quindi useremo tranquillamente un'unica $C$; ma è bene sapere da dove nasce quella richiesta, perché è la stessa ipotesi che serve nella dimostrazione della <a href="#dimostrazioni">sezione 5</a>.</p>
+          <p>Il fatto che due primitive differiscano per <em>una sola</em> costante vale su un <strong>intervallo</strong>, cioè su un pezzo di retta tutto attaccato. Su un <span class="glossario-term" data-term="dominio">dominio</span> spezzato in due tronconi separati la costante può essere diversa su ciascun troncone, perché i due pezzi non "si parlano". Ad esempio $\int \frac{1}{x}\,dx=\ln|x|+C$ va inteso separatamente su $(-\infty,0)$ e su $(0,+\infty)$: nulla obbliga la costante a essere la stessa nei due rami. Un esempio concreto: la funzione uguale a $\ln x$ per $x\gt0$ e a $\ln(-x)+1$ per $x\lt0$ ha derivata $\frac1x$ come $\ln|x|$, ma la differenza fra le due vale $0$ a destra e $1$ a sinistra, quindi non è costante. In Analisi 1 lavoreremo quasi sempre su un intervallo, quindi useremo tranquillamente un'unica $C$; ma è bene sapere da dove nasce quella richiesta, perché è la stessa ipotesi che serve nel Passo 2 della dimostrazione del teorema, poco sopra.</p>
         </div>
 
         <h3 id="teoria-immediati">4.3 Gli integrali immediati: la tabella delle primitive fondamentali</h3>
@@ -298,6 +329,52 @@
           </tbody>
         </table>
 
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Le formule della tabella.</em> In ogni riga, la funzione scritta nella colonna "Risultato" è una primitiva dell'integranda, su ogni intervallo in cui l'integranda è definita (per $x^{\alpha}$ con $\alpha$ non intero, su $x\gt0$). Per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span>, tutte le altre primitive si ottengono aggiungendo $C$.</p>
+        </div>
+
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che ognuna delle nove formule è giusta. Per la definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>) c'è una sola cosa da fare: <em>derivare il risultato e controllare che esca l'integranda</em>.</p>
+          <p><strong>L'idea.</strong> Non dobbiamo inventare nulla: derivare è meccanico, e la tabella delle derivate l'abbiamo già (cap. 7). Le formule si dividono in tre gruppi. Alcune sono la tabella delle derivate letta al contrario, e basta un colpo d'occhio. Altre richiedono un piccolo conto con una regola di derivazione. Due, $\frac1x$ e $\frac{1}{1+x^2}$, a prima vista non si capisce da dove saltino fuori: per queste spieghiamo anche <em>come ci si arriva</em>, non solo che sono vere. La terza colonna della tabella riporta già la derivata di ogni riga; qui spieghiamo i perché che stanno dietro quei conti.</p>
+
+          <p><strong>Passo 1 — le righe che sono la tabella delle derivate letta al contrario.</strong> Per $k$, $e^x$ e $\cos x$ basta la terza colonna: $D(kx)=k$, $D(e^x)=e^x$, $D(\sin x)=\cos x$. L'unico punto delicato è il segno nel seno. Derivando $\cos x$ si ottiene $-\sin x$, cioè l'opposto di quello che vogliamo; quindi serve la funzione con il segno cambiato, $-\cos x$, e allora $D(-\cos x)=-(-\sin x)=\sin x$.</p>
+
+          <p><strong>Passo 2 — la regola della potenza.</strong> Derivando una potenza l'esponente scende di uno; per tornare indietro, l'esponente deve salire di uno. Il primo tentativo è quindi $x^{\alpha+1}$. Lo deriviamo con la regola della potenza (cap. 7), con esponente $\alpha+1$:</p>
+          <div class="calcolo">$$D\big(x^{\alpha+1}\big)=(\alpha+1)\,x^{\alpha}.$$</div>
+          <p>Il tentativo è giusto a meno di un numero: davanti c'è un fattore $\alpha+1$ che non vogliamo. Lo togliamo dividendo il tentativo per $\alpha+1$ (un numero fisso, che esce dalla derivata):</p>
+          <div class="calcolo">$$D\!\left(\frac{x^{\alpha+1}}{\alpha+1}\right)=\frac{1}{\alpha+1}\cdot(\alpha+1)\,x^{\alpha}=x^{\alpha}.$$</div>
+          <p>La divisione è possibile solo se $\alpha+1\neq0$, cioè $\alpha\neq-1$: è esattamente l'esclusione scritta nella tabella.</p>
+
+          <p><strong>Passo 3 — il caso escluso, $\frac1x$ e il valore assoluto.</strong> Per $\alpha=-1$ la regola precedente cade, quindi dobbiamo cercare un'altra funzione la cui derivata sia $\frac1x$. Dal cap. 7 conosciamo $D(\ln x)=\frac1x$, ma vale solo per $x\gt0$, perché $\ln x$ esiste solo lì. Per $x\lt0$ proviamo $\ln(-x)$, che per $x\lt0$ esiste perché $-x\gt0$. La derivata, con la regola della catena (funzione interna $-x$, la cui derivata è $-1$), è:</p>
+          <div class="calcolo">$$D\big(\ln(-x)\big)=\frac{1}{-x}\cdot(-1)=\frac1x.$$</div>
+          <p>Quindi per $x\gt0$ la primitiva è $\ln x$ e per $x\lt0$ è $\ln(-x)$. Ma per $x\gt0$ si ha $|x|=x$ e per $x\lt0$ si ha $|x|=-x$: le due formule si scrivono insieme come $\ln|x|$, e abbiamo $D(\ln|x|)=\frac1x$ per ogni $x\neq0$. Il dominio $x\neq0$ non è un intervallo, e la formula va letta separatamente su ciascuna semiretta (§4.2).</p>
+
+          <p><strong>Passo 4 — l'esponenziale $a^x$.</strong> Per derivarlo lo riscriviamo con la base $e$: $a^x=e^{x\ln a}$ (Parte 0, cap. 4). Allora, con la regola della catena (funzione interna $x\ln a$, derivata $\ln a$):</p>
+          <div class="calcolo">$$D\big(a^x\big)=e^{x\ln a}\cdot\ln a=a^x\ln a.$$</div>
+          <p>Compare un fattore $\ln a$ in più, che è un numero fisso. Lo togliamo dividendo, e il risultato è $D\!\left(\frac{a^x}{\ln a}\right)=a^x$. La divisione è lecita solo se $\ln a\neq0$, cioè $a\neq1$ (e $a\gt0$ serve perché $a^x$ abbia senso per ogni $x$). Controllo numerico con $a=2$ in $x=0$: la pendenza di $2^x$ vale $\ln 2\approx0{,}693$ (il rapporto incrementale con $h=0{,}001$ dà $0{,}6934$), e dividendo per $\ln2$ si ottiene $1=2^0$ ✓.</p>
+
+          <p><strong>Passo 5 — $\frac{1}{\cos^2x}$ e la tangente.</strong> Deriviamo $\tan x=\frac{\sin x}{\cos x}$ con la regola del quoziente (cap. 7) e poi usiamo $\sin^2x+\cos^2x=1$:</p>
+          <div class="calcolo">$$\begin{aligned}
+          D(\tan x) &amp;= \frac{\cos x\cdot\cos x-\sin x\cdot(-\sin x)}{\cos^2x}\\
+          &amp;= \frac{\cos^2x+\sin^2x}{\cos^2x}\\
+          &amp;= \frac{1}{\cos^2x}
+          \end{aligned}$$</div>
+          <p>Il conto vale dove $\cos x\neq0$, quindi su ogni intervallo del tipo $\left(-\frac\pi2+k\pi,\ \frac\pi2+k\pi\right)$. La riga centrale mostra anche che $\frac{1}{\cos^2x}=\frac{\cos^2x}{\cos^2x}+\frac{\sin^2x}{\cos^2x}=1+\tan^2x$: ci servirà subito.</p>
+
+          <p><strong>Passo 6 — $\frac{1}{1+x^2}$ e $\frac{1}{\sqrt{1-x^2}}$: da dove escono.</strong> Queste due integrande non sono potenze né logaritmi, quindi la funzione cercata deve essere di un altro tipo. Nel cap. 7 (§4.7.1) la derivata di una funzione inversa si ottiene così: se $y=\arctan x$, allora $x=\tan y$ con $-\frac\pi2\lt y\lt\frac\pi2$, e la derivata dell'inversa è il reciproco della derivata della funzione di partenza. Usando il Passo 5:</p>
+          <div class="calcolo">$$\begin{aligned}
+          D(\arctan x) &amp;= \frac{1}{D(\tan y)}\\
+          &amp;= \frac{1}{1+\tan^2y}\\
+          &amp;= \frac{1}{1+x^2}
+          \end{aligned}$$</div>
+          <p>Nell'ultimo passaggio abbiamo sostituito $\tan y=x$. Lo stesso schema vale per l'arcoseno: se $y=\arcsin x$, allora $x=\sin y$ con $-\frac\pi2\leq y\leq\frac\pi2$, e $D(\sin y)=\cos y$. In quell'intervallo il coseno non è negativo, quindi $\cos y=\sqrt{1-\sin^2y}=\sqrt{1-x^2}$ (qui la radice prende il segno giusto proprio perché $\cos y\geq0$). Per $-1\lt x\lt1$:</p>
+          <div class="calcolo">$$D(\arcsin x)=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}.$$</div>
+          <p><strong>Conclusione.</strong> Per ogni riga della tabella abbiamo derivato il risultato e ritrovato l'integranda, con le condizioni sul dominio e sui parametri ($\alpha\neq-1$, $a\gt0$ e $a\neq1$, $\cos x\neq0$, $-1\lt x\lt1$) che sono emerse dai conti stessi. Quindi ogni riga è una primitiva e, per il §4.2, tutte le altre differiscono per una costante. <span class="qed">∎</span></p>
+          <p><strong>Osservazione.</strong> Nella tabella compare solo l'arcoseno e non l'arcocoseno, perché non servono entrambi: $D(\arccos x)=-\frac{1}{\sqrt{1-x^2}}$, quindi anche $-\arccos x$ è una primitiva di $\frac{1}{\sqrt{1-x^2}}$. Non c'è contraddizione: $\arcsin x$ e $-\arccos x$ differiscono per la costante $\frac\pi2$ (cap. 7: $\arcsin x+\arccos x=\frac\pi2$, cioè $\arcsin x=(-\arccos x)+\frac\pi2$), come prevede il §4.2.</p>
+        </div>
+
         <p><strong>La riga più usata di tutte: la regola della potenza.</strong> Vale la pena ridurla a tre mosse fisse, perché la applicherai centinaia di volte. Per calcolare $\int x^{\alpha}\,dx$ (con $\alpha\neq-1$):</p>
         <ol>
           <li><strong>Leggo l'esponente</strong>: è $\alpha$.</li>
@@ -321,7 +398,7 @@
 
         <div class="callout callout--intuizione">
           <div class="callout__title"><span class="emoji">💡</span> Il "buco" nella regola della potenza</div>
-          <p>La formula $\int x^\alpha\,dx=\frac{x^{\alpha+1}}{\alpha+1}+C$ funziona per ogni esponente <em>tranne</em> $\alpha=-1$: lì il denominatore $\alpha+1$ diventa $-1+1=0$, e dividere per zero non si può. Cosa integra allora $x^{-1}=\frac1x$? Non una potenza, ma il <span class="glossario-term" data-term="logaritmo">logaritmo</span>: $\int\frac1x\,dx=\ln|x|+C$. Proprio dove la potenza fallisce, subentra il logaritmo a tappare il buco. Il valore assoluto serve perché $\frac1x$ è definita anche per $x\lt 0$, e su quel ramo la primitiva è $\ln(-x)$: derivandola con la regola della catena si ottiene $\frac{1}{-x}\cdot(-1)=\frac1x$, come deve essere. Scrivere $\ln|x|$ è il modo compatto di dire "vale su entrambi i rami".</p>
+          <p>La formula $\int x^\alpha\,dx=\frac{x^{\alpha+1}}{\alpha+1}+C$ funziona per ogni esponente <em>tranne</em> $\alpha=-1$: lì il denominatore $\alpha+1$ diventa $-1+1=0$, e dividere per zero non si può. Cosa integra allora $x^{-1}=\frac1x$? Non una potenza, ma il <span class="glossario-term" data-term="logaritmo">logaritmo</span>: $\int\frac1x\,dx=\ln|x|+C$. Proprio dove la potenza fallisce, subentra il logaritmo a tappare il buco. Il valore assoluto serve perché $\frac1x$ è definita anche per $x\lt 0$: perché $\ln|x|$ funzioni su entrambi i rami lo abbiamo verificato nel Passo 3 della dimostrazione qui sopra.</p>
         </div>
 
         <p>Da questa tabella e dalla relazione "deriva / integra" nasce tutto il resto del capitolo:</p>
@@ -364,12 +441,28 @@
           <p>In parole: <strong>l'integrale di una somma è la somma degli integrali, e un numero che moltiplica si porta fuori dal segno di integrale.</strong></p>
         </div>
 
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che spezzare un integrale in due pezzi e portare fuori i numeri non cambia il risultato. Ricorda che $\int$ significa "tutte le primitive di": dire che i due membri sono uguali vuol dire che hanno <em>le stesse primitive</em>.</p>
+          <p><strong>L'idea.</strong> Non serve inventare nulla, perché sappiamo già come si controlla una primitiva: si deriva. Il membro di destra ci suggerisce un candidato. Se $F$ è una primitiva di $f$ e $G$ è una primitiva di $g$, il candidato è $a\,F+b\,G$. Lo deriviamo: la derivata è lineare (cap. 7: la derivata di una somma è la somma delle derivate, e i numeri escono dal segno di derivata), quindi ci aspettiamo di ritrovare proprio $a\,f+b\,g$. In altre parole, la linearità dell'integrale è la linearità della derivata letta al contrario.</p>
+          <p><strong>Passo 1 — do un nome alle primitive di partenza.</strong> Sia $F$ una primitiva di $f$ e sia $G$ una primitiva di $g$. Per definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>) questo significa $F'=f$ e $G'=g$.</p>
+          <p><strong>Passo 2 — derivo il candidato $a\,F+b\,G$.</strong> Uso prima la linearità della derivata e poi $F'=f$, $G'=g$:</p>
+          <div class="calcolo">$$\begin{aligned}
+          \big(a\,F+b\,G\big)' &amp;= a\,F'+b\,G'\\
+          &amp;= a\,f+b\,g
+          \end{aligned}$$</div>
+          <p>Abbiamo ottenuto esattamente l'integranda del membro di sinistra: quindi $a\,F+b\,G$ è <em>una</em> primitiva di $a\,f+b\,g$.</p>
+          <p><strong>Passo 3 — tengo conto di tutte le altre primitive.</strong> Per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span>, le primitive di $a\,f+b\,g$ sono tutte e sole le funzioni $a\,F+b\,G+C$, al variare di $C$. Dall'altra parte, il membro di destra $a\int f\,dx+b\int g\,dx$ significa $a\,(F+C_1)+b\,(G+C_2)=a\,F+b\,G+(a\,C_1+b\,C_2)$, e $a\,C_1+b\,C_2$ è ancora un numero qualunque, cioè una costante di integrazione. Le due famiglie di funzioni sono la stessa.</p>
+          <p><strong>Conclusione.</strong> Ipotesi: $F$ e $G$ sono primitive di $f$ e $g$. Passi: il candidato $a\,F+b\,G$ ha derivata $a\,f+b\,g$ (Passo 2), e le altre primitive differiscono da lui per una costante (Passo 3). Tesi: $\int(a\,f+b\,g)\,dx=a\int f\,dx+b\int g\,dx$. <span class="qed">∎</span></p>
+          <p><strong>Perché i prodotti restano fuori.</strong> La stessa idea spiega il non-esempio qui sotto. La linearità dell'integrale funziona perché la derivata è lineare. Ma la derivata di un prodotto <em>non</em> è il prodotto delle derivate: ha due addendi (regola del prodotto, cap. 7). Per questo non esiste una regola "per prodotti" per gli integrali; al suo posto c'è l'integrazione per parti (<span class="richiamo" data-sec="4.6">§4.6</span>), che nasce proprio dalla regola del prodotto.</p>
+        </div>
+
         <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> La linearità vale per somme e per numeri moltiplicativi. <em>Non</em> vale per i prodotti di funzioni. Verifichiamolo con i numeri, per convincercene davvero: è vero che $\int x\cdot x\,dx$ è uguale a $\left(\int x\,dx\right)\cdot\left(\int x\,dx\right)$?</p>
         <div class="calcolo">$$\begin{aligned}
         \int x\cdot x\,dx &amp;= \int x^2\,dx = \frac{x^3}{3}+C &amp;&amp;\text{(prima moltiplico, poi regola della potenza con } \alpha=2)\\
         \left(\int x\,dx\right)\cdot\left(\int x\,dx\right) &amp;= \frac{x^2}{2}\cdot\frac{x^2}{2} = \frac{x^4}{4} &amp;&amp;\text{(se invece moltiplicassi i due integrali)}
         \end{aligned}$$</div>
-        <p>$\frac{x^3}{3}$ e $\frac{x^4}{4}$ sono funzioni completamente diverse (in $x=3$ la prima vale $9$, la seconda $20{,}25$). Quindi <strong>non esiste nessuna "regola del prodotto" per gli integrali</strong>, e non esiste nemmeno quella del quoziente. È proprio questa mancanza che rende necessarie le due tecniche dei prossimi paragrafi: la sostituzione e l'integrazione per parti. La dimostrazione della linearità, brevissima, è nella <a href="#dimostrazioni">sezione 5</a>.</p>
+        <p>$\frac{x^3}{3}$ e $\frac{x^4}{4}$ sono funzioni completamente diverse (in $x=3$ la prima vale $9$, la seconda $20{,}25$). Quindi <strong>non esiste nessuna "regola del prodotto" per gli integrali</strong>, e non esiste nemmeno quella del quoziente. È proprio questa mancanza che rende necessarie le due tecniche dei prossimi paragrafi: la sostituzione e l'integrazione per parti.</p>
 
         <h3 id="teoria-sostituzione">4.5 Integrazione per sostituzione</h3>
         <p><strong>Prima l'idea.</strong> Molte funzioni integrande sono "una dentro l'altra": in $e^{x^2}$ c'è $x^2$ dentro l'esponenziale, in $\sin(2x)$ c'è $2x$ dentro il seno. Quando <em>deriviamo</em> una funzione così usiamo la <strong>regola della catena</strong> (cap. 7), che dice</p>
@@ -400,8 +493,8 @@
 
         <p><strong>Un esempio concreto, con i numeri, una mossa alla volta.</strong> Calcoliamo $\displaystyle\int 2x\,e^{x^2}\,dx$. Facciamo finta di non conoscere il risultato e procediamo con calma, dichiarando ogni mossa.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> Guardo l'integranda e cerco la parte "che sta dentro", cioè quella scritta dentro un'altra funzione: qui è $x^2$, che sta dentro l'esponenziale. La battezzo $t$: <strong>pongo $t=x^2$</strong>. (Il criterio generale per scegliere la $t$ è spiegato subito dopo.)</span>
-          <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il $dx$.</strong> Se cambio variabile devo convertire anche il "pezzettino" $dx$, e la conversione va <em>calcolata</em>: non è un cambio di nome. La regola è sempre la stessa: derivo la $t$ rispetto a $x$, poi moltiplico entrambi i membri per $dx$.</span>
+          <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> Guardo l'integranda e cerco la parte "che sta dentro", cioè quella scritta dentro un'altra funzione: qui è $x^2$, che sta dentro l'esponenziale. La battezzo $t$: <strong>pongo $t=x^2$</strong>. (Il criterio generale per scegliere la $t$ è spiegato più sotto.)</span>
+          <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il $dx$.</strong> Se cambio variabile devo convertire anche il "pezzettino" $dx$, e la conversione va <em>calcolata</em>: non è un cambio di nome. La regola è sempre la stessa: derivo la $t$ rispetto a $x$, poi moltiplico entrambi i membri per $dx$. (Perché funziona proprio così lo dimostriamo fra poco, nel Passo 3 della dimostrazione della formula di sostituzione.)</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         t &amp;= x^2 &amp;&amp;\text{(la sostituzione che ho scelto)}\\
@@ -438,7 +531,7 @@
         <p><strong>Ora la formula generale, con le lettere al posto dei numeri.</strong></p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Formula di sostituzione</span>
-          <p>Se $F$ è una primitiva di $f$ e $g$ è derivabile, allora</p>
+          <p>Se $F$ è una primitiva di $f$ su un intervallo $J$ e $g$ è derivabile su un intervallo $I$ con valori dentro $J$, allora</p>
           <div class="formula-block">$$\int \underbrace{f\big(g(x)\big)}_{\text{funzione composta}}\ \underbrace{g'(x)\,dx}_{\text{il blocco che diventa } dt} \;\overset{t=g(x)}{=}\; \int f(t)\,dt \;=\; F(t)+C \;=\; \underbrace{F\big(g(x)\big)+C}_{\text{ritorno alla variabile } x}$$</div>
           <p>Cosa significa ogni pezzo:</p>
           <ul>
@@ -447,6 +540,24 @@
             <li>$f$ è tutto ciò che resta, e va integrato nella variabile $t$;</li>
             <li>l'ultimo passaggio è il ritorno a $x$: senza di quello la risposta non è una risposta.</li>
           </ul>
+        </div>
+
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che la ricetta delle sei mosse funziona davvero: se pongo $t=g(x)$, scrivo $dt$ al posto di $g'(x)\,dx$, integro in $t$ e poi rimetto $t=g(x)$, ottengo una primitiva dell'integranda di partenza. E vogliamo capire <em>perché</em> il $dx$ si converte in quel modo, cioè da dove esce il fattore $g'(x)$.</p>
+          <p><strong>L'idea.</strong> Il risultato della ricetta è la funzione $F\big(g(x)\big)$: la primitiva trovata in $t$, con $t$ rimpiazzata da $g(x)$. Per sapere se è una primitiva dell'integranda facciamo quello che facciamo sempre: la deriviamo. Ma $F(g(x))$ è una funzione composta, e per derivarla serve la regola della catena, che produce <em>due</em> fattori: la derivata della funzione esterna (calcolata nella interna) e la derivata della funzione interna. Il secondo fattore, $g'(x)$, è proprio quello che nell'integranda sembrava "in più". Non è in più: c'è perché la regola della catena lo mette lì. La sostituzione non è un trucco di scrittura: è la regola della catena letta al contrario.</p>
+          <p><strong>Passo 1 — derivo la funzione composta.</strong> La funzione esterna è $F$, quella interna è $g$. La regola della catena (cap. 7) dà:</p>
+          <div class="calcolo">$$\frac{d}{dx}\,F\big(g(x)\big)=F'\big(g(x)\big)\cdot g'(x).$$</div>
+          <p><strong>Passo 2 — uso il fatto che $F$ è una primitiva di $f$.</strong> Per definizione $F'=f$, quindi in $F'\big(g(x)\big)$ posso scrivere $f\big(g(x)\big)$:</p>
+          <div class="calcolo">$$\frac{d}{dx}\,F\big(g(x)\big)=f\big(g(x)\big)\cdot g'(x).$$</div>
+          <p>Il secondo membro è esattamente l'integranda dell'enunciato. Quindi $F\big(g(x)\big)$ è una sua primitiva. Questa è la dimostrazione vera: tutto il resto è come si scrive.</p>
+          <p><strong>Passo 3 — da dove nasce la scrittura $dt=g'(x)\,dx$.</strong> Nella ricetta compaiono $dt$ e $dx$, che nei Passi 1 e 2 non si sono visti. Sono un modo comodo per tenere i conti di ciò che abbiamo appena dimostrato. In notazione di Leibniz (cap. 7), la regola della catena per $F$ come funzione di $t$, a sua volta funzione di $x$ tramite $t=g(x)$, si scrive</p>
+          <div class="calcolo">$$\frac{dF}{dx}=\frac{dF}{dt}\cdot\frac{dt}{dx},\qquad\text{con}\quad \frac{dF}{dt}=f(t),\quad \frac{dt}{dx}=g'(x).$$</div>
+          <p>Moltiplicando per $dx$ si legge $dF=f(t)\,dt=f\big(g(x)\big)\,g'(x)\,dx$: lo stesso "pezzettino di $F$", scritto una volta con la variabile $t$ e una volta con la variabile $x$. Per questo, passando da $x$ a $t$, il blocco $f\big(g(x)\big)\,g'(x)\,dx$ diventa $f(t)\,dt$: i due hanno la stessa primitiva $F$. Il fattore $g'(x)$ è il tasso di conversione fra le due variabili (la "velocità" del viaggio dell'esempio, e il fattore $2x$ che allungava i passi nella tabella di prima): per un passo piccolo $\Delta x$, la $t$ si muove di circa $g'(x)\,\Delta x$. Quindi $dt=g'(x)\,dx$ non è una frazione che si semplifica: è la regola della catena in forma abbreviata.</p>
+          <p><strong>Passo 4 — concludo.</strong> $F(g(x))$ è una primitiva dell'integranda, e per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span> tutte le altre si ottengono aggiungendo $C$. Scrivendo $F(t)+C=\int f(t)\,dt$ e rimettendo $t=g(x)$, è la formula dell'enunciato.</p>
+          <p><strong>Conclusione.</strong> Ipotesi: $F$ è una primitiva di $f$ e $g$ è derivabile. Passi: derivando $F(g(x))$ con la catena compare il fattore $g'(x)$ (Passo 1); sostituendo $F'=f$ si ritrova l'integranda (Passo 2). Tesi: $\int f(g(x))\,g'(x)\,dx=F(g(x))+C$. <span class="qed">∎</span></p>
+          <p><strong>Controllo numerico.</strong> Prendiamo $f(t)=e^t$, $F(t)=e^t$ e $g(x)=x^2$. La formula dice che $e^{x^2}$ ha derivata $2x\,e^{x^2}$, che in $x=1$ vale $2e\approx5{,}4366$. Il rapporto incrementale $\frac{e^{(1+h)^2}-e}{h}$ dà $6{,}352$ per $h=0{,}1$, $5{,}519$ per $h=0{,}01$ e $5{,}445$ per $h=0{,}001$: si avvicina a $5{,}4366$ ✓.</p>
+          <p><strong>Dove si usano le ipotesi.</strong> Se nell'integranda non c'è il fattore $g'(x)$, la formula cade: la derivata di $e^{x^2}$ è $2x\,e^{x^2}$ e non $e^{x^2}$, quindi $\int e^{x^2}\,dx\neq e^{x^2}+C$. Inoltre i valori $g(x)$ devono restare nell'intervallo dove $F$ è primitiva di $f$: con $f(t)=\frac1t$, per esempio, serve $g(x)\neq0$ su tutto l'intervallo in cui lavoriamo.</p>
         </div>
 
         <div class="callout callout--trucco">
@@ -490,7 +601,7 @@
         &amp;= \frac12\,e^{t}+C &amp;&amp;\text{(tabella, §4.3)}\\
         &amp;= \frac12\,e^{x^2}+C &amp;&amp;\text{(risostituisco } t=x^2)
         \end{aligned}$$</div>
-        <p>Verifica: $D\!\left(\frac12 e^{x^2}\right)=\frac12\cdot e^{x^2}\cdot 2x=x\,e^{x^2}$ ✓. Un numero che manca si aggiusta sempre, dividendo o moltiplicando; quello che non si può mai saltare è la conversione del $dx$ (è l'errore numero uno, vedi la <a href="#errori-comuni">sezione 7</a>).</p>
+        <p>Verifica: $D\!\left(\frac12 e^{x^2}\right)=\frac12\cdot e^{x^2}\cdot 2x=x\,e^{x^2}$ ✓. Un numero che manca si aggiusta sempre, dividendo o moltiplicando; quello che non si può mai saltare è la conversione del $dx$ (è l'errore numero uno, vedi la <a href="#errori-comuni">sezione 6</a>).</p>
 
         <h3 id="teoria-parti">4.6 Integrazione per parti</h3>
         <p><strong>Prima l'idea.</strong> La sostituzione inverte la regola della catena. L'<strong>integrazione per parti</strong> inverte l'altra grande regola del capitolo 7, la <strong>regola del prodotto</strong>. Si usa quando l'integranda è un <em>prodotto di due funzioni di tipo diverso</em> — un polinomio per un esponenziale, un polinomio per un logaritmo, un polinomio per un seno — e nessuna delle due è la derivata dell'altra (se lo fosse, useresti la sostituzione).</p>
@@ -505,7 +616,7 @@
         <p>e richiede <strong>quattro ingredienti</strong>: $f$, $f'$, $g'$, $g$. Li prepariamo tutti e quattro <em>prima</em> di applicarla, scritti uno per riga: è il modo più sicuro di non confondersi.</p>
         <p class="esempio__passi">
           <span class="esempio__passo"><strong>Divido l'integranda in due fattori</strong>: $x$ e $\cos x$. Uno dei due lo derivo (lo chiamo $f$), l'altro lo integro (lo chiamo $g'$).</span>
-          <span class="esempio__passo"><strong>Decido chi derivare.</strong> Scelgo $f=x$, perché derivandolo diventa $1$ e quindi sparisce dal nuovo integrale; l'altro fattore, $\cos x$, integrandolo resta docile (diventa $\sin x$). Il criterio generale, LIATE, è spiegato subito dopo.</span>
+          <span class="esempio__passo"><strong>Decido chi derivare.</strong> Scelgo $f=x$, perché derivandolo diventa $1$ e quindi sparisce dal nuovo integrale; l'altro fattore, $\cos x$, integrandolo resta docile (diventa $\sin x$). Il criterio generale, LIATE, è spiegato più sotto.</span>
         </p>
         <p>I quattro ingredienti, uno per riga:</p>
         <ul>
@@ -534,20 +645,40 @@
           <span class="box-teorema__label">Formula di integrazione per parti</span>
           <p>Se $f$ e $g$ sono derivabili con continuità su un intervallo, allora</p>
           <div class="formula-block">$$\int \underbrace{f(x)\,g'(x)}_{\text{quello che ho}}\,dx = \underbrace{f(x)\,g(x)}_{\text{il pezzo già fatto}} - \int \underbrace{f'(x)\,g(x)}_{\text{il nuovo integrale, si spera più facile}}\,dx$$</div>
-          <p>Cosa significa ogni pezzo: dei due fattori dell'integranda, uno lo chiami $f$ (quello che <strong>derivi</strong>) e l'altro lo interpreti come $g'$ (quello che <strong>integri</strong>, per ottenere $g$). La formula scambia l'integrale di partenza $\int f\,g'$ con il nuovo integrale $\int f'\,g$. La dimostrazione, che parte dalla regola del prodotto, è nella <a href="#dimostrazioni">sezione 5</a>.</p>
+          <p>Cosa significa ogni pezzo: dei due fattori dell'integranda, uno lo chiami $f$ (quello che <strong>derivi</strong>) e l'altro lo interpreti come $g'$ (quello che <strong>integri</strong>, per ottenere $g$). La formula scambia l'integrale di partenza $\int f\,g'$ con il nuovo integrale $\int f'\,g$.</p>
+        </div>
+
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che lo "scambio" del baratto è lecito: se riusciamo a calcolare l'integrale scambiato $\int f'g\,dx$, allora abbiamo anche una primitiva di $f\,g'$, ed è quella data dalla formula.</p>
+          <p><strong>L'idea.</strong> Per i prodotti non esiste nessuna regola di <em>integrazione</em> (lo abbiamo visto nel <span class="richiamo" data-sec="4.4">§4.4</span>), ma esiste una regola di <em>derivazione</em>: la derivata di $f\,g$ è $f'g+fg'$, una somma di due pezzi. Uno dei due pezzi è proprio l'integranda $f\,g'$ che ci interessa. Allora ragioniamo così: $f\,g$ è una primitiva della somma; se dalla somma togliamo il pezzo $f'g$ (e supponiamo di saperne calcolare una primitiva), quello che resta, $f\,g'$, ha come primitiva "$f\,g$ meno la primitiva di $f'g$". È la stessa mossa che si fa con un'equazione, portare un termine dall'altra parte; solo che qui i termini sono derivate.</p>
+          <p><strong>Passo 1 — scrivo la regola del prodotto.</strong> Per due funzioni derivabili (cap. 7):</p>
+          <div class="calcolo">$$\big(f\,g\big)'=f'g+f\,g'.$$</div>
+          <p><strong>Passo 2 — isolo il pezzo che mi interessa.</strong> Sottraggo $f'g$ a entrambi i membri, così a destra resta solo $f\,g'$:</p>
+          <div class="calcolo">$$f\,g'=\big(f\,g\big)'-f'g.$$</div>
+          <p><strong>Passo 3 — cerco una primitiva del membro di destra, un pezzo alla volta.</strong> Il primo pezzo, $(f\,g)'$, è la derivata di $f\,g$: quindi ha per primitiva $f\,g$ (definizione di primitiva, <span class="richiamo" data-sec="4.1">§4.1</span>). Il secondo pezzo, $f'g$, per ipotesi ha una primitiva: la chiamo $H$ (nei casi pratici la calcoliamo noi, ed è proprio l'integrale scambiato $\int f'g\,dx$). Allora la differenza $f\,g-H$ è una primitiva di $f\,g'$. Per non fidarci solo delle parole, lo controlliamo derivando:</p>
+          <div class="calcolo">$$\begin{aligned}
+          \big(f\,g-H\big)' &amp;= \big(f\,g\big)'-H'\\
+          &amp;= f'g+f\,g'-f'g\\
+          &amp;= f\,g'
+          \end{aligned}$$</div>
+          <p>Nel passaggio centrale abbiamo usato la regola del prodotto (Passo 1) e $H'=f'g$ (perché $H$ è primitiva di $f'g$): i due termini $f'g$ si cancellano.</p>
+          <p><strong>Passo 4 — aggiungo la costante.</strong> Abbiamo trovato una primitiva di $f\,g'$, cioè $f\,g-H$; per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span> tutte le altre si ottengono aggiungendo $C$. Scrivendo $H=\int f'g\,dx$ (la sua costante si assorbe in $C$) otteniamo la formula.</p>
+          <p><strong>Conclusione.</strong> Ipotesi: $f$ e $g$ derivabili, e una primitiva $H$ di $f'g$. Passi: la regola del prodotto, letta spostando un termine, dice che $f\,g'=(f\,g)'-f'g$ (Passi 1-2); la primitiva del secondo membro è $f\,g-H$ (Passo 3). Tesi: $\int f\,g'\,dx=f\,g-\int f'g\,dx$. <span class="qed">∎</span></p>
+          <p><strong>Controllo numerico.</strong> Con $f=x$ e $g'=e^x$ (quindi $g=e^x$, $f'=1$) la formula dà $x\,e^x-e^x$. Derivando e valutando in $x=1$: $D\big(x\,e^x-e^x\big)=e^x+x\,e^x-e^x=x\,e^x$, che in $x=1$ vale $e$, proprio il valore dell'integranda $x\,e^x$ in $x=1$ ✓.</p>
+          <p><strong>Dove si usano le ipotesi.</strong> La derivabilità di $f$ e $g$ serve perché la regola del prodotto vale solo per funzioni derivabili. La continuità delle derivate (richiesta nell'enunciato) garantisce che $f'g$ sia continua e quindi abbia sempre una primitiva (lo dimostreremo nel cap. 14); ma quello che conta in pratica è un'altra cosa: la formula è utile solo se la primitiva $H$ di $f'g$ <em>riusciamo davvero a trovarla</em>, ed è per questo che la scelta di $f$ e $g'$ è così importante.</p>
         </div>
 
         <div class="callout callout--trucco">
-          <div class="callout__title"><span class="emoji">🔑</span> La regola LIATE: chi si deriva e chi si integra</div>
-          <p>Il successo del metodo dipende tutto da <em>quale</em> dei due fattori scegli come $f$ (quello da derivare). La priorità si ricorda con l'acronimo <strong>LIATE</strong>:</p>
+          <div class="callout__title"><span class="emoji">🔑</span> Come si sceglie: chi si deriva e chi si integra (la regola LIATE)</div>
+          <p><strong>Da dove viene il criterio.</strong> Guarda la formula: dei due fattori, uno lo devi <em>integrare</em> (per ottenere $g$), l'altro lo <em>derivi</em> (per ottenere $f'$). Perché lo scambio convenga servono due cose: (1) il fattore che integri deve avere una primitiva che sai scrivere; (2) il nuovo integrale $\int f'g\,dx$ deve essere più facile del vecchio. Quindi si <strong>deriva</strong> il fattore che derivando si semplifica, e si <strong>integra</strong> quello che integrando non peggiora. Vediamo come si comportano i cinque tipi di funzione:</p>
           <ul>
-            <li><strong>L</strong> — funzioni <strong>L</strong>ogaritmiche ($\ln x$, $\log_a x$)</li>
-            <li><strong>I</strong> — funzioni trigonometriche <strong>I</strong>nverse ($\arctan x$, $\arcsin x$)</li>
-            <li><strong>A</strong> — funzioni <strong>A</strong>lgebriche (polinomi: $x$, $x^2$, …)</li>
-            <li><strong>T</strong> — funzioni <strong>T</strong>rigonometriche ($\sin x$, $\cos x$)</li>
-            <li><strong>E</strong> — funzioni <strong>E</strong>sponenziali ($e^x$, $a^x$)</li>
+            <li><strong>L</strong>ogaritmiche ($\ln x$) e <strong>I</strong>nverse trigonometriche ($\arctan x$, $\arcsin x$): <strong>da derivare</strong>. Non hanno una primitiva nella tabella, quindi non si possono scegliere come $g'$. Derivandole, invece, diventano funzioni razionali o con radici ($\frac1x$, $\frac{1}{1+x^2}$, $\frac{1}{\sqrt{1-x^2}}$), molto più docili.</li>
+            <li><strong>A</strong>lgebriche (polinomi: $x$, $x^2$, …): derivando il grado scende, e dopo abbastanza derivate resta una costante; integrando il grado sale. Quindi, davanti a una trigonometrica o a un esponenziale, vanno <strong>derivate</strong>.</li>
+            <li><strong>T</strong>rigonometriche ($\sin x$, $\cos x$) ed <strong>E</strong>sponenziali ($e^x$, $a^x$): integrandole restano dello stesso tipo ($\sin\to-\cos$, $e^x\to e^x$), quindi non peggiorano. Sono i candidati naturali da <strong>integrare</strong>.</li>
           </ul>
-          <p><strong>Chi compare prima nella sigla si sceglie come $f$</strong> (da derivare); l'altro fa da $g'$ (da integrare). Il perché di quest'ordine: si deriva ciò che <em>si semplifica derivando</em> (un logaritmo diventa la funzione razionale $\frac1x$; un polinomio abbassa il grado, e derivandolo abbastanza volte sparisce) e si integra ciò che <em>resta docile integrando</em> (l'esponenziale rimane sé stesso, il seno diventa un coseno). Esempio di lettura: in $\int x\ln x\,dx$ ci sono una L e una A; la L viene prima, quindi $f=\ln x$ e $g'=x$.</p>
+          <p>Mettendo i fattori in ordine, dal più "da derivare" al più "da integrare", si ottiene la sigla <strong>LIATE</strong>. La regola è: <strong>chi compare prima nella sigla si sceglie come $f$</strong> (da derivare); l'altro fa da $g'$ (da integrare). Esempio di lettura: in $\int x\ln x\,dx$ ci sono una L e una A; la L viene prima, quindi $f=\ln x$ e $g'=x$.</p>
+          <p><strong>Due avvertenze.</strong> LIATE è una regola pratica, non un teorema: indica la scelta che di solito funziona. Fra trigonometriche ed esponenziali non c'è un vincitore (è il caso degli integrali ciclici, qui sotto), e alcuni testi scrivono ILATE, scambiando L e I: in pratica non cambia nulla. E prima di applicare le parti chiediti sempre se basta una sostituzione: in $\int x\,e^{x^2}\,dx$ LIATE direbbe di derivare $x$ e integrare $e^{x^2}$, ma $e^{x^2}$ non ha primitiva elementare (<span class="richiamo" data-sec="4.5">§4.5</span>), mentre la sostituzione $t=x^2$ risolve tutto in due righe.</p>
         </div>
 
         <p><strong>Un non-esempio, per vedere cosa succede scegliendo male.</strong> Rifacciamo $\int x\cos x\,dx$ scambiando i ruoli: $f=\cos x$ (derivo) e $g'=x$ (integro). I quattro ingredienti diventano $f=\cos x$, $f'=-\sin x$, $g'=x$, $g=\frac{x^2}{2}$.</p>
@@ -562,6 +693,18 @@
         \end{aligned}$$</div>
         <p>Il grado è salito ancora: da $x$ a $x^2$, da $x^2$ a $x^3$. Ogni giro aggiunge un grado e non c'è nessun motivo perché la cosa si fermi: integrando, il polinomio cresce all'infinito. Con la scelta giusta invece era bastato <strong>un solo</strong> giro, perché derivando $x$ si ottiene $1$ e il polinomio sparisce. I conti qui sopra sono tutti corretti: non è un errore di calcolo, è una scelta sbagliata — e il baratto ci ha lasciato in mano qualcosa di peggio di quello che avevamo. Ecco a cosa serve LIATE.</p>
 
+        <p><strong>Quando l'integranda sembra avere un fattore solo: il "$1$" nascosto.</strong> Prendiamo $\displaystyle\int\ln x\,dx$. Come la riconosco: non è un prodotto, non è una riga della tabella, e non c'è nessuna funzione composta con la sua derivata accanto. Ma moltiplicare per $1$ non cambia nulla: $\ln x=\ln x\cdot1$, e ora i fattori sono due.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Scelgo chi derivare.</strong> Il logaritmo non si integra con la tabella, quindi lo derivo (LIATE: la L viene per prima). Il fattore $1$ lo integro, e ha una primitiva facilissima.</span>
+          <span class="esempio__passo"><strong>Ingredienti:</strong> $f=\ln x$, $f'=\frac1x$, $g'=1$, $g=x$.</span>
+        </p>
+        <div class="calcolo">$$\begin{aligned}
+        \int\ln x\,dx &amp;= \ln x\cdot x-\int\frac1x\cdot x\,dx\\
+        &amp;= x\ln x-\int1\,dx\\
+        &amp;= x\ln x-x+C
+        \end{aligned}$$</div>
+        <p>Il nuovo integrale è diventato quello di una costante: il $\frac1x$ del logaritmo derivato si è semplificato con la $x$ comparsa integrando il $1$. Verifica: $D(x\ln x-x)=\ln x+x\cdot\frac1x-1=\ln x$ ✓.</p>
+
         <p><strong>Un caso speciale che vale la pena annunciare: gli integrali ciclici.</strong> In $\int e^x\sin x\,dx$ nessuno dei due fattori si semplifica: il seno diventa coseno, il coseno torna seno, e l'esponenziale resta sempre uguale. Applicando le parti due volte si ritorna all'integrale di partenza. Non è un vicolo cieco: si dà un nome all'integrale, $I$, si arriva a un'equazione in $I$ e <strong>la si risolve come si risolve un'equazione di primo grado</strong>. Lo svolgiamo per intero nell'<a href="#esempi">Esempio 6</a>.</p>
 
         <h3 id="teoria-razionali">4.7 Integrazione delle funzioni razionali</h3>
@@ -572,480 +715,458 @@
           <p>In Parte 0 hai imparato a sommare due frazioni algebriche: prendevi $\frac{A}{x-2}$ e $\frac{B}{x-3}$ e le fondevi in una frazione sola. Qui facciamo lo stesso film al contrario: partiamo dalla frazione fusa e la <strong>rismontiamo</strong> nei due pezzi di partenza. Come smontare un mobile per farlo passare dalla porta: i pezzi piccoli passano, il mobile intero no.</p>
         </div>
 
-        <p>Prima di tutto un controllo di grado: se il grado del numeratore è maggiore o uguale a quello del denominatore, si esegue la <strong>divisione tra polinomi</strong> (Parte 0, <a href="../parte0-prerequisiti/02-algebra-calcolo-letterale.html">cap. 2</a>) per abbassarlo. Da qui in poi supponiamo che il numeratore abbia grado minore del denominatore, e guardiamo i casi in ordine di difficoltà.</p>
+        <p><strong>Primo controllo: il grado.</strong> Se il grado del numeratore è maggiore o uguale a quello del denominatore, si esegue prima la <strong>divisione tra polinomi</strong> (Parte 0, <a href="../parte0-prerequisiti/02-algebra-calcolo-letterale.html">cap. 2</a>): si trovano un quoziente $S$ e un resto $R$ tali che $P=Q\cdot S+R$, con $R$ di grado minore di $Q$. Dividendo tutto per $Q$ si ottiene</p>
+        <div class="formula-block">$$\frac{P(x)}{Q(x)}=S(x)+\frac{R(x)}{Q(x)}.$$</div>
+        <p>Il primo pezzo, $S$, è un polinomio e si integra con la regola della potenza (<span class="richiamo" data-sec="4.3">§4.3</span>). Il secondo ha il numeratore di grado minore del denominatore, ed è quello di cui ci occupiamo. Da qui in poi supponiamo quindi che il numeratore abbia grado minore del denominatore, e guardiamo i casi in ordine di difficoltà. Un esempio piccolo di divisione è alla fine del Caso 1.</p>
 
         <p><strong>Caso 1: denominatore di primo grado.</strong> È il più semplice e si riconduce sempre a un logaritmo.</p>
-        <div class="formula-block">$$\int \frac{1}{x-a}\,dx = \ln|x-a| + C, \qquad \int \frac{1}{mx+q}\,dx = \frac{1}{m}\ln|mx+q| + C$$</div>
-        <p>Da dove viene quel fattore $\frac1m$? Da una sostituzione (<span class="richiamo" data-sec="4.5">§4.5</span>), che facciamo per intero.</p>
-        <div class="calcolo">
-          <p>Pongo $t=mx+q$ (il denominatore, cioè la parte scomoda), con $m\neq 0$.</p>
-          $$\begin{aligned}
-          t &amp;= mx+q &amp;&amp;\text{(la sostituzione scelta)}\\
-          dt &amp;= m\,dx &amp;&amp;\text{(derivo: } D(mx+q)=m \text{, poi moltiplico per } dx)\\
-          \frac{1}{m}\,dt &amp;= dx &amp;&amp;\text{(divido entrambi i membri per } m\neq 0)\\
-          \int\frac{1}{mx+q}\,dx &amp;= \int\frac{1}{t}\cdot\frac1m\,dt &amp;&amp;\text{(sostituisco il denominatore e il } dx)\\
-          &amp;= \frac1m\int\frac{1}{t}\,dt &amp;&amp;\text{(porto fuori il numero } \tfrac1m \text{: linearità, §4.4)}\\
-          &amp;= \frac1m\ln|t|+C &amp;&amp;\text{(tabella §4.3: } \int\tfrac1t\,dt=\ln|t|)\\
-          &amp;= \frac1m\ln|mx+q|+C &amp;&amp;\text{(risostituisco } t=mx+q)
-          \end{aligned}$$
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Denominatore di primo grado.</em> Se $m\neq0$, su ogni intervallo in cui $mx+q\neq0$ vale</p>
+          <div class="formula-block">$$\int \frac{1}{mx+q}\,dx = \frac{1}{m}\ln|mx+q| + C, \qquad\text{in particolare}\qquad \int \frac{1}{x-a}\,dx = \ln|x-a| + C.$$</div>
         </div>
-        <p>Nel primo caso, $\frac{1}{x-a}$, il coefficiente della $x$ è $m=1$: il fattore $\frac1m$ vale $1$ e non si vede.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che l'integrale di $\frac{1}{mx+q}$ è un logaritmo, e capire da dove viene il fattore $\frac1m$ davanti.</p>
+          <p><strong>L'idea.</strong> L'integranda è "$\frac1t$ con $t=mx+q$". Nella tabella (<span class="richiamo" data-sec="4.3">§4.3</span>) sappiamo integrare $\frac1t$ rispetto a $t$, e il metodo di sostituzione (<span class="richiamo" data-sec="4.5">§4.5</span>) serve proprio a passare da una variabile all'altra. C'è un solo ostacolo: la sostituzione chiede che nell'integranda compaia la derivata dell'interno, qui $m$, mentre c'è soltanto $1$. Ma $m$ è un numero, e i numeri si aggiustano con la linearità (<span class="richiamo" data-sec="4.4">§4.4</span>): è come moltiplicare e dividere per $m$.</p>
+          <p><strong>Passo 1 — scelgo la $t$ e ricalcolo il $dx$.</strong> Pongo $t=mx+q$. La derivata di $t$ rispetto a $x$ è $m$ (cap. 7), quindi $dt=m\,dx$, cioè $dx=\frac1m\,dt$. Qui serve $m\neq0$: per $m=0$ il denominatore sarebbe una costante.</p>
+          <p><strong>Passo 2 — sostituisco e integro in $t$.</strong> Il denominatore diventa $t$, il $dx$ diventa $\frac1m\,dt$:</p>
+          <div class="calcolo">$$\begin{aligned}
+          \int\frac{1}{mx+q}\,dx &amp;= \int\frac1t\cdot\frac1m\,dt\\
+          &amp;= \frac1m\int\frac1t\,dt\\
+          &amp;= \frac1m\ln|t|+C\\
+          &amp;= \frac1m\ln|mx+q|+C
+          \end{aligned}$$</div>
+          <p>Nella seconda riga il numero $\frac1m$ esce dall'integrale (linearità), nella terza uso la riga $\int\frac1t\,dt=\ln|t|$ della tabella, nell'ultima rimetto $t=mx+q$.</p>
+          <p><strong>Passo 3 — controllo derivando.</strong> Con la regola della catena, $D\big(\ln|u|\big)=\frac{u'}{u}$ con $u=mx+q$ e $u'=m$:</p>
+          <div class="calcolo">$$D\!\left(\frac1m\ln|mx+q|\right)=\frac1m\cdot\frac{m}{mx+q}=\frac{1}{mx+q}.$$</div>
+          <p><strong>Conclusione.</strong> La sostituzione ha ricondotto l'integrale alla riga del logaritmo, e la derivata conferma il risultato. Il caso $\frac{1}{x-a}$ è quello con $m=1$ e $q=-a$: il fattore $\frac1m$ vale $1$ e non si vede. <span class="qed">∎</span></p>
+        </div>
 
-        <p><strong>Caso 2: denominatore di secondo grado con <span class="glossario-term" data-term="discriminante">discriminante</span> $\Delta\gt 0$ — i fratti semplici.</strong> Questo è il caso da imparare bene, quindi lo svolgiamo tutto, con il sistema risolto per intero. Prendiamo $\dfrac{1}{x^2-5x+6}$.</p>
+        <p><strong>Un esempio con la divisione.</strong> Calcoliamo $\displaystyle\int\frac{x}{x+1}\,dx$. Come la riconosco: è una funzione razionale (polinomio su polinomio) e il numeratore ha lo stesso grado del denominatore, quindi prima devo abbassare il grado. Qui basta una divisione fatta a mano: scrivo $x=(x+1)-1$ al numeratore, così il primo pezzo si semplifica con il denominatore.</p>
+        <div class="calcolo">$$\begin{aligned}
+        \frac{x}{x+1} &amp;= \frac{(x+1)-1}{x+1}\\
+        &amp;= \frac{x+1}{x+1}-\frac{1}{x+1}\\
+        &amp;= 1-\frac{1}{x+1}
+        \end{aligned}$$</div>
+        <p>Ora i due pezzi si integrano: il $1$ con la tabella, e $\frac{1}{x+1}$ con il Caso 1 (qui $m=1$, $q=1$).</p>
+        <div class="calcolo">$$\int\frac{x}{x+1}\,dx=\int1\,dx-\int\frac{1}{x+1}\,dx=x-\ln|x+1|+C.$$</div>
+        <p>Verifica: $D\big(x-\ln|x+1|\big)=1-\frac{1}{x+1}=\frac{x}{x+1}$ ✓.</p>
+
+        <p><strong>Caso 2: denominatore di secondo grado con <span class="glossario-term" data-term="discriminante">discriminante</span> $\Delta\gt 0$ — i fratti semplici.</strong> Se $Q(x)=x^2+bx+c$ ha $\Delta=b^2-4c\gt0$, ha due radici reali distinte $x_1\neq x_2$ e si scompone come $Q(x)=(x-x_1)(x-x_2)$ (Parte 0, cap. 5). Se il coefficiente di $x^2$ è un numero $a\neq1$, si ha $Q=a\,(x-x_1)(x-x_2)$ e il numero $\frac1a$ esce dal segno di integrale (<span class="richiamo" data-sec="4.4">§4.4</span>). L'idea è riscrivere la frazione come somma di due frazioni di primo grado, che sappiamo integrare con il Caso 1. Il teorema seguente dice che si può fare sempre, e come si trovano i coefficienti.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Fratti semplici, due radici reali distinte.</em> Siano $x_1\neq x_2$ due numeri reali e sia $P(x)=\alpha x+\beta$ un polinomio di grado al più $1$. Allora esistono due numeri $A$ e $B$ tali che, per ogni $x\neq x_1,x_2$,</p>
+          <div class="formula-block">$$\frac{P(x)}{(x-x_1)(x-x_2)}=\frac{A}{x-x_1}+\frac{B}{x-x_2}.$$</div>
+          <p>I numeri $A$ e $B$ sono unici e valgono $A=\dfrac{P(x_1)}{x_1-x_2}$ e $B=\dfrac{P(x_2)}{x_2-x_1}$.</p>
+        </div>
+
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che una frazione con denominatore $(x-x_1)(x-x_2)$ si può "rismontare" in due frazioni più semplici, e come trovare $A$ e $B$. Dobbiamo mostrare tre cose: che si possono trovare, che c'è un solo modo, e che funzionano davvero.</p>
+          <p><strong>L'idea.</strong> Facciamo il film al contrario di una somma di frazioni. Se mettiamo $\frac{A}{x-x_1}+\frac{B}{x-x_2}$ a denominatore comune, il numeratore diventa $A(x-x_2)+B(x-x_1)$, un polinomio di grado al più $1$. Anche $P$ ha grado al più $1$, e un polinomio di grado al più $1$ è fissato da due numeri (i suoi coefficienti): noi abbiamo due incognite, $A$ e $B$, quindi i conti tornano e ci aspettiamo che si possa. Il rischio è che non ci sia soluzione. Lo evitiamo con un'osservazione: se nell'uguaglianza fra numeratori scegliamo $x=x_1$, il termine con $B$ sparisce da solo e resta un'equazione in $A$ soltanto; analogamente con $x=x_2$. Qui servirà proprio che $x_1\neq x_2$.</p>
+          <p><strong>Passo 1 — un fatto sui polinomi di primo grado.</strong> Se $D(x)=px+r$ si annulla in due punti diversi $u\neq v$, allora $D$ è il polinomio nullo. Infatti, sottraendo $D(u)=0$ e $D(v)=0$ si ottiene $p\,(u-v)=0$; poiché $u-v\neq0$, segue $p=0$, e allora $r=D(u)=0$.</p>
+          <p><strong>Passo 2 — riduco il problema a un'uguaglianza fra polinomi.</strong> Metto la somma a denominatore comune:</p>
+          <div class="calcolo">$$\frac{A}{x-x_1}+\frac{B}{x-x_2}=\frac{A(x-x_2)+B(x-x_1)}{(x-x_1)(x-x_2)}.$$</div>
+          <p>Due frazioni con lo stesso denominatore (diverso da zero) sono uguali se e solo se hanno lo stesso numeratore. Quindi la scomposizione vale per ogni $x\neq x_1,x_2$ se e solo se</p>
+          <div class="formula-block">$$P(x)=A\,(x-x_2)+B\,(x-x_1)\qquad(\ast)$$</div>
+          <p>per ogni $x\neq x_1,x_2$. Ma la differenza fra i due membri di $(\ast)$ è un polinomio di grado al più $1$ che si annulla in infinitamente tanti punti: per il Passo 1 è il polinomio nullo. Quindi $(\ast)$ vale in <em>tutti</em> gli $x$, compresi $x_1$ e $x_2$, e possiamo usarla lì.</p>
+          <p><strong>Passo 3 — trovo $A$ e $B$ (e vedo che c'è un solo modo).</strong> Se $A$ e $B$ esistono, $(\ast)$ vale per $x=x_1$ e per $x=x_2$. Con $x=x_1$ il termine con $B$ contiene $(x_1-x_1)=0$ e sparisce; con $x=x_2$ sparisce il termine con $A$:</p>
+          <div class="calcolo">$$\begin{aligned}
+          P(x_1) &amp;= A\,(x_1-x_2) &amp;&amp;\Rightarrow\quad A=\frac{P(x_1)}{x_1-x_2}\\
+          P(x_2) &amp;= B\,(x_2-x_1) &amp;&amp;\Rightarrow\quad B=\frac{P(x_2)}{x_2-x_1}
+          \end{aligned}$$</div>
+          <p>Le divisioni sono possibili perché $x_1\neq x_2$. Questi sono gli unici valori possibili.</p>
+          <p><strong>Passo 4 — verifico che questi valori funzionano davvero.</strong> Definisco $A$ e $B$ con le formule del Passo 3 e considero $D(x)=A(x-x_2)+B(x-x_1)-P(x)$, un polinomio di grado al più $1$. Per come sono definiti $A$ e $B$, si ha $D(x_1)=A(x_1-x_2)-P(x_1)=0$ e $D(x_2)=B(x_2-x_1)-P(x_2)=0$. Due radici distinte: per il Passo 1, $D$ è il polinomio nullo, cioè $(\ast)$ vale per ogni $x$. Per il Passo 2, la scomposizione è vera.</p>
+          <p><strong>Conclusione.</strong> Ipotesi: radici distinte e numeratore di grado al più $1$. Passi: la scomposizione equivale a $(\ast)$ (Passo 2); $(\ast)$ obbliga $A$ e $B$ ad avere i valori del Passo 3, e quei valori la soddisfano davvero (Passo 4). Tesi: la scomposizione esiste ed è unica. <span class="qed">∎</span></p>
+          <p><strong>Controllo numerico.</strong> Con $P=1$, $x_1=2$, $x_2=3$ le formule danno $A=\frac{1}{2-3}=-1$ e $B=\frac{1}{3-2}=1$. In $x=0$ la frazione di partenza vale $\frac{1}{(0-2)(0-3)}=\frac16$, e la somma $\frac{-1}{0-2}+\frac{1}{0-3}=\frac12-\frac13=\frac16$ ✓.</p>
+          <p><strong>Dove si usano le ipotesi.</strong> Se fosse $x_1=x_2$ la divisione per $x_1-x_2$ non si potrebbe fare, e infatti la scomposizione non esiste: $\frac{1}{(x-1)^2}$ non si scrive come $\frac{C}{x-1}$ (è il caso $\Delta=0$, qui sotto). Se $P$ avesse grado $2$ o più, il numeratore $A(x-x_2)+B(x-x_1)$ non potrebbe mai raggiungerlo: bisogna prima fare la divisione fra polinomi.</p>
+        </div>
+
+        <p><strong>Un esempio concreto, con i numeri.</strong> Calcoliamo $\displaystyle\int\frac{dx}{x^2-5x+6}$. Come la riconosco: è una funzione razionale; il numeratore ($1$, grado $0$) ha grado minore del denominatore (grado $2$), quindi non serve la divisione; il denominatore è di secondo grado, e il segno del discriminante dice in quale caso siamo.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 1 — scompongo il denominatore.</strong> Calcolo il discriminante $\Delta=b^2-4ac$ con $a=1$, $b=-5$, $c=6$: viene $\Delta=(-5)^2-4\cdot1\cdot6=25-24=1$, che è positivo. Ci sono quindi due radici reali distinte. Le trovo cercando due numeri con somma $5$ e prodotto $6$: sono $2$ e $3$. Dunque $x^2-5x+6=(x-2)(x-3)$ (<span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione</span>, Parte 0, cap. 2).</span>
-          <span class="esempio__passo"><strong>Passo 2 — scrivo la forma spezzata che voglio ottenere.</strong> Cerco due numeri $A$ e $B$ (per ora incogniti) tali che la frazione si riscriva come somma di due frazioni con quei denominatori.</span>
-        </p>
-        <div class="formula-block">$$\frac{1}{(x-2)(x-3)} = \frac{A}{x-2} + \frac{B}{x-3}$$</div>
-        <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 3 — metto il secondo membro a denominatore comune.</strong> Il denominatore comune è $(x-2)(x-3)$: la prima frazione va moltiplicata sopra e sotto per $(x-3)$, la seconda sopra e sotto per $(x-2)$.</span>
+          <span class="esempio__passo"><strong>Passo 1 — scompongo il denominatore.</strong> $\Delta=(-5)^2-4\cdot1\cdot6=25-24=1$, positivo: due radici reali distinte. Le trovo cercando due numeri con somma $5$ e prodotto $6$: sono $2$ e $3$. Dunque $x^2-5x+6=(x-2)(x-3)$ (<span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione</span>, Parte 0, cap. 2).</span>
+          <span class="esempio__passo"><strong>Passo 2 — scrivo la forma spezzata e passo ai numeratori.</strong> Per il teorema esistono $A$ e $B$ con $\frac{1}{(x-2)(x-3)}=\frac{A}{x-2}+\frac{B}{x-3}$. Mettendo a denominatore comune e uguagliando i numeratori si ottiene $1=A(x-3)+B(x-2)$.</span>
+          <span class="esempio__passo"><strong>Passo 3 — sviluppo e confronto i coefficienti.</strong> Svolgo i prodotti e raccolgo la $x$, per leggere il polinomio a destra coefficiente per coefficiente.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
-        \frac{A}{x-2}+\frac{B}{x-3} &amp;= \frac{A(x-3)}{(x-2)(x-3)}+\frac{B(x-2)}{(x-2)(x-3)} &amp;&amp;\text{(stesso denominatore per entrambe)}\\
-        &amp;= \frac{A(x-3)+B(x-2)}{(x-2)(x-3)} &amp;&amp;\text{(sommo i due numeratori)}
+        A(x-3)+B(x-2) &amp;= Ax-3A+Bx-2B\\
+        &amp;= (A+B)\,x+(-3A-2B)
+        \end{aligned}$$</div>
+        <p>A sinistra c'è il polinomio $1=0\cdot x+1$. Due polinomi uguali per ogni $x$ hanno gli stessi coefficienti: infatti la loro differenza è un polinomio che si annulla sempre, quindi ha infinite radici, e un polinomio non nullo di grado $n$ ne ha al più $n$. Allora i coefficienti coincidono:</p>
+        <div class="calcolo">$$\begin{aligned}
+        \text{coefficiente di } x:\quad A+B &amp;= 0\\
+        \text{termine noto:}\quad -3A-2B &amp;= 1
         \end{aligned}$$</div>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 4 — uguaglio i numeratori.</strong> Due frazioni con lo stesso denominatore sono uguali se e solo se hanno lo stesso numeratore. A sinistra il numeratore è $1$, a destra è $A(x-3)+B(x-2)$. Quindi deve valere $\ 1=A(x-3)+B(x-2)$, e deve valere <em>per ogni</em> $x$.</span>
-          <span class="esempio__passo"><strong>Passo 5 — sviluppo e raccolgo secondo le potenze di $x$</strong>, per poter confrontare i coefficienti a sinistra e a destra.</span>
+          <span class="esempio__passo"><strong>Passo 4 — risolvo il sistema</strong> per sostituzione (Parte 0, cap. 5): dalla prima equazione ricavo $A$ in funzione di $B$, e lo porto nella seconda.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
-        A(x-3)+B(x-2) &amp;= Ax-3A+Bx-2B &amp;&amp;\text{(svolgo i due prodotti)}\\
-        &amp;= (A+B)\,x + (-3A-2B) &amp;&amp;\text{(raccolgo } x \text{ nei due termini che la contengono)}
+        A &amp;= -B\\
+        -3\,(-B)-2B &amp;= 1\\
+        3B-2B &amp;= 1\\
+        B &amp;= 1,\qquad A=-1
         \end{aligned}$$</div>
-        <p>A sinistra c'è il polinomio $1$, che possiamo scrivere come $0\cdot x + 1$. Due polinomi assumono lo stesso valore per ogni $x$ soltanto se hanno <strong>gli stessi coefficienti</strong>, termine per termine. Confrontiamoli:</p>
-        <div class="calcolo">$$\begin{aligned}
-        \text{coefficiente di } x:\quad A+B &amp;= 0 &amp;&amp;\text{(a sinistra la } x \text{ non c'è, quindi il suo coefficiente è } 0)\\
-        \text{termine noto:}\quad -3A-2B &amp;= 1 &amp;&amp;\text{(a sinistra il numero è } 1)
-        \end{aligned}$$</div>
-        <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 6 — risolvo il sistema.</strong> È un sistema di due equazioni in due incognite; lo risolvo con il metodo di sostituzione (Parte 0, cap. 5), una riga alla volta.</span>
-        </p>
-        <div class="calcolo">$$\begin{aligned}
-        A+B &amp;= 0 &amp;&amp;\text{(prima equazione)}\\
-        A &amp;= -B &amp;&amp;\text{(ricavo } A \text{: porto } B \text{ a destra, cambiandogli segno)}\\
-        -3\,(-B)-2B &amp;= 1 &amp;&amp;\text{(sostituisco } A=-B \text{ nella seconda equazione)}\\
-        3B-2B &amp;= 1 &amp;&amp;\text{(} -3\cdot(-B)=+3B \text{: meno per meno fa più)}\\
-        B &amp;= 1 &amp;&amp;\text{(} 3B-2B=B)\\
-        A &amp;= -1 &amp;&amp;\text{(torno a } A=-B \text{ e sostituisco } B=1)
-        \end{aligned}$$</div>
-        <p>Quindi $A=-1$ e $B=1$. Controllo veloce, rimettendoli nella riga del Passo 4: $-1\cdot(x-3)+1\cdot(x-2)=-x+3+x-2=1$ ✓, proprio il numeratore che doveva venire.</p>
+        <p>Controllo veloce, rimettendo i valori nell'uguaglianza fra numeratori: $-1\cdot(x-3)+1\cdot(x-2)=-x+3+x-2=1$ ✓.</p>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> La scorciatoia: sostituire le radici</div>
-          <p>Siccome l'uguaglianza $1=A(x-3)+B(x-2)$ vale per <em>ogni</em> $x$, posso scegliere i valori più comodi, cioè quelli che annullano una parentesi e fanno sparire un'incognita alla volta. Con $x=2$ la parentesi $(x-2)$ vale $0$, quindi $B$ sparisce e resta $1=A(2-3)=-A$, da cui $A=-1$. Con $x=3$ sparisce $A$ e resta $1=B(3-2)=B$, da cui $B=1$. Stessi valori del sistema, in due righe. Usa la scorciatoia quando hai fretta, ma ricordati che dietro c'è il sistema: se i fattori si ripetono o il numeratore è più complicato, il sistema è la strada sicura.</p>
+          <p>Il Passo 3 della dimostrazione ci ha dato un modo più rapido del sistema. L'uguaglianza $1=A(x-3)+B(x-2)$ vale per <em>ogni</em> $x$, quindi possiamo scegliere i valori che annullano una parentesi e fanno sparire un'incognita alla volta. Con $x=2$ la parentesi $(x-2)$ vale $0$, quindi $B$ sparisce e resta $1=A(2-3)=-A$, da cui $A=-1$. Con $x=3$ sparisce $A$ e resta $1=B(3-2)=B$, da cui $B=1$. Stessi valori del sistema, in due righe. Usala quando hai fretta; il sistema resta la strada sicura quando il numeratore è più complicato o i fattori si ripetono.</p>
         </div>
 
-        <p>Rimetto i valori trovati nella forma spezzata e integro i due pezzi separatamente.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Passo 5 — integro i due pezzi</strong> separatamente (linearità, <span class="richiamo" data-sec="4.4">§4.4</span>), ciascuno con il Caso 1, prima con $a=2$ e poi con $a=3$. Alla fine uso $\ln A-\ln B=\ln\frac AB$ (Parte 0, cap. 4) per compattare.</span>
+        </p>
         <div class="calcolo">$$\begin{aligned}
-        \int\frac{dx}{x^2-5x+6} &amp;= \int\left(\frac{-1}{x-2}+\frac{1}{x-3}\right)dx &amp;&amp;\text{(sostituisco } A=-1 \text{ e } B=1)\\
-        &amp;= -\int\frac{dx}{x-2}+\int\frac{dx}{x-3} &amp;&amp;\text{(linearità, §4.4)}\\
-        &amp;= -\ln|x-2|+\ln|x-3|+C &amp;&amp;\text{(formula del Caso 1, prima con } a=2 \text{ poi con } a=3)\\
-        &amp;= \ln\left|\frac{x-3}{x-2}\right|+C &amp;&amp;\text{(proprietà } \ln A-\ln B=\ln\tfrac AB \text{, Parte 0, cap. 4)}
+        \int\frac{dx}{x^2-5x+6} &amp;= \int\left(\frac{-1}{x-2}+\frac{1}{x-3}\right)dx\\
+        &amp;= -\int\frac{dx}{x-2}+\int\frac{dx}{x-3}\\
+        &amp;= -\ln|x-2|+\ln|x-3|+C\\
+        &amp;= \ln\left|\frac{x-3}{x-2}\right|+C
         \end{aligned}$$</div>
-        <p>Verifica, come sempre: derivo il risultato e controllo che torni l'integranda.</p>
+        <p>Verifica: derivo il risultato e metto le due frazioni a denominatore comune.</p>
         <div class="calcolo">$$\begin{aligned}
-        D\big(-\ln|x-2|+\ln|x-3|\big) &amp;= -\frac{1}{x-2}+\frac{1}{x-3} &amp;&amp;\text{(} D(\ln|x-a|)=\tfrac{1}{x-a} \text{, catena, cap. 7)}\\
-        &amp;= \frac{-(x-3)+(x-2)}{(x-2)(x-3)} &amp;&amp;\text{(denominatore comune)}\\
-        &amp;= \frac{1}{x^2-5x+6} &amp;&amp;\text{(} -x+3+x-2=1 \text{; e } (x-2)(x-3)=x^2-5x+6)
+        D\big(-\ln|x-2|+\ln|x-3|\big) &amp;= -\frac{1}{x-2}+\frac{1}{x-3}\\
+        &amp;= \frac{-(x-3)+(x-2)}{(x-2)(x-3)}\\
+        &amp;= \frac{1}{x^2-5x+6}
         \end{aligned}$$</div>
-        <p>Torna la funzione di partenza ✓.</p>
+        <p>Torna la funzione di partenza ✓ (all'ultima riga: $-x+3+x-2=1$ e $(x-2)(x-3)=x^2-5x+6$).</p>
 
-        <p><strong>Caso 3: denominatore di secondo grado con $\Delta\lt 0$ — il completamento del quadrato.</strong> Se il denominatore non ha radici reali, non si può scomporre in fattori di primo grado e la strada dei fratti semplici è chiusa. Si usa allora un'altra idea: <em>riscrivere il denominatore come "un quadrato più un numero positivo"</em>, per riconoscere la forma dell'arcotangente. La formula-chiave, che generalizza $\int\frac{1}{1+x^2}\,dx=\arctan x+C$, è</p>
-        <div class="formula-block">$$\int \frac{1}{(x-h)^2 + k^2}\,dx = \frac{1}{k}\arctan\!\left(\frac{x-h}{k}\right) + C$$</div>
-        <p>Il completamento del quadrato funziona così. Guardo $x^2+bx$ e mi chiedo: "di quale quadrato sono i primi due pezzi?". Uso il prodotto notevole $\left(x+\frac b2\right)^2=x^2+2\cdot x\cdot\frac b2+\frac{b^2}{4}=x^2+bx+\frac{b^2}{4}$ (Parte 0, cap. 2): mi accorgo che a $x^2+bx$ manca esattamente $\frac{b^2}{4}$ per essere un quadrato perfetto. Allora lo <em>aggiungo e lo tolgo</em> — sommare zero non cambia nulla — ottenendo</p>
-        <div class="formula-block">$$x^2+bx+c=\underbrace{\left(x+\frac{b}{2}\right)^2}_{\text{il quadrato}} + \underbrace{\left(c-\frac{b^2}{4}\right)}_{\text{ciò che avanza: dev'essere } k^2\gt 0}$$</div>
-        <p>Il punto delicato è il <strong>segno</strong> del termine che avanza: deve venire <em>positivo</em>, perché è $k^2$. E viene sempre positivo quando $\Delta\lt0$: infatti $c-\frac{b^2}{4}=\frac{4c-b^2}{4}=\frac{-\Delta}{4}$, e se $\Delta$ è negativo allora $-\Delta$ è positivo. Se ti viene negativo, hai sbagliato un conto. Lo vediamo all'opera nell'<a href="#esempi">Esempio 8</a>.</p>
-      </section>
+        <p><strong>Caso 2 bis: denominatore di secondo grado con $\Delta=0$.</strong> Ora le due radici coincidono e il denominatore è un quadrato: $Q(x)=(x-a)^2$. I fratti semplici del caso precedente non si possono usare (si dividerebbe per $x_1-x_2=0$), ma qui basta ancora meno: si riscrive il numeratore usando la stessa $x-a$ del denominatore. Se $P(x)=\alpha x+\beta$, allora $\alpha x+\beta=\alpha\,(x-a)+(\alpha a+\beta)$ (lo si controlla sviluppando: $\alpha x-\alpha a+\alpha a+\beta$). Dividendo per $(x-a)^2$ e semplificando il primo pezzo:</p>
+        <div class="formula-block">$$\frac{\alpha x+\beta}{(x-a)^2}=\frac{\alpha}{x-a}+\frac{\alpha a+\beta}{(x-a)^2}.$$</div>
+        <p>Il primo pezzo si integra con il Caso 1. Per il secondo serve $\int\frac{dx}{(x-a)^2}=-\frac{1}{x-a}+C$, che si controlla subito: $D\!\left(-\frac{1}{x-a}\right)=\frac{1}{(x-a)^2}$. Esempio: $\displaystyle\int\frac{x+1}{x^2-2x+1}\,dx$. Il denominatore ha $\Delta=4-4=0$ e si scrive $(x-1)^2$. Qui $\alpha=1$, $a=1$, $\beta=1$, quindi $\alpha a+\beta=2$, e</p>
+        <div class="calcolo">$$\int\frac{x+1}{(x-1)^2}\,dx=\int\left(\frac{1}{x-1}+\frac{2}{(x-1)^2}\right)dx=\ln|x-1|-\frac{2}{x-1}+C.$$</div>
+        <p>Verifica: $D\!\left(\ln|x-1|-\frac{2}{x-1}\right)=\frac{1}{x-1}+\frac{2}{(x-1)^2}=\frac{(x-1)+2}{(x-1)^2}=\frac{x+1}{(x-1)^2}$ ✓.</p>
 
-      <!-- 5. DIMOSTRAZIONI -->
-      <section class="section" id="dimostrazioni">
-        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
-        <p>Qui dimostriamo le quattro affermazioni su cui poggia tutto il capitolo. Ognuna ha la stessa struttura: prima diciamo <em>cosa</em> vogliamo dimostrare in parole semplici, poi <em>come</em> intendiamo farlo e <em>perché</em> proprio così, poi elenchiamo gli strumenti che useremo; solo dopo partono i conti. Noterai una cosa: tutte e quattro le dimostrazioni si riducono a <strong>derivare qualcosa e controllare</strong>. È sempre lo stesso gesto del <span class="richiamo" data-sec="4.1">§4.1</span>.</p>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Teorema</span>
-          <p><em class="nome">Due primitive differiscono per una costante.</em> Se $F$ e $G$ sono entrambe primitive di $f$ su un <strong>intervallo</strong> $I$, allora esiste un numero $C\in\mathbb{R}$ tale che $G(x)=F(x)+C$ per ogni $x\in I$.</p>
+        <p><strong>Caso 3: denominatore di secondo grado con $\Delta\lt 0$ — il completamento del quadrato.</strong> Se il denominatore non ha radici reali, non si può scomporre in fattori di primo grado e la strada dei fratti semplici è chiusa. Si usa un'altra idea: <em>riscrivere il denominatore come "un quadrato più un numero positivo"</em>, per riconoscere la forma dell'arcotangente. Servono due passaggi, e dimostriamo entrambi.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Completamento del quadrato.</em> Se $x^2+bx+c$ ha $\Delta=b^2-4c\lt0$, allora</p>
+          <div class="formula-block">$$x^2+bx+c=\underbrace{\left(x+\frac{b}{2}\right)^2}_{\text{il quadrato}} + \underbrace{k^2}_{\text{ciò che avanza}},\qquad k^2=c-\frac{b^2}{4}=\frac{-\Delta}{4}\gt0.$$</div>
         </div>
         <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (usa la conseguenza del teorema di Lagrange)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che non esistono primitive "strane". Se due persone trovano due primitive diverse della stessa funzione, la differenza fra le loro risposte è per forza un numero fisso: non può essere una funzione che cambia da punto a punto. È questo che ci autorizza a scrivere tutte le primitive in un colpo solo come $F(x)+C$.</p>
-          <p><strong>Idea della strategia.</strong> Non studiamo $F$ e $G$ separatamente — non sappiamo com'è fatta nessuna delle due. Studiamo invece la loro <em>differenza</em> $H=G-F$: di lei sappiamo una cosa preziosa, cioè che la sua derivata è nulla ovunque (perché $F$ e $G$ hanno la stessa derivata, e sottraendole si elidono). E "derivata nulla su un intervallo" è esattamente l'ipotesi di un risultato che conosciamo già dal capitolo 8. Insomma: trasformiamo un problema su due funzioni sconosciute in un problema su una funzione di cui sappiamo tutto.</p>
-          <p><strong>Cosa ci servirà.</strong> (1) La definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>), cioè $F'=f$ e $G'=f$. (2) La linearità della derivata, in particolare che la derivata di una differenza è la differenza delle derivate (cap. 7). (3) Il corollario del <span class="glossario-term" data-term="teorema-di-lagrange">teorema di Lagrange</span> del <a href="08-teoremi-fondamentali.html">capitolo 8</a>: se una funzione ha derivata nulla in ogni punto di un intervallo, allora è costante su quell'intervallo.</p>
-
-          <p><em>Passo 1.</em> Do un nome alla differenza. Poniamo $H(x)=G(x)-F(x)$ per ogni $x\in I$. Siccome $F$ e $G$ sono derivabili (lo sono per definizione di primitiva), anche $H$ lo è.</p>
-          <p><em>Passo 2.</em> Calcolo la derivata di $H$, usando che entrambe le funzioni hanno per derivata la stessa $f$.</p>
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che il trinomio si può scrivere come un quadrato più un numero positivo.</p>
+          <p><strong>L'idea.</strong> Il prodotto notevole $\left(x+\frac b2\right)^2$ contiene già $x^2+bx$, i primi due termini del trinomio, più un pezzo in avanzo, $\frac{b^2}{4}$. Allora al trinomio manca esattamente $\frac{b^2}{4}$ per essere un quadrato perfetto: lo aggiungiamo, e per non cambiare il valore lo togliamo subito dopo (sommare zero non cambia nulla).</p>
+          <p><strong>Passo 1 — aggiungo e tolgo $\frac{b^2}{4}$.</strong> Poi riconosco il quadrato di un binomio (Parte 0, cap. 2): $\left(x+\frac b2\right)^2=x^2+bx+\frac{b^2}{4}$.</p>
           <div class="calcolo">$$\begin{aligned}
-          H'(x) &amp;= \big(G(x)-F(x)\big)' &amp;&amp;\text{(scrivo chi è } H)\\
-          &amp;= G'(x) - F'(x) &amp;&amp;\text{(la derivata di una differenza è la differenza delle derivate, cap. 7)}\\
-          &amp;= f(x) - f(x) &amp;&amp;\text{(per definizione di primitiva: } G'=f \text{ e } F'=f \text{, §4.1)}\\
-          &amp;= 0 &amp;&amp;\text{(un numero meno sé stesso fa zero, per ogni } x \in I)
+          x^2+bx+c &amp;= x^2+bx+\frac{b^2}{4}-\frac{b^2}{4}+c\\
+          &amp;= \left(x+\frac b2\right)^2+\left(c-\frac{b^2}{4}\right)
           \end{aligned}$$</div>
-          <p>Abbiamo ottenuto una funzione la cui derivata è <strong>identicamente nulla</strong> su tutto l'intervallo. È esattamente l'ipotesi che ci serviva.</p>
-
-          <p><em>Passo 3.</em> Applico il corollario di Lagrange. Ricordiamo perché vale, in due righe: presi due punti qualsiasi $x_1\lt x_2$ dell'intervallo, il teorema di Lagrange garantisce l'esistenza di un punto $\xi$ fra i due tale che</p>
-          <div class="calcolo">$$\begin{aligned}
-          H(x_2)-H(x_1) &amp;= H'(\xi)\,(x_2-x_1) &amp;&amp;\text{(teorema di Lagrange, cap. 8)}\\
-          &amp;= 0\cdot(x_2-x_1) &amp;&amp;\text{(sostituisco } H'(\xi)=0 \text{, appena dimostrato)}\\
-          &amp;= 0 &amp;&amp;\text{(zero per qualsiasi numero fa zero)}
-          \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove serve l'ipotesi "intervallo".</strong> Per applicare Lagrange fra $x_1$ e $x_2$ dobbiamo poter percorrere tutto il tratto che li unisce restando dentro l'insieme. Su un insieme fatto di due pezzi staccati non si può, e infatti su un dominio spezzato il teorema è falso (vedi il caso di $\frac1x$ nel <span class="richiamo" data-sec="4.2">§4.2</span>).</p>
-          <p><em>Passo 4.</em> Traggo la conclusione. Il Passo 3 dice che $H(x_2)=H(x_1)$ per qualunque coppia di punti: quindi $H$ assume lo stesso valore dappertutto, cioè è costante. Chiamo $C$ questo valore: $H(x)=C$ per ogni $x\in I$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          G(x)-F(x) &amp;= C &amp;&amp;\text{(riscrivo } H(x)=C \text{ ricordando chi è } H)\\
-          G(x) &amp;= F(x)+C &amp;&amp;\text{(porto } F(x) \text{ a destra, sommandolo a entrambi i membri)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo guardato la differenza delle due primitive invece delle primitive stesse; abbiamo trovato che la sua derivata è nulla ovunque; per il corollario di Lagrange una funzione così è costante su un intervallo; quindi le due primitive differiscono per un numero fisso. <span class="qed">∎</span></p>
+          <p><strong>Passo 2 — controllo il segno di ciò che avanza.</strong> Dev'essere positivo, perché lo chiamiamo $k^2$. Mettendo a denominatore comune: $c-\frac{b^2}{4}=\frac{4c-b^2}{4}=\frac{-\Delta}{4}$. Se $\Delta\lt0$, allora $-\Delta\gt0$ e il termine è positivo. Se ti viene negativo, hai sbagliato un conto.</p>
+          <p><strong>Conclusione.</strong> Il trinomio è un quadrato più $\frac{-\Delta}{4}$, che è positivo quando $\Delta\lt0$. <span class="qed">∎</span> <em>Controllo numerico:</em> per $x^2+2x+5$ si ha $\Delta=4-20=-16$, quindi $k^2=\frac{16}{4}=4$, e $(x+1)^2+4=x^2+2x+1+4=x^2+2x+5$ ✓.</p>
         </div>
+
+        <p>Ora la formula che generalizza $\int\frac{1}{1+x^2}\,dx=\arctan x+C$:</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Formula dell'arcotangente.</em> Se $k\gt0$, su ogni intervallo vale</p>
+          <div class="formula-block">$$\int \frac{1}{(x-h)^2 + k^2}\,dx = \frac{1}{k}\arctan\!\left(\frac{x-h}{k}\right) + C.$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che l'integrale è un arcotangente, e capire da dove vengono i due $\frac1k$ che compaiono (uno davanti e uno dentro).</p>
+          <p><strong>L'idea.</strong> La tabella (<span class="richiamo" data-sec="4.3">§4.3</span>) conosce solo $\int\frac{1}{1+t^2}\,dt=\arctan t+C$. Il nostro denominatore è $(x-h)^2+k^2$, e per assomigliare a $1+t^2$ ha un solo difetto: davanti al quadrato non c'è $1$, e il numero dopo il più non è $1$ ma $k^2$. Lo si sistema raccogliendo $k^2$: il denominatore diventa $k^2$ per "un quadrato più $1$", e la quantità dentro il quadrato, $\frac{x-h}{k}$, fa da $t$. Il resto è una sostituzione.</p>
+          <p><strong>Passo 1 — raccolgo $k^2$ nel denominatore.</strong> Si verifica rimoltiplicando: $k^2\cdot\frac{(x-h)^2}{k^2}=(x-h)^2$ e $k^2\cdot1=k^2$.</p>
+          <div class="calcolo">$$(x-h)^2+k^2=k^2\left[\left(\frac{x-h}{k}\right)^2+1\right].$$</div>
+          <p><strong>Passo 2 — scelgo la $t$ e ricalcolo il $dx$.</strong> Pongo $t=\frac{x-h}{k}$. La derivata rispetto a $x$ è $\frac1k$ (cap. 7), quindi $dt=\frac1k\,dx$, cioè $dx=k\,dt$.</p>
+          <p><strong>Passo 3 — sostituisco e integro.</strong></p>
+          <div class="calcolo">$$\begin{aligned}
+          \int\frac{dx}{(x-h)^2+k^2} &amp;= \int\frac{k\,dt}{k^2\,(t^2+1)}\\
+          &amp;= \frac1k\int\frac{dt}{1+t^2}\\
+          &amp;= \frac1k\arctan t+C\\
+          &amp;= \frac1k\arctan\frac{x-h}{k}+C
+          \end{aligned}$$</div>
+          <p>Nella seconda riga il $k$ del numeratore si semplifica con uno dei due $k$ di $k^2$, e il $\frac1k$ che resta esce dall'integrale; nella terza uso la tabella; nell'ultima rimetto $t=\frac{x-h}{k}$.</p>
+          <p><strong>Passo 4 — controllo derivando.</strong> Regola della catena, con interno $\frac{x-h}{k}$ (derivata $\frac1k$):</p>
+          <div class="calcolo">$$\begin{aligned}
+          D\!\left[\frac1k\arctan\frac{x-h}{k}\right] &amp;= \frac1k\cdot\frac{1}{1+\left(\frac{x-h}{k}\right)^2}\cdot\frac1k\\
+          &amp;= \frac{1}{k^2+(x-h)^2}
+          \end{aligned}$$</div>
+          <p>All'ultima riga ho moltiplicato sopra e sotto per $k^2$. È proprio l'integranda.</p>
+          <p><strong>Conclusione.</strong> I due $\frac1k$ hanno due origini diverse: quello dentro l'arcotangente viene dalla scelta di $t$, quello davanti dalla conversione $dx=k\,dt$ e dalla semplificazione con $k^2$. <span class="qed">∎</span></p>
+        </div>
+        <p>Se il coefficiente di $x^2$ non è $1$, si porta fuori: $\int\frac{dx}{ax^2+bx+c}=\frac1a\int\frac{dx}{x^2+\frac bax+\frac ca}$ (linearità). Il segno del termine che avanza è il punto delicato: lo vediamo all'opera nell'<a href="#esempi">Esempio 8</a>.</p>
+
         <div class="callout callout--intuizione">
-          <div class="callout__title"><span class="emoji">💡</span> È qui che nasce la $+C$</div>
-          <p>Questo teorema è la giustificazione rigorosa della costante di integrazione. Ci dice che, trovata <em>una</em> primitiva $F$, le abbiamo trovate <em>tutte</em>: sono le $F+C$ al variare del numero $C$. E rende onore al capitolo 8: i teoremi del calcolo differenziale, che potevano sembrare astratti, qui diventano il fondamento operativo dell'integrazione.</p>
-        </div>
-
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Proposizione</span>
-          <p><em class="nome">Linearità dell'integrale.</em> $\displaystyle\int\big[a\,f(x)+b\,g(x)\big]\,dx = a\int f(x)\,dx + b\int g(x)\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (basta derivare il risultato)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che spezzare un integrale in due pezzi e portare fuori i numeri è lecito: il risultato non cambia.</p>
-          <p><strong>Idea della strategia.</strong> Qui non serve inventare nulla, perché sappiamo già come si controlla una primitiva: si deriva. Quindi prendiamo la funzione che compare a destra dell'uguale e verifichiamo che è una primitiva dell'integranda che compare a sinistra. Se lo è, l'uguaglianza è dimostrata — con l'unica accortezza che entrambi i membri vanno intesi "a meno di una costante", come sempre per gli integrali indefiniti.</p>
-          <p><strong>Cosa ci servirà.</strong> (1) La definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>). (2) La linearità della <em>derivata</em>, cioè $(a\,F+b\,G)'=a\,F'+b\,G'$ (cap. 7). (3) Il teorema appena dimostrato, che ci assicura che tutte le primitive si ottengono da una sola aggiungendo un numero.</p>
-          <p><em>Passo 1.</em> Do un nome ai pezzi. Sia $F$ una primitiva di $f$ e $G$ una primitiva di $g$: significa $F'=f$ e $G'=g$. Allora il membro di destra dell'uguaglianza è, a meno di costanti, la funzione $a\,F+b\,G$.</p>
-          <p><em>Passo 2.</em> Derivo questa funzione e guardo cosa esce.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \big(a\,F + b\,G\big)' &amp;= a\,F' + b\,G' &amp;&amp;\text{(linearità della derivata, cap. 7)}\\
-          &amp;= a\,f + b\,g &amp;&amp;\text{(sostituisco } F'=f \text{ e } G'=g \text{, definizione di primitiva)}
-          \end{aligned}$$</div>
-          <p>Esce esattamente la funzione integranda del membro di sinistra.</p>
-          <p><em>Passo 3.</em> Concludo. Il Passo 2 dice che $a\,F+b\,G$ è una primitiva di $a\,f+b\,g$; per il teorema precedente tutte le altre si ottengono aggiungendo un numero. Dunque</p>
-          <div class="calcolo">$$\begin{aligned}
-          \int\big(a\,f+b\,g\big)\,dx &amp;= a\,F+b\,G+C &amp;&amp;\text{(ho trovato una primitiva, aggiungo la costante)}\\
-          &amp;= a\int f\,dx + b\int g\,dx &amp;&amp;\text{(} F \text{ e } G \text{ sono, per definizione, quei due integrali)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo preso il membro di destra, l'abbiamo derivato usando la linearità della derivata, e abbiamo ritrovato l'integranda del membro di sinistra: quindi i due membri sono primitive della stessa funzione e coincidono a meno della costante. <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Proposizione</span>
-          <p><em class="nome">Formula di integrazione per parti.</em> $\displaystyle\int f\,g'\,dx = f\,g - \int f'\,g\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (dalla regola del prodotto)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che è lecito lo "scambio" descritto nel <span class="richiamo" data-sec="4.6">§4.6</span>: un integrale di un prodotto si può trasformare in un pezzo già fatto meno un altro integrale.</p>
-          <p><strong>Idea della strategia.</strong> Partiamo dall'unica formula che conosciamo sui prodotti, cioè la regola di derivazione del prodotto, e la leggiamo al contrario. Quella regola dice che la derivata di $f\,g$ è fatta di <em>due</em> addendi; noi però ne vogliamo uno solo, quello con $f\,g'$. Allora integriamo l'uguaglianza intera e poi spostiamo dall'altra parte l'addendo che non ci interessa: è la stessa mossa che si fa con le equazioni, portare un termine da una parte all'altra cambiandogli segno.</p>
-          <p><strong>Cosa ci servirà.</strong> (1) La regola di derivazione del prodotto, $(f\,g)'=f'g+fg'$ (cap. 7). (2) Il fatto che integrare una derivata restituisce la funzione di partenza, cioè $\int (f g)'\,dx = f\,g$ a meno di costante (è la definizione di primitiva, <span class="richiamo" data-sec="4.1">§4.1</span>, letta al contrario). (3) La linearità dell'integrale (<span class="richiamo" data-sec="4.4">§4.4</span>), appena dimostrata.</p>
-          <p><em>Passo 1.</em> Scrivo la regola del prodotto applicata a $f\,g$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \big(f(x)\,g(x)\big)' &amp;= f'(x)\,g(x) + f(x)\,g'(x) &amp;&amp;\text{(regola di derivazione del prodotto, cap. 7)}
-          \end{aligned}$$</div>
-          <p>Questa uguaglianza, letta al contrario, dice: <em>$f\,g$ è una primitiva della somma $f'g+fg'$</em>. È da qui che parte tutto.</p>
-          <p><em>Passo 2.</em> Integro entrambi i membri. A sinistra sto integrando una derivata, e integrare una derivata riporta alla funzione di partenza; a destra uso la linearità per spezzare la somma in due integrali.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \int \big(f\,g\big)'\,dx &amp;= \int \big(f'g + fg'\big)\,dx &amp;&amp;\text{(integro entrambi i membri della riga sopra)}\\
-          f\,g &amp;= \int f'g\,dx + \int fg'\,dx &amp;&amp;\text{(a sinistra: primitiva di una derivata; a destra: linearità, §4.4)}
-          \end{aligned}$$</div>
-          <p><em>Passo 3.</em> Isolo l'integrale che mi interessa, cioè $\int fg'\,dx$, portando l'altro dall'altra parte.</p>
-          <div class="calcolo">$$\begin{aligned}
-          f\,g - \int f'g\,dx &amp;= \int fg'\,dx &amp;&amp;\text{(sottraggo } \int f'g\,dx \text{ a entrambi i membri)}\\
-          \int fg'\,dx &amp;= f\,g - \int f'g\,dx &amp;&amp;\text{(scambio i due membri: l'uguaglianza non cambia)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Siamo partiti dalla regola del prodotto, che produce due addendi; abbiamo integrato tutta l'uguaglianza, ottenendo $fg$ a sinistra e due integrali a destra; abbiamo spostato l'addendo indesiderato dall'altra parte cambiandogli segno, ed è comparsa la formula. La costante di integrazione si intende inglobata nel risultato finale. <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Proposizione</span>
-          <p><em class="nome">Formula di sostituzione.</em> Se $F$ è una primitiva di $f$ e $g$ è derivabile, allora $\displaystyle\int f\big(g(x)\big)\,g'(x)\,dx = F\big(g(x)\big)+C$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (dalla regola della catena)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che il cambio di variabile del <span class="richiamo" data-sec="4.5">§4.5</span> è lecito: se sostituisco la parte interna con una nuova lettera <em>e converto anche il $dx$</em>, il risultato che ottengo è davvero una primitiva della funzione di partenza.</p>
-          <p><strong>Idea della strategia.</strong> È la più corta delle quattro, perché non dobbiamo costruire nulla: il candidato risultato ce l'abbiamo già scritto nell'enunciato, cioè $F(g(x))$. Ci basta quindi fare la solita verifica del <span class="richiamo" data-sec="4.1">§4.1</span> — derivarlo e controllare che torni l'integranda — usando la regola della catena.</p>
-          <p><strong>Cosa ci servirà.</strong> (1) La definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>), cioè $F'=f$. (2) La regola della catena per derivare una funzione composta, $D\big[F(g(x))\big]=F'\big(g(x)\big)\cdot g'(x)$ (cap. 7).</p>
-          <p><em>Passo unico.</em> Derivo il candidato $F\big(g(x)\big)$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \frac{d}{dx}\,F\big(g(x)\big) &amp;= F'\big(g(x)\big)\cdot g'(x) &amp;&amp;\text{(regola della catena: esterna } F \text{, interna } g \text{, cap. 7)}\\
-          &amp;= f\big(g(x)\big)\cdot g'(x) &amp;&amp;\text{(sostituisco } F'=f \text{, definizione di primitiva)}
-          \end{aligned}$$</div>
-          <p>Il risultato è esattamente la funzione integranda dell'enunciato. Quindi $F\big(g(x)\big)$ è una sua primitiva, e per il primo teorema di questa sezione tutte le altre si ottengono aggiungendo una costante.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo derivato la risposta proposta con la regola della catena e abbiamo ritrovato l'integranda: quindi la formula di sostituzione è corretta. Nota la morale, valida per tutto il capitolo: <strong>ogni regola di integrazione è una regola di derivazione letta all'indietro</strong> — la linearità viene dalla linearità, le parti vengono dal prodotto, la sostituzione viene dalla catena. <span class="qed">∎</span></p>
+          <div class="callout__title"><span class="emoji">💡</span> Quanto è generale quello che abbiamo dimostrato</div>
+          <p>Abbiamo dimostrato tutti i casi che questo capitolo usa: denominatore di primo grado, e denominatore di secondo grado con $\Delta\gt0$, $\Delta=0$ e $\Delta\lt0$ (con numeratore costante). Se nel caso $\Delta\lt0$ il numeratore non è costante, $\alpha x+\beta$, si scrive $\alpha x+\beta=\frac\alpha2\,(2x+b)+\left(\beta-\frac{\alpha b}{2}\right)$: il primo pezzo contiene la derivata del denominatore e dà un logaritmo (sostituzione $t=x^2+bx+c$), il secondo è costante e dà un arcotangente.</p>
+          <p>Il <strong>teorema generale</strong> di decomposizione in fratti semplici — vero per qualunque grado, con radici ripetute e con fattori di secondo grado — è un teorema di algebra: si dimostra con il teorema fondamentale dell'algebra (ogni polinomio reale si scompone in fattori di grado al più $2$) e con l'identità di Bézout per i polinomi. Non rientra in un corso di Analisi 1, quindi qui non lo dimostriamo. Ma lo schema pratico è sempre quello visto nel Caso 2: scrivo la forma spezzata con coefficienti incogniti, metto a denominatore comune, uguaglio i numeratori e determino i coefficienti.</p>
         </div>
       </section>
 
-      <!-- 6. ESEMPI SVOLTI -->
+      <!-- 5. ESEMPI SVOLTI -->
       <section class="section" id="esempi">
-        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
-        <p>Otto esempi, dal più facile al più difficile. In tutti trovi la stessa impostazione: prima una frase che dice <em>cosa</em> sto per fare, poi il conto su righe separate con la motivazione a destra, poi una frase che dice <em>cosa ho ottenuto</em>. E alla fine, sempre, la verifica: derivo il risultato e controllo che torni l'integranda.</p>
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+        <p>Otto esempi, dal più facile al più difficile. Ognuno parte dalla stessa domanda: <em>che forma ha l'integranda, e quindi quale strumento devo usare?</em> Poi trovi i passi, uno alla volta, ciascuno con il suo perché; il conto su righe separate, con note brevi a destra; e alla fine sempre la verifica: derivo il risultato e controllo che torni l'integranda.</p>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 1 — Integrali immediati e linearità</span><span class="badge badge--base">Base</span></div>
           <p>Calcolare $\displaystyle\int \left( 4x^3 - 6x^2 + \frac{1}{x} + 5 \right) dx$.</p>
+          <p><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> L'integranda è una <em>somma</em> di quattro pezzi, e ogni pezzo è una riga della tabella del <span class="richiamo" data-sec="4.3">§4.3</span>: due potenze, $\frac1x$ e una costante. Non c'è nessuna funzione dentro un'altra e nessun prodotto di funzioni diverse. Bastano quindi la tabella e la <strong>linearità</strong> (<span class="richiamo" data-sec="4.4">§4.4</span>), che ci permette di spezzare la somma e di portare fuori i numeri.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Riconosco la struttura.</strong> L'integranda è una somma di quattro pezzi, e ogni pezzo è una riga della tabella del <span class="richiamo" data-sec="4.3">§4.3</span>. Uso quindi la <strong>linearità</strong> (<span class="richiamo" data-sec="4.4">§4.4</span>): spezzo in quattro integrali e porto fuori i numeri che moltiplicano.</span>
-            <span class="esempio__passo"><strong>Scelgo la regola per ogni pezzo.</strong> Sui primi due uso la regola della potenza $\int x^{\alpha}dx=\frac{x^{\alpha+1}}{\alpha+1}$; sul terzo <em>non</em> posso usarla, perché lì $\alpha=-1$ e il denominatore $\alpha+1$ sarebbe zero: uso la riga del logaritmo. Il quarto è l'integrale di una costante.</span>
+            <span class="esempio__passo"><strong>Passo 1 — spezzo in quattro integrali.</strong> È la linearità: l'integrale della somma è la somma degli integrali, e i numeri $4$ e $-6$ restano come fattori davanti.</span>
+            <span class="esempio__passo"><strong>Passo 2 — scelgo la regola giusta per ogni pezzo.</strong> Sui primi due uso la regola della potenza $\int x^{\alpha}dx=\frac{x^{\alpha+1}}{\alpha+1}$. Sul terzo <em>non</em> posso: lì $\alpha=-1$ e il denominatore $\alpha+1$ sarebbe zero, quindi uso la riga del logaritmo. Il quarto è l'integrale di una costante, $\int k\,dx=kx$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          \int 4x^3\,dx &amp;= 4\cdot\frac{x^{3+1}}{3+1} = 4\cdot\frac{x^4}{4} = x^4 &amp;&amp;\text{(potenza con } \alpha=3 \text{; il } 4 \text{ davanti si semplifica col } 4 \text{ sotto)}\\
-          \int -6x^2\,dx &amp;= -6\cdot\frac{x^{2+1}}{2+1} = -6\cdot\frac{x^3}{3} = -2x^3 &amp;&amp;\text{(potenza con } \alpha=2 \text{; } -6:3=-2)\\
-          \int \frac{1}{x}\,dx &amp;= \ln|x| &amp;&amp;\text{(riga apposita della tabella, §4.3)}\\
-          \int 5\,dx &amp;= 5x &amp;&amp;\text{(integrale di una costante: } \int k\,dx=kx)
+          \int 4x^3\,dx &amp;= 4\cdot\frac{x^{4}}{4} = x^4 &amp;&amp;\text{potenza con } \alpha=3\\
+          \int -6x^2\,dx &amp;= -6\cdot\frac{x^{3}}{3} = -2x^3 &amp;&amp;\text{potenza con } \alpha=2\\
+          \int \frac{1}{x}\,dx &amp;= \ln|x| &amp;&amp;\text{riga del logaritmo}\\
+          \int 5\,dx &amp;= 5x &amp;&amp;\text{integrale di una costante}
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Sommo i quattro risultati</strong> nell'ordine in cui comparivano e aggiungo <strong>una sola</strong> costante alla fine (quattro costanti sommate fanno ancora una costante).</span>
-            <span class="esempio__passo"><strong>Verifico derivando</strong>, pezzo per pezzo: $D(x^4)=4x^3$, $D(-2x^3)=-6x^2$, $D(\ln|x|)=\frac1x$, $D(5x)=5$, $D(C)=0$. Sommando torna l'integranda di partenza.</span>
+            <span class="esempio__passo"><strong>Passo 3 — sommo i quattro risultati</strong> nell'ordine in cui comparivano e aggiungo <strong>una sola</strong> costante: quattro costanti sommate fanno ancora una costante qualunque.</span>
+            <span class="esempio__passo"><strong>Controllo.</strong> Derivo pezzo per pezzo: $D(x^4)=4x^3$, $D(-2x^3)=-6x^2$, $D(\ln|x|)=\frac1x$, $D(5x)=5$, $D(C)=0$. Sommando torna l'integranda.</span>
           </p>
-          <div class="esempio__risultato">$x^4 - 2x^3 + \ln|x| + 5x + C$. &nbsp; Verifica: derivando si riottiene $4x^3-6x^2+\frac1x+5$ ✓</div>
+          <div class="esempio__risultato">$x^4 - 2x^3 + \ln|x| + 5x + C$. &nbsp; Cosa ricordare: $\frac1x$ è l'unico pezzo che non segue la regola della potenza.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 2 — Riscrivere prima di integrare</span><span class="badge badge--base">Base</span></div>
           <p>Calcolare $\displaystyle\int \left( \sqrt{x} + \frac{3}{\sqrt{x}} - 2\sin x \right) dx$.</p>
+          <p><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Di nuovo una somma di pezzi semplici, ma due contengono una radice, e la tabella non ha nessuna riga con la radice. L'ostacolo è solo di scrittura: la regola della potenza vale per <em>qualunque</em> esponente, e io non la vedo perché le radici non sono scritte come potenze. Quindi prima riscrivo, poi applico la regola.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Prima di integrare, riscrivo.</strong> La regola della potenza vale per qualunque esponente, ma per poterla applicare devo <em>vedere</em> le radici come potenze. Uso due riscritture di Parte 0, cap. 3: $\sqrt x=x^{1/2}$ (radice = esponente frazionario) e $\dfrac{1}{\sqrt x}=x^{-1/2}$ (al denominatore = esponente negativo). Quindi $\dfrac{3}{\sqrt x}=3\,x^{-1/2}$.</span>
-            <span class="esempio__passo"><strong>Ora applico la regola della potenza</strong> a ciascun pezzo, e la tabella <span class="richiamo" data-sec="4.3">§4.3</span> per il seno.</span>
+            <span class="esempio__passo"><strong>Passo 1 — riscrivo le radici come potenze</strong> (Parte 0, cap. 3). La radice è un esponente frazionario, $\sqrt x=x^{1/2}$; stare al denominatore vuol dire esponente negativo, $\frac{1}{\sqrt x}=x^{-1/2}$. Quindi $\frac{3}{\sqrt x}=3\,x^{-1/2}$.</span>
+            <span class="esempio__passo"><strong>Passo 2 — applico la regola della potenza a ciascun pezzo</strong> e la tabella per il seno. Quando divido per un esponente frazionario, ricordo che dividere per $\frac32$ equivale a moltiplicare per $\frac23$, e dividere per $\frac12$ equivale a moltiplicare per $2$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          \int x^{1/2}\,dx &amp;= \frac{x^{\frac12+1}}{\frac12+1} = \frac{x^{3/2}}{3/2} &amp;&amp;\text{(potenza con } \alpha=\tfrac12 \text{; } \tfrac12+1=\tfrac32)\\
-          \frac{x^{3/2}}{3/2} &amp;= \frac{2}{3}\,x^{3/2} &amp;&amp;\text{(dividere per } \tfrac32 \text{ è come moltiplicare per } \tfrac23)\\
-          \int 3x^{-1/2}\,dx &amp;= 3\cdot\frac{x^{-\frac12+1}}{-\frac12+1} = 3\cdot\frac{x^{1/2}}{1/2} &amp;&amp;\text{(potenza con } \alpha=-\tfrac12 \text{; } -\tfrac12+1=\tfrac12)\\
-          3\cdot\frac{x^{1/2}}{1/2} &amp;= 3\cdot 2\,x^{1/2} = 6\sqrt{x} &amp;&amp;\text{(dividere per } \tfrac12 \text{ è come moltiplicare per } 2)\\
-          \int -2\sin x\,dx &amp;= -2\,(-\cos x) = 2\cos x &amp;&amp;\text{(} \int\sin x\,dx=-\cos x \text{: i due meno danno un più)}
+          \int x^{1/2}\,dx &amp;= \frac{x^{3/2}}{3/2} = \frac{2}{3}\,x^{3/2} &amp;&amp;\alpha=\tfrac12,\ \alpha+1=\tfrac32\\
+          \int 3x^{-1/2}\,dx &amp;= 3\cdot\frac{x^{1/2}}{1/2} = 6\sqrt{x} &amp;&amp;\alpha=-\tfrac12,\ \alpha+1=\tfrac12\\
+          \int -2\sin x\,dx &amp;= -2\,(-\cos x) = 2\cos x &amp;&amp;\int\sin x\,dx=-\cos x
           \end{aligned}$$</div>
-          <p>L'ultimo pezzo è quello insidioso: c'è un segno meno nel testo e un altro segno meno nella tabella, e insieme danno un più. Se il risultato ti viene $-2\cos x$, hai perso uno dei due.</p>
-          <div class="esempio__risultato">$\dfrac{2}{3}x^{3/2} + 6\sqrt{x} + 2\cos x + C$. &nbsp; Verifica: $D\!\left(\frac23x^{3/2}\right)=\frac23\cdot\frac32x^{1/2}=\sqrt x$, $D(6\sqrt x)=6\cdot\frac{1}{2\sqrt x}=\frac{3}{\sqrt x}$, $D(2\cos x)=-2\sin x$ ✓</div>
+          <p>L'ultimo pezzo è quello insidioso: nel testo c'è un segno meno, e un altro nella tabella; insieme danno un più. Se ti viene $-2\cos x$, hai perso uno dei due.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Controllo.</strong> $D\!\left(\frac23x^{3/2}\right)=\frac23\cdot\frac32x^{1/2}=\sqrt x$; $D(6\sqrt x)=6\cdot\frac{1}{2\sqrt x}=\frac{3}{\sqrt x}$; $D(2\cos x)=-2\sin x$. Sommati, tornano i tre pezzi dell'integranda.</span>
+          </p>
+          <div class="esempio__risultato">$\dfrac{2}{3}x^{3/2} + 6\sqrt{x} + 2\cos x + C$. &nbsp; Cosa ricordare: radici e frazioni con radice si riscrivono come potenze prima di integrare.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 3 — Sostituzione: la derivata dell'interno è già lì</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare $\displaystyle\int 2x\,e^{x^2}\,dx$ e $\displaystyle\int \frac{x}{x^2+1}\,dx$.</p>
-          <p><strong>Primo integrale.</strong></p>
+          <p><strong>Primo integrale — come riconosco il metodo.</strong> Non è una riga della tabella e non è una somma. È un <em>prodotto</em> con un fattore, $e^{x^2}$, che ha una funzione dentro un'altra ($x^2$ dentro l'esponenziale), e l'altro fattore, $2x$, è proprio la derivata di ciò che sta dentro. Questa è la firma della regola della catena letta al contrario: uso la <strong>sostituzione</strong> (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> La parte interna è $x^2$, che sta dentro l'esponenziale. Pongo $t=x^2$. La sua derivata è $2x$, ed è già presente davanti: la scelta è perfetta.</span>
-            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale.</strong> Derivo e moltiplico per $dx$.</span>
+            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> La parte interna è $x^2$: pongo $t=x^2$. La sua derivata è $2x$, già presente davanti: la scelta è perfetta.</span>
+            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale.</strong> Derivo $t$ rispetto a $x$ e moltiplico per $dx$: questo mi dice a quale pezzo corrisponde $dt$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          t &amp;= x^2 &amp;&amp;\text{(sostituzione scelta)}\\
-          dt &amp;= 2x\,dx &amp;&amp;\text{(} D(x^2)=2x \text{, poi moltiplico per } dx)
+          t &amp;= x^2\\
+          dt &amp;= 2x\,dx
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Mosse 3, 4 e 5 — sostituisco, integro, torno indietro.</strong> Al posto di $x^2$ scrivo $t$; al posto dell'intero blocco $2x\,dx$ scrivo $dt$.</span>
+            <span class="esempio__passo"><strong>Mosse 3, 4 e 5 — sostituisco, integro, torno indietro.</strong> Al posto di $x^2$ scrivo $t$; al posto del blocco $2x\,dx$ scrivo $dt$. Controllo che non sia rimasta nessuna $x$. Poi uso la tabella e rimetto $t=x^2$, perché la domanda era in $x$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          \int 2x\,e^{x^2}\,dx &amp;= \int e^{t}\,dt &amp;&amp;\text{(sostituisco } x^2=t \text{ e } 2x\,dx=dt \text{: non restano } x \text{ né } dx)\\
-          &amp;= e^{t}+C &amp;&amp;\text{(tabella, §4.3)}\\
-          &amp;= e^{x^2}+C &amp;&amp;\text{(risostituisco } t=x^2 \text{: torno alla variabile del problema)}
+          \int 2x\,e^{x^2}\,dx &amp;= \int e^{t}\,dt &amp;&amp;x^2\to t,\ 2x\,dx\to dt\\
+          &amp;= e^{t}+C &amp;&amp;\text{tabella}\\
+          &amp;= e^{x^2}+C &amp;&amp;t=x^2
           \end{aligned}$$</div>
-          <p>Verifica: $D\big(e^{x^2}\big)=e^{x^2}\cdot 2x=2x\,e^{x^2}$ (regola della catena) ✓</p>
-          <p><strong>Secondo integrale.</strong></p>
+          <p><strong>Controllo (Mossa 6).</strong> Derivo con la regola della catena: $D\big(e^{x^2}\big)=e^{x^2}\cdot2x=2x\,e^{x^2}$ ✓.</p>
+          <p><strong>Secondo integrale — come riconosco il metodo.</strong> È una frazione, e il denominatore $x^2+1$ è la parte "scomoda". La sua derivata è $2x$; al numeratore c'è $x$, cioè la metà. Va bene lo stesso: un numero che manca si aggiusta con una frazione davanti all'integrale (linearità).</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> La parte scomoda è il denominatore $x^2+1$. Pongo $t=x^2+1$. La sua derivata è $2x$; al numeratore però c'è solo $x$, cioè la metà: va bene lo stesso, aggiusteremo con un numero.</span>
-            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale e lo adatto</strong> al blocco che ho davvero, cioè $x\,dx$.</span>
+            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$:</strong> $t=x^2+1$.</span>
+            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale e lo adatto</strong> al blocco che ho davvero, cioè $x\,dx$: divido per $2$ entrambi i membri.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          t &amp;= x^2+1 &amp;&amp;\text{(sostituzione scelta)}\\
-          dt &amp;= 2x\,dx &amp;&amp;\text{(} D(x^2+1)=2x \text{, perché } D(1)=0)\\
-          \frac{dt}{2} &amp;= x\,dx &amp;&amp;\text{(divido entrambi i membri per } 2)
+          t &amp;= x^2+1\\
+          dt &amp;= 2x\,dx\\
+          \tfrac12\,dt &amp;= x\,dx
           \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Mosse 3, 4 e 5 — sostituisco, integro, torno indietro.</strong> Riordino l'integranda per far vedere il blocco $x\,dx$, lo rimpiazzo con $\frac12\,dt$, porto fuori il numero $\frac12$ e uso la riga di $\frac1t$.</span>
+          </p>
           <div class="calcolo">$$\begin{aligned}
-          \int\frac{x}{x^2+1}\,dx &amp;= \int\frac{1}{x^2+1}\,\big(x\,dx\big) &amp;&amp;\text{(riordino per far comparire il blocco } x\,dx)\\
-          &amp;= \int\frac{1}{t}\cdot\frac12\,dt &amp;&amp;\text{(sostituisco } x^2+1=t \text{ e } x\,dx=\tfrac12\,dt)\\
-          &amp;= \frac12\int\frac{1}{t}\,dt &amp;&amp;\text{(porto fuori il numero } \tfrac12 \text{: linearità, §4.4)}\\
-          &amp;= \frac12\ln|t|+C &amp;&amp;\text{(tabella, §4.3)}\\
-          &amp;= \frac12\ln\big(x^2+1\big)+C &amp;&amp;\text{(risostituisco } t=x^2+1)
+          \int\frac{x}{x^2+1}\,dx &amp;= \int\frac{1}{x^2+1}\,\big(x\,dx\big) &amp;&amp;\text{isolo il blocco } x\,dx\\
+          &amp;= \int\frac{1}{t}\cdot\frac12\,dt &amp;&amp;\text{sostituisco}\\
+          &amp;= \frac12\int\frac{1}{t}\,dt &amp;&amp;\text{numero fuori}\\
+          &amp;= \frac12\ln|t|+C &amp;&amp;\text{tabella}\\
+          &amp;= \frac12\ln\big(x^2+1\big)+C &amp;&amp;t=x^2+1
           \end{aligned}$$</div>
           <p>Il valore assoluto è sparito perché $x^2+1$ è sempre positivo (un quadrato più uno), quindi $|x^2+1|=x^2+1$.</p>
+          <p><strong>Controllo (Mossa 6).</strong> $D\!\left[\frac12\ln\big(x^2+1\big)\right]=\frac12\cdot\frac{2x}{x^2+1}=\frac{x}{x^2+1}$ ✓.</p>
           <div class="esempio__risultato">$\displaystyle\int 2x\,e^{x^2}dx = e^{x^2}+C$; &nbsp; $\displaystyle\int \frac{x}{x^2+1}dx = \frac12\ln(x^2+1)+C$</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 4 — Sostituzione più elaborata</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare $\displaystyle\int \tan x\,dx$ e $\displaystyle\int \frac{(\ln x)^2}{x}\,dx$.</p>
-          <p><strong>Primo integrale.</strong> Qui la sostituzione non si vede subito: prima bisogna riscrivere.</p>
+          <p><strong>Primo integrale — come riconosco il metodo.</strong> La tangente non è nella tabella degli integrali, e a prima vista non c'è nessuna composizione. Ma $\tan x=\frac{\sin x}{\cos x}$ è una frazione, e conviene guardarla da vicino: il numeratore $\sin x$ è, a meno del segno, la derivata del denominatore $\cos x$. Una frazione "derivata del denominatore su denominatore" è il segnale della sostituzione con $t$ uguale al denominatore, che porta alla riga di $\frac1t$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Riscrivo la tangente</strong> con la sua definizione $\tan x=\dfrac{\sin x}{\cos x}$ (Parte 0, <a href="../parte0-prerequisiti/08-trigonometria.html">cap. 8</a>). Adesso vedo una frazione, e il denominatore è $\cos x$.</span>
-            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> Pongo $t=\cos x$, perché la sua derivata è $-\sin x$, che compare al numeratore a meno del segno.</span>
-            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale</strong> e lo adatto al blocco $\sin x\,dx$ che ho davvero.</span>
+            <span class="esempio__passo"><strong>Riscrivo la tangente</strong> con la sua definizione (Parte 0, <a href="../parte0-prerequisiti/08-trigonometria.html">cap. 8</a>) per far comparire la frazione.</span>
+            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$:</strong> $t=\cos x$.</span>
+            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale</strong> e lo adatto al blocco $\sin x\,dx$ che ho davvero: moltiplico per $-1$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          t &amp;= \cos x &amp;&amp;\text{(sostituzione scelta)}\\
-          dt &amp;= -\sin x\,dx &amp;&amp;\text{(} D(\cos x)=-\sin x \text{, poi moltiplico per } dx)\\
-          -dt &amp;= \sin x\,dx &amp;&amp;\text{(moltiplico entrambi i membri per } -1)
+          t &amp;= \cos x\\
+          dt &amp;= -\sin x\,dx\\
+          -dt &amp;= \sin x\,dx
           \end{aligned}$$</div>
           <div class="calcolo">$$\begin{aligned}
-          \int\tan x\,dx &amp;= \int\frac{\sin x}{\cos x}\,dx &amp;&amp;\text{(definizione di tangente)}\\
-          &amp;= \int\frac{1}{\cos x}\,\big(\sin x\,dx\big) &amp;&amp;\text{(separo il blocco } \sin x\,dx)\\
-          &amp;= \int\frac{1}{t}\,(-dt) &amp;&amp;\text{(sostituisco } \cos x=t \text{ e } \sin x\,dx=-dt)\\
-          &amp;= -\int\frac{1}{t}\,dt &amp;&amp;\text{(porto il segno meno fuori dall'integrale)}\\
-          &amp;= -\ln|t|+C &amp;&amp;\text{(tabella, §4.3)}\\
-          &amp;= -\ln|\cos x|+C &amp;&amp;\text{(risostituisco } t=\cos x)
+          \int\tan x\,dx &amp;= \int\frac{\sin x}{\cos x}\,dx &amp;&amp;\text{definizione di tangente}\\
+          &amp;= \int\frac{1}{\cos x}\,\big(\sin x\,dx\big) &amp;&amp;\text{isolo il blocco } \sin x\,dx\\
+          &amp;= \int\frac{1}{t}\,(-dt) &amp;&amp;\sin x\,dx\to -dt\\
+          &amp;= -\int\frac{1}{t}\,dt &amp;&amp;\text{segno fuori}\\
+          &amp;= -\ln|t|+C &amp;&amp;\text{tabella}\\
+          &amp;= -\ln|\cos x|+C &amp;&amp;t=\cos x
           \end{aligned}$$</div>
           <p>Il valore assoluto qui <strong>resta</strong>, perché $\cos x$ cambia segno: non possiamo toglierlo come nell'esempio precedente.</p>
-          <p>Verifica: $D\big(-\ln|\cos x|\big)=-\dfrac{1}{\cos x}\cdot(-\sin x)=\dfrac{\sin x}{\cos x}=\tan x$ ✓ (regola della catena, con $D(\ln|u|)=\frac{u'}{u}$ e $u=\cos x$)</p>
-          <p><strong>Secondo integrale.</strong></p>
+          <p><strong>Controllo.</strong> $D\big(-\ln|\cos x|\big)=-\dfrac{1}{\cos x}\cdot(-\sin x)=\dfrac{\sin x}{\cos x}=\tan x$ ✓ (catena, con $D(\ln|u|)=\frac{u'}{u}$).</p>
+          <p><strong>Secondo integrale — come riconosco il metodo.</strong> Riscrivo la frazione come prodotto, $(\ln x)^2\cdot\frac1x$, e guardo i due fattori. $\ln x$ sta dentro il quadrato (funzione composta), e l'altro fattore, $\frac1x$, è proprio la derivata di $\ln x$: di nuovo la firma della sostituzione, e questa volta senza nessun numero da aggiustare.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Riscrivo come prodotto</strong> per vedere meglio i pezzi: $\dfrac{(\ln x)^2}{x}=(\ln x)^2\cdot\dfrac1x$.</span>
-            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> La parte interna è $\ln x$ (sta dentro il quadrato). Pongo $t=\ln x$: la sua derivata è $\frac1x$, ed è già presente. Scelta perfetta, non serve nemmeno aggiustare costanti.</span>
+            <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$:</strong> $t=\ln x$.</span>
+            <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il differenziale:</strong> $dt=\frac1x\,dx$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          t &amp;= \ln x &amp;&amp;\text{(sostituzione scelta)}\\
-          dt &amp;= \frac1x\,dx &amp;&amp;\text{(} D(\ln x)=\tfrac1x \text{, poi moltiplico per } dx)
+          \int\frac{(\ln x)^2}{x}\,dx &amp;= \int(\ln x)^2\cdot\frac1x\,dx &amp;&amp;\text{separo i due fattori}\\
+          &amp;= \int t^2\,dt &amp;&amp;\ln x\to t,\ \tfrac1x\,dx\to dt\\
+          &amp;= \frac{t^{3}}{3}+C &amp;&amp;\text{potenza con } \alpha=2\\
+          &amp;= \frac{(\ln x)^3}{3}+C &amp;&amp;t=\ln x
           \end{aligned}$$</div>
-          <div class="calcolo">$$\begin{aligned}
-          \int\frac{(\ln x)^2}{x}\,dx &amp;= \int(\ln x)^2\cdot\frac1x\,dx &amp;&amp;\text{(separo i due pezzi)}\\
-          &amp;= \int t^2\,dt &amp;&amp;\text{(sostituisco } \ln x=t \text{ e } \tfrac1x\,dx=dt)\\
-          &amp;= \frac{t^{2+1}}{2+1}+C = \frac{t^3}{3}+C &amp;&amp;\text{(regola della potenza con } \alpha=2)\\
-          &amp;= \frac{(\ln x)^3}{3}+C &amp;&amp;\text{(risostituisco } t=\ln x)
-          \end{aligned}$$</div>
-          <p>Verifica: $D\!\left(\frac{(\ln x)^3}{3}\right)=\frac{3(\ln x)^2}{3}\cdot\frac1x=\frac{(\ln x)^2}{x}$ (catena) ✓</p>
-          <div class="esempio__risultato">$\displaystyle\int\tan x\,dx=-\ln|\cos x|+C$; &nbsp; $\displaystyle\int\frac{(\ln x)^2}{x}\,dx=\frac{(\ln x)^3}{3}+C$</div>
+          <p><strong>Controllo.</strong> $D\!\left(\frac{(\ln x)^3}{3}\right)=\frac{3(\ln x)^2}{3}\cdot\frac1x=\frac{(\ln x)^2}{x}$ ✓ (catena).</p>
+          <div class="esempio__risultato">$\displaystyle\int\tan x\,dx=-\ln|\cos x|+C$; &nbsp; $\displaystyle\int\frac{(\ln x)^2}{x}\,dx=\frac{(\ln x)^3}{3}+C$. &nbsp; Cosa ricordare: $\int\frac{u'}{u}\,dx=\ln|u|+C$.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 5 — Per parti: polinomio × esponenziale e × logaritmo</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare $\displaystyle\int x\,e^{x}\,dx$ e $\displaystyle\int x\,\ln x\,dx$.</p>
-          <p><strong>Primo integrale.</strong> I due fattori sono $x$ (Algebrica) ed $e^x$ (Esponenziale). Nella sigla LIATE la <strong>A</strong> viene prima della <strong>E</strong>, quindi derivo $x$ e integro $e^x$. Preparo i quattro ingredienti prima di toccare la formula:</p>
+          <p><strong>Primo integrale — come riconosco il metodo.</strong> È un <em>prodotto di due funzioni di tipo diverso</em>, un polinomio e un esponenziale. Provo prima la sostituzione: dovrei trovare un fattore che è la derivata dell'interno dell'altro, ma $x$ non è la derivata di $e^x$ e $e^x$ non è la derivata di $x$. La sostituzione non funziona, quindi passo alle <strong>parti</strong> (<span class="richiamo" data-sec="4.6">§4.6</span>).</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Decido chi derivare.</strong> I fattori sono $x$ (Algebrica) ed $e^x$ (Esponenziale). Nella sigla LIATE la <strong>A</strong> viene prima della <strong>E</strong>: derivo $x$, che diventa $1$ e sparisce, e integro $e^x$, che resta $e^x$.</span>
+            <span class="esempio__passo"><strong>Preparo i quattro ingredienti</strong> prima di toccare la formula, per non confondermi.</span>
+          </p>
           <ul>
             <li>$f(x)=x$ &nbsp;— il fattore da <strong>derivare</strong>;</li>
-            <li>$f'(x)=1$ &nbsp;— (cap. 7);</li>
+            <li>$f'(x)=1$ &nbsp;— la sua derivata;</li>
             <li>$g'(x)=e^x$ &nbsp;— il fattore da <strong>integrare</strong>;</li>
-            <li>$g(x)=\displaystyle\int e^x\,dx=e^x$ &nbsp;— (tabella, <span class="richiamo" data-sec="4.3">§4.3</span>).</li>
+            <li>$g(x)=e^x$ &nbsp;— la sua primitiva (tabella, <span class="richiamo" data-sec="4.3">§4.3</span>).</li>
           </ul>
           <div class="calcolo">$$\begin{aligned}
-          \int x\,e^x\,dx &amp;= x\,e^x - \int 1\cdot e^x\,dx &amp;&amp;\text{(formula per parti, §4.6, con i quattro ingredienti)}\\
-          &amp;= x\,e^x - \int e^x\,dx &amp;&amp;\text{(moltiplicare per } 1 \text{ non cambia nulla)}\\
-          &amp;= x\,e^x - e^x + C &amp;&amp;\text{(il nuovo integrale è nella tabella §4.3: } \int e^x dx=e^x)\\
-          &amp;= e^x\,(x-1) + C &amp;&amp;\text{(raccolgo } e^x \text{, presente in entrambi gli addendi)}
+          \int x\,e^x\,dx &amp;= x\,e^x - \int 1\cdot e^x\,dx &amp;&amp;\text{formula per parti}\\
+          &amp;= x\,e^x - e^x + C &amp;&amp;\int e^x\,dx=e^x\\
+          &amp;= e^x\,(x-1) + C &amp;&amp;\text{raccolgo } e^x
           \end{aligned}$$</div>
-          <p>Il nuovo integrale era più facile di quello di partenza: il polinomio $x$, derivato, è diventato $1$ ed è sparito. È proprio l'effetto che LIATE cercava.</p>
-          <p>Verifica, con la regola del prodotto: $D\big[e^x(x-1)\big]=e^x(x-1)+e^x\cdot 1=e^x(x-1+1)=x\,e^x$ ✓</p>
-          <p><strong>Secondo integrale.</strong> I due fattori sono $\ln x$ (Logaritmica) e $x$ (Algebrica). La <strong>L</strong> viene prima della <strong>A</strong>, quindi derivo il logaritmo. I quattro ingredienti:</p>
-          <ul>
-            <li>$f(x)=\ln x$ &nbsp;— da <strong>derivare</strong>;</li>
-            <li>$f'(x)=\dfrac1x$ &nbsp;— (cap. 7);</li>
-            <li>$g'(x)=x$ &nbsp;— da <strong>integrare</strong>;</li>
-            <li>$g(x)=\displaystyle\int x\,dx=\dfrac{x^2}{2}$ &nbsp;— (regola della potenza con $\alpha=1$).</li>
-          </ul>
+          <p>Il nuovo integrale era più facile del vecchio: il polinomio $x$, derivato, è diventato $1$ ed è sparito. È proprio l'effetto che LIATE cercava.</p>
+          <p><strong>Controllo.</strong> Regola del prodotto: $D\big[e^x(x-1)\big]=e^x(x-1)+e^x\cdot1=x\,e^x$ ✓.</p>
+          <p><strong>Secondo integrale — come riconosco il metodo.</strong> Ancora un prodotto di due funzioni di tipo diverso, un logaritmo e un polinomio, e nessuna è la derivata dell'altra ($\frac1x$ non è $x$): parti. Qui c'è però una ragione in più per la scelta: $\ln x$ non ha una primitiva in tabella, quindi non posso integrarlo. Deve fare il ruolo di $f$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Decido chi derivare.</strong> $\ln x$ (Logaritmica) viene prima di $x$ (Algebrica) in LIATE: derivo il logaritmo, e integro $x$.</span>
+            <span class="esempio__passo"><strong>Ingredienti:</strong> $f=\ln x$, $f'=\frac1x$, $g'=x$, $g=\frac{x^2}{2}$ (regola della potenza con $\alpha=1$).</span>
+          </p>
           <div class="calcolo">$$\begin{aligned}
-          \int x\ln x\,dx &amp;= \ln x\cdot\frac{x^2}{2} - \int \frac1x\cdot\frac{x^2}{2}\,dx &amp;&amp;\text{(formula per parti con i quattro ingredienti)}\\
-          &amp;= \frac{x^2}{2}\ln x - \int \frac{x}{2}\,dx &amp;&amp;\text{(semplifico: } \tfrac1x\cdot\tfrac{x^2}{2}=\tfrac x2)\\
-          &amp;= \frac{x^2}{2}\ln x - \frac12\int x\,dx &amp;&amp;\text{(porto fuori il numero } \tfrac12)\\
-          &amp;= \frac{x^2}{2}\ln x - \frac12\cdot\frac{x^2}{2} + C &amp;&amp;\text{(} \int x\,dx=\tfrac{x^2}{2})\\
-          &amp;= \frac{x^2}{2}\ln x - \frac{x^2}{4} + C &amp;&amp;\text{(} \tfrac12\cdot\tfrac{x^2}{2}=\tfrac{x^2}{4})
+          \int x\ln x\,dx &amp;= \ln x\cdot\frac{x^2}{2} - \int \frac1x\cdot\frac{x^2}{2}\,dx &amp;&amp;\text{formula per parti}\\
+          &amp;= \frac{x^2}{2}\ln x - \int \frac{x}{2}\,dx &amp;&amp;\text{semplifico } \tfrac1x\cdot\tfrac{x^2}{2}\\
+          &amp;= \frac{x^2}{2}\ln x - \frac12\cdot\frac{x^2}{2} + C &amp;&amp;\int x\,dx=\tfrac{x^2}{2}\\
+          &amp;= \frac{x^2}{2}\ln x - \frac{x^2}{4} + C &amp;&amp;\text{moltiplico le frazioni}
           \end{aligned}$$</div>
           <p>Qui il guadagno è diverso: derivando il logaritmo è comparso $\frac1x$, che si è semplificato con l'$x^2$ lasciando un integrale elementare.</p>
-          <p>Verifica: $D\!\left(\frac{x^2}{2}\ln x\right)=x\ln x+\frac{x^2}{2}\cdot\frac1x=x\ln x+\frac x2$ (regola del prodotto) e $D\!\left(-\frac{x^2}{4}\right)=-\frac x2$: i due $\frac x2$ si elidono e resta $x\ln x$ ✓</p>
+          <p><strong>Controllo.</strong> $D\!\left(\frac{x^2}{2}\ln x\right)=x\ln x+\frac{x^2}{2}\cdot\frac1x=x\ln x+\frac x2$ e $D\!\left(-\frac{x^2}{4}\right)=-\frac x2$. I due $\frac x2$ si elidono e resta $x\ln x$ ✓.</p>
           <div class="esempio__risultato">$\displaystyle\int x e^x\,dx=e^x(x-1)+C$; &nbsp; $\displaystyle\int x\ln x\,dx=\frac{x^2}{2}\ln x-\frac{x^2}{4}+C$</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 6 — Per parti "ciclico": $\int e^x\sin x\,dx$</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Calcolare $\displaystyle I=\int e^{x}\sin x\,dx$ applicando due volte le parti e risolvendo l'equazione che ne esce.</p>
-          <p><strong>Perché questo caso è speciale.</strong> Né $\sin x$ né $e^x$ si semplificano: il seno derivato diventa coseno, il coseno derivato torna seno (col segno cambiato), e l'esponenziale resta sempre uguale. Qualunque scelta facciamo, il nuovo integrale somiglia al vecchio. La mossa vincente è dare un <strong>nome</strong> all'integrale e trattarlo come un'incognita.</p>
+          <p><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Prodotto di un esponenziale e di una trigonometrica; non vedo nessuna sostituzione utile, quindi parti. Ma LIATE non aiuta più di tanto: $\sin x$ derivato diventa coseno, il coseno derivato torna seno (col segno cambiato), e l'esponenziale resta sempre uguale. Qualunque scelta faccia, il nuovo integrale somiglia al vecchio. La mossa vincente è dare un <strong>nome</strong> all'integrale e trattarlo come un'incognita.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Prima applicazione delle parti.</strong> Ingredienti: $f=\sin x$ (derivo), $f'=\cos x$, $g'=e^x$ (integro), $g=e^x$.</span>
+            <span class="esempio__passo"><strong>Prima applicazione delle parti.</strong> Scelgo di derivare il seno. Ingredienti: $f=\sin x$, $f'=\cos x$, $g'=e^x$, $g=e^x$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          I = \int e^x\sin x\,dx &amp;= \sin x\cdot e^x - \int \cos x\cdot e^x\,dx &amp;&amp;\text{(formula per parti con i quattro ingredienti)}\\
-          &amp;= e^x\sin x - \int e^x\cos x\,dx &amp;&amp;\text{(riordino i fattori)}
+          I = \int e^x\sin x\,dx &amp;= \sin x\cdot e^x - \int \cos x\cdot e^x\,dx &amp;&amp;\text{formula per parti}\\
+          &amp;= e^x\sin x - \int e^x\cos x\,dx &amp;&amp;\text{riordino i fattori}
           \end{aligned}$$</div>
           <p>Il nuovo integrale non è più facile, ma nemmeno più difficile: è dello stesso tipo, con il coseno al posto del seno. Gli do un nome, $J=\int e^x\cos x\,dx$, e ci lavoro sopra.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Seconda applicazione delle parti, su $J$.</strong> Mantengo la <em>stessa</em> logica di prima — derivo la trigonometrica, integro l'esponenziale — altrimenti tornerei indietro annullando il lavoro fatto. Ingredienti: $f=\cos x$ (derivo), $f'=-\sin x$, $g'=e^x$ (integro), $g=e^x$.</span>
+            <span class="esempio__passo"><strong>Seconda applicazione delle parti, su $J$.</strong> Mantengo la <em>stessa</em> logica di prima, cioè derivo la trigonometrica e integro l'esponenziale: se scambiassi i ruoli tornerei indietro annullando il lavoro. Ingredienti: $f=\cos x$, $f'=-\sin x$, $g'=e^x$, $g=e^x$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          J = \int e^x\cos x\,dx &amp;= \cos x\cdot e^x - \int(-\sin x)\,e^x\,dx &amp;&amp;\text{(formula per parti)}\\
-          &amp;= e^x\cos x + \int e^x\sin x\,dx &amp;&amp;\text{(il meno della formula e il meno di } -\sin x \text{ danno un più)}\\
-          &amp;= e^x\cos x + I &amp;&amp;\text{(quell'ultimo integrale è, per definizione, } I)
+          J = \int e^x\cos x\,dx &amp;= \cos x\cdot e^x - \int(-\sin x)\,e^x\,dx &amp;&amp;\text{formula per parti}\\
+          &amp;= e^x\cos x + \int e^x\sin x\,dx &amp;&amp;\text{due meno fanno un più}\\
+          &amp;= e^x\cos x + I &amp;&amp;\text{quell'integrale è } I
           \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove ci si perde.</strong> Sembra un fallimento — siamo tornati a $I$ — e invece è la chiave: ora abbiamo un'equazione in cui l'incognita $I$ compare in due posti.</p>
+          <p><strong>Attenzione: qui è dove ci si perde.</strong> Sembra un fallimento, perché siamo tornati a $I$. In realtà è la chiave: ora abbiamo un'equazione in cui l'incognita $I$ compare in due posti, e la possiamo risolvere come una qualunque equazione di primo grado.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Sostituisco $J$ nella prima riga</strong> e risolvo l'equazione trattando $I$ come un'incognita qualsiasi.</span>
+            <span class="esempio__passo"><strong>Sostituisco $J$ nella prima riga</strong> e porto tutti i termini con $I$ dalla stessa parte.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          I &amp;= e^x\sin x - J &amp;&amp;\text{(prima riga)}\\
-          I &amp;= e^x\sin x - \big(e^x\cos x + I\big) &amp;&amp;\text{(sostituisco l'espressione di } J)\\
-          I &amp;= e^x\sin x - e^x\cos x - I &amp;&amp;\text{(tolgo la parentesi: il meno cambia i segni dentro)}\\
-          I + I &amp;= e^x\sin x - e^x\cos x &amp;&amp;\text{(sommo } I \text{ a entrambi i membri)}\\
-          2I &amp;= e^x\,(\sin x - \cos x) &amp;&amp;\text{(} I+I=2I \text{; raccolgo } e^x)\\
-          I &amp;= \frac{1}{2}\,e^x\,(\sin x-\cos x) &amp;&amp;\text{(divido entrambi i membri per } 2)
+          I &amp;= e^x\sin x - J &amp;&amp;\text{prima riga}\\
+          I &amp;= e^x\sin x - \big(e^x\cos x + I\big) &amp;&amp;\text{sostituisco } J\\
+          I &amp;= e^x\sin x - e^x\cos x - I &amp;&amp;\text{tolgo la parentesi}\\
+          2I &amp;= e^x\,(\sin x - \cos x) &amp;&amp;\text{sommo } I \text{ ai due membri}\\
+          I &amp;= \frac{1}{2}\,e^x\,(\sin x-\cos x) &amp;&amp;\text{divido per } 2
           \end{aligned}$$</div>
-          <p>Verifica, derivando con la regola del prodotto: $D\!\left[\frac12 e^x(\sin x-\cos x)\right]=\frac12 e^x(\sin x-\cos x)+\frac12 e^x(\cos x+\sin x)=\frac12 e^x\cdot 2\sin x=e^x\sin x$ ✓</p>
-          <div class="esempio__risultato">$\displaystyle\int e^x\sin x\,dx = \frac{1}{2}e^{x}(\sin x - \cos x) + C$</div>
+          <p><strong>Controllo.</strong> Derivo con la regola del prodotto: $D\!\left[\frac12 e^x(\sin x-\cos x)\right]=\frac12 e^x(\sin x-\cos x)+\frac12 e^x(\cos x+\sin x)=\frac12 e^x\cdot 2\sin x=e^x\sin x$ ✓.</p>
+          <div class="esempio__risultato">$\displaystyle\int e^x\sin x\,dx = \frac{1}{2}e^{x}(\sin x - \cos x) + C$. &nbsp; Cosa ricordare: se le parti riportano all'integrale di partenza, chiamalo $I$ e risolvi l'equazione.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 7 — Funzione razionale, $\Delta&gt;0$ (fratti semplici)</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Calcolare $\displaystyle\int \frac{x+6}{x^2-4}\,dx$.</p>
-          <p>Rispetto al caso svolto nel <span class="richiamo" data-sec="4.7">§4.7</span>, qui il numeratore non è $1$: vediamo che il metodo non cambia di una virgola.</p>
+          <p><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> È una funzione razionale: polinomio su polinomio. Controllo i gradi: numeratore di grado $1$, denominatore di grado $2$, quindi il numeratore ha grado minore e non serve la divisione. Con il denominatore di secondo grado guardo il discriminante: $x^2-4$ ha $b=0$, $c=-4$, quindi $\Delta=0-4\cdot(-4)=16\gt0$, due radici reali distinte. È il caso dei <strong>fratti semplici</strong> (<span class="richiamo" data-sec="4.7">§4.7</span>, Caso 2), e il metodo non cambia anche se il numeratore non è $1$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Passo 0 — controllo i gradi.</strong> Numeratore di grado $1$, denominatore di grado $2$: il numeratore ha grado minore, quindi non serve la divisione tra polinomi e posso partire subito.</span>
-            <span class="esempio__passo"><strong>Passo 1 — scompongo il denominatore</strong> con la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2), usata con $a=x$ e $b=2$: $x^2-4=(x-2)(x+2)$. Le radici sono $2$ e $-2$, reali e distinte.</span>
-            <span class="esempio__passo"><strong>Passo 2 — scrivo la forma spezzata</strong> con due incognite: $\dfrac{x+6}{(x-2)(x+2)}=\dfrac{A}{x-2}+\dfrac{B}{x+2}$.</span>
-            <span class="esempio__passo"><strong>Passo 3 — denominatore comune e uguaglianza dei numeratori.</strong> Sommando le due frazioni di destra si ottiene $\dfrac{A(x+2)+B(x-2)}{(x-2)(x+2)}$; poiché i denominatori sono uguali, devono esserlo i numeratori: $\ x+6=A(x+2)+B(x-2)$.</span>
-            <span class="esempio__passo"><strong>Passo 4 — sviluppo e raccolgo</strong> per confrontare i coefficienti.</span>
+            <span class="esempio__passo"><strong>Passo 1 — scompongo il denominatore</strong> con la differenza di quadrati $a^2-b^2=(a-b)(a+b)$ (Parte 0, cap. 2), con $a=x$ e $b=2$: $x^2-4=(x-2)(x+2)$. Le radici sono $2$ e $-2$.</span>
+            <span class="esempio__passo"><strong>Passo 2 — scrivo la forma spezzata e passo ai numeratori.</strong> Cerco $A$ e $B$ con $\frac{x+6}{(x-2)(x+2)}=\frac{A}{x-2}+\frac{B}{x+2}$. A denominatore comune e uguagliando i numeratori: $x+6=A(x+2)+B(x-2)$.</span>
+            <span class="esempio__passo"><strong>Passo 3 — sviluppo e confronto i coefficienti.</strong> Svolgo i prodotti e raccolgo la $x$; a sinistra il polinomio è $1\cdot x+6$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          A(x+2)+B(x-2) &amp;= Ax+2A+Bx-2B &amp;&amp;\text{(svolgo i due prodotti)}\\
-          &amp;= (A+B)\,x + (2A-2B) &amp;&amp;\text{(raccolgo } x \text{ nei termini che la contengono)}
+          A(x+2)+B(x-2) &amp;= Ax+2A+Bx-2B\\
+          &amp;= (A+B)\,x + (2A-2B)
           \end{aligned}$$</div>
-          <p>A sinistra il polinomio è $x+6$, cioè $1\cdot x+6$. Uguagliando coefficiente con coefficiente ottengo il sistema.</p>
           <div class="calcolo">$$\begin{aligned}
-          \text{coefficiente di } x:\quad A+B &amp;= 1 &amp;&amp;\text{(a sinistra la } x \text{ ha coefficiente } 1)\\
-          \text{termine noto:}\quad 2A-2B &amp;= 6 &amp;&amp;\text{(a sinistra il numero è } 6)
+          \text{coefficiente di } x:\quad A+B &amp;= 1\\
+          \text{termine noto:}\quad 2A-2B &amp;= 6
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Passo 5 — risolvo il sistema per intero.</strong> Semplifico prima la seconda equazione dividendola per $2$, poi sommo le due equazioni membro a membro: così la $B$ sparisce.</span>
+            <span class="esempio__passo"><strong>Passo 4 — risolvo il sistema.</strong> Divido la seconda equazione per $2$ e poi sommo le due equazioni membro a membro: così la $B$ sparisce.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          2A-2B &amp;= 6 &amp;&amp;\text{(seconda equazione)}\\
-          A-B &amp;= 3 &amp;&amp;\text{(divido tutto per } 2)\\
-          (A+B)+(A-B) &amp;= 1+3 &amp;&amp;\text{(sommo membro a membro con la prima equazione)}\\
-          2A &amp;= 4 &amp;&amp;\text{(} +B \text{ e } -B \text{ si elidono)}\\
-          A &amp;= 2 &amp;&amp;\text{(divido per } 2)\\
-          B &amp;= 1-A = 1-2 = -1 &amp;&amp;\text{(ricavo } B \text{ dalla prima equazione)}
+          A-B &amp;= 3 &amp;&amp;\text{seconda equazione diviso } 2\\
+          (A+B)+(A-B) &amp;= 1+3 &amp;&amp;\text{sommo membro a membro}\\
+          2A &amp;= 4\\
+          A &amp;= 2\\
+          B &amp;= 1-A = -1 &amp;&amp;\text{dalla prima equazione}
           \end{aligned}$$</div>
-          <p>Controllo veloce: $2(x+2)-1\cdot(x-2)=2x+4-x+2=x+6$ ✓, proprio il numeratore di partenza.</p>
+          <p>Controllo con la scorciatoia delle radici (§4.7): in $x+6=A(x+2)+B(x-2)$ metto $x=2$ e ottengo $8=4A$, quindi $A=2$; metto $x=-2$ e ottengo $4=-4B$, quindi $B=-1$. Stessi valori ✓. E rimettendoli: $2(x+2)-(x-2)=2x+4-x+2=x+6$ ✓.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Passo 6 — integro i due pezzi</strong> separatamente (linearità, <span class="richiamo" data-sec="4.4">§4.4</span>), con la formula $\int\frac{1}{x-a}dx=\ln|x-a|$ usata prima con $a=2$, poi con $a=-2$.</span>
+            <span class="esempio__passo"><strong>Passo 5 — integro i due pezzi</strong> separatamente (linearità), ciascuno con la formula $\int\frac{1}{x-a}dx=\ln|x-a|$: prima con $a=2$, poi con $a=-2$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          \int\frac{x+6}{x^2-4}\,dx &amp;= \int\left(\frac{2}{x-2}+\frac{-1}{x+2}\right)dx &amp;&amp;\text{(sostituisco } A=2 \text{ e } B=-1)\\
-          &amp;= 2\int\frac{dx}{x-2} - \int\frac{dx}{x+2} &amp;&amp;\text{(linearità: numeri fuori, integrali separati)}\\
-          &amp;= 2\ln|x-2| - \ln|x+2| + C &amp;&amp;\text{(formula del logaritmo, con } a=2 \text{ e } a=-2)
+          \int\frac{x+6}{x^2-4}\,dx &amp;= \int\left(\frac{2}{x-2}+\frac{-1}{x+2}\right)dx &amp;&amp;A=2,\ B=-1\\
+          &amp;= 2\int\frac{dx}{x-2} - \int\frac{dx}{x+2} &amp;&amp;\text{linearità}\\
+          &amp;= 2\ln|x-2| - \ln|x+2| + C &amp;&amp;\text{formula del Caso 1}
           \end{aligned}$$</div>
-          <p>Verifica: $D\big(2\ln|x-2|-\ln|x+2|\big)=\dfrac{2}{x-2}-\dfrac{1}{x+2}=\dfrac{2(x+2)-(x-2)}{(x-2)(x+2)}=\dfrac{x+6}{x^2-4}$ ✓</p>
+          <p><strong>Controllo.</strong> $D\big(2\ln|x-2|-\ln|x+2|\big)=\dfrac{2}{x-2}-\dfrac{1}{x+2}=\dfrac{2(x+2)-(x-2)}{(x-2)(x+2)}=\dfrac{x+6}{x^2-4}$ ✓.</p>
           <div class="esempio__risultato">$\displaystyle\int \frac{x+6}{x^2-4}\,dx = 2\ln|x-2| - \ln|x+2| + C$. &nbsp; Volendo si compatta: $\ln\left|\dfrac{(x-2)^2}{x+2}\right|+C$ (proprietà dei logaritmi, Parte 0, cap. 4).</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 8 — Funzione razionale, $\Delta&lt;0$ (completamento del quadrato)</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Calcolare $\displaystyle\int \frac{1}{x^2+2x+5}\,dx$.</p>
+          <p><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Funzione razionale, numeratore costante, denominatore di secondo grado. Calcolo il discriminante $\Delta=b^2-4ac$ con $a=1$, $b=2$, $c=5$: $\Delta=4-20=-16$, negativo. Il denominatore non ha radici reali, quindi non si scompone e i fratti semplici non servono: la strada è il <strong>completamento del quadrato</strong>, per arrivare a una forma "quadrato più numero positivo" che riconosco come arcotangente (<span class="richiamo" data-sec="4.7">§4.7</span>, Caso 3).</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Passo 1 — decido quale strada prendere</strong> guardando il discriminante $\Delta=b^2-4ac$ con $a=1$, $b=2$, $c=5$: $\Delta=2^2-4\cdot1\cdot5=4-20=-16$, negativo. Niente radici reali, quindi niente scomposizione e niente fratti semplici: vado di <strong>completamento del quadrato</strong>.</span>
-            <span class="esempio__passo"><strong>Passo 2 — completo il quadrato.</strong> Il coefficiente di $x$ è $2$; la sua metà è $1$; il suo quadrato è $1^2=1$. Quindi ai primi due termini manca esattamente $1$ per formare $(x+1)^2$. Spezzo allora il $5$ come $1+4$.</span>
+            <span class="esempio__passo"><strong>Passo 1 — completo il quadrato.</strong> Il coefficiente di $x$ è $2$; la sua metà è $1$; il suo quadrato è $1$. Ai primi due termini manca esattamente $1$ per formare $(x+1)^2$. Allora spezzo il $5$ come $1+4$ e raggruppo.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          x^2+2x+5 &amp;= x^2+2x+1+4 &amp;&amp;\text{(spezzo } 5=1+4 \text{: non ho cambiato nulla)}\\
-          &amp;= \big(x^2+2x+1\big)+4 &amp;&amp;\text{(raggruppo i primi tre termini)}\\
-          &amp;= (x+1)^2+4 &amp;&amp;\text{(quadrato del binomio } (a+b)^2=a^2+2ab+b^2 \text{ con } a=x,\ b=1)
+          x^2+2x+5 &amp;= x^2+2x+1+4 &amp;&amp;5=1+4\\
+          &amp;= \big(x^2+2x+1\big)+4 &amp;&amp;\text{raggruppo}\\
+          &amp;= (x+1)^2+4 &amp;&amp;\text{quadrato del binomio}
           \end{aligned}$$</div>
-          <p>Controllo risviluppando, perché è qui che si sbaglia il segno: $(x+1)^2+4=x^2+2x+1+4=x^2+2x+5$ ✓. Il termine che avanza è $+4$, positivo, come deve essere quando $\Delta\lt 0$.</p>
+          <p>Controllo risviluppando, perché è qui che si sbaglia il segno: $(x+1)^2+4=x^2+2x+1+4=x^2+2x+5$ ✓. Il termine che avanza è $+4$, positivo, come deve essere quando $\Delta\lt 0$ (e $-\frac\Delta4=4$).</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Passo 3 — identifico $h$ e $k$</strong> nella formula $\int\dfrac{dx}{(x-h)^2+k^2}=\dfrac1k\arctan\dfrac{x-h}{k}+C$ (<span class="richiamo" data-sec="4.7">§4.7</span>). Per leggere $h$ devo scrivere $(x+1)^2$ nella forma $(x-h)^2$: poiché $x+1=x-(-1)$, si ha $h=-1$. Per leggere $k$: da $4=k^2$ segue $k=2$ (prendo il valore positivo).</span>
-            <span class="esempio__passo"><strong>Passo 4 — sostituisco $h=-1$ e $k=2$</strong> nella formula.</span>
+            <span class="esempio__passo"><strong>Passo 2 — identifico $h$ e $k$</strong> nella formula $\int\dfrac{dx}{(x-h)^2+k^2}=\dfrac1k\arctan\dfrac{x-h}{k}+C$. Per leggere $h$ scrivo $(x+1)^2$ nella forma $(x-h)^2$: poiché $x+1=x-(-1)$, si ha $h=-1$. Per leggere $k$: da $4=k^2$ segue $k=2$ (prendo il valore positivo).</span>
+            <span class="esempio__passo"><strong>Passo 3 — sostituisco $h=-1$ e $k=2$</strong> nella formula.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          \int\frac{dx}{x^2+2x+5} &amp;= \int\frac{dx}{(x+1)^2+4} &amp;&amp;\text{(uso il completamento del quadrato del Passo 2)}\\
-          &amp;= \frac{1}{2}\arctan\frac{x-(-1)}{2}+C &amp;&amp;\text{(formula dell'arcotangente con } h=-1,\ k=2)\\
-          &amp;= \frac{1}{2}\arctan\frac{x+1}{2}+C &amp;&amp;\text{(} x-(-1)=x+1)
+          \int\frac{dx}{x^2+2x+5} &amp;= \int\frac{dx}{(x+1)^2+4} &amp;&amp;\text{passo 1}\\
+          &amp;= \frac{1}{2}\arctan\frac{x-(-1)}{2}+C &amp;&amp;h=-1,\ k=2\\
+          &amp;= \frac{1}{2}\arctan\frac{x+1}{2}+C &amp;&amp;x-(-1)=x+1
           \end{aligned}$$</div>
-          <p>Verifica: derivando con la regola della catena, $D\!\left[\frac12\arctan\frac{x+1}{2}\right]=\frac12\cdot\dfrac{1}{1+\left(\frac{x+1}{2}\right)^2}\cdot\frac12=\dfrac{1}{4+(x+1)^2}=\dfrac{1}{x^2+2x+5}$ ✓</p>
-          <div class="esempio__risultato">$\displaystyle\int \frac{dx}{x^2+2x+5} = \frac{1}{2}\arctan\!\left(\frac{x+1}{2}\right) + C$</div>
+          <p><strong>Controllo.</strong> Con la regola della catena: $D\!\left[\frac12\arctan\frac{x+1}{2}\right]=\frac12\cdot\dfrac{1}{1+\left(\frac{x+1}{2}\right)^2}\cdot\frac12=\dfrac{1}{4+(x+1)^2}=\dfrac{1}{x^2+2x+5}$ ✓.</p>
+          <div class="esempio__risultato">$\displaystyle\int \frac{dx}{x^2+2x+5} = \frac{1}{2}\arctan\!\left(\frac{x+1}{2}\right) + C$. &nbsp; Cosa ricordare: con $\Delta\lt0$ il residuo $k^2$ deve venire positivo; se viene negativo, ricontrolla il completamento.</div>
         </div>
       </section>
 
-      <!-- 7. ERRORI COMUNI -->
+      <!-- 6. ERRORI COMUNI -->
       <section class="section" id="errori-comuni">
-        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">❌</span> Dimenticare la costante di integrazione $+C$</div>
@@ -1067,9 +1188,9 @@
         </div>
       </section>
 
-      <!-- 8. TRUCCHI -->
+      <!-- 7. TRUCCHI -->
       <section class="section" id="trucchi">
-        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Verifica sempre derivando il risultato</div>
@@ -1094,9 +1215,9 @@
         </div>
       </section>
 
-      <!-- 9. MAPPA MENTALE -->
+      <!-- 8. MAPPA MENTALE -->
       <section class="section" id="mappa-mentale">
-        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
         <div class="mappa-mentale">
           <div class="mappa-mentale__centro">Integrale indefinito $\int f\,dx = F+C$</div>
           <div class="mappa-mentale__rami">
@@ -1124,9 +1245,9 @@
         </div>
       </section>
 
-      <!-- 10. RIASSUNTO -->
+      <!-- 9. RIASSUNTO -->
       <section class="section" id="riassunto">
-        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
         <div class="riassunto-finale">
           <h3>Da ricordare assolutamente</h3>
           <ul>

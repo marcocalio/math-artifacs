@@ -43,14 +43,13 @@
           <li><a href="#motivazione">2. Motivazione</a></li>
           <li><a href="#vita-reale">3. Nella vita reale</a></li>
           <li><a href="#teoria">4. Teoria dettagliata</a></li>
-          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
-          <li><a href="#esempi">6. Esempi svolti</a></li>
-          <li><a href="#errori-comuni">7. Errori comuni</a></li>
-          <li><a href="#trucchi">8. Trucchi</a></li>
-          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
-          <li><a href="#riassunto">10. Riassunto</a></li>
-          <li><a href="#esercizi">11. Esercizi</a></li>
-          <li><a href="#quiz">12. Quiz</a></li>
+          <li><a href="#esempi">5. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">6. Errori comuni</a></li>
+          <li><a href="#trucchi">7. Trucchi</a></li>
+          <li><a href="#mappa-mentale">8. Mappa mentale</a></li>
+          <li><a href="#riassunto">9. Riassunto</a></li>
+          <li><a href="#esercizi">10. Esercizi</a></li>
+          <li><a href="#quiz">11. Quiz</a></li>
         </ul>
       </nav>
       <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
@@ -84,7 +83,7 @@
         <h1>Integrali Definiti</h1>
         <p class="subtitle">L'integrale definito è il contachilometri delle funzioni: misura la quantità totale accumulata — l'area sotto un grafico. Lo costruiremo sommando rettangoli sempre più sottili (le somme di Riemann) e poi arriveremo al gran finale di tutta l'Analisi 1: il Teorema Fondamentale del Calcolo, che rivela come derivata e integrale siano due facce della stessa medaglia.</p>
         <div class="reading-meta">
-          <span>⏱️ ~60 min di lettura</span>
+          <span>⏱️ ~80 min di lettura</span>
           <span>✏️ 16 esercizi</span>
           <span>🧠 13 quiz</span>
         </div>
@@ -197,11 +196,11 @@
         <p>Gli estremi destri delle dieci fettine sono $0{,}1;\ 0{,}2;\ 0{,}3;\ \dots;\ 1{,}0$, e su ciascuno l'altezza è il numero stesso (di nuovo perché $f(x)=x$). Invece di moltiplicare ogni altezza per $0{,}1$ e poi sommare, raccolgo il fattore comune $0{,}1$ e sommo prima le altezze: è la proprietà distributiva (Parte 0, cap. 2).</p>
         <div class="calcolo">$$\begin{aligned}
         S_{10}^{\text{destra}} &amp;= 0{,}1\cdot(0{,}1+0{,}2+\cdots+1{,}0) &amp;&amp;\text{(raccolgo la base, uguale per tutti)}\\
-        0{,}1+0{,}2+\cdots+1{,}0 &amp;= (0{,}1+1{,}0)+(0{,}2+0{,}9)+\cdots &amp;&amp;\text{(accoppio il primo con l'ultimo, il secondo con il penultimo…)}\\
+        0{,}1+0{,}2+\cdots+1{,}0 &amp;= (0{,}1+1{,}0)+(0{,}2+0{,}9)+\cdots &amp;&amp;\text{(primo con ultimo, secondo con penultimo…)}\\
         &amp;= 1{,}1\cdot 5 = 5{,}5 &amp;&amp;\text{(ogni coppia fa } 1{,}1 \text{ e le coppie sono } 5)\\
         S_{10}^{\text{destra}} &amp;= 0{,}1\cdot 5{,}5 = 0{,}55
         \end{aligned}$$</div>
-        <p>Il trucco delle coppie ci tornerà utile nella dimostrazione della sezione 5: tienilo a mente. Con gli estremi sinistri le altezze sono $0;\ 0{,}1;\ \dots;\ 0{,}9$, cioè le stesse di prima tolto $1{,}0$ e aggiunto $0$:</p>
+        <p>Il trucco delle coppie ci tornerà utile fra poco, quando faremo lo stesso conto con $n$ qualunque: tienilo a mente. Con gli estremi sinistri le altezze sono $0;\ 0{,}1;\ \dots;\ 0{,}9$, cioè le stesse di prima tolto $1{,}0$ e aggiunto $0$:</p>
         <div class="calcolo">$$\begin{aligned}
         0+0{,}1+\cdots+0{,}9 &amp;= 5{,}5-1{,}0+0 = 4{,}5 &amp;&amp;\text{(tolgo l'altezza che non c'è più, aggiungo quella nuova)}\\
         S_{10}^{\text{sinistra}} &amp;= 0{,}1\cdot 4{,}5 = 0{,}45
@@ -219,7 +218,84 @@
         </table>
         <p><strong>Fin qui:</strong> guarda le due colonne delle somme. Da sotto i numeri salgono — $0{,}375$, $0{,}45$, $0{,}475$, $0{,}495$, $0{,}4995$ — e da sopra scendono — $0{,}625$, $0{,}55$, $0{,}525$, $0{,}505$, $0{,}5005$. Si stringono a tenaglia su un unico numero, $0{,}5$, che è esattamente l'area del triangolo calcolata all'inizio. <strong>I rettangoli non danno mai la risposta esatta, ma la circondano sempre meglio.</strong></p>
         <p>L'ultima colonna dice però anche quanto costa questa precisione. L'errore, espresso come frazione del valore vero, è esattamente $\frac1n$: con $4$ rettangoli è $\frac14$, cioè il $25\%$; con $100$ è $\frac{1}{100}$, cioè l'$1\%$; per scendere allo $0{,}1\%$ ne servono $1000$, cioè $250$ volte quelli di partenza. Detto altrimenti: per <em>dimezzare</em> l'errore bisogna <em>raddoppiare</em> il numero di rettangoli. Il metodo funziona, quindi, ma è lento e faticoso: tienilo a mente, perché quando nel <span class="richiamo" data-sec="4.6">§4.6</span> il Teorema Fondamentale darà la risposta esatta in due righe capirai perché è considerato un colpo di genio.</p>
-        <p>Nella sezione 5 dimostreremo che questo non è un caso fortunato: per ogni $n$ la somma con gli estremi destri vale $0{,}5+\frac{1}{2n}$ e quella con gli estremi sinistri vale $0{,}5-\frac{1}{2n}$. Prova a verificarlo sulla tabella: con $n=10$ si ha $\frac{1}{2n}=\frac{1}{20}=0{,}05$, e infatti $0{,}5+0{,}05=0{,}55$ e $0{,}5-0{,}05=0{,}45$. Quando $n$ diventa enorme, $\frac{1}{2n}$ diventa piccolissimo e le due somme si schiacciano su $0{,}5$.</p>
+        <p>Nella tabella si nasconde una regola. Con gli estremi destri, $0{,}625=0{,}5+\frac18$ per $n=4$, $0{,}55=0{,}5+\frac{1}{20}$ per $n=10$, $0{,}525=0{,}5+\frac{1}{40}$ per $n=20$: a $0{,}5$ si aggiunge ogni volta $\frac{1}{2n}$. Con gli estremi sinistri lo stesso numero si toglie. Ma cinque righe di una tabella non sono una dimostrazione: ci chiediamo se la regola vale per <em>ogni</em> $n$, e lo dimostriamo.</p>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Le somme di Riemann di $f(x)=x$ su $[0,1]$.</em> Dividiamo $[0,1]$ in $n$ parti uguali. La somma con gli estremi destri, $R_n^{\text{dx}}$, e quella con gli estremi sinistri, $R_n^{\text{sx}}$, valgono</p>
+          <div class="formula-block">$$R_n^{\text{dx}}=\frac12+\frac{1}{2n},\qquad\qquad R_n^{\text{sx}}=\frac12-\frac{1}{2n},$$</div>
+          <p>e quindi entrambe si avvicinano a $\frac12$ quando $n$ cresce.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che i numeri della tabella non sono un caso: per qualunque numero $n$ di rettangoli la somma con gli estremi destri vale esattamente $\frac12+\frac{1}{2n}$ e quella con gli estremi sinistri vale $\frac12-\frac{1}{2n}$. Da qui seguirà che, con rettangoli sempre più sottili, entrambe si schiacciano su $\frac12$.</p>
+          <p><strong>L'idea.</strong> Con $n$ generico non possiamo scrivere gli addendi uno per uno come abbiamo fatto con $n=4$ e $n=10$. Allora li descriviamo con una formula e semplifichiamo la somma finché resta un'espressione che contiene solo $n$. Il rettangolo numero $i$ ha base $\frac1n$ e altezza $\frac in$ (perché $f(x)=x$). Raccogliendo i due fattori $\frac1n$ la somma diventa $\frac{1}{n^2}$ volte $1+2+\cdots+n$: tutto si riduce a sommare i primi $n$ numeri interi. Per farlo ripetiamo il trucco delle coppie già usato con $n=10$ (primo con ultimo, secondo con penultimo, …), stavolta con $n$ qualunque.</p>
+
+          <p><strong>Passo 1 — scrivo larghezza e punti di divisione con $n$ generico.</strong> Uso le formule del <span class="richiamo" data-sec="4.1.1">§4.1.1</span> con $a=0$, $b=1$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          \Delta x &amp;= \frac{1-0}{n} = \frac1n &amp;&amp;\text{(larghezza di ogni fettina)}\\
+          x_i &amp;= 0+i\cdot\frac1n = \frac in &amp;&amp;\text{(punto di divisione numero } i)
+          \end{aligned}$$</div>
+
+          <p><strong>Passo 2 — scrivo la somma con gli estremi destri e porto fuori il fattore comune.</strong> Con gli estremi destri il rettangolo $i$ è alto $f(x_i)=\frac in$ e largo $\frac1n$. Nella somma c'è un fattore, $\frac{1}{n^2}$, che è lo stesso in tutti gli addendi (non dipende da $i$): per la proprietà distributiva lo posso mettere davanti.</p>
+          <div class="calcolo">$$\begin{aligned}
+          R_n^{\text{dx}} &amp;= \sum_{i=1}^{n}\frac in\cdot\frac1n &amp;&amp;\text{(altezza per base, per ogni rettangolo)}\\
+          &amp;= \frac{1}{n^2}\sum_{i=1}^{n} i &amp;&amp;\text{(raccolgo } \tfrac{1}{n^2})
+          \end{aligned}$$</div>
+          <p>Ora resta da calcolare $1+2+\cdots+n$.</p>
+
+          <p><strong>Passo 3 — somma dei primi $n$ interi (trucco di Gauss).</strong> Scrivo la somma due volte, la seconda al contrario, e le sommo colonna per colonna: in ogni colonna la somma è la stessa, $n+1$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          S &amp;= 1+2+3+\cdots+n\\
+          S &amp;= n+(n-1)+(n-2)+\cdots+1\\
+          2S &amp;= \underbrace{(n+1)+(n+1)+\cdots+(n+1)}_{n \text{ addendi}}\\
+          2S &amp;= n\,(n+1) &amp;&amp;\text{(} n \text{ addendi uguali)}\\
+          S &amp;= \frac{n(n+1)}{2} &amp;&amp;\text{(divido per } 2)
+          \end{aligned}$$</div>
+          <p>Con $n=10$ viene $\frac{10\cdot11}{2}=55$, che è proprio il numero trovato nel <span class="richiamo" data-sec="4.1.2">§4.1.2</span> ($5{,}5=0{,}1\cdot55$).</p>
+
+          <p><strong>Passo 4 — rimetto la formula di Gauss nella somma e semplifico.</strong> Voglio arrivare a una frazione con un solo $n$ al denominatore, quindi semplifico dove posso.</p>
+          <div class="calcolo">$$\begin{aligned}
+          R_n^{\text{dx}} &amp;= \frac{1}{n^2}\cdot\frac{n(n+1)}{2} &amp;&amp;\text{(sostituisco } \textstyle\sum i)\\
+          &amp;= \frac{n+1}{2n} &amp;&amp;\text{(semplifico una } n)\\
+          &amp;= \frac{n}{2n}+\frac{1}{2n} = \frac12+\frac{1}{2n} &amp;&amp;\text{(spezzo il numeratore)}
+          \end{aligned}$$</div>
+          <p>Questa è la prima formula della proposizione.</p>
+
+          <p><strong>Passo 5 — passo agli estremi sinistri.</strong> Non rifaccio il conto: confronto le due somme. I rettangoli con gli estremi sinistri sono gli stessi di prima, tranne due: manca l'ultimo (altezza $\frac nn=1$, quindi area $1\cdot\frac1n$) e c'è uno in più all'inizio, di altezza $f(0)=0$ e quindi di area nulla. In pratica dalla somma di prima si toglie $\frac1n$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          R_n^{\text{sx}} &amp;= R_n^{\text{dx}}-\frac1n &amp;&amp;\text{(tolgo l'ultimo rettangolo)}\\
+          &amp;= \frac12+\frac{1}{2n}-\frac{2}{2n} = \frac12-\frac{1}{2n} &amp;&amp;\text{(porto } \tfrac1n \text{ a denominatore } 2n)
+          \end{aligned}$$</div>
+
+          <p><strong>Passo 6 — faccio crescere $n$.</strong> Ora le due somme sono formule in $n$ soltanto, e il limite si calcola subito: $\frac{1}{2n}$ ha il denominatore che cresce, quindi tende a $0$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          \lim_{n\to\infty}R_n^{\text{dx}} &amp;= \frac12+0=\frac12\\
+          \lim_{n\to\infty}R_n^{\text{sx}} &amp;= \frac12-0=\frac12
+          \end{aligned}$$</div>
+          <p><strong>Controllo numerico.</strong> Con $n=4$ le formule danno $\frac12+\frac18=0{,}625$ e $\frac12-\frac18=0{,}375$; con $n=10$ danno $0{,}55$ e $0{,}45$: sono proprio i numeri della tabella.</p>
+          <p><strong>Conclusione.</strong> Abbiamo diviso $[0,1]$ in $n$ parti uguali, scritto la somma dei rettangoli, usato la formula di Gauss per sommare gli interi e trovato $R_n^{\text{dx}}=\frac12+\frac{1}{2n}$ e $R_n^{\text{sx}}=\frac12-\frac{1}{2n}$. Mandando $n$ all'infinito il secondo pezzo sparisce e restano $\frac12$ da entrambe le parti: il limite coincide con l'area del triangolo, $\frac{1\cdot1}{2}$. <span class="qed">∎</span></p>
+        </div>
+
+        <div class="callout callout--curiosita">
+          <div class="callout__title"><span class="emoji">🧩</span> E per $x^2$? Lo stesso metodo, con una somma in più da calcolare</div>
+          <p>Con $f(x)=x^2$ cambia solo l'altezza: il rettangolo $i$ (estremi destri) è alto $\left(\frac in\right)^2=\frac{i^2}{n^2}$ e largo $\frac1n$, quindi, raccogliendo $\frac{1}{n^3}$ come prima,</p>
+          <div class="calcolo">$$\begin{aligned}
+          R_n &amp;= \sum_{i=1}^n\frac{i^2}{n^2}\cdot\frac1n = \frac{1}{n^3}\sum_{i=1}^n i^2
+          \end{aligned}$$</div>
+          <p>Serve la somma dei quadrati dei primi $n$ interi, e il trucco delle coppie non basta più. Ne usiamo un altro, quello della <strong>somma telescopica</strong>: si scrive un'uguaglianza vera per ogni $i$ e si sommano le $n$ righe, così che i termini intermedi si cancellino. Partiamo dal cubo: $(i+1)^3-i^3=3i^2+3i+1$ (basta sviluppare). Sommo per $i=1,2,\dots,n$. A sinistra il $+(i+1)^3$ di una riga si cancella con il $-(i+1)^3$ della riga dopo, e restano solo l'ultimo termine e il primo; a destra uso la formula di Gauss per $\sum i$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          (n+1)^3-1 &amp;= 3\sum_{i=1}^n i^2+3\cdot\frac{n(n+1)}{2}+n &amp;&amp;\text{(somma delle } n \text{ righe)}\\
+          3\sum_{i=1}^n i^2 &amp;= n^3+3n^2+2n-\frac{3n^2+3n}{2} &amp;&amp;\text{(sviluppo e porto a sinistra)}\\
+          &amp;= \frac{2n^3+3n^2+n}{2} = \frac{n(n+1)(2n+1)}{2} &amp;&amp;\text{(denominatore comune e raccolgo)}
+          \end{aligned}$$</div>
+          <p>Dividendo per $3$ si ottiene $\sum_{i=1}^n i^2=\frac{n(n+1)(2n+1)}{6}$. Allora $R_n=\frac{1}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}=\frac{(n+1)(2n+1)}{6n^2}=\frac{2n^2+3n+1}{6n^2}$. Per il limite raccolgo $n^2$ sopra e sotto, perché voglio far comparire $\frac1n$ e $\frac{1}{n^2}$, che tendono a $0$:</p>
+          <div class="calcolo">$$\begin{aligned}
+          R_n &amp;= \frac{2+\frac3n+\frac{1}{n^2}}{6}\ \longrightarrow\ \frac{2+0+0}{6}=\frac13 &amp;&amp;\text{(per } n\to\infty)
+          \end{aligned}$$</div>
+          <p>Controllo con i numeri: $n=4$ dà $\frac{5\cdot9}{96}=0{,}46875$; $n=10$ dà $\frac{11\cdot21}{600}=0{,}385$; $n=100$ dà $0{,}33835$. Si avvicinano a $\frac13\approx0{,}3333$. Con il Teorema Fondamentale (<span class="richiamo" data-sec="4.6">§4.6</span>) lo stesso risultato costa tre righe: $\int_0^1x^2\,dx=\big[\frac{x^3}{3}\big]_0^1=\frac13$. Ecco quanta fatica ci risparmia.</p>
+        </div>
+
 
         <h4>4.1.3 Solo ora la definizione formale</h4>
         <p>Adesso che sappiamo <em>cosa</em> stiamo facendo, diamo un nome a ogni ingrediente del conto che abbiamo appena svolto.</p>
@@ -228,7 +304,7 @@
           <p><em class="nome">Partizione e somma di Riemann.</em> Sia $f$ una <span class="glossario-term" data-term="funzione">funzione</span> limitata sull'intervallo chiuso e limitato $[a,b]$. Una <strong>partizione</strong> $P$ di $[a,b]$ è una scelta di punti che lo tagliano in fettine:</p>
           <div class="formula-block">$$P:\quad a=x_0 \lt x_1 \lt x_2 \lt \cdots \lt x_{n-1} \lt x_n = b.$$</div>
           <p>L'$i$-esima fettina è $[x_{i-1},x_i]$ e la sua larghezza è $\Delta x_i = x_i-x_{i-1}$. Se le fettine hanno tutte la stessa larghezza la partizione si dice <strong>uniforme</strong>, e allora $\Delta x=\dfrac{b-a}{n}$ e $x_i=a+i\,\Delta x$ (sono le due formule usate nel <span class="richiamo" data-sec="4.1.1">§4.1.1</span>). Scelto su ogni fettina un punto qualunque $c_i\in[x_{i-1},x_i]$, detto <em>punto campione</em>, la <strong><span class="glossario-term" data-term="somma-di-riemann">somma di Riemann</span></strong> associata è</p>
-          <div class="formula-block">$$S(P,\,c) \;=\; \underbrace{\sum_{i=1}^{n}}_{\text{sommo su tutte le fettine}}\ \underbrace{f(c_i)}_{\text{altezza del rettangolo}}\ \underbrace{\Delta x_i}_{\text{base del rettangolo}}$$</div>
+          <div class="formula-block">$$R(P,\,c) \;=\; \underbrace{\sum_{i=1}^{n}}_{\text{sommo su tutte le fettine}}\ \underbrace{f(c_i)}_{\text{altezza del rettangolo}}\ \underbrace{\Delta x_i}_{\text{base del rettangolo}}$$</div>
           <p>cioè, scritta per esteso, $f(c_1)\Delta x_1 + f(c_2)\Delta x_2 + \cdots + f(c_n)\Delta x_n$.</p>
         </div>
         <p>Nel conto del <span class="richiamo" data-sec="4.1.1">§4.1.1</span> avevamo $a=0$, $b=1$, $n=4$, $\Delta x_i=0{,}25$ per ogni $i$, e due scelte diverse dei punti campione: prima $c_i=x_i$ (estremo destro), poi $c_i=x_{i-1}$ (estremo sinistro). Sono entrambe somme di Riemann: la definizione lascia libera la scelta.</p>
@@ -249,13 +325,15 @@
         </svg>
         <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">I rettangoli approssimano l'area sotto $f$. Più li restringiamo (aumentando $n$), meglio ricoprono la regione.</p>
 
-        <p>Le due somme che abbiamo calcolato ($0{,}375$ e $0{,}625$) sono un caso particolare di due somme speciali, che hanno un nome. Su ogni fettina chiamiamo $m_i$ il valore <strong>minimo</strong> di $f$ e $M_i$ il valore <strong>massimo</strong> (esistono di sicuro se $f$ è continua, per il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, cap. 6, sezione 4.6). Allora:</p>
+        <p>Le due somme che abbiamo calcolato ($0{,}375$ e $0{,}625$) sono un caso particolare di due somme speciali, che hanno un nome. Su ogni fettina chiamiamo $m_i$ il valore <strong>minimo</strong> di $f$ e $M_i$ il valore <strong>massimo</strong> (esistono di sicuro se $f$ è continua, per il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span>, cap. 6, sezione 4.6; esistono anche se $f$ è monotona, perché allora sono i valori agli estremi della fettina). Allora:</p>
         <div class="formula-block">$$\underbrace{s(P)=\sum_{i=1}^n m_i\,\Delta x_i}_{\text{somma inferiore: rettangoli tutti sotto}}\qquad\qquad \underbrace{S(P)=\sum_{i=1}^n M_i\,\Delta x_i}_{\text{somma superiore: rettangoli tutti sopra}}$$</div>
-        <p>Qualunque somma di Riemann sta fra le due, perché l'altezza $f(c_i)$ che scegli non può essere né più piccola del minimo né più grande del massimo: $\ s(P)\le S(P,c)\le S(P)$. È la "gabbia" della tabella. Nel nostro esempio, con $f$ crescente, la somma con gli estremi sinistri <em>era</em> la somma inferiore e quella con gli estremi destri <em>era</em> la somma superiore.</p>
+        <p>Qualunque somma di Riemann sta fra le due. Il motivo: su ogni fettina l'altezza $f(c_i)$ che scegliamo è un valore assunto da $f$ su quella fettina, quindi non può essere né più piccola del minimo né più grande del massimo, $m_i\le f(c_i)\le M_i$. Moltiplicando per la base $\Delta x_i\gt0$ (il verso non cambia) e sommando su tutte le fettine si ottiene</p>
+        <div class="formula-block">$$s(P)\ \le\ R(P,\,c)\ \le\ S(P).$$</div>
+        <p>È la "gabbia" della tabella. Nel nostro esempio, con $f$ crescente, la somma con gli estremi sinistri <em>era</em> la somma inferiore e quella con gli estremi destri <em>era</em> la somma superiore.</p>
 
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Definizione</span>
-          <p><em class="nome">Integrale definito.</em> La funzione $f$ si dice <strong>integrabile</strong> (secondo Riemann) su $[a,b]$ se, infittendo la partizione — cioè facendo tendere a zero la larghezza della fettina più larga, il che per le partizioni uniformi significa $n\to\infty$ — le somme di Riemann si stabilizzano su <strong>un unico numero</strong>, lo stesso comunque si scelgano i punti campione $c_i$. Quel numero si chiama <strong><span class="glossario-term" data-term="integrale-definito">integrale definito</span></strong> di $f$ su $[a,b]$:</p>
+          <p><em class="nome">Integrale definito.</em> La funzione $f$ si dice <strong>integrabile</strong> (secondo Riemann) su $[a,b]$ se, infittendo la partizione — cioè facendo tendere a zero la larghezza $|P|$ della fettina più larga, il che per le partizioni uniformi significa $n\to\infty$ — le somme di Riemann si stabilizzano su <strong>un unico numero</strong>, lo stesso comunque si scelgano i punti campione $c_i$. Quel numero si chiama <strong><span class="glossario-term" data-term="integrale-definito">integrale definito</span></strong> di $f$ su $[a,b]$:</p>
           <div class="formula-block">$$\underbrace{\int_a^b f(x)\,dx}_{\text{un numero}} \;=\; \underbrace{\lim_{n\to\infty}}_{\text{i rettangoli si assottigliano}}\ \underbrace{\sum_{i=1}^{n} f(c_i)\,\Delta x_i}_{\text{somma di Riemann: un numero per ogni } n}$$</div>
           <p>Equivalentemente: $f$ è integrabile quando la somma inferiore e la somma superiore, restringendo i rettangoli, si stringono fino a incontrarsi sullo stesso valore (la gabbia si chiude).</p>
         </div>
@@ -266,6 +344,10 @@
           <li>$dx$ dice <strong>rispetto a quale variabile</strong> si integra: è l'erede del $\Delta x_i$ diventato infinitamente piccolo;</li>
           <li>il simbolo $\displaystyle\int$ è una "S" allungata, la S di <em>somma</em>: ricorda che, in fondo, stiamo solo sommando rettangoli.</li>
         </ul>
+        <p><strong>La definizione al lavoro.</strong> Torniamo al conto della proposizione del <span class="richiamo" data-sec="4.1.2">§4.1.2</span>. Per $f(x)=x$ su $[0,1]$ abbiamo trovato $R_n^{\text{dx}}=\frac12+\frac{1}{2n}\to\frac12$ e $R_n^{\text{sx}}=\frac12-\frac{1}{2n}\to\frac12$: le due scelte di punti campione danno lo stesso limite. Per la definizione, quindi,</p>
+        <div class="formula-block">$$\int_0^1 x\,dx=\frac12,$$</div>
+        <p>e questo numero è proprio l'area del triangolo di partenza. Una precisazione onesta: la definizione chiede che le somme tendano allo stesso numero per <em>ogni</em> scelta di partizioni e di punti campione, e noi ne abbiamo provate solo due. Per $f(x)=x$ ci basta, perché una funzione crescente è sempre integrabile (lo dimostriamo nel <span class="richiamo" data-sec="4.2">§4.2</span>): sapendo già che il limite esiste ed è unico, ogni successione di somme di Riemann con fettine sempre più sottili lo raggiunge, e quindi anche la nostra.</p>
+
 
         <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Torniamo ai quattro rettangoli del <span class="richiamo" data-sec="4.1.1">§4.1.1</span> e scriviamo soltanto la somma delle altezze, dimenticando di moltiplicarle per la base: $0{,}25+0{,}5+0{,}75+1=2{,}5$. Questa <strong>non</strong> è una somma di Riemann, ed è lontanissima dal valore vero $0{,}5$. Il motivo è che le altezze non sono aree: un'altezza si misura in metri, un'area in metri quadrati, e per passare dalle une alle altre serve la moltiplicazione per la base. Il $\Delta x_i$ nella formula non è un ornamento: senza di lui il conto perde ogni significato geometrico.</p>
 
@@ -294,20 +376,111 @@
         <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Scrivere $\displaystyle\int_0^1 x\,dx=\frac{x^2}{2}+C$ è sbagliato due volte. Primo, a sinistra c'è un numero e a destra un'espressione che contiene la $x$: ma la $x$ dentro l'integrale definito è una <em>variabile muta</em>, sparisce nel conto, e non può ricomparire nel risultato. Secondo, il "$+C$" non ha diritto di esistere qui: come vedremo nel <span class="richiamo" data-sec="4.6">§4.6</span>, nella differenza fra i due estremi la costante si cancella sempre. Il risultato corretto è il numero $\frac12$ e basta.</p>
         <p>Sono comunque parenti strettissimi: il ponte fra i due mondi è il Teorema Fondamentale del Calcolo (<span class="richiamo" data-sec="4.6">§4.6</span>), che permetterà di calcolare il <em>numero</em> passando per una <em>funzione</em> primitiva. Ma il ponte va attraversato consapevolmente, non confondendo le due rive.</p>
 
+
         <h3 id="teoria-integrabilita">4.2 Quali funzioni sono integrabili?</h3>
         <p><strong>Prima l'idea.</strong> La definizione del <span class="richiamo" data-sec="4.1.3">§4.1.3</span> chiede qualcosa di impegnativo: che le somme si stabilizzino su un unico numero, <em>qualunque</em> sia la scelta dei punti campione. Non è automatico. Esistono funzioni talmente sconnesse che la somma inferiore e la somma superiore non si avvicinano mai: la gabbia non si chiude e l'area non è definita. Per fortuna le funzioni che incontrerai nel corso stanno quasi sempre dalla parte buona.</p>
+        <p><strong>Il piano di questo paragrafo.</strong> Dimostreremo tre cose, in quest'ordine. Primo: un <em>criterio</em> che dice quando la gabbia delle somme inferiori e superiori si chiude. Secondo: che le funzioni monotone e quelle continue soddisfano il criterio, quindi sono integrabili. Terzo: che esiste una funzione per cui la gabbia non si chiude mai.</p>
+        <p><strong>Un po' di notazione.</strong> Per dire "quanto sono sottili" i rettangoli di una partizione $P$ usiamo la larghezza della fettina più larga, che indichiamo con $|P|$. Dire che le fettine diventano sottili significa $|P|\to0$; per una partizione uniforme $|P|=\frac{b-a}{n}$, quindi equivale a $n\to\infty$. In tutto il paragrafo supponiamo che su ogni fettina $f$ abbia un minimo $m_i$ e un massimo $M_i$: succede per le funzioni continue (teorema di Weierstrass) e per quelle monotone (il minimo e il massimo stanno agli estremi della fettina), cioè per tutti i casi che ci interessano. Le somme $s(P)$ e $S(P)$ sono quelle del <span class="richiamo" data-sec="4.1.3">§4.1.3</span>.</p>
+
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione (criterio della gabbia)</span>
+          <p><em class="nome">Se la gabbia si stringe, la funzione è integrabile.</em> Se, al diminuire della larghezza delle fettine, la differenza fra somma superiore e somma inferiore tende a zero,</p>
+          <div class="formula-block">$$S(P)-s(P)\ \longrightarrow\ 0\qquad\text{quando } |P|\to0,$$</div>
+          <p>allora $f$ è integrabile su $[a,b]$. In più, l'integrale è l'unico numero $I$ che sta dentro tutte le gabbie, cioè tale che $s(P)\le I\le S(P)$ per ogni partizione $P$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Sappiamo che le due somme "a gabbia", la inferiore e la superiore, si avvicinano fra loro. Vogliamo concludere che <em>tutte</em> le somme di Riemann, qualunque punto campione si scelga, si avvicinano a uno stesso numero.</p>
+          <p><strong>L'idea.</strong> Una somma di Riemann $R(P,c)$ sta sempre dentro la gabbia $[s(P),S(P)]$ (<span class="richiamo" data-sec="4.1.3">§4.1.3</span>). Se trovassimo un numero $I$ che sta dentro <em>tutte</em> le gabbie, allora $R(P,c)$ e $I$ sarebbero due numeri nello stesso intervallo, e la loro distanza sarebbe al più la lunghezza dell'intervallo, $S(P)-s(P)$, che per ipotesi tende a $0$. L'ostacolo è proprio trovare $I$: bisogna far vedere che nessuna somma inferiore supera una somma superiore, anche quando vengono da partizioni <em>diverse</em>. La mossa è confrontare le due partizioni tramite una terza che le contiene entrambe: aggiungere punti di divisione può solo migliorare la gabbia.</p>
+
+          <p><strong>Passo 1 — aggiungere un punto di divisione non peggiora la gabbia.</strong> Aggiungo un punto $z$ dentro la fettina $k$, cioè $x_{k-1}\lt z\lt x_k$. Il rettangolo inferiore di quella fettina si spezza in due rettangoli più stretti. Chiamo $m'$ e $m''$ il minimo di $f$ sulla metà sinistra e sulla metà destra: il minimo su un insieme più piccolo non può essere più basso di quello sull'insieme grande, quindi $m'\ge m_k$ e $m''\ge m_k$. I due rettangoli nuovi sono alti almeno quanto quello vecchio.</p>
+          <div class="calcolo">$$\begin{aligned}
+          m_k\,\Delta x_k &amp;= m_k\,(z-x_{k-1})+m_k\,(x_k-z) &amp;&amp;\text{(spezzo la base in } z)\\
+          &amp;\le m'\,(z-x_{k-1})+m''\,(x_k-z) &amp;&amp;\text{(alzo le due altezze)}
+          \end{aligned}$$</div>
+          <p>Quindi la somma inferiore non diminuisce. Lo stesso ragionamento con i massimi (che sulle metà possono solo scendere) mostra che la somma superiore non aumenta. Aggiungendo più punti, uno alla volta, vale lo stesso.</p>
+
+          <p><strong>Passo 2 — ogni somma inferiore è minore o uguale a ogni somma superiore.</strong> Prendo due partizioni qualsiasi, $P$ e $Q$, e chiamo $T$ la partizione che usa tutti i punti di entrambe. $T$ si ottiene da $P$ aggiungendo punti, e anche da $Q$ aggiungendo punti.</p>
+          <div class="calcolo">$$s(P)\ \le\ s(T)\ \le\ S(T)\ \le\ S(Q)$$</div>
+          <p>La prima disuguaglianza è il Passo 1 (da $P$ a $T$ la somma inferiore non diminuisce). La seconda dice che su ogni fettina il minimo non supera il massimo. La terza è ancora il Passo 1 (da $Q$ a $T$ la somma superiore non aumenta). Quindi $s(P)\le S(Q)$, comunque scelgo $P$ e $Q$.</p>
+
+          <p><strong>Passo 3 — costruisco il numero $I$.</strong> Considero l'insieme di <em>tutte</em> le somme inferiori, al variare della partizione. Non è vuoto, ed è limitato superiormente: per il Passo 2 ogni somma superiore $S(Q)$ è un maggiorante. Per la completezza di $\mathbb R$ (<span class="glossario-term" data-term="estremo-superiore">estremo superiore</span>, cap. 1) ha un estremo superiore, che chiamo $I$. Allora $s(P)\le I$ per ogni $P$, perché $I$ è un maggiorante; e $I\le S(Q)$ per ogni $Q$, perché $I$ è il <em>più piccolo</em> dei maggioranti e $S(Q)$ è un maggiorante. Dunque</p>
+          <div class="calcolo">$$s(P)\ \le\ I\ \le\ S(P)\qquad\text{per ogni partizione } P.$$</div>
+
+          <p><strong>Passo 4 — le somme di Riemann si avvicinano a $I$.</strong> Fisso una partizione $P$ e dei punti campione $c$ qualsiasi. Sia $R(P,c)$ sia $I$ stanno nell'intervallo $[s(P),S(P)]$, e due numeri dentro uno stesso intervallo distano al più quanto è lungo l'intervallo.</p>
+          <div class="calcolo">$$\big|R(P,c)-I\big|\ \le\ S(P)-s(P)\ \longrightarrow\ 0\qquad\text{quando } |P|\to0.$$</div>
+          <p>La stima non dipende dai punti campione: è la definizione di integrabilità del <span class="richiamo" data-sec="4.1.3">§4.1.3</span>, con limite $I$.</p>
+          <p><strong>Conclusione.</strong> La gabbia si stringe, quindi tutte le somme di Riemann tendono a $I$: $f$ è integrabile e $\int_a^b f=I$. Se un altro numero $I'$ stesse dentro tutte le gabbie, avremmo $|I-I'|\le S(P)-s(P)\to0$, cioè $I'=I$: il numero è unico. <span class="qed">∎</span></p>
+        </div>
+
+        <p><strong>Il viceversa.</strong> Vale anche l'implicazione opposta, ed è immediata: se tutte le somme di Riemann tendono a $I$, tendono a $I$ anche $s(P)$ e $S(P)$, che sono a loro volta somme di Riemann (basta prendere come punti campione quelli in cui $f$ assume il minimo, o il massimo, su ogni fettina). Per questo, nella definizione del <span class="richiamo" data-sec="4.1.3">§4.1.3</span>, le due formulazioni, "le somme di Riemann si stabilizzano su un unico numero" e "la gabbia si chiude", sono equivalenti.</p>
+
+        <p>Il criterio trasforma il problema in qualcosa di concreto: per sapere se una funzione è integrabile, basta vedere se si riesce a rendere piccolo $S(P)-s(P)$. Lo facciamo per i due casi più importanti.</p>
+
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">Integrabilità delle funzioni monotone.</em> Se $f$ è monotona (crescente o decrescente) su $[a,b]$, allora $f$ è integrabile su $[a,b]$. Non serve che sia continua: può avere anche infiniti salti.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che per una funzione monotona la differenza $S(P)-s(P)$ diventa piccola quando le fettine sono sottili, così da poter applicare il criterio. Facciamo il caso $f$ crescente; per $f$ decrescente basta scambiare i ruoli di minimo e massimo.</p>
+          <p><strong>L'idea.</strong> Se $f$ cresce, su ogni fettina il valore più basso è a sinistra e quello più alto è a destra: nessun calcolo di minimi e massimi. La differenza $S(P)-s(P)$ è allora una somma di rettangolini, ciascuno largo $\Delta x_i$ e alto quanto $f$ <em>sale</em> su quella fettina. Se spostiamo tutti questi rettangolini uno sopra l'altro, le salite si sommano: $f$ sale in totale da $f(a)$ a $f(b)$. Siccome ogni rettangolino è largo al più $|P|$, la pila entra dentro un unico rettangolo largo $|P|$ e alto $f(b)-f(a)$, la cui area tende a $0$ con $|P|$.</p>
+
+          <p><strong>Passo 1 — minimo e massimo stanno agli estremi.</strong> Su $[x_{i-1},x_i]$, essendo $f$ crescente, vale $m_i=f(x_{i-1})$ e $M_i=f(x_i)$.</p>
+          <p><strong>Passo 2 — scrivo la differenza delle due somme.</strong> Sottraggo la somma inferiore dalla superiore, fettina per fettina.</p>
+          <div class="calcolo">$$\begin{aligned}
+          S(P)-s(P) &amp;= \sum_{i=1}^n\big(M_i-m_i\big)\Delta x_i &amp;&amp;\text{(raccolgo } \Delta x_i)\\
+          &amp;= \sum_{i=1}^n\big(f(x_i)-f(x_{i-1})\big)\Delta x_i &amp;&amp;\text{(uso il Passo 1)}
+          \end{aligned}$$</div>
+          <p><strong>Passo 3 — maggioro ogni larghezza con $|P|$.</strong> Ogni $\Delta x_i$ è al più $|P|$ per definizione di $|P|$. Il fattore $f(x_i)-f(x_{i-1})$ è maggiore o uguale a $0$ perché $f$ cresce, quindi sostituire $\Delta x_i$ con un numero più grande può solo aumentare il prodotto.</p>
+          <div class="calcolo">$$\begin{aligned}
+          S(P)-s(P) &amp;\le |P|\sum_{i=1}^n\big(f(x_i)-f(x_{i-1})\big) &amp;&amp;\text{(porto fuori } |P|)
+          \end{aligned}$$</div>
+          <p><strong>Passo 4 — la somma che resta è telescopica.</strong> Scrivendola per esteso, ogni valore intermedio compare una volta con il segno più e una con il segno meno, e si cancella. Per $n=3$:</p>
+          <div class="calcolo">$$\big(f(x_1)-f(x_0)\big)+\big(f(x_2)-f(x_1)\big)+\big(f(x_3)-f(x_2)\big)=f(x_3)-f(x_0).$$</div>
+          <p>In generale la somma vale $f(x_n)-f(x_0)=f(b)-f(a)$. Quindi</p>
+          <div class="calcolo">$$S(P)-s(P)\ \le\ |P|\,\big(f(b)-f(a)\big).$$</div>
+          <p><strong>Passo 5 — faccio tendere $|P|$ a zero.</strong> Il numero $f(b)-f(a)$ è fissato, quindi il prodotto tende a $0$ e, schiacciata fra $0$ e questo prodotto, anche $S(P)-s(P)$ tende a $0$.</p>
+          <p><strong>Controllo numerico.</strong> Per $f(x)=x$ su $[0,1]$ con $n=4$ la tabella del <span class="richiamo" data-sec="4.1.1">§4.1.1</span> dà $S-s=0{,}625-0{,}375=0{,}25$, e la stima dà $|P|\,(f(1)-f(0))=0{,}25\cdot1=0{,}25$: qui vale proprio l'uguale, perché la funzione è una retta.</p>
+          <p><strong>Conclusione.</strong> Per una funzione monotona la gabbia si stringe come $|P|$, quindi per il criterio $f$ è integrabile. La continuità non è mai servita: i salti di una funzione monotona sono tutti "nello stesso verso" e non fanno crescere la pila. <span class="qed">∎</span></p>
+        </div>
+
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Integrabilità delle funzioni continue.</em> Se $f$ è <span class="glossario-term" data-term="continuita">continua</span> su tutto l'intervallo chiuso e limitato $[a,b]$, allora $f$ è integrabile su $[a,b]$.</p>
         </div>
-        <p><strong>Perché funziona, in parole.</strong> Su un intervallo chiuso e limitato una funzione continua è "controllabile" per due motivi. Primo: per il <a href="06-continuita.html">teorema di Weierstrass</a> (cap. 6, sezione 4.6) su ogni fettina esistono davvero un minimo $m_i$ e un massimo $M_i$, quindi le somme $s(P)$ e $S(P)$ si possono scrivere. Secondo: la continuità vieta i salti bruschi, quindi su una fettina molto stretta il massimo e il minimo sono molto vicini fra loro, e la differenza $S(P)-s(P)$ si può rendere piccola quanto si vuole. Le due somme si chiudono a tenaglia sullo stesso numero: la gabbia si chiude.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che per una funzione continua su $[a,b]$ la differenza $S(P)-s(P)$ diventa piccola quando le fettine sono sottili, così da poter applicare il criterio della gabbia.</p>
+          <p><strong>L'idea.</strong> La differenza si scrive $S(P)-s(P)=\sum(M_i-m_i)\Delta x_i$: ogni addendo è un rettangolino largo $\Delta x_i$ e alto $M_i-m_i$, cioè quanto la funzione <em>oscilla</em> sulla fettina. Se riuscissimo a rendere tutte le oscillazioni più piccole di un numero $\varepsilon'$, la somma sarebbe al più $\varepsilon'\sum\Delta x_i=\varepsilon'(b-a)$, piccola quanto vogliamo. La continuità promette proprio che, vicino a un punto, $f$ cambia poco. C'è però un ostacolo: la promessa è <em>punto per punto</em>, e quanto deve essere sottile la fettina può cambiare da punto a punto (per $\frac1x$ vicino a $0$ le fettine devono essere sempre più sottili). A noi serve una larghezza che vada bene <em>per tutte le fettine insieme</em>. Che su un intervallo chiuso e limitato questo accada è il contenuto del teorema di Heine–Cantor; lo useremo, e nel caso più comodo vedremo anche perché è vero.</p>
+
+          <p><strong>Passo 1 — su fettine abbastanza sottili, ogni oscillazione è piccola.</strong> Voglio dimostrare: per ogni $\varepsilon'\gt0$ esiste $\delta\gt0$ tale che, se $|P|\lt\delta$, vale $M_i-m_i\lt\varepsilon'$ per tutte le fettine. Il massimo e il minimo su una fettina esistono (Weierstrass), e sono assunti in due punti $x_M$ e $x_m$ della fettina, che distano al più $\Delta x_i\le|P|$. Quindi $M_i-m_i=f(x_M)-f(x_m)$ è la variazione di $f$ fra due punti vicini.</p>
+          <p><em>Caso comodo: $f$ derivabile con derivata continua.</em> La derivata $f'$ è continua su $[a,b]$, quindi per Weierstrass $|f'|$ ha un massimo $L$. Per il teorema di Lagrange fra due punti $x\lt y$ esiste $\xi$ con $f(y)-f(x)=f'(\xi)(y-x)$, quindi</p>
+          <div class="calcolo">$$|f(y)-f(x)|\ \le\ L\,|y-x|.$$</div>
+          <p>Applicandolo a $x_M$ e $x_m$ si ottiene $M_i-m_i\le L\,|P|$, che è minore di $\varepsilon'$ non appena $|P|\lt\frac{\varepsilon'}{L}$ (se $L=0$ la funzione è costante e non c'è nulla da dimostrare). Quindi $\delta=\frac{\varepsilon'}{L}$ funziona per tutte le fettine insieme. Questo caso copre polinomi, $\sin$, $\cos$, $e^x$, $\ln$ su intervalli dove sono derivabili, e quasi tutto ciò che incontrerai nel corso.</p>
+          <p><em>Caso generale: $f$ solo continua.</em> Qui la larghezza uniforme è garantita dal teorema di Heine–Cantor (<a href="06-continuita.html">cap. 6</a>, sezione 4.12): una funzione continua su $[a,b]$ è <em>uniformemente continua</em>, cioè per ogni $\varepsilon'\gt0$ esiste $\delta\gt0$ tale che $|x-y|\lt\delta$ implica $|f(x)-f(y)|\lt\varepsilon'$ per <em>tutte</em> le coppie di punti di $[a,b]$. Applicato a $x_M$ e $x_m$ dà subito $M_i-m_i\lt\varepsilon'$ se $|P|\lt\delta$. Una nota onesta: nel capitolo 6 la dimostrazione di Heine–Cantor è data solo come idea (per assurdo, con Bolzano–Weierstrass); qui la usiamo come teorema già noto.</p>
+
+          <p><strong>Passo 2 — sommo le oscillazioni.</strong> Se $|P|\lt\delta$, ogni $M_i-m_i$ è minore di $\varepsilon'$, e le basi sommate danno $b-a$.</p>
+          <div class="calcolo">$$\begin{aligned}
+          S(P)-s(P) &amp;= \sum_{i=1}^n(M_i-m_i)\,\Delta x_i &amp;&amp;\text{(come nell'idea)}\\
+          &amp;\le \sum_{i=1}^n\varepsilon'\,\Delta x_i &amp;&amp;\text{(ogni oscillazione è } \lt\varepsilon')\\
+          &amp;= \varepsilon'\,(b-a) &amp;&amp;\text{(le basi sommano a } b-a)
+          \end{aligned}$$</div>
+          <p><strong>Passo 3 — scelgo $\varepsilon'$ in modo da ottenere la tolleranza che voglio.</strong> Dato un qualunque $\varepsilon\gt0$, prendo $\varepsilon'=\frac{\varepsilon}{b-a}$ e il $\delta$ corrispondente: se $|P|\lt\delta$ allora $S(P)-s(P)\le\varepsilon$. Questo è esattamente dire che $S(P)-s(P)\to0$ per $|P|\to0$.</p>
+          <p><strong>Controllo numerico.</strong> Per $f(x)=x^2$ su $[0,1]$ si ha $f'(x)=2x$, quindi $L=2$. Con $n=10$ ($|P|=0{,}1$) la fettina più ripida è l'ultima: $M-m=1-0{,}9^2=0{,}19$, ed effettivamente $0{,}19\le L\,|P|=0{,}2$.</p>
+          <p><strong>Conclusione.</strong> Per il Passo 1 la continuità rende uniformemente piccole le oscillazioni; per il Passo 2 questo rende piccola la differenza fra somma superiore e inferiore; per il criterio della gabbia $f$ è integrabile. <span class="qed">∎</span></p>
+          <p><strong>Dove si usano le ipotesi.</strong> La continuità serve due volte: per avere minimo e massimo su ogni fettina (Weierstrass) e per controllare le oscillazioni. "Chiuso e limitato" serve per Weierstrass e per Heine–Cantor: $\frac1x$ è continua su $(0,1]$ ma non è limitata, e infatti l'area sotto il suo grafico non è un numero (la studieremo come integrale improprio, <span class="richiamo" data-sec="4.8">§4.8</span>).</p>
+        </div>
+
         <p><strong>Un esempio di funzione non continua ma integrabile.</strong> Prendi la funzione "a gradini" che vale $1$ su $[0,1)$ e $3$ su $[1,2]$. Ha un salto in $x=1$, quindi non è continua; eppure l'area sotto di essa è tranquillamente calcolabile, perché è fatta di due rettangoli: $1\cdot 1+3\cdot 1=4$. Un numero <em>finito</em> di salti non rovina l'integrabilità: basta spezzare l'intervallo nei punti di salto.</p>
+        <p><strong>Funzioni continue a tratti.</strong> L'esempio della funzione a gradini dice di più: una funzione limitata con un numero <em>finito</em> di salti è integrabile. Ecco l'idea, senza tutti i dettagli perché è la stessa tecnica dei casi precedenti. Si spezza $[a,b]$ nei punti di salto. Su ciascun pezzo $f$ coincide con una funzione continua (quella che ha negli estremi i valori limite), tranne al più nei due estremi del pezzo. Cambiare il valore di $f$ in un punto non altera le somme di Riemann in modo apprezzabile: tocca al più due rettangoli, ciascuno largo al più $|P|$ e alto una quantità fissata, e quindi cambia la somma di una quantità che tende a $0$ con $|P|$. Perciò su ogni pezzo $f$ è integrabile come la funzione continua, e per l'additività (<span class="richiamo" data-sec="4.4">§4.4</span>) lo è su tutto $[a,b]$.</p>
         <p><strong>Un non-esempio: una funzione che NON è integrabile.</strong> Considera la funzione di Dirichlet su $[0,1]$, definita così: $D(x)=1$ se $x$ è razionale, $D(x)=0$ se $x$ è irrazionale. In <em>ogni</em> fettina, per quanto stretta, ci sono sia numeri razionali sia numeri irrazionali (cap. 1): quindi su ogni fettina il minimo è $0$ e il massimo è $1$, comunque la si scelga. Allora, qualunque sia la partizione:</p>
         <div class="calcolo">$$\begin{aligned}
         s(P) &amp;= \sum_{i=1}^n 0\cdot\Delta x_i = 0 &amp;&amp;\text{(tutti i minimi valgono } 0)\\
         S(P) &amp;= \sum_{i=1}^n 1\cdot\Delta x_i = 1-0 = 1 &amp;&amp;\text{(tutti i massimi valgono } 1 \text{ e le basi sommate danno } b-a)
         \end{aligned}$$</div>
-        <p>La somma inferiore resta $0$ e la superiore resta $1$, per quanto si infittisca la partizione: la gabbia non si stringe nemmeno un po'. Non c'è un unico numero limite, quindi $D$ <strong>non è integrabile</strong> su $[0,1]$.</p>
+        <p>La somma inferiore resta $0$ e la superiore resta $1$, per quanto si infittisca la partizione: $S(P)-s(P)=1$ non tende a zero, la gabbia non si stringe nemmeno un po'. Lo stesso risultato si ottiene direttamente dalla definizione: se come punti campione si scelgono solo numeri razionali, ogni somma di Riemann vale $\sum1\cdot\Delta x_i=1$; se si scelgono solo irrazionali vale $0$. Due scelte, due risultati diversi: la definizione chiede lo stesso numero per ogni scelta, quindi $D$ <strong>non è integrabile</strong> su $[0,1]$.</p>
+        <p><strong>Una nota onesta sul quadro completo.</strong> Esiste una caratterizzazione esatta delle funzioni integrabili secondo Riemann (teorema di Vitali–Lebesgue: una funzione limitata è integrabile se e solo se i suoi punti di discontinuità formano un insieme di "misura nulla"). Esula dal corso, perché richiede la teoria della misura; per il nostro scopo bastano i casi dimostrati qui sopra.</p>
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> La regola pratica</div>
           <p>Sono integrabili su $[a,b]$: le funzioni <strong>continue</strong>; le funzioni <span class="glossario-term" data-term="funzione-monotona">monotone</span> e limitate; le funzioni limitate con un numero <strong>finito</strong> di discontinuità (continue a tratti). Rovinano l'integrabilità: le funzioni <em>illimitate</em> (che scappano a $\pm\infty$ dentro l'intervallo — ma per quelle c'è il <span class="richiamo" data-sec="4.8">§4.8</span>) e quelle con infinite discontinuità sparse ovunque. Per il nostro corso: <strong>se è continua, o continua a tratti, su un intervallo chiuso e limitato, è integrabile</strong>.</p>
@@ -329,6 +502,36 @@
         <p><strong>Perché succede.</strong> Il motivo sta tutto dentro la somma di Riemann: l'altezza del rettangolo è $f(c_i)$ <em>con il suo segno</em>. Dove la funzione sta sopra l'asse, $f(c_i)$ è positivo e il rettangolo conta in più; dove la funzione sta sotto l'asse, $f(c_i)$ è negativo, il prodotto $f(c_i)\Delta x_i$ è negativo e quel rettangolo conta <em>in meno</em>. L'integrale definito non è dunque l'area "geometrica" (quella che è sempre positiva): è un'<strong>area con segno</strong>.</p>
         <div class="formula-block">$$\int_a^b f(x)\,dx \;=\; \underbrace{\text{area delle porzioni sopra l'asse}}_{\text{conta in più}}\;-\;\underbrace{\text{area delle porzioni sotto l'asse}}_{\text{conta in meno}}$$</div>
         <p><strong>La regola da fissare, senza eccezioni:</strong> la frase "l'integrale è l'area sotto il grafico" è corretta <em>soltanto</em> se $f(x)\ge 0$ su tutto $[a,b]$. Se il grafico scende sotto l'asse anche solo in un tratto, i due numeri si separano e bisogna dire quale dei due si sta cercando.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">L'integrale è area sopra meno area sotto.</em> Sia $f$ continua su $[a,b]$. Chiamiamo <strong>parte positiva</strong> di $f$ la funzione $f^+(x)=\max\{f(x),0\}$, che vale $f(x)$ dove il grafico sta sopra l'asse e $0$ altrove; e <strong>parte negativa</strong> la funzione $f^-(x)=\max\{-f(x),0\}$, che vale $-f(x)$ dove il grafico sta sotto l'asse e $0$ altrove (è il pezzo di grafico sotto l'asse, ribaltato verso l'alto). Allora</p>
+          <div class="formula-block">$$\int_a^b f(x)\,dx=\int_a^b f^+(x)\,dx-\int_a^b f^-(x)\,dx,\qquad\qquad \int_a^b |f(x)|\,dx=\int_a^b f^+(x)\,dx+\int_a^b f^-(x)\,dx.$$</div>
+          <p>Poiché $f^+$ e $f^-$ non sono mai negative, i due integrali a destra sono vere aree geometriche (<span class="richiamo" data-sec="4.1">§4.1</span>): quella delle regioni sopra l'asse e quella delle regioni sotto l'asse. Dunque l'integrale è "area sopra meno area sotto", mentre l'area geometrica totale è $\int_a^b|f|$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che il "meno" delle regioni sotto l'asse non è una convenzione inventata: viene dalla definizione. L'integrale di $f$ è uguale all'area dei pezzi sopra meno l'area dei pezzi sotto; e l'area geometrica totale è la somma delle due, prese entrambe positive.</p>
+          <p><strong>L'idea.</strong> Nella somma di Riemann ogni altezza $f(c_i)$ è positiva oppure negativa. Separiamo le altezze: ogni numero si scrive come differenza di due numeri non negativi, di cui uno è zero ($5=5-0$, $-3=0-3$). Questo è esattamente $f=f^+-f^-$. Allora la somma di Riemann di $f$ si divide in due somme di Riemann di funzioni non negative, per le quali "integrale" e "area" sono la stessa cosa senza ambiguità. Poi si passa al limite.</p>
+
+          <p><strong>Passo 1 — le due parti sono continue, quindi integrabili.</strong> Si possono scrivere con il valore assoluto, e si controlla in due casi.</p>
+          <div class="calcolo">$$f^+=\frac{f+|f|}{2},\qquad f^-=\frac{|f|-f}{2}.$$</div>
+          <p>Se $f(x)\ge0$ si ha $|f|=f$, quindi $f^+=\frac{2f}{2}=f$ e $f^-=0$. Se $f(x)\lt0$ si ha $|f|=-f$, quindi $f^+=0$ e $f^-=\frac{-2f}{2}=-f$: come nella definizione. Poiché $f$ è continua, lo sono anche $|f|$ e le combinazioni $\frac{f\pm|f|}{2}$ (<a href="06-continuita.html">cap. 6</a>, sezione 4.4), quindi $f^+$ e $f^-$ sono integrabili (<span class="richiamo" data-sec="4.2">§4.2</span>).</p>
+
+          <p><strong>Passo 2 — due identità, vere punto per punto.</strong> Guardo i due casi del passo precedente.</p>
+          <div class="calcolo">$$\begin{aligned}
+          f(x)\ge0:&amp;\quad f^+-f^-=f-0=f,\qquad f^++f^-=f+0=|f|\\
+          f(x)\lt0:&amp;\quad f^+-f^-=0-(-f)=f,\qquad f^++f^-=0+(-f)=|f|
+          \end{aligned}$$</div>
+          <p>Quindi in ogni punto $f=f^+-f^-$ e $|f|=f^++f^-$.</p>
+
+          <p><strong>Passo 3 — porto le identità dentro le somme di Riemann e passo al limite.</strong> Fisso una partizione e dei punti campione. Un'identità vera in ogni punto è vera anche nei punti campione, e sommando le $n$ uguaglianze (ognuna moltiplicata per $\Delta x_i$) otteniamo:</p>
+          <div class="calcolo">$$\sum_{i=1}^n f(c_i)\,\Delta x_i=\sum_{i=1}^n f^+(c_i)\,\Delta x_i-\sum_{i=1}^n f^-(c_i)\,\Delta x_i.$$</div>
+          <p>Faccio tendere $|P|\to0$. Le tre somme tendono ai tre integrali (le tre funzioni sono integrabili), e il limite di una differenza è la differenza dei limiti (cap. 4): si ottiene la prima formula. Con il segno più al posto del meno si ottiene la seconda.</p>
+
+          <p><strong>Passo 4 — leggo il risultato in termini di aree.</strong> Il grafico di $f^+$ coincide con quello di $f$ dove $f$ sta sopra l'asse e sta sull'asse altrove: la regione sotto $f^+$ è quindi proprio l'insieme dei pezzi sopra l'asse, e per una funzione non negativa l'integrale è l'area (<span class="richiamo" data-sec="4.1">§4.1</span>). Il grafico di $f^-$ è il pezzo sotto l'asse ribaltato in alto: ribaltare non cambia le aree, quindi $\int f^-$ è l'area dei pezzi sotto l'asse.</p>
+          <p><strong>Controllo numerico.</strong> Per $f(x)=x-2$ su $[0,3]$: $f^+$ è nulla su $[0,2]$ e uguale a $x-2$ su $[2,3]$, quindi $\int f^+$ è l'area di un triangolo di base $1$ e altezza $1$, cioè $0{,}5$. $f^-$ è uguale a $2-x$ su $[0,2]$ e nulla su $[2,3]$: triangolo di base $2$ e altezza $2$, cioè $\int f^-=2$. Allora $\int f=0{,}5-2=-1{,}5$ e $\int|f|=0{,}5+2=2{,}5$: sono i numeri che troveremo fra poco con i triangoli.</p>
+          <p><strong>Conclusione.</strong> Abbiamo separato in ogni punto l'altezza in parte positiva e parte negativa, portato la separazione nelle somme di Riemann e passato al limite: $\int f$ è area sopra meno area sotto, e $\int|f|$ è la loro somma. <span class="qed">∎</span></p>
+        </div>
 
         <p><strong>Un esempio con i numeri, fatto con la sola geometria.</strong> Prendi $f(x)=x-2$ sull'intervallo $[0,3]$. È una retta che taglia l'asse in $x=2$ (perché $x-2=0$ per $x=2$): sta sotto l'asse su $[0,2]$ e sopra su $[2,3]$. Le due regioni sono due triangoli rettangoli, e il primo è molto più grande del secondo.</p>
         <div class="calcolo">$$\begin{aligned}
@@ -364,7 +567,7 @@
         <p>Le applicazioni sistematiche (area fra due curve, volumi, lunghezze di curve) sono il tema del <a href="15-applicazioni-integrali.html">Capitolo 15</a>.</p>
 
         <h3 id="teoria-proprieta">4.4 Le proprietà dell'integrale definito</h3>
-        <p><strong>Prima l'idea.</strong> L'integrale è un limite di somme, e le somme si comportano bene con addizioni e costanti: se raddoppio tutte le altezze, raddoppia il totale; se spezzo l'elenco degli addendi in due, i due totali parziali si ricompongono. Queste "buone maniere" sopravvivono al limite e diventano le proprietà dell'integrale. Le enunciamo tutte insieme e poi le commentiamo una per una, ciascuna con una verifica numerica.</p>
+        <p><strong>Prima l'idea.</strong> L'integrale è un limite di somme, e le somme si comportano bene con addizioni e costanti: se raddoppio tutte le altezze, raddoppia il totale; se spezzo l'elenco degli addendi in due, i due totali parziali si ricompongono. Queste "buone maniere" sopravvivono al limite e diventano le proprietà dell'integrale. Le enunciamo tutte insieme; poi, una per una, le dimostriamo e le verifichiamo con un esempio numerico. Le dimostrazioni seguono tutte lo stesso schema: si scrive la proprietà per le somme di Riemann, dove è una semplice proprietà delle addizioni, e poi si passa al limite.</p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Proprietà</span>
           <p>Siano $f,g$ integrabili su $[a,b]$ e $\alpha,\beta$ costanti reali. Allora:</p>
@@ -375,26 +578,122 @@
             $$\textbf{Modulo:}\qquad \left|\int_a^b f(x)\,dx\right|\leq\int_a^b \big|f(x)\big|\,dx$$
           </div>
         </div>
-        <p><strong>1) Linearità.</strong> Moltiplicare la funzione per una costante moltiplica l'area per quella costante; sommare due funzioni somma le aree. È il motivo per cui si integra "un pezzo alla volta". Verifica numerica su $[0,1]$, usando solo la geometria: la regione sotto $y=4x+3$ è un trapezio con le due basi $f(0)=3$ e $f(1)=7$ e altezza $1$.</p>
+        <p><strong>Un'avvertenza sulle ipotesi.</strong> Per la linearità e la monotonia basta che le funzioni siano integrabili. Per l'additività e per il modulo ci limitiamo, come nel resto del corso, al caso di $f$ continua (o monotona): serve che $f$ sia integrabile anche sui sottointervalli e che $|f|$ sia integrabile, e con quelle ipotesi è garantito dal <span class="richiamo" data-sec="4.2">§4.2</span>. Il caso generale richiede qualche passaggio in più e non lo facciamo.</p>
+
+        <p><strong>Un fatto preliminare: l'integrale di una costante.</strong> Lo useremo spesso, e si dimostra subito.</p>
+        <div class="formula-block">$$\int_a^b k\,dx=k\,(b-a)\qquad(k \text{ costante}).$$</div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che l'area (con segno) sotto una retta orizzontale è "base per altezza", cioè $(b-a)\cdot k$.</p>
+          <p><strong>L'idea.</strong> Se la funzione è costante tutti i rettangoli hanno la stessa altezza $k$, quindi ogni somma di Riemann si calcola esattamente, senza bisogno del limite.</p>
+          <p><strong>Passo 1 — raccolgo $k$.</strong> Qualunque partizione e qualunque punti campione: l'altezza $f(c_i)$ vale $k$ per ogni $i$.</p>
+          <div class="calcolo">$$\sum_{i=1}^n k\,\Delta x_i=k\sum_{i=1}^n\Delta x_i.$$</div>
+          <p><strong>Passo 2 — le basi sommano alla lunghezza dell'intervallo.</strong> Scrivo $\Delta x_i=x_i-x_{i-1}$: i punti intermedi compaiono una volta con il segno più e una con il segno meno, e si cancellano.</p>
+          <div class="calcolo">$$\sum_{i=1}^n\Delta x_i=(x_1-x_0)+(x_2-x_1)+\cdots+(x_n-x_{n-1})=x_n-x_0=b-a.$$</div>
+          <p><strong>Conclusione.</strong> Ogni somma di Riemann vale $k(b-a)$, quindi anche il limite. <span class="qed">∎</span></p>
+        </div>
+
+        <p><strong>1) Linearità.</strong> Moltiplicare la funzione per una costante moltiplica l'area per quella costante; sommare due funzioni somma le aree. È il motivo per cui si integra "un pezzo alla volta".</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione della linearità</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che $\alpha f+\beta g$ è integrabile e che il suo integrale è $\alpha\int f+\beta\int g$.</p>
+          <p><strong>L'idea.</strong> Le somme di Riemann sono somme di prodotti, e le somme sono lineari: una combinazione di due funzioni dà una combinazione delle due somme. I limiti rispettano le combinazioni lineari. Quindi la proprietà passa dalle somme all'integrale.</p>
+          <p><strong>Passo 1 — scrivo la somma di Riemann di $\alpha f+\beta g$.</strong> Fisso una partizione e dei punti campione.</p>
+          <div class="calcolo">$$\sum_{i=1}^n\big(\alpha f(c_i)+\beta g(c_i)\big)\Delta x_i$$</div>
+          <p><strong>Passo 2 — spezzo la somma e porto fuori le costanti.</strong> Distribuisco $\Delta x_i$ dentro la parentesi, poi separo gli addendi in due somme e metto in evidenza $\alpha$ e $\beta$ (proprietà distributiva e commutativa dell'addizione).</p>
+          <div class="calcolo">$$=\ \alpha\sum_{i=1}^n f(c_i)\,\Delta x_i\ +\ \beta\sum_{i=1}^n g(c_i)\,\Delta x_i$$</div>
+          <p><strong>Passo 3 — passo al limite.</strong> Faccio tendere $|P|\to0$. Per ipotesi la prima somma tende a $\int f$ e la seconda a $\int g$, qualunque siano i punti campione. Il limite di una combinazione lineare è la combinazione lineare dei limiti (cap. 4, algebra dei limiti).</p>
+          <p><strong>Conclusione.</strong> Per ogni scelta di partizione e punti campione le somme di Riemann di $\alpha f+\beta g$ tendono a $\alpha\int f+\beta\int g$: per la definizione, $\alpha f+\beta g$ è integrabile e questo è il suo integrale. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Verifica numerica</strong> su $[0,1]$, usando solo la geometria: la regione sotto $y=4x+3$ è un trapezio con le due basi $f(0)=3$ e $f(1)=7$ e altezza $1$.</p>
         <div class="calcolo">$$\begin{aligned}
         \int_0^1 (4x+3)\,dx &amp;= \frac{(3+7)\cdot 1}{2} = 5 &amp;&amp;\text{(area del trapezio: semisomma delle basi per l'altezza)}\\
-        4\int_0^1 x\,dx+3\int_0^1 1\,dx &amp;= 4\cdot\frac12+3\cdot 1 &amp;&amp;\text{(uso il triangolo del §4.1.1 e il rettangolo di base 1, altezza 1)}\\
+        4\int_0^1 x\,dx+3\int_0^1 1\,dx &amp;= 4\cdot\frac12+3\cdot 1 &amp;&amp;\text{(triangolo del §4.1.1 e rettangolo unitario)}\\
         &amp;= 2+3 = 5 &amp;&amp;\text{(stesso risultato: la linearità funziona)}
         \end{aligned}$$</div>
-        <p><strong>2) Additività rispetto all'intervallo.</strong> L'area da $a$ a $b$ è la somma dell'area da $a$ a $c$ e di quella da $c$ a $b$: tagliare la regione con una riga verticale e poi rimetterla insieme non cambia il totale. Verifica numerica con $f(x)=x$, $a=0$, $c=1$, $b=2$:</p>
+
+        <p><strong>2) Additività rispetto all'intervallo.</strong> L'area da $a$ a $b$ è la somma dell'area da $a$ a $c$ e di quella da $c$ a $b$: tagliare la regione con una riga verticale e poi rimetterla insieme non cambia il totale.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione dell'additività</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Se $a\lt c\lt b$ e $f$ è continua (o monotona) su $[a,b]$, allora $\int_a^b f=\int_a^c f+\int_c^b f$.</p>
+          <p><strong>L'idea.</strong> Se $c$ è uno dei punti di divisione della partizione, i rettangoli a sinistra di $c$ formano una somma di Riemann su $[a,c]$ e quelli a destra una somma di Riemann su $[c,b]$: la somma totale si spezza in due. Per far succedere questo basta <em>scegliere noi</em> le partizioni: la definizione di integrale dice che il limite è lo stesso per qualunque scelta di partizioni con fettine sottili, quindi possiamo usare solo quelle che hanno $c$ come punto di divisione.</p>
+          <p><strong>Passo 1 — costruisco partizioni che contengono $c$.</strong> Prendo una partizione $P'$ di $[a,c]$ e una partizione $P''$ di $[c,b]$, e le metto insieme: ottengo una partizione $P$ di $[a,b]$ in cui $c$ è un punto di divisione. La larghezza della fettina più larga è $|P|=\max\{|P'|,|P''|\}$.</p>
+          <p><strong>Passo 2 — la somma si spezza.</strong> Scelti i punti campione, i rettangoli di $P$ sono quelli di $P'$ più quelli di $P''$.</p>
+          <div class="calcolo">$$R(P)=R(P')+R(P'')$$</div>
+          <p><strong>Passo 3 — passo al limite.</strong> Faccio tendere a zero $|P'|$ e $|P''|$, quindi $|P|$. A sinistra $R(P)\to\int_a^b f$. A destra $R(P')\to\int_a^c f$ e $R(P'')\to\int_c^b f$: restringendo $f$ a un sottointervallo, una funzione continua resta continua e una monotona resta monotona, quindi è integrabile anche lì (<span class="richiamo" data-sec="4.2">§4.2</span>). Siccome il limite è unico, le due espressioni coincidono.</p>
+          <p><strong>Conclusione.</strong> $\int_a^b f=\int_a^c f+\int_c^b f$. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Verifica numerica</strong> con $f(x)=x$, $a=0$, $c=1$, $b=2$:</p>
         <div class="calcolo">$$\begin{aligned}
         \int_0^2 x\,dx &amp;= \frac{2\cdot 2}{2} = 2 &amp;&amp;\text{(triangolo di base 2 e altezza } f(2)=2)\\
         \int_0^1 x\,dx &amp;= \frac{1\cdot 1}{2} = 0{,}5 &amp;&amp;\text{(il triangolo piccolo, già calcolato nel §4.1.1)}\\
         \int_1^2 x\,dx &amp;= \frac{(1+2)\cdot 1}{2} = 1{,}5 &amp;&amp;\text{(trapezio con basi } f(1)=1 \text{ e } f(2)=2\text{, altezza } 1)\\
         0{,}5+1{,}5 &amp;= 2 &amp;&amp;\text{(coincide con l'integrale su tutto } [0,2])
         \end{aligned}$$</div>
-        <p><strong>3) Monotonia.</strong> Se un grafico sta sempre sotto un altro, la sua area (con segno) è minore o uguale. Verifica: su $[0,1]$ vale $x^2\le x$ (per esempio con $x=0{,}5$: $0{,}25\le 0{,}5$), e infatti vedremo che $\int_0^1 x^2\,dx=\frac13$, che è minore di $\int_0^1 x\,dx=\frac12$. Caso particolare importante: se $f\ge 0$ allora $\int_a^b f\ge 0$, perché un'area tutta sopra l'asse non può essere negativa.</p>
-        <p><strong>4) Disuguaglianza del modulo.</strong> È la versione integrale della disuguaglianza triangolare. A sinistra le parti positive e quelle negative si compensano, riducendo il totale; a destra, avendo messo il valore assoluto, si sommano tutte in positivo. Verifica con l'esempio del <span class="richiamo" data-sec="4.3">§4.3</span>, $f(x)=x-2$ su $[0,3]$: a sinistra c'è l'integrale con segno preso in valore assoluto, $\left|\int_0^3 (x-2)\,dx\right|=|-1{,}5|=1{,}5$; a destra c'è l'area geometrica, $\int_0^3|x-2|\,dx=2{,}5$; e infatti $1{,}5\le 2{,}5$.</p>
+
+        <p><strong>3) Monotonia.</strong> Se un grafico sta sempre sotto un altro, la sua area (con segno) è minore o uguale.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione della monotonia</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Se $f(x)\le g(x)$ per ogni $x\in[a,b]$, allora $\int_a^b f\le\int_a^b g$. Guardando un disegno la disuguaglianza sembra naturale, ma un disegno non è una dimostrazione: la ricaviamo dalla definizione.</p>
+          <p><strong>L'idea.</strong> Facciamo prima la disuguaglianza <em>sulle somme</em>, dove ci sono solo prodotti e addizioni di numeri, e poi passiamo al limite: le disuguaglianze deboli ($\le$) sopravvivono al limite.</p>
+          <p><strong>Passo 1 — confronto i rettangoli.</strong> Fisso una partizione e dei punti campione. Per ipotesi la disuguaglianza vale in ogni punto, quindi anche nei punti campione. Moltiplico per $\Delta x_i$, che è positivo, e il verso non cambia.</p>
+          <div class="calcolo">$$f(c_i)\le g(c_i)\ \Longrightarrow\ f(c_i)\,\Delta x_i\le g(c_i)\,\Delta x_i$$</div>
+          <p>Ogni rettangolo della prima funzione è più basso (o uguale) del corrispondente rettangolo della seconda, con la stessa base.</p>
+          <p><strong>Passo 2 — sommo.</strong> Se ogni addendo a sinistra è minore o uguale al suo corrispondente a destra, lo stesso vale per i totali.</p>
+          <div class="calcolo">$$\sum_{i=1}^n f(c_i)\,\Delta x_i\ \le\ \sum_{i=1}^n g(c_i)\,\Delta x_i$$</div>
+          <p><strong>Passo 3 — passo al limite.</strong> Faccio tendere $|P|\to0$: le due somme tendono a $\int f$ e a $\int g$. Se due successioni di numeri soddisfano $a_n\le b_n$, anche i loro limiti soddisfano $\lim a_n\le\lim b_n$ (è la permanenza del segno applicata a $b_n-a_n\ge0$, cap. 4).</p>
+          <p><strong>Conclusione.</strong> $\int_a^b f\le\int_a^b g$. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Tre conseguenze.</strong> <em>(i)</em> Se $f\ge0$ allora $\int_a^b f\ge0$: basta confrontare $f$ con la funzione costante $0$, il cui integrale è $0$ (fatto preliminare). <em>(ii)</em> Se $m\le f(x)\le M$ su $[a,b]$, confrontando con le due costanti e usando $\int k=k(b-a)$ si ottiene la stima che useremo spesso:</p>
+        <div class="formula-block">$$m\,(b-a)\ \le\ \int_a^b f(x)\,dx\ \le\ M\,(b-a).$$</div>
+        <p><em>(iii)</em> Sulla disuguaglianza <strong>stretta</strong>: la dimostrazione passa al limite, e al limite una disuguaglianza stretta può diventare uguaglianza (per ogni $n\ge2$ vale $\frac{1}{n^2}\lt\frac1n$, ma entrambi i limiti sono $0$). Quindi il metodo dà solo $\le$. Per funzioni continue, però, la disuguaglianza stretta vale davvero appena $f$ e $g$ sono diverse in un punto $x_0$. Infatti $h=g-f$ è continua, $h\ge0$ e $h(x_0)\gt0$; per la permanenza del segno (cap. 4) esiste un intervallino $[p,q]$ che contiene $x_0$, non ridotto a un punto, su cui $h\ge\frac{h(x_0)}{2}$; per additività, positività e stima (ii),</p>
+        <div class="calcolo">$$\int_a^b h\ \ge\ \int_p^q h\ \ge\ \frac{h(x_0)}{2}\,(q-p)\ \gt\ 0.$$</div>
+        <p><strong>Verifica numerica.</strong> Su $[0,1]$ vale $x^2\le x$ (per esempio con $x=0{,}5$: $0{,}25\le0{,}5$), e infatti abbiamo trovato $\int_0^1x^2\,dx=\frac13$ (<span class="richiamo" data-sec="4.1.2">§4.1.2</span>), che è minore di $\int_0^1x\,dx=\frac12$.</p>
+
+        <p><strong>4) Disuguaglianza del modulo.</strong> È la versione integrale della disuguaglianza triangolare. A sinistra le parti positive e quelle negative si compensano, riducendo il totale; a destra, avendo messo il valore assoluto, si sommano tutte in positivo.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione della disuguaglianza del modulo</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Se $f$ è continua su $[a,b]$, allora $\left|\int_a^b f\right|\le\int_a^b|f|$.</p>
+          <p><strong>L'idea.</strong> Una disuguaglianza con il valore assoluto, $|x|\le A$, equivale a due disuguaglianze senza: $-A\le x\le A$. Qui $A=\int|f|$. Ci basta quindi incastrare $\int f$ fra $-\int|f|$ e $\int|f|$, e sappiamo già confrontare gli integrali: la monotonia fa il lavoro.</p>
+          <p><strong>Passo 1 — incastro $f$ fra $-|f|$ e $|f|$.</strong> In ogni punto vale $-|f(x)|\le f(x)\le|f(x)|$: se $f(x)\ge0$ è $f(x)=|f(x)|$, se $f(x)\lt0$ è $f(x)=-|f(x)|$, e nei due casi la catena è vera. La funzione $|f|$ è continua, quindi integrabile.</p>
+          <p><strong>Passo 2 — integro con la monotonia.</strong></p>
+          <div class="calcolo">$$\int_a^b\big(-|f|\big)\ \le\ \int_a^b f\ \le\ \int_a^b|f|$$</div>
+          <p><strong>Passo 3 — porto fuori il segno meno.</strong> Per la linearità con $\alpha=-1$, $\int(-|f|)=-\int|f|$.</p>
+          <div class="calcolo">$$-\int_a^b|f|\ \le\ \int_a^b f\ \le\ \int_a^b|f|$$</div>
+          <p><strong>Conclusione.</strong> Un numero compreso fra $-A$ e $A$ ha valore assoluto al più $A$ (cap. 2): $\left|\int_a^b f\right|\le\int_a^b|f|$. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Verifica numerica</strong> con l'esempio del <span class="richiamo" data-sec="4.3">§4.3</span>, $f(x)=x-2$ su $[0,3]$: a sinistra c'è l'integrale con segno preso in valore assoluto, $\left|\int_0^3 (x-2)\,dx\right|=|-1{,}5|=1{,}5$; a destra c'è l'area geometrica, $\int_0^3|x-2|\,dx=2{,}5$; e infatti $1{,}5\le 2{,}5$.</p>
+
         <p>Restano due <strong>convenzioni</strong>, che completano la definizione nei due casi limite:</p>
         <div class="formula-block">
           $$\int_a^a f(x)\,dx = 0\qquad\qquad \int_b^a f(x)\,dx = -\int_a^b f(x)\,dx.$$
         </div>
         <p>La prima dice che su un intervallo ridotto a un punto l'area è nulla (base zero, quindi rettangoli schiacciati). La seconda dice che <strong>scambiare gli estremi cambia il segno</strong>: percorrendo l'asse all'indietro, da $b$ verso $a$, tutte le larghezze $\Delta x_i$ diventano negative, e di conseguenza l'intera somma cambia segno. Esempio: poiché $\int_0^1 x\,dx=\frac12$, si ha $\int_1^0 x\,dx=-\frac12$. Sembra un dettaglio, ma è una delle cause di errore più frequenti negli esami (vedi la sezione <a href="#errori-comuni">errori comuni</a>).</p>
+        <p><strong>Perché proprio queste due convenzioni.</strong> Non sono capricci: sono le uniche scelte che mantengono vera l'additività quando $c$ coincide con un estremo o gli estremi sono scambiati. Se nella formula $\int_a^b=\int_a^c+\int_c^b$ prendo $c=b$, ottengo $\int_a^b=\int_a^b+\int_b^b$, e quindi deve essere $\int_b^b=0$. Applico poi la stessa formula con estremi $a$ e $a$ e punto intermedio $b$: ottengo $\int_a^a=\int_a^b+\int_b^a$. Il primo membro è $0$ (lo abbiamo appena trovato), quindi deve essere $\int_b^a=-\int_a^b$. Con queste convenzioni l'additività vale per tre punti in <em>qualunque</em> ordine: per esempio, con $a\lt b\lt c$ si ha $\int_a^c=\int_a^b+\int_b^c$, che si riscrive $\int_a^b=\int_a^c-\int_b^c=\int_a^c+\int_c^b$.</p>
+
+        <h4>4.4.1 Il teorema della media integrale</h4>
+        <p><strong>Prima l'idea.</strong> Per una lista di $n$ numeri, la media si fa sommando e dividendo per $n$. Per una funzione, che ha infiniti valori, la "somma" la fa l'integrale e al posto di "$n$" si divide per la lunghezza dell'intervallo. Il numero che si ottiene si chiama <strong>valor medio</strong> di $f$ su $[a,b]$:</p>
+        <div class="formula-block">$$\mu=\frac{1}{b-a}\int_a^b f(x)\,dx.$$</div>
+        <p>Geometricamente, moltiplicando per $b-a$: $\mu\,(b-a)=\int_a^b f$, cioè $\mu$ è l'altezza del rettangolo con base $[a,b]$ che ha la <em>stessa area</em> della regione sotto il grafico (il "livellamento" della sabbia, che riprenderemo nel <a href="15-applicazioni-integrali.html">capitolo 15</a>). La domanda è: la funzione assume davvero, da qualche parte, il valore $\mu$?</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema della media integrale</span>
+          <p>Se $f$ è continua su $[a,b]$, con $a\lt b$, allora esiste almeno un punto $c\in[a,b]$ tale che</p>
+          <div class="formula-block">$$f(c)=\frac{1}{b-a}\int_a^b f(x)\,dx,\qquad\text{cioè}\qquad \int_a^b f(x)\,dx=f(c)\,(b-a).$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che una funzione continua prende davvero, in qualche punto, il suo valor medio.</p>
+          <p><strong>L'idea.</strong> Una media non può essere più piccola di tutti i valori né più grande di tutti: sta fra il valore minimo $m$ e il valore massimo $M$ della funzione. Ma una funzione continua su un intervallo assume <em>tutti</em> i valori compresi fra il suo minimo e il suo massimo (teorema dei valori intermedi). Quindi assume anche il valor medio.</p>
+          <p><strong>Passo 1 — minimo e massimo.</strong> $f$ è continua su un intervallo chiuso e limitato, quindi per il <span class="glossario-term" data-term="teorema-di-weierstrass">teorema di Weierstrass</span> ha un minimo $m=f(x_m)$ e un massimo $M=f(x_M)$, in due punti $x_m,x_M\in[a,b]$. In ogni punto vale $m\le f(x)\le M$.</p>
+          <p><strong>Passo 2 — stimo l'integrale.</strong> Uso la stima (ii) di questo paragrafo.</p>
+          <div class="calcolo">$$m\,(b-a)\ \le\ \int_a^b f(x)\,dx\ \le\ M\,(b-a)$$</div>
+          <p><strong>Passo 3 — divido per $b-a$.</strong> È un numero positivo, quindi i versi non cambiano.</p>
+          <div class="calcolo">$$m\ \le\ \mu\ \le\ M$$</div>
+          <p><strong>Passo 4 — uso i valori intermedi.</strong> $f$ è continua sull'intervallo che ha per estremi $x_m$ e $x_M$ (contenuto in $[a,b]$) e agli estremi vale $f(x_m)=m$ e $f(x_M)=M$. Per il <span class="glossario-term" data-term="teorema-dei-valori-intermedi">teorema dei valori intermedi</span> assume ogni valore fra $m$ e $M$, in particolare $\mu$: esiste $c$ con $f(c)=\mu$.</p>
+          <p><strong>Conclusione.</strong> Il valor medio sta fra minimo e massimo, e una funzione continua assume tutti i valori fra minimo e massimo. <span class="qed">∎</span></p>
+          <p><strong>Dove si usa la continuità.</strong> Per Weierstrass e per i valori intermedi. Senza di essa il teorema è falso: la funzione a gradini del <span class="richiamo" data-sec="4.2">§4.2</span>, che vale $1$ su $[0,1)$ e $3$ su $[1,2]$, ha integrale $4$ su $[0,2]$ e quindi valor medio $\mu=\frac42=2$, ma non assume mai il valore $2$ (vale solo $1$ o $3$).</p>
+        </div>
+        <p><strong>Un esempio con i numeri.</strong> Per $f(x)=x^2$ su $[0,1]$ abbiamo visto (<span class="richiamo" data-sec="4.1.2">§4.1.2</span>) che $\int_0^1x^2\,dx=\frac13$, quindi $\mu=\frac13$. Il punto $c$ si trova risolvendo $c^2=\frac13$: $c=\frac{1}{\sqrt3}\approx0{,}577$, che sta davvero in $[0,1]$. Nota che $c$ non è il punto di mezzo $0{,}5$: il teorema dice che $c$ esiste, non dove si trova.</p>
 
         <h3 id="teoria-funzione-integrale">4.5 La funzione integrale</h3>
         <p><strong>Prima l'idea.</strong> Fin qui l'integrale è un numero: fissati $a$ e $b$, otteniamo <em>un</em> valore. Adesso facciamo una mossa che sembra piccola e invece cambia tutto: teniamo fermo l'estremo sinistro $a$ e lasciamo <strong>libero</strong> quello destro, chiamandolo $x$. A ogni scelta di $x$ corrisponde un'area diversa, quindi un numero diverso: abbiamo costruito una <strong>funzione</strong>, che chiameremo $F$ e che a ogni $x$ associa "l'area accumulata da $a$ fino a $x$".</p>
@@ -413,6 +712,25 @@
           <p>Avendo letto nel <span class="richiamo" data-sec="4.1.4">§4.1.4</span> che l'integrale definito è <strong>un numero</strong>, vedere spuntare una funzione può far pensare a una contraddizione. Non c'è. Per ogni $x$ fissato, $\int_a^x f(t)\,dt$ resta un numero: l'area accumulata fino a quel punto. È il fatto di poter <em>cambiare</em> $x$ che, mettendo in fila tutti quei numeri, costruisce una funzione. Il paragone: l'incasso di un negozio dal $1$ gennaio al $31$ marzo è un numero preciso; ma se lasci libera la data di arrivo, "l'incasso accumulato da inizio anno fino a oggi" diventa una funzione del giorno, che sale a ogni cliente che entra.</p>
           <p>E la differenza con l'integrale indefinito resta intatta: $F$ è <strong>una</strong> funzione ben precisa (quella che vale $0$ in $x=a$), mentre l'integrale indefinito è un'<strong>intera famiglia</strong> di funzioni, e per questo porta il "$+C$". Qui il "$+C$" non c'è, e non deve comparire.</p>
         </div>
+        <p><strong>Una prima proprietà: l'area accumulata non fa salti.</strong> Prima di derivare $F$ vediamo una cosa più modesta, che ci serve per capire con che tipo di funzione abbiamo a che fare.</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">La funzione integrale è continua.</em> Se $f$ è continua su $[a,b]$, sia $K$ il massimo di $|f|$. Allora, per ogni $x,y\in[a,b]$,</p>
+          <div class="formula-block">$$|F(y)-F(x)|\ \le\ K\,|y-x|,$$</div>
+          <p>e quindi $F$ è continua su $[a,b]$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che se ci spostiamo di poco da $x$ a $y$, l'area accumulata cambia di poco.</p>
+          <p><strong>L'idea.</strong> La differenza $F(y)-F(x)$ è l'area di una striscia larga $|y-x|$. Se il grafico non è mai più alto di $K$ (in valore assoluto), la striscia ha area al più "larghezza per $K$": più è stretta, meno area contiene.</p>
+          <p><strong>Passo 1 — la differenza è l'area di una striscia.</strong> Supponiamo $x\lt y$. Per l'additività, $\int_a^y=\int_a^x+\int_x^y$.</p>
+          <div class="calcolo">$$F(y)-F(x)=\int_a^y f(t)\,dt-\int_a^x f(t)\,dt=\int_x^y f(t)\,dt.$$</div>
+          <p><strong>Passo 2 — maggioro con il modulo.</strong> Uso la disuguaglianza del modulo e poi la stima con costanti, con $|f(t)|\le K$.</p>
+          <div class="calcolo">$$\left|\int_x^y f(t)\,dt\right|\ \le\ \int_x^y|f(t)|\,dt\ \le\ K\,(y-x).$$</div>
+          <p><strong>Passo 3 — da qui la continuità.</strong> Fissato $\varepsilon\gt0$, se $|y-x|\lt\frac{\varepsilon}{K}$ allora $|F(y)-F(x)|\lt\varepsilon$ (se $K=0$, $F$ è nulla e non c'è nulla da dimostrare). È la definizione di continuità, e anzi vale con lo stesso $\delta=\frac{\varepsilon}{K}$ per tutti i punti.</p>
+          <p><strong>Conclusione.</strong> $F$ non può saltare: l'area si accumula con continuità. <span class="qed">∎</span></p>
+        </div>
+        <p>La stessa dimostrazione funziona per una $f$ continua a tratti, cioè con un numero finito di salti: la funzione integrale è comunque continua. Lo vedremo nel <span class="richiamo" data-sec="4.6.2">§4.6.2</span>, con una $F$ che ha uno spigolo ma nessun salto.</p>
         <p><strong>Un esempio con i numeri.</strong> Prendiamo $f(t)=t$ e $a=0$, cioè $F(x)=\int_0^x t\,dt$. Per ogni $x$ positivo la regione è un triangolo rettangolo di base $x$ e altezza $f(x)=x$, quindi:</p>
         <div class="calcolo">$$\begin{aligned}
         F(x) &amp;= \frac{\text{base}\times\text{altezza}}{2} = \frac{x\cdot x}{2} = \frac{x^2}{2} &amp;&amp;\text{(area del triangolo, con base e altezza entrambe } x)
@@ -430,7 +748,7 @@
         <p><strong>Fin qui:</strong> l'area accumulata cresce, e cresce <em>sempre più in fretta</em> ($+0{,}5$, poi $+1{,}5$, poi $+2{,}5$). Il motivo è che più andiamo a destra, più il grafico di $f(t)=t$ è alto, e più area si aggiunge a ogni passo. Tieni a mente questa frase, perché è il cuore del paragrafo successivo: <strong>la rapidità con cui cresce l'area dipende dall'altezza del grafico</strong>.</p>
 
         <h3 id="teoria-tfc">4.6 Il Teorema Fondamentale del Calcolo</h3>
-        <p>Questo è il cuore pulsante non solo del capitolo, ma di tutta l'Analisi 1. Prima lo raccontiamo a parole e con i numeri; solo dopo lo enunciamo in simboli, e la dimostrazione completa è nella sezione 5.</p>
+        <p>Questo è il cuore pulsante non solo del capitolo, ma di tutta l'Analisi 1. Prima lo raccontiamo a parole e con i numeri; poi lo enunciamo in simboli e, subito dopo ciascuna delle due parti, lo dimostriamo.</p>
 
         <h4>4.6.1 Prima a parole: perché la derivata della funzione area è la funzione di partenza</h4>
         <p>Riprendiamo la funzione area $F$ del <span class="richiamo" data-sec="4.5">§4.5</span>: $F(x)$ è l'area accumulata da $a$ fino a $x$. Facciamoci la domanda che fa nascere ogni derivata: <strong>se allungo di poco l'intervallo, di quanto cresce l'area?</strong></p>
@@ -484,8 +802,38 @@
           <div class="formula-block">$$\underbrace{F'(x)}_{\text{derivata dell'area accumulata}}=\underbrace{f(x)}_{\text{altezza del grafico in } x}\qquad\text{per ogni } x\in[a,b].$$</div>
           <p>In parole: <strong>integrare (con estremo superiore variabile) e poi derivare riporta alla funzione di partenza</strong>. Detto altrimenti, la funzione integrale $F$ è una <span class="glossario-term" data-term="primitiva">primitiva</span> di $f$ — quella particolare primitiva che vale $0$ in $x=a$, perché $F(a)=\int_a^a f=0$.</p>
         </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione della Parte 1</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che la velocità con cui cresce l'area accumulata, proprio nel punto $x$, è l'altezza del grafico in $x$. Nel <span class="richiamo" data-sec="4.6.1">§4.6.1</span> lo abbiamo raccontato e verificato con i numeri; ora lo dimostriamo per una qualunque $f$ continua. Concretamente: il rapporto incrementale $\frac{F(x+h)-F(x)}{h}$ deve tendere a $f(x)$ per $h\to0$.</p>
+          <p><strong>L'idea.</strong> Il numeratore è l'area della strisciolina fra $x$ e $x+h$, e nel <span class="richiamo" data-sec="4.6.1">§4.6.1</span> abbiamo detto che è "quasi" un rettangolo alto $f(x)$ e largo $h$. Quel "quasi" va reso preciso, e il teorema della media integrale (<span class="richiamo" data-sec="4.4.1">§4.4.1</span>) lo fa. Dice che l'area della strisciolina è <em>esattamente</em> quella di un rettangolo largo $h$ e alto $f(c_h)$, dove $c_h$ è un punto della strisciolina (non sappiamo quale, ma sappiamo dove sta: fra $x$ e $x+h$). Allora il rapporto incrementale è esattamente $f(c_h)$. Quando $h\to0$ la strisciolina si stringe attorno a $x$, il punto $c_h$ ci resta intrappolato dentro, e per la continuità $f(c_h)$ si avvicina a $f(x)$.</p>
+
+          <p><strong>Passo 1 — l'incremento di $F$ è l'area di una strisciolina.</strong> Prendo prima $h\gt0$. Scrivo l'area accumulata fino a $x+h$ come area fino a $x$ più l'area fra $x$ e $x+h$ (additività, <span class="richiamo" data-sec="4.4">§4.4</span>), e sottraggo.</p>
+          <div class="calcolo">$$\begin{aligned}
+          F(x+h) &amp;= \int_a^{x}f(t)\,dt+\int_x^{x+h}f(t)\,dt &amp;&amp;\text{(spezzo in } x)\\
+          F(x+h)-F(x) &amp;= \int_x^{x+h}f(t)\,dt &amp;&amp;\text{(isolo l'incremento)}
+          \end{aligned}$$</div>
+
+          <p><strong>Passo 2 — la strisciolina vale "altezza per larghezza".</strong> $f$ è continua su $[x,x+h]$, quindi per il teorema della media (<span class="richiamo" data-sec="4.4.1">§4.4.1</span>) esiste un punto $c_h\in[x,x+h]$ con</p>
+          <div class="calcolo">$$\int_x^{x+h}f(t)\,dt=f(c_h)\cdot h.$$</div>
+
+          <p><strong>Passo 3 — divido per $h$.</strong> Il rapporto incrementale diventa un valore di $f$.</p>
+          <div class="calcolo">$$\frac{F(x+h)-F(x)}{h}=f(c_h).$$</div>
+
+          <p><strong>Passo 4 — mando $h$ a zero.</strong> Fissiamo una tolleranza $\varepsilon\gt0$. Per la continuità di $f$ in $x$ esiste $\delta\gt0$ tale che $|t-x|\lt\delta$ implica $|f(t)-f(x)|\lt\varepsilon$. Se $0\lt h\lt\delta$, il punto $c_h$ sta in $[x,x+h]$, quindi $|c_h-x|\le h\lt\delta$, e allora</p>
+          <div class="calcolo">$$\left|\frac{F(x+h)-F(x)}{h}-f(x)\right|=\big|f(c_h)-f(x)\big|\lt\varepsilon.$$</div>
+          <p>Questo dice che il limite destro del rapporto incrementale è $f(x)$.</p>
+
+          <p><strong>Passo 5 — il caso $h\lt0$.</strong> Ora la strisciolina sta a sinistra di $x$, fra $x+h$ e $x$. Scrivo $F(x)=F(x+h)+\int_{x+h}^{x}f$, quindi $F(x+h)-F(x)=-\int_{x+h}^{x}f$. Per la media su $[x+h,x]$, la cui lunghezza è $-h$, esiste $c_h\in[x+h,x]$ con $\int_{x+h}^{x}f=f(c_h)\,(-h)$.</p>
+          <div class="calcolo">$$F(x+h)-F(x)=-f(c_h)\,(-h)=f(c_h)\,h\quad\Longrightarrow\quad\frac{F(x+h)-F(x)}{h}=f(c_h).$$</div>
+          <p>Si ottiene la stessa espressione, con $c_h$ intrappolato fra $x+h$ e $x$: il ragionamento del passo 4 mostra che anche il limite sinistro è $f(x)$.</p>
+
+          <p><strong>Controllo numerico.</strong> Con $f(t)=t$, $x=2$ e $h=0{,}1$, la tabella del <span class="richiamo" data-sec="4.6.1">§4.6.1</span> dà un'area di $0{,}205$ e un rapporto incrementale di $2{,}05$: è proprio $f(c_h)$ con $c_h=2{,}05$, che sta in $[2;\,2{,}1]$. Con $h=0{,}01$ viene $f(c_h)=2{,}005$, e $c_h=2{,}005$ si è avvicinato a $x=2$.</p>
+          <p><strong>Conclusione.</strong> Il rapporto incrementale di $F$ in $x$ vale $f(c_h)$ con $c_h$ fra $x$ e $x+h$; quando $h\to0$, i due limiti (destro e sinistro) sono entrambi $f(x)$. Quindi $F$ è derivabile in $x$ e $F'(x)=f(x)$. Negli estremi $a$ e $b$ si intende la derivata solo destra o solo sinistra. <span class="qed">∎</span></p>
+          <p><strong>Dove si usa la continuità.</strong> Due volte: per il teorema della media (che usa Weierstrass e i valori intermedi) e per concludere che $f(c_h)\to f(x)$. Il non-esempio qui sotto mostra che senza continuità può andare storto.</p>
+        </div>
         <p><strong>Verifica sull'esempio dei numeri.</strong> Avevamo $f(t)=t$ e $F(x)=\frac{x^2}{2}$. Derivo $F$ con la regola della potenza (cap. 7): $\left(\frac{x^2}{2}\right)'=\frac{2x}{2}=x$. E infatti $f(x)=x$: tutto torna.</p>
         <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Il teorema chiede che $f$ sia <em>continua</em>. Se $f$ ha un salto, l'area continua ad accumularsi (la funzione $F$ esiste ancora), ma proprio nel punto di salto $F$ ha uno spigolo e lì non è derivabile: pensa alla funzione a gradini del <span class="richiamo" data-sec="4.2">§4.2</span>, che vale $1$ prima di $x=1$ e $3$ dopo. La sua funzione area cresce con pendenza $1$ a sinistra di $1$ e con pendenza $3$ a destra: nel punto $x=1$ le due pendenze non coincidono, quindi $F'(1)$ non esiste. Fuori dal punto di salto, però, la regola $F'=f$ continua a valere.</p>
+        <p>Un'osservazione su quel non-esempio: la funzione integrale $F$ di una funzione a gradini ha uno <em>spigolo</em> ma non salta (è la funzione continua che abbiamo visto nel <span class="richiamo" data-sec="4.5">§4.5</span>): l'area si accumula sempre con continuità, anche quando il tasso di accumulo cambia bruscamente.</p>
 
         <h4>4.6.3 La Parte 2 (formula di Newton–Leibniz) e come si usa</h4>
         <div class="box-teorema">
@@ -494,6 +842,41 @@
           <div class="formula-block">$$\int_a^b f(x)\,dx \;=\; \underbrace{G(b)}_{\text{sostituisco } x=b}-\underbrace{G(a)}_{\text{sostituisco } x=a}\;=\;\big[\,G(x)\,\big]_a^b.$$</div>
           <p>Il simbolo $\big[G(x)\big]_a^b$ è soltanto un'abbreviazione comoda di "valuta $G$ nell'estremo superiore e sottrai il valore nell'estremo inferiore". Non è un'operazione nuova: è una scrittura.</p>
         </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione della Parte 2</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che per calcolare un'area basta prendere <em>una qualsiasi</em> funzione $G$ la cui derivata sia $f$, valutarla nei due estremi e fare la differenza. In particolare: che la scelta della primitiva non influisce sul risultato.</p>
+          <p><strong>L'idea.</strong> Una primitiva particolare la conosciamo già: la funzione integrale $F$, che per la Parte 1 è una primitiva di $f$. Di lei sappiamo tutto agli estremi: $F(a)=0$ e $F(b)$ è proprio l'integrale cercato. Una primitiva qualunque $G$ differisce da $F$ al più per una costante (due funzioni con la stessa derivata, <a href="08-teoremi-fondamentali.html">cap. 8</a>), e in una differenza $G(b)-G(a)$ una costante si cancella. Quindi $G(b)-G(a)=F(b)-F(a)$, e quest'ultima è l'integrale.</p>
+          <p><strong>Passo 1 — ho una primitiva di cui so tutto.</strong> Pongo $F(x)=\int_a^x f(t)\,dt$. Per la Parte 1, $F'=f$.</p>
+          <p><strong>Passo 2 — confronto $G$ con $F$.</strong> Anche $G$ è una primitiva di $f$, quindi $G'=f=F'$: le due funzioni hanno la stessa derivata su tutto l'intervallo $[a,b]$, cioè $(G-F)'=0$. Una funzione con derivata nulla su un intervallo è costante (corollario del <span class="glossario-term" data-term="teorema-di-lagrange">teorema di Lagrange</span>, cap. 8). Quindi esiste una costante $C$ con</p>
+          <div class="calcolo">$$G(x)=F(x)+C\qquad\text{per ogni } x\in[a,b].$$</div>
+          <p><strong>Passo 3 — calcolo $G(b)-G(a)$ e la costante sparisce.</strong></p>
+          <div class="calcolo">$$\begin{aligned}
+          G(b)-G(a) &amp;= \big(F(b)+C\big)-\big(F(a)+C\big) &amp;&amp;\text{(uso il passo 2 in } b \text{ e in } a)\\
+          &amp;= F(b)-F(a) &amp;&amp;\text{(la } C \text{ e la } -C \text{ si elidono)}
+          \end{aligned}$$</div>
+          <p><strong>Passo 4 — valuto $F$ agli estremi.</strong> Ecco perché $F$ era la primitiva comoda.</p>
+          <div class="calcolo">$$\begin{aligned}
+          F(a) &amp;= \int_a^a f(t)\,dt = 0 &amp;&amp;\text{(intervallo ridotto a un punto)}\\
+          F(b) &amp;= \int_a^b f(t)\,dt &amp;&amp;\text{(è l'integrale cercato)}
+          \end{aligned}$$</div>
+          <p><strong>Controllo numerico.</strong> Per $f(x)=x$ su $[0,2]$ (triangolo di area $2$), la primitiva $G(x)=\frac{x^2}{2}+7$ dà $G(2)-G(0)=9-7=2$: il $7$ non conta.</p>
+          <p><strong>Conclusione.</strong> Abbiamo preso la funzione integrale $F$, che per la Parte 1 è una primitiva e vale $0$ in $a$; ogni altra primitiva $G$ è $F$ più una costante, che nella differenza $G(b)-G(a)$ si elide; resta $F(b)-F(a)=\int_a^b f$. La dimostrazione mostra anche <em>perché</em> qualunque primitiva va bene e perché non compare alcun "$+C$". <span class="qed">∎</span></p>
+        </div>
+
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Una seconda dimostrazione, che mostra perché la formula funziona</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Lo stesso risultato, $\int_a^b f=G(b)-G(a)$, ma senza passare dalla funzione integrale.</p>
+          <p><strong>L'idea.</strong> $G(b)-G(a)$ è il <em>cambiamento totale</em> di $G$ da $a$ a $b$. Se divido $[a,b]$ in tante fettine, il cambiamento totale è la somma dei cambiamenti su ciascuna fettina (somma telescopica). Su una fettina il cambiamento di $G$ è circa "derivata per larghezza", cioè $f\cdot\Delta x_i$: proprio un rettangolo di una somma di Riemann. Il teorema di Lagrange rende quel "circa" un "esattamente". Così il cambiamento totale <em>è</em> una somma di Riemann, e quindi tende all'integrale.</p>
+          <p><strong>Passo 1 — somma telescopica.</strong> Scelgo una partizione $a=x_0\lt x_1\lt\cdots\lt x_n=b$. Sommando i cambiamenti sulle fettine i valori intermedi si cancellano (per $n=3$: $\big(G(x_1)-G(x_0)\big)+\big(G(x_2)-G(x_1)\big)+\big(G(x_3)-G(x_2)\big)=G(x_3)-G(x_0)$).</p>
+          <div class="calcolo">$$G(b)-G(a)=\sum_{i=1}^n\big(G(x_i)-G(x_{i-1})\big).$$</div>
+          <p><strong>Passo 2 — su ogni fettina uso Lagrange.</strong> $G$ è derivabile, quindi su $[x_{i-1},x_i]$ esiste un punto $c_i$ in cui la derivata uguaglia la pendenza media: $G(x_i)-G(x_{i-1})=G'(c_i)\,(x_i-x_{i-1})=f(c_i)\,\Delta x_i$.</p>
+          <p><strong>Passo 3 — riconosco una somma di Riemann.</strong> Sostituisco nel passo 1.</p>
+          <div class="calcolo">$$G(b)-G(a)=\sum_{i=1}^n f(c_i)\,\Delta x_i=R(P,c).$$</div>
+          <p>I punti $c_i$ sono quelli forniti da Lagrange: sono punti campione ammessi, uno per fettina.</p>
+          <p><strong>Passo 4 — faccio tendere $|P|\to0$.</strong> A sinistra c'è un numero che non dipende dalla partizione. A destra una somma di Riemann di una funzione integrabile, che tende a $\int_a^b f$ qualunque siano i punti campione. Un numero fisso che è uguale a una quantità che tende a $\int_a^b f$ deve essere uguale al limite.</p>
+          <p><strong>Conclusione.</strong> $G(b)-G(a)=\int_a^b f(x)\,dx$. <span class="qed">∎</span> Questa seconda strada non usa la Parte 1, e racconta in una riga il significato della formula: l'integrale è la somma di tanti piccoli cambiamenti di $G$.</p>
+        </div>
+
         <p>Questa è la formula che userai in tutti gli esercizi: trasforma il calcolo di un'area — che per definizione sarebbe un limite di infinite somme — in due valutazioni e una sottrazione. E funziona perché la Parte 1 ci ha detto che la funzione area <em>è</em> una primitiva: se conosciamo una primitiva qualsiasi, conosciamo (a meno di una costante, che poi sparisce) la funzione area.</p>
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Come si applica in pratica: i due calcoli SEMPRE separati</div>
@@ -501,8 +884,9 @@
         </div>
         <p><strong>Un esempio completo, con i due calcoli separati.</strong> Calcoliamo $\displaystyle\int_1^3 x^2\,dx$.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Cerco la primitiva.</strong> Mi serve una funzione la cui derivata sia $x^2$. Uso la regola della potenza per le primitive (cap. 13, sezione 4.3): una primitiva di $x^n$ è $\frac{x^{n+1}}{n+1}$, valida per $n\neq-1$. Sostituisco $n=2$ e ottengo $G(x)=\frac{x^{3}}{3}$. Verifico derivando: $\left(\frac{x^3}{3}\right)'=\frac{3x^2}{3}=x^2$. ✓</span>
-          <span class="esempio__passo"><strong>Applico la formula</strong>, un calcolo per volta:</span>
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e quale strumento uso.</strong> Un integrale definito di una funzione continua su tutto $[1,3]$ e con una primitiva facile: è il caso della formula di Newton–Leibniz. Quindi mi serve una primitiva $G$ di $x^2$.</span>
+          <span class="esempio__passo"><strong>Cerco la primitiva.</strong> Uso la regola della potenza per le primitive (cap. 13, sezione 4.3): una primitiva di $x^n$ è $\frac{x^{n+1}}{n+1}$, valida per $n\neq-1$. Con $n=2$ ottengo $G(x)=\frac{x^{3}}{3}$. Verifico derivando: $\left(\frac{x^3}{3}\right)'=\frac{3x^2}{3}=x^2$. ✓</span>
+          <span class="esempio__passo"><strong>Applico la formula</strong>, un calcolo per volta: valuto $G$ nell'estremo superiore, poi in quello inferiore, poi sottraggo.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         G(3) &amp;= \frac{3^3}{3} = \frac{27}{3} = 9 &amp;&amp;\text{(sostituisco } x=3\text{, l'estremo superiore)}\\
@@ -510,18 +894,16 @@
         \int_1^3 x^2\,dx &amp;= G(3)-G(1) = 9-\frac13 &amp;&amp;\text{(differenza: sopra meno sotto)}\\
         &amp;= \frac{27}{3}-\frac13 = \frac{26}{3} &amp;&amp;\text{(porto } 9 \text{ a denominatore } 3 \text{ per sottrarre)}
         \end{aligned}$$</div>
-        <p>Il risultato è il numero $\frac{26}{3}\approx 8{,}67$. Controllo di buon senso: la funzione $x^2$ su $[1,3]$ sta fra $1$ e $9$, quindi l'area deve stare fra $1\cdot 2=2$ e $9\cdot 2=18$ (rettangoli di base $2$); $8{,}67$ ci sta comodamente in mezzo.</p>
+        <p>Il risultato è il numero $\frac{26}{3}\approx 8{,}67$. <strong>Controllo di buon senso:</strong> la funzione $x^2$ su $[1,3]$ sta fra $1$ e $9$, quindi l'area deve stare fra $1\cdot 2=2$ e $9\cdot 2=18$ (rettangoli di base $2$, per la stima del <span class="richiamo" data-sec="4.4">§4.4</span>); $8{,}67$ ci sta comodamente in mezzo. Con il teorema della media: il valor medio è $\frac{26/3}{2}=\frac{13}{3}\approx4{,}33$, e la funzione lo assume in $c=\sqrt{13/3}\approx2{,}08$, che sta in $[1,3]$.</p>
         <p><strong>Attenzione: qui è dove ci si confonde.</strong> Quando $G(a)$ è <em>negativo</em>, la differenza $G(b)-G(a)$ diventa una somma, perché il meno davanti a un numero negativo dà più. Per esempio, se $G(b)=1$ e $G(a)=-4$, allora $G(b)-G(a)=1-(-4)=1+4=5$. Scrivi sempre la parentesi attorno al valore che sottrai: è il modo più semplice per non perdere un segno.</p>
 
         <div class="callout callout--curiosita">
           <div class="callout__title"><span class="emoji">🧩</span> Perché "una qualunque" primitiva? E che fine fa il $+C$?</div>
-          <p>Puoi scegliere la primitiva che preferisci, perché due primitive della stessa funzione differiscono per una costante (corollario del <a href="08-teoremi-fondamentali.html">teorema di Lagrange</a>, cap. 8, sezione 4.5). Se $G_1=G_2+C$, allora</p>
+          <p>La dimostrazione della Parte 2 risponde da sola: due primitive della stessa funzione differiscono per una costante $C$ (corollario del <a href="08-teoremi-fondamentali.html">teorema di Lagrange</a>, cap. 8), e nella differenza $G(b)-G(a)$ la costante compare una volta con il segno più e una con il meno, e si elide. Per questo nell'integrale definito non si scrive mai "$+C$": il risultato è un numero, non una famiglia di funzioni (<span class="richiamo" data-sec="4.1.4">§4.1.4</span>). Il "$+C$" appartiene solo all'<a href="13-integrali-indefiniti.html">integrale indefinito</a>. Con i numeri, per $f(x)=x$ su $[0,2]$ prendiamo due primitive diverse, $G_1(x)=\frac{x^2}{2}$ e $G_2(x)=\frac{x^2}{2}+5$:</p>
           <div class="calcolo">$$\begin{aligned}
-          G_1(b)-G_1(a) &amp;= \big(G_2(b)+C\big)-\big(G_2(a)+C\big) &amp;&amp;\text{(sostituisco } G_1=G_2+C \text{ nei due punti)}\\
-          &amp;= G_2(b)+C-G_2(a)-C &amp;&amp;\text{(tolgo le parentesi: il meno cambia i segni dentro)}\\
-          &amp;= G_2(b)-G_2(a) &amp;&amp;\text{(la } C \text{ e la } -C \text{ si elidono)}
+          G_1(2)-G_1(0) &amp;= 2-0=2\\
+          G_2(2)-G_2(0) &amp;= 7-5=2 &amp;&amp;\text{(stesso numero)}
           \end{aligned}$$</div>
-          <p><strong>La costante si semplifica sempre nella sottrazione.</strong> Ecco perché nell'integrale definito non si scrive mai "$+C$": il risultato è un numero, non una famiglia di funzioni (<span class="richiamo" data-sec="4.1.4">§4.1.4</span>). Il "$+C$" appartiene solo all'<a href="13-integrali-indefiniti.html">integrale indefinito</a>.</p>
         </div>
         <div class="callout callout--vita-reale">
           <div class="callout__title"><span class="emoji">🔗</span> Il gran finale: derivata e integrale sono operazioni inverse</div>
@@ -533,24 +915,46 @@
 
         <h4>4.7.1 Cambio di variabile (sostituzione)</h4>
         <p>Si usa quando dentro l'integrale riconosci una <strong>funzione composta</strong> moltiplicata per la derivata della sua parte interna. L'idea è dare un nome nuovo, $u$, alla parte interna: l'integrale si semplifica perché nella variabile $u$ diventa elementare. Ma se cambi la variabile, <strong>devi cambiare anche gli estremi</strong>: prima erano valori di $x$, ora devono diventare valori di $u$.</p>
+        <p><strong>Perché gli estremi cambiano.</strong> Immagina di fare un viaggio: la variabile $x$ è il tuo chilometro, e va da $a$ a $b$. Hai anche un secondo strumento, che a ogni chilometro $x$ associa una lettura $u=g(x)$. Mentre $x$ va da $a$ a $b$, la lettura $u$ va da $g(a)$ a $g(b)$: è lo stesso viaggio, descritto con un'altra scala. L'integrale somma tanti piccoli pezzi, uno per ogni piccolo passo; a un passo $dx$ sulla scala di $x$ corrisponde un passo $du=g'(x)\,dx$ sulla scala di $u$ (la derivata dice di quanto si allunga $u$ per ogni passo in $x$). Se scrivi l'integrale con la scala $u$, il viaggio deve partire da $g(a)$ e arrivare a $g(b)$. Lasciare gli estremi vecchi significherebbe descrivere un viaggio <em>diverso</em>, da $u=a$ a $u=b$.</p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Proposizione</span>
-          <p><em class="nome">Cambio di variabile nell'integrale definito.</em> Se $g$ è derivabile con derivata continua su $[a,b]$ e $f$ è continua, allora</p>
+          <p><em class="nome">Cambio di variabile nell'integrale definito.</em> Se $g$ è derivabile con derivata continua su $[a,b]$ e $f$ è continua su un intervallo che contiene tutti i valori di $g$, allora</p>
           <div class="formula-block">$$\int_a^b f\big(g(x)\big)\,g'(x)\,dx \;=\; \int_{\,\underbrace{g(a)}_{\text{nuovo estremo inferiore}}}^{\,\underbrace{g(b)}_{\text{nuovo estremo superiore}}} f(u)\,du.$$</div>
-          <p>Cioè: si pone $u=g(x)$, si sostituisce $g'(x)\,dx$ con $du$, e si sostituiscono i due estremi con i valori che $g$ assume in essi. La dimostrazione è nella sezione 5.</p>
+          <p>Cioè: si pone $u=g(x)$, si sostituisce $g'(x)\,dx$ con $du$, e si sostituiscono i due estremi con i valori che $g$ assume in essi.</p>
         </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che il procedimento che usiamo negli esercizi (cambio il nome alla variabile e ricalcolo gli estremi) dà davvero lo stesso numero dell'integrale di partenza, non un'approssimazione né un caso fortunato.</p>
+          <p><strong>L'idea.</strong> I due membri sono integrali definiti, e ora sappiamo calcolarli entrambi con la formula di Newton–Leibniz: ciascuno è la differenza dei valori di una primitiva. Basta quindi trovare una primitiva per ciascuno. Per il membro di destra serve una primitiva $F$ di $f$. Per quello di sinistra, la regola della catena suggerisce di <em>comporre</em> $F$ con $g$: derivando $F(g(x))$ si ottiene esattamente la funzione che sta dentro l'integrale di sinistra. Alla fine i due risultati sono la stessa espressione, $F(g(b))-F(g(a))$, e i "nuovi estremi" $g(a)$ e $g(b)$ compaiono perché sono i punti in cui $F$ viene valutata.</p>
+          <p><strong>Passo 1 — mi procuro una primitiva di $f$.</strong> Poiché $f$ è continua, per la Parte 1 del Teorema Fondamentale (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>) esiste una funzione $F$ con $F'=f$ (per esempio $F(u)=\int_{u_0}^u f$, con $u_0$ nell'intervallo dato).</p>
+          <p><strong>Passo 2 — costruisco una primitiva per il membro di sinistra.</strong> Definisco $H(x)=F\big(g(x)\big)$ e la derivo con la regola della catena: derivata della funzione esterna calcolata nell'interna, per la derivata dell'interna.</p>
+          <div class="calcolo">$$\begin{aligned}
+          H'(x) &amp;= F'\big(g(x)\big)\cdot g'(x) &amp;&amp;\text{(regola della catena, cap. 7)}\\
+          &amp;= f\big(g(x)\big)\cdot g'(x) &amp;&amp;\text{(perché } F'=f)
+          \end{aligned}$$</div>
+          <p>È proprio la funzione dentro l'integrale di sinistra, che è continua (composizione e prodotto di funzioni continue): quindi $H$ ne è una primitiva.</p>
+          <p><strong>Passo 3 — calcolo i due membri con Newton–Leibniz, uno alla volta.</strong> (Se $g(a)\gt g(b)$ la formula vale lo stesso, con la convenzione degli estremi scambiati del <span class="richiamo" data-sec="4.4">§4.4</span>.)</p>
+          <div class="calcolo">$$\begin{aligned}
+          \int_a^b f\big(g(x)\big)g'(x)\,dx &amp;= H(b)-H(a) &amp;&amp;\text{(primitiva } H)\\
+          &amp;= F\big(g(b)\big)-F\big(g(a)\big) &amp;&amp;\text{(definizione di } H)\\
+          \int_{g(a)}^{g(b)} f(u)\,du &amp;= F\big(g(b)\big)-F\big(g(a)\big) &amp;&amp;\text{(primitiva } F)
+          \end{aligned}$$</div>
+          <p><strong>Conclusione.</strong> I due membri, calcolati separatamente, danno la stessa espressione: sono uguali. La regola della catena, letta al contrario, dice che una primitiva di $f(g(x))\,g'(x)$ si ottiene componendo con $g$ una primitiva di $f$; e agli estremi di integrazione quella primitiva va valutata in $g(a)$ e $g(b)$. <span class="qed">∎</span></p>
+          <p><strong>Un'osservazione.</strong> Non serve che $g$ sia monotona o invertibile. Per esempio con $g(x)=x^2+1$ su $[-1,1]$ si ha $g(-1)=g(1)=2$: il membro di destra è $\int_2^2u^3\,du=0$, e infatti anche $\int_{-1}^1 2x(x^2+1)^3\,dx=0$, perché l'integranda è dispari e l'area sopra e sotto l'asse si compensa. Il fattore $g'(x)$ però serve sempre: è lui che trasforma $dx$ in $du$.</p>
+        </div>
+
         <p><strong>Un esempio completo, con il ricalcolo degli estremi mostrato.</strong> Calcoliamo $\displaystyle\int_0^1 2x\,(x^2+1)^3\,dx$.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Riconosco la struttura.</strong> Dentro c'è $(x^2+1)^3$: una potenza applicata alla funzione interna $x^2+1$. E davanti c'è $2x$, che è esattamente la derivata di $x^2+1$ (la derivata di $x^2$ è $2x$, quella di $1$ è $0$). Siamo nel caso della formula, con $g(x)=x^2+1$ e $f(u)=u^3$.</span>
-          <span class="esempio__passo"><strong>Pongo il nome nuovo</strong>: $u=x^2+1$. Derivo: $\frac{du}{dx}=2x$, che si scrive anche $du=2x\,dx$. Nell'integrale il pezzo $2x\,dx$ c'è tutto, quindi lo sostituisco in blocco con $du$.</span>
-          <span class="esempio__passo"><strong>Ricalcolo i due estremi</strong> — è il passo che non va saltato. Gli estremi $0$ e $1$ erano valori della $x$; ora servono i corrispondenti valori della $u$, che si ottengono sostituendoli nella relazione $u=x^2+1$:</span>
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Dentro c'è $(x^2+1)^3$: una potenza applicata alla funzione interna $x^2+1$. E davanti c'è $2x$, che è esattamente la derivata di $x^2+1$ (la derivata di $x^2$ è $2x$, quella di $1$ è $0$). Quando una funzione composta è moltiplicata per la derivata della sua parte interna, conviene il cambio di variabile, con $g(x)=x^2+1$ e $f(u)=u^3$.</span>
+          <span class="esempio__passo"><strong>Pongo il nome nuovo</strong>: $u=x^2+1$. Derivo: $\frac{du}{dx}=2x$, cioè $du=2x\,dx$. Nell'integrale il pezzo $2x\,dx$ c'è tutto, quindi lo sostituisco in blocco con $du$.</span>
+          <span class="esempio__passo"><strong>Ricalcolo i due estremi</strong>, e non lo salto. Gli estremi $0$ e $1$ erano valori della $x$; ora servono i valori della $u$ che corrispondono, che si ottengono sostituendoli in $u=x^2+1$:</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         x=0 \ &amp;\Longrightarrow\ u = 0^2+1 = 1 &amp;&amp;\text{(nuovo estremo inferiore)}\\
         x=1 \ &amp;\Longrightarrow\ u = 1^2+1 = 2 &amp;&amp;\text{(nuovo estremo superiore)}
         \end{aligned}$$</div>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Riscrivo l'integrale</strong> nella nuova variabile, con i nuovi estremi, e lo calcolo con la formula di Newton–Leibniz (<span class="richiamo" data-sec="4.6">§4.6</span>). Una primitiva di $u^3$ è $\frac{u^4}{4}$ (regola della potenza con $n=3$, cap. 13, sezione 4.3).</span>
+          <span class="esempio__passo"><strong>Riscrivo l'integrale</strong> nella nuova variabile, con i nuovi estremi, e lo calcolo con Newton–Leibniz (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>). Una primitiva di $u^3$ è $\frac{u^4}{4}$ (regola della potenza con $n=3$, cap. 13, sezione 4.3).</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         \int_0^1 2x\,(x^2+1)^3\,dx &amp;= \int_1^2 u^3\,du &amp;&amp;\text{(sostituisco } u \text{, } du \text{ e i due estremi)}\\
@@ -558,11 +962,13 @@
         \frac{u^4}{4}\Big|_{u=1} &amp;= \frac{1^4}{4} = \frac14 &amp;&amp;\text{(sostituisco } u=1\text{, estremo inferiore)}\\
         \int_1^2 u^3\,du &amp;= 4-\frac14 = \frac{16}{4}-\frac14 = \frac{15}{4} &amp;&amp;\text{(differenza: sopra meno sotto)}
         \end{aligned}$$</div>
-        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Se cambi variabile ma <em>lasci gli estremi vecchi</em>, scrivendo $\int_0^1 u^3\,du$, ottieni $\frac{1}{4}-0=\frac14$: un risultato completamente diverso e sbagliato. Gli estremi appartengono alla variabile che stai usando. Le due strade corrette sono: <strong>(A)</strong> cambiare variabile <em>e</em> estremi, come abbiamo fatto; oppure <strong>(B)</strong> trovare la primitiva in $u$, tornare alla $x$ sostituendo $u=x^2+1$ (ottenendo $\frac{(x^2+1)^4}{4}$) e solo allora valutare negli estremi originali $0$ e $1$. Provala: $\frac{(1+1)^4}{4}-\frac{(0+1)^4}{4}=\frac{16}{4}-\frac14=\frac{15}{4}$, lo stesso risultato. Quello che non si può fare è mescolare le due strade.</p>
+        <p><strong>Controllo.</strong> Con l'altra strada: la primitiva in $u$ è $\frac{u^4}{4}$, e tornando alla $x$ diventa $\frac{(x^2+1)^4}{4}$; valutata negli estremi <em>originali</em> dà $\frac{(1+1)^4}{4}-\frac{(0+1)^4}{4}=\frac{16}{4}-\frac14=\frac{15}{4}$. Stesso risultato.</p>
+        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Se cambi variabile ma <em>lasci gli estremi vecchi</em>, scrivendo $\int_0^1 u^3\,du$, ottieni $\frac{1}{4}-0=\frac14$: un risultato completamente diverso e sbagliato. Gli estremi appartengono alla variabile che stai usando. Le due strade corrette sono: <strong>(A)</strong> cambiare variabile <em>e</em> estremi, come abbiamo fatto; oppure <strong>(B)</strong> trovare la primitiva in $u$, tornare alla $x$ sostituendo $u=x^2+1$ e solo allora valutare negli estremi originali $0$ e $1$. Quello che non si può fare è mescolare le due strade.</p>
 
-        <p><strong>Un secondo esempio, in cui la costante va sistemata.</strong> Calcoliamo $\displaystyle\int_0^2 x\sqrt{x^2+1}\,dx$. Qui la derivata interna sarebbe $2x$, ma davanti alla radice c'è solo $x$: manca un fattore $2$. Si aggiusta con la divisione.</p>
+        <p><strong>Un secondo esempio, in cui la costante va sistemata.</strong> Calcoliamo $\displaystyle\int_0^2 x\sqrt{x^2+1}\,dx$.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Pongo</strong> $u=x^2+1$, quindi $du=2x\,dx$. Da qui ricavo il pezzo che mi serve dividendo entrambi i membri per $2$: $x\,dx=\frac{du}{2}$.</span>
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Dentro la radice c'è $x^2+1$, la cui derivata è $2x$; fuori c'è solo $x$, quindi manca un fattore $2$. Non è un problema: un fattore costante si aggiusta moltiplicando e dividendo (o, come faccio qui, dividendo il differenziale).</span>
+          <span class="esempio__passo"><strong>Pongo</strong> $u=x^2+1$, quindi $du=2x\,dx$. Divido entrambi i membri per $2$ per ottenere il pezzo che mi serve: $x\,dx=\frac{du}{2}$.</span>
           <span class="esempio__passo"><strong>Ricalcolo gli estremi</strong> sostituendoli in $u=x^2+1$:</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
@@ -577,13 +983,35 @@
         \frac23 u^{3/2}\Big|_{u=1} &amp;= \frac23\cdot 1 = \frac23 &amp;&amp;\text{(sostituisco } u=1)\\
         \frac12\left(\frac{10\sqrt5}{3}-\frac23\right) &amp;= \frac{10\sqrt5-2}{6} = \frac{5\sqrt5-1}{3} &amp;&amp;\text{(differenza, poi moltiplico per } \tfrac12 \text{ e semplifico per } 2)
         \end{aligned}$$</div>
-        <p>Il risultato è $\frac{5\sqrt5-1}{3}\approx 3{,}39$.</p>
+        <p>Il risultato è $\frac{5\sqrt5-1}{3}\approx 3{,}39$. <strong>Controllo di buon senso:</strong> su $[0,2]$ la funzione $x\sqrt{x^2+1}$ vale $0$ in $0$ e $2\sqrt5\approx4{,}47$ in $2$, quindi l'area deve stare fra $0$ e $4{,}47\cdot2\approx8{,}9$; $3{,}39$ ci sta, ed è anche plausibile perché la funzione resta bassa nella prima metà dell'intervallo.</p>
         <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Nell'integrale $\displaystyle\int_0^1 e^{x^2}\,dx$ la sostituzione $u=x^2$ <em>non</em> si può fare: servirebbe un fattore $2x$ (o almeno un $x$) accanto a $dx$, e qui non c'è. Non tutti gli integrali si risolvono con una sostituzione; anzi, questo in particolare non ha primitiva elementare (lo si può solo stimare, come nell'esercizio 14.16).</p>
 
         <h4>4.7.2 Integrazione per parti</h4>
         <p>La seconda tecnica del cap. 13 (sezione 4.6) si adatta agli estremi in modo semplice: il pezzo "già integrato" va valutato agli estremi con le parentesi quadre, esattamente come in Newton–Leibniz.</p>
-        <div class="formula-block">$$\int_a^b u(x)\,v'(x)\,dx \;=\; \big[\,u(x)\,v(x)\,\big]_a^b-\int_a^b u'(x)\,v(x)\,dx$$</div>
-        <p><strong>Esempio.</strong> Calcoliamo $\displaystyle\int_0^1 x\,e^{x}\,dx$. Scelgo $u(x)=x$ (che derivando si semplifica: $u'(x)=1$) e $v'(x)=e^x$ (di cui so la primitiva: $v(x)=e^x$).</p>
+        <div class="box-teorema box-teorema--proposizione">
+          <span class="box-teorema__label">Proposizione</span>
+          <p><em class="nome">Integrazione per parti nell'integrale definito.</em> Se $u$ e $v$ sono derivabili con derivata continua su $[a,b]$, allora</p>
+          <div class="formula-block">$$\int_a^b u(x)\,v'(x)\,dx \;=\; \big[\,u(x)\,v(x)\,\big]_a^b-\int_a^b u'(x)\,v(x)\,dx.$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> La formula per parti, cioè che l'integrale di $u\,v'$ si può riscrivere come un termine di bordo $\big[uv\big]_a^b$ meno l'integrale con le parti "scambiate", $u'v$.</p>
+          <p><strong>L'idea.</strong> È la regola del prodotto letta al contrario. La derivata di $u\,v$ è $u'v+u\,v'$: quindi $u\,v$ è una primitiva di $u'v+u\,v'$, e integrando fra $a$ e $b$ con Newton–Leibniz il termine $u\,v$ entra <em>valutato agli estremi</em>. Da questa uguaglianza basta isolare l'integrale che vogliamo.</p>
+          <p><strong>Passo 1 — regola del prodotto.</strong> $\big(u\,v\big)'=u'v+u\,v'$. Entrambi gli addendi sono continui (le derivate lo sono per ipotesi).</p>
+          <p><strong>Passo 2 — integro i due membri da $a$ a $b$.</strong> A sinistra uso Newton–Leibniz, perché $u\,v$ è una primitiva di $(u\,v)'$; a destra uso la linearità (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
+          <div class="calcolo">$$\begin{aligned}
+          \big[\,u\,v\,\big]_a^b &amp;= \int_a^b\big(u'v+u\,v'\big)\,dx &amp;&amp;\text{(Newton–Leibniz a sinistra)}\\
+          &amp;= \int_a^b u'v\,dx+\int_a^b u\,v'\,dx &amp;&amp;\text{(linearità)}
+          \end{aligned}$$</div>
+          <p><strong>Passo 3 — isolo l'integrale che mi interessa.</strong> Sottraggo $\int_a^b u'v$ da entrambi i membri.</p>
+          <div class="calcolo">$$\int_a^b u\,v'\,dx=\big[\,u\,v\,\big]_a^b-\int_a^b u'v\,dx.$$</div>
+          <p><strong>Conclusione.</strong> La formula per parti è la regola del prodotto, integrata fra $a$ e $b$. Il termine $\big[uv\big]_a^b$ non resta dentro l'integrale: va valutato agli estremi, come ogni primitiva. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Esempio.</strong> Calcoliamo $\displaystyle\int_0^1 x\,e^{x}\,dx$.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Il prodotto di un polinomio e di un'esponenziale: nessuna funzione interna con la sua derivata accanto, quindi non è una sostituzione. È il caso tipico dell'integrazione per parti.</span>
+          <span class="esempio__passo"><strong>Scelgo i ruoli.</strong> Prendo $u(x)=x$, che derivando si semplifica ($u'(x)=1$), e $v'(x)=e^x$, di cui conosco la primitiva ($v(x)=e^x$). Così l'integrale che resta, $\int u'v=\int e^x$, è più semplice di quello di partenza.</span>
+        </p>
         <div class="calcolo">$$\begin{aligned}
         \int_0^1 x e^{x}\,dx &amp;= \big[x e^{x}\big]_0^1-\int_0^1 1\cdot e^{x}\,dx &amp;&amp;\text{(formula per parti con } u=x,\ v=e^x)\\
         x e^x\big|_{x=1} &amp;= 1\cdot e^1 = e &amp;&amp;\text{(sostituisco } x=1 \text{ nel pezzo già integrato)}\\
@@ -592,7 +1020,15 @@
         \int_0^1 e^{x}\,dx &amp;= e^1-e^0 = e-1 &amp;&amp;\text{(primitiva } e^x\text{: sostituisco } x=1\text{, poi } x=0\text{, e sottraggo)}\\
         \int_0^1 x e^{x}\,dx &amp;= e-(e-1) = 1 &amp;&amp;\text{(tolgo la parentesi: } -e+1)
         \end{aligned}$$</div>
-        <p>Il risultato è esattamente $1$.</p>
+        <p>Il risultato è esattamente $1$. <strong>Controllo:</strong> su $[0,1]$ la funzione $xe^x$ vale $0$ in $0$ e $e\approx2{,}72$ in $1$ ed è crescente, quindi l'area sta fra $0$ e $2{,}72$; $1$ è plausibile.</p>
+        <p><strong>Un secondo esempio, con un trucco.</strong> Calcoliamo $\displaystyle\int_1^e\ln x\,dx$. Non compare nessun prodotto, ma possiamo crearlo: $\ln x=\ln x\cdot1$. Prendo $u=\ln x$ (che derivando diventa $\frac1x$, più semplice) e $v'=1$ (quindi $v=x$).</p>
+        <div class="calcolo">$$\begin{aligned}
+        \int_1^e\ln x\cdot1\,dx &amp;= \big[x\ln x\big]_1^e-\int_1^e\frac1x\cdot x\,dx &amp;&amp;\text{(per parti)}\\
+        &amp;= \big(e\cdot1-1\cdot0\big)-\int_1^e1\,dx &amp;&amp;\text{(} \ln e=1,\ \ln1=0\text{; semplifico } \tfrac1x\cdot x)\\
+        &amp;= e-(e-1)=1 &amp;&amp;\text{(} \int_1^e1\,dx=e-1)
+        \end{aligned}$$</div>
+        <p>Controllo con la derivata: una primitiva di $\ln x$ è $x\ln x-x$, e infatti $(x\ln x-x)'=\ln x+1-1=\ln x$; valutata fra $1$ e $e$ dà $(e-e)-(0-1)=1$.</p>
+
 
         <h3 id="teoria-impropri">4.8 Integrali impropri</h3>
         <p><strong>Prima l'idea.</strong> La definizione del <span class="richiamo" data-sec="4.1.3">§4.1.3</span> chiede due cose: che l'intervallo $[a,b]$ sia limitato (due estremi finiti) e che la funzione sia limitata (non scappi all'infinito). Ma a volte servono aree di regioni che si estendono all'infinito verso destra, oppure che si allungano verso l'alto lungo un asintoto verticale. In questi casi la definizione non è applicabile così com'è, e allora si fa una cosa onesta: si calcola l'area di un pezzo <em>finito</em> e poi si guarda cosa succede facendo crescere quel pezzo. Cioè si fa un <span class="glossario-term" data-term="limite">limite</span>.</p>
@@ -611,9 +1047,10 @@
         </div>
         <p><strong>Esempio-guida che converge.</strong> Calcoliamo $\displaystyle\int_1^{+\infty}\frac{1}{x^2}\,dx$.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Imposto il limite</strong>, perché l'estremo superiore è infinito: $\int_1^{+\infty}\frac{dx}{x^2}=\lim_{N\to+\infty}\int_1^{N}\frac{dx}{x^2}$. Da adesso lavoro sull'intervallo $[1,N]$, che è un intervallo normale, con due estremi finiti.</span>
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> L'estremo superiore è $+\infty$, quindi non posso applicare direttamente la definizione di integrale: è un integrale improprio di prima specie. Lo trasformo in un limite di integrali normali.</span>
+          <span class="esempio__passo"><strong>Imposto il limite</strong>: $\int_1^{+\infty}\frac{dx}{x^2}=\lim_{N\to+\infty}\int_1^{N}\frac{dx}{x^2}$. Da adesso lavoro sull'intervallo $[1,N]$, che è un intervallo normale, con due estremi finiti.</span>
           <span class="esempio__passo"><strong>Cerco la primitiva.</strong> Riscrivo $\frac{1}{x^2}=x^{-2}$ (potenza a esponente negativo, Parte 0, cap. 3) e uso la regola della potenza (cap. 13, sezione 4.3) con $n=-2$: $\frac{x^{-2+1}}{-2+1}=\frac{x^{-1}}{-1}=-\frac1x$. Verifico derivando: la derivata di $-x^{-1}$ è $+x^{-2}=\frac{1}{x^2}$. ✓</span>
-          <span class="esempio__passo"><strong>Applico Newton–Leibniz sull'intervallo finito</strong>, con i due calcoli separati:</span>
+          <span class="esempio__passo"><strong>Applico Newton–Leibniz sull'intervallo finito</strong>, con i due calcoli separati, e poi faccio il limite:</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         G(N) &amp;= -\frac1N &amp;&amp;\text{(sostituisco } x=N\text{, estremo superiore)}\\
@@ -625,8 +1062,8 @@
 
         <p><strong>Esempio-guida che diverge.</strong> Adesso $\displaystyle\int_1^{+\infty}\frac{1}{x}\,dx$, che somiglia moltissimo al precedente.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Imposto il limite</strong>: $\int_1^{+\infty}\frac{dx}{x}=\lim_{N\to+\infty}\int_1^{N}\frac{dx}{x}$.</span>
-          <span class="esempio__passo"><strong>La primitiva</strong> di $\frac1x$ è $\ln x$ (per $x\gt0$): è il caso $n=-1$, l'unico escluso dalla regola della potenza, e si riconosce dalla derivata $(\ln x)'=\frac1x$ (cap. 7).</span>
+          <span class="esempio__passo"><strong>Imposto il limite</strong>, come prima: $\int_1^{+\infty}\frac{dx}{x}=\lim_{N\to+\infty}\int_1^{N}\frac{dx}{x}$.</span>
+          <span class="esempio__passo"><strong>La primitiva</strong> di $\frac1x$ è $\ln x$ (per $x\gt0$): è il caso $n=-1$, l'unico escluso dalla regola della potenza, e si riconosce dalla derivata $(\ln x)'=\frac1x$ (cap. 7). Poi i due calcoli separati e il limite:</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         G(N) &amp;= \ln N &amp;&amp;\text{(sostituisco } x=N)\\
@@ -652,8 +1089,28 @@
           <p><strong>Non conta che la funzione vada a zero: conta quanto in fretta ci va.</strong> E c'è un modo esatto di dirlo per $\frac1x$: ogni volta che <em>raddoppi</em> il punto in cui ti fermi, aggiungi sempre la stessa quantità di area, perché $\ln(2N)-\ln N=\ln 2\approx0{,}69$. Da $1$ a $2$ guadagni $0{,}69$; da $2$ a $4$ ancora $0{,}69$; da $4$ a $8$ di nuovo $0{,}69$, e così via senza fine: ecco perché il totale non può fermarsi da nessuna parte. Sotto $\frac{1}{x^2}$, invece, l'altezza cala tanto più in fretta che i contributi si rimpiccioliscono davvero, e la somma di tutti loro è finita.</p>
         </div>
 
-        <p>La regola generale, che si dimostra allo stesso modo, è:</p>
-        <div class="formula-block">$$\int_1^{+\infty}\frac{1}{x^p}\,dx \quad\text{converge se e solo se}\quad p\gt1.$$</div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">La regola generale da $1$ a $+\infty$.</em> Per ogni numero reale $p$,</p>
+          <div class="formula-block">$$\int_1^{+\infty}\frac{1}{x^p}\,dx \quad\text{converge se e solo se}\quad p\gt1,\qquad\text{e in tal caso vale}\quad\frac{1}{p-1}.$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per casi)</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Per quali esponenti $p$ l'area sotto $\frac{1}{x^p}$, da $1$ a $+\infty$, è finita. Sui casi $p=1$ e $p=2$ lo sappiamo già; vogliamo la risposta per tutti i $p$.</p>
+          <p><strong>L'idea.</strong> Per definizione dobbiamo calcolare $\lim_{N\to+\infty}\int_1^N x^{-p}\,dx$. La primitiva di $x^{-p}$ la conosciamo, ma ha <em>forma diversa</em> a seconda dei valori di $p$: la regola della potenza non vale per l'esponente $-1$, cioè per $p=1$, dove la primitiva è un logaritmo. Per questo la dimostrazione procede per casi: prima $p\ne1$ (e dentro questo caso il comportamento di $N^{1-p}$ dipende dal segno di $1-p$), poi $p=1$.</p>
+          <p><strong>Passo 1 — il caso $p\ne1$: calcolo l'integrale su $[1,N]$.</strong> La primitiva di $x^{-p}$ è $\frac{x^{1-p}}{1-p}$ (regola della potenza con $n=-p$).</p>
+          <div class="calcolo">$$\begin{aligned}
+          \int_1^N x^{-p}\,dx &amp;= \left[\frac{x^{1-p}}{1-p}\right]_1^N &amp;&amp;\text{(Newton–Leibniz)}\\
+          &amp;= \frac{N^{1-p}-1}{1-p} &amp;&amp;\text{(} 1^{1-p}=1)
+          \end{aligned}$$</div>
+          <p><strong>Passo 2 — se $p\gt1$.</strong> Allora $1-p\lt0$, quindi $N^{1-p}=\frac{1}{N^{p-1}}$ con $p-1\gt0$: il denominatore cresce senza limite e $N^{1-p}\to0$.</p>
+          <div class="calcolo">$$\lim_{N\to+\infty}\frac{N^{1-p}-1}{1-p}=\frac{0-1}{1-p}=\frac{1}{p-1}.$$</div>
+          <p>Il limite è finito: l'integrale converge e vale $\frac{1}{p-1}$.</p>
+          <p><strong>Passo 3 — se $p\lt1$.</strong> Allora $1-p\gt0$, quindi $N^{1-p}\to+\infty$. Dividendo per $1-p$, che è un numero positivo, il risultato resta $+\infty$: l'integrale diverge. (Rientrano qui anche gli esponenti $p\le0$, dove $x^{-p}$ cresce.)</p>
+          <p><strong>Passo 4 — il caso $p=1$.</strong> La primitiva di $\frac1x$ è $\ln x$, quindi $\int_1^N\frac{dx}{x}=\ln N-\ln1=\ln N\to+\infty$: diverge.</p>
+          <p><strong>Controllo numerico.</strong> Per $p=2$ la formula dà $\frac{1}{2-1}=1$, come nell'esempio-guida. Per $p=3$ dà $\frac12$: infatti $\int_1^N x^{-3}\,dx=\frac{1-N^{-2}}{2}$, che per $N=100$ vale $0{,}49995$. Per $p=\frac32$ dà $2$: con $N=10^6$ l'area accumulata è $2(1-10^{-3})=1{,}998$.</p>
+          <p><strong>Conclusione.</strong> Il limite è finito solo nel Passo 2, cioè per $p\gt1$, e allora vale $\frac{1}{p-1}$; per $p\le1$ è $+\infty$. <span class="qed">∎</span> Il confine è $p=1$: appena sotto, la funzione decresce troppo lentamente; appena sopra, abbastanza in fretta da avere area finita.</p>
+        </div>
 
         <h4>4.8.2 Seconda specie: la funzione è illimitata</h4>
         <p>Se $f$ è continua su $(a,b]$ ma esplode avvicinandosi ad $a$ (asintoto verticale in $a$), ci si ferma a una distanza $\varepsilon$ dalla singolarità e poi si fa scivolare $\varepsilon$ a zero:</p>
@@ -661,7 +1118,7 @@
         <p>(Se invece la singolarità è nell'estremo superiore $b$, si scrive simmetricamente $\lim_{\varepsilon\to0^+}\int_a^{b-\varepsilon}f$.) Vale la stessa raccomandazione di prima: il limite si scrive sempre, e la lettera $\varepsilon$ compare negli estremi al posto del punto proibito.</p>
         <p><strong>Esempio-guida che converge.</strong> Calcoliamo $\displaystyle\int_0^{1}\frac{1}{\sqrt{x}}\,dx$, dove la funzione esplode in $x=0$.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Riconosco la singolarità</strong>: per $x\to0^+$ il denominatore $\sqrt x$ tende a $0$, quindi la funzione tende a $+\infty$. L'estremo inferiore è quello "malato", perciò imposto $\int_0^1 f=\lim_{\varepsilon\to0^+}\int_{\varepsilon}^{1}f$.</span>
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Gli estremi sono finiti, ma per $x\to0^+$ il denominatore $\sqrt x$ tende a $0$, quindi la funzione tende a $+\infty$: è un integrale improprio di seconda specie. L'estremo "malato" è quello inferiore, quindi parto da $\varepsilon\gt0$ e poi mando $\varepsilon\to0^+$: $\int_0^1 f=\lim_{\varepsilon\to0^+}\int_{\varepsilon}^{1}f$.</span>
           <span class="esempio__passo"><strong>La primitiva.</strong> Riscrivo $\frac{1}{\sqrt x}=x^{-1/2}$ e applico la regola della potenza con $n=-\frac12$: $\frac{x^{-1/2+1}}{-1/2+1}=\frac{x^{1/2}}{1/2}=2x^{1/2}=2\sqrt x$ (dividere per $\frac12$ equivale a moltiplicare per $2$).</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
@@ -679,226 +1136,102 @@
         \lim_{\varepsilon\to0^+}\big(-\ln\varepsilon\big) &amp;= +\infty &amp;&amp;\text{(} \ln\varepsilon\to-\infty\text{, quindi il suo opposto va a } +\infty)
         \end{aligned}$$</div>
         <p>L'integrale diverge. Qui la regola è <em>specchiata</em> rispetto alla prima specie:</p>
-        <div class="formula-block">$$\int_0^{1}\frac{1}{x^p}\,dx \quad\text{converge se e solo se}\quad p\lt1.$$</div>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema</span>
+          <p><em class="nome">La regola generale da $0$ a $1$.</em> Per ogni numero reale $p$,</p>
+          <div class="formula-block">$$\int_0^{1}\frac{1}{x^p}\,dx \quad\text{converge se e solo se}\quad p\lt1,\qquad\text{e in tal caso vale}\quad\frac{1}{1-p}.$$</div>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione (per casi)</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Per quali esponenti $p$ l'area sotto $\frac{1}{x^p}$, da $0$ a $1$, è finita, quando la funzione esplode (o meno) in $x=0$.</p>
+          <p><strong>L'idea.</strong> Stessa struttura del caso precedente: calcolo l'integrale su $[\varepsilon,1]$ con la primitiva, poi faccio $\varepsilon\to0^+$. Di nuovo la primitiva ha forma diversa per $p=1$ (logaritmo) e per $p\ne1$ (potenza), quindi si procede per casi.</p>
+          <p><strong>Passo 1 — il caso $p\ne1$.</strong> Con la primitiva $\frac{x^{1-p}}{1-p}$:</p>
+          <div class="calcolo">$$\int_{\varepsilon}^{1}x^{-p}\,dx=\left[\frac{x^{1-p}}{1-p}\right]_{\varepsilon}^{1}=\frac{1-\varepsilon^{1-p}}{1-p}.$$</div>
+          <p><strong>Passo 2 — se $p\lt1$.</strong> Allora $1-p\gt0$ e $\varepsilon^{1-p}\to0$ quando $\varepsilon\to0^+$ (un numero che tende a $0$ elevato a un esponente positivo). Il limite è $\frac{1-0}{1-p}=\frac{1}{1-p}$: finito, l'integrale converge. (Per $p\le0$ non c'è nemmeno una vera singolarità: la funzione è continua su tutto $[0,1]$.)</p>
+          <p><strong>Passo 3 — se $p\gt1$.</strong> Allora $1-p\lt0$, quindi $\varepsilon^{1-p}=\frac{1}{\varepsilon^{p-1}}$ con $p-1\gt0$: il denominatore tende a $0^+$ e $\varepsilon^{1-p}\to+\infty$. Riscrivo il risultato come $\frac{\varepsilon^{1-p}-1}{p-1}$, che tende a $+\infty$: l'integrale diverge.</p>
+          <p><strong>Passo 4 — il caso $p=1$.</strong> $\int_\varepsilon^1\frac{dx}{x}=\ln1-\ln\varepsilon=-\ln\varepsilon\to+\infty$ per $\varepsilon\to0^+$: diverge.</p>
+          <p><strong>Controllo numerico.</strong> Per $p=\frac12$ la formula dà $\frac{1}{1-1/2}=2$, come nell'esempio-guida. Per $p=\frac13$ dà $\frac32$: infatti $\int_\varepsilon^1x^{-1/3}\,dx=\frac32\big(1-\varepsilon^{2/3}\big)$, che per $\varepsilon=10^{-6}$ vale $1{,}5\cdot(1-10^{-4})=1{,}49985$.</p>
+          <p><strong>Conclusione.</strong> Il limite è finito solo per $p\lt1$, e vale $\frac{1}{1-p}$. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Perché la regola è proprio specchiata.</strong> Non è una coincidenza: il cambio di variabile $u=\frac1x$ (<span class="richiamo" data-sec="4.7.1">§4.7.1</span>) trasforma un integrale nell'altro. Con $x=\frac1u$ si ha $dx=-\frac{du}{u^2}$ e $x^{-p}=u^{p}$; gli estremi $x=\varepsilon$ e $x=1$ diventano $u=\frac1\varepsilon$ e $u=1$. Allora</p>
+        <div class="calcolo">$$\int_{\varepsilon}^{1}x^{-p}\,dx=\int_{1/\varepsilon}^{1}u^{p}\left(-\frac{1}{u^2}\right)du=\int_{1}^{1/\varepsilon}u^{-(2-p)}\,du.$$</div>
+        <p>Per $\varepsilon\to0^+$ l'estremo $\frac1\varepsilon$ va a $+\infty$ e si ottiene la prima specie con esponente $2-p$: converge se e solo se $2-p\gt1$, cioè $p\lt1$. Esattamente quanto abbiamo dimostrato.</p>
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Come si riconosce un integrale improprio</div>
           <p>Due controlli-lampo, da fare <em>prima</em> di calcolare. <strong>(1)</strong> Uno degli estremi è $+\infty$ o $-\infty$? <strong>(2)</strong> La funzione esplode in un punto dell'intervallo, estremi compresi (denominatori che si annullano, $\ln$ di zero, radici di indice pari di quantità che si annullano al denominatore)? Se la risposta a una delle due è sì, l'integrale è improprio e va impostato con il limite. Se la singolarità è <em>interna</em> all'intervallo, spezza l'integrale in quel punto e studia i due pezzi separatamente: basta che uno solo diverga perché diverga tutto.</p>
         </div>
 
         <h4>4.8.3 Il criterio del confronto</h4>
-        <p>Spesso non serve calcolare l'integrale improprio: basta stabilire <em>se</em> converge. Si confronta la funzione con una di cui già conosciamo il comportamento, sfruttando la monotonia (<span class="richiamo" data-sec="4.4">§4.4</span>): se $0\le f(x)\le g(x)$ e $\int g$ converge, allora anche $\int f$ converge (un'area più piccola di una finita è finita); se invece $f(x)\ge g(x)\ge 0$ e $\int g$ diverge, allora anche $\int f$ diverge (un'area più grande di una infinita è infinita).</p>
-        <p><strong>Esempio.</strong> Mostriamo che $\displaystyle\int_1^{+\infty}e^{-x^2}\,dx$ converge, pur non sapendo calcolarlo (la funzione $e^{-x^2}$ non ha primitiva elementare). Cerchiamo una funzione più grande e più facile.</p>
+        <p>Spesso non serve calcolare l'integrale improprio: basta stabilire <em>se</em> converge. Si confronta la funzione con una di cui già conosciamo il comportamento. L'idea è la stessa del confronto fra serie: un'area più piccola di un'area finita è finita; un'area più grande di un'area infinita è infinita.</p>
+        <div class="box-teorema">
+          <span class="box-teorema__label">Teorema (criterio del confronto)</span>
+          <p>Siano $f$ e $g$ continue su $[a,+\infty)$ con $0\le f(x)\le g(x)$. Allora:</p>
+          <ul>
+            <li>se $\displaystyle\int_a^{+\infty}g$ converge, converge anche $\displaystyle\int_a^{+\infty}f$ (e $\int f\le\int g$);</li>
+            <li>se $\displaystyle\int_a^{+\infty}f$ diverge, diverge anche $\displaystyle\int_a^{+\infty}g$.</li>
+          </ul>
+          <p>Lo stesso vale per gli integrali impropri di seconda specie, con $\varepsilon\to0^+$ al posto di $N\to+\infty$.</p>
+        </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che confrontando le due funzioni rigo per rigo, la convergenza dell'integrale della più grande si trasmette a quello della più piccola, e la divergenza di quello della più piccola si trasmette alla più grande.</p>
+          <p><strong>L'idea.</strong> Un integrale improprio è un limite, e un limite potrebbe non esistere. Ma per una funzione non negativa i guai sono esclusi: la funzione $N\mapsto\int_a^N f$ <em>non può mai scendere</em> (si aggiunge area non negativa) e una funzione che non scende ha sempre un limite, finito se è limitata e $+\infty$ altrimenti. Quindi per $f\ge0$ ci sono solo due destini, converge o diverge a $+\infty$, e non resta che confrontare i valori: $\int_a^N f\le\int_a^N g$ per ogni $N$.</p>
+          <p><strong>Passo 1 — l'area accumulata non scende.</strong> Chiamo $\Phi(N)=\int_a^N f$. Se $N\lt N'$, per l'additività $\Phi(N')-\Phi(N)=\int_N^{N'}f\ge0$, perché $f\ge0$. Quindi $\Phi$ è crescente.</p>
+          <p><strong>Passo 2 — una funzione crescente ha limite a $+\infty$.</strong> Se $\Phi$ è limitata superiormente, sia $L$ il suo estremo superiore. Fissato $\varepsilon\gt0$, per definizione di estremo superiore esiste $N_0$ con $\Phi(N_0)\gt L-\varepsilon$; per $N\gt N_0$, essendo $\Phi$ crescente, vale $L-\varepsilon\lt\Phi(N_0)\le\Phi(N)\le L$. Quindi $\Phi(N)\to L$: il limite è finito. Se invece $\Phi$ non è limitata, per ogni numero $K$ esiste $N_0$ con $\Phi(N_0)\gt K$ e quindi $\Phi(N)\gt K$ per $N\gt N_0$: $\Phi(N)\to+\infty$. Lo stesso vale per $\Psi(N)=\int_a^N g$.</p>
+          <p><strong>Passo 3 — la convergenza di $g$ si trasmette a $f$.</strong> Per la monotonia (<span class="richiamo" data-sec="4.4">§4.4</span>), $\Phi(N)\le\Psi(N)$ per ogni $N$. Se $\int_a^{+\infty}g$ converge, $\Psi$ è crescente e tende a un numero $G$, quindi $\Psi(N)\le G$ per ogni $N$ (una funzione crescente non supera mai il suo limite). Allora $\Phi(N)\le G$: $\Phi$ è limitata superiormente e, per il Passo 2, ha un limite finito, che è $\le G$.</p>
+          <p><strong>Passo 4 — la divergenza di $f$ si trasmette a $g$.</strong> È la stessa affermazione letta al contrario: se $\int f$ diverge, $\int g$ non può convergere, altrimenti per il Passo 3 convergerebbe anche $\int f$.</p>
+          <p><strong>Conclusione.</strong> Le due affermazioni del teorema sono dimostrate. Per la seconda specie, con la singolarità in $a$, si ripete tutto con $\Phi(\varepsilon)=\int_{a+\varepsilon}^b f$, che cresce al diminuire di $\varepsilon$ (si aggiunge area man mano che ci si avvicina alla singolarità). <span class="qed">∎</span></p>
+          <p><strong>Dove si usa $f\ge0$.</strong> Nel Passo 1: senza il segno non c'è garanzia che l'area accumulata non scenda, e il limite potrebbe non esistere. Se la funzione cambia segno servono altri strumenti (la convergenza assoluta), che vanno oltre questo capitolo.</p>
+        </div>
+
+        <p><strong>Esempio.</strong> Mostriamo che $\displaystyle\int_1^{+\infty}e^{-x^2}\,dx$ converge, pur non sapendo calcolarlo (la funzione $e^{-x^2}$ non ha primitiva elementare).</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Mi chiedono solo <em>se</em> converge, e non so trovare una primitiva: è il momento del confronto. La funzione è positiva, quindi cerco una funzione più grande, di cui so calcolare l'integrale.</span>
+          <span class="esempio__passo"><strong>Trovo la funzione più grande.</strong> Per $x\ge1$ voglio confrontare $e^{-x^2}$ con $e^{-x}$. Parto da $x\ge1$ e moltiplico per $x$ (positivo, il verso non cambia) per ottenere $x^2\ge x$; poi cambio segno (il verso si inverte) e applico l'esponenziale, che è crescente (il verso non cambia).</span>
+        </p>
         <div class="calcolo">$$\begin{aligned}
         x &amp;\ge 1 &amp;&amp;\text{(siamo nell'intervallo di integrazione)}\\
-        x^2 &amp;\ge x &amp;&amp;\text{(moltiplico entrambi i membri per } x\text{, che è positivo: il verso resta)}\\
+        x^2 &amp;\ge x &amp;&amp;\text{(moltiplico per } x\gt0\text{: verso invariato)}\\
         -x^2 &amp;\le -x &amp;&amp;\text{(moltiplico per } -1\text{: il verso si inverte)}\\
-        e^{-x^2} &amp;\le e^{-x} &amp;&amp;\text{(applico } e^{(\cdot)}\text{, che è crescente: il verso resta)}
+        e^{-x^2} &amp;\le e^{-x} &amp;&amp;\text{(} e^{(\cdot)} \text{ è crescente: verso invariato)}
         \end{aligned}$$</div>
-        <p>Ora basta vedere che la funzione più grande ha area finita, e per quella la primitiva la conosciamo: una primitiva di $e^{-x}$ è $-e^{-x}$, perché derivandola con la regola della catena (cap. 7, sezione 4.7) si ottiene $-e^{-x}\cdot(-1)=e^{-x}$.</p>
+        <p class="esempio__passi">
+          <span class="esempio__passo"><strong>Calcolo l'integrale della funzione più grande.</strong> Una primitiva di $e^{-x}$ è $-e^{-x}$, perché derivandola con la regola della catena (cap. 7, sezione 4.7) si ottiene $-e^{-x}\cdot(-1)=e^{-x}$. Poi la solita impostazione con il limite:</span>
+        </p>
         <div class="calcolo">$$\begin{aligned}
         G(N) &amp;= -e^{-N} &amp;&amp;\text{(sostituisco } x=N)\\
         G(1) &amp;= -e^{-1} &amp;&amp;\text{(sostituisco } x=1)\\
         \int_1^{N}e^{-x}\,dx &amp;= -e^{-N}-(-e^{-1}) = e^{-1}-e^{-N} &amp;&amp;\text{(differenza)}\\
         \lim_{N\to+\infty}\big(e^{-1}-e^{-N}\big) &amp;= e^{-1}-0 = \frac1e &amp;&amp;\text{(} e^{-N}\to0 \text{ perché l'esponente va a } -\infty)
         \end{aligned}$$</div>
-        <p>L'integrale di confronto converge (vale $\frac1e\approx0{,}368$), quindi anche $\int_1^{+\infty}e^{-x^2}\,dx$ converge, e in più sappiamo che il suo valore è minore di $\frac1e$. Non sappiamo quanto vale esattamente, ma sappiamo che esiste: spesso, in Analisi, è tutto ciò che serve.</p>
-      </section>
-
-      <!-- 5. DIMOSTRAZIONI -->
-      <section class="section" id="dimostrazioni">
-        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
-        <p>Cinque dimostrazioni, in quest'ordine: prima calcoliamo un integrale <em>dalla definizione</em>, per vedere che la macchina funziona davvero; poi la proprietà di monotonia; poi le due parti del Teorema Fondamentale; infine la formula del cambio di variabile. Ognuna comincia dicendo che cosa vuole dimostrare e con quale strategia.</p>
-
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Calcolo dalla definizione</span>
-          <p><em class="nome">L'integrale come limite di somme, su un caso concreto.</em> $\displaystyle\int_0^1 x\,dx=\frac12$, calcolato senza il Teorema Fondamentale, direttamente dalle somme di Riemann.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (somma con $n$ generico, poi limite)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che il numero verso cui si stabilizzano le somme di rettangoli, per la funzione $f(x)=x$ sull'intervallo da $0$ a $1$, è esattamente $\frac12$. Nel <span class="richiamo" data-sec="4.1.2">§4.1.2</span> lo avevamo visto <em>sui numeri</em>, con $4$, $10$, $20$, $100$ e $1000$ rettangoli: ma una tabella, per quanto convincente, non è una dimostrazione. Qui lo facciamo valere per <em>ogni</em> numero di rettangoli in una volta sola.</p>
-          <p><strong>Idea della strategia.</strong> Invece di scegliere un numero preciso di fettine, ne prendiamo $n$, con $n$ qualsiasi. Calcoliamo la somma di Riemann e la semplifichiamo finché diventa una formula in $n$; a quel punto mandare $n\to\infty$ è facile. Il passaggio delicato è sommare $1+2+\cdots+n$: lo faremo con il trucco delle coppie già incontrato nel <span class="richiamo" data-sec="4.1.2">§4.1.2</span>. Non usiamo il Teorema Fondamentale, perché lo dimostreremo dopo e sarebbe un ragionamento circolare.</p>
-          <p><strong>Cosa ci servirà.</strong> Le formule della partizione uniforme, $\Delta x=\frac{b-a}{n}$ e $x_i=a+i\,\Delta x$ (<span class="richiamo" data-sec="4.1.3">§4.1.3</span>); la definizione di integrale come limite delle somme di Riemann (<span class="richiamo" data-sec="4.1.3">§4.1.3</span>); la proprietà distributiva per raccogliere un fattore comune (Parte 0, cap. 2); il limite $\frac{1}{n}\to0$ per $n\to\infty$ (cap. 4).</p>
-
-          <p><em>Passo 1: preparo la partizione.</em> Divido $[0,1]$ in $n$ parti uguali e scrivo larghezza e punti, sostituendo $a=0$ e $b=1$ nelle formule della partizione uniforme.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \Delta x &amp;= \frac{b-a}{n} = \frac{1-0}{n} = \frac1n &amp;&amp;\text{(larghezza di ogni fettina)}\\
-          x_i &amp;= a+i\,\Delta x = 0+i\cdot\frac1n = \frac{i}{n} &amp;&amp;\text{(punto di divisione numero } i)
-          \end{aligned}$$</div>
-          <p>Come punto campione scelgo l'estremo destro di ogni fettina, cioè $c_i=x_i=\frac in$ (potrei sceglierne un altro: la definizione dice che il risultato non cambia).</p>
-
-          <p><em>Passo 2: scrivo la somma di Riemann e la semplifico.</em> Siccome $f(x)=x$, il valore della funzione in un punto è il punto stesso: $f(c_i)=c_i=\frac in$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          S_n &amp;= \sum_{i=1}^{n} f(c_i)\,\Delta x &amp;&amp;\text{(definizione di somma di Riemann, §4.1.3)}\\
-          &amp;= \sum_{i=1}^{n}\frac{i}{n}\cdot\frac1n &amp;&amp;\text{(sostituisco } f(c_i)=\tfrac in \text{ e } \Delta x=\tfrac1n)\\
-          &amp;= \frac{1}{n^2}\sum_{i=1}^{n} i &amp;&amp;\text{(raccolgo } \tfrac1n\cdot\tfrac1n=\tfrac{1}{n^2}\text{: è costante rispetto a } i)
-          \end{aligned}$$</div>
-          <p>Il raccoglimento è lecito perché $n$ è fissato mentre l'indice $i$ varia: dentro la somma l'unica cosa che cambia è $i$. Resta da calcolare $\sum_{i=1}^n i$, cioè $1+2+\cdots+n$.</p>
-
-          <p><em>Passo 3: la somma dei primi $n$ interi (formula di Gauss).</em> La dimostriamo, invece di darla per buona. Scrivo la somma due volte, la seconda al contrario, e sommo colonna per colonna.</p>
-          <div class="calcolo">$$\begin{aligned}
-          S &amp;= 1+2+3+\cdots+n &amp;&amp;\text{(la somma, scritta in avanti)}\\
-          S &amp;= n+(n-1)+(n-2)+\cdots+1 &amp;&amp;\text{(la stessa somma, scritta all'indietro)}\\
-          2S &amp;= \underbrace{(n+1)+(n+1)+\cdots+(n+1)}_{n \text{ addendi}} &amp;&amp;\text{(sommo le due righe: ogni colonna fa } n+1)\\
-          2S &amp;= n\,(n+1) &amp;&amp;\text{(} n \text{ addendi tutti uguali a } n+1)\\
-          S &amp;= \frac{n(n+1)}{2} &amp;&amp;\text{(divido entrambi i membri per } 2)
-          \end{aligned}$$</div>
-          <p>È lo stesso trucco delle coppie usato nel <span class="richiamo" data-sec="4.1.2">§4.1.2</span> con i numeri: lì, per $n=10$, avevamo $\frac{10\cdot11}{2}=55$, e infatti le altezze sommavano $5{,}5=0{,}1\cdot55$.</p>
-
-          <p><em>Passo 4: metto la formula di Gauss dentro la somma di Riemann.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          S_n &amp;= \frac{1}{n^2}\cdot\frac{n(n+1)}{2} &amp;&amp;\text{(sostituisco } \textstyle\sum i=\frac{n(n+1)}{2})\\
-          &amp;= \frac{n(n+1)}{2n^2} &amp;&amp;\text{(moltiplico le due frazioni)}\\
-          &amp;= \frac{n+1}{2n} &amp;&amp;\text{(semplifico una } n \text{ sopra e una sotto)}\\
-          &amp;= \frac{n}{2n}+\frac{1}{2n} = \frac12+\frac{1}{2n} &amp;&amp;\text{(spezzo la frazione: il numeratore è una somma)}
-          \end{aligned}$$</div>
-          <p>Questa è esattamente la formula annunciata nel <span class="richiamo" data-sec="4.1.2">§4.1.2</span>. Controlliamola sui numeri già calcolati: con $n=4$ dà $\frac12+\frac18=0{,}625$, con $n=10$ dà $\frac12+\frac1{20}=0{,}55$. Tornano entrambi.</p>
-
-          <p><em>Passo 5: il limite.</em> Ora che la somma è una formula in $n$, faccio crescere $n$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \lim_{n\to\infty}S_n &amp;= \lim_{n\to\infty}\left(\frac12+\frac{1}{2n}\right) &amp;&amp;\text{(uso l'espressione del passo 4)}\\
-          &amp;= \frac12+0 = \frac12 &amp;&amp;\text{(} \tfrac{1}{2n}\to0 \text{: il denominatore esplode)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo diviso $[0,1]$ in $n$ parti uguali, scritto la somma dei rettangoli, usato la formula di Gauss per sommare gli interi e ottenuto $S_n=\frac12+\frac{1}{2n}$; mandando $n$ all'infinito il secondo pezzo sparisce e resta $\frac12$. Geometricamente la regione era un triangolo rettangolo di base $1$ e altezza $1$, la cui area è $\frac{1\cdot1}{2}=\frac12$: <strong>il limite conferma la geometria elementare</strong>. <span class="qed">∎</span></p>
-        </div>
-        <div class="callout callout--curiosita">
-          <div class="callout__title"><span class="emoji">🧩</span> E per $x^2$? Lo stesso metodo, un'altra formula</div>
-          <p>Con $f(x)=x^2$ cambia solo l'altezza: $f(c_i)=\left(\frac in\right)^2=\frac{i^2}{n^2}$, quindi $S_n=\sum_{i=1}^n\frac{i^2}{n^2}\cdot\frac1n=\frac{1}{n^3}\sum_{i=1}^n i^2$. Al posto della formula di Gauss serve quella per i quadrati, $\sum_{i=1}^n i^2=\frac{n(n+1)(2n+1)}{6}$; sostituendola e semplificando una $n$ si ottiene $S_n=\frac{(n+1)(2n+1)}{6n^2}$.</p>
-          <p>Con i numeri: $n=4$ dà $\frac{5\cdot9}{96}=0{,}46875$; $n=10$ dà $\frac{11\cdot21}{600}=0{,}385$; $n=100$ dà circa $0{,}33835$. Si stanno avvicinando a $\frac13\approx0{,}3333$, e infatti sviluppando il numeratore si trova $\frac{2n^2+3n+1}{6n^2}$, il cui limite si calcola confrontando i termini dominanti ($2n^2$ sopra, $6n^2$ sotto): $\frac26=\frac13$. Con il Teorema Fondamentale lo stesso risultato costa tre righe: $\int_0^1x^2dx=\big[\frac{x^3}{3}\big]_0^1=\frac13-0=\frac13$. Ecco quanta fatica ci risparmia.</p>
-        </div>
-
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Proposizione (monotonia)</span>
-          <p><em class="nome">Confronto tra integrali.</em> Se $f(x)\leq g(x)$ per ogni $x\in[a,b]$ (con $f,g$ integrabili), allora $\displaystyle\int_a^b f(x)\,dx\leq\int_a^b g(x)\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (la disuguaglianza passa al limite)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che se un grafico sta sempre sotto un altro, allora anche la sua area (con segno) è minore o uguale. Guardando un disegno sembra una cosa scontata, ma un disegno non è una dimostrazione: lo ricaviamo dalla definizione.</p>
-          <p><strong>Idea della strategia.</strong> L'integrale è un limite di somme di rettangoli. Allora dimostriamo prima la disuguaglianza <em>sulle somme</em>, dove ci sono solo addizioni e moltiplicazioni fra numeri, e poi facciamo il limite: le disuguaglianze deboli ($\le$) sopravvivono al passaggio al limite.</p>
-          <p><strong>Cosa ci servirà.</strong> La definizione di somma di Riemann e di integrale (<span class="richiamo" data-sec="4.1.3">§4.1.3</span>); la regola per cui moltiplicando due membri di una disuguaglianza per un numero positivo il verso non cambia (Parte 0, cap. 6); il teorema del confronto per i limiti (cap. 4, sezione 4.5).</p>
-          <p><em>Passo 1: confronto le altezze.</em> Fisso una partizione qualsiasi e dei punti campione $c_i$. Per ipotesi $f(c_i)\le g(c_i)$ in ogni punto, quindi anche nei punti campione.</p>
-          <div class="calcolo">$$\begin{aligned}
-          f(c_i) &amp;\le g(c_i) &amp;&amp;\text{(ipotesi, applicata nel punto } c_i)\\
-          f(c_i)\,\Delta x_i &amp;\le g(c_i)\,\Delta x_i &amp;&amp;\text{(moltiplico per } \Delta x_i\gt0\text{: il verso non cambia)}
-          \end{aligned}$$</div>
-          <p>Abbiamo ottenuto che ogni rettangolo della prima funzione è più basso (o uguale) del corrispondente rettangolo della seconda.</p>
-          <p><em>Passo 2: sommo.</em> Se ogni addendo di sinistra è minore o uguale al corrispondente addendo di destra, lo stesso vale per i due totali.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \sum_{i=1}^n f(c_i)\,\Delta x_i &amp;\le \sum_{i=1}^n g(c_i)\,\Delta x_i &amp;&amp;\text{(sommo le } n \text{ disuguaglianze del passo 1)}
-          \end{aligned}$$</div>
-          <p><em>Passo 3: passo al limite.</em> Faccio tendere $n$ all'infinito. A sinistra le somme tendono a $\int_a^b f$, a destra a $\int_a^b g$ (definizione di integrale). Il teorema del confronto per i limiti garantisce che il segno $\le$ si conserva.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \int_a^b f(x)\,dx &amp;\le \int_a^b g(x)\,dx &amp;&amp;\text{(limite di due successioni ordinate: l'ordine resta)}
-          \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove ci si confonde.</strong> Al limite le disuguaglianze <em>strette</em> possono diventare uguaglianze: da $f(x)\lt g(x)$ non si può concludere $\int f\lt\int g$ in generale, ma solo $\le$. Per questo l'enunciato usa il simbolo $\le$.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo confrontato i rettangoli uno per uno (stessa base, altezza minore), abbiamo sommato ottenendo la disuguaglianza fra le somme di Riemann, e abbiamo passato al limite conservando il verso. Quindi l'area sotto $f$ non supera quella sotto $g$. <span class="qed">∎</span></p>
-        </div>
+        <p>L'integrale di confronto converge (vale $\frac1e\approx0{,}368$), quindi per il teorema anche $\int_1^{+\infty}e^{-x^2}\,dx$ converge, e in più sappiamo che il suo valore è minore di $\frac1e$. Non sappiamo quanto vale esattamente, ma sappiamo che esiste: spesso, in Analisi, è tutto ciò che serve.</p>
 
         <div class="box-teorema">
-          <span class="box-teorema__label">Teorema Fondamentale — Parte 1</span>
-          <p><em class="nome">La funzione integrale è derivabile e la sua derivata è l'integranda.</em> Se $f$ è continua su $[a,b]$ e $F(x)=\displaystyle\int_a^x f(t)\,dt$, allora $F'(x)=f(x)$ per ogni $x\in[a,b]$.</p>
+          <span class="box-teorema__label">Teorema (criterio del confronto asintotico)</span>
+          <p>Siano $f$ e $g$ continue e strettamente positive su $[a,+\infty)$ e supponiamo che $\displaystyle\lim_{x\to+\infty}\frac{f(x)}{g(x)}=\ell$ con $0\lt\ell\lt+\infty$. Allora $\int_a^{+\infty}f$ e $\int_a^{+\infty}g$ hanno lo stesso carattere: convergono entrambi o divergono entrambi. Lo stesso vale per $x\to a^+$ (seconda specie).</p>
         </div>
         <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (la strisciolina incastrata fra due rettangoli)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che la velocità con cui cresce l'area accumulata, proprio nel punto $x$, è uguale all'altezza del grafico in $x$. Nel <span class="richiamo" data-sec="4.6.1">§4.6.1</span> lo abbiamo raccontato a parole e verificato sui numeri; adesso lo dimostriamo per una funzione continua qualsiasi.</p>
-          <p><strong>Idea della strategia.</strong> Dobbiamo calcolare un limite: quello del rapporto incrementale di $F$. Il rapporto incrementale non lo sappiamo calcolare direttamente (non conosciamo la formula di $F$), quindi lo <em>incastriamo</em> fra due quantità che sappiamo trattare. Il pezzo di area aggiunto è una strisciolina: la imprigioniamo fra il rettangolo più basso e il rettangolo più alto che ci stanno dentro e fuori, e poi usiamo il teorema dei carabinieri. È la stessa tecnica della "gabbia" del <span class="richiamo" data-sec="4.1">§4.1</span>.</p>
-          <p><strong>Cosa ci servirà.</strong> L'additività dell'integrale (<span class="richiamo" data-sec="4.4">§4.4</span>); la monotonia (<span class="richiamo" data-sec="4.4">§4.4</span>, dimostrata qui sopra); il <a href="06-continuita.html">teorema di Weierstrass</a>, che garantisce l'esistenza di massimo e minimo di una funzione continua su un intervallo chiuso e limitato (cap. 6, sezione 4.6); la definizione di derivata come limite del rapporto incrementale (cap. 7, sezione 4.2); il teorema del confronto, detto "dei carabinieri" (cap. 4, sezione 4.5).</p>
-
-          <p><em>Passo 1: che cosa è la differenza $F(x+h)-F(x)$.</em> Prendo $h\gt0$ (il caso $h\lt0$ si tratta allo stesso modo, e lo commento alla fine). Scrivo le due aree accumulate e le sottraggo, usando l'additività per ricomporre gli intervalli.</p>
-          <div class="calcolo">$$\begin{aligned}
-          F(x+h)-F(x) &amp;= \int_a^{x+h}f(t)\,dt-\int_a^{x}f(t)\,dt &amp;&amp;\text{(definizione di funzione integrale, §4.5)}\\
-          \int_a^{x+h}f(t)\,dt &amp;= \int_a^{x}f(t)\,dt+\int_x^{x+h}f(t)\,dt &amp;&amp;\text{(additività, §4.4: spezzo in } x)\\
-          F(x+h)-F(x) &amp;= \int_x^{x+h} f(t)\,dt &amp;&amp;\text{(sostituisco e semplifico i due integrali uguali)}
-          \end{aligned}$$</div>
-          <p>Abbiamo ottenuto che la differenza fra le due aree accumulate è l'area della sola <strong>strisciolina</strong> compresa fra $x$ e $x+h$: proprio l'immagine del <span class="richiamo" data-sec="4.6.1">§4.6.1</span>, ora giustificata.</p>
-
-          <p><em>Passo 2: imprigiono la strisciolina fra due rettangoli.</em> Sull'intervallo $[x,x+h]$ la funzione $f$ è continua, quindi per il teorema di Weierstrass vi assume un valore minimo, che chiamo $m_h$, e un valore massimo, che chiamo $M_h$. Allora su tutta la strisciolina vale $m_h\le f(t)\le M_h$, e posso applicare la monotonia dell'integrale alle tre funzioni (le due costanti e $f$).</p>
-          <div class="calcolo">$$\begin{aligned}
-          \int_x^{x+h} m_h\,dt \ &amp;\le\ \int_x^{x+h} f(t)\,dt \ \le\ \int_x^{x+h} M_h\,dt &amp;&amp;\text{(monotonia, §4.4, applicata due volte)}\\
-          m_h\cdot h \ &amp;\le\ \int_x^{x+h} f(t)\,dt \ \le\ M_h\cdot h &amp;&amp;\text{(l'integrale di una costante è costante} \times \text{ampiezza)}
-          \end{aligned}$$</div>
-          <p>In parole: l'area della strisciolina sta fra quella del rettangolo "basso" (altezza $m_h$, base $h$) e quella del rettangolo "alto" (altezza $M_h$, base $h$).</p>
-
-          <p><em>Passo 3: divido per $h$ e faccio comparire il rapporto incrementale.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          m_h \ &amp;\le\ \frac{1}{h}\int_x^{x+h} f(t)\,dt \ \le\ M_h &amp;&amp;\text{(divido i tre membri per } h\gt0\text{: il verso non cambia)}\\
-          m_h \ &amp;\le\ \frac{F(x+h)-F(x)}{h} \ \le\ M_h &amp;&amp;\text{(sostituisco l'integrale con la differenza del passo 1)}
-          \end{aligned}$$</div>
-          <p>Adesso il rapporto incrementale di $F$ è schiacciato fra due numeri di cui sappiamo qualcosa.</p>
-
-          <p><em>Passo 4: mando $h$ a zero.</em> Quando $h$ si rimpicciolisce, l'intervallo $[x,x+h]$ si contrae sul solo punto $x$. Siccome $f$ è continua, i suoi valori su quell'intervallo sono tutti vicinissimi a $f(x)$: quindi sia il minimo $m_h$ sia il massimo $M_h$ tendono a $f(x)$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \lim_{h\to0^+} m_h &amp;= f(x) &amp;&amp;\text{(continuità di } f \text{ nel punto } x)\\
-          \lim_{h\to0^+} M_h &amp;= f(x) &amp;&amp;\text{(stesso motivo)}\\
-          \lim_{h\to0^+}\frac{F(x+h)-F(x)}{h} &amp;= f(x) &amp;&amp;\text{(teorema dei carabinieri: schiacciato fra due che vanno in } f(x))
-          \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove ci si confonde.</strong> Con $h\lt0$ la strisciolina sta <em>a sinistra</em> di $x$ e la divisione per $h$ (numero negativo) rovescerebbe le disuguaglianze. Si rimedia usando l'intervallo $[x+h,\,x]$ e la convenzione $\int_b^a=-\int_a^b$ (<span class="richiamo" data-sec="4.4">§4.4</span>): i due segni meno si compensano e si arriva alla stessa conclusione. Dunque il limite destro e quello sinistro coincidono, e il limite completo esiste.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> La differenza $F(x+h)-F(x)$ è l'area di una strisciolina; l'abbiamo incastrata fra due rettangoli di base $h$ e altezze il minimo e il massimo di $f$ sulla strisciolina; dividendo per $h$ abbiamo incastrato il rapporto incrementale fra $m_h$ e $M_h$; mandando $h\to0$ entrambi tendono a $f(x)$ per continuità, e i carabinieri costringono anche il rapporto incrementale a tendere a $f(x)$. Quindi $F$ è derivabile e $F'(x)=f(x)$. <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Teorema Fondamentale — Parte 2</span>
-          <p><em class="nome">Formula di Newton–Leibniz.</em> Se $f$ è continua su $[a,b]$ e $G$ è una qualunque primitiva di $f$, allora $\displaystyle\int_a^b f(x)\,dx=G(b)-G(a)$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (dalla Parte 1)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che per calcolare un'area basta prendere <em>una qualsiasi</em> funzione la cui derivata sia $f$, valutarla nei due estremi e fare la differenza. In particolare: che la scelta della primitiva non influisce sul risultato.</p>
-          <p><strong>Idea della strategia.</strong> Conosciamo già <em>una</em> primitiva speciale: la funzione integrale $F$, per la Parte 1 appena dimostrata. Di lei sappiamo anche quanto vale agli estremi ($F(a)=0$ e $F(b)$ è proprio l'integrale cercato). Allora confrontiamo la primitiva generica $G$ con questa $F$: differiscono per una costante, e nella differenza $G(b)-G(a)$ la costante sparisce.</p>
-          <p><strong>Cosa ci servirà.</strong> La Parte 1 del Teorema Fondamentale (dimostrata qui sopra); il corollario del <a href="08-teoremi-fondamentali.html">teorema di Lagrange</a> secondo cui due funzioni con la stessa derivata su un intervallo differiscono per una costante (cap. 8, sezione 4.5); la convenzione $\int_a^a f=0$ (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
-          <p><em>Passo 1: costruisco la primitiva di cui so tutto.</em> Pongo $F(x)=\int_a^x f(t)\,dt$. Per la Parte 1, $F'=f$: dunque $F$ è una primitiva di $f$.</p>
-          <p><em>Passo 2: confronto $G$ con $F$.</em> Anche $G$ è una primitiva di $f$, quindi $G'=f=F'$: le due funzioni hanno la stessa derivata su tutto $[a,b]$. Per il corollario di Lagrange esiste allora una costante $C$ tale che</p>
-          <div class="calcolo">$$\begin{aligned}
-          G(x) &amp;= F(x)+C &amp;&amp;\text{(due primitive della stessa funzione differiscono per una costante)}
-          \end{aligned}$$</div>
-          <p><em>Passo 3: calcolo $G(b)-G(a)$ e faccio sparire la costante.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          G(b) &amp;= F(b)+C &amp;&amp;\text{(sostituisco } x=b \text{ nella relazione del passo 2)}\\
-          G(a) &amp;= F(a)+C &amp;&amp;\text{(sostituisco } x=a)\\
-          G(b)-G(a) &amp;= \big(F(b)+C\big)-\big(F(a)+C\big) &amp;&amp;\text{(faccio la differenza)}\\
-          &amp;= F(b)-F(a) &amp;&amp;\text{(la } C \text{ e la } -C \text{ si elidono)}
-          \end{aligned}$$</div>
-          <p><em>Passo 4: valuto $F$ agli estremi.</em> Qui si vede perché $F$ era la primitiva "comoda".</p>
-          <div class="calcolo">$$\begin{aligned}
-          F(a) &amp;= \int_a^a f(t)\,dt = 0 &amp;&amp;\text{(intervallo ridotto a un punto, §4.4)}\\
-          F(b) &amp;= \int_a^b f(t)\,dt &amp;&amp;\text{(è proprio l'integrale che vogliamo calcolare)}\\
-          G(b)-G(a) &amp;= \int_a^b f(t)\,dt-0 = \int_a^b f(x)\,dx &amp;&amp;\text{(il nome della variabile muta non conta, §4.5)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo preso la funzione integrale $F$, che per la Parte 1 è una primitiva e vale $0$ in $a$; abbiamo osservato che ogni altra primitiva $G$ è $F$ più una costante; nella differenza $G(b)-G(a)$ la costante si elide e resta $F(b)-F(a)=\int_a^b f$. La dimostrazione rende evidenti le due cose che si dimenticano sempre: <em>perché</em> qualunque primitiva va bene, e <em>perché</em> non compare alcun "$+C$". <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Proposizione</span>
-          <p><em class="nome">Cambio di variabile.</em> Se $g$ è derivabile con derivata continua su $[a,b]$ e $f$ è continua, allora $\displaystyle\int_a^b f\big(g(x)\big)g'(x)\,dx=\int_{g(a)}^{g(b)} f(u)\,du$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (regola della catena letta al contrario)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che il procedimento usato nel <span class="richiamo" data-sec="4.7.1">§4.7.1</span> — cambio il nome alla variabile e ricalcolo gli estremi — dà davvero lo stesso numero di prima, e non una sua approssimazione o un caso fortunato.</p>
-          <p><strong>Idea della strategia.</strong> I due membri dell'uguaglianza sono due integrali definiti, e adesso sappiamo calcolarli entrambi con Newton–Leibniz: basta trovare una primitiva per ciascuno e valutarla agli estremi. Il punto è che la primitiva del membro di sinistra si costruisce da quella del membro di destra <em>componendola con $g$</em>; a verificarlo è la regola della catena. Alla fine i due risultati si scoprono identici.</p>
-          <p><strong>Cosa ci servirà.</strong> La Parte 1 del Teorema Fondamentale, che garantisce che una funzione continua <em>ha</em> una primitiva; la formula di Newton–Leibniz (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>); la regola della catena per derivare una funzione composta (cap. 7, sezione 4.7).</p>
-          <p><em>Passo 1: mi procuro una primitiva di $f$.</em> Poiché $f$ è continua, per la Parte 1 esiste una funzione $F$ con $F'=f$. La userò per calcolare il membro di destra.</p>
-          <p><em>Passo 2: costruisco una primitiva per il membro di sinistra.</em> Definisco $H(x)=F\big(g(x)\big)$, cioè metto $g(x)$ al posto della variabile di $F$. La derivo con la regola della catena: si deriva la funzione esterna calcolata nell'interna, e si moltiplica per la derivata dell'interna.</p>
-          <div class="calcolo">$$\begin{aligned}
-          H'(x) &amp;= F'\big(g(x)\big)\cdot g'(x) &amp;&amp;\text{(regola della catena, cap. 7, sezione 4.7)}\\
-          &amp;= f\big(g(x)\big)\cdot g'(x) &amp;&amp;\text{(sostituisco } F'=f\text{, valutata in } g(x))
-          \end{aligned}$$</div>
-          <p>Abbiamo ottenuto esattamente la funzione che compare dentro l'integrale di sinistra: dunque $H$ ne è una primitiva.</p>
-          <p><em>Passo 3: calcolo i due membri, ciascuno con Newton–Leibniz.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          \int_a^b f\big(g(x)\big)g'(x)\,dx &amp;= H(b)-H(a) &amp;&amp;\text{(Newton–Leibniz con la primitiva } H)\\
-          &amp;= F\big(g(b)\big)-F\big(g(a)\big) &amp;&amp;\text{(sostituisco la definizione } H=F\circ g)\\
-          \int_{g(a)}^{g(b)} f(u)\,du &amp;= F\big(g(b)\big)-F\big(g(a)\big) &amp;&amp;\text{(Newton–Leibniz con la primitiva } F\text{: sostituisco } u=g(b)\text{, poi } u=g(a))
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> I due membri, calcolati separatamente, danno la stessa identica espressione $F(g(b))-F(g(a))$: quindi sono uguali. La ragione profonda è che la regola della catena, letta al contrario, dice proprio che una primitiva di $f(g(x))g'(x)$ si ottiene componendo con $g$ una primitiva di $f$ — e i "nuovi estremi" $g(a)$ e $g(b)$ non sono un'invenzione, ma i valori in cui finisce per essere valutata $F$. <span class="qed">∎</span></p>
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che se due funzioni positive sono "proporzionali all'infinito" (il loro rapporto tende a un numero positivo), allora i loro integrali impropri hanno lo stesso destino.</p>
+          <p><strong>L'idea.</strong> Il confronto del teorema precedente richiede una disuguaglianza <em>ovunque</em>, ed è scomodo da verificare. Qui la usiamo solo da un certo punto in poi: se $\frac fg\to\ell$, da un certo $N_0$ in avanti $f$ sta fra due multipli di $g$, uno più piccolo e uno più grande. Due confronti sandwich fanno il resto. La parte iniziale $[a,N_0]$ non conta: è un integrale normale, con un valore finito.</p>
+          <p><strong>Passo 1 — incastro $f$ fra due multipli di $g$.</strong> Dalla definizione di limite, con tolleranza $\frac\ell2$, esiste $N_0$ tale che per $x\ge N_0$ vale $\frac\ell2\lt\frac{f(x)}{g(x)}\lt\frac{3\ell}{2}$. Moltiplico per $g(x)\gt0$ (il verso non cambia):</p>
+          <div class="calcolo">$$\frac\ell2\,g(x)\ \lt\ f(x)\ \lt\ \frac{3\ell}{2}\,g(x)\qquad(x\ge N_0).$$</div>
+          <p><strong>Passo 2 — se $\int g$ converge, converge $\int f$.</strong> Per la linearità, anche $\int_{N_0}^{+\infty}\frac{3\ell}{2}g$ converge. Per il confronto, a destra, converge $\int_{N_0}^{+\infty}f$.</p>
+          <p><strong>Passo 3 — se $\int g$ diverge, diverge $\int f$.</strong> Per la linearità diverge anche $\int_{N_0}^{+\infty}\frac\ell2g$ (un multiplo positivo di una quantità che va a $+\infty$). Per il confronto, a sinistra, diverge $\int_{N_0}^{+\infty}f$.</p>
+          <p><strong>Passo 4 — aggiungo il pezzo iniziale.</strong> Per l'additività, $\int_a^{N}=\int_a^{N_0}+\int_{N_0}^{N}$, e il primo addendo è un numero finito (integrale normale di una funzione continua). Quindi $\int_a^{+\infty}f$ ha lo stesso carattere di $\int_{N_0}^{+\infty}f$, e lo stesso vale per $g$.</p>
+          <p><strong>Conclusione.</strong> I due integrali hanno lo stesso carattere. Per la seconda specie si ripete il ragionamento in un intorno destro di $a$. <span class="qed">∎</span> Con $g(x)=x^{-p}$ si ottiene la regola pratica: se $f(x)$ si comporta come $\frac{c}{x^p}$ con $c\gt0$, l'integrale converge se e solo se $p\gt1$ (all'infinito) o $p\lt1$ (vicino a $0$).</p>
         </div>
       </section>
 
-      <!-- 6. ESEMPI SVOLTI -->
+      <!-- 5. ESEMPI SVOLTI -->
       <section class="section" id="esempi">
-        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 1 — Integrale e geometria: due strade, stesso numero</span><span class="badge badge--base">Base</span></div>
           <p>Calcolare $\displaystyle\int_0^2 x\,dx$ prima con la geometria elementare, poi con la formula di Newton–Leibniz, e confrontare.</p>
           <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> L'integrale definito di una funzione semplicissima, $f(x)=x$, che sta sopra l'asse su $[0,2]$. Siccome per $f\ge0$ l'integrale è un'area (<span class="richiamo" data-sec="4.1">§4.1</span>) e la figura è elementare, posso calcolarla con la geometria; e siccome la primitiva è facile posso usare anche Newton–Leibniz. Fare entrambe le cose serve a controllarsi.</span>
             <span class="esempio__passo"><strong>Prima strada: la geometria.</strong> Il grafico di $y=x$ su $[0,2]$ delimita un triangolo rettangolo. La base è il segmento sull'asse $x$ da $0$ a $2$, quindi vale $2$; l'altezza è il valore della funzione nell'estremo destro, $f(2)=2$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
@@ -906,7 +1239,7 @@
           \end{aligned}$$</div>
           <p class="esempio__passi">
             <span class="esempio__passo"><strong>Seconda strada: Newton–Leibniz</strong> (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>). Mi serve una primitiva $G$ di $f(x)=x$, cioè una funzione la cui derivata sia $x$. Uso la regola della potenza per le primitive (cap. 13, sezione 4.3), $x^n\rightsquigarrow\frac{x^{n+1}}{n+1}$, con $n=1$: ottengo $G(x)=\frac{x^{1+1}}{1+1}=\frac{x^2}{2}$. Verifico derivando: $\left(\frac{x^2}{2}\right)'=\frac{2x}{2}=x$. ✓</span>
-            <span class="esempio__passo"><strong>Applico la formula</strong> con $a=0$ e $b=2$, un calcolo alla volta:</span>
+            <span class="esempio__passo"><strong>Applico la formula</strong> con $a=0$ e $b=2$, un calcolo alla volta: valuto $G$ nell'estremo superiore, poi nell'inferiore, poi sottraggo.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
           G(2) &amp;= \frac{2^2}{2} = \frac42 = 2 &amp;&amp;\text{(sostituisco } x=2\text{, estremo superiore)}\\
@@ -920,6 +1253,7 @@
           <div class="esempio__header"><span class="titolo">Esempio 2 — Polinomio con Newton–Leibniz</span><span class="badge badge--base">Base</span></div>
           <p>Calcolare $\displaystyle\int_1^{3}\big(x^2-2x+1\big)\,dx$.</p>
           <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> L'integrale definito di un polinomio, continuo ovunque: la formula di Newton–Leibniz fa al caso mio, e mi serve una primitiva.</span>
             <span class="esempio__passo"><strong>Cerco la primitiva, termine per termine.</strong> Posso farlo grazie alla <strong>linearità</strong> (<span class="richiamo" data-sec="4.4">§4.4</span>), che permette di integrare una somma pezzo per pezzo e di portare fuori le costanti. Su ogni pezzo applico la regola della potenza (cap. 13, sezione 4.3).</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
@@ -928,7 +1262,10 @@
           1=x^0 \ &amp;\rightsquigarrow\ \frac{x^{0+1}}{0+1} = x &amp;&amp;\text{(regola della potenza con } n=0)\\
           G(x) &amp;= \frac{x^3}{3}-x^2+x &amp;&amp;\text{(rimetto insieme i tre pezzi)}
           \end{aligned}$$</div>
-          <p>Verifico derivando: $\left(\frac{x^3}{3}\right)'=x^2$, $(-x^2)'=-2x$, $(x)'=1$. ✓ Ora applico il Teorema Fondamentale (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>) con $a=1$ e $b=3$, tenendo i due calcoli separati.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Verifico la primitiva</strong> derivando: $\left(\frac{x^3}{3}\right)'=x^2$, $(-x^2)'=-2x$, $(x)'=1$. ✓</span>
+            <span class="esempio__passo"><strong>Applico il Teorema Fondamentale</strong> (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>) con $a=1$ e $b=3$, tenendo i due calcoli separati.</span>
+          </p>
           <div class="calcolo">$$\begin{aligned}
           G(3) &amp;= \frac{3^3}{3}-3^2+3 &amp;&amp;\text{(sostituisco } x=3\text{, estremo superiore)}\\
           &amp;= \frac{27}{3}-9+3 = 9-9+3 = 3 &amp;&amp;\text{(svolgo le potenze e sommo)}\\
@@ -936,6 +1273,7 @@
           &amp;= \frac13-1+1 = \frac13 &amp;&amp;\text{(il } -1 \text{ e il } +1 \text{ si elidono)}\\
           \int_1^3\big(x^2-2x+1\big)dx &amp;= 3-\frac13 = \frac93-\frac13 = \frac83 &amp;&amp;\text{(differenza; porto } 3 \text{ a denominatore } 3)
           \end{aligned}$$</div>
+          <p><strong>Controllo.</strong> Il polinomio è un quadrato, $x^2-2x+1=(x-1)^2$, e una primitiva di $(x-1)^2$ è $\frac{(x-1)^3}{3}$ (derivando si ritrova $(x-1)^2$): valutata fra $1$ e $3$ dà $\frac{2^3}{3}-0=\frac83$. Stesso numero.</p>
           <div class="esempio__risultato">$\displaystyle\int_1^{3}(x^2-2x+1)\,dx=\frac83\approx 2{,}67$. Nessun "$+C$": il risultato è un numero (<span class="richiamo" data-sec="4.1.4">§4.1.4</span>).</div>
         </div>
 
@@ -943,6 +1281,7 @@
           <div class="esempio__header"><span class="titolo">Esempio 3 — Integrale con segno contro area geometrica</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare $\displaystyle\int_0^{2\pi}\sin x\,dx$ e poi l'<strong>area</strong> geometrica compresa fra il grafico di $\sin x$ e l'asse $x$ su $[0,2\pi]$.</p>
           <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Due domande diverse sulla stessa figura: l'integrale (con segno) e l'area (sempre positiva). Il seno sta sopra l'asse su $[0,\pi]$ e sotto su $[\pi,2\pi]$, quindi le due risposte non coincideranno (<span class="richiamo" data-sec="4.3">§4.3</span>). Per entrambe uso Newton–Leibniz.</span>
             <span class="esempio__passo"><strong>La primitiva.</strong> Mi serve una funzione la cui derivata sia $\sin x$. So che $(\cos x)'=-\sin x$ (cap. 7): mi avanza un segno meno, quindi cambio segno alla candidata e prendo $G(x)=-\cos x$. Verifico: $(-\cos x)'=-(-\sin x)=\sin x$. ✓</span>
             <span class="esempio__passo"><strong>L'integrale su tutto $[0,2\pi]$</strong>, con i due calcoli separati (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>). Uso i valori notevoli $\cos(2\pi)=1$ e $\cos 0=1$ (cerchio goniometrico, Parte 0, cap. 8).</span>
           </p>
@@ -953,7 +1292,7 @@
           \end{aligned}$$</div>
           <p>Il risultato è $0$, e non perché "non ci sia area": la gobba positiva su $[0,\pi]$ e quella negativa su $[\pi,2\pi]$ hanno la stessa estensione e si compensano esattamente (area con segno, <span class="richiamo" data-sec="4.3">§4.3</span>).</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Per l'area geometrica</strong> devo spezzare nei punti in cui il seno cambia segno. Su $[0,2\pi]$ il seno si annulla in $x=\pi$: è positivo prima, negativo dopo. Uso l'<strong>additività</strong> (<span class="richiamo" data-sec="4.4">§4.4</span>) e calcolo i due tratti separatamente.</span>
+            <span class="esempio__passo"><strong>Per l'area geometrica</strong> devo spezzare nei punti in cui il seno cambia segno. Su $[0,2\pi]$ il seno si annulla in $x=\pi$: è positivo prima, negativo dopo. Uso l'<strong>additività</strong> (<span class="richiamo" data-sec="4.4">§4.4</span>) e calcolo i due tratti separatamente; nel tratto negativo cambio segno al risultato, perché l'area geometrica è $\int|f|$ (<span class="richiamo" data-sec="4.3">§4.3</span>).</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
           G(\pi) &amp;= -\cos\pi = -(-1) = +1 &amp;&amp;\text{(sostituisco } x=\pi\text{; } \cos\pi=-1)\\
@@ -961,6 +1300,7 @@
           \int_{\pi}^{2\pi}\sin x\,dx &amp;= G(2\pi)-G(\pi) = -1-1 = -2 &amp;&amp;\text{(secondo tratto: negativo)}\\
           \text{area} &amp;= 2+|-2| = 2+2 = 4 &amp;&amp;\text{(in area il tratto negativo conta in valore assoluto)}
           \end{aligned}$$</div>
+          <p><strong>Controllo.</strong> I due pezzi sono uguali per simmetria (la seconda gobba è la prima ribaltata), e $2+2=4$; inoltre la somma con segno $2+(-2)=0$ coincide con l'integrale su tutto $[0,2\pi]$, come deve per l'additività.</p>
           <div class="esempio__risultato">Integrale con segno $=0$; &nbsp; area geometrica $=4$. Distinguere le due domande è essenziale: la stessa figura dà due risposte diverse a seconda di che cosa si chiede.</div>
         </div>
 
@@ -968,9 +1308,11 @@
           <div class="esempio__header"><span class="titolo">Esempio 4 — Derivare una funzione integrale</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare la derivata di $F(x)=\displaystyle\int_0^x \cos(t^2)\,dt$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Controllo l'ipotesi.</strong> La funzione integranda $t\mapsto\cos(t^2)$ è continua ovunque, perché è composizione di funzioni continue (cap. 6). Quindi posso usare la Parte 1 del Teorema Fondamentale (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>), che dice: se $F(x)=\int_a^x f(t)\,dt$ con $f$ continua, allora $F'(x)=f(x)$.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Una funzione definita come integrale con l'estremo superiore variabile ($x$) e l'estremo inferiore fisso: è la funzione integrale del <span class="richiamo" data-sec="4.5">§4.5</span>. Mi chiedono la derivata, quindi serve la Parte 1 del Teorema Fondamentale (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>), che dice: se $F(x)=\int_a^x f(t)\,dt$ con $f$ continua, allora $F'(x)=f(x)$.</span>
+            <span class="esempio__passo"><strong>Controllo l'ipotesi.</strong> La funzione integranda $t\mapsto\cos(t^2)$ è continua ovunque, perché è composizione di funzioni continue (cap. 6). Posso applicare il teorema.</span>
             <span class="esempio__passo"><strong>Confronto il mio caso con l'enunciato.</strong> Qui l'estremo fisso è $a=0$ e la funzione integranda è $f(t)=\cos(t^2)$. La regola dice di prendere l'integranda e valutarla nell'estremo superiore, cioè di <em>sostituire $x$ al posto di $t$</em>: da $f(t)=\cos(t^2)$ ottengo $f(x)=\cos(x^2)$.</span>
             <span class="esempio__passo"><strong>Nessun conto da fare sull'integrale.</strong> La funzione $\cos(t^2)$ non ha primitiva elementare: non sapremmo scrivere $F$ in forma esplicita. Eppure la sua derivata la conosciamo: è questo il potere della Parte 1.</span>
+            <span class="esempio__passo"><strong>Controllo con un caso che so fare.</strong> Se l'integranda fosse $f(t)=t$, avrei $F(x)=\int_0^x t\,dt=\frac{x^2}{2}$ e $F'(x)=x$: la stessa regola, "sostituisco $x$ a $t$".</span>
           </p>
           <div class="esempio__risultato">$F'(x)=\cos(x^2)$. Nota bene: <strong>non</strong> serve saper calcolare l'integrale per conoscerne la derivata.</div>
         </div>
@@ -979,7 +1321,7 @@
           <div class="esempio__header"><span class="titolo">Esempio 5 — Cambio di variabile con ricalcolo degli estremi</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare $\displaystyle\int_0^{\pi/2}\sin^2 x\,\cos x\,dx$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Riconosco la struttura.</strong> C'è una funzione interna, $\sin x$, elevata al quadrato, moltiplicata per $\cos x$ — che è esattamente la derivata di $\sin x$ (cap. 7). Siamo nel caso del <span class="richiamo" data-sec="4.7.1">§4.7.1</span>, con $g(x)=\sin x$ e $f(u)=u^2$.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> C'è una funzione interna, $\sin x$, elevata al quadrato, moltiplicata per $\cos x$, che è esattamente la derivata di $\sin x$ (cap. 7). Una composta moltiplicata per la derivata della sua parte interna: è il caso del cambio di variabile (<span class="richiamo" data-sec="4.7.1">§4.7.1</span>), con $g(x)=\sin x$ e $f(u)=u^2$.</span>
             <span class="esempio__passo"><strong>Pongo il nome nuovo</strong>: $u=\sin x$. Derivo: $du=\cos x\,dx$. Nell'integrale il blocco $\cos x\,dx$ c'è tutto, quindi lo sostituisco con $du$, e $\sin^2x$ diventa $u^2$.</span>
             <span class="esempio__passo"><strong>Ricalcolo i due estremi</strong>, sostituendoli nella relazione $u=\sin x$. Attenzione: erano angoli, ora diventano numeri.</span>
           </p>
@@ -1004,7 +1346,7 @@
           <div class="esempio__header"><span class="titolo">Esempio 6 — Improprio di prima specie: due gemelli, due destini</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Studiare $\displaystyle\int_1^{+\infty}\frac{1}{x^2}\,dx$ e $\displaystyle\int_1^{+\infty}\frac{1}{x}\,dx$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Riconosco il tipo.</strong> In entrambi l'estremo superiore è $+\infty$: sono integrali <strong>impropri di prima specie</strong>. Per la definizione del <span class="richiamo" data-sec="4.8.1">§4.8.1</span> li riscrivo con il limite, sostituendo all'infinito una lettera che indica un estremo finito: $\int_1^{+\infty}f=\lim_{N\to+\infty}\int_1^{N}f$. Da qui in poi lavoro sull'intervallo $[1,N]$, dove valgono tutte le regole ordinarie.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> In entrambi l'estremo superiore è $+\infty$: sono integrali <strong>impropri di prima specie</strong>. Per la definizione del <span class="richiamo" data-sec="4.8.1">§4.8.1</span> li riscrivo con il limite, sostituendo all'infinito una lettera che indica un estremo finito: $\int_1^{+\infty}f=\lim_{N\to+\infty}\int_1^{N}f$. Da qui in poi lavoro sull'intervallo $[1,N]$, dove valgono tutte le regole ordinarie.</span>
             <span class="esempio__passo"><strong>Primo integrale, la primitiva.</strong> Scrivo $\frac{1}{x^2}=x^{-2}$ e uso la regola della potenza (cap. 13, sezione 4.3) con $n=-2$: $\frac{x^{-2+1}}{-2+1}=\frac{x^{-1}}{-1}=-\frac1x$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
@@ -1022,6 +1364,7 @@
           \int_1^{N}\frac{dx}{x} &amp;= \ln N-0 = \ln N &amp;&amp;\text{(differenza)}\\
           \lim_{N\to+\infty}\ln N &amp;= +\infty &amp;&amp;\text{(il logaritmo cresce senza fermarsi)}
           \end{aligned}$$</div>
+          <p><strong>Controllo.</strong> Sono i due casi $p=2$ e $p=1$ del teorema del <span class="richiamo" data-sec="4.8.1">§4.8.1</span>: la formula $\frac{1}{p-1}$ dà $1$ per $p=2$, e per $p=1$ non è definita, coerentemente con la divergenza.</p>
           <div class="esempio__risultato">$\displaystyle\int_1^{+\infty}\frac{1}{x^2}\,dx=1$ (converge); &nbsp; $\displaystyle\int_1^{+\infty}\frac{1}{x}\,dx=+\infty$ (diverge). Regola generale: converge se e solo se l'esponente è $p\gt1$.</div>
         </div>
 
@@ -1029,7 +1372,7 @@
           <div class="esempio__header"><span class="titolo">Esempio 7 — Improprio di seconda specie</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Studiare $\displaystyle\int_0^{1}\frac{1}{\sqrt{x}}\,dx$ e $\displaystyle\int_0^{1}\frac{1}{x}\,dx$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Riconosco il tipo.</strong> Qui gli estremi sono finiti, ma entrambe le funzioni esplodono per $x\to0^+$ (il denominatore tende a zero): la singolarità è nell'<em>estremo inferiore</em>, quindi sono impropri di <strong>seconda specie</strong>. Per il <span class="richiamo" data-sec="4.8.2">§4.8.2</span> mi allontano dalla singolarità partendo da $\varepsilon\gt0$ e poi mando $\varepsilon\to0^+$: $\int_0^1 f=\lim_{\varepsilon\to0^+}\int_\varepsilon^1 f$.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Qui gli estremi sono finiti, ma entrambe le funzioni esplodono per $x\to0^+$ (il denominatore tende a zero): la singolarità è nell'<em>estremo inferiore</em>, quindi sono impropri di <strong>seconda specie</strong>. Per il <span class="richiamo" data-sec="4.8.2">§4.8.2</span> mi allontano dalla singolarità partendo da $\varepsilon\gt0$ e poi mando $\varepsilon\to0^+$: $\int_0^1 f=\lim_{\varepsilon\to0^+}\int_\varepsilon^1 f$.</span>
             <span class="esempio__passo"><strong>Primo integrale, la primitiva.</strong> Riscrivo $\frac{1}{\sqrt x}=x^{-1/2}$ e uso la regola della potenza con $n=-\frac12$: $\frac{x^{-1/2+1}}{-1/2+1}=\frac{x^{1/2}}{1/2}=2\sqrt x$ (dividere per $\frac12$ equivale a moltiplicare per $2$).</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
@@ -1047,13 +1390,53 @@
           \int_{\varepsilon}^{1}\frac{dx}{x} &amp;= 0-\ln\varepsilon = -\ln\varepsilon &amp;&amp;\text{(differenza)}\\
           \lim_{\varepsilon\to0^+}\big(-\ln\varepsilon\big) &amp;= +\infty &amp;&amp;\text{(} \ln\varepsilon\to-\infty\text{, quindi il suo opposto va a } +\infty)
           \end{aligned}$$</div>
+          <p><strong>Controllo.</strong> Sono i casi $p=\frac12$ e $p=1$ del teorema del <span class="richiamo" data-sec="4.8.2">§4.8.2</span>: la formula $\frac{1}{1-p}$ dà $2$ per $p=\frac12$, e per $p=1$ non è definita.</p>
           <div class="esempio__risultato">$\displaystyle\int_0^{1}\frac{1}{\sqrt{x}}\,dx=2$ (converge); &nbsp; $\displaystyle\int_0^{1}\frac{1}{x}\,dx=+\infty$ (diverge). Qui converge se $p\lt1$: la regola è <em>specchiata</em> rispetto alla prima specie.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 8 — Il valor medio e il punto del teorema della media</span><span class="badge badge--intermedio">Intermedio</span></div>
+          <p>Calcolare il valor medio di $f(x)=x^2$ su $[1,3]$ e trovare il punto $c$ in cui $f$ assume quel valore.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Il valor medio è $\mu=\frac{1}{b-a}\int_a^b f$ (<span class="richiamo" data-sec="4.4.1">§4.4.1</span>). Poi devo risolvere $f(c)=\mu$ con $c\in[1,3]$: il teorema della media garantisce che una soluzione esista, perché $f$ è continua.</span>
+            <span class="esempio__passo"><strong>Calcolo l'integrale.</strong> L'abbiamo già calcolato nel <span class="richiamo" data-sec="4.6.3">§4.6.3</span>: $\int_1^3x^2\,dx=\frac{26}{3}$.</span>
+            <span class="esempio__passo"><strong>Divido per la lunghezza dell'intervallo</strong>, $b-a=3-1=2$.</span>
+            <span class="esempio__passo"><strong>Cerco il punto $c$.</strong> Risolvo $c^2=\mu$. L'equazione ha due soluzioni, una positiva e una negativa; tengo quella che sta in $[1,3]$.</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          \mu &amp;= \frac{1}{2}\cdot\frac{26}{3}=\frac{13}{3}\approx4{,}33 &amp;&amp;\text{(valor medio)}\\
+          c^2 &amp;= \frac{13}{3}\ \Longrightarrow\ c=\sqrt{\frac{13}{3}}\approx2{,}08 &amp;&amp;\text{(scarto } -2{,}08 \text{: fuori da } [1,3])
+          \end{aligned}$$</div>
+          <p><strong>Controllo.</strong> $\mu$ sta fra il minimo $f(1)=1$ e il massimo $f(3)=9$ (<span class="richiamo" data-sec="4.4.1">§4.4.1</span>, Passo 3), e $c\approx2{,}08$ sta in $[1,3]$. Il rettangolo di base $2$ e altezza $\frac{13}{3}$ ha area $\frac{26}{3}$, uguale a quella sotto la parabola.</p>
+          <div class="esempio__risultato">Valor medio $\mu=\frac{13}{3}$, assunto nel punto $c=\sqrt{13/3}\approx2{,}08$. Nota che $c$ non è il punto di mezzo $2$ dell'intervallo: il teorema dice che $c$ esiste, non dove si trova.</div>
+        </div>
+
+        <div class="esempio">
+          <div class="esempio__header"><span class="titolo">Esempio 9 — Il confronto asintotico, senza calcolare l'integrale</span><span class="badge badge--avanzato">Avanzato</span></div>
+          <p>Stabilire se convergono $\displaystyle\int_1^{+\infty}\frac{x+3}{x^3+2}\,dx$ e $\displaystyle\int_0^{1}\frac{\sin x}{x^{3/2}}\,dx$.</p>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Mi chiedono solo <em>se</em> convergono. Le funzioni sono continue e positive (nel secondo caso su $(0,1]$, dove $\sin x\gt0$), e le primitive non sono facili: conviene il confronto asintotico (<span class="richiamo" data-sec="4.8.3">§4.8.3</span>). Il primo è di prima specie; il secondo è di seconda specie, perché in $x=0$ la funzione esplode.</span>
+            <span class="esempio__passo"><strong>Primo integrale: scelgo con chi confrontare.</strong> Per $x$ grande il numeratore si comporta come $x$ e il denominatore come $x^3$ (i termini di grado più alto), quindi $f(x)\approx\frac{x}{x^3}=\frac{1}{x^2}$. Prendo $g(x)=\frac{1}{x^2}$ e calcolo il rapporto, dividendo sopra e sotto per $x^3$ perché voglio far comparire $\frac1x$ e $\frac{1}{x^3}$, che tendono a $0$:</span>
+          </p>
+          <div class="calcolo">$$\begin{aligned}
+          \frac{f(x)}{g(x)} &amp;= \frac{(x+3)\,x^2}{x^3+2}=\frac{x^3+3x^2}{x^3+2} &amp;&amp;\text{(svolgo il numeratore)}\\
+          &amp;= \frac{1+\frac3x}{1+\frac{2}{x^3}}\ \longrightarrow\ \frac{1+0}{1+0}=1 &amp;&amp;\text{(per } x\to+\infty)
+          \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Concludo il primo.</strong> Il limite è $\ell=1$, un numero positivo e finito. Gli integrali di $f$ e di $g$ hanno lo stesso carattere, e $\int_1^{+\infty}\frac{dx}{x^2}$ converge ($p=2\gt1$, <span class="richiamo" data-sec="4.8.1">§4.8.1</span>). Quindi converge anche $\int_1^{+\infty}\frac{x+3}{x^3+2}\,dx$. Controllo numerico: per $x=100$ il rapporto vale $1{,}03$, per $x=10\,000$ vale $1{,}0003$.</span>
+            <span class="esempio__passo"><strong>Secondo integrale: scelgo con chi confrontare.</strong> Per $x\to0^+$ vale $\sin x\approx x$ (limite notevole, cap. 4), quindi $f(x)\approx\frac{x}{x^{3/2}}=x^{-1/2}=\frac{1}{\sqrt x}$. Prendo $g(x)=\frac{1}{\sqrt x}$ e calcolo il rapporto:</span>
+          </p>
+          <div class="calcolo">$$\frac{f(x)}{g(x)}=\frac{\sin x}{x^{3/2}}\cdot\sqrt x=\frac{\sin x}{x}\ \longrightarrow\ 1\qquad(x\to0^+).$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Concludo il secondo.</strong> Il limite è $1$, positivo e finito, e $\int_0^1\frac{dx}{\sqrt x}$ converge ($p=\frac12\lt1$, <span class="richiamo" data-sec="4.8.2">§4.8.2</span>). Quindi converge anche $\int_0^1\frac{\sin x}{x^{3/2}}\,dx$. Qui bastava anche il confronto semplice, perché $\sin x\le x$ dà $f(x)\le\frac{1}{\sqrt x}$ e quindi $\int f\le2$.</span>
+          </p>
+          <div class="esempio__risultato">Entrambi gli integrali <strong>convergono</strong>. Strategia da ricordare: individua il termine dominante, scrivi il candidato $\frac{1}{x^p}$, controlla che il rapporto tenda a un numero positivo e finito, poi usa la regola del <span class="richiamo" data-sec="4.8">§4.8</span>.</div>
         </div>
       </section>
 
-      <!-- 7. ERRORI COMUNI -->
+      <!-- 6. ERRORI COMUNI -->
       <section class="section" id="errori-comuni">
-        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">❌</span> Scrivere "$+C$" nell'integrale definito</div>
@@ -1073,9 +1456,9 @@
         </div>
       </section>
 
-      <!-- 8. TRUCCHI -->
+      <!-- 7. TRUCCHI -->
       <section class="section" id="trucchi">
-        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Riconosci l'improprio PRIMA di calcolare</div>
@@ -1095,9 +1478,9 @@
         </div>
       </section>
 
-      <!-- 9. MAPPA MENTALE -->
+      <!-- 8. MAPPA MENTALE -->
       <section class="section" id="mappa-mentale">
-        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
         <div class="mappa-mentale">
           <div class="mappa-mentale__centro">L'Integrale Definito $\displaystyle\int_a^b f\,dx$</div>
           <div class="mappa-mentale__rami">
@@ -1111,7 +1494,7 @@
             </div>
             <div class="mappa-mentale__ramo">
               <strong>Proprietà</strong>
-              <ul><li>Linearità</li><li>Additività $\int_a^b=\int_a^c+\int_c^b$</li><li>Monotonia $f\leq g$</li><li>$\int_b^a=-\int_a^b$</li></ul>
+              <ul><li>Linearità</li><li>Additività $\int_a^b=\int_a^c+\int_c^b$</li><li>Monotonia $f\leq g$</li><li>$\int_b^a=-\int_a^b$</li><li>Teorema della media integrale</li></ul>
             </div>
             <div class="mappa-mentale__ramo">
               <strong>Teorema Fondamentale</strong>
@@ -1119,24 +1502,24 @@
             </div>
             <div class="mappa-mentale__ramo">
               <strong>Integrali impropri</strong>
-              <ul><li>1ª specie: intervallo $\infty$</li><li>2ª specie: funzione $\infty$</li><li>Sempre come LIMITE</li><li>Criterio del confronto</li></ul>
+              <ul><li>1ª specie: intervallo $\infty$</li><li>2ª specie: funzione $\infty$</li><li>Sempre come LIMITE</li><li>Criteri del confronto e del confronto asintotico</li></ul>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 10. RIASSUNTO -->
+      <!-- 9. RIASSUNTO -->
       <section class="section" id="riassunto">
-        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
         <div class="riassunto-finale">
           <h3>Da ricordare assolutamente</h3>
           <ul>
             <li><strong>Definizione</strong>: $\displaystyle\int_a^b f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^n f(c_i)\Delta x_i$, limite delle somme di Riemann; è l'<strong>area con segno</strong> ed è un <strong>numero</strong> (niente "$+C$").</li>
             <li><strong>Integrabilità</strong>: ogni funzione continua su $[a,b]$ (chiuso e limitato) è integrabile; idem per monotone e continue a tratti.</li>
-            <li><strong>Proprietà</strong>: linearità, additività $\int_a^b=\int_a^c+\int_c^b$, monotonia ($f\leq g\Rightarrow\int f\leq\int g$), $\big|\int f\big|\leq\int|f|$, e $\int_b^a f=-\int_a^b f$.</li>
+            <li><strong>Proprietà</strong>: linearità, additività $\int_a^b=\int_a^c+\int_c^b$, monotonia ($f\leq g\Rightarrow\int f\leq\int g$), $\big|\int f\big|\leq\int|f|$, e $\int_b^a f=-\int_a^b f$. Per $f$ continua vale anche il <strong>teorema della media integrale</strong>: esiste $c\in[a,b]$ con $\int_a^b f=f(c)\,(b-a)$, cioè $f$ assume il suo valor medio.</li>
             <li><strong>Teorema Fondamentale, Parte 1</strong>: $F(x)=\int_a^x f(t)\,dt$ è una primitiva di $f$, cioè $F'(x)=f(x)$ (rapporto incrementale = strisciolina $\approx f(x)h$).</li>
             <li><strong>Teorema Fondamentale, Parte 2 (Newton–Leibniz)</strong>: $\int_a^b f(x)\,dx=G(b)-G(a)$ per qualunque primitiva $G$ di $f$. Derivare e integrare sono <strong>operazioni inverse</strong>.</li>
-            <li><strong>Integrali impropri</strong>: intervallo illimitato o funzione illimitata; si definiscono <strong>come limite</strong> ($N\to+\infty$ o $\varepsilon\to 0^+$). $\int_1^{+\infty}x^{-p}$ converge se $p&gt;1$; $\int_0^{1}x^{-p}$ converge se $p&lt;1$.</li>
+            <li><strong>Integrali impropri</strong>: intervallo illimitato o funzione illimitata; si definiscono <strong>come limite</strong> ($N\to+\infty$ o $\varepsilon\to 0^+$). $\int_1^{+\infty}x^{-p}$ converge se $p&gt;1$; $\int_0^{1}x^{-p}$ converge se $p&lt;1$. Per decidere senza calcolare si usano il <strong>confronto</strong> e il <strong>confronto asintotico</strong> con $\frac{1}{x^p}$.</li>
             <li><strong>Area vs integrale</strong>: se $f$ cambia segno, spezza nei suoi zeri e integra $|f|$ per ottenere l'area geometrica (sempre positiva).</li>
           </ul>
         </div>
