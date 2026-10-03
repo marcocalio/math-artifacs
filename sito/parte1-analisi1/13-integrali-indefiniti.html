@@ -128,98 +128,53 @@
         <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
 
         <h3 id="teoria-primitiva">4.1 Dal derivare all'integrare: la primitiva</h3>
-        <p><strong>Prima l'idea, poi la definizione.</strong> Nel <a href="07-derivate.html">capitolo 7</a> abbiamo sempre fatto lo stesso viaggio: ti davano una funzione $F$ e tu ne calcolavi la derivata $F'$. Adesso percorriamo la stessa strada nella direzione opposta: <em>ti do la derivata e tu devi ritrovare la funzione da cui era venuta</em>. La funzione che ritrovi si chiama <strong>primitiva</strong>. Detto in una frase sola, e tienila a mente per tutto il capitolo: <strong>una primitiva è una derivata al contrario</strong>.</p>
+        <p>Nel <a href="07-derivate.html">capitolo 7</a> ti davano una funzione $F$ e tu ne calcolavi la derivata $F'$. Adesso facciamo il viaggio inverso: <em>ti do la derivata e tu devi ritrovare la funzione da cui era venuta</em>. La funzione che ritrovi si chiama <strong>primitiva</strong>. In una frase, da tenere a mente per tutto il capitolo: <strong>una primitiva è una derivata al contrario</strong>.</p>
 
         <div class="callout callout--vita-reale">
           <div class="callout__title"><span class="emoji">🍊</span> L'immagine da tenere in mente</div>
-          <p>Pensa a uno spremiagrumi. Ci metti dentro un'arancia e ne esce un bicchiere di succo: questa è la derivata (entra $F$, esce $F'$). La domanda di questo capitolo è quella opposta: <em>ti mostro il bicchiere di succo e ti chiedo quale frutto ci era entrato</em>. Non esiste una "macchina che spreme al contrario": si procede proponendo un frutto e <strong>controllando se, spremuto, dà quel succo</strong>. Ecco perché in tutto il capitolo faremo sempre lo stesso gesto: proponiamo una funzione, la deriviamo, e guardiamo se torna fuori la funzione di partenza.</p>
-          <p><strong>Fin dove regge l'immagine.</strong> Dal bicchiere non si risale a <em>un solo</em> frutto: due arance con la stessa polpa ma con la buccia più o meno spessa danno lo stesso identico succo, perché la buccia finisce nello scarto e nel bicchiere non lascia traccia. Nella nostra analogia la buccia è la costante: derivando sparisce, e dal risultato non si può più ricostruire. È per questo che fra poco (<span class="richiamo" data-sec="4.2">§4.2</span>) la risposta non sarà una funzione sola, ma infinite.</p>
+          <p>Pensa a uno spremiagrumi: ci metti un'arancia ($F$) ed esce il succo ($F'$). La domanda di questo capitolo è l'opposta: <em>ti mostro il bicchiere di succo e ti chiedo quale frutto ci era entrato</em>. Non esiste una macchina che spreme al contrario: si propone un frutto e si <strong>controlla se, spremuto, dà quel succo</strong>. È il gesto che ripeteremo sempre: proponiamo una funzione, la deriviamo e guardiamo se torna fuori $f$.</p>
         </div>
 
-        <p><strong>Un esempio concreto, con i numeri.</strong> Cerchiamo una funzione la cui derivata sia $f(x)=x$. Non abbiamo ancora nessuna regola di integrazione: procediamo per tentativi ragionati, e dopo ogni tentativo <em>deriviamo per controllare</em>.</p>
+        <p><strong>Un esempio concreto.</strong> Cerchiamo una funzione la cui derivata sia $f(x)=x$. Procediamo per tentativi ragionati, e dopo ogni tentativo <em>deriviamo per controllare</em>.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Primo tentativo.</strong> Derivando una potenza il grado si abbassa di uno. Siccome voglio ottenere $x$, che ha grado $1$, devo partire da qualcosa di grado $2$: provo con $F(x)=x^2$.</span>
-          <span class="esempio__passo"><strong>Verifico derivando</strong>, con la regola della potenza $D(x^n)=n\,x^{n-1}$ (cap. 7).</span>
+          <span class="esempio__passo"><strong>Primo tentativo.</strong> Derivando una potenza il grado scende di uno; per ottenere $x$ (grado $1$) parto da una funzione di grado $2$: provo $F(x)=x^2$. Con la regola della potenza $D(x^n)=n\,x^{n-1}$ (cap. 7) si ha $D(x^2)=2x$: è il <em>doppio</em> di quello che volevo. Il tentativo è sbagliato, ma solo per un fattore $2$.</span>
+          <span class="esempio__passo"><strong>Secondo tentativo.</strong> Se il risultato viene doppio, divido per $2$ il punto di partenza: provo $F(x)=\dfrac{x^2}{2}$.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
-        D\big(x^2\big) &amp;= 2\,x^{2-1} &amp;&amp;\text{(regola della potenza con } n=2)\\
-        &amp;= 2x &amp;&amp;\text{(} 2-1=1 \text{, e } x^1=x)
+        D\!\left(\frac{x^2}{2}\right) &amp;= \frac{1}{2}\,D\big(x^2\big) &amp;&amp;\text{(la costante } \tfrac12 \text{ resta fuori: cap. 7)}\\
+        &amp;= \frac{1}{2}\cdot 2x = x
         \end{aligned}$$</div>
-        <p class="esempio__passi">
-          <span class="esempio__passo">Non ho ottenuto $x$, ho ottenuto $2x$: <em>il doppio</em> di quello che volevo. Il tentativo è sbagliato, ma soltanto per un fattore $2$.</span>
-          <span class="esempio__passo"><strong>Secondo tentativo.</strong> Se il risultato viene doppio, divido per $2$ il punto di partenza: provo con $F(x)=\dfrac{x^2}{2}$.</span>
-        </p>
-        <div class="calcolo">$$\begin{aligned}
-        D\!\left(\frac{x^2}{2}\right) &amp;= \frac{1}{2}\,D\big(x^2\big) &amp;&amp;\text{(la costante } \tfrac12 \text{ resta fuori: linearità della derivata, cap. 7)}\\
-        &amp;= \frac{1}{2}\cdot 2x &amp;&amp;\text{(sostituisco } D(x^2)=2x \text{, appena calcolato)}\\
-        &amp;= x &amp;&amp;\text{(} \tfrac12\cdot 2=1)
-        \end{aligned}$$</div>
-        <p>Torna esattamente la funzione di partenza $f(x)=x$. Quindi $F(x)=\dfrac{x^2}{2}$ è una primitiva di $f(x)=x$. Osserva il metodo, più che il risultato: <em>ho proposto, ho derivato, ho corretto</em>. È il metodo che useremo sempre, anche quando gli integrali saranno complicati.</p>
+        <p>Torna $f(x)=x$: quindi $\dfrac{x^2}{2}$ è una primitiva di $x$. Conta il metodo più del risultato: <em>propongo, derivo, correggo</em>. Vale come regola di controllo per ogni primitiva che ti viene proposta (da un libro, da un compagno, da te stesso): la <strong>derivi</strong> e vedi se coincide con $f$. A differenza di quasi ogni altro conto, qui puoi controllare da solo se hai ragione.</p>
 
-        <p><strong>Ora la definizione, pezzo per pezzo.</strong></p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Definizione</span>
           <p><em class="nome">Primitiva.</em> Sia $f$ una funzione definita su un <span class="glossario-term" data-term="intervallo">intervallo</span> $I$. Una funzione $F$ si dice <strong><span class="glossario-term" data-term="primitiva">primitiva</span></strong> (o <em>antiderivata</em>) di $f$ su $I$ se $F$ è derivabile in $I$ e</p>
-          <div class="formula-block">$$\underbrace{F'(x)}_{\text{la derivata della funzione che cerco}} \;=\; \underbrace{f(x)}_{\text{la funzione che mi hanno dato}} \qquad \underbrace{\text{per ogni } x \in I}_{\text{in tutti i punti, non solo in qualcuno}}$$</div>
-          <p>Cosa significa ogni pezzo, in parole:</p>
+          <div class="formula-block">$$F'(x)=f(x)\qquad\text{per ogni } x\in I.$$</div>
           <ul>
-            <li>$f$ è il <strong>dato</strong> del problema: la funzione di cui conosciamo l'espressione;</li>
-            <li>$F$ è l'<strong>incognita</strong>: la funzione che stiamo cercando;</li>
-            <li>il legame fra le due sta tutto in una riga: <em>derivando $F$ si deve riottenere $f$</em>;</li>
-            <li>"per ogni $x\in I$" vuol dire che l'uguaglianza deve valere in <strong>tutti</strong> i punti dell'intervallo, non solo in qualcuno scelto bene.</li>
+            <li>$f$ è il <strong>dato</strong>: la funzione di cui conosciamo l'espressione;</li>
+            <li>$F$ è l'<strong>incognita</strong>: la funzione che cerchiamo, quella che derivata restituisce $f$;</li>
+            <li>"per ogni $x\in I$": l'uguaglianza deve valere in <strong>tutti</strong> i punti dell'intervallo, non solo in qualcuno scelto bene.</li>
           </ul>
         </div>
 
-        <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> La funzione $F(x)=x^2$ <strong>non</strong> è una primitiva di $f(x)=x$. Perché no? Perché derivandola si ottiene $2x$, e $2x$ non è la stessa cosa di $x$: basta guardare nel punto $x=1$, dove $2x$ vale $2$ mentre $x$ vale $1$. Attenzione, però: $x^2$ è una primitiva di <em>un'altra</em> funzione, cioè di $2x$. Il punto è che la primitiva non si accetta "perché somiglia": si accetta solo dopo averla <strong>verificata derivando</strong>.</p>
-
-        <div class="callout callout--trucco">
-          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica (prendi subito questa abitudine)</div>
-          <p>Ogni volta che qualcuno ti propone una primitiva — un libro, un compagno, tu stesso — fai queste tre mosse, sempre nello stesso ordine:</p>
-          <ol>
-            <li><strong>Deriva</strong> la funzione proposta, usando le regole del <a href="07-derivate.html">capitolo 7</a>.</li>
-            <li><strong>Confronta</strong> quello che ottieni con la funzione di partenza $f$.</li>
-            <li>Se coincidono, la primitiva è giusta: metti ✓ e vai avanti. Se non coincidono, guarda <em>di quanto</em> sbagli: se il risultato è un multiplo (il doppio, il triplo), dividi il candidato per quel numero; se cambia solo il segno, cambia segno al candidato.</li>
-          </ol>
-          <p>È il super-potere dell'integrazione: qui, a differenza di quasi ogni altro conto della matematica, <strong>puoi controllare da solo se hai ragione</strong>, senza chiedere a nessuno e senza guardare le soluzioni. In questo capitolo lo faremo alla fine di ogni esempio, e ti chiediamo di farlo in ogni esercizio.</p>
-        </div>
-
-        <p><strong>Fin qui:</strong> "primitiva" vuol dire "funzione che, derivata, dà $f$", e si controlla derivando. Adesso arriva la domanda che dà forma a tutto il capitolo. Abbiamo trovato che $\frac{x^2}{2}$ è una primitiva di $x$: è l'<em>unica</em>? Proviamo ad aggiungerci un numero qualsiasi, per esempio $5$, e deriviamo.</p>
+        <p>Abbiamo trovato che $\frac{x^2}{2}$ è una primitiva di $x$: è l'<em>unica</em>? Aggiungiamo un numero qualsiasi, per esempio $5$, e deriviamo.</p>
         <div class="calcolo">$$\begin{aligned}
-        D\!\left(\frac{x^2}{2}+5\right) &amp;= D\!\left(\frac{x^2}{2}\right) + D(5) &amp;&amp;\text{(derivata di una somma, cap. 7)}\\
-        &amp;= x + 0 &amp;&amp;\text{(il primo pezzo l'abbiamo appena calcolato; la derivata di una costante è } 0)\\
-        &amp;= x &amp;&amp;\text{(sommare zero non cambia nulla)}
+        D\!\left(\frac{x^2}{2}+5\right) &amp;= D\!\left(\frac{x^2}{2}\right) + D(5) &amp;&amp;\text{(derivata di una somma)}\\
+        &amp;= x + 0 = x &amp;&amp;\text{(la derivata di una costante è } 0)
         \end{aligned}$$</div>
-        <p>Viene ancora $x$. E lo stesso succederebbe con $-3$, con $\sqrt7$, con qualunque numero: <strong>una costante sparisce sempre derivando</strong>, quindi non lascia nessuna traccia dentro $f$. Le primitive di $x$ sono dunque infinite. La domanda seria diventa un'altra: <em>sono tutte di questa forma — una primitiva fissa più un numero — oppure ce ne sono anche di fatte in modo diverso?</em> La risposta è che su un intervallo sono tutte di questa forma: lo dimostriamo per intero nel prossimo paragrafo (<span class="richiamo" data-sec="4.2">§4.2</span>).</p>
+        <p>Viene ancora $x$, e lo stesso succederebbe con $-3$, con $\sqrt7$, con qualunque numero: <strong>una costante sparisce sempre derivando</strong>. Le primitive di $x$ sono dunque infinite. La domanda seria diventa: <em>sono tutte di questa forma (una primitiva fissa più un numero) oppure ce ne sono anche di fatte in modo diverso?</em> Su un intervallo sono tutte di questa forma: lo dimostriamo per intero nel prossimo paragrafo (<span class="richiamo" data-sec="4.2">§4.2</span>).</p>
 
         <h3 id="teoria-integrale">4.2 L'integrale indefinito e la costante $+C$</h3>
-        <p><strong>Prima l'idea.</strong> Abbiamo appena visto che le primitive di una stessa funzione sono infinite. Invece di sceglierne una a caso e far finta di niente, la matematica fa una cosa più onesta: <strong>le tiene tutte insieme</strong> e dà un nome a questo pacchetto. Il pacchetto si chiama <strong>integrale indefinito</strong>, e il modo di scriverlo tutto in una volta è aggiungere in fondo una lettera che significa "più un numero qualunque": la famosa <strong>$+C$</strong>.</p>
+        <p>Le primitive di una stessa funzione sono infinite. Invece di sceglierne una a caso, la matematica fa una cosa più onesta: <strong>le tiene tutte insieme</strong> e dà un nome al pacchetto, <strong>integrale indefinito</strong>. Lo si scrive aggiungendo in fondo una lettera che significa "più un numero qualunque": la famosa <strong>$+C$</strong>.</p>
 
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🏢</span> L'immagine da tenere in mente</div>
-          <p>Immagina la stessa identica scala a chiocciola montata in tanti palazzi diversi: in uno parte dal piano terra, in un altro dal primo piano, in un altro ancora dal terzo. E i palazzi non sono dieci: la scala si può montare a <em>qualunque</em> quota, anche a $3{,}7$ metri da terra, quindi le possibilità sono infinite. La scala però è sempre quella: stessa pendenza, stessi gradini, stessa forma. Se ti descrivono soltanto <em>com'è fatta la scala</em>, non puoi dedurre a che altezza comincia: puoi solo dire "è quella scala, partita da un'altezza qualunque". Quell'"altezza qualunque" è la $+C$.</p>
-        </div>
-
-        <p><strong>Un esempio concreto, con i numeri.</strong> Prendiamo $f(x)=3x^2$ e mettiamo alla prova quattro candidate primitive, derivandole una per una (regola della potenza e derivata di una costante, cap. 7).</p>
+        <p><strong>Un esempio concreto, con unità di misura vere.</strong> Immagina che $f(x)=3x^2$ sia la velocità di un'auto (in m/s) dopo $x$ secondi. Le sue primitive sono le posizioni possibili (in m). Derivando (regola della potenza e derivata di una costante, cap. 7):</p>
         <div class="calcolo">$$\begin{aligned}
-        D\big(x^3\big) &amp;= 3x^{3-1} = 3x^2 &amp;&amp;\text{(regola della potenza con } n=3)\\
-        D\big(x^3+5\big) &amp;= 3x^2+0 = 3x^2 &amp;&amp;\text{(la derivata del numero } 5 \text{ è } 0)\\
-        D\big(x^3-3\big) &amp;= 3x^2-0 = 3x^2 &amp;&amp;\text{(anche } -3 \text{ è un numero fisso)}\\
-        D\big(x^3+\sqrt7\big) &amp;= 3x^2+0 = 3x^2 &amp;&amp;\text{(} \sqrt7 \text{ è un numero, per quanto brutto)}
+        D\big(x^3\big) &amp;= 3x^2\\
+        D\big(x^3+100\big) &amp;= 3x^2+0 = 3x^2 &amp;&amp;\text{(la derivata del numero } 100 \text{ è } 0)
         \end{aligned}$$</div>
-        <p>Quattro funzioni diverse, la stessa derivata. Non è una coincidenza: derivando, <em>qualunque</em> costante viene azzerata. Perciò la risposta corretta alla domanda "quali sono le primitive di $3x^2$?" non è una funzione sola, ma la scritta <strong>$x^3+C$</strong>, dove $C$ sta per "un numero qualsiasi: di più non posso saperlo".</p>
+        <p>Sono due auto con la stessa velocità in ogni istante, ma una partita $100$ metri più avanti dell'altra: il distacco resta di $100$ metri per sempre, e il tachimetro non lo vede. La velocità (la derivata) racconta il movimento, non il punto da cui è cominciato. Perciò la risposta corretta a "quali sono le primitive di $3x^2$?" non è una funzione sola, ma la scritta <strong>$x^3+C$</strong>, dove $C$ sta per "un numero qualsiasi: di più non posso saperlo".</p>
 
-        <p><strong>Che cosa vuol dire, con unità di misura vere.</strong> Immagina che $f(x)=3x^2$ sia la velocità di un'auto (in metri al secondo) dopo $x$ secondi. Allora le primitive $x^3+C$ sono le posizioni possibili, in metri. Due auto che viaggiano con questa stessa velocità in ogni istante, ma una partita $100$ metri più avanti dell'altra, corrispondono a $C=0$ e $C=100$:</p>
-        <table class="tabella-comparativa">
-          <thead><tr><th>istante $x$</th><th>velocità $3x^2$</th><th>prima auto: $x^3$</th><th>seconda auto: $x^3+100$</th><th>distacco</th></tr></thead>
-          <tbody>
-            <tr><td>$1$ s</td><td>$3$ m/s</td><td>$1$ m</td><td>$101$ m</td><td>$100$ m</td></tr>
-            <tr><td>$2$ s</td><td>$12$ m/s</td><td>$8$ m</td><td>$108$ m</td><td>$100$ m</td></tr>
-            <tr><td>$3$ s</td><td>$27$ m/s</td><td>$27$ m</td><td>$127$ m</td><td>$100$ m</td></tr>
-          </tbody>
-        </table>
-        <p>Il distacco resta $100$ metri per sempre, e il tachimetro non lo vede: segna gli stessi numeri sulle due auto. La velocità (la derivata) racconta il movimento, non il punto da cui è cominciato.</p>
-
-        <p><strong>Il teorema che sistema le cose.</strong> Sommare una costante a una primitiva dà ancora una primitiva: lo abbiamo appena visto. Ma potrebbero esistere primitive di forma <em>diversa</em>, che non si ottengono in questo modo? Il teorema seguente dice di no: <strong>non esistono primitive "strane"</strong>, tutte si ottengono da una sola aggiungendo un numero.</p>
+        <p><strong>Il teorema che sistema le cose.</strong> Sommare una costante a una primitiva dà ancora una primitiva. Ma potrebbero esistere primitive di forma <em>diversa</em>, che non si ottengono così? Il teorema seguente dice di no: <strong>non esistono primitive "strane"</strong>.</p>
 
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
@@ -229,14 +184,14 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Abbiamo due primitive $F$ e $G$ della stessa funzione $f$ su un intervallo $I$, e non sappiamo com'è fatta né l'una né l'altra. Vogliamo concludere che $G$ si ottiene da $F$ aggiungendo un numero fisso.</p>
-          <p><strong>L'idea.</strong> Confrontare $F$ e $G$ direttamente è impossibile, perché non conosciamo le loro formule. Di tutte e due, però, conosciamo una cosa sola, che ci basta: la derivata, ed è la stessa $f$. Allora guardiamo la loro <em>differenza</em> $H=G-F$. Se due funzioni hanno la stessa pendenza in ogni punto, la loro differenza ha pendenza $f-f=0$ in ogni punto. E una funzione con pendenza zero dappertutto, su un intervallo, "non si muove": è costante. Questo fatto è il corollario del teorema di Lagrange del cap. 8; lo rivediamo qui in due righe, perché è proprio lì che serve la parola "intervallo".</p>
+          <p><strong>L'idea.</strong> Confrontare $F$ e $G$ direttamente è impossibile, perché non conosciamo le loro formule. Di tutte e due, però, conosciamo una cosa che ci basta: la derivata, ed è la stessa $f$. Allora guardiamo la loro <em>differenza</em> $H=G-F$. Se due funzioni hanno la stessa pendenza in ogni punto, la loro differenza ha pendenza $f-f=0$ in ogni punto. E una funzione con pendenza zero dappertutto, su un intervallo, "non si muove": è costante. Questo fatto è il corollario del teorema di Lagrange del cap. 8; lo rivediamo qui in due righe, perché è proprio lì che serve la parola "intervallo".</p>
           <p><strong>Passo 1 — calcolo la derivata della differenza.</strong> Pongo $H(x)=G(x)-F(x)$ per $x\in I$. Le funzioni $F$ e $G$ sono derivabili (è parte della definizione di primitiva), quindi lo è anche $H$. La derivata di una differenza è la differenza delle derivate (cap. 7):</p>
           <div class="calcolo">$$\begin{aligned}
           H'(x) &amp;= G'(x)-F'(x)\\
           &amp;= f(x)-f(x)\\
           &amp;= 0
           \end{aligned}$$</div>
-          <p>Nel passaggio centrale abbiamo usato che $F'=f$ e che $G'=f$: è qui che entra l'ipotesi "primitive della <em>stessa</em> $f$". Abbiamo ottenuto $H'(x)=0$ per ogni $x\in I$.</p>
+          <p>Nel passaggio centrale abbiamo usato $F'=f$ e $G'=f$: è qui che entra l'ipotesi "primitive della <em>stessa</em> $f$". Abbiamo ottenuto $H'(x)=0$ per ogni $x\in I$.</p>
           <p><strong>Passo 2 — mostro che $H$ ha lo stesso valore in due punti qualsiasi.</strong> Scelgo due punti $x_1\lt x_2$ dell'intervallo $I$. Il teorema di Lagrange (cap. 8) dice che la pendenza media fra $x_1$ e $x_2$ coincide con la pendenza in qualche punto intermedio $\xi$. Possiamo applicarlo: $H$ è derivabile, quindi continua, su tutto $[x_1,x_2]$, e questo segmento sta dentro $I$ perché $I$ è un intervallo.</p>
           <div class="calcolo">$$\begin{aligned}
           H(x_2)-H(x_1) &amp;= H'(\xi)\,(x_2-x_1)\\
@@ -247,28 +202,25 @@
           <p><strong>Passo 3 — concludo che $H$ è costante e torno a $G$.</strong> Il Passo 2 vale per qualunque coppia di punti di $I$, quindi $H$ assume lo stesso valore dappertutto. Chiamo $C$ quel valore. Allora $G(x)-F(x)=C$, e portando $F(x)$ dall'altra parte:</p>
           <div class="calcolo">$$G(x)=F(x)+C\qquad\text{per ogni } x\in I.$$</div>
           <p><strong>Conclusione.</strong> Ipotesi: $F$ e $G$ hanno la stessa derivata su un intervallo. Passi: la loro differenza ha derivata nulla (Passo 1); per Lagrange assume lo stesso valore in ogni coppia di punti (Passo 2); quindi è un numero fisso (Passo 3). Tesi: $G=F+C$. <span class="qed">∎</span></p>
-          <p><strong>Controllo numerico.</strong> Prendiamo $f(x)=3x^2$, $F(x)=x^3$ e $G(x)=x^3+5$. La differenza è $G(x)-F(x)=5$ per ogni $x$: un numero fisso, come previsto.</p>
-          <p><strong>Dove serve ogni ipotesi.</strong> Senza "stessa $f$" la differenza non avrebbe derivata nulla. Senza "intervallo" il segmento fra $x_1$ e $x_2$ potrebbe passare per un "buco" del dominio, dove $H$ non è né derivabile né continua, e Lagrange non si potrebbe applicare: nel riquadro "Perché serve l'ipotesi intervallo", più sotto, c'è un controesempio concreto.</p>
         </div>
 
         <p>Grazie a questo teorema, l'insieme di <em>tutte</em> le primitive di $f$ è esattamente</p>
         <div class="formula-block">$$\{\, F(x)+C \;:\; C \in \mathbb{R} \,\}.$$</div>
-        <p>Questa famiglia di funzioni — tutte della stessa forma, traslate verticalmente l'una rispetto all'altra — è ciò che chiamiamo integrale indefinito. Le si assegna un simbolo apposito.</p>
+        <p>Questa famiglia di funzioni, tutte della stessa forma e traslate verticalmente l'una rispetto all'altra, è ciò che chiamiamo integrale indefinito. Le si assegna un simbolo apposito.</p>
 
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Definizione</span>
           <p><em class="nome">Integrale indefinito.</em> Se $F$ è una primitiva di $f$ su un intervallo, si scrive</p>
-          <div class="formula-block">$$\underbrace{\int}_{\text{"tutte le primitive di"}} \underbrace{f(x)}_{\text{funzione integranda}}\,\underbrace{dx}_{\text{la variabile è } x} \;=\; \underbrace{F(x)}_{\text{una primitiva}} + \underbrace{C}_{\text{un numero qualunque}}$$</div>
-          <p>Cosa significa ogni pezzo:</p>
+          <div class="formula-block">$$\int f(x)\,dx \;=\; F(x) + C$$</div>
           <ul>
-            <li>$\displaystyle\int$ è una "S" allungata (dal latino <em>summa</em>). È solo un simbolo: leggilo come <em>"tutte le primitive di"</em>;</li>
-            <li>$f(x)$ è la <strong>funzione integranda</strong>, cioè il dato: la funzione di cui cerchiamo le primitive;</li>
-            <li>$dx$ dice <strong>rispetto a quale lettera</strong> stiamo integrando: se nel conto comparissero altre lettere, quelle andrebbero trattate come numeri fissi. Non è un ornamento — nel metodo di sostituzione (<span class="richiamo" data-sec="4.5">§4.5</span>) sarà un protagonista;</li>
+            <li>$\displaystyle\int$ è una "S" allungata (dal latino <em>summa</em>): è solo un simbolo, leggilo come <em>"tutte le primitive di"</em>;</li>
+            <li>$f(x)$ è la <strong>funzione integranda</strong>, cioè il dato;</li>
+            <li>$dx$ dice <strong>rispetto a quale lettera</strong> integriamo: se nel conto comparissero altre lettere, andrebbero trattate come numeri fissi. Non è un ornamento: nel metodo di sostituzione (<span class="richiamo" data-sec="4.5">§4.5</span>) sarà un protagonista;</li>
             <li>$C\in\mathbb{R}$ è la <strong>costante di integrazione</strong>: un numero qualsiasi, che tiene insieme infinite risposte in una scritta sola.</li>
           </ul>
         </div>
 
-        <p>Il significato geometrico della $+C$ è quello del sentiero della <a href="#vita-reale">sezione 3</a>: <strong>l'integrale indefinito non è una curva, ma un fascio di infinite curve</strong>, ottenute traslando in alto e in basso una qualunque di esse. Tutte hanno, a parità di $x$, la <em>stessa pendenza</em> — ed è normale, visto che hanno tutte la stessa derivata $f(x)$.</p>
+        <p>Geometricamente (è il sentiero della <a href="#vita-reale">sezione 3</a>): <strong>l'integrale indefinito non è una curva, ma un fascio di infinite curve</strong>, ottenute traslando in alto e in basso una qualunque di esse. A parità di $x$ hanno tutte la <em>stessa pendenza</em>, come è giusto: hanno tutte la stessa derivata $f(x)$.</p>
 
         <svg viewBox="0 0 460 300" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Famiglia di primitive: quattro curve con la stessa forma traslate verticalmente, tutte con la stessa pendenza a parità di ascissa">
           <line x1="30" y1="260" x2="440" y2="260" stroke="var(--color-border)" stroke-width="1.5"/>
@@ -283,35 +235,13 @@
         </svg>
         <p style="text-align:center;font-size:.88rem;color:var(--color-text-muted);margin-top:-.6em;">Le curve del fascio hanno tutte la stessa forma, spostate su e giù dalla costante $C$: derivandole si ottiene sempre la stessa $f$.</p>
 
-        <p><strong>Due non-esempi, per vedere dov'è il confine.</strong></p>
-        <p>1) Scrivere $\displaystyle\int 3x^2\,dx = x^3$, senza la $+C$, è una risposta <em>incompleta</em>: hai dato una sola primitiva quando te ne chiedevano infinite. È come rispondere "Milano" alla domanda "quali sono le città italiane?": non è falso, ma non è la risposta.</p>
-        <p>2) La funzione $G(x)=x^3+x$ <strong>non</strong> è un'altra primitiva di $3x^2$: derivandola si ottiene $3x^2+1$, che non è $3x^2$. Guarda anche la differenza: $G(x)-x^3=x$, e $x$ non è una costante. È esattamente il caso che il teorema esclude — la differenza fra due primitive deve essere un numero fisso, non una funzione che cambia.</p>
-
-        <div class="callout callout--trucco">
-          <div class="callout__title"><span class="emoji">🔑</span> Come si verifica in pratica</div>
-          <p>Per controllare un integrale indefinito: <strong>deriva il risultato</strong> (la $+C$ puoi ignorarla, tanto la sua derivata è $0$) e guarda se ottieni la funzione integranda. Esempio: ho scritto $\int 3x^2\,dx=x^3+C$; derivo $x^3+C$ e ottengo $3x^2+0=3x^2$, che è proprio l'integranda ✓. Se invece avessi scritto $\frac{x^3}{3}+C$, derivando otterrei $x^2$, diverso da $3x^2$: errore scoperto in cinque secondi, senza bisogno di nessuno.</p>
-        </div>
-
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> Perché serve l'ipotesi "intervallo"</div>
-          <p>Il fatto che due primitive differiscano per <em>una sola</em> costante vale su un <strong>intervallo</strong>, cioè su un pezzo di retta tutto attaccato. Su un <span class="glossario-term" data-term="dominio">dominio</span> spezzato in due tronconi separati la costante può essere diversa su ciascun troncone, perché i due pezzi non "si parlano". Ad esempio $\int \frac{1}{x}\,dx=\ln|x|+C$ va inteso separatamente su $(-\infty,0)$ e su $(0,+\infty)$: nulla obbliga la costante a essere la stessa nei due rami. Un esempio concreto: la funzione uguale a $\ln x$ per $x\gt0$ e a $\ln(-x)+1$ per $x\lt0$ ha derivata $\frac1x$ come $\ln|x|$, ma la differenza fra le due vale $0$ a destra e $1$ a sinistra, quindi non è costante. In Analisi 1 lavoreremo quasi sempre su un intervallo, quindi useremo tranquillamente un'unica $C$; ma è bene sapere da dove nasce quella richiesta, perché è la stessa ipotesi che serve nel Passo 2 della dimostrazione del teorema, poco sopra.</p>
+          <p>Il fatto che due primitive differiscano per <em>una sola</em> costante vale su un <strong>intervallo</strong>, cioè su un pezzo di retta tutto attaccato. Su un <span class="glossario-term" data-term="dominio">dominio</span> spezzato in due tronconi la costante può essere diversa su ciascuno, perché i due pezzi non "si parlano". Ad esempio $\int \frac{1}{x}\,dx=\ln|x|+C$ va inteso separatamente su $(-\infty,0)$ e su $(0,+\infty)$: la funzione uguale a $\ln x$ per $x\gt0$ e a $\ln(-x)+1$ per $x\lt0$ ha derivata $\frac1x$ come $\ln|x|$, ma la differenza fra le due vale $0$ a destra e $1$ a sinistra, quindi non è costante. In Analisi 1 lavoreremo quasi sempre su un intervallo e useremo un'unica $C$; ma è la stessa ipotesi che serve nel Passo 2 della dimostrazione del teorema.</p>
         </div>
 
         <h3 id="teoria-immediati">4.3 Gli integrali immediati: la tabella delle primitive fondamentali</h3>
-        <p><strong>Prima l'idea.</strong> Derivare è una procedura meccanica: applichi le regole nell'ordine giusto e il risultato esce sempre. Integrare no: non c'è una ricetta unica che funzioni su qualunque funzione, e bisogna <em>riconoscere</em> da dove può essere venuta l'integranda. Esiste però una cosa quasi altrettanto utile: una <strong>tabella</strong>. E non dobbiamo nemmeno costruirla da zero, perché ce l'abbiamo già: è la tabella delle derivate del <a href="07-derivate.html">capitolo 7</a>, <em>letta al contrario</em>. Ogni riga "$D[F]=f$" diventa una riga "$\int f\,dx = F+C$".</p>
-
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">📖</span> L'immagine da tenere in mente</div>
-          <p>È un dizionario bilingue usato all'incontrario. Con il dizionario italiano→inglese cerchi "cane" e trovi "dog". Se qualcuno ti dice "dog" e vuoi sapere com'era in italiano, non ti serve un libro nuovo: ti basta scorrere le stesse pagine partendo dalla colonna di destra. La tabella delle primitive è la tabella delle derivate scorsa da destra a sinistra.</p>
-        </div>
-
-        <p><strong>Un esempio concreto, per vedere come nasce una riga.</strong> Nel capitolo 7 abbiamo dimostrato che $D(\sin x)=\cos x$. Leggiamola al contrario: qual è una funzione la cui derivata è $\cos x$? È $\sin x$. Quindi $\int\cos x\,dx=\sin x+C$. Verifichiamo, come sempre:</p>
-        <div class="calcolo">$$\begin{aligned}
-        D\big(\sin x + C\big) &amp;= D(\sin x) + D(C) &amp;&amp;\text{(derivata di una somma, cap. 7)}\\
-        &amp;= \cos x + 0 &amp;&amp;\text{(tabella delle derivate; la derivata di una costante è } 0)\\
-        &amp;= \cos x &amp;&amp;\text{(è la funzione integranda di partenza)}
-        \end{aligned}$$</div>
-        <p>Ogni riga della tabella qui sotto nasce così. Nella terza colonna non c'è una "nota": c'è <strong>la derivata che giustifica la riga</strong>, cioè la verifica già fatta per te. Quando un risultato non ti convince, guarda la terza colonna e rifai il conto tu.</p>
+        <p>Derivare è meccanico: applichi le regole e il risultato esce. Integrare no: bisogna <em>riconoscere</em> da dove può essere venuta l'integranda. Una grande scorciatoia c'è: la <strong>tabella</strong> delle derivate del <a href="07-derivate.html">capitolo 7</a>, <em>letta al contrario</em>. Ogni riga "$D[F]=f$" diventa una riga "$\int f\,dx = F+C$". Per esempio, $D(\sin x)=\cos x$: quindi $\int\cos x\,dx=\sin x+C$. Nella terza colonna della tabella qui sotto trovi <strong>la derivata che giustifica ogni riga</strong>, cioè la verifica già fatta: se un risultato non ti convince, rifai quel conto.</p>
 
         <table class="tabella-comparativa">
           <thead><tr><th>Integrale</th><th>Risultato</th><th>La derivata che lo giustifica (la verifica)</th></tr></thead>
@@ -337,23 +267,23 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Che ognuna delle nove formule è giusta. Per la definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>) c'è una sola cosa da fare: <em>derivare il risultato e controllare che esca l'integranda</em>.</p>
-          <p><strong>L'idea.</strong> Non dobbiamo inventare nulla: derivare è meccanico, e la tabella delle derivate l'abbiamo già (cap. 7). Le formule si dividono in tre gruppi. Alcune sono la tabella delle derivate letta al contrario, e basta un colpo d'occhio. Altre richiedono un piccolo conto con una regola di derivazione. Due, $\frac1x$ e $\frac{1}{1+x^2}$, a prima vista non si capisce da dove saltino fuori: per queste spieghiamo anche <em>come ci si arriva</em>, non solo che sono vere. La terza colonna della tabella riporta già la derivata di ogni riga; qui spieghiamo i perché che stanno dietro quei conti.</p>
+          <p><strong>L'idea.</strong> Non dobbiamo inventare nulla: derivare è meccanico, e la tabella delle derivate l'abbiamo già (cap. 7). Alcune formule sono quella tabella letta al contrario e bastano a colpo d'occhio. Altre richiedono un piccolo conto con una regola di derivazione. Due, $\frac1x$ e $\frac{1}{1+x^2}$, a prima vista non si capisce da dove saltino fuori: per queste spieghiamo anche <em>come ci si arriva</em>, non solo che sono vere.</p>
 
-          <p><strong>Passo 1 — le righe che sono la tabella delle derivate letta al contrario.</strong> Per $k$, $e^x$ e $\cos x$ basta la terza colonna: $D(kx)=k$, $D(e^x)=e^x$, $D(\sin x)=\cos x$. L'unico punto delicato è il segno nel seno. Derivando $\cos x$ si ottiene $-\sin x$, cioè l'opposto di quello che vogliamo; quindi serve la funzione con il segno cambiato, $-\cos x$, e allora $D(-\cos x)=-(-\sin x)=\sin x$.</p>
+          <p><strong>Passo 1 — le righe che sono la tabella delle derivate letta al contrario.</strong> Per $k$, $e^x$ e $\cos x$ basta la terza colonna: $D(kx)=k$, $D(e^x)=e^x$, $D(\sin x)=\cos x$. L'unico punto delicato è il segno nel seno. Derivando $\cos x$ si ottiene $-\sin x$, cioè l'opposto di quello che vogliamo; quindi serve la funzione con il segno cambiato, $-\cos x$, e allora $D(-\cos x)=-(-\sin x)=\sin x$. (Scrivere $\int\sin x\,dx=\cos x+C$ è l'errore più frequente della tabella: quando integri un seno, fermati un istante in più.)</p>
 
-          <p><strong>Passo 2 — la regola della potenza.</strong> Derivando una potenza l'esponente scende di uno; per tornare indietro, l'esponente deve salire di uno. Il primo tentativo è quindi $x^{\alpha+1}$. Lo deriviamo con la regola della potenza (cap. 7), con esponente $\alpha+1$:</p>
+          <p><strong>Passo 2 — la regola della potenza.</strong> Derivando una potenza l'esponente scende di uno; per tornare indietro, deve salire di uno. Il primo tentativo è quindi $x^{\alpha+1}$. Lo deriviamo con la regola della potenza (cap. 7), con esponente $\alpha+1$:</p>
           <div class="calcolo">$$D\big(x^{\alpha+1}\big)=(\alpha+1)\,x^{\alpha}.$$</div>
           <p>Il tentativo è giusto a meno di un numero: davanti c'è un fattore $\alpha+1$ che non vogliamo. Lo togliamo dividendo il tentativo per $\alpha+1$ (un numero fisso, che esce dalla derivata):</p>
           <div class="calcolo">$$D\!\left(\frac{x^{\alpha+1}}{\alpha+1}\right)=\frac{1}{\alpha+1}\cdot(\alpha+1)\,x^{\alpha}=x^{\alpha}.$$</div>
-          <p>La divisione è possibile solo se $\alpha+1\neq0$, cioè $\alpha\neq-1$: è esattamente l'esclusione scritta nella tabella.</p>
+          <p>La divisione è possibile solo se $\alpha+1\neq0$, cioè $\alpha\neq-1$: è l'esclusione scritta in tabella. In pratica la regola si applica in tre mosse: leggo l'esponente $\alpha$, aggiungo $1$, divido per il nuovo esponente e metto $+C$ (per esempio $\int x^5\,dx=\frac{x^6}{6}+C$).</p>
 
-          <p><strong>Passo 3 — il caso escluso, $\frac1x$ e il valore assoluto.</strong> Per $\alpha=-1$ la regola precedente cade, quindi dobbiamo cercare un'altra funzione la cui derivata sia $\frac1x$. Dal cap. 7 conosciamo $D(\ln x)=\frac1x$, ma vale solo per $x\gt0$, perché $\ln x$ esiste solo lì. Per $x\lt0$ proviamo $\ln(-x)$, che per $x\lt0$ esiste perché $-x\gt0$. La derivata, con la regola della catena (funzione interna $-x$, la cui derivata è $-1$), è:</p>
+          <p><strong>Passo 3 — il caso escluso, $\frac1x$ e il valore assoluto.</strong> Per $\alpha=-1$ la regola precedente cade, quindi dobbiamo cercare un'altra funzione la cui derivata sia $\frac1x$. Dal cap. 7 conosciamo $D(\ln x)=\frac1x$, ma vale solo per $x\gt0$, perché $\ln x$ esiste solo lì. Per $x\lt0$ proviamo $\ln(-x)$, che esiste perché $-x\gt0$. La derivata, con la regola della catena (funzione interna $-x$, derivata $-1$), è:</p>
           <div class="calcolo">$$D\big(\ln(-x)\big)=\frac{1}{-x}\cdot(-1)=\frac1x.$$</div>
-          <p>Quindi per $x\gt0$ la primitiva è $\ln x$ e per $x\lt0$ è $\ln(-x)$. Ma per $x\gt0$ si ha $|x|=x$ e per $x\lt0$ si ha $|x|=-x$: le due formule si scrivono insieme come $\ln|x|$, e abbiamo $D(\ln|x|)=\frac1x$ per ogni $x\neq0$. Il dominio $x\neq0$ non è un intervallo, e la formula va letta separatamente su ciascuna semiretta (§4.2).</p>
+          <p>Quindi per $x\gt0$ la primitiva è $\ln x$ e per $x\lt0$ è $\ln(-x)$. Ma per $x\gt0$ si ha $|x|=x$ e per $x\lt0$ si ha $|x|=-x$: le due formule si scrivono insieme come $\ln|x|$, e $D(\ln|x|)=\frac1x$ per ogni $x\neq0$. Il dominio $x\neq0$ non è un intervallo: la formula va letta separatamente su ciascuna semiretta (§4.2).</p>
 
           <p><strong>Passo 4 — l'esponenziale $a^x$.</strong> Per derivarlo lo riscriviamo con la base $e$: $a^x=e^{x\ln a}$ (Parte 0, cap. 4). Allora, con la regola della catena (funzione interna $x\ln a$, derivata $\ln a$):</p>
           <div class="calcolo">$$D\big(a^x\big)=e^{x\ln a}\cdot\ln a=a^x\ln a.$$</div>
-          <p>Compare un fattore $\ln a$ in più, che è un numero fisso. Lo togliamo dividendo, e il risultato è $D\!\left(\frac{a^x}{\ln a}\right)=a^x$. La divisione è lecita solo se $\ln a\neq0$, cioè $a\neq1$ (e $a\gt0$ serve perché $a^x$ abbia senso per ogni $x$). Controllo numerico con $a=2$ in $x=0$: la pendenza di $2^x$ vale $\ln 2\approx0{,}693$ (il rapporto incrementale con $h=0{,}001$ dà $0{,}6934$), e dividendo per $\ln2$ si ottiene $1=2^0$ ✓.</p>
+          <p>Compare un fattore $\ln a$ in più, che è un numero fisso. Lo togliamo dividendo, e il risultato è $D\!\left(\frac{a^x}{\ln a}\right)=a^x$. La divisione è lecita solo se $\ln a\neq0$, cioè $a\neq1$ (e $a\gt0$ serve perché $a^x$ abbia senso per ogni $x$).</p>
 
           <p><strong>Passo 5 — $\frac{1}{\cos^2x}$ e la tangente.</strong> Deriviamo $\tan x=\frac{\sin x}{\cos x}$ con la regola del quoziente (cap. 7) e poi usiamo $\sin^2x+\cos^2x=1$:</p>
           <div class="calcolo">$$\begin{aligned}
@@ -369,82 +299,35 @@
           &amp;= \frac{1}{1+\tan^2y}\\
           &amp;= \frac{1}{1+x^2}
           \end{aligned}$$</div>
-          <p>Nell'ultimo passaggio abbiamo sostituito $\tan y=x$. Lo stesso schema vale per l'arcoseno: se $y=\arcsin x$, allora $x=\sin y$ con $-\frac\pi2\leq y\leq\frac\pi2$, e $D(\sin y)=\cos y$. In quell'intervallo il coseno non è negativo, quindi $\cos y=\sqrt{1-\sin^2y}=\sqrt{1-x^2}$ (qui la radice prende il segno giusto proprio perché $\cos y\geq0$). Per $-1\lt x\lt1$:</p>
+          <p>Nell'ultimo passaggio abbiamo sostituito $\tan y=x$. Lo stesso schema vale per l'arcoseno: se $y=\arcsin x$, allora $x=\sin y$ con $-\frac\pi2\leq y\leq\frac\pi2$, e $D(\sin y)=\cos y$. In quell'intervallo il coseno non è negativo, quindi $\cos y=\sqrt{1-\sin^2y}=\sqrt{1-x^2}$ (la radice prende il segno giusto proprio perché $\cos y\geq0$). Per $-1\lt x\lt1$:</p>
           <div class="calcolo">$$D(\arcsin x)=\frac{1}{\cos y}=\frac{1}{\sqrt{1-x^2}}.$$</div>
-          <p><strong>Conclusione.</strong> Per ogni riga della tabella abbiamo derivato il risultato e ritrovato l'integranda, con le condizioni sul dominio e sui parametri ($\alpha\neq-1$, $a\gt0$ e $a\neq1$, $\cos x\neq0$, $-1\lt x\lt1$) che sono emerse dai conti stessi. Quindi ogni riga è una primitiva e, per il §4.2, tutte le altre differiscono per una costante. <span class="qed">∎</span></p>
-          <p><strong>Osservazione.</strong> Nella tabella compare solo l'arcoseno e non l'arcocoseno, perché non servono entrambi: $D(\arccos x)=-\frac{1}{\sqrt{1-x^2}}$, quindi anche $-\arccos x$ è una primitiva di $\frac{1}{\sqrt{1-x^2}}$. Non c'è contraddizione: $\arcsin x$ e $-\arccos x$ differiscono per la costante $\frac\pi2$ (cap. 7: $\arcsin x+\arccos x=\frac\pi2$, cioè $\arcsin x=(-\arccos x)+\frac\pi2$), come prevede il §4.2.</p>
+          <p><strong>Conclusione.</strong> Per ogni riga abbiamo derivato il risultato e ritrovato l'integranda, con le condizioni sul dominio e sui parametri ($\alpha\neq-1$, $a\gt0$ e $a\neq1$, $\cos x\neq0$, $-1\lt x\lt1$) emerse dai conti stessi. Quindi ogni riga è una primitiva e, per il §4.2, tutte le altre differiscono per una costante. <span class="qed">∎</span></p>
+          <p><strong>Osservazione.</strong> Nella tabella c'è l'arcoseno e non l'arcocoseno perché non servono entrambi: $D(\arccos x)=-\frac{1}{\sqrt{1-x^2}}$, quindi anche $-\arccos x$ è una primitiva di $\frac{1}{\sqrt{1-x^2}}$. Non c'è contraddizione: $\arcsin x$ e $-\arccos x$ differiscono per la costante $\frac\pi2$ (cap. 7: $\arcsin x+\arccos x=\frac\pi2$), come prevede il §4.2.</p>
         </div>
-
-        <p><strong>La riga più usata di tutte: la regola della potenza.</strong> Vale la pena ridurla a tre mosse fisse, perché la applicherai centinaia di volte. Per calcolare $\int x^{\alpha}\,dx$ (con $\alpha\neq-1$):</p>
-        <ol>
-          <li><strong>Leggo l'esponente</strong>: è $\alpha$.</li>
-          <li><strong>Aggiungo $1$ all'esponente</strong>: il nuovo esponente è $\alpha+1$.</li>
-          <li><strong>Divido per il nuovo esponente</strong>, cioè per $\alpha+1$, e metto $+C$.</li>
-        </ol>
-        <p>Proviamo con $\int x^{5}\,dx$, dichiarando ogni mossa.</p>
-        <div class="calcolo">$$\begin{aligned}
-        \int x^{5}\,dx &amp;= \frac{x^{5+1}}{5+1}+C &amp;&amp;\text{(regola della potenza con } \alpha=5)\\
-        &amp;= \frac{x^{6}}{6}+C &amp;&amp;\text{(faccio la somma: } 5+1=6)
-        \end{aligned}$$</div>
-        <p>Verifica, come sempre: derivo il risultato e controllo che torni $x^5$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        D\!\left(\frac{x^{6}}{6}+C\right) &amp;= \frac{1}{6}\,D\big(x^{6}\big)+0 &amp;&amp;\text{(costante fuori; la derivata di } C \text{ è } 0)\\
-        &amp;= \frac{1}{6}\cdot 6x^{5} &amp;&amp;\text{(regola della potenza per derivare, con } n=6)\\
-        &amp;= x^{5} &amp;&amp;\text{(} \tfrac16\cdot 6=1)
-        \end{aligned}$$</div>
-        <p>Torna la funzione di partenza ✓.</p>
-
-        <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> Scrivere $\int\sin x\,dx=\cos x+C$ è <strong>sbagliato</strong>, e l'errore si scopre in una riga: derivando $\cos x$ si ottiene $-\sin x$, cioè l'opposto dell'integranda. Il risultato giusto è $-\cos x+C$, perché $D(-\cos x)=-(-\sin x)=\sin x$. Questo scambio di segno è l'errore più frequente di tutta la tabella: quando integri un seno, fermati un istante in più.</p>
-
-        <div class="callout callout--intuizione">
-          <div class="callout__title"><span class="emoji">💡</span> Il "buco" nella regola della potenza</div>
-          <p>La formula $\int x^\alpha\,dx=\frac{x^{\alpha+1}}{\alpha+1}+C$ funziona per ogni esponente <em>tranne</em> $\alpha=-1$: lì il denominatore $\alpha+1$ diventa $-1+1=0$, e dividere per zero non si può. Cosa integra allora $x^{-1}=\frac1x$? Non una potenza, ma il <span class="glossario-term" data-term="logaritmo">logaritmo</span>: $\int\frac1x\,dx=\ln|x|+C$. Proprio dove la potenza fallisce, subentra il logaritmo a tappare il buco. Il valore assoluto serve perché $\frac1x$ è definita anche per $x\lt 0$: perché $\ln|x|$ funzioni su entrambi i rami lo abbiamo verificato nel Passo 3 della dimostrazione qui sopra.</p>
-        </div>
-
-        <p>Da questa tabella e dalla relazione "deriva / integra" nasce tutto il resto del capitolo:</p>
-        <svg viewBox="0 0 460 210" style="max-width:480px;margin:1.3em auto;display:block;" role="img" aria-label="Schema: la funzione F si deriva ottenendo f, e la funzione f si integra ottenendo F più C">
-          <rect x="45" y="80" width="130" height="60" rx="12" fill="var(--color-primary-light)" stroke="var(--color-primary)" stroke-width="2"/>
-          <rect x="290" y="80" width="130" height="60" rx="12" fill="var(--color-secondary-light)" stroke="var(--color-secondary)" stroke-width="2"/>
-          <text x="110" y="116" font-size="18" font-weight="700" fill="currentColor" text-anchor="middle">F(x)</text>
-          <text x="355" y="116" font-size="18" font-weight="700" fill="currentColor" text-anchor="middle">f(x)</text>
-          <line x1="180" y1="100" x2="283" y2="100" stroke="var(--color-primary)" stroke-width="2"/>
-          <polygon points="283,94 293,100 283,106" fill="var(--color-primary)"/>
-          <text x="232" y="90" font-size="12.5" font-weight="700" fill="var(--color-primary)" text-anchor="middle">derivo (D)</text>
-          <line x1="285" y1="124" x2="182" y2="124" stroke="var(--color-secondary)" stroke-width="2"/>
-          <polygon points="182,118 172,124 182,130" fill="var(--color-secondary)"/>
-          <text x="233" y="145" font-size="12.5" font-weight="700" fill="var(--color-secondary)" text-anchor="middle">integro ( ∫ dx, + C )</text>
-        </svg>
-        <p>Derivazione e integrazione sono operazioni <strong>inverse</strong>, ma con un'asimmetria: derivando si perde l'informazione sulla costante (la derivata di una costante è $0$), e integrando quella informazione va "rimessa a mano" con la $+C$. Il viaggio di andata e ritorno non ti riporta necessariamente al punto esatto da cui eri partito, ma a un punto qualunque del fascio.</p>
 
         <h3 id="teoria-linearita">4.4 La linearità dell'integrale</h3>
-        <p><strong>Prima l'idea.</strong> Gli integrali della tabella sono "mattoni". Le funzioni che incontrerai sono quasi sempre <em>somme</em> di mattoni, magari moltiplicati per qualche numero. La <strong>linearità</strong> è il permesso ufficiale di spezzare un integrale lungo in tanti integrali corti e di tirare fuori i numeri che danno fastidio.</p>
+        <p>Gli integrali della tabella sono "mattoni". Le funzioni che incontrerai sono quasi sempre <em>somme</em> di mattoni, magari moltiplicati per qualche numero. La <strong>linearità</strong> è il permesso di spezzare un integrale lungo in tanti integrali corti e di tirare fuori i numeri che danno fastidio. È come lo scontrino della spesa: il totale è la somma dei prezzi dei singoli prodotti, e tre confezioni uguali costano tre volte una.</p>
 
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🧾</span> L'immagine da tenere in mente</div>
-          <p>È lo scontrino della spesa. Il totale è la somma dei prezzi dei singoli prodotti: puoi contare tutto insieme oppure prodotto per prodotto, il totale non cambia. E se prendi tre confezioni uguali, calcoli il prezzo di una e moltiplichi per tre. La linearità dice esattamente questo, con gli integrali al posto dei prezzi.</p>
-        </div>
-
-        <p><strong>Un esempio concreto, con i numeri.</strong> Calcoliamo $\displaystyle\int\big(4x^3+\cos x\big)\,dx$ spezzandolo.</p>
+        <p><strong>Un esempio concreto.</strong> Calcoliamo $\displaystyle\int\big(4x^3+\cos x\big)\,dx$ spezzandolo.</p>
         <div class="calcolo">$$\begin{aligned}
-        \int\big(4x^3+\cos x\big)\,dx &amp;= \int 4x^3\,dx + \int\cos x\,dx &amp;&amp;\text{(spezzo la somma in due integrali)}\\
+        \int\big(4x^3+\cos x\big)\,dx &amp;= \int 4x^3\,dx + \int\cos x\,dx &amp;&amp;\text{(spezzo la somma)}\\
         &amp;= 4\int x^3\,dx + \int\cos x\,dx &amp;&amp;\text{(porto fuori il numero } 4)\\
-        &amp;= 4\cdot\frac{x^{3+1}}{3+1} + \sin x + C &amp;&amp;\text{(regola della potenza con } \alpha=3 \text{; tabella §4.3)}\\
-        &amp;= 4\cdot\frac{x^{4}}{4} + \sin x + C &amp;&amp;\text{(} 3+1=4)\\
-        &amp;= x^4 + \sin x + C &amp;&amp;\text{(il } 4 \text{ davanti si semplifica con il } 4 \text{ sotto)}
+        &amp;= 4\cdot\frac{x^{4}}{4} + \sin x + C &amp;&amp;\text{(potenza con } \alpha=3 \text{; tabella §4.3)}\\
+        &amp;= x^4 + \sin x + C &amp;&amp;\text{(il } 4 \text{ si semplifica)}
         \end{aligned}$$</div>
-        <p>Verifica: $D\big(x^4+\sin x+C\big)=4x^3+\cos x+0$, che è l'integranda di partenza ✓. Nota che ho scritto <strong>una sola</strong> $C$ alla fine: due costanti qualunque sommate fanno ancora una costante qualunque, quindi non ha senso portarsene dietro due.</p>
+        <p>Verifica: $D\big(x^4+\sin x+C\big)=4x^3+\cos x$ ✓. Ho scritto <strong>una sola</strong> $C$: due costanti qualunque sommate fanno ancora una costante qualunque.</p>
 
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Proposizione</span>
           <p><em class="nome">Linearità.</em> Se $f$ e $g$ ammettono primitiva su un intervallo e $a,b$ sono numeri fissi, allora</p>
-          <div class="formula-block">$$\int \underbrace{\big[\, a\,f(x) + b\,g(x) \,\big]}_{\text{una sola integranda, fatta di due pezzi}}\,dx \;=\; \underbrace{a\int f(x)\,dx}_{\text{primo pezzo, col suo numero davanti}} + \underbrace{b\int g(x)\,dx}_{\text{secondo pezzo, col suo numero davanti}}$$</div>
+          <div class="formula-block">$$\int \big[\, a\,f(x) + b\,g(x) \,\big]\,dx \;=\; a\int f(x)\,dx + b\int g(x)\,dx$$</div>
           <p>In parole: <strong>l'integrale di una somma è la somma degli integrali, e un numero che moltiplica si porta fuori dal segno di integrale.</strong></p>
         </div>
 
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Che spezzare un integrale in due pezzi e portare fuori i numeri non cambia il risultato. Ricorda che $\int$ significa "tutte le primitive di": dire che i due membri sono uguali vuol dire che hanno <em>le stesse primitive</em>.</p>
-          <p><strong>L'idea.</strong> Non serve inventare nulla, perché sappiamo già come si controlla una primitiva: si deriva. Il membro di destra ci suggerisce un candidato. Se $F$ è una primitiva di $f$ e $G$ è una primitiva di $g$, il candidato è $a\,F+b\,G$. Lo deriviamo: la derivata è lineare (cap. 7: la derivata di una somma è la somma delle derivate, e i numeri escono dal segno di derivata), quindi ci aspettiamo di ritrovare proprio $a\,f+b\,g$. In altre parole, la linearità dell'integrale è la linearità della derivata letta al contrario.</p>
+          <p><strong>L'idea.</strong> Sappiamo già come si controlla una primitiva: si deriva. Il membro di destra ci suggerisce un candidato: se $F$ è una primitiva di $f$ e $G$ è una primitiva di $g$, il candidato è $a\,F+b\,G$. Lo deriviamo: la derivata è lineare (cap. 7), quindi ci aspettiamo di ritrovare $a\,f+b\,g$. La linearità dell'integrale è la linearità della derivata letta al contrario.</p>
           <p><strong>Passo 1 — do un nome alle primitive di partenza.</strong> Sia $F$ una primitiva di $f$ e sia $G$ una primitiva di $g$. Per definizione di primitiva (<span class="richiamo" data-sec="4.1">§4.1</span>) questo significa $F'=f$ e $G'=g$.</p>
           <p><strong>Passo 2 — derivo il candidato $a\,F+b\,G$.</strong> Uso prima la linearità della derivata e poi $F'=f$, $G'=g$:</p>
           <div class="calcolo">$$\begin{aligned}
@@ -454,90 +337,67 @@
           <p>Abbiamo ottenuto esattamente l'integranda del membro di sinistra: quindi $a\,F+b\,G$ è <em>una</em> primitiva di $a\,f+b\,g$.</p>
           <p><strong>Passo 3 — tengo conto di tutte le altre primitive.</strong> Per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span>, le primitive di $a\,f+b\,g$ sono tutte e sole le funzioni $a\,F+b\,G+C$, al variare di $C$. Dall'altra parte, il membro di destra $a\int f\,dx+b\int g\,dx$ significa $a\,(F+C_1)+b\,(G+C_2)=a\,F+b\,G+(a\,C_1+b\,C_2)$, e $a\,C_1+b\,C_2$ è ancora un numero qualunque, cioè una costante di integrazione. Le due famiglie di funzioni sono la stessa.</p>
           <p><strong>Conclusione.</strong> Ipotesi: $F$ e $G$ sono primitive di $f$ e $g$. Passi: il candidato $a\,F+b\,G$ ha derivata $a\,f+b\,g$ (Passo 2), e le altre primitive differiscono da lui per una costante (Passo 3). Tesi: $\int(a\,f+b\,g)\,dx=a\int f\,dx+b\int g\,dx$. <span class="qed">∎</span></p>
-          <p><strong>Perché i prodotti restano fuori.</strong> La stessa idea spiega il non-esempio qui sotto. La linearità dell'integrale funziona perché la derivata è lineare. Ma la derivata di un prodotto <em>non</em> è il prodotto delle derivate: ha due addendi (regola del prodotto, cap. 7). Per questo non esiste una regola "per prodotti" per gli integrali; al suo posto c'è l'integrazione per parti (<span class="richiamo" data-sec="4.6">§4.6</span>), che nasce proprio dalla regola del prodotto.</p>
         </div>
 
-        <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> La linearità vale per somme e per numeri moltiplicativi. <em>Non</em> vale per i prodotti di funzioni. Verifichiamolo con i numeri, per convincercene davvero: è vero che $\int x\cdot x\,dx$ è uguale a $\left(\int x\,dx\right)\cdot\left(\int x\,dx\right)$?</p>
+        <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> La linearità vale per somme e per numeri moltiplicativi, <em>non</em> per i prodotti di funzioni. Verifichiamolo con i numeri: è vero che $\int x\cdot x\,dx$ è uguale a $\left(\int x\,dx\right)\cdot\left(\int x\,dx\right)$?</p>
         <div class="calcolo">$$\begin{aligned}
-        \int x\cdot x\,dx &amp;= \int x^2\,dx = \frac{x^3}{3}+C &amp;&amp;\text{(prima moltiplico, poi regola della potenza con } \alpha=2)\\
-        \left(\int x\,dx\right)\cdot\left(\int x\,dx\right) &amp;= \frac{x^2}{2}\cdot\frac{x^2}{2} = \frac{x^4}{4} &amp;&amp;\text{(se invece moltiplicassi i due integrali)}
+        \int x\cdot x\,dx &amp;= \int x^2\,dx = \frac{x^3}{3}+C\\
+        \left(\int x\,dx\right)\cdot\left(\int x\,dx\right) &amp;= \frac{x^2}{2}\cdot\frac{x^2}{2} = \frac{x^4}{4}
         \end{aligned}$$</div>
-        <p>$\frac{x^3}{3}$ e $\frac{x^4}{4}$ sono funzioni completamente diverse (in $x=3$ la prima vale $9$, la seconda $20{,}25$). Quindi <strong>non esiste nessuna "regola del prodotto" per gli integrali</strong>, e non esiste nemmeno quella del quoziente. È proprio questa mancanza che rende necessarie le due tecniche dei prossimi paragrafi: la sostituzione e l'integrazione per parti.</p>
+        <p>Sono funzioni diverse (in $x=3$ valgono $9$ e $20{,}25$). Il motivo è lo stesso della dimostrazione: la linearità dell'integrale funziona perché la derivata è lineare, ma la derivata di un prodotto <em>non</em> è il prodotto delle derivate (ha due addendi). Perciò <strong>non esiste una "regola del prodotto" per gli integrali</strong>, e nemmeno una del quoziente. È questa mancanza che rende necessarie le due tecniche dei prossimi paragrafi: la sostituzione e l'integrazione per parti (<span class="richiamo" data-sec="4.6">§4.6</span>), che nasce proprio dalla regola del prodotto.</p>
 
         <h3 id="teoria-sostituzione">4.5 Integrazione per sostituzione</h3>
-        <p><strong>Prima l'idea.</strong> Molte funzioni integrande sono "una dentro l'altra": in $e^{x^2}$ c'è $x^2$ dentro l'esponenziale, in $\sin(2x)$ c'è $2x$ dentro il seno. Quando <em>deriviamo</em> una funzione così usiamo la <strong>regola della catena</strong> (cap. 7), che dice</p>
+        <p>Molte integrande sono "una funzione dentro l'altra": in $e^{x^2}$ c'è $x^2$ dentro l'esponenziale, in $\sin(2x)$ c'è $2x$ dentro il seno. Derivandole si usa la <strong>regola della catena</strong> (cap. 7)</p>
         <div class="formula-block">$$D\big[F(g(x))\big]=F'\big(g(x)\big)\cdot g'(x)$$</div>
-        <p>cioè: compare un fattore in più, la derivata di ciò che sta dentro. Il metodo di <strong>sostituzione</strong> è questa regola letta al contrario: se nell'integranda vedo una funzione composta <em>moltiplicata per la derivata di ciò che sta dentro</em>, capisco che quell'espressione è nata da una catena, e posso tornare indietro.</p>
+        <p>cioè compare un fattore in più, la derivata di ciò che sta dentro. La <strong>sostituzione</strong> è questa regola letta al contrario: se nell'integranda vedo una funzione composta <em>moltiplicata per la derivata di ciò che sta dentro</em>, capisco che nasce da una catena e posso tornare indietro.</p>
 
         <div class="callout callout--vita-reale">
           <div class="callout__title"><span class="emoji">🚗</span> L'immagine da tenere in mente</div>
-          <p>Hai il diario di un viaggio scritto <strong>minuto per minuto</strong> e lo vuoi riscrivere <strong>chilometro per chilometro</strong>: stesso viaggio, raccontato con un'altra unità. Riscrivere il testo è facile; il punto delicato è convertire i <em>passi</em>. Un minuto di viaggio non vale sempre lo stesso numero di chilometri: in autostrada un minuto sono $2$ km, in centro città sono $0{,}3$ km. Per sapere a quanti chilometri corrisponde un minuto devi guardare <strong>a che velocità stavi andando in quel momento</strong> — e la velocità cambia lungo il viaggio.</p>
-          <p>Nella sostituzione succede la stessa cosa: la vecchia unità è la $x$, la nuova è la $t$, e il "passo" $dx$ diventa $dt$ con un fattore di conversione che <strong>non è un numero fisso</strong>, ma la derivata $g'(x)$: la velocità con cui $t$ cambia quando cambia $x$. Ecco la frase da portarsi a casa: <strong>il $dx$ non si scambia con il $dt$, si ricalcola</strong>, derivando la sostituzione che hai scelto.</p>
-          <p>Molti libri usano invece l'immagine del cambio euro-yen. È comoda, ma va presa con le pinze: in un cambio di valuta il tasso è <em>uno solo</em> per tutta l'operazione, e questo fa credere che basti moltiplicare ogni cosa per lo stesso numero. Qui il tasso cambia da punto a punto, ed è proprio da lì che nascono tutti i pasticci con il $dx$.</p>
+          <p>Hai il diario di un viaggio scritto <strong>minuto per minuto</strong> e lo vuoi riscrivere <strong>chilometro per chilometro</strong>. Riscrivere il testo è facile; il punto delicato è convertire i <em>passi</em>: un minuto non vale sempre lo stesso numero di chilometri (in autostrada sono $2$ km, in centro città $0{,}3$ km), dipende dalla velocità in quel momento. Nella sostituzione la vecchia unità è $x$, la nuova è $t$, e il passo $dx$ diventa $dt$ con un fattore di conversione che <strong>non è un numero fisso</strong>, ma la derivata $g'(x)$: la velocità con cui $t$ cambia quando cambia $x$. Un esempio con $t=x^2$: un passo da $x$ a $x+0{,}1$ è lungo $0{,}21$ in $t$ se parti da $x=1$, ma $1{,}01$ se parti da $x=5$. Ecco la frase da portarsi a casa: <strong>il $dx$ non si scambia con il $dt$, si ricalcola</strong>, derivando la sostituzione scelta.</p>
         </div>
 
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Prima di guardare i conti: qui l'istinto inganna</div>
-          <p>Quando si pone $t=x^2$ sembra di aver solo cambiato nome a una quantità, e l'istinto suggerisce: "allora al posto di $dx$ scrivo $dt$ e ho finito". <strong>È falso</strong>, e bastano due numeri per vederlo. Facciamo sempre lo stesso passo in $x$, lungo $0{,}1$, partendo da punti diversi, e misuriamo quanto è lungo il passo corrispondente in $t$:</p>
-          <table class="tabella-comparativa">
-            <thead><tr><th>il passo in $x$: da $x$ a $x+0{,}1$</th><th>il tratto corrispondente in $t=x^2$</th><th>lunghezza del passo in $t$</th><th>quante volte è più lungo del passo in $x$</th></tr></thead>
-            <tbody>
-              <tr><td>da $0$ a $0{,}1$</td><td>da $0$ a $0{,}01$</td><td>$0{,}01$</td><td>$0{,}1$ volte (più <em>corto</em>!)</td></tr>
-              <tr><td>da $1$ a $1{,}1$</td><td>da $1$ a $1{,}21$</td><td>$0{,}21$</td><td>$2{,}1$ volte</td></tr>
-              <tr><td>da $3$ a $3{,}1$</td><td>da $9$ a $9{,}61$</td><td>$0{,}61$</td><td>$6{,}1$ volte</td></tr>
-              <tr><td>da $5$ a $5{,}1$</td><td>da $25$ a $26{,}01$</td><td>$1{,}01$</td><td>$10{,}1$ volte</td></tr>
-            </tbody>
-          </table>
-          <p>Lo stesso passo in $x$ produce in $t$ un passo che va da $0{,}01$ a $1{,}01$: <strong>cento volte più lungo</strong>, solo perché siamo partiti da un punto diverso. Il fattore di conversione non vale $1$ e non è nemmeno lo stesso dappertutto. Guarda l'ultima colonna: $0{,}1$, $2{,}1$, $6{,}1$, $10{,}1$, cioè $2x$ più un $0{,}1$ che dipende dal fatto che il nostro passo non è piccolissimo. Il fattore è proprio $2x$, la derivata di $x^2$: ed è esattamente ciò che scriveremo come $dt=2x\,dx$.</p>
-        </div>
-
-        <p><strong>Un esempio concreto, con i numeri, una mossa alla volta.</strong> Calcoliamo $\displaystyle\int 2x\,e^{x^2}\,dx$. Facciamo finta di non conoscere il risultato e procediamo con calma, dichiarando ogni mossa.</p>
+        <p><strong>Un esempio concreto, una mossa alla volta.</strong> Calcoliamo $\displaystyle\int 2x\,e^{x^2}\,dx$, dichiarando ogni mossa.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> Guardo l'integranda e cerco la parte "che sta dentro", cioè quella scritta dentro un'altra funzione: qui è $x^2$, che sta dentro l'esponenziale. La battezzo $t$: <strong>pongo $t=x^2$</strong>. (Il criterio generale per scegliere la $t$ è spiegato più sotto.)</span>
-          <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il $dx$.</strong> Se cambio variabile devo convertire anche il "pezzettino" $dx$, e la conversione va <em>calcolata</em>: non è un cambio di nome. La regola è sempre la stessa: derivo la $t$ rispetto a $x$, poi moltiplico entrambi i membri per $dx$. (Perché funziona proprio così lo dimostriamo fra poco, nel Passo 3 della dimostrazione della formula di sostituzione.)</span>
+          <span class="esempio__passo"><strong>Mossa 1 — scelgo la $t$.</strong> Cerco la parte "che sta dentro" un'altra funzione: qui è $x^2$, dentro l'esponenziale. <strong>Pongo $t=x^2$.</strong> (Il criterio generale per scegliere la $t$ è più sotto.)</span>
+          <span class="esempio__passo"><strong>Mossa 2 — ricalcolo il $dx$.</strong> Il $dx$ va <em>calcolato</em>, non rinominato: derivo $t$ rispetto a $x$ e moltiplico entrambi i membri per $dx$. (Perché funziona lo dimostriamo nel Passo 3 della dimostrazione più sotto.)</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
-        t &amp;= x^2 &amp;&amp;\text{(la sostituzione che ho scelto)}\\
-        \frac{dt}{dx} &amp;= 2x &amp;&amp;\text{(derivo rispetto a } x \text{: regola della potenza, cap. 7)}\\
-        dt &amp;= 2x\,dx &amp;&amp;\text{(moltiplico entrambi i membri per } dx)
+        t &amp;= x^2 &amp;&amp;\text{(la sostituzione scelta)}\\
+        \frac{dt}{dx} &amp;= 2x &amp;&amp;\text{(derivo rispetto a } x)\\
+        dt &amp;= 2x\,dx &amp;&amp;\text{(moltiplico per } dx)
         \end{aligned}$$</div>
-        <p>Quest'ultima riga, $dt=2x\,dx$, è il cuore del metodo: dice <em>a quale pezzo scritto in $x$ corrisponde il pezzettino $dt$</em>. È lo stesso $2x$ che nella tabella qui sopra faceva allungare il passo ($2{,}1$ volte in $x=1$, $10{,}1$ volte in $x=5$), scritto una volta per tutte. Da adesso, ovunque io veda il blocco $2x\,dx$, posso scrivere $dt$.</p>
+        <p>L'ultima riga è il cuore del metodo: dice <em>a quale pezzo scritto in $x$ corrisponde $dt$</em>. Ovunque veda il blocco $2x\,dx$, posso scrivere $dt$.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Mossa 3 — sostituisco tutto.</strong> Prima riordino i fattori in modo che il blocco $2x\,dx$ si veda a occhio nudo; poi rimpiazzo: $e^{x^2}\to e^{t}$ e $2x\,dx\to dt$.</span>
+          <span class="esempio__passo"><strong>Mossa 3 — sostituisco tutto.</strong> Riordino i fattori in modo che il blocco $2x\,dx$ si veda; poi rimpiazzo $e^{x^2}\to e^{t}$ e $2x\,dx\to dt$.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
-        \int 2x\,e^{x^2}\,dx &amp;= \int e^{x^2}\,\big(2x\,dx\big) &amp;&amp;\text{(riordino i fattori: in un prodotto l'ordine non conta)}\\
+        \int 2x\,e^{x^2}\,dx &amp;= \int e^{x^2}\,\big(2x\,dx\big) &amp;&amp;\text{(riordino i fattori)}\\
         &amp;= \int e^{t}\,dt &amp;&amp;\text{(sostituisco } x^2=t \text{ e } 2x\,dx=dt)
         \end{aligned}$$</div>
-        <p><strong>Controllo obbligatorio prima di proseguire:</strong> nell'integrale non è rimasta nessuna $x$ e nessun $dx$. Se ne fosse rimasta anche una sola, la sostituzione non sarebbe completa e la scrittura non avrebbe senso: sarebbe come un diario di viaggio con metà pagine in minuti e metà in chilometri.</p>
+        <p><strong>Controllo obbligatorio:</strong> nell'integrale non deve essere rimasta nessuna $x$ e nessun $dx$. Se ne restasse anche una sola, la sostituzione non sarebbe completa.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Mossa 4 — calcolo l'integrale nella nuova variabile.</strong> $\int e^t\,dt$ è una riga della tabella del <span class="richiamo" data-sec="4.3">§4.3</span>, con la lettera $t$ al posto della $x$: vale $e^t+C$.</span>
-          <span class="esempio__passo"><strong>Mossa 5 — torno alla variabile originaria.</strong> La domanda era posta in $x$, quindi la risposta deve essere scritta in $x$: al posto di $t$ rimetto ciò che avevo chiamato $t$, cioè $x^2$. Saltare questa mossa è un errore grave: lasceresti nella risposta una lettera che nel problema non esisteva.</span>
+          <span class="esempio__passo"><strong>Mossa 4 — integro nella nuova variabile.</strong> $\int e^t\,dt$ è una riga della tabella del <span class="richiamo" data-sec="4.3">§4.3</span>, con $t$ al posto di $x$: vale $e^t+C$.</span>
+          <span class="esempio__passo"><strong>Mossa 5 — torno alla variabile originaria.</strong> La domanda era in $x$, quindi la risposta deve essere in $x$: rimetto $t=x^2$. Saltare questa mossa è un errore grave.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
-        \int e^{t}\,dt &amp;= e^{t}+C &amp;&amp;\text{(tabella degli integrali immediati, §4.3)}\\
+        \int e^{t}\,dt &amp;= e^{t}+C &amp;&amp;\text{(tabella, §4.3)}\\
         &amp;= e^{x^2}+C &amp;&amp;\text{(risostituisco } t=x^2)
         \end{aligned}$$</div>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Mossa 6 — verifico derivando.</strong> Derivo $e^{x^2}+C$ con la regola della catena: funzione esterna $e^{(\cdot)}$, funzione interna $x^2$.</span>
+          <span class="esempio__passo"><strong>Mossa 6 — verifico derivando</strong>, con la regola della catena (funzione esterna $e^{(\cdot)}$, interna $x^2$).</span>
         </p>
-        <div class="calcolo">$$\begin{aligned}
-        D\big(e^{x^2}+C\big) &amp;= e^{x^2}\cdot D\big(x^2\big) &amp;&amp;\text{(regola della catena, cap. 7; e } D(C)=0)\\
-        &amp;= e^{x^2}\cdot 2x &amp;&amp;\text{(} D(x^2)=2x)\\
-        &amp;= 2x\,e^{x^2} &amp;&amp;\text{(riordino i fattori)}
-        \end{aligned}$$</div>
-        <p>È esattamente la funzione di partenza: il risultato è corretto. <strong>Fin qui:</strong> sei mosse, sempre le stesse — scelgo $t$, ricalcolo $dt$, sostituisco, integro in $t$, torno a $x$, verifico derivando.</p>
+        <div class="calcolo">$$D\big(e^{x^2}+C\big)=e^{x^2}\cdot D\big(x^2\big)=e^{x^2}\cdot 2x=2x\,e^{x^2}.$$</div>
+        <p>È la funzione di partenza: il risultato è corretto.</p>
 
         <p><strong>Ora la formula generale, con le lettere al posto dei numeri.</strong></p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Formula di sostituzione</span>
           <p>Se $F$ è una primitiva di $f$ su un intervallo $J$ e $g$ è derivabile su un intervallo $I$ con valori dentro $J$, allora</p>
-          <div class="formula-block">$$\int \underbrace{f\big(g(x)\big)}_{\text{funzione composta}}\ \underbrace{g'(x)\,dx}_{\text{il blocco che diventa } dt} \;\overset{t=g(x)}{=}\; \int f(t)\,dt \;=\; F(t)+C \;=\; \underbrace{F\big(g(x)\big)+C}_{\text{ritorno alla variabile } x}$$</div>
-          <p>Cosa significa ogni pezzo:</p>
+          <div class="formula-block">$$\int f\big(g(x)\big)\,g'(x)\,dx \;\overset{t=g(x)}{=}\; \int f(t)\,dt \;=\; F(t)+C \;=\; F\big(g(x)\big)+C$$</div>
           <ul>
             <li>$g$ è la <strong>funzione interna</strong>, quella che battezziamo $t$;</li>
-            <li>$g'(x)\,dx$ è il <strong>differenziale</strong> $dt$: è il pezzo che deve già trovarsi dentro l'integrale, almeno a meno di un numero moltiplicativo;</li>
-            <li>$f$ è tutto ciò che resta, e va integrato nella variabile $t$;</li>
+            <li>$g'(x)\,dx$ è il <strong>differenziale</strong> $dt$: deve già trovarsi dentro l'integrale, almeno a meno di un numero moltiplicativo;</li>
+            <li>$f$ è ciò che resta, e va integrato nella variabile $t$;</li>
             <li>l'ultimo passaggio è il ritorno a $x$: senza di quello la risposta non è una risposta.</li>
           </ul>
         </div>
@@ -545,107 +405,83 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Che la ricetta delle sei mosse funziona davvero: se pongo $t=g(x)$, scrivo $dt$ al posto di $g'(x)\,dx$, integro in $t$ e poi rimetto $t=g(x)$, ottengo una primitiva dell'integranda di partenza. E vogliamo capire <em>perché</em> il $dx$ si converte in quel modo, cioè da dove esce il fattore $g'(x)$.</p>
-          <p><strong>L'idea.</strong> Il risultato della ricetta è la funzione $F\big(g(x)\big)$: la primitiva trovata in $t$, con $t$ rimpiazzata da $g(x)$. Per sapere se è una primitiva dell'integranda facciamo quello che facciamo sempre: la deriviamo. Ma $F(g(x))$ è una funzione composta, e per derivarla serve la regola della catena, che produce <em>due</em> fattori: la derivata della funzione esterna (calcolata nella interna) e la derivata della funzione interna. Il secondo fattore, $g'(x)$, è proprio quello che nell'integranda sembrava "in più". Non è in più: c'è perché la regola della catena lo mette lì. La sostituzione non è un trucco di scrittura: è la regola della catena letta al contrario.</p>
+          <p><strong>L'idea.</strong> Il risultato della ricetta è la funzione $F\big(g(x)\big)$: la primitiva trovata in $t$, con $t$ rimpiazzata da $g(x)$. Per sapere se è una primitiva dell'integranda facciamo quello che facciamo sempre: la deriviamo. Ma $F(g(x))$ è una funzione composta, e la regola della catena produce <em>due</em> fattori: la derivata della funzione esterna (calcolata nella interna) e la derivata della funzione interna. Il secondo, $g'(x)$, è proprio quello che nell'integranda sembrava "in più". Non è in più: c'è perché la regola della catena lo mette lì.</p>
           <p><strong>Passo 1 — derivo la funzione composta.</strong> La funzione esterna è $F$, quella interna è $g$. La regola della catena (cap. 7) dà:</p>
           <div class="calcolo">$$\frac{d}{dx}\,F\big(g(x)\big)=F'\big(g(x)\big)\cdot g'(x).$$</div>
           <p><strong>Passo 2 — uso il fatto che $F$ è una primitiva di $f$.</strong> Per definizione $F'=f$, quindi in $F'\big(g(x)\big)$ posso scrivere $f\big(g(x)\big)$:</p>
           <div class="calcolo">$$\frac{d}{dx}\,F\big(g(x)\big)=f\big(g(x)\big)\cdot g'(x).$$</div>
           <p>Il secondo membro è esattamente l'integranda dell'enunciato. Quindi $F\big(g(x)\big)$ è una sua primitiva. Questa è la dimostrazione vera: tutto il resto è come si scrive.</p>
-          <p><strong>Passo 3 — da dove nasce la scrittura $dt=g'(x)\,dx$.</strong> Nella ricetta compaiono $dt$ e $dx$, che nei Passi 1 e 2 non si sono visti. Sono un modo comodo per tenere i conti di ciò che abbiamo appena dimostrato. In notazione di Leibniz (cap. 7), la regola della catena per $F$ come funzione di $t$, a sua volta funzione di $x$ tramite $t=g(x)$, si scrive</p>
+          <p><strong>Passo 3 — da dove nasce la scrittura $dt=g'(x)\,dx$.</strong> Nella ricetta compaiono $dt$ e $dx$, che nei Passi 1 e 2 non si sono visti: sono un modo comodo per tenere i conti di ciò che abbiamo appena dimostrato. In notazione di Leibniz (cap. 7), la regola della catena per $F$ come funzione di $t$, a sua volta funzione di $x$ tramite $t=g(x)$, si scrive</p>
           <div class="calcolo">$$\frac{dF}{dx}=\frac{dF}{dt}\cdot\frac{dt}{dx},\qquad\text{con}\quad \frac{dF}{dt}=f(t),\quad \frac{dt}{dx}=g'(x).$$</div>
-          <p>Moltiplicando per $dx$ si legge $dF=f(t)\,dt=f\big(g(x)\big)\,g'(x)\,dx$: lo stesso "pezzettino di $F$", scritto una volta con la variabile $t$ e una volta con la variabile $x$. Per questo, passando da $x$ a $t$, il blocco $f\big(g(x)\big)\,g'(x)\,dx$ diventa $f(t)\,dt$: i due hanno la stessa primitiva $F$. Il fattore $g'(x)$ è il tasso di conversione fra le due variabili (la "velocità" del viaggio dell'esempio, e il fattore $2x$ che allungava i passi nella tabella di prima): per un passo piccolo $\Delta x$, la $t$ si muove di circa $g'(x)\,\Delta x$. Quindi $dt=g'(x)\,dx$ non è una frazione che si semplifica: è la regola della catena in forma abbreviata.</p>
+          <p>Moltiplicando per $dx$ si legge $dF=f(t)\,dt=f\big(g(x)\big)\,g'(x)\,dx$: lo stesso "pezzettino di $F$", scritto una volta con la variabile $t$ e una volta con la variabile $x$. Per questo, passando da $x$ a $t$, il blocco $f\big(g(x)\big)\,g'(x)\,dx$ diventa $f(t)\,dt$: i due hanno la stessa primitiva $F$. Il fattore $g'(x)$ è il tasso di conversione fra le due variabili: per un passo piccolo $\Delta x$, la $t$ si muove di circa $g'(x)\,\Delta x$. Quindi $dt=g'(x)\,dx$ non è una frazione che si semplifica: è la regola della catena in forma abbreviata.</p>
           <p><strong>Passo 4 — concludo.</strong> $F(g(x))$ è una primitiva dell'integranda, e per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span> tutte le altre si ottengono aggiungendo $C$. Scrivendo $F(t)+C=\int f(t)\,dt$ e rimettendo $t=g(x)$, è la formula dell'enunciato.</p>
           <p><strong>Conclusione.</strong> Ipotesi: $F$ è una primitiva di $f$ e $g$ è derivabile. Passi: derivando $F(g(x))$ con la catena compare il fattore $g'(x)$ (Passo 1); sostituendo $F'=f$ si ritrova l'integranda (Passo 2). Tesi: $\int f(g(x))\,g'(x)\,dx=F(g(x))+C$. <span class="qed">∎</span></p>
-          <p><strong>Controllo numerico.</strong> Prendiamo $f(t)=e^t$, $F(t)=e^t$ e $g(x)=x^2$. La formula dice che $e^{x^2}$ ha derivata $2x\,e^{x^2}$, che in $x=1$ vale $2e\approx5{,}4366$. Il rapporto incrementale $\frac{e^{(1+h)^2}-e}{h}$ dà $6{,}352$ per $h=0{,}1$, $5{,}519$ per $h=0{,}01$ e $5{,}445$ per $h=0{,}001$: si avvicina a $5{,}4366$ ✓.</p>
-          <p><strong>Dove si usano le ipotesi.</strong> Se nell'integranda non c'è il fattore $g'(x)$, la formula cade: la derivata di $e^{x^2}$ è $2x\,e^{x^2}$ e non $e^{x^2}$, quindi $\int e^{x^2}\,dx\neq e^{x^2}+C$. Inoltre i valori $g(x)$ devono restare nell'intervallo dove $F$ è primitiva di $f$: con $f(t)=\frac1t$, per esempio, serve $g(x)\neq0$ su tutto l'intervallo in cui lavoriamo.</p>
         </div>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Come si sceglie la $t$ (e come si capisce se la scelta è buona)</div>
-          <p>La candidata naturale per la $t$ è la parte <strong>"scomoda" che sta dentro qualcos'altro</strong>: l'esponente di un esponenziale, l'argomento di un seno o di un logaritmo, il contenuto di una radice, il denominatore di una frazione. Scelta la candidata, fai la prova:</p>
+          <p>La candidata naturale è la parte <strong>"scomoda" che sta dentro qualcos'altro</strong>: l'esponente di un esponenziale, l'argomento di un seno o di un logaritmo, il contenuto di una radice, il denominatore di una frazione. Poi fai la prova:</p>
           <ol>
-            <li>calcola $g'(x)$, cioè la derivata della candidata;</li>
-            <li>cerca $g'(x)$ dentro l'integranda. Se c'è <em>tale e quale</em>, la scelta è perfetta;</li>
-            <li>se c'è <em>a meno di un numero</em> (per esempio c'è $x$ dove servirebbe $2x$), va bene lo stesso: si aggiusta con una frazione, come nell'esempio qui sotto;</li>
-            <li>se non c'è per niente, e non è recuperabile moltiplicando per un numero, cambia candidata — oppure cambia metodo.</li>
+            <li>calcola $g'(x)$, la derivata della candidata;</li>
+            <li>cerca $g'(x)$ dentro l'integranda: se c'è <em>tale e quale</em>, la scelta è perfetta;</li>
+            <li>se c'è <em>a meno di un numero</em> (per esempio $x$ dove servirebbe $2x$), va bene lo stesso: si aggiusta con una frazione, come nell'esempio più sotto;</li>
+            <li>se non c'è per niente, e non è recuperabile moltiplicando per un numero, cambia candidata, oppure cambia metodo.</li>
           </ol>
         </div>
 
-        <p><strong>Un non-esempio, per vedere dov'è il confine.</strong> Prendiamo $\displaystyle\int e^{x^2}\,dx$, cioè lo stesso integrale di prima ma <em>senza</em> il $2x$ davanti. Provo lo stesso con $t=x^2$: allora $dt=2x\,dx$, da cui, dividendo entrambi i membri per $2x$, si ha $dx=\dfrac{dt}{2x}$. Sostituendo otterrei $\displaystyle\int e^{t}\,\frac{dt}{2x}$, dove è rimasta una $x$: nella stessa scrittura convivono le due variabili, e così non si va da nessuna parte. Non è colpa di una scelta sbagliata di $t$: nessuna sostituzione può funzionare, per il motivo spiegato qui sotto. Il fattore $2x$ non era un dettaglio: era la chiave.</p>
+        <p><strong>Un non-esempio: quando il fattore giusto manca, $\displaystyle\int e^{x^2}\,dx$.</strong> È lo stesso integrale di prima ma <em>senza</em> il $2x$. Con $t=x^2$ si ha $dt=2x\,dx$, cioè $dx=\dfrac{dt}{2x}$, e sostituendo resta $\displaystyle\int e^{t}\,\frac{dt}{2x}$: nella stessa scrittura convivono $t$ e $x$, e non si va da nessuna parte. Non è colpa della scelta di $t$: nessuna sostituzione può funzionare, perché $e^{x^2}$ non ha una primitiva scrivibile con le funzioni elementari. Il fattore $2x$ non era un dettaglio: era la chiave.</p>
 
         <div class="callout callout--intuizione">
           <div class="callout__title"><span class="emoji">💡</span> "Non ha primitiva elementare" non vuol dire "non si può risolvere"</div>
-          <p>Di $\displaystyle\int e^{x^2}\,dx$ si sente spesso dire "non si può fare". È una frase da smontare, perché mette insieme due cose che vanno tenute separate.</p>
           <ul>
-            <li><strong>La primitiva esiste, eccome.</strong> La funzione $e^{x^2}$ è continua su tutto $\mathbb{R}$, e ogni funzione continua su un intervallo ha primitive — infinite, come tutte le altre. Nel <a href="14-integrali-definiti.html">capitolo 14</a> ne costruiremo una in modo esplicito, come area accumulata sotto il grafico: è una delle cose che il Teorema Fondamentale del Calcolo garantisce.</li>
-            <li><strong>Quello che manca è la <em>scrittura</em>.</strong> Non esiste nessuna combinazione finita di polinomi, radici, esponenziali, logaritmi, funzioni trigonometriche e loro inverse che, derivata, dia $e^{x^2}$. Si dice allora che l'integrale <strong>non ha primitiva elementare</strong>. E non è un "finora non ci siamo riusciti": è un teorema, dimostrato da Liouville nel 1835.</li>
+            <li><strong>La primitiva esiste.</strong> $e^{x^2}$ è continua su $\mathbb{R}$, e ogni funzione continua su un intervallo ha primitive. Nel <a href="14-integrali-definiti.html">capitolo 14</a> ne costruiremo una come area accumulata sotto il grafico: lo garantisce il Teorema Fondamentale del Calcolo.</li>
+            <li><strong>Manca la <em>scrittura</em>.</strong> Nessuna combinazione finita di polinomi, radici, esponenziali, logaritmi, funzioni trigonometriche e loro inverse, derivata, dà $e^{x^2}$. Non è un "finora non ci siamo riusciti": è un teorema, dimostrato da Liouville nel 1835. Si dice che l'integrale <strong>non ha primitiva elementare</strong>.</li>
           </ul>
-          <p>Il paragone che chiarisce tutto è $\sqrt2$. Nessuno dice "$\sqrt2$ non si può calcolare": il numero esiste, è la diagonale di un quadrato di lato $1$, e lo si approssima quanto si vuole ($1{,}41421\ldots$). Quello che non si può fare è scriverlo come frazione di due interi — e infatti si dice "non è razionale", non "non esiste". Allo stesso modo la primitiva di $e^{x^2}$ esiste e si calcola numericamente con la precisione che serve: semplicemente non si scrive con l'alfabeto delle funzioni elementari. La sua parente strettissima $\int e^{-x^2}\,dx$ ha perfino un nome proprio, la <em>funzione degli errori</em>, che in statistica si usa tutti i giorni per la curva a campana.</p>
-          <p>Morale operativa: se in un esercizio hai provato le tecniche del capitolo e non ne esci, la frase corretta da scrivere è "<em>questo integrale non ha primitiva elementare</em>", non "questo integrale non si può risolvere". Altri membri della stessa famiglia, che potresti incontrare: $\displaystyle\int\frac{\sin x}{x}\,dx$, $\displaystyle\int\frac{1}{\ln x}\,dx$, $\displaystyle\int\sqrt{1+x^4}\,dx$.</p>
+          <p>Come per $\sqrt2$: il numero esiste e si approssima quanto si vuole, ma non si scrive come frazione di interi, e infatti si dice "non è razionale", non "non esiste". Morale: se in un esercizio hai provato le tecniche del capitolo e non ne esci, la frase corretta è "<em>questo integrale non ha primitiva elementare</em>", non "non si può risolvere".</p>
         </div>
 
-        <p><strong>Il caso più frequente negli esercizi: manca solo una costante.</strong> Calcoliamo $\displaystyle\int x\,e^{x^2}\,dx$ — lo stesso di prima, ma davanti c'è $x$ invece di $2x$. La parte interna è ancora $x^2$, quindi la scelta della $t$ non cambia; cambia solo il modo di adattare il differenziale.</p>
-        <div class="calcolo">
-          <p>Mossa 1: pongo $t=x^2$. Mossa 2: calcolo il differenziale e lo adatto al blocco che ho davvero, cioè $x\,dx$.</p>
-          $$\begin{aligned}
-          t &amp;= x^2 &amp;&amp;\text{(la sostituzione scelta)}\\
-          dt &amp;= 2x\,dx &amp;&amp;\text{(derivo e moltiplico per } dx)\\
-          \frac{dt}{2} &amp;= x\,dx &amp;&amp;\text{(divido entrambi i membri per } 2)
-          \end{aligned}$$
-        </div>
-        <p>L'ultima riga dice che il blocco presente nel mio integrale, $x\,dx$, vale $\frac12\,dt$. Adesso sostituisco e vado avanti.</p>
+        <p><strong>Il caso più frequente: manca solo una costante.</strong> Calcoliamo $\displaystyle\int x\,e^{x^2}\,dx$: la parte interna è ancora $x^2$, ma davanti c'è $x$ invece di $2x$. Pongo $t=x^2$ e adatto il differenziale al blocco che ho davvero, $x\,dx$.</p>
         <div class="calcolo">$$\begin{aligned}
-        \int x\,e^{x^2}\,dx &amp;= \int e^{x^2}\,\big(x\,dx\big) &amp;&amp;\text{(riordino per far comparire il blocco } x\,dx)\\
-        &amp;= \int e^{t}\cdot\frac12\,dt &amp;&amp;\text{(sostituisco } x^2=t \text{ e } x\,dx=\tfrac12\,dt)\\
-        &amp;= \frac12\int e^{t}\,dt &amp;&amp;\text{(porto fuori il numero } \tfrac12 \text{: linearità, §4.4)}\\
-        &amp;= \frac12\,e^{t}+C &amp;&amp;\text{(tabella, §4.3)}\\
-        &amp;= \frac12\,e^{x^2}+C &amp;&amp;\text{(risostituisco } t=x^2)
+        dt &amp;= 2x\,dx &amp;&amp;\text{(derivo e moltiplico per } dx)\\
+        \frac{dt}{2} &amp;= x\,dx &amp;&amp;\text{(divido per } 2)
+        \end{aligned}$$</div>
+        <div class="calcolo">$$\begin{aligned}
+        \int x\,e^{x^2}\,dx &amp;= \int e^{x^2}\,\big(x\,dx\big) = \int e^{t}\cdot\frac12\,dt &amp;&amp;\text{(sostituisco } x^2=t \text{ e } x\,dx=\tfrac12\,dt)\\
+        &amp;= \frac12\int e^{t}\,dt &amp;&amp;\text{(porto fuori } \tfrac12 \text{: linearità, §4.4)}\\
+        &amp;= \frac12\,e^{t}+C = \frac12\,e^{x^2}+C &amp;&amp;\text{(tabella, §4.3; risostituisco)}
         \end{aligned}$$</div>
         <p>Verifica: $D\!\left(\frac12 e^{x^2}\right)=\frac12\cdot e^{x^2}\cdot 2x=x\,e^{x^2}$ ✓. Un numero che manca si aggiusta sempre, dividendo o moltiplicando; quello che non si può mai saltare è la conversione del $dx$ (è l'errore numero uno, vedi la <a href="#errori-comuni">sezione 6</a>).</p>
 
         <h3 id="teoria-parti">4.6 Integrazione per parti</h3>
-        <p><strong>Prima l'idea.</strong> La sostituzione inverte la regola della catena. L'<strong>integrazione per parti</strong> inverte l'altra grande regola del capitolo 7, la <strong>regola del prodotto</strong>. Si usa quando l'integranda è un <em>prodotto di due funzioni di tipo diverso</em> — un polinomio per un esponenziale, un polinomio per un logaritmo, un polinomio per un seno — e nessuna delle due è la derivata dell'altra (se lo fosse, useresti la sostituzione).</p>
+        <p>La sostituzione inverte la regola della catena. L'<strong>integrazione per parti</strong> inverte l'altra grande regola del capitolo 7, la <strong>regola del prodotto</strong>. Si usa quando l'integranda è un <em>prodotto di due funzioni di tipo diverso</em> (un polinomio per un esponenziale, per un logaritmo, per un seno) e nessuna delle due è la derivata dell'altra: se lo fosse, useresti la sostituzione.</p>
 
         <div class="callout callout--vita-reale">
           <div class="callout__title"><span class="emoji">🔁</span> L'immagine da tenere in mente</div>
-          <p>È un <strong>baratto</strong>. Hai in mano un integrale che non sai calcolare. La formula ti propone uno scambio: ti consegna subito un pezzo "già fatto" (un prodotto, senza più integrali) e in cambio ti lascia <em>un altro integrale</em> da fare. Lo scambio conviene solo se il nuovo integrale è più facile del vecchio. Tutta l'abilità del metodo sta nello scegliere bene <em>chi</em> si scambia con chi.</p>
+          <p>È un <strong>baratto</strong>. Hai in mano un integrale che non sai calcolare. La formula ti consegna subito un pezzo "già fatto" (un prodotto, senza più integrali) e in cambio ti lascia <em>un altro integrale</em> da fare. Lo scambio conviene solo se il nuovo integrale è più facile del vecchio: tutta l'abilità sta nello scegliere bene <em>chi</em> si scambia con chi.</p>
         </div>
 
-        <p><strong>Un esempio concreto, con i numeri.</strong> Calcoliamo $\displaystyle\int x\cos x\,dx$. La formula che useremo è</p>
+        <p><strong>Un esempio concreto.</strong> Calcoliamo $\displaystyle\int x\cos x\,dx$ con la formula</p>
         <div class="formula-block">$$\int f(x)\,g'(x)\,dx \;=\; f(x)\,g(x) \;-\; \int f'(x)\,g(x)\,dx$$</div>
-        <p>e richiede <strong>quattro ingredienti</strong>: $f$, $f'$, $g'$, $g$. Li prepariamo tutti e quattro <em>prima</em> di applicarla, scritti uno per riga: è il modo più sicuro di non confondersi.</p>
-        <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Divido l'integranda in due fattori</strong>: $x$ e $\cos x$. Uno dei due lo derivo (lo chiamo $f$), l'altro lo integro (lo chiamo $g'$).</span>
-          <span class="esempio__passo"><strong>Decido chi derivare.</strong> Scelgo $f=x$, perché derivandolo diventa $1$ e quindi sparisce dal nuovo integrale; l'altro fattore, $\cos x$, integrandolo resta docile (diventa $\sin x$). Il criterio generale, LIATE, è spiegato più sotto.</span>
-        </p>
-        <p>I quattro ingredienti, uno per riga:</p>
+        <p>che richiede <strong>quattro ingredienti</strong>: $f$, $f'$, $g'$, $g$. Li prepariamo tutti <em>prima</em> di applicarla. Divido l'integranda in due fattori, $x$ e $\cos x$: uno lo derivo (lo chiamo $f$), l'altro lo integro (lo chiamo $g'$). Scelgo di derivare $x$, perché diventa $1$ e sparisce dal nuovo integrale; $\cos x$ integrandolo resta docile. Il criterio generale, LIATE, è più sotto.</p>
         <ul>
           <li>$f(x)=x$ &nbsp;— il fattore che <strong>derivo</strong>;</li>
-          <li>$f'(x)=D(x)=1$ &nbsp;— la sua derivata (cap. 7);</li>
+          <li>$f'(x)=1$ &nbsp;— la sua derivata (cap. 7);</li>
           <li>$g'(x)=\cos x$ &nbsp;— il fattore che <strong>integro</strong>;</li>
-          <li>$g(x)=\displaystyle\int\cos x\,dx=\sin x$ &nbsp;— la sua primitiva (tabella, <span class="richiamo" data-sec="4.3">§4.3</span>). Qui non serve la $+C$: ne basta una sola, alla fine di tutto.</li>
+          <li>$g(x)=\displaystyle\int\cos x\,dx=\sin x$ &nbsp;— la sua primitiva (<span class="richiamo" data-sec="4.3">§4.3</span>). Qui non serve la $+C$: ne basta una sola, alla fine.</li>
         </ul>
-        <p>Adesso sostituisco i quattro ingredienti nella formula, uno alla volta.</p>
         <div class="calcolo">$$\begin{aligned}
-        \int \underbrace{x}_{f}\ \underbrace{\cos x}_{g'}\,dx &amp;= \underbrace{x}_{f}\cdot\underbrace{\sin x}_{g} - \int \underbrace{1}_{f'}\cdot\underbrace{\sin x}_{g}\,dx &amp;&amp;\text{(formula di integrazione per parti)}\\
-        &amp;= x\sin x - \int \sin x\,dx &amp;&amp;\text{(moltiplicare per } 1 \text{ non cambia nulla)}\\
-        &amp;= x\sin x - (-\cos x) + C &amp;&amp;\text{(tabella §4.3: } \int\sin x\,dx=-\cos x)\\
-        &amp;= x\sin x + \cos x + C &amp;&amp;\text{(due segni meno di fila danno un più)}
+        \int \underbrace{x}_{f}\ \underbrace{\cos x}_{g'}\,dx &amp;= \underbrace{x}_{f}\cdot\underbrace{\sin x}_{g} - \int \underbrace{1}_{f'}\cdot\underbrace{\sin x}_{g}\,dx &amp;&amp;\text{(formula per parti)}\\
+        &amp;= x\sin x - \int \sin x\,dx\\
+        &amp;= x\sin x - (-\cos x) + C &amp;&amp;\text{(tabella: } \int\sin x\,dx=-\cos x)\\
+        &amp;= x\sin x + \cos x + C
         \end{aligned}$$</div>
-        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Il segno meno davanti al secondo integrale appartiene alla formula, e va tenuto <em>in aggiunta</em> al segno meno che eventualmente esce dal calcolo di $\int\sin x\,dx$. Due meno di fila fanno un più: se ne salti uno, il risultato cambia segno.</p>
-        <p>Verifica, derivando il risultato con la regola del prodotto (cap. 7):</p>
-        <div class="calcolo">$$\begin{aligned}
-        D\big(x\sin x+\cos x+C\big) &amp;= \big(1\cdot\sin x + x\cos x\big) + (-\sin x) + 0 &amp;&amp;\text{(regola del prodotto sul primo pezzo; } D(\cos x)=-\sin x)\\
-        &amp;= \sin x + x\cos x - \sin x &amp;&amp;\text{(tolgo le parentesi)}\\
-        &amp;= x\cos x &amp;&amp;\text{(} \sin x \text{ e } -\sin x \text{ si elidono)}
-        \end{aligned}$$</div>
-        <p>È la funzione di partenza: il baratto ha funzionato.</p>
+        <p><strong>Attenzione:</strong> il meno davanti al secondo integrale appartiene alla formula e va tenuto <em>in aggiunta</em> al meno che esce da $\int\sin x\,dx$. Due meno di fila fanno un più: se ne salti uno, il risultato cambia segno. Verifica con la regola del prodotto: $D\big(x\sin x+\cos x\big)=\big(\sin x+x\cos x\big)-\sin x=x\cos x$ ✓.</p>
 
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Formula di integrazione per parti</span>
           <p>Se $f$ e $g$ sono derivabili con continuità su un intervallo, allora</p>
-          <div class="formula-block">$$\int \underbrace{f(x)\,g'(x)}_{\text{quello che ho}}\,dx = \underbrace{f(x)\,g(x)}_{\text{il pezzo già fatto}} - \int \underbrace{f'(x)\,g(x)}_{\text{il nuovo integrale, si spera più facile}}\,dx$$</div>
-          <p>Cosa significa ogni pezzo: dei due fattori dell'integranda, uno lo chiami $f$ (quello che <strong>derivi</strong>) e l'altro lo interpreti come $g'$ (quello che <strong>integri</strong>, per ottenere $g$). La formula scambia l'integrale di partenza $\int f\,g'$ con il nuovo integrale $\int f'\,g$.</p>
+          <div class="formula-block">$$\int f(x)\,g'(x)\,dx = f(x)\,g(x) - \int f'(x)\,g(x)\,dx$$</div>
+          <p>Dei due fattori dell'integranda, uno lo chiami $f$ (quello che <strong>derivi</strong>) e l'altro lo interpreti come $g'$ (quello che <strong>integri</strong>, per ottenere $g$). La formula scambia $\int f\,g'$ con il nuovo integrale $\int f'\,g$, che si spera più facile.</p>
         </div>
 
         <div class="box-dimostrazione">
@@ -665,59 +501,42 @@
           <p>Nel passaggio centrale abbiamo usato la regola del prodotto (Passo 1) e $H'=f'g$ (perché $H$ è primitiva di $f'g$): i due termini $f'g$ si cancellano.</p>
           <p><strong>Passo 4 — aggiungo la costante.</strong> Abbiamo trovato una primitiva di $f\,g'$, cioè $f\,g-H$; per il teorema del <span class="richiamo" data-sec="4.2">§4.2</span> tutte le altre si ottengono aggiungendo $C$. Scrivendo $H=\int f'g\,dx$ (la sua costante si assorbe in $C$) otteniamo la formula.</p>
           <p><strong>Conclusione.</strong> Ipotesi: $f$ e $g$ derivabili, e una primitiva $H$ di $f'g$. Passi: la regola del prodotto, letta spostando un termine, dice che $f\,g'=(f\,g)'-f'g$ (Passi 1-2); la primitiva del secondo membro è $f\,g-H$ (Passo 3). Tesi: $\int f\,g'\,dx=f\,g-\int f'g\,dx$. <span class="qed">∎</span></p>
-          <p><strong>Controllo numerico.</strong> Con $f=x$ e $g'=e^x$ (quindi $g=e^x$, $f'=1$) la formula dà $x\,e^x-e^x$. Derivando e valutando in $x=1$: $D\big(x\,e^x-e^x\big)=e^x+x\,e^x-e^x=x\,e^x$, che in $x=1$ vale $e$, proprio il valore dell'integranda $x\,e^x$ in $x=1$ ✓.</p>
-          <p><strong>Dove si usano le ipotesi.</strong> La derivabilità di $f$ e $g$ serve perché la regola del prodotto vale solo per funzioni derivabili. La continuità delle derivate (richiesta nell'enunciato) garantisce che $f'g$ sia continua e quindi abbia sempre una primitiva (lo dimostreremo nel cap. 14); ma quello che conta in pratica è un'altra cosa: la formula è utile solo se la primitiva $H$ di $f'g$ <em>riusciamo davvero a trovarla</em>, ed è per questo che la scelta di $f$ e $g'$ è così importante.</p>
+          <p><strong>Dove si usano le ipotesi.</strong> La derivabilità serve perché la regola del prodotto vale solo per funzioni derivabili. Ma in pratica conta soprattutto un'altra cosa: la formula è utile solo se la primitiva $H$ di $f'g$ <em>riusciamo davvero a trovarla</em>, ed è per questo che la scelta di $f$ e $g'$ è così importante.</p>
         </div>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Come si sceglie: chi si deriva e chi si integra (la regola LIATE)</div>
-          <p><strong>Da dove viene il criterio.</strong> Guarda la formula: dei due fattori, uno lo devi <em>integrare</em> (per ottenere $g$), l'altro lo <em>derivi</em> (per ottenere $f'$). Perché lo scambio convenga servono due cose: (1) il fattore che integri deve avere una primitiva che sai scrivere; (2) il nuovo integrale $\int f'g\,dx$ deve essere più facile del vecchio. Quindi si <strong>deriva</strong> il fattore che derivando si semplifica, e si <strong>integra</strong> quello che integrando non peggiora. Vediamo come si comportano i cinque tipi di funzione:</p>
+          <p><strong>Da dove viene il criterio.</strong> Dei due fattori, uno lo devi <em>integrare</em> (per ottenere $g$) e l'altro lo <em>derivi</em> (per ottenere $f'$). Perché lo scambio convenga: (1) il fattore che integri deve avere una primitiva che sai scrivere; (2) il nuovo integrale $\int f'g\,dx$ deve essere più facile del vecchio. Quindi si <strong>deriva</strong> il fattore che derivando si semplifica, e si <strong>integra</strong> quello che integrando non peggiora:</p>
           <ul>
-            <li><strong>L</strong>ogaritmiche ($\ln x$) e <strong>I</strong>nverse trigonometriche ($\arctan x$, $\arcsin x$): <strong>da derivare</strong>. Non hanno una primitiva nella tabella, quindi non si possono scegliere come $g'$. Derivandole, invece, diventano funzioni razionali o con radici ($\frac1x$, $\frac{1}{1+x^2}$, $\frac{1}{\sqrt{1-x^2}}$), molto più docili.</li>
-            <li><strong>A</strong>lgebriche (polinomi: $x$, $x^2$, …): derivando il grado scende, e dopo abbastanza derivate resta una costante; integrando il grado sale. Quindi, davanti a una trigonometrica o a un esponenziale, vanno <strong>derivate</strong>.</li>
-            <li><strong>T</strong>rigonometriche ($\sin x$, $\cos x$) ed <strong>E</strong>sponenziali ($e^x$, $a^x$): integrandole restano dello stesso tipo ($\sin\to-\cos$, $e^x\to e^x$), quindi non peggiorano. Sono i candidati naturali da <strong>integrare</strong>.</li>
+            <li><strong>L</strong>ogaritmiche ($\ln x$) e <strong>I</strong>nverse trigonometriche ($\arctan x$, $\arcsin x$): <strong>da derivare</strong>. Non hanno una primitiva in tabella, quindi non possono fare da $g'$; derivandole, invece, diventano funzioni razionali o con radici ($\frac1x$, $\frac{1}{1+x^2}$, $\frac{1}{\sqrt{1-x^2}}$), molto più docili.</li>
+            <li><strong>A</strong>lgebriche (polinomi): derivando il grado scende, e dopo abbastanza derivate resta una costante; integrando il grado sale. Davanti a una trigonometrica o a un esponenziale vanno <strong>derivate</strong>.</li>
+            <li><strong>T</strong>rigonometriche ($\sin x$, $\cos x$) ed <strong>E</strong>sponenziali ($e^x$, $a^x$): integrandole restano dello stesso tipo, quindi non peggiorano. Sono i candidati naturali da <strong>integrare</strong>.</li>
           </ul>
-          <p>Mettendo i fattori in ordine, dal più "da derivare" al più "da integrare", si ottiene la sigla <strong>LIATE</strong>. La regola è: <strong>chi compare prima nella sigla si sceglie come $f$</strong> (da derivare); l'altro fa da $g'$ (da integrare). Esempio di lettura: in $\int x\ln x\,dx$ ci sono una L e una A; la L viene prima, quindi $f=\ln x$ e $g'=x$.</p>
-          <p><strong>Due avvertenze.</strong> LIATE è una regola pratica, non un teorema: indica la scelta che di solito funziona. Fra trigonometriche ed esponenziali non c'è un vincitore (è il caso degli integrali ciclici, qui sotto), e alcuni testi scrivono ILATE, scambiando L e I: in pratica non cambia nulla. E prima di applicare le parti chiediti sempre se basta una sostituzione: in $\int x\,e^{x^2}\,dx$ LIATE direbbe di derivare $x$ e integrare $e^{x^2}$, ma $e^{x^2}$ non ha primitiva elementare (<span class="richiamo" data-sec="4.5">§4.5</span>), mentre la sostituzione $t=x^2$ risolve tutto in due righe.</p>
+          <p>Messi in ordine, dal più "da derivare" al più "da integrare", danno la sigla <strong>LIATE</strong>: <strong>chi compare prima si sceglie come $f$</strong> (da derivare), l'altro fa da $g'$. Per esempio in $\int x\ln x\,dx$ la L viene prima della A, quindi $f=\ln x$ e $g'=x$. Se scegli al contrario il problema peggiora (un esempio svolto è nella <a href="#errori-comuni">sezione 6</a>).</p>
+          <p><strong>Due avvertenze.</strong> LIATE è una regola pratica, non un teorema. E prima di applicare le parti chiediti sempre se basta una sostituzione: in $\int x\,e^{x^2}\,dx$ LIATE direbbe di derivare $x$ e integrare $e^{x^2}$, ma $e^{x^2}$ non ha primitiva elementare (<span class="richiamo" data-sec="4.5">§4.5</span>), mentre la sostituzione $t=x^2$ risolve tutto in due righe.</p>
         </div>
 
-        <p><strong>Un non-esempio, per vedere cosa succede scegliendo male.</strong> Rifacciamo $\int x\cos x\,dx$ scambiando i ruoli: $f=\cos x$ (derivo) e $g'=x$ (integro). I quattro ingredienti diventano $f=\cos x$, $f'=-\sin x$, $g'=x$, $g=\frac{x^2}{2}$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        \int x\cos x\,dx &amp;= \cos x\cdot\frac{x^2}{2} - \int(-\sin x)\cdot\frac{x^2}{2}\,dx &amp;&amp;\text{(formula per parti con la scelta rovesciata)}\\
-        &amp;= \frac{x^2}{2}\cos x + \frac12\int x^2\sin x\,dx &amp;&amp;\text{(porto fuori } \tfrac12 \text{; i due meno danno un più)}
-        \end{aligned}$$</div>
-        <p>La formula è applicata correttamente, ma guarda il nuovo integrale: contiene $x^2$ dove prima c'era $x$. Il grado del polinomio è <strong>aumentato</strong>. Verrebbe da sperare che al secondo giro le cose si sistemino, quindi proviamo davvero: applico di nuovo le parti a $\int x^2\sin x\,dx$ con la stessa logica rovesciata (derivo la trigonometrica, integro il polinomio). Ingredienti: $f=\sin x$, $f'=\cos x$, $g'=x^2$, $g=\frac{x^3}{3}$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        \int x^2\sin x\,dx &amp;= \sin x\cdot\frac{x^3}{3} - \int \cos x\cdot\frac{x^3}{3}\,dx &amp;&amp;\text{(formula per parti, seconda applicazione)}\\
-        &amp;= \frac{x^3}{3}\sin x - \frac13\int x^3\cos x\,dx &amp;&amp;\text{(porto fuori il numero } \tfrac13)
-        \end{aligned}$$</div>
-        <p>Il grado è salito ancora: da $x$ a $x^2$, da $x^2$ a $x^3$. Ogni giro aggiunge un grado e non c'è nessun motivo perché la cosa si fermi: integrando, il polinomio cresce all'infinito. Con la scelta giusta invece era bastato <strong>un solo</strong> giro, perché derivando $x$ si ottiene $1$ e il polinomio sparisce. I conti qui sopra sono tutti corretti: non è un errore di calcolo, è una scelta sbagliata — e il baratto ci ha lasciato in mano qualcosa di peggio di quello che avevamo. Ecco a cosa serve LIATE.</p>
-
-        <p><strong>Quando l'integranda sembra avere un fattore solo: il "$1$" nascosto.</strong> Prendiamo $\displaystyle\int\ln x\,dx$. Come la riconosco: non è un prodotto, non è una riga della tabella, e non c'è nessuna funzione composta con la sua derivata accanto. Ma moltiplicare per $1$ non cambia nulla: $\ln x=\ln x\cdot1$, e ora i fattori sono due.</p>
-        <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Scelgo chi derivare.</strong> Il logaritmo non si integra con la tabella, quindi lo derivo (LIATE: la L viene per prima). Il fattore $1$ lo integro, e ha una primitiva facilissima.</span>
-          <span class="esempio__passo"><strong>Ingredienti:</strong> $f=\ln x$, $f'=\frac1x$, $g'=1$, $g=x$.</span>
-        </p>
+        <p><strong>Quando l'integranda sembra avere un fattore solo: il "$1$" nascosto.</strong> Prendiamo $\displaystyle\int\ln x\,dx$. Non è un prodotto, non è una riga della tabella, e non c'è nessuna funzione composta con la sua derivata accanto. Ma $\ln x=\ln x\cdot1$, e ora i fattori sono due. Il logaritmo non si integra con la tabella, quindi lo derivo (LIATE); il $1$ lo integro, e ha una primitiva facilissima. Ingredienti: $f=\ln x$, $f'=\frac1x$, $g'=1$, $g=x$.</p>
         <div class="calcolo">$$\begin{aligned}
         \int\ln x\,dx &amp;= \ln x\cdot x-\int\frac1x\cdot x\,dx\\
         &amp;= x\ln x-\int1\,dx\\
         &amp;= x\ln x-x+C
         \end{aligned}$$</div>
-        <p>Il nuovo integrale è diventato quello di una costante: il $\frac1x$ del logaritmo derivato si è semplificato con la $x$ comparsa integrando il $1$. Verifica: $D(x\ln x-x)=\ln x+x\cdot\frac1x-1=\ln x$ ✓.</p>
+        <p>Il $\frac1x$ del logaritmo derivato si è semplificato con la $x$ comparsa integrando il $1$, e il nuovo integrale è quello di una costante. Verifica: $D(x\ln x-x)=\ln x+x\cdot\frac1x-1=\ln x$ ✓.</p>
 
-        <p><strong>Un caso speciale che vale la pena annunciare: gli integrali ciclici.</strong> In $\int e^x\sin x\,dx$ nessuno dei due fattori si semplifica: il seno diventa coseno, il coseno torna seno, e l'esponenziale resta sempre uguale. Applicando le parti due volte si ritorna all'integrale di partenza. Non è un vicolo cieco: si dà un nome all'integrale, $I$, si arriva a un'equazione in $I$ e <strong>la si risolve come si risolve un'equazione di primo grado</strong>. Lo svolgiamo per intero nell'<a href="#esempi">Esempio 6</a>.</p>
+        <p><strong>Un caso speciale: gli integrali ciclici.</strong> In $\int e^x\sin x\,dx$ nessuno dei due fattori si semplifica: il seno diventa coseno, il coseno torna seno, e l'esponenziale resta uguale. Applicando le parti due volte si ritorna all'integrale di partenza. Non è un vicolo cieco: si dà un nome all'integrale, $I$, si arriva a un'equazione in $I$ e <strong>la si risolve come un'equazione di primo grado</strong>. Lo svolgiamo per intero nell'<a href="#esempi">Esempio 6</a>.</p>
 
         <h3 id="teoria-razionali">4.7 Integrazione delle funzioni razionali</h3>
-        <p><strong>Prima l'idea.</strong> Una <strong>funzione razionale</strong> è una frazione con un polinomio sopra e un polinomio sotto, $\dfrac{P(x)}{Q(x)}$. Presa così com'è, quasi nessuna frazione di questo tipo compare nella tabella del <span class="richiamo" data-sec="4.3">§4.3</span>. L'idea del metodo è <strong>non integrarla intera</strong>, ma prima spezzarla in pezzi piccoli che invece nella tabella ci sono: logaritmi e arcotangenti.</p>
+        <p>Una <strong>funzione razionale</strong> è una frazione con un polinomio sopra e un polinomio sotto, $\dfrac{P(x)}{Q(x)}$. Presa così com'è, quasi nessuna compare nella tabella del <span class="richiamo" data-sec="4.3">§4.3</span>. L'idea del metodo è <strong>non integrarla intera</strong>, ma spezzarla in pezzi piccoli che nella tabella ci sono: logaritmi e arcotangenti.</p>
 
         <div class="callout callout--vita-reale">
           <div class="callout__title"><span class="emoji">🧩</span> L'immagine da tenere in mente</div>
-          <p>In Parte 0 hai imparato a sommare due frazioni algebriche: prendevi $\frac{A}{x-2}$ e $\frac{B}{x-3}$ e le fondevi in una frazione sola. Qui facciamo lo stesso film al contrario: partiamo dalla frazione fusa e la <strong>rismontiamo</strong> nei due pezzi di partenza. Come smontare un mobile per farlo passare dalla porta: i pezzi piccoli passano, il mobile intero no.</p>
+          <p>In Parte 0 hai imparato a fondere $\frac{A}{x-2}$ e $\frac{B}{x-3}$ in una frazione sola. Qui facciamo lo stesso film al contrario: partiamo dalla frazione fusa e la <strong>rismontiamo</strong> nei pezzi di partenza. Come smontare un mobile per farlo passare dalla porta: i pezzi piccoli passano, il mobile intero no.</p>
         </div>
 
-        <p><strong>Primo controllo: il grado.</strong> Se il grado del numeratore è maggiore o uguale a quello del denominatore, si esegue prima la <strong>divisione tra polinomi</strong> (Parte 0, <a href="../parte0-prerequisiti/02-algebra-calcolo-letterale.html">cap. 2</a>): si trovano un quoziente $S$ e un resto $R$ tali che $P=Q\cdot S+R$, con $R$ di grado minore di $Q$. Dividendo tutto per $Q$ si ottiene</p>
+        <p><strong>Primo controllo: il grado.</strong> Se il grado del numeratore è maggiore o uguale a quello del denominatore, si esegue prima la <strong>divisione tra polinomi</strong> (Parte 0, <a href="../parte0-prerequisiti/02-algebra-calcolo-letterale.html">cap. 2</a>): si trovano un quoziente $S$ e un resto $R$ tali che $P=Q\cdot S+R$, con $R$ di grado minore di $Q$. Dividendo tutto per $Q$:</p>
         <div class="formula-block">$$\frac{P(x)}{Q(x)}=S(x)+\frac{R(x)}{Q(x)}.$$</div>
-        <p>Il primo pezzo, $S$, è un polinomio e si integra con la regola della potenza (<span class="richiamo" data-sec="4.3">§4.3</span>). Il secondo ha il numeratore di grado minore del denominatore, ed è quello di cui ci occupiamo. Da qui in poi supponiamo quindi che il numeratore abbia grado minore del denominatore, e guardiamo i casi in ordine di difficoltà. Un esempio piccolo di divisione è alla fine del Caso 1.</p>
+        <p>Il polinomio $S$ si integra con la regola della potenza (<span class="richiamo" data-sec="4.3">§4.3</span>). Il secondo pezzo ha il numeratore di grado minore del denominatore, ed è quello di cui ci occupiamo: da qui in poi supponiamo quindi che sia così, e guardiamo i casi in ordine di difficoltà.</p>
 
         <p><strong>Caso 1: denominatore di primo grado.</strong> È il più semplice e si riconduce sempre a un logaritmo.</p>
         <div class="box-teorema box-teorema--proposizione">
@@ -728,7 +547,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Che l'integrale di $\frac{1}{mx+q}$ è un logaritmo, e capire da dove viene il fattore $\frac1m$ davanti.</p>
-          <p><strong>L'idea.</strong> L'integranda è "$\frac1t$ con $t=mx+q$". Nella tabella (<span class="richiamo" data-sec="4.3">§4.3</span>) sappiamo integrare $\frac1t$ rispetto a $t$, e il metodo di sostituzione (<span class="richiamo" data-sec="4.5">§4.5</span>) serve proprio a passare da una variabile all'altra. C'è un solo ostacolo: la sostituzione chiede che nell'integranda compaia la derivata dell'interno, qui $m$, mentre c'è soltanto $1$. Ma $m$ è un numero, e i numeri si aggiustano con la linearità (<span class="richiamo" data-sec="4.4">§4.4</span>): è come moltiplicare e dividere per $m$.</p>
+          <p><strong>L'idea.</strong> L'integranda è "$\frac1t$ con $t=mx+q$". Nella tabella (<span class="richiamo" data-sec="4.3">§4.3</span>) sappiamo integrare $\frac1t$ rispetto a $t$, e la sostituzione (<span class="richiamo" data-sec="4.5">§4.5</span>) serve proprio a passare da una variabile all'altra. C'è un solo ostacolo: la sostituzione chiede che nell'integranda compaia la derivata dell'interno, qui $m$, mentre c'è soltanto $1$. Ma $m$ è un numero, e i numeri si aggiustano con la linearità (<span class="richiamo" data-sec="4.4">§4.4</span>): è come moltiplicare e dividere per $m$.</p>
           <p><strong>Passo 1 — scelgo la $t$ e ricalcolo il $dx$.</strong> Pongo $t=mx+q$. La derivata di $t$ rispetto a $x$ è $m$ (cap. 7), quindi $dt=m\,dx$, cioè $dx=\frac1m\,dt$. Qui serve $m\neq0$: per $m=0$ il denominatore sarebbe una costante.</p>
           <p><strong>Passo 2 — sostituisco e integro in $t$.</strong> Il denominatore diventa $t$, il $dx$ diventa $\frac1m\,dt$:</p>
           <div class="calcolo">$$\begin{aligned}
@@ -738,18 +557,17 @@
           &amp;= \frac1m\ln|mx+q|+C
           \end{aligned}$$</div>
           <p>Nella seconda riga il numero $\frac1m$ esce dall'integrale (linearità), nella terza uso la riga $\int\frac1t\,dt=\ln|t|$ della tabella, nell'ultima rimetto $t=mx+q$.</p>
-          <p><strong>Passo 3 — controllo derivando.</strong> Con la regola della catena, $D\big(\ln|u|\big)=\frac{u'}{u}$ con $u=mx+q$ e $u'=m$:</p>
-          <div class="calcolo">$$D\!\left(\frac1m\ln|mx+q|\right)=\frac1m\cdot\frac{m}{mx+q}=\frac{1}{mx+q}.$$</div>
+          <p><strong>Passo 3 — controllo derivando.</strong> Con la regola della catena, $D\big(\ln|u|\big)=\frac{u'}{u}$ con $u=mx+q$ e $u'=m$: $D\!\left(\frac1m\ln|mx+q|\right)=\frac1m\cdot\frac{m}{mx+q}=\frac{1}{mx+q}$.</p>
           <p><strong>Conclusione.</strong> La sostituzione ha ricondotto l'integrale alla riga del logaritmo, e la derivata conferma il risultato. Il caso $\frac{1}{x-a}$ è quello con $m=1$ e $q=-a$: il fattore $\frac1m$ vale $1$ e non si vede. <span class="qed">∎</span></p>
         </div>
 
-        <p><strong>Un esempio con la divisione.</strong> Calcoliamo $\displaystyle\int\frac{x}{x+1}\,dx$. Come la riconosco: è una funzione razionale (polinomio su polinomio) e il numeratore ha lo stesso grado del denominatore, quindi prima devo abbassare il grado. Qui basta una divisione fatta a mano: scrivo $x=(x+1)-1$ al numeratore, così il primo pezzo si semplifica con il denominatore.</p>
+        <p><strong>Un esempio con la divisione.</strong> Calcoliamo $\displaystyle\int\frac{x}{x+1}\,dx$. È una funzione razionale con numeratore dello stesso grado del denominatore, quindi prima devo abbassare il grado. Qui basta scrivere $x=(x+1)-1$ al numeratore, così il primo pezzo si semplifica con il denominatore.</p>
         <div class="calcolo">$$\begin{aligned}
         \frac{x}{x+1} &amp;= \frac{(x+1)-1}{x+1}\\
         &amp;= \frac{x+1}{x+1}-\frac{1}{x+1}\\
         &amp;= 1-\frac{1}{x+1}
         \end{aligned}$$</div>
-        <p>Ora i due pezzi si integrano: il $1$ con la tabella, e $\frac{1}{x+1}$ con il Caso 1 (qui $m=1$, $q=1$).</p>
+        <p>Ora il $1$ si integra con la tabella e $\frac{1}{x+1}$ con il Caso 1 ($m=1$, $q=1$):</p>
         <div class="calcolo">$$\int\frac{x}{x+1}\,dx=\int1\,dx-\int\frac{1}{x+1}\,dx=x-\ln|x+1|+C.$$</div>
         <p>Verifica: $D\big(x-\ln|x+1|\big)=1-\frac{1}{x+1}=\frac{x}{x+1}$ ✓.</p>
 
@@ -779,43 +597,18 @@
           <p>Le divisioni sono possibili perché $x_1\neq x_2$. Questi sono gli unici valori possibili.</p>
           <p><strong>Passo 4 — verifico che questi valori funzionano davvero.</strong> Definisco $A$ e $B$ con le formule del Passo 3 e considero $D(x)=A(x-x_2)+B(x-x_1)-P(x)$, un polinomio di grado al più $1$. Per come sono definiti $A$ e $B$, si ha $D(x_1)=A(x_1-x_2)-P(x_1)=0$ e $D(x_2)=B(x_2-x_1)-P(x_2)=0$. Due radici distinte: per il Passo 1, $D$ è il polinomio nullo, cioè $(\ast)$ vale per ogni $x$. Per il Passo 2, la scomposizione è vera.</p>
           <p><strong>Conclusione.</strong> Ipotesi: radici distinte e numeratore di grado al più $1$. Passi: la scomposizione equivale a $(\ast)$ (Passo 2); $(\ast)$ obbliga $A$ e $B$ ad avere i valori del Passo 3, e quei valori la soddisfano davvero (Passo 4). Tesi: la scomposizione esiste ed è unica. <span class="qed">∎</span></p>
-          <p><strong>Controllo numerico.</strong> Con $P=1$, $x_1=2$, $x_2=3$ le formule danno $A=\frac{1}{2-3}=-1$ e $B=\frac{1}{3-2}=1$. In $x=0$ la frazione di partenza vale $\frac{1}{(0-2)(0-3)}=\frac16$, e la somma $\frac{-1}{0-2}+\frac{1}{0-3}=\frac12-\frac13=\frac16$ ✓.</p>
-          <p><strong>Dove si usano le ipotesi.</strong> Se fosse $x_1=x_2$ la divisione per $x_1-x_2$ non si potrebbe fare, e infatti la scomposizione non esiste: $\frac{1}{(x-1)^2}$ non si scrive come $\frac{C}{x-1}$ (è il caso $\Delta=0$, qui sotto). Se $P$ avesse grado $2$ o più, il numeratore $A(x-x_2)+B(x-x_1)$ non potrebbe mai raggiungerlo: bisogna prima fare la divisione fra polinomi.</p>
+          <p><strong>Dove si usano le ipotesi.</strong> Se fosse $x_1=x_2$ la divisione per $x_1-x_2$ non si potrebbe fare (è il caso $\Delta=0$, qui sotto). Se $P$ avesse grado $2$ o più, il numeratore $A(x-x_2)+B(x-x_1)$ non potrebbe mai raggiungerlo: bisogna prima fare la divisione fra polinomi.</p>
         </div>
 
-        <p><strong>Un esempio concreto, con i numeri.</strong> Calcoliamo $\displaystyle\int\frac{dx}{x^2-5x+6}$. Come la riconosco: è una funzione razionale; il numeratore ($1$, grado $0$) ha grado minore del denominatore (grado $2$), quindi non serve la divisione; il denominatore è di secondo grado, e il segno del discriminante dice in quale caso siamo.</p>
+        <p><strong>Un esempio concreto.</strong> Calcoliamo $\displaystyle\int\frac{dx}{x^2-5x+6}$. È una funzione razionale; il numeratore ($1$, grado $0$) ha grado minore del denominatore (grado $2$), quindi non serve la divisione; il denominatore è di secondo grado, e il segno del discriminante dice in quale caso siamo.</p>
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 1 — scompongo il denominatore.</strong> $\Delta=(-5)^2-4\cdot1\cdot6=25-24=1$, positivo: due radici reali distinte. Le trovo cercando due numeri con somma $5$ e prodotto $6$: sono $2$ e $3$. Dunque $x^2-5x+6=(x-2)(x-3)$ (<span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione</span>, Parte 0, cap. 2).</span>
+          <span class="esempio__passo"><strong>Passo 1 — scompongo il denominatore.</strong> $\Delta=(-5)^2-4\cdot1\cdot6=1$, positivo: due radici reali distinte. Cerco due numeri con somma $5$ e prodotto $6$: sono $2$ e $3$. Dunque $x^2-5x+6=(x-2)(x-3)$ (<span class="glossario-term" data-term="scomposizione-in-fattori">scomposizione</span>, Parte 0, cap. 2).</span>
           <span class="esempio__passo"><strong>Passo 2 — scrivo la forma spezzata e passo ai numeratori.</strong> Per il teorema esistono $A$ e $B$ con $\frac{1}{(x-2)(x-3)}=\frac{A}{x-2}+\frac{B}{x-3}$. Mettendo a denominatore comune e uguagliando i numeratori si ottiene $1=A(x-3)+B(x-2)$.</span>
-          <span class="esempio__passo"><strong>Passo 3 — sviluppo e confronto i coefficienti.</strong> Svolgo i prodotti e raccolgo la $x$, per leggere il polinomio a destra coefficiente per coefficiente.</span>
+          <span class="esempio__passo"><strong>Passo 3 — trovo $A$ e $B$ sostituendo le radici</strong>, come nel Passo 3 della dimostrazione: l'uguaglianza vale per <em>ogni</em> $x$, quindi scelgo i valori che fanno sparire un'incognita alla volta. Con $x=2$ la parentesi $(x-2)$ vale $0$, sparisce $B$ e resta $1=A(2-3)=-A$, cioè $A=-1$. Con $x=3$ sparisce $A$ e resta $1=B(3-2)=B$, cioè $B=1$. (In alternativa si sviluppano i prodotti e si confrontano i coefficienti, ottenendo un sistema: è il metodo seguito negli Esempi svolti e negli esercizi, e dà gli stessi valori.)</span>
         </p>
-        <div class="calcolo">$$\begin{aligned}
-        A(x-3)+B(x-2) &amp;= Ax-3A+Bx-2B\\
-        &amp;= (A+B)\,x+(-3A-2B)
-        \end{aligned}$$</div>
-        <p>A sinistra c'è il polinomio $1=0\cdot x+1$. Due polinomi uguali per ogni $x$ hanno gli stessi coefficienti: infatti la loro differenza è un polinomio che si annulla sempre, quindi ha infinite radici, e un polinomio non nullo di grado $n$ ne ha al più $n$. Allora i coefficienti coincidono:</p>
-        <div class="calcolo">$$\begin{aligned}
-        \text{coefficiente di } x:\quad A+B &amp;= 0\\
-        \text{termine noto:}\quad -3A-2B &amp;= 1
-        \end{aligned}$$</div>
-        <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 4 — risolvo il sistema</strong> per sostituzione (Parte 0, cap. 5): dalla prima equazione ricavo $A$ in funzione di $B$, e lo porto nella seconda.</span>
-        </p>
-        <div class="calcolo">$$\begin{aligned}
-        A &amp;= -B\\
-        -3\,(-B)-2B &amp;= 1\\
-        3B-2B &amp;= 1\\
-        B &amp;= 1,\qquad A=-1
-        \end{aligned}$$</div>
         <p>Controllo veloce, rimettendo i valori nell'uguaglianza fra numeratori: $-1\cdot(x-3)+1\cdot(x-2)=-x+3+x-2=1$ ✓.</p>
-
-        <div class="callout callout--trucco">
-          <div class="callout__title"><span class="emoji">🔑</span> La scorciatoia: sostituire le radici</div>
-          <p>Il Passo 3 della dimostrazione ci ha dato un modo più rapido del sistema. L'uguaglianza $1=A(x-3)+B(x-2)$ vale per <em>ogni</em> $x$, quindi possiamo scegliere i valori che annullano una parentesi e fanno sparire un'incognita alla volta. Con $x=2$ la parentesi $(x-2)$ vale $0$, quindi $B$ sparisce e resta $1=A(2-3)=-A$, da cui $A=-1$. Con $x=3$ sparisce $A$ e resta $1=B(3-2)=B$, da cui $B=1$. Stessi valori del sistema, in due righe. Usala quando hai fretta; il sistema resta la strada sicura quando il numeratore è più complicato o i fattori si ripetono.</p>
-        </div>
-
         <p class="esempio__passi">
-          <span class="esempio__passo"><strong>Passo 5 — integro i due pezzi</strong> separatamente (linearità, <span class="richiamo" data-sec="4.4">§4.4</span>), ciascuno con il Caso 1, prima con $a=2$ e poi con $a=3$. Alla fine uso $\ln A-\ln B=\ln\frac AB$ (Parte 0, cap. 4) per compattare.</span>
+          <span class="esempio__passo"><strong>Passo 4 — integro i due pezzi</strong> separatamente (linearità, <span class="richiamo" data-sec="4.4">§4.4</span>), ciascuno con il Caso 1, prima con $a=2$ e poi con $a=3$. Alla fine uso $\ln A-\ln B=\ln\frac AB$ (Parte 0, cap. 4) per compattare.</span>
         </p>
         <div class="calcolo">$$\begin{aligned}
         \int\frac{dx}{x^2-5x+6} &amp;= \int\left(\frac{-1}{x-2}+\frac{1}{x-3}\right)dx\\
@@ -823,25 +616,18 @@
         &amp;= -\ln|x-2|+\ln|x-3|+C\\
         &amp;= \ln\left|\frac{x-3}{x-2}\right|+C
         \end{aligned}$$</div>
-        <p>Verifica: derivo il risultato e metto le due frazioni a denominatore comune.</p>
-        <div class="calcolo">$$\begin{aligned}
-        D\big(-\ln|x-2|+\ln|x-3|\big) &amp;= -\frac{1}{x-2}+\frac{1}{x-3}\\
-        &amp;= \frac{-(x-3)+(x-2)}{(x-2)(x-3)}\\
-        &amp;= \frac{1}{x^2-5x+6}
-        \end{aligned}$$</div>
-        <p>Torna la funzione di partenza ✓ (all'ultima riga: $-x+3+x-2=1$ e $(x-2)(x-3)=x^2-5x+6$).</p>
+        <p>Verifica: $D\big(-\ln|x-2|+\ln|x-3|\big)=-\frac{1}{x-2}+\frac{1}{x-3}=\frac{-(x-3)+(x-2)}{(x-2)(x-3)}=\frac{1}{x^2-5x+6}$ ✓.</p>
 
         <p><strong>Caso 2 bis: denominatore di secondo grado con $\Delta=0$.</strong> Ora le due radici coincidono e il denominatore è un quadrato: $Q(x)=(x-a)^2$. I fratti semplici del caso precedente non si possono usare (si dividerebbe per $x_1-x_2=0$), ma qui basta ancora meno: si riscrive il numeratore usando la stessa $x-a$ del denominatore. Se $P(x)=\alpha x+\beta$, allora $\alpha x+\beta=\alpha\,(x-a)+(\alpha a+\beta)$ (lo si controlla sviluppando: $\alpha x-\alpha a+\alpha a+\beta$). Dividendo per $(x-a)^2$ e semplificando il primo pezzo:</p>
         <div class="formula-block">$$\frac{\alpha x+\beta}{(x-a)^2}=\frac{\alpha}{x-a}+\frac{\alpha a+\beta}{(x-a)^2}.$$</div>
         <p>Il primo pezzo si integra con il Caso 1. Per il secondo serve $\int\frac{dx}{(x-a)^2}=-\frac{1}{x-a}+C$, che si controlla subito: $D\!\left(-\frac{1}{x-a}\right)=\frac{1}{(x-a)^2}$. Esempio: $\displaystyle\int\frac{x+1}{x^2-2x+1}\,dx$. Il denominatore ha $\Delta=4-4=0$ e si scrive $(x-1)^2$. Qui $\alpha=1$, $a=1$, $\beta=1$, quindi $\alpha a+\beta=2$, e</p>
         <div class="calcolo">$$\int\frac{x+1}{(x-1)^2}\,dx=\int\left(\frac{1}{x-1}+\frac{2}{(x-1)^2}\right)dx=\ln|x-1|-\frac{2}{x-1}+C.$$</div>
-        <p>Verifica: $D\!\left(\ln|x-1|-\frac{2}{x-1}\right)=\frac{1}{x-1}+\frac{2}{(x-1)^2}=\frac{(x-1)+2}{(x-1)^2}=\frac{x+1}{(x-1)^2}$ ✓.</p>
 
         <p><strong>Caso 3: denominatore di secondo grado con $\Delta\lt 0$ — il completamento del quadrato.</strong> Se il denominatore non ha radici reali, non si può scomporre in fattori di primo grado e la strada dei fratti semplici è chiusa. Si usa un'altra idea: <em>riscrivere il denominatore come "un quadrato più un numero positivo"</em>, per riconoscere la forma dell'arcotangente. Servono due passaggi, e dimostriamo entrambi.</p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Proposizione</span>
           <p><em class="nome">Completamento del quadrato.</em> Se $x^2+bx+c$ ha $\Delta=b^2-4c\lt0$, allora</p>
-          <div class="formula-block">$$x^2+bx+c=\underbrace{\left(x+\frac{b}{2}\right)^2}_{\text{il quadrato}} + \underbrace{k^2}_{\text{ciò che avanza}},\qquad k^2=c-\frac{b^2}{4}=\frac{-\Delta}{4}\gt0.$$</div>
+          <div class="formula-block">$$x^2+bx+c=\left(x+\frac{b}{2}\right)^2 + k^2,\qquad k^2=c-\frac{b^2}{4}=\frac{-\Delta}{4}\gt0.$$</div>
         </div>
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
@@ -853,7 +639,7 @@
           &amp;= \left(x+\frac b2\right)^2+\left(c-\frac{b^2}{4}\right)
           \end{aligned}$$</div>
           <p><strong>Passo 2 — controllo il segno di ciò che avanza.</strong> Dev'essere positivo, perché lo chiamiamo $k^2$. Mettendo a denominatore comune: $c-\frac{b^2}{4}=\frac{4c-b^2}{4}=\frac{-\Delta}{4}$. Se $\Delta\lt0$, allora $-\Delta\gt0$ e il termine è positivo. Se ti viene negativo, hai sbagliato un conto.</p>
-          <p><strong>Conclusione.</strong> Il trinomio è un quadrato più $\frac{-\Delta}{4}$, che è positivo quando $\Delta\lt0$. <span class="qed">∎</span> <em>Controllo numerico:</em> per $x^2+2x+5$ si ha $\Delta=4-20=-16$, quindi $k^2=\frac{16}{4}=4$, e $(x+1)^2+4=x^2+2x+1+4=x^2+2x+5$ ✓.</p>
+          <p><strong>Conclusione.</strong> Il trinomio è un quadrato più $\frac{-\Delta}{4}$, che è positivo quando $\Delta\lt0$. <span class="qed">∎</span></p>
         </div>
 
         <p>Ora la formula che generalizza $\int\frac{1}{1+x^2}\,dx=\arctan x+C$:</p>
@@ -877,20 +663,14 @@
           &amp;= \frac1k\arctan\frac{x-h}{k}+C
           \end{aligned}$$</div>
           <p>Nella seconda riga il $k$ del numeratore si semplifica con uno dei due $k$ di $k^2$, e il $\frac1k$ che resta esce dall'integrale; nella terza uso la tabella; nell'ultima rimetto $t=\frac{x-h}{k}$.</p>
-          <p><strong>Passo 4 — controllo derivando.</strong> Regola della catena, con interno $\frac{x-h}{k}$ (derivata $\frac1k$):</p>
-          <div class="calcolo">$$\begin{aligned}
-          D\!\left[\frac1k\arctan\frac{x-h}{k}\right] &amp;= \frac1k\cdot\frac{1}{1+\left(\frac{x-h}{k}\right)^2}\cdot\frac1k\\
-          &amp;= \frac{1}{k^2+(x-h)^2}
-          \end{aligned}$$</div>
-          <p>All'ultima riga ho moltiplicato sopra e sotto per $k^2$. È proprio l'integranda.</p>
           <p><strong>Conclusione.</strong> I due $\frac1k$ hanno due origini diverse: quello dentro l'arcotangente viene dalla scelta di $t$, quello davanti dalla conversione $dx=k\,dt$ e dalla semplificazione con $k^2$. <span class="qed">∎</span></p>
         </div>
         <p>Se il coefficiente di $x^2$ non è $1$, si porta fuori: $\int\frac{dx}{ax^2+bx+c}=\frac1a\int\frac{dx}{x^2+\frac bax+\frac ca}$ (linearità). Il segno del termine che avanza è il punto delicato: lo vediamo all'opera nell'<a href="#esempi">Esempio 8</a>.</p>
 
         <div class="callout callout--intuizione">
           <div class="callout__title"><span class="emoji">💡</span> Quanto è generale quello che abbiamo dimostrato</div>
-          <p>Abbiamo dimostrato tutti i casi che questo capitolo usa: denominatore di primo grado, e denominatore di secondo grado con $\Delta\gt0$, $\Delta=0$ e $\Delta\lt0$ (con numeratore costante). Se nel caso $\Delta\lt0$ il numeratore non è costante, $\alpha x+\beta$, si scrive $\alpha x+\beta=\frac\alpha2\,(2x+b)+\left(\beta-\frac{\alpha b}{2}\right)$: il primo pezzo contiene la derivata del denominatore e dà un logaritmo (sostituzione $t=x^2+bx+c$), il secondo è costante e dà un arcotangente.</p>
-          <p>Il <strong>teorema generale</strong> di decomposizione in fratti semplici — vero per qualunque grado, con radici ripetute e con fattori di secondo grado — è un teorema di algebra: si dimostra con il teorema fondamentale dell'algebra (ogni polinomio reale si scompone in fattori di grado al più $2$) e con l'identità di Bézout per i polinomi. Non rientra in un corso di Analisi 1, quindi qui non lo dimostriamo. Ma lo schema pratico è sempre quello visto nel Caso 2: scrivo la forma spezzata con coefficienti incogniti, metto a denominatore comune, uguaglio i numeratori e determino i coefficienti.</p>
+          <p>Abbiamo dimostrato tutti i casi che questo capitolo usa: denominatore di primo grado, e di secondo grado con $\Delta\gt0$, $\Delta=0$ e $\Delta\lt0$ (con numeratore costante). Se nel caso $\Delta\lt0$ il numeratore non è costante, $\alpha x+\beta$, si scrive $\alpha x+\beta=\frac\alpha2\,(2x+b)+\left(\beta-\frac{\alpha b}{2}\right)$: il primo pezzo contiene la derivata del denominatore e dà un logaritmo (sostituzione $t=x^2+bx+c$), il secondo è costante e dà un arcotangente.</p>
+          <p>Il <strong>teorema generale</strong> di decomposizione in fratti semplici (per qualunque grado, con radici ripetute e con fattori di secondo grado) è un teorema di algebra: si dimostra con il teorema fondamentale dell'algebra e con l'identità di Bézout per i polinomi. Non rientra in un corso di Analisi 1, quindi qui non lo dimostriamo. Ma lo schema pratico è sempre quello del Caso 2: scrivo la forma spezzata con coefficienti incogniti, metto a denominatore comune, uguaglio i numeratori e determino i coefficienti.</p>
         </div>
       </section>
 

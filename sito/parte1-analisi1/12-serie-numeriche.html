@@ -163,14 +163,12 @@
           <tbody>
             <tr><td>$1$</td><td>$0{,}5$</td><td>$1$</td></tr>
             <tr><td>$2$</td><td>$0{,}75$</td><td>$1{,}5$</td></tr>
-            <tr><td>$3$</td><td>$0{,}875$</td><td>$\approx 1{,}8333$</td></tr>
-            <tr><td>$4$</td><td>$0{,}9375$</td><td>$\approx 2{,}0833$</td></tr>
             <tr><td>$10$</td><td>$\approx 0{,}99902$</td><td>$\approx 2{,}9290$</td></tr>
             <tr><td>$100$</td><td>$\approx 1$</td><td>$\approx 5{,}1874$</td></tr>
             <tr><td>$1\,000$</td><td>$\approx 1$</td><td>$\approx 7{,}4855$</td></tr>
           </tbody>
         </table>
-        <p>Nella prima colonna manca a $1$ esattamente l'ultimo termine aggiunto, $S_n=1-\tfrac{1}{2^n}$: i totali crescono ma restano sotto $1$ e vi si schiacciano contro, quindi la serie <strong>converge</strong> a $1$. Nella seconda, ogni volta che $n$ si moltiplica per dieci il totale sale sempre di circa $2{,}30$: rallenta, ma supera qualunque soglia, e la serie <strong>diverge</strong>. In entrambi i casi i termini tendono a zero, ma solo nel primo i totali si fermano: conta la <em>velocità</em> (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
+        <p>Nella prima colonna manca a $1$ esattamente l'ultimo termine aggiunto, $S_n=1-\tfrac{1}{2^n}$: i totali restano sotto $1$ e vi si schiacciano contro, quindi la serie <strong>converge</strong> a $1$. Nella seconda, ogni volta che $n$ si moltiplica per dieci il totale sale di circa $2{,}30$: rallenta, ma supera qualunque soglia, e la serie <strong>diverge</strong>. In entrambi i casi i termini tendono a zero, ma solo nel primo i totali si fermano: conta la <em>velocità</em> (<span class="richiamo" data-sec="4.5">§4.5</span>).</p>
 
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Definizione</span>
@@ -187,8 +185,8 @@
           <p>Non confondere $(a_n)$, i <em>termini</em>, con $(S_n)$, i <em>totali</em>: il carattere dipende solo dalla seconda.</p>
         </div>
 
-        <p><strong>Un non-esempio.</strong> Con $a_n=(-1)^{\,n}$, cioè $-1,+1,-1,+1,\dots$, i totali sono $S_1=-1,\ S_2=0,\ S_3=-1,\ S_4=0,\dots$: saltano fra due valori senza avvicinarsi a nessun numero, quindi il limite non esiste e la serie è <strong>irregolare</strong>, senza somma. Chi scrive "$1-1+1-1+\cdots=\tfrac12$" usa un'altra definizione, non la nostra.</p>
-        <p><strong>Due osservazioni.</strong> (1) La somma $S$ non coincide con nessun totale parziale: è il <em>limite</em> dei totali (nella prima colonna nessun $S_n$ vale $1$). (2) Cambiare, aggiungere o togliere un numero finito di termini cambia la somma ma non il carattere. Lo dimostriamo subito, perché ci servirà ogni volta che scriveremo "da un certo indice in poi".</p>
+        <p><strong>Un caso irregolare.</strong> Con $a_n=(-1)^{\,n}$, cioè $-1,+1,-1,+1,\dots$, i totali sono $S_1=-1,\ S_2=0,\ S_3=-1,\ S_4=0,\dots$: saltano fra due valori senza avvicinarsi a nessun numero, quindi il limite non esiste e la serie è <strong>irregolare</strong>, senza somma.</p>
+        <p>Cambiare, aggiungere o togliere un numero finito di termini cambia la somma ma non il carattere. Lo dimostriamo subito, perché ci servirà ogni volta che scriveremo "da un certo indice in poi".</p>
 
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Proposizione</span>
@@ -196,8 +194,8 @@
         </div>
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
-          <p><strong>Cosa vogliamo mostrare.</strong> Abbiamo due serie con gli stessi termini da un certo punto in poi; all'inizio possono essere diverse. Vogliamo concludere che i loro totali vanno a finire "nello stesso modo": se uno si ferma su un numero, anche l'altro; se uno esplode, anche l'altro; se uno oscilla, anche l'altro.</p>
-          <p><strong>L'idea.</strong> Il carattere dipende solo dai totali $S_n$ per $n$ grande. Quando $n\geq N$, ogni totale è fatto di due pezzi: i primi $N-1$ termini, che sono un numero <em>finito</em> di addendi e quindi danno <em>un solo numero fissato</em>, e la "coda", cioè gli addendi dal posto $N$ in poi, che per le due serie sono gli stessi. Perciò i totali delle due serie differiscono per una costante. E aggiungere una costante a una successione non cambia dove essa va a finire: cambia al più il valore del limite.</p>
+          <p><strong>Cosa vogliamo mostrare.</strong> Due serie hanno gli stessi termini da un certo punto in poi; all'inizio possono essere diverse. Vogliamo concludere che i loro totali vanno a finire nello stesso modo: o si fermano entrambi su un numero, o esplodono entrambi, o oscillano entrambi.</p>
+          <p><strong>L'idea.</strong> Quando $n\geq N$, ogni totale è fatto di due pezzi: i primi $N-1$ termini, che sono un numero <em>finito</em> di addendi e quindi danno <em>un solo numero fissato</em>, e la "coda", cioè gli addendi dal posto $N$ in poi, che per le due serie sono gli stessi. Perciò i totali delle due serie differiscono per una costante. E aggiungere una costante a una successione non cambia dove essa va a finire: cambia al più il valore del limite.</p>
           <p><strong>Passo 1 — spezzo ogni totale in "parte iniziale più coda".</strong> Per $n\geq N$ indico con $T_n=a_N+a_{N+1}+\cdots+a_n$ la coda (è la stessa per le due serie, perché da $N$ in poi i termini coincidono). Poi scrivo i due totali:</p>
           <div class="calcolo">$$\begin{aligned}
           S_n &amp;= \underbrace{(a_1+\cdots+a_{N-1})}_{=\,c}+T_n\\
@@ -211,7 +209,7 @@
             <li>Se $S_n\to+\infty$ (o $-\infty$), anche $S'_n\to+\infty$ (o $-\infty$): un numero fisso non può fermare un'esplosione.</li>
             <li>Se $S_n$ non ha limite, nemmeno $S'_n$ può averlo: se lo avesse, anche $S_n=S'_n-k$ lo avrebbe.</li>
           </ul>
-          <p><strong>Conclusione.</strong> Da un certo indice in poi i totali delle due serie differiscono per una costante, quindi si comportano allo stesso modo: le serie hanno lo stesso carattere. Cambia solo il valore della somma, di $k=c'-c$. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> I totali delle due serie differiscono per la costante $k$, quindi le serie hanno lo stesso carattere; cambia solo la somma, di $k=c'-c$. <span class="qed">∎</span></p>
         </div>
 
         <p>La proprietà più usata è un'altra: le serie si sommano e si moltiplicano per un numero <em>termine a termine</em>.</p>
@@ -223,8 +221,8 @@
         </div>
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
-          <p><strong>Cosa vogliamo mostrare.</strong> Sappiamo che due serie si fermano su $A$ e su $B$. Vogliamo concludere che la serie fatta sommando i termini a due a due si ferma su $A+B$, e che moltiplicando ogni termine per $c$ ci si ferma su $c\,A$.</p>
-          <p><strong>L'idea.</strong> La somma di una serie è un limite di totali, e per i limiti di successioni sappiamo già come comportarci con somme e prodotti (<a href="04-limiti.html">cap. 4</a>). Basta quindi scrivere il totale della nuova serie usando i totali delle vecchie: la somma di un numero <em>finito</em> di addendi si può riordinare a piacere, quindi il totale della serie somma è la somma dei due totali.</p>
+          <p><strong>Cosa vogliamo mostrare.</strong> Sappiamo che due serie si fermano su $A$ e su $B$. Vogliamo mostrare che sommando i termini a due a due ci si ferma su $A+B$, e che moltiplicandoli per $c$ ci si ferma su $c\,A$.</p>
+          <p><strong>L'idea.</strong> La somma di una serie è un limite di totali, e per i limiti di successioni sappiamo già come comportarci con somme e prodotti (<a href="04-limiti.html">cap. 4</a>). Basta quindi scrivere il totale della nuova serie usando i totali delle vecchie: la somma di un numero <em>finito</em> di addendi si può riordinare a piacere.</p>
           <p><strong>Passo 1 — esprimo i nuovi totali con i vecchi.</strong> Chiamo $A_n=a_1+\cdots+a_n$ e $B_n=b_1+\cdots+b_n$. Raggruppo gli addendi con la proprietà commutativa e con quella distributiva:</p>
           <div class="calcolo">$$\begin{aligned}
           (a_1+b_1)+\cdots+(a_n+b_n) &amp;= (a_1+\cdots+a_n)+(b_1+\cdots+b_n)=A_n+B_n\\
@@ -235,12 +233,11 @@
           <div class="calcolo">$$A_n+B_n\to A+B,\qquad A_n-B_n\to A-B,\qquad c\,A_n\to c\,A.$$</div>
           <p>Quindi le tre serie convergono, con le somme dichiarate.</p>
           <p><strong>Passo 3 — le due conseguenze.</strong> Per la prima: se $c\neq0$ e $\sum c\,a_n$ converge, applico quanto appena dimostrato con il numero $\tfrac1c$ al posto di $c$ e ottengo che converge $\sum\tfrac1c\,(c\,a_n)=\sum a_n$. Per la seconda uso un ragionamento per assurdo: se $\sum(a_n+b_n)$ convergesse, la serie $\sum b_n=\sum\big[(a_n+b_n)-a_n\big]$ sarebbe differenza di due serie convergenti e quindi convergerebbe, contro l'ipotesi.</p>
-          <p><strong>Conclusione.</strong> Le somme parziali delle nuove serie sono combinazioni delle vecchie, e i limiti finiti si combinano allo stesso modo. L'ipotesi "convergono" è indispensabile: con serie divergenti comparirebbe una forma come $\infty-\infty$, che non si può calcolare. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Le somme parziali delle nuove serie sono combinazioni delle vecchie, e i limiti finiti si combinano allo stesso modo. <span class="qed">∎</span></p>
         </div>
 
         <h3 id="teoria-geometrica">4.2 La serie geometrica: la regina delle serie</h3>
-        <p>Una serie è <strong>geometrica</strong> se ogni termine si ottiene dal precedente moltiplicando per lo stesso numero $q$, detto <strong>ragione</strong> (cioè $\tfrac{a_{n+1}}{a_n}=q$ non dipende da $n$): $1,\ q,\ q^2,\ q^3,\dots$ È importante perché è una delle poche famiglie in cui si sa scrivere $S_n$ in forma chiusa (l'altra è quella delle telescopiche, <span class="richiamo" data-sec="4.8">§4.8</span>).</p>
-        <p>Il trucco è moltiplicare $S_n=1+q+q^2+\cdots+q^{\,n}$ per $q$ e sottrarre: quasi tutti gli addendi si cancellano e restano solo i due estremi. Qui la serie parte da $n=0$, quindi $S_n$ è la somma degli $n+1$ termini da $q^0$ a $q^{\,n}$. Il risultato è la formula seguente, che dimostriamo subito.</p>
+        <p>Una serie è <strong>geometrica</strong> se ogni termine si ottiene dal precedente moltiplicando per lo stesso numero $q$, detto <strong>ragione</strong> (cioè $\tfrac{a_{n+1}}{a_n}=q$ non dipende da $n$): $1,\ q,\ q^2,\ q^3,\dots$ È importante perché è una delle poche famiglie in cui si sa scrivere $S_n$ in forma chiusa (l'altra è quella delle telescopiche, <span class="richiamo" data-sec="4.8">§4.8</span>). Qui la serie parte da $n=0$, quindi $S_n$ è la somma degli $n+1$ termini da $q^0$ a $q^{\,n}$.</p>
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Somma parziale geometrica.</em> Per ogni $q\neq 1$ e ogni $n\geq0$ vale</p>
@@ -249,23 +246,21 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione (moltiplica e sottrai)</span>
           <p><strong>Cosa vogliamo mostrare.</strong> La somma $1+q+\cdots+q^{\,n}$ ha $n+1$ addendi tutti diversi. Vogliamo scriverla come una frazione "corta" in cui $n$ compare in un solo posto: così potremo studiarne il limite.</p>
-          <p><strong>L'idea.</strong> Gli addendi sono tutti diversi, quindi non si può raccogliere niente. Però hanno una regolarità: ognuno si ottiene dal precedente moltiplicando per $q$. Se moltiplico <em>tutta</em> la somma per $q$, ogni addendo diventa il successivo: ottengo la stessa lista, spostata di un posto. Due liste quasi uguali si confrontano <strong>sottraendole</strong>: quasi tutto si cancella e restano solo gli addendi alle due estremità.</p>
+          <p><strong>L'idea.</strong> Gli addendi sono tutti diversi, quindi non si può raccogliere niente. Però ognuno si ottiene dal precedente moltiplicando per $q$. Se moltiplico <em>tutta</em> la somma per $q$, ogni addendo diventa il successivo: ottengo la stessa lista, spostata di un posto. Due liste quasi uguali si confrontano <strong>sottraendole</strong>: quasi tutto si cancella e restano solo gli addendi alle due estremità.</p>
           <p><strong>Passo 1 — scrivo la somma e la sua "traslata".</strong> Moltiplico $S_n$ per $q$ con la proprietà distributiva: poiché $q\cdot q^{\,k}=q^{\,k+1}$, ogni esponente sale di uno. Metto uno sotto l'altro i termini uguali:</p>
           <div class="calcolo">$$\begin{aligned}
           S_n &amp;= 1 + q + q^2 + \cdots + q^{\,n}\\
           q\,S_n &amp;= \phantom{1 +\ } q + q^2 + \cdots + q^{\,n} + q^{\,n+1}
           \end{aligned}$$</div>
-          <p><strong>Passo 2 — sottraggo le due righe.</strong> Le potenze da $q$ a $q^{\,n}$ compaiono in entrambe e si cancellano. In $S_n$ resta solo il primo addendo, $1$; in $q\,S_n$ resta solo l'ultimo, $q^{\,n+1}$ (con $n=2$: $(1+q+q^2)-(q+q^2+q^3)=1-q^3$).</p>
+          <p><strong>Passo 2 — sottraggo le due righe.</strong> Le potenze da $q$ a $q^{\,n}$ compaiono in entrambe e si cancellano. In $S_n$ resta solo il primo addendo, $1$; in $q\,S_n$ resta solo l'ultimo, $q^{\,n+1}$.</p>
           <div class="calcolo">$$S_n-q\,S_n=1-q^{\,n+1}$$</div>
           <p><strong>Passo 3 — isolo $S_n$.</strong> A sinistra raccolgo $S_n$ a fattor comune, poi divido entrambi i membri per $1-q$. Posso dividere <em>solo perché $q\neq1$</em>: per $q=1$ sarebbe $1-q=0$.</p>
           <div class="calcolo">$$\begin{aligned}
           S_n\,(1-q) &amp;= 1-q^{\,n+1}\\
           S_n &amp;= \frac{1-q^{\,n+1}}{1-q}
           \end{aligned}$$</div>
-          <p><strong>Controllo numerico.</strong> Con $q=\tfrac13$ e $n=2$ la formula dà $\dfrac{1-\frac{1}{27}}{\frac23}=\dfrac{13}{9}$, e a mano $1+\tfrac13+\tfrac19=\tfrac{13}{9}$.</p>
-          <p><strong>Conclusione.</strong> Moltiplicare per $q$ sposta la lista di un posto, la sottrazione cancella tutti gli addendi intermedi e la divisione isola $S_n$: la somma di $n+1$ addendi è diventata una frazione in cui $n$ compare solo nella potenza $q^{\,n+1}$. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Ora $n$ compare solo nella potenza $q^{\,n+1}$, come volevamo. <span class="qed">∎</span></p>
         </div>
-        <p>Per $q=1$ la formula non vale (denominatore nullo) e si ha direttamente $S_n=n+1$, perché sono $n+1$ addendi tutti uguali a $1$. Nella formula l'unico pezzo che dipende da $n$ è $q^{\,n+1}$, e dal <a href="11-successioni.html">capitolo 11</a> sappiamo come si comporta una potenza: ne segue il teorema.</p>
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Serie geometrica.</em> La serie $\sum_{n=0}^{\infty} q^n$ <strong>converge se e solo se $|q| \lt 1$</strong>, e in tal caso</p>
@@ -275,7 +270,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione (un caso alla volta)</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Vogliamo sapere, per ogni valore della ragione $q$, che cosa fanno i totali $S_n$: si fermano su un numero (e quale), esplodono, oppure oscillano.</p>
-          <p><strong>L'idea.</strong> Per definizione (<span class="richiamo" data-sec="4.1">§4.1</span>) il carattere della serie è il comportamento di $S_n$ per $n\to\infty$, e ora $S_n$ ha una formula esplicita in cui $n$ compare in un solo posto, la potenza $q^{\,n+1}$. Basta capire che cosa fa questa potenza. Dipende dalla ragione, quindi dividiamo la dimostrazione <strong>per casi</strong> secondo il valore di $q$.</p>
+          <p><strong>L'idea.</strong> Per definizione (<span class="richiamo" data-sec="4.1">§4.1</span>) il carattere della serie è il comportamento di $S_n$ per $n\to\infty$, e ora $S_n$ ha una formula in cui $n$ compare in un solo posto, la potenza $q^{\,n+1}$. Basta capire che cosa fa questa potenza. Dipende dalla ragione, quindi dividiamo la dimostrazione <strong>per casi</strong> secondo il valore di $q$.</p>
           <p><strong>Caso 1 — $|q| \lt 1$: la serie converge.</strong> Una potenza con base di valore assoluto minore di $1$ tende a zero (<a href="11-successioni.html">cap. 11</a>): $q^{\,n+1}\to0$. Nella formula sparisce così l'unico pezzo che dipende da $n$:</p>
           <div class="calcolo">$$\lim_{n\to\infty}S_n=\lim_{n\to\infty}\frac{1-q^{\,n+1}}{1-q}=\frac{1-0}{1-q}=\frac{1}{1-q}.$$</div>
           <p>I totali si fermano su un numero finito: la serie converge e la sua somma è $\tfrac{1}{1-q}$.</p>
@@ -283,26 +278,16 @@
           <p><strong>Caso 3 — $q \gt 1$: la serie diverge.</strong> Ora $q^{\,n+1}\to+\infty$, quindi il numeratore $1-q^{\,n+1}$ tende a $-\infty$, mentre il denominatore $1-q$ è un numero <em>negativo e fisso</em>. Un numero che va a $-\infty$, diviso per un numero negativo fisso, va a $+\infty$: $S_n\to+\infty$.</p>
           <p><strong>Caso 4 — $q=-1$: la serie è irregolare.</strong> I termini sono $1,-1,1,-1,\dots$ e i totali valgono $S_0=1,\ S_1=0,\ S_2=1,\ S_3=0,\dots$: saltano fra due valori e non c'è limite.</p>
           <p><strong>Caso 5 — $q \lt -1$: la serie è irregolare.</strong> Ora $|q|^{\,n+1}\to+\infty$ e il segno di $q^{\,n+1}$ alterna. Il denominatore $1-q$ è positivo e fisso, quindi basta guardare il numeratore $1-q^{\,n+1}$ su due sottosuccessioni. Quando $n+1$ è pari, $q^{\,n+1}\to+\infty$ e $S_n\to-\infty$; quando $n+1$ è dispari, $q^{\,n+1}\to-\infty$ e $S_n\to+\infty$. Due sottosuccessioni con limiti diversi: $S_n$ non ha limite (con $q=-2$ i totali sono $1,\,-1,\,3,\,-5,\,11,\dots$).</p>
-          <p><strong>Conclusione.</strong> I cinque casi coprono tutti i numeri reali: la serie converge se e solo se $|q| \lt 1$, con somma $\tfrac{1}{1-q}$; per $q\geq1$ diverge a $+\infty$; per $q\leq-1$ è irregolare. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> I cinque casi coprono tutti i numeri reali, e danno proprio le affermazioni del teorema. <span class="qed">∎</span></p>
         </div>
-        <p><strong>Se la serie non parte da $n=0$</strong> bisogna togliere i termini che mancano. Partendo da $n=1$:</p>
-        <div class="calcolo">$$\begin{aligned}
-        \sum_{n=1}^{\infty} q^n &amp;= \sum_{n=0}^{\infty} q^n - q^0 = \frac{1}{1-q} - 1 &amp;&amp;\text{(tolgo il termine con } n=0)\\
-        &amp;= \frac{1-(1-q)}{1-q} = \frac{q}{1-q} &amp;&amp;\text{(denominatore comune)}
-        \end{aligned}$$</div>
-        <p>In generale, per $|q|\lt1$, la somma è $\dfrac{\text{primo termine}}{1-q}$. Con $q=\tfrac12$ si ritrova il metro di Zenone: $\dfrac{1/2}{1-1/2}=1$.</p>
-        <p><strong>Non-esempio.</strong> $\sum\tfrac1n$ non è geometrica, anche se i termini rimpiccioliscono: i rapporti $\tfrac{a_{n+1}}{a_n}$ valgono $\tfrac12,\ \tfrac23,\ \tfrac34,\dots$, non sono costanti, e la formula $\tfrac{1}{1-q}$ non si applica.</p>
+        <p><strong>Se la serie non parte da $n=0$</strong> bisogna togliere i termini che mancano. Partendo da $n=1$ tolgo il termine con $n=0$ e porto tutto allo stesso denominatore:</p>
+        <div class="calcolo">$$\sum_{n=1}^{\infty} q^n = \sum_{n=0}^{\infty} q^n - q^0 = \frac{1}{1-q} - 1 = \frac{1-(1-q)}{1-q} = \frac{q}{1-q}.$$</div>
+        <p>In generale, per $|q|\lt1$, la somma è $\dfrac{\text{primo termine}}{1-q}$ (con $q=\tfrac12$ si ritrova il metro di Zenone: $\dfrac{1/2}{1-1/2}=1$).</p>
 
         <h3 id="teoria-armonica">4.3 La serie armonica: quando i termini tendono a zero ma la somma esplode</h3>
         <p>La <strong>serie armonica</strong> è la somma degli inversi dei numeri naturali, già incontrata nel <span class="richiamo" data-sec="4.1">§4.1</span>:</p>
         <div class="formula-block">$$\sum_{n=1}^{\infty}\frac{1}{n} = 1 + \frac12 + \frac13 + \frac14 + \frac15 + \cdots$$</div>
-        <p>È la serie più istruttiva del capitolo: i termini diventano piccoli quanto vuoi, eppure la somma cresce senza limite. L'idea è sommare a <em>blocchi</em>: i termini dal posto $n+1$ al posto $2n$ sono $n$ e il più piccolo vale $\tfrac{1}{2n}$, quindi il blocco pesa almeno $n\cdot\tfrac{1}{2n}=\tfrac12$, per ogni $n$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        \frac13+\frac14 &amp;\approx 0{,}583 &amp;&amp;(n=2)\\
-        \frac{1}{11}+\frac{1}{12}+\cdots+\frac{1}{20} &amp;\approx 0{,}669 &amp;&amp;(n=10)\\
-        \frac{1}{101}+\frac{1}{102}+\cdots+\frac{1}{200} &amp;\approx 0{,}691 &amp;&amp;(n=100)
-        \end{aligned}$$</div>
-        <p>I blocchi non scendono sotto $\tfrac12$ (anzi salgono verso $0{,}693\ldots$): ogni raddoppio dei termini aggiunge almeno $\tfrac12$, e infiniti raddoppi superano qualsiasi soglia.</p>
+        <p>È la serie più istruttiva del capitolo: i termini diventano piccoli quanto vuoi, eppure la somma cresce senza limite.</p>
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Divergenza della serie armonica.</em> La serie $\sum_{n=1}^{\infty}\dfrac1n$ <strong>diverge a $+\infty$</strong>, pur avendo termine generale $\dfrac1n\to0$. (Dimostrazione di Oresme, XIV secolo: qui sotto.)</p>
@@ -310,7 +295,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione (raggruppamento di Oresme)</span>
           <p><strong>Cosa vogliamo mostrare.</strong> I totali $S_n=1+\tfrac12+\cdots+\tfrac1n$ crescono, e vogliamo far vedere che superano qualunque soglia, cioè $S_n\to+\infty$, anche se ogni singolo termine $\tfrac1n$ è minuscolo.</p>
-          <p><strong>L'idea.</strong> Non esiste una formula chiusa per $S_n$, quindi non possiamo calcolarne il limite: lo <em>stimiamo dal basso</em>. Ci basta trovare una quantità più piccola di $S_n$ che già va a $+\infty$. Per costruirla raggruppiamo i termini in blocchi e, dentro ogni blocco, sostituiamo ogni frazione con la <em>più piccola</em> del blocco: otteniamo un numero minore del vero ma facile da calcolare, perché gli addendi diventano tutti uguali. I blocchi sono scelti in modo che ognuno abbia il doppio dei termini del precedente: i termini rimpiccioliscono, ma diventano anche più numerosi, e le due cose si compensano. Ci aspettiamo quindi che ogni blocco pesi sempre almeno una quantità fissa, e infiniti blocchi di peso fisso superano ogni soglia.</p>
+          <p><strong>L'idea.</strong> Non esiste una formula chiusa per $S_n$, quindi non possiamo calcolarne il limite: lo <em>stimiamo dal basso</em>. Ci basta trovare una quantità più piccola di $S_n$ che già va a $+\infty$. Per costruirla raggruppiamo i termini in blocchi e, dentro ogni blocco, sostituiamo ogni frazione con la <em>più piccola</em> del blocco: otteniamo un numero minore del vero ma facile da calcolare, perché gli addendi diventano tutti uguali. I blocchi sono scelti in modo che ognuno abbia il doppio dei termini del precedente: i termini rimpiccioliscono, ma diventano anche più numerosi, e le due cose si compensano. Ci aspettiamo quindi che ogni blocco pesi almeno una quantità fissa, e infiniti blocchi di peso fisso superano ogni soglia.</p>
           <p><strong>Passo 1 — formo i blocchi.</strong> Dopo il termine $1$ prendo blocchi di lunghezza $1,\,2,\,4,\,8,\dots$ (le potenze di due):</p>
           <div class="formula-block">$$1 \;+\; \underbrace{\frac12}_{1\ \text{termine}} \;+\; \underbrace{\left(\frac13+\frac14\right)}_{2\ \text{termini}} \;+\; \underbrace{\left(\frac15+\frac16+\frac17+\frac18\right)}_{4\ \text{termini}} \;+\; \underbrace{\left(\frac19+\cdots+\frac{1}{16}\right)}_{8\ \text{termini}} \;+\;\cdots$$</div>
           <p><strong>Passo 2 — ogni blocco pesa almeno $\tfrac12$.</strong> Il blocco numero $k$ (con $k\geq1$) va da $\tfrac{1}{2^{\,k-1}+1}$ a $\tfrac{1}{2^{\,k}}$. Ne conto i termini; poi sostituisco ciascuno con il più piccolo del blocco, che è l'ultimo, $\tfrac1{2^{\,k}}$ (una frazione è tanto più piccola quanto più è grande il denominatore). La somma del blocco può solo diminuire:</p>
@@ -321,14 +306,13 @@
           <p>Per esempio $\tfrac13+\tfrac14\geq\tfrac14+\tfrac14=\tfrac12$ e $\tfrac15+\tfrac16+\tfrac17+\tfrac18\geq4\cdot\tfrac18=\tfrac12$.</p>
           <p><strong>Passo 3 — sommo i blocchi.</strong> I primi $2^{\,k}$ termini sono il termine $1$ più i blocchi numero $1,2,\dots,k$ (il blocco $1$ è il solo termine $\tfrac12$). Ognuno dei $k$ blocchi vale almeno $\tfrac12$, quindi</p>
           <div class="calcolo">$$S_{2^{\,k}} \;\geq\; 1 + \underbrace{\frac12+\cdots+\frac12}_{k\ \text{volte}} \;=\; 1 + \frac{k}{2}.$$</div>
-          <p>(Per $k\geq2$ la disuguaglianza è addirittura stretta, ma non ci serve.) Il lato destro tende a $+\infty$ quando $k\to\infty$.</p>
+          <p>Il lato destro tende a $+\infty$ quando $k\to\infty$.</p>
           <p><strong>Passo 4 — da $S_{2^k}$ a tutti gli $S_n$.</strong> Abbiamo mostrato che solo <em>alcune</em> somme parziali, $S_2,S_4,S_8,\dots$, superano ogni soglia. I termini però sono positivi, quindi $(S_n)$ è <strong>crescente</strong>: una soglia superata non viene più abbandonata. Preciso con un numero qualunque $M$: scelgo $k$ tanto grande da avere $1+\tfrac k2 \gt M$. Allora per ogni $n\geq2^{\,k}$</p>
           <div class="calcolo">$$S_n\;\geq\; S_{2^{\,k}}\;\geq\;1+\frac k2\;\gt\;M .$$</div>
           <p>Ogni soglia $M$ viene superata e non più lasciata: questa è la definizione di $S_n\to+\infty$.</p>
-          <p><strong>Controllo numerico.</strong> $S_4=\tfrac{25}{12}\approx2{,}083\geq1+\tfrac22=2$ e $S_8\approx2{,}718\geq1+\tfrac32=2{,}5$. La stima è prudente (il vero andamento è come $\ln n$), ma a noi basta che vada all'infinito.</p>
-          <p><strong>Conclusione.</strong> Raggruppando a blocchi di lunghezza $2^{\,k-1}$ e sostituendo ogni termine con il più piccolo del blocco, abbiamo trovato $S_{2^k}\geq1+\tfrac k2$; poiché $(S_n)$ è crescente, $S_n\to+\infty$. La serie armonica diverge, lentissimamente ma diverge, pur avendo $\tfrac1n\to0$. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Con i blocchi abbiamo trovato $S_{2^k}\geq1+\tfrac k2$; poiché $(S_n)$ è crescente, $S_n\to+\infty$. La serie armonica diverge, pur avendo $\tfrac1n\to0$. <span class="qed">∎</span></p>
         </div>
-        <p>La divergenza è lentissima, ed è per questo che l'intuizione sbaglia: per superare $10$ servono $12\,367$ termini, per superare $100$ più di $10^{43}$. Ma "non verificabile in pratica" non vuol dire "non succede": prima o poi ogni soglia viene superata.</p>
+        <p>La divergenza è lentissima, ed è per questo che l'intuizione sbaglia: per superare $10$ servono $12\,367$ termini. Ma prima o poi ogni soglia viene superata.</p>
 
         <h3 id="teoria-p">4.4 La serie armonica generalizzata (serie-p)</h3>
         <p>Fra $\sum\tfrac{1}{2^n}$ (converge) e $\sum\tfrac1n$ (diverge) c'è tutta una scala: quanto in fretta devono rimpicciolire i termini perché la somma si fermi? La famiglia con un esponente $p$ al denominatore risponde, e diventa il metro di misura per tutte le altre serie.</p>
@@ -337,7 +321,6 @@
           <thead><tr><th>numero di termini sommati</th><th>$p=\tfrac12$: $\sum\frac{1}{\sqrt n}$</th><th>$p=1$: $\sum\frac1n$</th><th>$p=2$: $\sum\frac{1}{n^2}$</th></tr></thead>
           <tbody>
             <tr><td>$10$</td><td>$\approx 5{,}02$</td><td>$\approx 2{,}93$</td><td>$\approx 1{,}5498$</td></tr>
-            <tr><td>$100$</td><td>$\approx 18{,}59$</td><td>$\approx 5{,}19$</td><td>$\approx 1{,}6350$</td></tr>
             <tr><td>$1\,000$</td><td>$\approx 61{,}80$</td><td>$\approx 7{,}49$</td><td>$\approx 1{,}6439$</td></tr>
             <tr><td>$10\,000$</td><td>$\approx 198{,}54$</td><td>$\approx 9{,}79$</td><td>$\approx 1{,}6448$</td></tr>
           </tbody>
@@ -349,18 +332,18 @@
         </div>
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione (per casi: confronto con l'armonica e blocchi di Oresme)</span>
-          <p><strong>Cosa vogliamo mostrare.</strong> Fissato $p \gt 0$, indico con $S_n=\tfrac{1}{1^p}+\tfrac{1}{2^p}+\cdots+\tfrac{1}{n^p}$ i totali. Vogliamo mostrare due cose: se $p \gt 1$ i totali si fermano su un numero (la serie converge); se $0 \lt p\leq1$ superano ogni soglia (la serie diverge). Dividiamo la dimostrazione <strong>per casi</strong> perché i due comportamenti hanno cause diverse.</p>
-          <p><strong>L'idea.</strong> Conosciamo già due serie di cui sappiamo il destino: l'armonica, che diverge (<span class="richiamo" data-sec="4.3">§4.3</span>), e la geometrica di ragione minore di $1$, che converge (<span class="richiamo" data-sec="4.2">§4.2</span>). Per $p\leq1$ i termini $\tfrac{1}{n^p}$ sono <em>più grandi</em> di quelli dell'armonica, e una somma più grande di una somma che esplode esplode a sua volta. Per $p \gt 1$ serve invece un tetto che le somme non superino mai, e lo costruiamo con il trucco dei blocchi di Oresme, usato al contrario. Per l'armonica un blocco di termini pesava <em>almeno</em> $\tfrac12$; qui i termini sono così piccoli che un blocco di $2^{\,k}$ termini pesa <em>al più</em> $r^{\,k}$, con $r$ minore di $1$. I pesi dei blocchi stanno quindi sotto una geometrica convergente.</p>
+          <p><strong>Cosa vogliamo mostrare.</strong> Fissato $p \gt 0$, indico con $S_n=\tfrac{1}{1^p}+\tfrac{1}{2^p}+\cdots+\tfrac{1}{n^p}$ i totali. Vogliamo mostrare che se $p \gt 1$ i totali si fermano su un numero (converge) e che se $0 \lt p\leq1$ superano ogni soglia (diverge). Procediamo <strong>per casi</strong>, perché le cause sono diverse.</p>
+          <p><strong>L'idea.</strong> Conosciamo già due serie: l'armonica, che diverge (<span class="richiamo" data-sec="4.3">§4.3</span>), e la geometrica di ragione minore di $1$, che converge (<span class="richiamo" data-sec="4.2">§4.2</span>). Per $p\leq1$ i termini $\tfrac{1}{n^p}$ sono <em>più grandi</em> di quelli dell'armonica, e una somma più grande di una somma che esplode esplode a sua volta. Per $p \gt 1$ serve invece un tetto che le somme non superino mai: lo costruiamo con i blocchi di Oresme usati al contrario. Per l'armonica un blocco pesava <em>almeno</em> $\tfrac12$; qui i termini sono così piccoli che un blocco di $2^{\,k}$ termini pesa <em>al più</em> $r^{\,k}$, con $r$ minore di $1$: i pesi dei blocchi stanno sotto una geometrica convergente.</p>
 
           <p><strong>Caso A — $0 \lt p\leq1$: la serie diverge.</strong> Indico con $H_n=1+\tfrac12+\cdots+\tfrac1n$ i totali dell'armonica.</p>
-          <p><strong>Passo A1 — confronto i termini con quelli dell'armonica.</strong> Per $n\geq1$ e $0 \lt p\leq1$ si ha $n^{\,1-p}\geq1$ (una base maggiore o uguale a $1$ elevata a un esponente non negativo non scende sotto $1$). Moltiplico questa disuguaglianza per $n^{\,p} \gt 0$ e ottengo $n\geq n^{\,p}$. Passando ai reciproci di numeri positivi il verso si inverte:</p>
+          <p><strong>Passo A1 — confronto i termini con quelli dell'armonica.</strong> Per $n\geq1$ e $0 \lt p\leq1$ si ha $n^{\,1-p}\geq1$ (una base maggiore o uguale a $1$ elevata a un esponente non negativo non scende sotto $1$). Moltiplico per $n^{\,p} \gt 0$ e ottengo $n\geq n^{\,p}$. Passando ai reciproci di numeri positivi il verso si inverte:</p>
           <div class="calcolo">$$n=n^{\,p}\cdot n^{\,1-p}\geq n^{\,p}\qquad\Longrightarrow\qquad\frac{1}{n^{\,p}}\geq\frac1n .$$</div>
           <p><strong>Passo A2 — sommo le disuguaglianze.</strong> Sommando per $k=1,\dots,n$ passo dai termini ai totali:</p>
           <div class="calcolo">$$S_n=\sum_{k=1}^{n}\frac{1}{k^{\,p}}\;\geq\;\sum_{k=1}^{n}\frac1k=H_n .$$</div>
           <p><strong>Passo A3 — concludo.</strong> Sappiamo che $H_n\to+\infty$ (<span class="richiamo" data-sec="4.3">§4.3</span>), e un numero maggiore di uno che va a $+\infty$ va a $+\infty$: quindi $S_n\to+\infty$ e la serie diverge. Per $p=1$ è proprio l'armonica.</p>
 
           <p><strong>Caso B — $p \gt 1$: la serie converge.</strong></p>
-          <p><strong>Passo B1 — formo i blocchi.</strong> Raggruppo i termini in blocchi di lunghezza $1,2,4,8,\dots$: il blocco $B_k$ contiene i termini con $n$ da $2^{\,k}$ a $2^{\,k+1}-1$, quindi ha $2^{\,k}$ termini. Il blocco $B_0$ è il solo termine $n=1$, il blocco $B_1$ contiene $n=2,3$, il blocco $B_2$ contiene $n=4,5,6,7$, e così via.</p>
+          <p><strong>Passo B1 — formo i blocchi.</strong> Raggruppo i termini in blocchi di lunghezza $1,2,4,8,\dots$: il blocco $B_k$ contiene i termini con $n$ da $2^{\,k}$ a $2^{\,k+1}-1$, quindi ha $2^{\,k}$ termini ($B_0$ è il solo $n=1$, $B_1$ contiene $n=2,3$, $B_2$ contiene $n=4,\dots,7$, e così via).</p>
           <p><strong>Passo B2 — stimo ogni blocco dall'alto.</strong> Poiché $p \gt 0$, la frazione $\tfrac{1}{n^p}$ <em>diminuisce</em> al crescere di $n$: in un blocco il termine più grande è il primo, $\tfrac{1}{(2^{\,k})^p}$. Se sostituisco ogni termine con il più grande, la somma può solo aumentare, e ottengo $2^{\,k}$ addendi uguali:</p>
           <div class="calcolo">$$B_k\;\leq\;2^{\,k}\cdot\frac{1}{(2^{\,k})^{p}}=2^{\,k}\cdot2^{-kp}=2^{\,k(1-p)}=\big(2^{\,1-p}\big)^{k}=r^{\,k},\qquad r:=2^{\,1-p}.$$</div>
           <p>Qui entra l'ipotesi $p \gt 1$: l'esponente $1-p$ è negativo, quindi $0 \lt r \lt 1$. I blocchi pesano al più $r^{\,k}$, cioè meno e meno, come i termini di una geometrica di ragione $r$.</p>
@@ -369,20 +352,17 @@
           <p>L'ultima disuguaglianza vale perché $r^{\,m} \gt 0$. Il numero $\tfrac{1}{1-r}$ non dipende da $m$: è il tetto cercato.</p>
           <p><strong>Passo B4 — da $S_{2^m-1}$ a tutti gli $S_n$.</strong> Dato un qualunque $n$, scelgo $m$ con $2^{\,m} \gt n$. I termini sono positivi, quindi i totali crescono, e $S_n\leq S_{2^{\,m}-1}\lt\tfrac{1}{1-r}$. Dunque $(S_n)$ è <strong>crescente e limitata superiormente</strong>: per il teorema sulle successioni monotone (<a href="11-successioni.html">cap. 11</a>) converge.</p>
 
-          <p><strong>Controllo numerico</strong> con $p=2$, quindi $r=2^{-1}=\tfrac12$ e tetto $\tfrac{1}{1-r}=2$. I blocchi pesano $B_0=1\leq1$, $B_1=\tfrac14+\tfrac19\approx0{,}361\leq\tfrac12$, $B_2=\tfrac1{16}+\tfrac1{25}+\tfrac1{36}+\tfrac1{49}\approx0{,}151\leq\tfrac14$. Il tetto $2$ sta sopra la somma vera $\tfrac{\pi^2}{6}\approx1{,}645$.</p>
-          <p><strong>Osservazione.</strong> Il caso $p=1$ è il punto in cui la dimostrazione B si rompe: $r=2^{0}=1$ e la stima diventa $1+1+1+\cdots$, che non è un tetto. È la stessa soglia vista nell'armonica, dove ogni blocco pesa almeno $\tfrac12$.</p>
-          <p><strong>Conclusione.</strong> Per $0 \lt p\leq1$ i totali stanno sopra quelli dell'armonica e quindi divergono; per $p \gt 1$ stanno sotto una geometrica di ragione $2^{\,1-p} \lt 1$ e quindi sono limitati e crescenti, dunque convergono. La serie $\sum\tfrac{1}{n^p}$ converge se e solo se $p \gt 1$. <span class="qed">∎</span></p>
+          <p><strong>Controllo numerico</strong> con $p=2$, quindi $r=\tfrac12$ e tetto $\tfrac{1}{1-r}=2$. I blocchi pesano $B_0=1\leq1$, $B_1=\tfrac14+\tfrac19\approx0{,}361\leq\tfrac12$, $B_2\approx0{,}151\leq\tfrac14$. Il tetto $2$ sta sopra la somma vera $\tfrac{\pi^2}{6}\approx1{,}645$.</p>
+          <p><strong>Conclusione.</strong> Per $0 \lt p\leq1$ i totali stanno sopra quelli dell'armonica e divergono; per $p \gt 1$ stanno sotto una geometrica di ragione $2^{\,1-p} \lt 1$, quindi sono crescenti e limitati e convergono. <span class="qed">∎</span></p>
         </div>
         <p><strong>Come si legge $p$.</strong> Spesso va ricavato riscrivendo radici e prodotti come potenze (Parte 0, cap. 3):</p>
         <div class="calcolo">$$\begin{aligned}
         \frac{1}{\sqrt n} &amp;= \frac{1}{n^{1/2}} &amp;&amp;\Rightarrow\ p=\tfrac12\leq1:\ \text{diverge}\\
-        \frac{1}{n\sqrt n} &amp;= \frac{1}{n^{3/2}} &amp;&amp;\Rightarrow\ p=\tfrac32 \gt 1:\ \text{converge}\\
-        \frac{1}{\sqrt[3]{n^{2}}} &amp;= \frac{1}{n^{2/3}} &amp;&amp;\Rightarrow\ p=\tfrac23\leq1:\ \text{diverge}
+        \frac{1}{n\sqrt n} &amp;= \frac{1}{n^{3/2}} &amp;&amp;\Rightarrow\ p=\tfrac32 \gt 1:\ \text{converge}
         \end{aligned}$$</div>
-        <p>Il criterio si applica al termine $\tfrac{1}{n^{\,p}}$ <em>esatto</em>: $\sum\tfrac{1}{2^{\,n}}$ non è una serie-p (la $n$ sta in alto, è una geometrica), e un termine che solo <em>assomiglia</em> a $\tfrac{1}{n^{\,p}}$, come $\tfrac{2n+1}{n^3+5}$, richiede prima il confronto asintotico (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>).</p>
+        <p>Il criterio vale per il termine $\tfrac{1}{n^{\,p}}$ <em>esatto</em>: $\sum\tfrac{1}{2^{\,n}}$ non è una serie-p (la $n$ sta in alto: è una geometrica), e un termine che solo <em>assomiglia</em> a $\tfrac{1}{n^{\,p}}$, come $\tfrac{2n+1}{n^3+5}$, richiede il confronto asintotico (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>).</p>
 
         <h3 id="teoria-necessaria">4.5 La condizione necessaria per la convergenza</h3>
-        <p>Se i totali $S_n$ si stabilizzano su un numero $S$, la differenza fra due totali consecutivi, che è esattamente il termine appena aggiunto, tende a $S-S=0$: <em>se la somma si ferma, i pezzi devono svanire</em>.</p>
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Condizione necessaria di convergenza.</em> Se la serie $\sum a_n$ converge, allora il suo termine generale tende a zero:</p>
@@ -392,7 +372,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Sappiamo che i <em>totali</em> $S_n$ si avvicinano a un numero $S$. Vogliamo concludere che i <em>pezzi</em> $a_n$ che aggiungiamo a ogni passo diventano sempre più piccoli, cioè $a_n\to0$.</p>
-          <p><strong>L'idea.</strong> L'ipotesi parla dei totali, la tesi parla dei pezzi: ci serve un ponte fra le due cose. Il ponte c'è: il pezzo $a_n$ è esattamente ciò che si aggiunge passando dal totale precedente a quello attuale, quindi $a_n=S_n-S_{n-1}$. Ora, se due totali consecutivi si avvicinano entrambi a $S$, la loro differenza si avvicina a $S-S=0$. È tutto qui: il resto è scriverlo con cura.</p>
+          <p><strong>L'idea.</strong> L'ipotesi parla dei totali, la tesi parla dei pezzi: ci serve un ponte fra le due cose. Il ponte c'è: il pezzo $a_n$ è esattamente ciò che si aggiunge passando dal totale precedente a quello attuale, quindi $a_n=S_n-S_{n-1}$. Ora, se due totali consecutivi si avvicinano entrambi a $S$, la loro differenza si avvicina a $S-S=0$.</p>
           <p><strong>Passo 1 — scrivo $a_n$ come differenza di due totali.</strong> Scrivo per esteso due totali consecutivi (per $n\geq2$) e li sottraggo: tutti i termini si cancellano tranne l'ultimo.</p>
           <div class="calcolo">$$\begin{aligned}
           S_n &amp;= a_1+a_2+\cdots+a_{n-1}+a_n\\
@@ -401,20 +381,18 @@
           \end{aligned}$$</div>
           <p><strong>Passo 2 — passo al limite.</strong> Per ipotesi $S_n\to S$. Anche $S_{n-1}\to S$: è la stessa lista di numeri, solo con l'indice spostato di un posto, e spostare l'indice non cambia dove la lista va a finire. Il limite di una differenza è la differenza dei limiti (<a href="04-limiti.html">cap. 4</a>), e qui possiamo usarlo perché $S$ è un numero finito:</p>
           <div class="calcolo">$$\lim_{n\to\infty}a_n=\lim_{n\to\infty}\left(S_n-S_{n-1}\right)=S-S=0.$$</div>
-          <p><strong>Controllo numerico.</strong> Per la geometrica $\sum_{n=1}^{\infty}\left(\tfrac12\right)^{n}$ i totali sono $S_2=\tfrac34$ e $S_3=\tfrac78$, e infatti $S_3-S_2=\tfrac18=a_3$.</p>
           <p><strong>Conclusione.</strong> I pezzi tendono a zero, come volevamo. Se la serie divergesse $S$ non sarebbe un numero e avremmo la forma $\infty-\infty$, che non si può calcolare: per questo l'ipotesi "la serie converge" è indispensabile. <span class="qed">∎</span></p>
         </div>
-        <p><strong>Test di scarto.</strong> Un'implicazione "$A\Rightarrow B$" equivale alla sua contronominale "non $B\Rightarrow$ non $A$": <em>se i termini NON tendono a zero, la serie NON converge</em>. È il primo controllo da fare, perché costa un solo limite. Con termini positivi "non converge" significa "diverge a $+\infty$" (<span class="richiamo" data-sec="4.6">§4.6</span>); con segni misti può essere irregolare, come $\sum(-1)^n$.</p>
+        <p><strong>Test di scarto.</strong> Un'implicazione "$A\Rightarrow B$" equivale alla sua contronominale "non $B\Rightarrow$ non $A$": <em>se i termini NON tendono a zero, la serie NON converge</em>. È il primo controllo da fare, perché costa un solo limite. Con termini positivi "non converge" significa "diverge a $+\infty$" (<span class="richiamo" data-sec="4.6">§4.6</span>); con segni misti può essere irregolare, come $\sum(-1)^n$. Se invece $a_n\to0$ non hai concluso niente: serve un criterio vero, fra quelli del <span class="richiamo" data-sec="4.6">§4.6</span>.</p>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> $a_n\to0$ NON basta: il controesempio dell'armonica</div>
-          <p>Usare il teorema al contrario ("$a_n\to0$, quindi converge") è <strong>falso</strong>: nell'armonica $\tfrac1n\to0$ eppure la serie diverge (<span class="richiamo" data-sec="4.3">§4.3</span>), e basta un controesempio a far cadere l'implicazione inversa. Il buco nel ragionamento intuitivo: "i termini sono piccoli" riguarda un termine alla volta, ma una somma è fatta di <em>tanti</em> termini, e un blocco di pezzi minuscoli può pesare molto se i pezzi sono tanti. Conta <em>quanto in fretta</em> $a_n\to0$:</p>
+          <p>Il teorema al contrario ("$a_n\to0$, quindi converge") è <strong>falso</strong>: nell'armonica $\tfrac1n\to0$ eppure la serie diverge (<span class="richiamo" data-sec="4.3">§4.3</span>). Conta <em>quanto in fretta</em> $a_n\to0$:</p>
           <div class="calcolo">$$\begin{aligned}
           \frac{1}{2^{\,n}} &amp;\to 0 \text{ velocissimo} &amp;&amp;\Rightarrow\ \text{converge (geometrica, } q=\tfrac12)\\
           \frac{1}{n^{2}} &amp;\to 0 \text{ abbastanza in fretta} &amp;&amp;\Rightarrow\ \text{converge (serie-p, } p=2)\\
           \frac{1}{n} &amp;\to 0 \text{ troppo piano} &amp;&amp;\Rightarrow\ \text{DIVERGE (serie-p, } p=1)
           \end{aligned}$$</div>
-          <p><strong>Morale:</strong> se $a_n\not\to0$ hai finito (non converge); se $a_n\to0$ non hai concluso niente e serve un criterio vero, fra quelli del <span class="richiamo" data-sec="4.6">§4.6</span>.</p>
         </div>
 
         <h3 id="teoria-criteri">4.6 Criteri di convergenza per serie a termini positivi</h3>
@@ -433,7 +411,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Abbiamo due serie a termini positivi e la prima sta sempre sotto la seconda, termine per termine. Vogliamo mostrare due cose: se la serie grande converge, converge anche la piccola; se la serie piccola diverge, diverge anche la grande.</p>
-          <p><strong>L'idea.</strong> Il carattere di una serie è il comportamento dei suoi totali. Se ogni termine di $\sum a_n$ è minore del corrispondente di $\sum b_n$, allora anche i totali lo sono, e dei totali sappiamo molto: i termini sono positivi, quindi i totali crescono sempre, e una successione crescente ha due soli destini, fermarsi su un numero oppure andare a $+\infty$ (<a href="11-successioni.html">cap. 11</a>). Ne seguono due fatti semplici: un totale che sta sotto un totale che si ferma non può scappare; un totale che sta sopra uno che scappa scappa a sua volta. Supponiamo prima la disuguaglianza vera per ogni $n$; il caso "da un certo indice in poi" lo riduciamo a questo alla fine.</p>
+          <p><strong>L'idea.</strong> Il carattere di una serie è il comportamento dei suoi totali. Se ogni termine di $\sum a_n$ è minore del corrispondente di $\sum b_n$, allora anche i totali lo sono. I totali crescono (i termini sono positivi) e hanno due soli destini: fermarsi su un numero oppure andare a $+\infty$. Ne seguono due fatti semplici: un totale che sta sotto un totale che si ferma non può scappare; un totale che sta sopra uno che scappa scappa a sua volta. Supponiamo prima la disuguaglianza vera per ogni $n$; il caso "da un certo indice in poi" lo riduciamo a questo alla fine.</p>
           <p><strong>Passo 1 — confronto i totali.</strong> Chiamo $A_n=a_1+\cdots+a_n$ e $B_n=b_1+\cdots+b_n$. Sommando le $n$ disuguaglianze $a_k\leq b_k$ (per $k=1,\dots,n$) ottengo</p>
           <div class="calcolo">$$A_n\leq B_n\qquad\text{per ogni } n .$$</div>
           <p>Entrambe le successioni sono crescenti, perché a ogni passo aggiungono un termine $\geq0$.</p>
@@ -443,14 +421,14 @@
           <p><strong>Passo 3 — seconda parte: se $\sum a_n$ diverge, diverge $\sum b_n$.</strong> La serie $\sum a_n$ ha termini positivi, quindi i suoi totali sono crescenti e non possono oscillare: se non convergono, $A_n\to+\infty$. Da $B_n\geq A_n$ segue $B_n\to+\infty$, perché un numero maggiore di uno che va a $+\infty$ va a $+\infty$. Dunque $\sum b_n$ diverge.</p>
           <p><strong>Passo 4 — il caso "da un certo indice in poi".</strong> Se $0\leq a_n\leq b_n$ vale solo per $n\geq N$, applico i passi precedenti alle due serie che partono dal posto $N$. Queste hanno lo stesso carattere delle serie complete (<span class="richiamo" data-sec="4.1">§4.1</span>, "il carattere non dipende dai primi termini"), quindi le conclusioni valgono anche per le serie originali.</p>
           <p><strong>Osservazione sulle ipotesi.</strong> Il segno $a_n\geq0$ non è un dettaglio: serve perché i totali siano crescenti. Senza di esso il criterio è falso: $a_n=-1$ e $b_n=0$ soddisfano $a_n\leq b_n$, la serie maggiorante converge (vale $0$) e la minorante no.</p>
-          <p><strong>Conclusione.</strong> Dalla disuguaglianza fra i termini siamo passati a quella fra i totali, e i totali crescenti ci hanno fatto concludere: sotto un tetto finito la serie converge, sopra una serie che esplode esplode a sua volta. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Dalla disuguaglianza fra i termini siamo passati a quella fra i totali: sotto un tetto finito la serie converge, sopra una serie che esplode esplode a sua volta. <span class="qed">∎</span></p>
         </div>
-        <p>Per dimostrare la <em>convergenza</em> si sale (si cerca un $b_n$ più grande che converge), per dimostrare la <em>divergenza</em> si scende. Per scegliere il termine di confronto si semplifica il proprio termine ricordando che aumentando il denominatore di una frazione positiva questa diminuisce, e aumentando il numeratore aumenta (Parte 0, cap. 1): $\dfrac{1}{n^2+3}\leq\dfrac{1}{n^2}$, $\ \dfrac{2+\sin n}{n^2}\leq\dfrac{3}{n^2}$, $\ \dfrac{1}{n^2-n}\geq\dfrac{1}{n^2}$ (per $n\geq2$).</p>
+        <p>Per dimostrare la <em>convergenza</em> si sale (si cerca un $b_n$ più grande che converge), per dimostrare la <em>divergenza</em> si scende (esempio: il Caso A della serie-p, <span class="richiamo" data-sec="4.4">§4.4</span>). Per scegliere il termine di confronto si ricorda che aumentando il denominatore di una frazione positiva questa diminuisce, e aumentando il numeratore aumenta (Parte 0, cap. 1): $\dfrac{1}{n^2+3}\leq\dfrac{1}{n^2}$, $\ \dfrac{2+\sin n}{n^2}\leq\dfrac{3}{n^2}$.</p>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Confronto — esempio svolto</span><span class="badge badge--base">Base</span></div>
           <p><strong>Che cosa mi chiedono.</strong> Stabilire il carattere di $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n\,2^{\,n}}$.</p>
-          <p><strong>Come riconosco lo strumento giusto.</strong> I termini sono positivi e somigliano a quelli della geometrica $\tfrac{1}{2^n}$, che converge, con una $n$ in più al denominatore: quindi sono <em>più piccoli</em> di quelli di una serie convergente. Mi serve un maggiorante convergente, cioè la prima parte del criterio del confronto.</p>
+          <p><strong>Come riconosco lo strumento giusto.</strong> I termini sono positivi e somigliano a quelli della geometrica $\tfrac{1}{2^n}$, che converge, con una $n$ in più al denominatore: quindi sono <em>più piccoli</em> di quelli di una serie convergente. Mi serve un maggiorante convergente, cioè la prima parte del criterio.</p>
           <div class="esempio__passi">
             <div class="esempio__passo"><strong>Confronto i denominatori.</strong> Voglio vedere che $n\cdot2^{\,n}$ è almeno $2^{\,n}$: è vero perché $n\geq1$ e $2^{\,n}$ è positivo, quindi moltiplicare per $n$ non può rimpicciolire.
               <div class="calcolo">$$n\cdot 2^{\,n}\ \geq\ 1\cdot 2^{\,n}$$</div>
@@ -459,31 +437,13 @@
               <div class="calcolo">$$0\ \lt\ \frac{1}{n\,2^{\,n}}\ \leq\ \frac{1}{2^{\,n}}\qquad\text{per ogni } n\geq1.$$</div>
             </div>
             <div class="esempio__passo"><strong>Riconosco la serie maggiorante.</strong> $\sum\tfrac{1}{2^n}$ è geometrica di ragione $q=\tfrac12$ con $|q| \lt 1$, quindi converge (<span class="richiamo" data-sec="4.2">§4.2</span>). Per la prima parte del criterio converge anche $\sum\tfrac{1}{n\,2^{\,n}}$.</div>
-            <div class="esempio__passo"><strong>Controllo.</strong> I primi termini sono $\tfrac12,\ \tfrac18,\ \tfrac1{24},\ \tfrac1{64}$, contro $\tfrac12,\ \tfrac14,\ \tfrac18,\ \tfrac1{16}$ della geometrica: ciascuno sta sotto il corrispondente.</div>
           </div>
           <div class="esempio__risultato">La serie <strong>converge</strong>.</div>
         </div>
 
-        <div class="esempio">
-          <div class="esempio__header"><span class="titolo">Confronto dal basso — esempio svolto</span><span class="badge badge--base">Base</span></div>
-          <p><strong>Che cosa mi chiedono.</strong> Stabilire il carattere di $\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt n}$.</p>
-          <p><strong>Come riconosco lo strumento giusto.</strong> I termini sono positivi e calano ancora più piano di $\tfrac1n$, perché $\sqrt n$ è più piccolo di $n$: quindi sono <em>più grandi</em> di quelli dell'armonica, che diverge. Mi serve un minorante divergente, cioè la seconda parte del criterio del confronto.</p>
-          <div class="esempio__passi">
-            <div class="esempio__passo"><strong>Confronto i denominatori.</strong> Voglio vedere che $\sqrt n\leq n$ per $n\geq1$. Scrivo $n=\sqrt n\cdot\sqrt n$ e uso $\sqrt n\geq1$: il secondo fattore è almeno $1$, quindi il prodotto è almeno $\sqrt n$.
-              <div class="calcolo">$$n=\sqrt n\cdot\sqrt n\ \geq\ \sqrt n\cdot1=\sqrt n$$</div>
-            </div>
-            <div class="esempio__passo"><strong>Passo ai reciproci.</strong> Il verso si inverte, perché i numeri sono positivi:
-              <div class="calcolo">$$\frac{1}{\sqrt n}\ \geq\ \frac{1}{n}\ \gt\ 0\qquad\text{per ogni } n\geq1.$$</div>
-            </div>
-            <div class="esempio__passo"><strong>Riconosco la serie minorante.</strong> $\sum\tfrac1n$ è l'armonica e diverge (<span class="richiamo" data-sec="4.3">§4.3</span>). Per la seconda parte del criterio diverge anche $\sum\tfrac{1}{\sqrt n}$, che sta sopra.</div>
-            <div class="esempio__passo"><strong>Controllo.</strong> Con $n=4$: $\tfrac12\geq\tfrac14$; con $n=100$: $\tfrac1{10}\geq\tfrac1{100}$. Inoltre il risultato è coerente con il criterio serie-p, perché $p=\tfrac12\leq1$.</div>
-          </div>
-          <div class="esempio__risultato">La serie <strong>diverge</strong>.</div>
-        </div>
-
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> Un caso in cui il confronto NON decide</div>
-          <p>Per $\sum\dfrac{1}{n^2}$ la disuguaglianza $\dfrac{1}{n^2}\leq\dfrac1n$ è vera, ma $\sum\tfrac1n$ <strong>diverge</strong>, e sapere di stare <em>sotto</em> una serie divergente non dice nulla: sotto una serie che esplode ci può stare sia una serie che esplode sia una che si ferma. Il criterio, in questo verso, è muto: non si scrive "diverge" solo perché il confronto è andato male. <strong>Come se ne esce:</strong> si cerca una maggiorante <em>convergente</em>. Per $n\geq2$ è $n^2\geq n(n-1) \gt 0$, quindi $\tfrac{1}{n^2}\leq\tfrac{1}{n(n-1)}$, telescopica con somma $1$ (<span class="richiamo" data-sec="4.8">§4.8</span>); oppure si usa direttamente la serie-p (<span class="richiamo" data-sec="4.4">§4.4</span>), $p=2 \gt 1$. "Più piccolo di una divergente" e "più grande di una convergente" non sono informazioni sbagliate, ma <em>vuote</em>.</p>
+          <p>Per $\sum\dfrac{1}{n^2}$ la disuguaglianza $\dfrac{1}{n^2}\leq\dfrac1n$ è vera, ma $\sum\tfrac1n$ <strong>diverge</strong>, e stare <em>sotto</em> una serie divergente non dice nulla: ci può stare sia una serie che esplode sia una che si ferma. <strong>Come se ne esce:</strong> si cerca una maggiorante <em>convergente</em>, per esempio la serie-p con $p=2 \gt 1$ (<span class="richiamo" data-sec="4.4">§4.4</span>).</p>
         </div>
 
         <h4>4.6.2 Criterio del confronto asintotico</h4>
@@ -497,7 +457,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Sappiamo che il rapporto $\tfrac{a_n}{b_n}$ tende a un numero $L$ finito e diverso da zero: i termini delle due serie sono "proporzionali, a meno di un errore che svanisce". Vogliamo concludere che le due serie hanno lo stesso carattere.</p>
-          <p><strong>L'idea.</strong> Se il rapporto si avvicina a $L \gt 0$, da un certo punto in poi $a_n$ è circa $L\,b_n$. Più precisamente, $a_n$ resta <em>intrappolato fra due multipli di $b_n$</em>, uno piccolo e uno grande. Moltiplicare una serie per una costante non cambia il carattere (linearità, <span class="richiamo" data-sec="4.1">§4.1</span>), e per un termine intrappolato fra due serie dal destino noto sappiamo usare il criterio del confronto (<span class="richiamo" data-sec="4.6.1">§4.6.1</span>). Quindi il destino di $\sum a_n$ è deciso da quello di $\sum b_n$.</p>
+          <p><strong>L'idea.</strong> Se il rapporto si avvicina a $L \gt 0$, da un certo punto in poi $a_n$ è circa $L\,b_n$. Più precisamente, $a_n$ resta <em>intrappolato fra due multipli di $b_n$</em>, uno piccolo e uno grande. Moltiplicare una serie per una costante non cambia il carattere (linearità, <span class="richiamo" data-sec="4.1">§4.1</span>), e per un termine intrappolato fra due serie dal destino noto sappiamo usare il criterio del confronto (<span class="richiamo" data-sec="4.6.1">§4.6.1</span>).</p>
           <p><strong>Passo 1 — intrappolo $a_n$ fra due multipli di $b_n$.</strong> Per definizione di limite, il rapporto sta vicino a $L$ quanto vogliamo da un certo punto in poi. Scelgo la distanza $\varepsilon=\tfrac L2$, che è positiva proprio perché $L \gt 0$: esiste $N$ tale che per ogni $n\geq N$</p>
           <div class="calcolo">$$L-\frac L2\ \lt\ \frac{a_n}{b_n}\ \lt\ L+\frac L2 .$$</div>
           <p>Moltiplico tutto per $b_n \gt 0$ (il verso non cambia) e ottengo la trappola:</p>
@@ -505,7 +465,6 @@
           <p><strong>Passo 2 — se $\sum b_n$ converge, converge $\sum a_n$.</strong> Per la linearità converge anche $\sum\tfrac{3L}{2}\,b_n$. Per $n\geq N$ vale $0 \lt a_n\lt\tfrac{3L}{2}\,b_n$, quindi $\sum a_n$ sta sotto una serie convergente: per il criterio del confronto converge.</p>
           <p><strong>Passo 3 — se $\sum b_n$ diverge, diverge $\sum a_n$.</strong> Anche $\sum\tfrac L2\,b_n$ diverge: se convergesse, per linearità (moltiplicando per $\tfrac2L$) convergerebbe $\sum b_n$, contro l'ipotesi. Per $n\geq N$ vale $a_n \gt \tfrac L2\,b_n \gt 0$, quindi $\sum a_n$ sta sopra una serie che diverge: per il criterio del confronto diverge. (In entrambi i passi il confronto vale "da un certo indice in poi", e questo basta: <span class="richiamo" data-sec="4.1">§4.1</span>.)</p>
           <p><strong>Passo 4 — traduco in "stesso carattere".</strong> I termini sono positivi, quindi una serie o converge o diverge. I passi 2 e 3 dicono: se $\sum b_n$ converge, converge $\sum a_n$; se $\sum b_n$ diverge, diverge $\sum a_n$. È proprio l'affermazione "stesso carattere".</p>
-          <p><strong>Controllo numerico.</strong> Con $a_n=\tfrac{2n+1}{n^3+5}$ e $b_n=\tfrac1{n^2}$ si ha $L=2$ (lo calcoliamo nell'esempio qui sotto), e la trappola è $1\cdot b_n \lt a_n \lt 3\cdot b_n$. Per $n=10$: $a_{10}=\tfrac{21}{1005}\approx0{,}0209$ sta fra $b_{10}=0{,}01$ e $3\,b_{10}=0{,}03$.</p>
           <p><strong>Osservazione sulle ipotesi.</strong> Servono entrambe le condizioni su $L$. Il fatto che $L$ sia <em>finito</em> dà il tetto $\tfrac{3L}{2}\,b_n$. Il fatto che $L \gt 0$ dà un pavimento $\tfrac L2\,b_n$ positivo: se fosse $L=0$ il pavimento diventerebbe $0\cdot b_n=0$, che non dice nulla.</p>
           <p><strong>Conclusione.</strong> Il limite del rapporto intrappola $a_n$ fra due multipli positivi di $b_n$, e il criterio del confronto trasferisce a $\sum a_n$ il carattere di $\sum b_n$. <span class="qed">∎</span></p>
         </div>
@@ -525,20 +484,19 @@
               <div class="calcolo">$$\frac{a_n}{b_n}=\frac{n^3\left(2+\frac1n\right)}{n^3\left(1+\frac{5}{n^3}\right)}=\frac{2+\frac1n}{1+\frac{5}{n^3}}\ \longrightarrow\ \frac{2+0}{1+0}=2$$</div>
             </div>
             <div class="esempio__passo"><strong>Verifico le ipotesi del criterio.</strong> $L=2$ è finito e diverso da zero: il criterio si applica e la serie ha lo stesso carattere di $\sum\tfrac{1}{n^2}$. Questa è una serie-p con $p=2 \gt 1$, quindi converge (<span class="richiamo" data-sec="4.4">§4.4</span>).</div>
-            <div class="esempio__passo"><strong>Controllo.</strong> Con $n=100$ il rapporto vale $\dfrac{201/1\,000\,005}{1/10\,000}\approx2{,}01$, già vicinissimo a $2$.</div>
           </div>
           <div class="esempio__risultato">La serie <strong>converge</strong>.</div>
         </div>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> Un caso in cui il confronto asintotico NON decide</div>
-          <p>Per $\sum\dfrac{1}{n\ln n}$ (con $n\geq2$, perché $\ln 1=0$) il confronto naturale è con $b_n=\tfrac1n$:</p>
+          <p>Per $\sum\dfrac{1}{n\ln n}$ (con $n\geq2$) il confronto naturale è con $b_n=\tfrac1n$:</p>
           <div class="calcolo">$$\frac{a_n}{b_n} = \frac{1}{n\ln n}\cdot n = \frac{1}{\ln n} \to 0 \qquad\text{(perché } \ln n\to+\infty)$$</div>
-          <p>Il limite esiste ma vale $L=0$: l'ipotesi $0 \lt L$ non è soddisfatta (lo stesso vale se $L=+\infty$) e il criterio non si applica. Il termine sta "molto sotto" una serie divergente, il vicolo cieco del <span class="richiamo" data-sec="4.6.1">§4.6.1</span>; con $b_n=\tfrac{1}{n^{\,p}}$, $p \gt 1$, si ottiene $L=+\infty$, altro vicolo cieco: il termine sta "fra due serie-p" e nessuna lo cattura. <strong>Come se ne esce:</strong> con il confronto con un integrale improprio (<a href="14-integrali-definiti.html">cap. 14</a>), che mostra che questa serie <em>diverge</em>. Fino ad allora la risposta onesta è "il criterio non decide", non "la serie diverge".</p>
+          <p>Vale $L=0$: l'ipotesi $0 \lt L$ non è soddisfatta (lo stesso se $L=+\infty$) e il criterio non si applica. Con un integrale improprio (<a href="14-integrali-definiti.html">cap. 14</a>) si mostra che questa serie <em>diverge</em>; fino ad allora la risposta onesta è "il criterio non decide", non "la serie diverge".</p>
         </div>
 
         <h4>4.6.3 Criterio del rapporto (di d'Alembert)</h4>
-        <p>Il <span class="glossario-term" data-term="criterio-del-rapporto">criterio del rapporto</span> si usa quando nel termine compaiono <strong>fattoriali</strong> ($n!$) o <strong>potenze con la $n$ all'esponente</strong> ($2^n$, $n^n$): nel rapporto $\tfrac{a_{n+1}}{a_n}$ si semplificano quasi del tutto, perché $(n+1)!=(n+1)\cdot n!$ e $c^{\,n+1}=c^{\,n}\cdot c$. L'idea: se da un certo punto in poi ogni termine è, poniamo, meno di $0{,}9$ volte il precedente, i termini stanno <em>sotto</em> quelli di una geometrica di ragione $0{,}9$ e per confronto (<span class="richiamo" data-sec="4.6.1">§4.6.1</span>) la serie converge; se invece ogni termine supera il precedente, i termini non tendono a zero e la serie non può convergere (<span class="richiamo" data-sec="4.5">§4.5</span>). Il caso di confine $L=1$ non rientra in nessuno dei due ragionamenti.</p>
+        <p>Il <span class="glossario-term" data-term="criterio-del-rapporto">criterio del rapporto</span> si usa quando nel termine compaiono <strong>fattoriali</strong> ($n!$) o <strong>potenze con la $n$ all'esponente</strong> ($2^n$, $n^n$): nel rapporto $\tfrac{a_{n+1}}{a_n}$ si semplificano quasi del tutto, perché $(n+1)!=(n+1)\cdot n!$ e $c^{\,n+1}=c^{\,n}\cdot c$.</p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Criterio del rapporto</span>
           <p>Sia $a_n \gt 0$ e supponiamo che esista $\displaystyle L=\lim_{n\to\infty}\frac{a_{n+1}}{a_n}$. Allora:</p>
@@ -551,38 +509,31 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione (per casi)</span>
           <p><strong>Cosa vogliamo mostrare.</strong> I termini sono positivi e il rapporto fra un termine e il precedente tende a $L$. Vogliamo mostrare che se $L \lt 1$ la serie converge e che se $L \gt 1$ diverge.</p>
-          <p><strong>L'idea.</strong> Il rapporto $\tfrac{a_{n+1}}{a_n}$ dice "di che fattore si moltiplica il termine a ogni passo". Una serie geometrica è proprio il caso in cui questo fattore è sempre lo stesso, la ragione $q$, e sappiamo che converge se $q \lt 1$ (<span class="richiamo" data-sec="4.2">§4.2</span>). Una serie qualunque non ha un fattore costante, ma se il fattore tende a $L$ si comporta, da un certo punto in poi, come una geometrica di ragione "quasi $L$". Renderemo precisa questa frase confrontando i termini con quelli di una vera geometrica. Per $L \gt 1$ l'idea è opposta: il fattore supera $1$, i termini crescono e non possono tendere a zero.</p>
+          <p><strong>L'idea.</strong> Il rapporto $\tfrac{a_{n+1}}{a_n}$ dice "di che fattore si moltiplica il termine a ogni passo". Una serie geometrica è proprio il caso in cui questo fattore è sempre lo stesso, la ragione $q$, e sappiamo che converge se $q \lt 1$ (<span class="richiamo" data-sec="4.2">§4.2</span>). Una serie qualunque non ha un fattore costante, ma se il fattore tende a $L \lt 1$ si comporta, da un certo punto in poi, come una geometrica di ragione "quasi $L$". Renderemo precisa questa frase confrontando i termini con quelli di una vera geometrica (<span class="richiamo" data-sec="4.6.1">§4.6.1</span>). Per $L \gt 1$ l'idea è opposta: il fattore supera $1$, i termini crescono e non possono tendere a zero.</p>
 
           <p><strong>Caso $L \lt 1$: la serie converge.</strong></p>
-          <p><strong>Passo 1 — scelgo un numero $\gamma$ fra $L$ e $1$.</strong> Prendo un numero $\gamma$ con $L \lt \gamma \lt 1$ (per esempio il punto di mezzo $\gamma=\tfrac{L+1}{2}$). Questo numero serve, e conviene capire perché non possiamo farne a meno:</p>
-          <ul>
-            <li><em>Non basta $L$.</em> Il limite dice che i rapporti si <em>avvicinano</em> a $L$, non che siano uguali a $L$: a ogni passo il rapporto può stare un po' sopra $L$ (per esempio $0{,}51$ mentre $L=0{,}5$). Quindi non possiamo confrontare con una geometrica di ragione $L$.</li>
-            <li><em>Non basta "il rapporto è minore di $1$".</em> Nell'armonica si ha $\tfrac{n}{n+1} \lt 1$ per ogni $n$, eppure la serie diverge: quei rapporti si avvicinano a $1$ e non esiste nessun fattore fisso minore di $1$ che li tenga sotto. Per avere una geometrica convergente serve un fattore fisso <em>strettamente</em> minore di $1$.</li>
-            <li>Serve quindi un numero fisso, un "margine di sicurezza", che stia <em>sopra $L$</em> (così il limite garantisce che da un certo punto i rapporti restano sotto di lui) e <em>sotto $1$</em> (così la geometrica di ragione $\gamma$ converge). Un tale numero esiste perché $L \lt 1$ <em>strettamente</em>: fra $L$ e $1$ c'è spazio.</li>
-          </ul>
+          <p><strong>Passo 1 — scelgo un numero $\gamma$ fra $L$ e $1$.</strong> Prendo $\gamma$ con $L \lt \gamma \lt 1$ (per esempio il punto di mezzo $\gamma=\tfrac{L+1}{2}$). Non basta $L$: i rapporti si <em>avvicinano</em> a $L$ ma possono stare un po' sopra, quindi non possiamo confrontare con una geometrica di ragione $L$. E non basta "il rapporto è minore di $1$": nell'armonica $\tfrac{n}{n+1} \lt 1$ per ogni $n$, eppure la serie diverge, perché nessun fattore fisso minore di $1$ tiene sotto quei rapporti. Serve un "margine di sicurezza" fisso, <em>sopra $L$</em> (così da un certo punto i rapporti restano sotto di lui) e <em>sotto $1$</em> (così la geometrica di ragione $\gamma$ converge). Esiste perché $L \lt 1$ <em>strettamente</em>.</p>
           <p><strong>Passo 2 — i rapporti restano sotto $\gamma$ da un certo punto in poi.</strong> Uso la definizione di limite con la distanza $\varepsilon=\gamma-L \gt 0$: esiste $N$ tale che per ogni $n\geq N$ il rapporto dista da $L$ meno di $\varepsilon$, e in particolare</p>
           <div class="calcolo">$$\frac{a_{n+1}}{a_n}\ \lt\ L+\varepsilon=\gamma\qquad\text{per ogni } n\geq N .$$</div>
           <p><strong>Passo 3 — dai rapporti ai termini.</strong> Moltiplico per $a_n \gt 0$ e ottengo $a_{n+1} \lt \gamma\,a_n$ per $n\geq N$. Applicando la disuguaglianza più volte, ogni termine è al più $\gamma$ volte il precedente:</p>
           <div class="calcolo">$$a_{N+1}\lt\gamma\,a_N,\qquad a_{N+2}\lt\gamma\,a_{N+1}\lt\gamma^2a_N,\qquad\dots\qquad a_{N+k}\leq\gamma^{\,k}\,a_N .$$</div>
           <p>L'ultima disuguaglianza, valida per ogni $k\geq0$, si dimostra per induzione: per $k=0$ è $a_N\leq a_N$; se vale per $k$, allora $a_{N+k+1} \lt \gamma\,a_{N+k}\leq\gamma\cdot\gamma^{\,k}a_N=\gamma^{\,k+1}a_N$.</p>
           <p><strong>Passo 4 — confronto con una geometrica.</strong> Da $N$ in poi i termini stanno sotto quelli della serie $\sum_{k\geq0}a_N\,\gamma^{\,k}$. Questa è la geometrica $\sum\gamma^{\,k}$ moltiplicata per la costante $a_N$: converge, perché $0 \lt \gamma \lt 1$ (<span class="richiamo" data-sec="4.2">§4.2</span> e linearità, <span class="richiamo" data-sec="4.1">§4.1</span>). Per il criterio del confronto (<span class="richiamo" data-sec="4.6.1">§4.6.1</span>) converge la serie $\sum_{n\geq N}a_n$, e togliere i primi $N-1$ termini non cambia il carattere (<span class="richiamo" data-sec="4.1">§4.1</span>): converge $\sum a_n$.</p>
-          <p><strong>Controllo numerico.</strong> Per $a_n=\tfrac{n}{2^{\,n}}$ il rapporto è $\tfrac{n+1}{2n}\to L=\tfrac12$. Scelgo $\gamma=\tfrac34$, a metà fra $\tfrac12$ e $1$: il rapporto sta sotto $\tfrac34$ per ogni $n\geq3$, quindi $N=3$. Infatti $a_3=0{,}375$, $a_4=0{,}25\leq\tfrac34\cdot0{,}375\approx0{,}281$ e $a_5=0{,}15625\leq\left(\tfrac34\right)^2\cdot0{,}375\approx0{,}211$.</p>
+          <p><strong>Controllo numerico.</strong> Per $a_n=\tfrac{n}{2^{\,n}}$ il rapporto è $\tfrac{n+1}{2n}\to L=\tfrac12$. Scelgo $\gamma=\tfrac34$: il rapporto sta sotto $\tfrac34$ per ogni $n\geq3$, quindi $N=3$. Infatti $a_3=0{,}375$ e $a_4=0{,}25\leq\tfrac34\cdot0{,}375\approx0{,}281$.</p>
 
           <p><strong>Caso $L \gt 1$: la serie diverge.</strong></p>
           <p><strong>Passo 5 — il rapporto supera $1$ da un certo punto in poi.</strong> Qui basta il margine $L-1 \gt 0$: con la distanza $\varepsilon=L-1$ la definizione di limite dà un $N$ tale che $\tfrac{a_{n+1}}{a_n} \gt L-\varepsilon=1$ per ogni $n\geq N$. (Se $L=+\infty$ basta la definizione di limite infinito: da un certo punto il rapporto supera qualunque numero, in particolare $1$.)</p>
           <p><strong>Passo 6 — i termini non tendono a zero.</strong> Moltiplicando per $a_n \gt 0$ si ha $a_{n+1} \gt a_n$ per $n\geq N$: da $N$ in poi i termini <em>crescono</em>, quindi $a_n\geq a_N \gt 0$ per ogni $n\geq N$. Una successione che resta sempre sopra il numero positivo $a_N$ non può tendere a $0$. Per la condizione necessaria (<span class="richiamo" data-sec="4.5">§4.5</span>) la serie non converge e, avendo termini positivi, diverge a $+\infty$.</p>
 
-          <p><strong>Osservazione sul caso $L=1$.</strong> La dimostrazione si ferma qui perché non c'è nessun numero $\gamma$ strettamente fra $L=1$ e $1$ (e nemmeno un margine $L-1 \gt 0$): senza spazio, il ragionamento non parte, ed è quello che mostra il controesempio qui sotto.</p>
-          <p><strong>Conclusione.</strong> Con $L \lt 1$ un margine $\gamma$ tiene i rapporti sotto una ragione fissa minore di $1$, i termini stanno sotto una geometrica convergente e per confronto la serie converge; con $L \gt 1$ i termini crescono e la condizione necessaria esclude la convergenza. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Con $L \lt 1$ i termini stanno sotto una geometrica convergente e la serie converge per confronto; con $L \gt 1$ i termini crescono e la condizione necessaria esclude la convergenza. Con $L=1$ non c'è nessun numero strettamente fra $L$ e $1$ e la dimostrazione non parte: lo mostra il controesempio qui sotto. <span class="qed">∎</span></p>
         </div>
-        <p>Per costruire $a_{n+1}$ si riscrive $a_n$ mettendo $n+1$ <em>al posto di ogni $n$</em>, parentesi comprese: da $a_n=\dfrac{2^{\,n}}{n!}$ si ottiene $a_{n+1}=\dfrac{2^{\,n+1}}{(n+1)!}$, non $\dfrac{2^{\,n}+1}{n!+1}$.</p>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Criterio del rapporto — esempio svolto</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p><strong>Che cosa mi chiedono.</strong> Stabilire il carattere di $\displaystyle\sum_{n=1}^{\infty}\frac{2^{\,n}}{n!}$.</p>
-          <p><strong>Come riconosco lo strumento giusto.</strong> Nel termine ci sono un fattoriale $n!$ e una potenza con la $n$ all'esponente, $2^{\,n}$. Nel rapporto $\tfrac{a_{n+1}}{a_n}$ queste due cose si semplificano quasi del tutto, perché $(n+1)!=(n+1)\cdot n!$ e $2^{\,n+1}=2^{\,n}\cdot2$: uso il criterio del rapporto.</p>
+          <p><strong>Come riconosco lo strumento giusto.</strong> Nel termine ci sono un fattoriale e una potenza con la $n$ all'esponente: uso il criterio del rapporto.</p>
           <div class="esempio__passi">
-            <div class="esempio__passo"><strong>Scrivo $a_{n+1}$.</strong> Sostituisco $n+1$ al posto di <em>ogni</em> $n$, parentesi comprese:
+            <div class="esempio__passo"><strong>Scrivo $a_{n+1}$.</strong> Sostituisco $n+1$ al posto di <em>ogni</em> $n$, parentesi comprese (non $\tfrac{2^{\,n}+1}{n!+1}$):
               <div class="calcolo">$$a_n=\frac{2^{\,n}}{n!}\qquad\Longrightarrow\qquad a_{n+1}=\frac{2^{\,n+1}}{(n+1)!}$$</div>
             </div>
             <div class="esempio__passo"><strong>Scrivo il rapporto.</strong> Dividere per $a_n$ equivale a moltiplicare per il suo reciproco:
@@ -592,19 +543,18 @@
               <div class="calcolo">$$\frac{a_{n+1}}{a_n}=\frac{2^{\,n}\cdot2}{2^{\,n}}\cdot\frac{n!}{(n+1)\,n!}=\frac{2}{n+1}$$</div>
             </div>
             <div class="esempio__passo"><strong>Passo al limite e leggo il risultato.</strong> Il numeratore è fisso e il denominatore cresce senza limite, quindi $L=\lim\dfrac{2}{n+1}=0$. Poiché $L=0 \lt 1$, il criterio dà la convergenza.</div>
-            <div class="esempio__passo"><strong>Controllo.</strong> I primi termini sono $2,\ 2,\ \tfrac43,\ \tfrac23,\ \tfrac{4}{15}$: il rapporto $a_4/a_3=\tfrac{2/3}{4/3}=\tfrac12$ coincide con $\tfrac{2}{n+1}$ per $n=3$.</div>
           </div>
           <div class="esempio__risultato">La serie <strong>converge</strong>. (In effetti $\sum_{n=0}^{\infty}\tfrac{2^n}{n!}=e^2$: è lo sviluppo dell'esponenziale, <a href="10-taylor-mclaurin.html">cap. 10</a>.)</div>
         </div>
 
         <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Un caso in cui il rapporto NON decide: $L=1$</div>
-          <p>Il caso $L=1$ non è "quasi convergente": è <strong>nessuna informazione</strong>, perché due serie con lo stesso $L$ hanno destini opposti.</p>
+          <div class="callout__title"><span class="emoji">⚠️</span> Un caso in cui rapporto e radice NON decidono: $L=1$</div>
+          <p>Con $L=1$ non si sa <strong>niente</strong>: due serie con lo stesso $L$ hanno destini opposti.</p>
           <div class="calcolo">$$\begin{aligned}
           a_n=\frac1n:\quad \frac{a_{n+1}}{a_n} &amp;= \frac{n}{n+1} = \frac{1}{1+\frac1n} \to 1 &amp;&amp;\text{(e la serie DIVERGE)}\\
           a_n=\frac{1}{n^2}:\quad \frac{a_{n+1}}{a_n} &amp;= \frac{n^2}{(n+1)^2} = \frac{1}{\left(1+\frac1n\right)^2} \to 1 &amp;&amp;\text{(e la serie CONVERGE)}
           \end{aligned}$$</div>
-          <p><strong>Come se ne esce:</strong> con i rapporti di polinomi il rapporto dà sempre $1$ (non ci sono fattoriali né potenze $n$-esime da semplificare); si passa al confronto asintotico con la serie-p (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>).</p>
+          <p>Lo stesso succede con il criterio della radice (<span class="richiamo" data-sec="4.6.4">§4.6.4</span>): poiché $\sqrt[n]{n}\to1$ (<a href="11-successioni.html">cap. 11</a>), si ha $\sqrt[n]{1/n}\to1$ per l'armonica e $\sqrt[n]{1/n^2}=\dfrac{1}{\left(\sqrt[n]{n}\right)^2}\to1$ per $\sum\tfrac{1}{n^2}$. <strong>Come se ne esce:</strong> con i rapporti di polinomi rapporto e radice danno sempre $1$; si passa al confronto asintotico con la serie-p (<span class="richiamo" data-sec="4.6.2">§4.6.2</span>).</p>
         </div>
 
         <h4>4.6.4 Criterio della radice (di Cauchy)</h4>
@@ -619,25 +569,23 @@
           <p><strong>L'idea.</strong> La radice $n$-esima è il fattore "medio" per passo: per definizione $a_n=\big(\sqrt[n]{a_n}\big)^{\,n}$, cioè $a_n$ è una potenza $n$-esima con base $\sqrt[n]{a_n}$. Se questa base resta sotto un numero fisso $\gamma \lt 1$, allora $a_n$ resta sotto $\gamma^{\,n}$, il termine di una geometrica convergente. È la stessa strategia del criterio del rapporto (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>), con la radice al posto del rapporto.</p>
 
           <p><strong>Caso $L \lt 1$: la serie converge.</strong></p>
-          <p><strong>Passo 1 — scelgo un numero $\gamma$ fra $L$ e $1$.</strong> Prendo $\gamma$ con $L \lt \gamma \lt 1$ (per esempio $\gamma=\tfrac{L+1}{2}$). Il motivo è lo stesso del rapporto: il limite dice che $\sqrt[n]{a_n}$ si <em>avvicina</em> a $L$ ma può stare un po' sopra, e "minore di $1$" da solo non basta (l'armonica ha $\sqrt[n]{1/n}\lt1$ per ogni $n\geq2$, eppure diverge). Serve un numero fisso <em>sopra $L$</em>, che il limite riesce a garantire, e <em>sotto $1$</em>, per avere una geometrica convergente.</p>
+          <p><strong>Passo 1 — scelgo un numero $\gamma$ fra $L$ e $1$.</strong> Prendo $\gamma$ con $L \lt \gamma \lt 1$ (per esempio $\gamma=\tfrac{L+1}{2}$). Il motivo è lo stesso del rapporto (<span class="richiamo" data-sec="4.6.3">§4.6.3</span>): $\sqrt[n]{a_n}$ si <em>avvicina</em> a $L$ ma può stare un po' sopra, e "minore di $1$" da solo non basta. Serve un numero fisso <em>sopra $L$</em>, che il limite riesce a garantire, e <em>sotto $1$</em>, per avere una geometrica convergente.</p>
           <p><strong>Passo 2 — la radice resta sotto $\gamma$ da un certo punto in poi.</strong> Con $\varepsilon=\gamma-L \gt 0$, la definizione di limite dà un $N$ tale che per ogni $n\geq N$</p>
           <div class="calcolo">$$\sqrt[n]{a_n}\ \lt\ L+\varepsilon=\gamma .$$</div>
           <p><strong>Passo 3 — tolgo la radice.</strong> Elevo entrambi i membri alla $n$: lo posso fare senza cambiare il verso, perché sono numeri non negativi. Ottengo una stima dei termini:</p>
           <div class="calcolo">$$a_n\ \lt\ \gamma^{\,n}\qquad\text{per ogni } n\geq N .$$</div>
           <p><strong>Passo 4 — confronto con una geometrica.</strong> La serie $\sum\gamma^{\,n}$ è geometrica di ragione $\gamma$ con $0 \lt \gamma \lt 1$, quindi converge (<span class="richiamo" data-sec="4.2">§4.2</span>). I nostri termini, da $N$ in poi, stanno sotto i suoi: per il criterio del confronto (<span class="richiamo" data-sec="4.6.1">§4.6.1</span>) converge $\sum_{n\geq N}a_n$, e quindi (<span class="richiamo" data-sec="4.1">§4.1</span>) converge $\sum a_n$.</p>
-          <p><strong>Controllo numerico.</strong> Per $a_n=\left(\tfrac{n}{2n+1}\right)^{n}$ si ha $\sqrt[n]{a_n}=\tfrac{n}{2n+1}\to L=\tfrac12$. Con $\gamma=\tfrac34$: per $n=3$ è $\sqrt[3]{a_3}=\tfrac37\approx0{,}43 \lt \tfrac34$ e $a_3\approx0{,}079 \lt \left(\tfrac34\right)^3\approx0{,}42$.</p>
 
           <p><strong>Caso $L \gt 1$: la serie diverge.</strong></p>
           <p><strong>Passo 5 — i termini restano sopra $1$.</strong> Con $L \gt 1$ la definizione di limite (con $\varepsilon=L-1$ se $L$ è finito, o la definizione di limite infinito se $L=+\infty$) dà un $N$ tale che $\sqrt[n]{a_n} \gt 1$ per $n\geq N$. Elevando alla $n$ si ottiene $a_n \gt 1^{\,n}=1$ per ogni $n\geq N$.</p>
           <p><strong>Passo 6 — concludo con la condizione necessaria.</strong> Una successione che da un certo punto in poi resta sopra $1$ non può tendere a $0$. Per la condizione necessaria (<span class="richiamo" data-sec="4.5">§4.5</span>) la serie non converge e, avendo termini non negativi, diverge a $+\infty$.</p>
-          <p><strong>Osservazione sul caso $L=1$.</strong> Non esiste nessun numero strettamente fra $L=1$ e $1$ e nessun margine sopra $1$: la dimostrazione non parte, ed è quello che mostra il controesempio qui sotto.</p>
-          <p><strong>Conclusione.</strong> Con $L \lt 1$ un margine $\gamma$ ci permette di scrivere $a_n \lt \gamma^{\,n}$ e di confrontare con una geometrica convergente; con $L \gt 1$ i termini superano $1$ e la condizione necessaria esclude la convergenza. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Con $L \lt 1$ si ha $a_n \lt \gamma^{\,n}$ e la serie converge per confronto con una geometrica; con $L \gt 1$ i termini superano $1$ e la condizione necessaria esclude la convergenza. Con $L=1$ la dimostrazione non parte, come nel controesempio del <span class="richiamo" data-sec="4.6.3">§4.6.3</span>. <span class="qed">∎</span></p>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Criterio della radice — esempio svolto</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p><strong>Che cosa mi chiedono.</strong> Stabilire il carattere di $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n}{2n+1}\right)^{\!n}$.</p>
-          <p><strong>Come riconosco lo strumento giusto.</strong> Tutto il termine è "qualcosa elevato alla $n$": la radice $n$-esima scioglie l'esponente e lascia solo il "qualcosa", che è molto più semplice. Uso il criterio della radice.</p>
+          <p><strong>Come riconosco lo strumento giusto.</strong> Tutto il termine è "qualcosa elevato alla $n$": uso il criterio della radice, che scioglie l'esponente.</p>
           <div class="esempio__passi">
             <div class="esempio__passo"><strong>Calcolo la radice $n$-esima.</strong> La base $\tfrac{n}{2n+1}$ è positiva, quindi radice e potenza $n$-esime si annullano:
               <div class="calcolo">$$\sqrt[n]{a_n}=\sqrt[n]{\left(\frac{n}{2n+1}\right)^{n}}=\frac{n}{2n+1}$$</div>
@@ -646,14 +594,8 @@
               <div class="calcolo">$$\frac{n}{2n+1}=\frac{n}{n\left(2+\frac1n\right)}=\frac{1}{2+\frac1n}\ \longrightarrow\ \frac{1}{2+0}=\frac12$$</div>
             </div>
             <div class="esempio__passo"><strong>Leggo il risultato.</strong> $L=\tfrac12 \lt 1$: il criterio della radice dà la convergenza.</div>
-            <div class="esempio__passo"><strong>Controllo.</strong> Per $n=10$ il termine vale $\left(\tfrac{10}{21}\right)^{10}\approx0{,}0006$, molto sotto $\left(\tfrac34\right)^{10}\approx0{,}056$ della geometrica di ragione $\gamma=\tfrac34$ (un numero fra $L=\tfrac12$ e $1$).</div>
           </div>
           <div class="esempio__risultato">La serie <strong>converge</strong>.</div>
-        </div>
-
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Un caso in cui la radice NON decide: $L=1$</div>
-          <p>Serve il limite $\sqrt[n]{n}\to1$ (<a href="11-successioni.html">cap. 11</a>). Per l'armonica $\sqrt[n]{\tfrac1n}=\dfrac{1}{\sqrt[n]{n}}\to1$ e la serie <em>diverge</em>; per $\sum\tfrac{1}{n^2}$ si ha $\sqrt[n]{a_n}=\dfrac{1}{\left(\sqrt[n]{n}\right)^2}\to1$ e la serie <em>converge</em>. Di nuovo $L=1$ non dice niente. <strong>Come se ne esce:</strong> su tutte le serie $\tfrac{1}{n^{\,p}}$ la radice (come il rapporto) dà sempre $1$; si usa il criterio serie-p o il confronto asintotico.</p>
         </div>
 
         <div class="callout callout--trucco">
@@ -695,8 +637,7 @@
           <p><strong>Passo 3 — ricostruisco $a_n$.</strong> Dalla definizione di $c_n$ si ha $a_n=c_n-|a_n|$. La serie $\sum a_n$ è quindi la differenza fra $\sum c_n$ e $\sum|a_n|$, due serie convergenti: per la linearità converge, con somma $\sum c_n-\sum|a_n|$.</p>
           <p><strong>Passo 4 — la disuguaglianza fra le somme.</strong> Indico con $S_n=a_1+\cdots+a_n$ il totale e con $T_n=|a_1|+\cdots+|a_n|$ il totale dei valori assoluti. Il valore assoluto di una somma finita non supera la somma dei valori assoluti (disuguaglianza triangolare, <a href="02-valore-assoluto-topologia.html">cap. 2</a>), quindi $|S_n|\leq T_n$ per ogni $n$. Passo al limite: $S_n\to S$, quindi $|S_n|\to|S|$, e $T_n\to T$; il limite conserva le disuguaglianze larghe, perciò</p>
           <div class="calcolo">$$\left|\sum_{n=1}^{\infty}a_n\right|=|S|\ \leq\ T=\sum_{n=1}^{\infty}|a_n| .$$</div>
-          <p><strong>Controllo numerico.</strong> Per $a_n=\tfrac{(-1)^{\,n-1}}{n^2}$ la serie dei valori assoluti è $\sum\tfrac1{n^2}$ (converge, $p=2$) e vale $\tfrac{\pi^2}{6}\approx1{,}645$; la serie con i segni converge e vale circa $0{,}822\leq1{,}645$.</p>
-          <p><strong>Conclusione.</strong> Dalla convergenza di $\sum|a_n|$ abbiamo ricavato, per confronto, quella di $\sum c_n$, e poi quella di $\sum a_n=\sum c_n-\sum|a_n|$; la disuguaglianza triangolare sui totali dà $|S|\leq T$. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Da $\sum|a_n|$ convergente abbiamo ricavato, per confronto, $\sum c_n$ convergente, e quindi $\sum a_n=\sum c_n-\sum|a_n|$ convergente; la disuguaglianza triangolare dà $|S|\leq T$. <span class="qed">∎</span></p>
         </div>
         <p><strong>Il viceversa è falso</strong>, e il controesempio è la <strong>serie armonica a segni alterni</strong>:</p>
         <div class="formula-block">$$\sum_{n=1}^{\infty}\frac{(-1)^{\,n-1}}{n} = 1 - \frac12 + \frac13 - \frac14 + \cdots$$</div>
@@ -707,9 +648,9 @@
         </div>
 
         <h4>4.7.1 Il criterio di Leibniz</h4>
-        <p>Si usa quando i segni si alternano in modo regolare ($+,-,+,-,\dots$), cioè quando compare un fattore $(-1)^{\,n}$ o $(-1)^{\,n-1}$ (o $\cos(n\pi)$, che è lo stesso). Serve per la convergenza <em>semplice</em>; quella assoluta è una domanda separata, da fare dopo. L'idea, con $1-\tfrac12+\tfrac13-\tfrac14+\cdots$: i totali salgono e scendono a fisarmonica,</p>
+        <p>Si usa quando i segni si alternano in modo regolare ($+,-,+,-,\dots$), cioè quando compare un fattore $(-1)^{\,n}$ o $(-1)^{\,n-1}$ (o $\cos(n\pi)$, che è lo stesso). Serve per la convergenza <em>semplice</em> (quella assoluta è una domanda separata). Con $1-\tfrac12+\tfrac13-\tfrac14+\cdots$ i totali salgono e scendono a fisarmonica,</p>
         <div class="calcolo">$$S_1=1,\quad S_2=0{,}5,\quad S_3\approx0{,}833,\quad S_4\approx0{,}583,\quad S_5\approx0{,}783,\quad S_6\approx0{,}617,\ \dots$$</div>
-        <p>con oscillazioni che si stringono attorno a un valore ($\ln 2$). Il caso generale si dimostra subito dopo l'enunciato; l'idea è questa: se ogni passo è più corto del precedente (ipotesi "$b_n$ decrescente"), le somme parziali di indice dispari decrescono, quelle di indice pari crescono e le prime restano sopra le seconde; la loro distanza è $b_{n+1}$, che tende a zero (ipotesi "$b_n\to0$"). Sono due successioni monotone e limitate con lo stesso limite $S$, che sta sempre fra $S_n$ e $S_{n+1}$.</p>
+        <p>con oscillazioni che si stringono attorno a un valore ($\ln 2$).</p>
         <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Criterio di Leibniz</span>
           <p>Sia $b_n\geq0$. Se valgono <strong>entrambe</strong> queste ipotesi:</p>
@@ -722,7 +663,7 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione (somme parziali pari e dispari)</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Abbiamo termini $b_n\geq0$ che decrescono e tendono a zero, e mettiamo davanti segni alternati $+,-,+,-,\dots$. Vogliamo mostrare due cose: i totali $S_n=b_1-b_2+b_3-\cdots+(-1)^{\,n-1}b_n$ si avvicinano a un numero $S$, e fermandosi al termine $n$ si sbaglia al più di $b_{n+1}$. Per semplicità supponiamo che $b_n$ sia decrescente fin dall'inizio; se lo è solo da un certo indice in poi, si tolgono i primi termini, che non cambiano il carattere (<span class="richiamo" data-sec="4.1">§4.1</span>).</p>
-          <p><strong>L'idea.</strong> I totali non sono monotoni: a ogni passo si sale e si scende (come nei numeri $1;\ 0{,}5;\ 0{,}833;\ 0{,}583;\dots$). Ma se guardiamo <em>un totale ogni due</em> la musica cambia. Dopo un salto in su di $b_{2m+1}$ e uno in giù di $b_{2m+2}$ si resta più in alto di prima, perché $b_{2m+2}\leq b_{2m+1}$: i totali di indice <em>pari</em> crescono. Con lo stesso ragionamento i totali di indice <em>dispari</em> decrescono. I pari sono sempre sotto i dispari, quindi le due successioni restano imprigionate l'una dall'altra, e si avvicinano perché la loro distanza è un $b$ che tende a zero. Ci aspettiamo quindi che abbiano lo stesso limite $S$, che sta fra due totali consecutivi.</p>
+          <p><strong>L'idea.</strong> I totali non sono monotoni: a ogni passo si sale e si scende. Ma se guardiamo <em>un totale ogni due</em> la musica cambia. Dopo un salto in su di $b_{2m+1}$ e uno in giù di $b_{2m+2}$ si resta più in alto di prima, perché $b_{2m+2}\leq b_{2m+1}$: i totali di indice <em>pari</em> crescono. Con lo stesso ragionamento i totali di indice <em>dispari</em> decrescono. I pari sono sempre sotto i dispari, quindi le due successioni restano imprigionate l'una dall'altra, e si avvicinano perché la loro distanza è un $b$ che tende a zero. Ci aspettiamo quindi che abbiano lo stesso limite $S$, che sta fra due totali consecutivi.</p>
           <p><strong>Passo 1 — i totali di indice pari crescono.</strong> Passando da $S_{2m}$ a $S_{2m+2}$ si aggiungono due termini, uno positivo e uno negativo. Raggruppo in una parentesi: poiché $b_{2m+2}\leq b_{2m+1}$, la parentesi è $\geq0$.</p>
           <div class="calcolo">$$S_{2m+2}=S_{2m}+\big(b_{2m+1}-b_{2m+2}\big)\ \geq\ S_{2m}.$$</div>
           <p><strong>Passo 2 — i totali di indice dispari decrescono.</strong> Passando da $S_{2m-1}$ a $S_{2m+1}$ si aggiungono prima un termine negativo e poi uno positivo; la parentesi che si sottrae è $\geq0$ perché $b_{2m+1}\leq b_{2m}$.</p>
@@ -734,24 +675,21 @@
           <p><strong>Passo 5 — i due limiti coincidono.</strong> La distanza fra un totale dispari e il pari che lo precede è $S_{2m+1}-S_{2m}=b_{2m+1}$, che tende a zero per l'ipotesi $b_n\to0$. Passando al limite si ottiene $\ell_d-\ell_p=0$, cioè $\ell_p=\ell_d=:S$. Siccome sia i pari sia i dispari tendono a $S$, ogni $\varepsilon \gt 0$ è rispettato da un certo indice in poi sia dagli uni sia dagli altri: tutta la successione $S_n$ tende a $S$. La serie converge.</p>
           <p><strong>Passo 6 — la stima dell'errore.</strong> I pari crescono verso $S$, quindi non lo superano mai: $S_{2m}\leq S$. I dispari decrescono verso $S$, quindi non scendono mai sotto: $S\leq S_{2m+1}$. Perciò $S$ sta <em>fra due totali consecutivi</em>, qualunque sia $n$ (fra $S_n$ e $S_{n+1}$). Allora la distanza di $S$ da $S_n$ non supera la distanza fra $S_n$ e $S_{n+1}$, che è proprio $b_{n+1}$:</p>
           <div class="calcolo">$$|S-S_n|\ \leq\ |S_{n+1}-S_n|=b_{n+1}.$$</div>
-          <p><strong>Controllo numerico.</strong> Per $\sum\tfrac{(-1)^{\,n-1}}{n}$ è $S_5\approx0{,}783$ e $S_6\approx0{,}617$, e la somma $\ln2\approx0{,}693$ sta fra i due. L'errore fermandosi a $n=5$ è $|S-S_5|\approx0{,}090$, minore di $b_6=\tfrac16\approx0{,}167$.</p>
-          <p><strong>Osservazione sulle ipotesi.</strong> La monotonia ($b_{n+1}\leq b_n$) si usa nei passi 1, 2 e 3 (segno delle parentesi); $b_n\to0$ si usa nel passo 5, per far coincidere i due limiti. Senza la seconda i pari e i dispari convergerebbero a numeri diversi e $S_n$ non avrebbe limite; senza la prima i passi 1 e 2 cadono e la serie può perfino divergere (vedi il callout qui sotto).</p>
-          <p><strong>Conclusione.</strong> I totali pari crescono, quelli dispari decrescono, i primi stanno sotto i secondi e la loro distanza $b_{n+1}\to0$: i due gruppi hanno lo stesso limite $S$, e la serie converge. Poiché $S$ sta fra $S_n$ e $S_{n+1}$, l'errore è al più $b_{n+1}$. <span class="qed">∎</span></p>
+          <p><strong>Controllo numerico.</strong> Per $\sum\tfrac{(-1)^{\,n-1}}{n}$ la somma $\ln2\approx0{,}693$ sta fra $S_5\approx0{,}783$ e $S_6\approx0{,}617$, e l'errore $|S-S_5|\approx0{,}090$ è minore di $b_6=\tfrac16\approx0{,}167$.</p>
+          <p><strong>Osservazione sulle ipotesi.</strong> La monotonia ($b_{n+1}\leq b_n$) serve nei passi 1 e 2 (segno delle parentesi); $b_n\to0$ serve nel passo 5, per far coincidere i due limiti: senza la seconda pari e dispari convergerebbero a numeri diversi.</p>
+          <p><strong>Conclusione.</strong> Pari e dispari hanno lo stesso limite $S$, quindi la serie converge; poiché $S$ sta fra $S_n$ e $S_{n+1}$, l'errore è al più $b_{n+1}$. <span class="qed">∎</span></p>
         </div>
         <p>Per l'armonica a segni alterni $b_n=\tfrac1n$ decresce e tende a $0$: la serie converge, ma non assolutamente. L'applicazione completa del criterio, con le due domande separate, è nell'Esempio 6.</p>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">⚠️</span> Un caso in cui Leibniz NON decide</div>
-          <p>Le ipotesi sono <em>due</em> e servono entrambe: se una salta, il criterio tace ("non lo so", non "diverge"). Se $b_n\not\to0$, come in $\sum(-1)^{\,n-1}\dfrac{n}{n+1}$ ($b_n\to1$), Leibniz non si applica; qui però conclude il test del <span class="richiamo" data-sec="4.5">§4.5</span>: $a_n\not\to0$, la serie non converge. Se invece $b_n\to0$ ma non decresce, il criterio tace e la serie può addirittura divergere. Prendi $b_n=\dfrac{2+(-1)^{\,n}}{n}$, schiacciata fra $\tfrac1n$ e $\tfrac3n$ ma a zigzag ($1;\ 1{,}5;\ 0{,}33;\ 0{,}75;\ 0{,}2;\ 0{,}5;\dots$), e la serie $\sum(-1)^{\,n}b_n$. Spezzando il termine:</p>
-          <div class="calcolo">$$\begin{aligned}
-          (-1)^{\,n}b_n &amp;= \frac{2(-1)^{\,n}}{n}+\frac{(-1)^{\,n}(-1)^{\,n}}{n} &amp;&amp;\text{(distribuisco } (-1)^n \text{ sui due addendi)}\\
-          &amp;= \frac{2(-1)^{\,n}}{n}+\frac{1}{n} &amp;&amp;\text{(perché } (-1)^n(-1)^n=(-1)^{2n}=1)
-          \end{aligned}$$</div>
-          <p>Il primo pezzo dà una serie convergente (l'armonica a segni alterni moltiplicata per $-2$, a cui Leibniz si applica), il secondo è l'armonica, che diverge: "convergente più divergente" fa divergente. L'ipotesi (i) non era un dettaglio formale: prima di scrivere "per Leibniz converge", controlla davvero che $b_n$ scenda.</p>
+          <p>Le ipotesi sono <em>due</em> e servono entrambe: se una salta, il criterio tace ("non lo so", non "diverge"). Se $b_n\not\to0$ conclude già il test del <span class="richiamo" data-sec="4.5">§4.5</span>: la serie non converge. Se invece $b_n\to0$ ma non decresce, la serie può addirittura divergere. Prendi $b_n=\dfrac{2+(-1)^{\,n}}{n}$, schiacciata fra $\tfrac1n$ e $\tfrac3n$ ma a zigzag ($1;\ 1{,}5;\ 0{,}33;\ 0{,}75;\ 0{,}2;\ 0{,}5;\dots$), e la serie $\sum(-1)^{\,n}b_n$. Distribuisco $(-1)^{\,n}$ sui due addendi e uso $(-1)^{\,n}(-1)^{\,n}=1$:</p>
+          <div class="calcolo">$$(-1)^{\,n}b_n = \frac{2(-1)^{\,n}}{n}+\frac{(-1)^{\,n}(-1)^{\,n}}{n} = \frac{2(-1)^{\,n}}{n}+\frac{1}{n}.$$</div>
+          <p>Il primo pezzo dà una serie convergente (l'armonica a segni alterni moltiplicata per $-2$, a cui Leibniz si applica), il secondo è l'armonica, che diverge: "convergente più divergente" fa divergente. Prima di scrivere "per Leibniz converge", controlla davvero che $b_n$ scenda.</p>
         </div>
 
         <h3 id="teoria-telescopiche">4.8 Serie telescopiche: quando la somma si calcola davvero</h3>
-        <p>Le geometriche sono una delle poche famiglie in cui si sa scrivere $S_n$ in forma chiusa; le <strong>telescopiche</strong> sono l'altra. L'idea è scrivere ogni termine come <em>differenza di due pezzi consecutivi</em>, in modo che il pezzo negativo di ogni parentesi si elida con il pezzo positivo della successiva: restano solo i pezzi agli estremi, come i tubi di un cannocchiale che si chiude (da cui il nome).</p>
+        <p>Le geometriche sono una delle poche famiglie in cui si sa scrivere $S_n$ in forma chiusa; le <strong>telescopiche</strong> sono l'altra. Ogni termine è la <em>differenza di due pezzi consecutivi</em>, e nella somma i pezzi si elidono a coppie: restano solo quelli agli estremi, come i tubi di un cannocchiale che si chiude (da cui il nome).</p>
         <div class="box-teorema">
           <span class="box-teorema__label">Teorema</span>
           <p><em class="nome">Serie telescopica.</em> Se il termine generale si scrive come differenza di due pezzi consecutivi di una stessa successione, $a_n=c_n-c_{n+1}$, allora le somme parziali sono $S_n=c_1-c_{n+1}$. Di conseguenza la serie $\sum a_n$ converge se e solo se converge la successione $(c_n)$, e in tal caso</p>
@@ -760,26 +698,24 @@
         <div class="box-dimostrazione">
           <span class="box-dimostrazione__label">Dimostrazione</span>
           <p><strong>Cosa vogliamo mostrare.</strong> Se ogni termine è "un pezzo meno il successivo", il totale $S_n$ si riduce a una differenza fra il primo pezzo e l'ultimo, e il carattere della serie è quello di $(c_n)$.</p>
-          <p><strong>L'idea.</strong> Ogni parentesi $c_k-c_{k+1}$ contiene un pezzo con il segno più e uno con il segno meno. Sommando le parentesi, il pezzo negativo di ognuna è proprio il pezzo positivo della successiva, e i due si cancellano a coppie. Resta scoperto solo il primo pezzo positivo e l'ultimo negativo. Per scriverlo senza puntini separo le due metà della somma e sposto l'indice di una delle due.</p>
+          <p><strong>L'idea.</strong> Sommando le parentesi $c_k-c_{k+1}$, il pezzo negativo di ognuna è proprio il pezzo positivo della successiva, e i due si cancellano: resta scoperto solo il primo pezzo positivo e l'ultimo negativo. Per scriverlo senza puntini separo le due metà della somma e sposto l'indice di una delle due.</p>
           <p><strong>Passo 1 — separo i pezzi positivi dai negativi.</strong> Il totale è una somma finita, quindi posso riordinarla:</p>
           <div class="calcolo">$$S_n=\sum_{k=1}^{n}\big(c_k-c_{k+1}\big)=\sum_{k=1}^{n}c_k-\sum_{k=1}^{n}c_{k+1}.$$</div>
           <p><strong>Passo 2 — sposto l'indice nella seconda somma.</strong> Chiamo $j=k+1$: nella seconda somma $j$ va da $2$ a $n+1$ e gli addendi sono $c_j$. Le due somme hanno quasi gli stessi addendi, e la differenza è fatta solo da quelli che non compaiono in entrambe:</p>
           <div class="calcolo">$$S_n=\big(c_1+c_2+\cdots+c_n\big)-\big(c_2+\cdots+c_n+c_{n+1}\big)=c_1-c_{n+1}.$$</div>
           <p><strong>Passo 3 — passo al limite.</strong> Per definizione (<span class="richiamo" data-sec="4.1">§4.1</span>) il carattere della serie è quello di $S_n=c_1-c_{n+1}$. La successione $(c_{n+1})$ è $(c_n)$ con l'indice spostato di un posto, quindi ha lo stesso limite. Distinguo i tre casi: se $c_n\to\ell$ (finito), allora $S_n\to c_1-\ell$; se $c_n\to\pm\infty$, allora $S_n\to\mp\infty$; se $c_n$ non ha limite, nemmeno $S_n$ può averlo, altrimenti $c_{n+1}=c_1-S_n$ lo avrebbe.</p>
-          <p><strong>Controllo numerico.</strong> Con $c_n=\tfrac1n$ e $n=2$: $\big(\tfrac11-\tfrac12\big)+\big(\tfrac12-\tfrac13\big)=\tfrac23=c_1-c_3=1-\tfrac13$.</p>
-          <p><strong>Conclusione.</strong> Le cancellazioni a coppie lasciano $S_n=c_1-c_{n+1}$, e il limite di $S_n$ dipende solo da quello di $c_n$. <span class="qed">∎</span></p>
+          <p><strong>Conclusione.</strong> Resta $S_n=c_1-c_{n+1}$, e il suo limite dipende solo da quello di $c_n$. <span class="qed">∎</span></p>
         </div>
         <p><strong>Come si spezza il termine (fratti semplici).</strong> Per $a_n=\dfrac{1}{n(n+1)}$ cerco due numeri $A$ e $B$ (non dipendenti da $n$) tali che $\dfrac{1}{n(n+1)}=\dfrac{A}{n}+\dfrac{B}{n+1}$ per ogni $n$. Metto il secondo membro a denominatore comune e, a parità di denominatore, uguaglio i numeratori:</p>
         <div class="calcolo">$$\begin{aligned}
-        \frac{A}{n}+\frac{B}{n+1} &amp;= \frac{A(n+1)+B\,n}{n(n+1)} &amp;&amp;\text{(denominatore comune)}\\
-        1 &amp;= A(n+1)+B\,n = (A+B)\,n + A &amp;&amp;\text{(uguaglio i numeratori; raccolgo } n)
+        \frac{A}{n}+\frac{B}{n+1} &amp;= \frac{A(n+1)+B\,n}{n(n+1)}\\
+        1 &amp;= A(n+1)+B\,n = (A+B)\,n + A
         \end{aligned}$$</div>
         <p>A sinistra c'è $1=0\cdot n+1$. Due polinomi in $n$ uguali per ogni $n$ hanno gli stessi coefficienti, grado per grado (Parte 0, cap. 2): $A+B=0$ e $A=1$, da cui $B=-1$. Quindi</p>
         <div class="formula-block">$$\frac{1}{n(n+1)}=\frac{1}{n}-\frac{1}{n+1}$$</div>
-        <p>(verifica con $n=2$: $\tfrac{1}{2\cdot3}=\tfrac16$ e $\tfrac12-\tfrac13=\tfrac16$). Il termine ha ora la forma $c_n-c_{n+1}$ con $c_n=\tfrac1n$, quindi il teorema dà subito $S_n=c_1-c_{n+1}$. Scrivendo $S_n$ per esteso, il $-\tfrac12$ della prima parentesi si elide con il $+\tfrac12$ della seconda, il $-\tfrac13$ della seconda con il $+\tfrac13$ della terza, e così via: sopravvivono solo il $+\tfrac11$ iniziale e il $-\tfrac{1}{n+1}$ finale. Poi si fa il limite, che per definizione (<span class="richiamo" data-sec="4.1">§4.1</span>) è la somma della serie.</p>
-        <div class="calcolo">$$S_n = \left(\frac11-\frac12\right)+\left(\frac12-\frac13\right)+\cdots+\left(\frac1n-\frac{1}{n+1}\right) = 1-\frac{1}{n+1}$$</div>
+        <p>Il termine ha ora la forma $c_n-c_{n+1}$ con $c_n=\tfrac1n$, quindi il teorema dà subito $S_n=c_1-c_{n+1}=1-\tfrac{1}{n+1}$ (nella somma per esteso sopravvivono solo il $+\tfrac11$ iniziale e il $-\tfrac{1}{n+1}$ finale). Il limite di $S_n$ è, per definizione (<span class="richiamo" data-sec="4.1">§4.1</span>), la somma della serie:</p>
         <div class="calcolo">$$\begin{aligned}
-          \sum_{n=1}^{\infty}\frac{1}{n(n+1)} &amp;= \lim_{n\to\infty}S_n = \lim_{n\to\infty}\left(1-\frac{1}{n+1}\right) &amp;&amp;\text{(definizione di somma)}\\
+          \sum_{n=1}^{\infty}\frac{1}{n(n+1)} &amp;= \lim_{n\to\infty}S_n = \lim_{n\to\infty}\left(1-\frac{1}{n+1}\right)\\
           &amp;= 1-0 = 1 &amp;&amp;\text{(perché } \tfrac{1}{n+1}\to0)
           \end{aligned}$$</div>
         <p>Controllo con $n=3$: la formula dà $1-\tfrac14=0{,}75$ e a mano $\tfrac12+\tfrac16+\tfrac1{12}=\tfrac{9}{12}=0{,}75$. Se i due fattori differiscono di $2$, come in $\tfrac{1}{n(n+2)}$, il gemello sta due parentesi dopo e sopravvivono due pezzi all'inizio e due alla fine (Esempio 3).</p>
