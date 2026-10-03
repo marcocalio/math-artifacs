@@ -43,14 +43,13 @@
           <li><a href="#motivazione">2. Motivazione</a></li>
           <li><a href="#vita-reale">3. Nella vita reale</a></li>
           <li><a href="#teoria">4. Teoria dettagliata</a></li>
-          <li><a href="#dimostrazioni">5. Dimostrazioni</a></li>
-          <li><a href="#esempi">6. Esempi svolti</a></li>
-          <li><a href="#errori-comuni">7. Errori comuni</a></li>
-          <li><a href="#trucchi">8. Trucchi</a></li>
-          <li><a href="#mappa-mentale">9. Mappa mentale</a></li>
-          <li><a href="#riassunto">10. Riassunto</a></li>
-          <li><a href="#esercizi">11. Esercizi</a></li>
-          <li><a href="#quiz">12. Quiz</a></li>
+          <li><a href="#esempi">5. Esempi svolti</a></li>
+          <li><a href="#errori-comuni">6. Errori comuni</a></li>
+          <li><a href="#trucchi">7. Trucchi</a></li>
+          <li><a href="#mappa-mentale">8. Mappa mentale</a></li>
+          <li><a href="#riassunto">9. Riassunto</a></li>
+          <li><a href="#esercizi">10. Esercizi</a></li>
+          <li><a href="#quiz">11. Quiz</a></li>
         </ul>
       </nav>
       <p class="chapter-sidebar__title">Parte 1 · Analisi Matematica 1</p>
@@ -84,7 +83,7 @@
         <h1>Applicazioni degli Integrali</h1>
         <p class="subtitle">L'integrale definito non serve solo a calcolare "l'area sotto un grafico". È un coltellino svizzero: con la stessa idea — affetta, approssima, somma, passa al limite — si misurano aree tra curve, volumi di solidi di rotazione, lunghezze di curve tortuose, baricentri e persino il lavoro di una forza. In questo capitolo finale dell'Analisi 1 vediamo l'integrale al lavoro nel mondo reale.</p>
         <div class="reading-meta">
-          <span>⏱️ ~55 min di lettura</span>
+          <span>⏱️ ~40 min di lettura</span>
           <span>✏️ 16 esercizi</span>
           <span>🧠 13 quiz</span>
         </div>
@@ -144,78 +143,38 @@
         <h2 class="section__title"><span class="num">4.</span> <span class="emoji">📚</span> Spiegazione teorica dettagliata</h2>
 
         <h3 id="teoria-filo">4.1 Il filo conduttore: il "pezzettino generico"</h3>
-        <p><strong>Prima l'idea, poi le formule.</strong> In questo capitolo incontrerai parecchie formule: area fra due curve, volume dei dischi, volume dei gusci, lunghezza di un arco, valor medio, lavoro, massa, baricentro. Sembrano otto cose diverse da imparare a memoria. Non lo sono: sono <em>una</em> cosa sola, ripetuta otto volte. La mossa è sempre questa: prendo una grandezza che non so misurare tutta insieme, la taglio in tantissimi pezzettini, misuro <strong>un pezzettino solo</strong>, e poi sommo tutti i pezzettini con un integrale.</p>
-        <p>Perciò, ogni volta che qui vedi comparire una formula nuova, la domanda da farsi è una sola: <strong>che cosa stiamo sommando?</strong> Un rettangolino? Un dischetto? Un guscio? Un segmentino? Se sai rispondere a questa domanda, la formula te la scrivi da solo.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🔪</span> L'immagine da tenere in mente</div>
-          <p>Hai un salame dalla forma irregolare e vuoi sapere <em>quanto spazio occupa</em>, cioè il suo volume; ma in mano hai solo un righello, e per un oggetto panciuto e storto non esiste una formula. Allora lo metti nell'affettatrice: ogni fetta viene così sottile che puoi trattarla come un cilindretto regolare, e di un cilindretto il volume lo sai calcolare — area del cerchio per spessore. Misuri il raggio di una fetta, poi di un'altra, poi di un'altra, e sommi. Più sottili sono le fette, più la singola fetta somiglia davvero a un cilindretto, e meno sbagli. L'integrale è l'affettatrice ideale: infinite fette, di spessore che tende a zero.</p>
-        </div>
-
-        <p><strong>Un esempio con i numeri, per vedere la macchina in funzione.</strong> Scegliamo apposta una grandezza che sappiamo già misurare, così alla fine possiamo controllare: l'area del triangolo compreso fra la retta $y=x$, l'asse $x$ e la verticale $x=2$. Con la geometria delle medie: base $2$, altezza $2$, quindi area $=\frac{2\cdot 2}{2}=2$. Adesso facciamo finta di non saperlo e affettiamo.</p>
-        <p>Taglio l'intervallo $[0,2]$ in $4$ pezzi uguali: ogni pezzo è largo $\Delta x=\frac{2-0}{4}=0{,}5$. Su ogni pezzo costruisco un rettangolo alto quanto la funzione nell'<em>estremo destro</em> del pezzo. Gli estremi destri sono $0{,}5$, $1$, $1{,}5$, $2$; e poiché $f(x)=x$, le altezze sono proprio quei quattro numeri.</p>
+        <p>Le formule di questo capitolo (area fra due curve, volumi, lunghezza d'arco, baricentro, lavoro, valor medio) sembrano tante, ma sono <em>una</em> sola costruzione ripetuta. Prendo una grandezza che non so misurare tutta insieme, la taglio in tanti pezzettini, misuro <strong>un pezzettino</strong> con la geometria elementare e sommo tutto con un integrale. Davanti a ogni formula nuova la domanda è una sola: <strong>che cosa stiamo sommando?</strong> Un rettangolino, un dischetto, un guscio, un segmentino?</p>
+        <p>Pensa a un salame dalla forma storta: per il suo volume non esiste una formula, ma ogni fetta sottilissima è quasi un cilindretto, e di un cilindretto il volume si sa calcolare. L'integrale è l'affettatrice ideale: infinite fette, di spessore che tende a zero.</p>
+        <p>Proviamo su un caso che sappiamo già misurare: il triangolo fra la retta $y=x$, l'asse $x$ e la verticale $x=2$, che ha area $\frac{2\cdot2}{2}=2$. Taglio $[0,2]$ in $n$ strisce larghe $\Delta x=\frac2n$ e su ognuna costruisco un rettangolo alto quanto la funzione nell'estremo destro.</p>
         <div class="calcolo">$$\begin{aligned}
-        \Delta x &amp;= \frac{2-0}{4} = 0{,}5 &amp;&amp;\text{(larghezza di ogni fetta)}\\
-        A_4 &amp;= 0{,}5\cdot 0{,}5 + 0{,}5\cdot 1 + 0{,}5\cdot 1{,}5 + 0{,}5\cdot 2 &amp;&amp;\text{(base per altezza, quattro rettangoli)}\\
-        &amp;= 0{,}5\,(0{,}5+1+1{,}5+2) &amp;&amp;\text{(raccolgo la base comune } 0{,}5)\\
-        &amp;= 0{,}5\cdot 5 = 2{,}5 &amp;&amp;\text{(sommo dentro la parentesi, poi moltiplico)}
+        A_4 &amp;= 0{,}5\,(0{,}5+1+1{,}5+2)=0{,}5\cdot5=2{,}5\\
+        A_8 &amp;= 0{,}25\,(0{,}25+0{,}5+0{,}75+\cdots+2)=0{,}25\cdot9=2{,}25
         \end{aligned}$$</div>
-        <p>Con $4$ fette ottengo $2{,}5$: un po' troppo, perché i rettangoli costruiti sull'estremo destro sporgono sopra la retta. Rifacciamo con $8$ fette, larghe $\Delta x=\frac{2}{8}=0{,}25$; gli estremi destri sono ora $0{,}25;\ 0{,}5;\ 0{,}75;\ 1;\ 1{,}25;\ 1{,}5;\ 1{,}75;\ 2$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        A_8 &amp;= 0{,}25\,(0{,}25+0{,}5+0{,}75+1+1{,}25+1{,}5+1{,}75+2) &amp;&amp;\text{(raccolgo la base comune } 0{,}25)\\
-        &amp;= 0{,}25\cdot 9 &amp;&amp;\text{(sommo gli otto numeri in parentesi)}\\
-        &amp;= 2{,}25 &amp;&amp;\text{(eseguo il prodotto)}
-        \end{aligned}$$</div>
-        <p><strong>Fin qui:</strong> con $4$ fette viene $2{,}5$, con $8$ fette viene $2{,}25$. Con $100$ fette verrebbe $2{,}02$, con $1000$ verrebbe $2{,}002$. I numeri scendono verso $2$, che è esattamente la risposta della geometria elementare. E $2$ è anche ciò che dà l'integrale, $\int_0^2 x\,dx=\left[\frac{x^2}{2}\right]_0^2=2-0=2$. L'affettatrice funziona: possiamo fidarci di lei anche quando la geometria elementare non ci aiuta più.</p>
-
-        <p><strong>Ora lo schema generale.</strong> Questi quattro passi sono l'ossatura di <em>ogni</em> formula del capitolo.</p>
+        <p>In generale $A_n=2+\frac2n$: con $100$ fette viene $2{,}02$, e i numeri scendono verso $2$, che è anche $\int_0^2x\,dx$. Più fette, meno errore.</p>
+        <p>Questi quattro passi sono l'ossatura di <em>ogni</em> formula del capitolo.</p>
         <table class="tabella-comparativa">
           <thead><tr><th>Passo</th><th>Cosa si fa</th><th>Simbolo</th></tr></thead>
           <tbody>
-            <tr><td>1. Affetta</td><td>dividi l'intervallo $[a,b]$ in $n$ pezzetti di larghezza $\Delta x$</td><td>$\Delta x=\dfrac{b-a}{n}$</td></tr>
-            <tr><td>2. Approssima</td><td>misura la grandezza su una fettina con una forma semplice (rettangolo, disco, anello, guscio, segmento)</td><td>$\Delta Q_i\approx (\text{formula})\cdot\Delta x$</td></tr>
+            <tr><td>1. Affetta</td><td>dividi $[a,b]$ in $n$ pezzetti di larghezza $\Delta x$</td><td>$\Delta x=\dfrac{b-a}{n}$</td></tr>
+            <tr><td>2. Approssima</td><td>misura la grandezza su una fettina con una forma semplice (rettangolo, disco, guscio, segmento)</td><td>$\Delta Q_i\approx (\text{formula})\cdot\Delta x$</td></tr>
             <tr><td>3. Somma</td><td>somma i contributi di tutte le fettine (somma di Riemann)</td><td>$Q\approx\displaystyle\sum_{i=1}^{n}\Delta Q_i$</td></tr>
-            <tr><td>4. Passa al limite</td><td>fai tendere $n\to+\infty$ (cioè $\Delta x\to 0$): la somma diventa un integrale</td><td>$Q=\displaystyle\int_a^b dQ$</td></tr>
+            <tr><td>4. Passa al limite</td><td>fai tendere $n\to+\infty$: la somma diventa un integrale</td><td>$Q=\displaystyle\int_a^b dQ$</td></tr>
           </tbody>
         </table>
-        <p>I passi 1, 3 e 4 sono sempre identici e non richiedono di pensare. Tutta la fatica sta nel passo 2: scrivere il pezzettino $dQ$. Ecco la ricetta che seguiremo ogni singola volta.</p>
+        <p>I passi 1, 3 e 4 sono sempre uguali: tutta la fatica sta nel passo 2, cioè nello scrivere il pezzettino $dQ$. Nelle dimostrazioni che seguono lo scriveremo per esteso la prima volta (§4.2); poi diremo solo cosa cambia, cioè la forma della fettina.</p>
+        <p><strong>L'unico punto delicato.</strong> La fettina vera non è mai <em>esattamente</em> la forma semplice (un rettangolo ha il tetto piatto, un cilindro ha le due basi dello stesso raggio). Ma su una fettina sottile ciò che varia (altezza, raggio, densità, forza) cambia pochissimo, perché le funzioni sono continue. Perciò la fettina vera sta fra due forme semplici, una costruita con il valore <em>minimo</em> e una con il valore <em>massimo</em> di quella quantità sulla fettina. Le due somme ("dal basso" e "dall'alto") differiscono per un'inezia e tendono allo stesso integrale: quindi ci tende anche la grandezza vera, che sta in mezzo. Lo useremo senza ripeterlo ogni volta.</p>
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Come si trova il pezzettino generico, in pratica</div>
-          <p><strong>(1)</strong> Fai uno schizzo, anche brutto. <strong>(2)</strong> Disegna <em>una sola</em> fettina, quella "in posizione $x$", e chiediti che forma ha: rettangolo? cerchio? anello? guscio? segmento? <strong>(3)</strong> Scrivi la misura di quella forma con la formula di geometria elementare che le compete: area del rettangolo $=$ base per altezza; area del cerchio $=\pi r^2$; volume del cilindro $=$ area di base per altezza; lunghezza dell'ipotenusa $=$ teorema di Pitagora. <strong>(4)</strong> Esprimi in funzione di $x$ tutte le lunghezze che compaiono (base, altezza, raggio). <strong>(5)</strong> Moltiplica per lo spessore $dx$ e metti il tutto dentro $\int_a^b$.</p>
+          <p><strong>(1)</strong> Fai uno schizzo, anche brutto. <strong>(2)</strong> Disegna <em>una sola</em> fettina, quella "in posizione $x$", e chiediti che forma ha. <strong>(3)</strong> Scrivi la sua misura con la geometria elementare (area del rettangolo, $\pi r^2$ del cerchio, Pitagora). <strong>(4)</strong> Esprimi in funzione di $x$ ogni lunghezza che compare. <strong>(5)</strong> Moltiplica per lo spessore $dx$ e metti tutto dentro $\int_a^b$.</p>
         </div>
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Non tutto si calcola con un integrale in una variabile sola. Se ti chiedessero il perimetro di una regione delimitata da quattro curve diverse, <em>non</em> potresti scrivere un unico integrale: i pezzettini del perimetro non sono tutti fatti allo stesso modo (quattro curve, quattro leggi diverse), e bisogna calcolare quattro lunghezze separate e poi sommarle a mano. La macchina "affetta e somma" funziona quando <strong>tutti i pezzettini hanno la stessa forma</strong> e sono ordinati da una sola variabile che scorre da $a$ a $b$.</p>
-        <p>Detto questo, vediamo le grandezze che sappiamo affettare, una per una.</p>
 
         <h3 id="teoria-area">4.2 Area tra due curve</h3>
-        <p><strong>Prima l'idea.</strong> Sappiamo già calcolare l'area fra un grafico e l'asse $x$ (<a href="14-integrali-definiti.html">cap. 14</a>). Adesso vogliamo l'area della regione <em>schiacciata fra due grafici</em>: sopra corre una curva, sotto ne corre un'altra, e in mezzo c'è la regione che ci interessa. Serve ogni volta che una grandezza è la <em>differenza</em> fra due andamenti.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🌊</span> L'immagine da tenere in mente</div>
-          <p>Guarda la sezione trasversale di un canale. In basso c'è il fondo, che sale e scende: è il grafico di $g$. In alto c'è il pelo dell'acqua: è il grafico di $f$. Quanta acqua c'è in quella sezione? In ogni punto $x$ la profondità è "quota della superficie meno quota del fondo", cioè $f(x)-g(x)$. Prendi una strisciolina d'acqua larga $dx$: è un rettangolino alto quanto la profondità in quel punto. Sommi tutte le striscioline e hai l'area bagnata. Nota un dettaglio che tornerà utile fra poco: se in qualche punto il fondo emergesse <em>sopra</em> il pelo dell'acqua, la "profondità" verrebbe un numero negativo. Lì acqua non ce n'è.</p>
-        </div>
-
-        <p><strong>Il pezzettino generico.</strong> Affettiamo in verticale. La fettina in posizione $x$ è un <strong>rettangolino</strong>: la sua base è lo spessore della fetta, cioè $dx$; la sua altezza è la distanza verticale fra le due curve, cioè la quota di sopra meno la quota di sotto. Quindi il pezzettino di area è</p>
-        <div class="formula-block">$$dA=\underbrace{\big(f(x)-g(x)\big)}_{\text{altezza del rettangolino: quota di sopra meno quota di sotto}}\cdot\underbrace{dx}_{\text{base del rettangolino}}$$</div>
-
-        <p><strong>Un esempio con i numeri, che possiamo controllare a occhio.</strong> Prendiamo $f(x)=x+1$ (sopra) e $g(x)=1$ (sotto), fra $x=0$ e $x=4$. La regione è il triangolo con vertici $(0,1)$, $(4,1)$ e $(4,5)$: base orizzontale $4$, altezza $4$, quindi per la geometria elementare l'area vale $\frac{4\cdot4}{2}=8$. Vediamo se l'integrale è d'accordo.</p>
-        <div class="calcolo">$$\begin{aligned}
-        A &amp;= \int_0^4 \big((x+1)-1\big)\,dx &amp;&amp;\text{(pezzettino } dA=(f-g)\,dx \text{, con } f=x+1,\ g=1)\\
-        &amp;= \int_0^4 x\,dx &amp;&amp;\text{(dentro la parentesi } +1 \text{ e } -1 \text{ si elidono)}\\
-        &amp;= \left[\frac{x^2}{2}\right]_0^4 &amp;&amp;\text{(primitiva di } x \text{: regola della potenza, cap. 13)}\\
-        &amp;= \frac{4^2}{2}-\frac{0^2}{2} &amp;&amp;\text{(teorema fondamentale: sostituisco } x=4 \text{ e poi } x=0)\\
-        &amp;= 8-0 = 8 &amp;&amp;\text{(eseguo i conti)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è $8$: positivo, come deve essere un'area, e coincide esattamente con gli $8$ trovati con la formula del triangolo. Ottimo segno.</p>
-
-        <p><strong>Solo ora la formula, con ogni pezzo tradotto.</strong></p>
+        <p>Sopra corre il grafico di $f$, sotto quello di $g$: vogliamo l'area della regione in mezzo. Serve ogni volta che una grandezza è una <em>differenza</em> fra due andamenti (la profondità di un canale è "quota del pelo dell'acqua meno quota del fondo").</p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Formula (area tra due curve)</span>
-          <p>Siano $f$ e $g$ due funzioni continue su $[a,b]$, con $f(x)\geq g(x)$ per <em>ogni</em> $x$ dell'intervallo. L'area della regione compresa fra i due grafici è</p>
-          <div class="formula-block">$$A=\int_a^b \underbrace{\big(f(x)-g(x)\big)}_{\text{altezza della strisciolina}}\ \underbrace{dx}_{\text{larghezza della strisciolina}}$$</div>
-          <p>Cosa significa ogni pezzo:</p>
-          <ul>
-            <li>$f$ è la funzione che sta <strong>sopra</strong>, cioè quella con il valore più grande; $g$ è quella che sta <strong>sotto</strong>. L'ordine non è decorativo: va scritta prima quella di sopra.</li>
-            <li>$a$ e $b$ sono le ascisse in cui la regione comincia e finisce. Quasi sempre sono i <strong>punti di intersezione</strong> delle due curve, e vanno trovati risolvendo l'equazione $f(x)=g(x)$.</li>
-            <li>La richiesta "$f(x)\geq g(x)$ per ogni $x$" è essenziale: se le due curve si scambiano il posto dentro $[a,b]$, la formula così com'è non vale (vedi più avanti).</li>
-          </ul>
+          <p>Siano $f$ e $g$ continue su $[a,b]$, con $f(x)\geq g(x)$ per <em>ogni</em> $x$ dell'intervallo. L'area della regione compresa fra i due grafici è</p>
+          <div class="formula-block">$$A=\int_a^b \big(f(x)-g(x)\big)\,dx$$</div>
+          <p>$f$ è la funzione che sta <strong>sopra</strong> e va scritta per prima; $a$ e $b$ sono le ascisse in cui la regione comincia e finisce.</p>
         </div>
 
         <svg viewBox="0 0 460 260" style="max-width:500px;margin:1.4em auto;display:block;" role="img" aria-label="Regione compresa tra due curve: f in alto, g in basso, con una strisciolina verticale di altezza f meno g e larghezza dx">
@@ -234,34 +193,25 @@
           <text x="405" y="236" font-size="11" fill="var(--color-text-muted)">b</text>
         </svg>
 
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Se nell'esempio di prima avessi scritto le due funzioni nell'ordine sbagliato, cioè $\int_0^4\big(1-(x+1)\big)dx$, avrei ottenuto $-8$. Quel numero <strong>non è</strong> l'area della regione: le aree non sono mai negative. È solo il segnale, molto utile, che ho invertito sopra e sotto.</p>
-
-        <p><strong>Passo delicato numero uno: dove comincia e dove finisce la regione?</strong> Gli estremi $a$ e $b$ quasi mai te li regala il testo: quasi sempre sono i punti in cui le due curve si toccano. Due curve si toccano dove hanno la <em>stessa</em> ordinata, quindi si trovano risolvendo l'equazione $f(x)=g(x)$. Vediamolo su un caso concreto: $f(x)=6-x^2$ e $g(x)=x$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        6-x^2 &amp;= x &amp;&amp;\text{(uguaglio le due espressioni: cerco le } x \text{ con la stessa } y)\\
-        6-x^2-x &amp;= 0 &amp;&amp;\text{(sottraggo } x \text{ a entrambi i membri)}\\
-        x^2+x-6 &amp;= 0 &amp;&amp;\text{(moltiplico tutto per } -1\text{: cambio segno a ogni termine)}\\
-        (x+3)(x-2) &amp;= 0 &amp;&amp;\text{(scompongo: due numeri di somma } +1 \text{ e prodotto } -6 \text{ sono } +3 \text{ e } -2)\\
-        x=-3\ &amp;\text{oppure}\ x=2 &amp;&amp;\text{(un prodotto è nullo se lo è almeno un fattore)}
-        \end{aligned}$$</div>
-        <p>Quindi la regione racchiusa fra la parabola e la retta va da $a=-3$ a $b=2$. Se non riesci a scomporre a occhio, usa la formula risolutiva dell'equazione di secondo grado (Parte 0, cap. 4): funziona sempre.</p>
-
-        <p><strong>Passo delicato numero due: chi sta sopra?</strong> Non fidarti dell'occhio e non tirare a indovinare: <strong>scegli un valore di prova</strong> dentro l'intervallo e calcola lì le due funzioni. Vince quella che dà il numero più grande. Nel nostro caso l'intervallo è $[-3,2]$ e un valore comodo all'interno è $x=0$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        f(0) &amp;= 6-0^2 = 6 &amp;&amp;\text{(valore della parabola nel punto di prova)}\\
-        g(0) &amp;= 0 &amp;&amp;\text{(valore della retta nel punto di prova)}\\
-        6 &amp;\gt 0 &amp;&amp;\text{(confronto i due numeri: vince la parabola)}
-        \end{aligned}$$</div>
-        <p>Dunque su tutto $[-3,2]$ la parabola $y=6-x^2$ sta sopra e la retta $y=x$ sta sotto: nell'integrale scriverò $\big((6-x^2)-x\big)$, in quest'ordine.</p>
-        <p><strong>Attenzione: qui è dove ci si confonde.</strong> Un solo punto di prova basta soltanto perché abbiamo trovato <em>tutte</em> le soluzioni di $f(x)=g(x)$ e nessuna cade strettamente dentro l'intervallo $(-3,2)$. Le due curve non possono scambiarsi il posto senza prima incontrarsi, quindi l'ordine deciso in $x=0$ vale per tutto l'intervallo. Se invece ci fosse un'intersezione <em>interna</em>, un solo punto di prova non basterebbe: ne servirebbe uno per ogni tratto.</p>
-
-        <div class="callout callout--trucco">
-          <div class="callout__title"><span class="emoji">🔑</span> Come si calcola un'area fra due curve, in pratica</div>
-          <p><strong>(1)</strong> Schizzo. <strong>(2)</strong> Estremi: risolvi $f(x)=g(x)$ e ordina le soluzioni dalla più piccola alla più grande. <strong>(3)</strong> Chi sta sopra: prendi un valore di prova <em>dentro</em> ogni tratto e confronta i due valori. <strong>(4)</strong> Scrivi $\int(\text{sopra}-\text{sotto})\,dx$ su ogni tratto. <strong>(5)</strong> Calcola con il teorema fondamentale (cap. 14). <strong>(6)</strong> Controlla: il risultato è positivo? è dello stesso ordine di grandezza del rettangolo che contiene la regione? Se no, torna al punto (3).</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che sommando le altezze "sopra meno sotto", moltiplicate per larghezze piccolissime, si ottiene l'area della regione.</p>
+          <p><strong>L'idea.</strong> Non sappiamo misurare una regione con due bordi curvi, ma sappiamo misurare un rettangolo. Tagliamo la regione in strisce verticali sottili: ognuna è quasi un rettangolo, alto quanto il segmento verticale fra le due curve. Sommando le loro aree otteniamo una somma di Riemann di $f-g$, e per definizione il limite di queste somme è l'integrale.</p>
+          <p><strong>Passo 1 — taglio in strisce.</strong> Divido $[a,b]$ in $n$ parti uguali di larghezza $\Delta x=\frac{b-a}{n}$ e in ogni parte scelgo un punto $x_i$. Ottengo $n$ strisce verticali, tutte larghe $\Delta x$.</p>
+          <p><strong>Passo 2 — misuro una striscia.</strong> La sostituisco con un rettangolo: base $\Delta x$, altezza uguale alla distanza verticale fra le curve in $x_i$, cioè quota di sopra meno quota di sotto. Questa altezza è $\geq0$ perché $f$ sta sopra: è qui, e solo qui, che serve l'ipotesi $f\geq g$.</p>
+          <div class="calcolo">$$\Delta A_i\approx\big(f(x_i)-g(x_i)\big)\,\Delta x$$</div>
+          <p><strong>Passo 3 — sommo le strisce.</strong> L'area totale è circa la somma dei rettangoli, e questa è proprio la somma di Riemann di $f-g$:</p>
+          <div class="calcolo">$$A\approx\sum_{i=1}^{n}\big(f(x_i)-g(x_i)\big)\,\Delta x$$</div>
+          <p><strong>Passo 4 — passo al limite.</strong> Faccio tendere $n$ a infinito, cioè $\Delta x$ a zero. La funzione $f-g$ è continua, quindi integrabile, e il limite delle somme di Riemann è il suo integrale (cap. 14):</p>
+          <div class="calcolo">$$A=\lim_{n\to+\infty}\sum_{i=1}^{n}\big(f(x_i)-g(x_i)\big)\,\Delta x=\int_a^b\big(f(x)-g(x)\big)\,dx.$$</div>
+          <p><strong>Conclusione.</strong> Strisce, rettangoli, somma di Riemann, limite: l'area è l'integrale della differenza. <span class="qed">∎</span></p>
+          <p><strong>Controllo.</strong> Con $f(x)=x+1$ e $g(x)=1$ su $[0,4]$ viene $\int_0^4x\,dx=8$, l'area del triangolo di base $4$ e altezza $4$. Se $g\geq0$ c'è anche un'altra lettura: la regione è "area sotto $f$ meno area sotto $g$", e $\int f-\int g=\int(f-g)$ per la linearità.</p>
         </div>
 
-        <p><strong>E se le curve si incrociano dentro l'intervallo?</strong> Allora a volte sta sopra una, a volte l'altra, e un unico integrale con lo stesso ordine <strong>non</strong> va bene: nei tratti "girati" l'integrale conterebbe l'area con il segno meno, e i contributi potrebbero persino cancellarsi fra loro. La cura è sempre la stessa: trova <em>tutti</em> i punti di intersezione risolvendo $f(x)=g(x)$, usali come coltelli per <strong>spezzare</strong> l'integrale in più pezzi, e in ciascun pezzo rifai il test del punto di prova per decidere l'ordine giusto. Alla fine sommi i risultati dei pezzi, che sono tutti positivi.</p>
-        <p>Esiste anche una scrittura compatta e sempre valida, $A=\int_a^b |f(x)-g(x)|\,dx$: il valore assoluto raddrizza automaticamente il segno. Attenzione però: è una comodità di notazione, non una scorciatoia di calcolo. Per calcolare quell'integrale devi comunque sapere dove $f-g$ cambia segno, cioè spezzare esattamente negli stessi punti.</p>
+        <p><strong>Come si trovano gli estremi e chi sta sopra.</strong> Di solito $a$ e $b$ non sono dati: sono i punti in cui le curve si toccano, cioè dove hanno la stessa ordinata, e si trovano risolvendo $f(x)=g(x)$. Poi si sceglie un <strong>valore di prova</strong> dentro l'intervallo e si calcolano lì le due funzioni: sta sopra quella che dà il numero più grande. Per $f(x)=6-x^2$ e $g(x)=x$:</p>
+        <div class="calcolo">$$6-x^2=x\ \Longrightarrow\ x^2+x-6=0\ \Longrightarrow\ (x+3)(x-2)=0\ \Longrightarrow\ x=-3\ \text{ oppure }\ x=2.$$</div>
+        <p>La regione va da $a=-3$ a $b=2$. Nel punto di prova $x=0$ si ha $f(0)=6\gt g(0)=0$: sta sopra la parabola, quindi nell'integrale scriverò $(6-x^2)-x$. Un solo punto di prova basta perché fra due intersezioni consecutive le curve non possono scambiarsi il posto senza prima incontrarsi.</p>
+        <p><strong>Se le curve si incrociano dentro l'intervallo</strong>, a tratti sta sopra una e a tratti l'altra: un unico integrale conterebbe con il segno meno i tratti "girati", e i contributi potrebbero cancellarsi. Si trovano <em>tutte</em> le intersezioni, si <strong>spezza</strong> l'integrale in quei punti e in ogni tratto si rifà la prova (vedi l'Esempio 3). La scrittura $\int_a^b|f-g|\,dx$ è sempre valida, ma è solo una notazione: per calcolarla devi comunque spezzare dove $f-g$ cambia segno.</p>
 
         <svg viewBox="0 0 420 240" style="max-width:460px;margin:1.4em auto;display:block;" role="img" aria-label="Due curve che si incrociano: prima una sta sopra, poi l'altra, quindi l'integrale va spezzato nel punto di intersezione">
           <line x1="30" y1="120" x2="400" y2="120" stroke="var(--color-border)" stroke-width="1.5"/>
@@ -276,65 +226,29 @@
           <text x="290" y="235" font-size="11" fill="var(--color-text-muted)">qui f − g</text>
         </svg>
 
-        <h3 id="teoria-volumi">4.3 Volume dei solidi di rotazione</h3>
-        <p><strong>Prima l'idea.</strong> Prendiamo una regione piana e facciamola girare di un giro completo attorno a una retta fissa, che chiamiamo <strong>asse di rotazione</strong>. Nel girare, la regione spazza una porzione di spazio: quella porzione si chiama <strong>solido di rotazione</strong>. È il gesto del tornitore di cui parlavamo nella sezione 3. Quanto vale il suo volume? Il metodo sarà lo stesso del <span class="richiamo" data-sec="4.2">§4.2</span>, con una sola differenza: la fettina non è più un rettangolino, è un pezzo di solido.</p>
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">🧭</span> La prima domanda, sempre: attorno a quale asse ruoto?</div>
-          <p>Prima di scrivere qualunque formula devi rispondere a questa domanda, perché <strong>la formula da usare dipende dalla risposta</strong>. Non esiste "la formula del volume di rotazione": i metodi sono tre — dischi, anelli, gusci — e incrociati con l'asse di rotazione danno le quattro formule della tabella qui sotto. Si scelgono in base all'asse e a come è scritta la funzione. Scrivilo nero su bianco all'inizio dell'esercizio: "<em>ruoto attorno all'asse …</em>".</p>
+        <div class="callout callout--trucco">
+          <div class="callout__title"><span class="emoji">🔑</span> Come si calcola un'area fra due curve, in pratica</div>
+          <p><strong>(1)</strong> Schizzo. <strong>(2)</strong> Estremi: risolvi $f(x)=g(x)$ e ordina le soluzioni. <strong>(3)</strong> Chi sta sopra: un valore di prova <em>dentro ogni tratto</em>. <strong>(4)</strong> Scrivi $\int(\text{sopra}-\text{sotto})\,dx$ su ogni tratto e calcola (cap. 14). <strong>(5)</strong> Controlla: il risultato è positivo? Ha l'ordine di grandezza del rettangolo che contiene la regione? Se no, torna al punto (3).</p>
         </div>
+
+        <h3 id="teoria-volumi">4.3 Volume dei solidi di rotazione</h3>
+        <p>Facciamo girare una regione piana di un giro completo attorno a una retta fissa, l'<strong>asse di rotazione</strong>: la regione spazza un <strong>solido di rotazione</strong> (il pezzo del tornitore della sezione 3). Il metodo è quello del <span class="richiamo" data-sec="4.1">§4.1</span>, con una fettina diversa: un pezzo di solido.</p>
+        <p><strong>La prima domanda, sempre: attorno a quale asse ruoto?</strong> La formula dipende dalla risposta: scrivi nero su bianco "<em>ruoto attorno all'asse …</em>" prima di cominciare. I casi sono questi.</p>
         <table class="tabella-comparativa">
-          <thead><tr><th>Ruoto attorno a…</th><th>Come affetto il solido</th><th>Formula che ne consegue</th></tr></thead>
+          <thead><tr><th>Ruoto attorno a…</th><th>Come affetto il solido</th><th>Formula</th></tr></thead>
           <tbody>
-            <tr><td>asse $x$, regione fra $y=f(x)$ e l'asse $x$</td><td>fette perpendicolari all'asse $x$: <strong>dischi</strong>, spessore $dx$</td><td>$V=\pi\displaystyle\int_a^b [f(x)]^2\,dx$</td></tr>
-            <tr><td>asse $x$, regione fra $y=f(x)$ e $y=g(x)$ (solido bucato)</td><td>fette perpendicolari all'asse $x$: <strong>anelli</strong>, spessore $dx$</td><td>$V=\pi\displaystyle\int_a^b\big([f(x)]^2-[g(x)]^2\big)dx$</td></tr>
-            <tr><td>asse $y$, con la curva riscritta come $x=h(y)$</td><td>fette perpendicolari all'asse $y$: <strong>dischi</strong>, spessore $dy$</td><td>$V=\pi\displaystyle\int_c^d [h(y)]^2\,dy$</td></tr>
-            <tr><td>asse $y$, tenendo la curva nella forma $y=f(x)$</td><td>sbucciatura in <strong>gusci cilindrici</strong>, spessore $dx$</td><td>$V=2\pi\displaystyle\int_a^b x\,f(x)\,dx$</td></tr>
+            <tr><td>asse $x$, regione fra $y=f(x)$ e l'asse $x$</td><td>fette perpendicolari all'asse: <strong>dischi</strong>, spessore $dx$</td><td>$V=\pi\displaystyle\int_a^b [f(x)]^2\,dx$</td></tr>
+            <tr><td>asse $x$, regione fra $y=f(x)$ e $y=g(x)$ (solido bucato)</td><td>fette perpendicolari all'asse: <strong>anelli</strong>, spessore $dx$</td><td>$V=\pi\displaystyle\int_a^b\big([f(x)]^2-[g(x)]^2\big)dx$</td></tr>
+            <tr><td>asse $y$, curva riscritta come $x=h(y)$</td><td>fette perpendicolari all'asse: <strong>dischi</strong>, spessore $dy$</td><td>$V=\pi\displaystyle\int_c^d [h(y)]^2\,dy$</td></tr>
+            <tr><td>asse $y$, curva lasciata come $y=f(x)$</td><td>sbucciatura in <strong>gusci cilindrici</strong>, spessore $dx$</td><td>$V=2\pi\displaystyle\int_a^b x\,f(x)\,dx$</td></tr>
           </tbody>
         </table>
 
         <h4>4.3.1 Rotazione attorno all'asse x: il metodo dei dischi</h4>
-        <p><strong>Prima l'idea.</strong> Ruotiamo attorno all'<strong>asse $x$</strong> la regione compresa fra il grafico di $y=f(x)$ (con $f(x)\geq 0$) e l'asse $x$ stesso, per $x$ che va da $a$ a $b$. Poiché l'asse di rotazione è l'asse $x$, conviene tagliare il solido <em>perpendicolarmente</em> a quell'asse, cioè come si taglia un salame.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🪵</span> L'immagine da tenere in mente</div>
-          <p>La gamba di sedia tornita. Il tornio la fa girare attorno al suo asse e tu, guardandola di profilo, vedi il profilo $f(x)$: a distanza $x$ dall'estremità, il pezzo ha raggio $f(x)$. Se ora la seghi in tante rondelle sottilissime, ogni rondella è un <strong>dischetto</strong>: un cilindro bassissimo, di raggio $f(x)$ e di altezza pari allo spessore della sega.</p>
-        </div>
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Attenzione: qui l'istinto inganna</div>
-          <p>Verrebbe da pensare che due regioni con la <em>stessa area</em> generino, ruotando, solidi dello <em>stesso volume</em>: se c'è la stessa quantità di "materiale piano", perché mai il risultato dovrebbe cambiare? Invece cambia, e di parecchio. Confrontiamo due rettangoli che hanno entrambi area $4$ m² e che ruotano entrambi attorno all'asse $x$:</p>
-          <table class="tabella-comparativa">
-            <thead><tr><th>Regione (in metri)</th><th>Area</th><th>Solido generato</th><th>Volume</th></tr></thead>
-            <tbody>
-              <tr><td>alta $4$, larga $1$: $f(x)=4$ su $[0,1]$</td><td>$4$ m²</td><td>cilindro di raggio $4$, alto $1$</td><td>$\pi\cdot4^2\cdot1=16\pi\approx50{,}3$ m³</td></tr>
-              <tr><td>alta $1$, larga $4$: $f(x)=1$ su $[0,4]$</td><td>$4$ m²</td><td>cilindro di raggio $1$, alto $4$</td><td>$\pi\cdot1^2\cdot4=4\pi\approx12{,}6$ m³</td></tr>
-            </tbody>
-          </table>
-          <p>Stessa area, volume <strong>quattro volte</strong> maggiore nel primo caso. Il motivo lo vedrai fra poche righe: nella formula il raggio compare <strong>al quadrato</strong>, perché viene dall'area del cerchio $\pi r^2$. La parte di regione lontana dall'asse, girando, spazza una circonferenza molto più lunga e pesa molto di più. Tienilo a mente: nei volumi di rotazione non conta solo <em>quanta</em> regione c'è, ma soprattutto <em>a che distanza dall'asse</em> si trova.</p>
-        </div>
-        <p><strong>Il pezzettino generico.</strong> La fettina in posizione $x$ è un dischetto. Il suo raggio è la distanza fra il grafico e l'asse di rotazione, cioè $f(x)$. La sua area di base è quella del cerchio, $\pi r^2$ con $r=f(x)$. Il suo volume è "area di base per altezza", e l'altezza qui è lo spessore $dx$:</p>
-        <div class="formula-block">$$dV=\underbrace{\pi\,[f(x)]^2}_{\text{area del cerchio di raggio } f(x)}\cdot\underbrace{dx}_{\text{spessore della fetta}}$$</div>
-
-        <p><strong>Un esempio con i numeri, controllabile con la geometria.</strong> Prendiamo la funzione costante $f(x)=3$ su $[0,5]$, con tutte le lunghezze in <strong>metri</strong>, e ruotiamola <em>attorno all'asse $x$</em>. La regione è un rettangolo alto $3$ m e lungo $5$ m; ruotandolo attorno all'asse $x$ si ottiene un cilindro di raggio $3$ m e altezza $5$ m, il cui volume, per la formula di geometria elementare $V=\pi r^2 h$, vale $\pi\cdot 3^2\cdot 5=45\pi$ m³. Vediamo se l'integrale conferma.</p>
-        <div class="calcolo">$$\begin{aligned}
-        V &amp;= \pi\int_0^5 3^2\,dx &amp;&amp;\text{(formula dei dischi con } f(x)=3,\ a=0,\ b=5)\\
-        &amp;= \pi\int_0^5 9\,dx &amp;&amp;\text{(calcolo il quadrato: } 3^2=9)\\
-        &amp;= \pi\big[9x\big]_0^5 &amp;&amp;\text{(primitiva della costante } 9 \text{ è } 9x \text{, perché } (9x)'=9)\\
-        &amp;= \pi\,(9\cdot 5-9\cdot 0) &amp;&amp;\text{(teorema fondamentale: sostituisco } x=5 \text{ e poi } x=0)\\
-        &amp;= 45\pi &amp;&amp;\text{(eseguo i conti)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è positivo ($45\pi\approx 141$ m³), ed è ragionevole perché coincide esattamente con il volume del cilindro calcolato con la geometria elementare. Anche le unità tornano: $[f(x)]^2$ è in metri quadrati e $dx$ in metri, quindi il prodotto è in metri cubi — un volume, non un'area.</p>
-
-        <p><strong>Solo ora la formula, con ogni pezzo tradotto.</strong></p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Formula (metodo dei dischi, rotazione attorno all'asse $x$)</span>
-          <p>Sia $f$ continua e con $f(x)\geq 0$ su $[a,b]$. Il volume del solido generato dalla rotazione <strong>attorno all'asse $x$</strong> della regione fra il grafico di $f$ e l'asse $x$ è</p>
-          <div class="formula-block">$$V=\int_a^b \underbrace{\pi\,[f(x)]^2}_{\text{area del dischetto}}\ \underbrace{dx}_{\text{spessore}}\ =\ \pi\int_a^b [f(x)]^2\,dx$$</div>
-          <p>Cosa significa ogni pezzo:</p>
-          <ul>
-            <li>il $\pi$ e il quadrato vengono <strong>insieme</strong> dall'area del cerchio $\pi r^2$: non sono due decorazioni indipendenti;</li>
-            <li>$f(x)$ è il <strong>raggio</strong> della fettina, cioè la distanza fra la curva e l'asse di rotazione;</li>
-            <li>$dx$ è lo <strong>spessore</strong>, ed è $dx$ (e non $dy$) proprio perché le fette sono perpendicolari all'asse $x$;</li>
-            <li>$a$ e $b$ dicono dove comincia e dove finisce il solido lungo l'asse di rotazione.</li>
-          </ul>
+          <p>Sia $f$ continua e con $f(x)\geq 0$ su $[a,b]$. Il volume del solido generato ruotando <strong>attorno all'asse $x$</strong> la regione fra il grafico di $f$ e l'asse $x$ è</p>
+          <div class="formula-block">$$V=\pi\int_a^b [f(x)]^2\,dx$$</div>
         </div>
 
         <svg viewBox="0 0 480 240" style="max-width:520px;margin:1.4em auto;display:block;" role="img" aria-label="Il grafico di f ruota attorno all'asse x generando un solido; una fettina è un disco di raggio f di x e spessore dx">
@@ -349,128 +263,77 @@
           <text x="150" y="80" font-size="13" font-weight="700" fill="var(--color-primary)">y = f(x)</text>
         </svg>
 
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Se la regione che ruota <em>non tocca</em> l'asse di rotazione — per esempio la striscia fra $y=3$ e $y=1$ — allora la fettina <strong>non</strong> è un disco pieno: al centro resta un buco, e la formula dei dischi darebbe un numero troppo grande. In quel caso serve il metodo degli anelli del paragrafo seguente. Altro non-esempio: $\int_a^b f(x)\,dx$ non è mai un volume, è un'area; te ne accorgi dalle unità di misura, metri quadri invece di metri cubi.</p>
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Il quadrato e il $\pi$ non sono opzionali</div>
-          <p>Nella formula compaiono <strong>due</strong> ingredienti che si tende a dimenticare: il <strong>$\pi$</strong> davanti e il <strong>quadrato</strong> su $f(x)$. Vengono entrambi dall'area del cerchio $\pi r^2$, quindi o ci sono tutti e due o non ne torna nessuno. Scrivere $\int f(x)\,dx$ al posto di $\pi\int [f(x)]^2\,dx$ è come confondere l'area con il volume.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che il volume si ottiene sommando le aree dei cerchi moltiplicate per spessori piccolissimi, e capire da dove vengono il $\pi$ e il quadrato.</p>
+          <p><strong>L'idea.</strong> Tagliamo il solido con piani perpendicolari all'asse di rotazione, come si affetta un salame: ogni fetta è quasi un cilindro bassissimo, e di un cilindro sappiamo il volume (area di base per altezza). Questa è l'unica direzione in cui le sezioni sono cerchi.</p>
+          <p><strong>Passo 1 — affetto.</strong> Con piani nelle posizioni $x_i$, distanziati di $\Delta x=\frac{b-a}{n}$, ottengo $n$ fettine.</p>
+          <p><strong>Passo 2 — misuro una fettina.</strong> È un cilindro bassissimo. Il suo raggio è la distanza del grafico dall'asse di rotazione, cioè $f(x_i)$; la sua altezza è lo spessore $\Delta x$. Quindi:</p>
+          <div class="calcolo">$$\Delta V_i\approx\underbrace{\pi\,[f(x_i)]^2}_{\text{area del cerchio}}\cdot\,\Delta x$$</div>
+          <p>Ecco la risposta alla domanda iniziale: <strong>il $\pi$ e il quadrato entrano insieme, qui, perché vengono dall'area del cerchio $\pi r^2$.</strong> La fetta vera sta fra il cilindro di raggio minimo e quello di raggio massimo: è l'incastro del <span class="richiamo" data-sec="4.1">§4.1</span>.</p>
+          <p><strong>Passo 3 — sommo.</strong> È la somma di Riemann della funzione $\pi f^2$:</p>
+          <div class="calcolo">$$V\approx\sum_{i=1}^{n}\pi\,[f(x_i)]^2\,\Delta x$$</div>
+          <p><strong>Passo 4 — passo al limite.</strong> Per $n\to+\infty$ la somma diventa l'integrale, e il $\pi$, che è costante, esce:</p>
+          <div class="calcolo">$$V=\lim_{n\to+\infty}\sum_{i=1}^{n}\pi\,[f(x_i)]^2\,\Delta x=\pi\int_a^b [f(x)]^2\,dx.$$</div>
+          <p><strong>Conclusione.</strong> Fettine cilindriche di volume $\pi[f(x_i)]^2\Delta x$, somma di Riemann di $\pi f^2$, limite: la formula dei dischi. <span class="qed">∎</span></p>
+          <p><strong>Controllo.</strong> Con $f(x)=3$ su $[0,5]$ la regione è un rettangolo e il solido un cilindro di raggio $3$ e altezza $5$: la formula dà $\pi\cdot3^2\cdot5=45\pi$, come $\pi r^2h$.</p>
         </div>
+        <p>Il raggio entra al <em>quadrato</em>, quindi conta più <em>quanto è lontana</em> la regione dall'asse che <em>quanta</em> regione c'è: un rettangolo alto $4$ e largo $1$ e uno alto $1$ e largo $4$ hanno la stessa area ($4$), ma ruotando attorno all'asse $x$ generano volumi $16\pi$ e $4\pi$.</p>
+        <p>Se si ruota attorno all'<strong>asse $y$</strong> e la curva è data come $x=h(y)$, il ragionamento è identico con i ruoli di $x$ e $y$ scambiati: dischi di raggio $h(y)$ e spessore $dy$, $V=\pi\int_c^d[h(y)]^2\,dy$.</p>
 
         <h4>4.3.2 Solidi con un foro: il metodo degli anelli</h4>
-        <p><strong>Prima l'idea.</strong> E se il solido ha un <strong>buco</strong> nel mezzo, come un tubo, un bicchiere o una ciambella? Succede quando la regione che facciamo ruotare <em>non arriva</em> fino all'asse: sta fra due curve $f(x)\geq g(x)\geq 0$, e la curva più bassa, girando, scava un canale vuoto attorno all'asse.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🔩</span> L'immagine da tenere in mente</div>
-          <p>Una rondella da ferramenta (in inglese <em>washer</em>, da cui il nome del metodo): un dischetto di metallo con un foro rotondo nel mezzo. Per sapere quanto metallo contiene calcoli l'area del cerchio grande e le togli l'area del foro. Il solido bucato è fatto di tantissime rondelle impilate.</p>
-        </div>
-        <p><strong>Il pezzettino generico.</strong> La fettina in posizione $x$ è un anello: un cerchio grande di raggio esterno $f(x)$, da cui va tolto un cerchio piccolo di raggio interno $g(x)$. La sua area è <em>differenza di due aree di cerchio</em>, e il volumetto è quell'area per lo spessore:</p>
-        <div class="formula-block">$$dV=\underbrace{\Big(\pi\,[f(x)]^2-\pi\,[g(x)]^2\Big)}_{\text{area del cerchio grande meno area del foro}}\cdot\underbrace{dx}_{\text{spessore}}$$</div>
-        <p><strong>Un esempio con i numeri.</strong> Ruotiamo <em>attorno all'asse $x$</em> la striscia fra $f(x)=3$ e $g(x)=2$, per $x\in[0,5]$, sempre con le lunghezze in metri. Si ottiene un tubo lungo $5$ m, di raggio esterno $3$ m e raggio interno $2$ m: un pezzo di tubatura con parete spessa $1$ m.</p>
-        <div class="calcolo">$$\begin{aligned}
-        V &amp;= \pi\int_0^5 \big(3^2-2^2\big)\,dx &amp;&amp;\text{(formula degli anelli con } f=3,\ g=2)\\
-        &amp;= \pi\int_0^5 (9-4)\,dx &amp;&amp;\text{(calcolo i due quadrati)}\\
-        &amp;= \pi\int_0^5 5\,dx &amp;&amp;\text{(eseguo la sottrazione dentro l'integrale)}\\
-        &amp;= \pi\big[5x\big]_0^5 = \pi(25-0) = 25\pi &amp;&amp;\text{(primitiva } 5x \text{, poi teorema fondamentale)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è positivo ed è ragionevole perché è proprio "cilindro grande meno cilindro piccolo": $\pi\cdot 3^2\cdot 5-\pi\cdot 2^2\cdot 5=45\pi-20\pi=25\pi$ m³. Inoltre è minore dei $45\pi$ m³ del cilindro pieno, come deve essere per un oggetto bucato: precisamente i $\tfrac{25}{45}=\tfrac59$ di quel volume, perché il foro ne porta via $\tfrac49$.</p>
-        <div class="box-teorema box-teorema--definizione">
+        <p>Se la regione sta fra due curve $f(x)\geq g(x)\geq 0$ e <em>non arriva</em> all'asse, il solido ha un canale vuoto: la fettina non è un disco pieno ma una rondella (un disco con un foro rotondo), e la formula dei dischi darebbe un volume troppo grande.</p>
+        <div class="box-teorema box-teorema--proposizione">
           <span class="box-teorema__label">Formula (metodo degli anelli, rotazione attorno all'asse $x$)</span>
           <p>Se $f(x)\geq g(x)\geq 0$ su $[a,b]$, il volume ottenuto ruotando <strong>attorno all'asse $x$</strong> la regione fra i due grafici è</p>
-          <div class="formula-block">$$V=\pi\int_a^b\Big(\underbrace{[f(x)]^2}_{\text{raggio esterno al quadrato}}-\underbrace{[g(x)]^2}_{\text{raggio interno al quadrato}}\Big)\,dx$$</div>
+          <div class="formula-block">$$V=\pi\int_a^b\Big([f(x)]^2-[g(x)]^2\Big)\,dx$$</div>
         </div>
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">❌</span> $[f]^2-[g]^2$ non è $(f-g)^2$</div>
-          <p>Errore classicissimo: scrivere $\pi\int (f-g)^2\,dx$. <strong>Sbagliato.</strong> Si sottraggono le <em>aree</em> dei due cerchi, cioè $[f]^2-[g]^2$; non si eleva al quadrato la differenza dei raggi. Regola mnemonica: "differenza dei quadrati", non "quadrato della differenza". Un controllo numerico convince subito: con $f=3$ e $g=2$, la differenza dei quadrati fa $9-4=5$, il quadrato della differenza fa $(3-2)^2=1$. Sono numeri diversi.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che per un solido bucato si toglie il volume del buco, e che questo significa sottrarre i <em>quadrati</em> dei raggi.</p>
+          <p><strong>L'idea.</strong> Non serve ricominciare: il solido bucato è un solido pieno a cui ne togliamo un altro, e di entrambi sappiamo il volume dal metodo dei dischi.</p>
+          <p><strong>Passo 1 — due solidi pieni.</strong> Ruotando la regione sotto $f$ (fra $f$ e l'asse $x$) si ottiene un solido pieno, di volume $V_{\text{est}}$. Ruotando quella sotto $g$ se ne ottiene uno più piccolo, di volume $V_{\text{int}}$, che è proprio il buco. Per i dischi:</p>
+          <div class="calcolo">$$V_{\text{est}}=\pi\int_a^b [f(x)]^2\,dx,\qquad V_{\text{int}}=\pi\int_a^b [g(x)]^2\,dx.$$</div>
+          <p><strong>Passo 2 — tolgo il buco.</strong> Il solido bucato è il primo meno il secondo. Poi riunisco i due integrali sotto un unico segno, per la linearità (cap. 14):</p>
+          <div class="calcolo">$$V=V_{\text{est}}-V_{\text{int}}=\pi\int_a^b [f(x)]^2\,dx-\pi\int_a^b [g(x)]^2\,dx=\pi\int_a^b\Big([f(x)]^2-[g(x)]^2\Big)\,dx.$$</div>
+          <p><strong>Conclusione.</strong> Volume del pieno esterno meno volume del pieno interno: compare la <em>differenza dei quadrati</em> $[f]^2-[g]^2$, non il quadrato della differenza $(f-g)^2$. <span class="qed">∎</span></p>
+          <p><strong>Controllo.</strong> Con $f=3$, $g=2$ su $[0,5]$ si ha un tubo: $\pi(9-4)\cdot5=25\pi$, cioè $45\pi-20\pi$ (cilindro grande meno cilindro piccolo), mentre $(f-g)^2=1$ darebbe $5\pi$, un valore sbagliato.</p>
         </div>
 
         <h4>4.3.3 Rotazione attorno all'asse y: il metodo dei gusci cilindrici</h4>
-        <p><strong>Prima l'idea.</strong> Adesso l'asse di rotazione cambia: ruotiamo <strong>attorno all'asse $y$</strong>. Potremmo riscrivere la curva nella forma $x=h(y)$ e affettare in orizzontale con dischi di spessore $dy$; a volte si può, ma spesso invertire la funzione è scomodo o impossibile. C'è un secondo modo, che permette di lasciare la funzione com'è, nella forma $y=f(x)$: invece di affettare, <strong>sbucciamo</strong>.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🧅</span> L'immagine da tenere in mente</div>
-          <p>Un rotolo di carta da cucina. Non lo tagli a fette: lo sfogli, giro dopo giro. Ogni strato è un tubicino sottile, un <strong>guscio cilindrico</strong> infilato attorno all'asse del rotolo. Se prendi un guscio, lo tagli per il lungo e lo srotoli sul tavolo, si stende in una striscia sottile: lunga quanto la circonferenza del guscio, alta quanto il guscio, spessa quanto la carta. Il gesto è quello di sfogliare una cipolla, con una differenza da non dimenticare: gli strati della cipolla sono sferici, questi sono cilindrici, tutti infilati attorno alla stessa retta.</p>
-        </div>
-        <p><strong>Il pezzettino generico.</strong> Il guscio che si trova a distanza $x$ dall'asse $y$ ha quattro misure, e conviene ricavarle una alla volta:</p>
-        <ul>
-          <li><strong>raggio</strong> $=x$, cioè la distanza del punto dall'asse di rotazione (che è l'asse $y$);</li>
-          <li><strong>circonferenza</strong> $=2\pi x$, perché la lunghezza di una circonferenza di raggio $r$ è $2\pi r$ (Parte 0, cap. 7);</li>
-          <li><strong>altezza</strong> $=f(x)$, cioè quanto è alta la regione in quel punto;</li>
-          <li><strong>spessore</strong> $=dx$, cioè quanto è sottile la buccia.</li>
-        </ul>
-        <p>Srotolato, il guscio si stende in una striscia lunga $2\pi x$, alta $f(x)$ e spessa $dx$: la trattiamo come un rettangolo — fra un istante diciamo in che misura lo è davvero — e il suo volume è lunghezza per altezza per spessore.</p>
-        <div class="formula-block">$$dV=\underbrace{2\pi x}_{\text{circonferenza del guscio}}\cdot\underbrace{f(x)}_{\text{altezza del guscio}}\cdot\underbrace{dx}_{\text{spessore della buccia}}$$</div>
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Attenzione: il guscio srotolato <em>non</em> è un rettangolo perfetto</div>
-          <p>Diciamolo apertamente, perché tacerlo sarebbe una piccola bugia. Il guscio ha due bordi, uno interno di raggio $x$ e uno esterno di raggio $x+dx$: il bordo esterno è un po' più lungo dell'interno, quindi da steso la buccia non è un rettangolo ma un <strong>trapezio schiacciato</strong>. Scrivendo "lungo $2\pi x$" stiamo usando la circonferenza <em>interna</em>, cioè la più corta: stiamo quindi sbagliando per difetto. Quanto?</p>
-          <p>Contiamolo su un guscio concreto: raggio interno $1$ m, altezza $1$ m, spessore $h$ metri. Il volume vero è "cilindro esterno meno cilindro interno", cioè $\pi\big((1+h)^2-1^2\big)=\pi(2h+h^2)$; l'approssimazione col rettangolo dà $2\pi\cdot1\cdot1\cdot h=2\pi h$. La differenza è tutta nel termine $\pi h^2$.</p>
-          <table class="tabella-comparativa">
-            <thead><tr><th>spessore $h$</th><th>volume vero $\pi(2h+h^2)$</th><th>rettangolo $2\pi h$</th><th>di quanto sbagliamo</th></tr></thead>
-            <tbody>
-              <tr><td>$0{,}1$ m</td><td>$0{,}21\,\pi$ m³</td><td>$0{,}20\,\pi$ m³</td><td>$4{,}8\%$</td></tr>
-              <tr><td>$0{,}01$ m</td><td>$0{,}0201\,\pi$ m³</td><td>$0{,}0200\,\pi$ m³</td><td>$0{,}50\%$</td></tr>
-              <tr><td>$0{,}001$ m</td><td>$0{,}002001\,\pi$ m³</td><td>$0{,}002000\,\pi$ m³</td><td>$0{,}050\%$</td></tr>
-            </tbody>
-          </table>
-          <p>L'errore non sparisce mai del tutto: c'è, e sappiamo sempre quanto vale. Ma ogni volta che dividiamo per dieci lo spessore, l'errore relativo si divide per dieci: è il termine $h^2$ che diventa trascurabile rispetto a $2h$ — l'o-piccolo del <a href="05-infinitesimi-infiniti.html">capitolo 5</a>, di nuovo al lavoro. Nel limite $dx\to0$ l'errore va a zero, ed è per questo che la formula finale è <em>esatta</em> anche se il disegno del rettangolo non lo è. Curiosità utile: se al posto del raggio interno si usa il raggio a <strong>metà buccia</strong>, cioè $x+\tfrac{dx}{2}$, il volume del guscio viene esatto già senza passare al limite.</p>
-        </div>
-        <p><strong>Un esempio con i numeri, controllabile con la geometria.</strong> Prendiamo $f(x)=1$ su $[0,2]$, con le lunghezze in metri, e ruotiamo <em>attorno all'asse $y$</em>. La regione è un rettangolo alto $1$ m e largo $2$ m, appoggiato con il lato sinistro all'asse $y$; ruotandolo attorno all'asse $y$ si ottiene un disco spesso, cioè un cilindro basso di raggio $2$ m e altezza $1$ m, che per la geometria elementare vale $\pi\cdot 2^2\cdot 1=4\pi$ m³.</p>
-        <div class="calcolo">$$\begin{aligned}
-        V &amp;= 2\pi\int_0^2 x\cdot 1\,dx &amp;&amp;\text{(formula dei gusci con } f(x)=1,\ a=0,\ b=2)\\
-        &amp;= 2\pi\int_0^2 x\,dx &amp;&amp;\text{(moltiplicare per } 1 \text{ non cambia nulla)}\\
-        &amp;= 2\pi\left[\frac{x^2}{2}\right]_0^2 &amp;&amp;\text{(primitiva di } x \text{: regola della potenza, cap. 13)}\\
-        &amp;= 2\pi\left(\frac{4}{2}-0\right) = 2\pi\cdot 2 = 4\pi &amp;&amp;\text{(teorema fondamentale, poi conti)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è positivo e coincide con i $4\pi$ m³ del cilindro calcolati a parte con la geometria elementare: la formula dei gusci è affidabile. Nota anche le unità: $x$ è in metri, $f(x)$ in metri, $dx$ in metri, quindi $x\,f(x)\,dx$ è in metri cubi.</p>
+        <p>Ruotiamo ora attorno all'<strong>asse $y$</strong>. Potremmo scrivere la curva come $x=h(y)$ e usare i dischi, ma invertire la funzione è spesso scomodo o impossibile. Allora la lasciamo come $y=f(x)$ e <strong>sbucciamo</strong> il solido, come un rotolo di carta da cucina: strato dopo strato, ogni strato è un tubicino, un <strong>guscio cilindrico</strong>, infilato attorno all'asse.</p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Formula (metodo dei gusci cilindrici, rotazione attorno all'asse $y$)</span>
-          <p>Sia $f$ continua e non negativa su $[a,b]$, con $0\leq a\lt b$. Il volume del solido generato dalla rotazione <strong>attorno all'asse $y$</strong> della regione fra il grafico di $f$ e l'asse $x$ è</p>
-          <div class="formula-block">$$V=2\pi\int_a^b \underbrace{x}_{\text{raggio}}\ \underbrace{f(x)}_{\text{altezza}}\ dx$$</div>
-          <p>Cosa significa ogni pezzo: il $2\pi$ e la $x$ vengono <strong>insieme</strong> dalla circonferenza $2\pi r$ con $r=x$; $f(x)$ è l'altezza del guscio; $dx$ è lo spessore, ed è $dx$ perché i gusci sono ordinati dalla loro distanza $x$ dall'asse. Qui la $x$ compare alla prima potenza, non al quadrato: non è un cerchio, è una circonferenza.</p>
+          <p>Sia $f$ continua e non negativa su $[a,b]$, con $0\leq a\lt b$. Il volume del solido generato ruotando <strong>attorno all'asse $y$</strong> la regione fra il grafico di $f$ e l'asse $x$ è</p>
+          <div class="formula-block">$$V=2\pi\int_a^b x\,f(x)\,dx$$</div>
         </div>
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Scrivere $2\pi\int_a^b f(x)\,dx$, dimenticando la $x$, <strong>non</strong> dà il volume: significherebbe dire che tutti i gusci hanno la stessa circonferenza, mentre il guscio esterno è molto più lungo di quello interno. Controprova: con $f(x)=1$ su $[1,3]$ la formula sbagliata darebbe $2\pi\big[x\big]_1^3=4\pi$, mentre quella giusta dà $2\pi\left[\frac{x^2}{2}\right]_1^3=2\pi\left(\frac92-\frac12\right)=8\pi$, che è anche il valore corretto (cilindro di raggio $3$ meno cilindro di raggio $1$, entrambi alti $1$: $9\pi-\pi=8\pi$).</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che si può lasciare la funzione nella forma $y=f(x)$ sommando gusci invece di dischi, e capire perché compare una $x$ alla prima potenza (e non al quadrato).</p>
+          <p><strong>L'idea.</strong> Tagliamo la regione in strisce <em>verticali</em>, parallele all'asse di rotazione. Ruotando, ogni striscia genera un guscio: un cilindro cavo, il cui volume sappiamo calcolare esattamente come "cilindro grande meno cilindro piccolo".</p>
+          <p><strong>Passo 1 — affetto in verticale.</strong> Divido $[a,b]$ in $n$ parti di larghezza $\Delta x$. La striscia $i$-esima va da $x_{i-1}$ a $x_i$; ne chiamo $\bar x_i=\frac{x_{i-1}+x_i}{2}$ il punto di mezzo, e la sua altezza è circa $f(\bar x_i)$.</p>
+          <p><strong>Passo 2 — il guscio è un cilindro cavo.</strong> Ha raggio interno $r=x_{i-1}$, raggio esterno $R=x_i$ e altezza $h=f(\bar x_i)$. Il suo volume è quello del cilindro grande meno quello del cilindro piccolo:</p>
+          <div class="calcolo">$$\Delta V_i\approx\pi R^2h-\pi r^2h=\pi h\,(R^2-r^2).$$</div>
+          <p><strong>Passo 3 — scompongo la differenza di quadrati.</strong> Uso $R^2-r^2=(R-r)(R+r)$. Qui $R-r=\Delta x$ è lo spessore, e $R+r=2\bar x_i$ è il doppio del raggio medio:</p>
+          <div class="calcolo">$$\Delta V_i\approx\pi\,f(\bar x_i)\cdot\Delta x\cdot2\bar x_i=2\pi\,\bar x_i\,f(\bar x_i)\,\Delta x.$$</div>
+          <p>Ecco perché la $x$ è alla prima potenza: $2\pi\bar x_i$ è la <em>circonferenza</em> del guscio, che è lineare nel raggio, e non l'area $\pi r^2$ di un cerchio. Srotolato, il guscio è una striscia lunga $2\pi\bar x_i$, alta $f(\bar x_i)$ e spessa $\Delta x$. Questo conto è esatto: non c'è l'errore del "rettangolo storto" a cui si pensa srotolando un guscio spesso. Resta soltanto l'approssimazione dell'altezza, che sparisce nel limite come nel <span class="richiamo" data-sec="4.1">§4.1</span>.</p>
+          <p><strong>Passo 4 — sommo e passo al limite.</strong> La somma è una somma di Riemann di $2\pi\,x\,f(x)$ con i punti $\bar x_i$ al centro delle strisce:</p>
+          <div class="calcolo">$$V=\lim_{n\to+\infty}\sum_{i=1}^{n}2\pi\,\bar x_i\,f(\bar x_i)\,\Delta x=2\pi\int_a^b x\,f(x)\,dx.$$</div>
+          <p><strong>Conclusione.</strong> Strisce verticali, gusci cilindrici di volume $2\pi\bar x_if(\bar x_i)\Delta x$, somma di Riemann, limite. <span class="qed">∎</span></p>
+          <p><strong>Controllo.</strong> Con $f(x)=1$ su $[0,2]$ il solido è un cilindro di raggio $2$ e altezza $1$: la formula dà $2\pi\int_0^2x\,dx=4\pi$, come $\pi r^2h=\pi\cdot4\cdot1$.</p>
+        </div>
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">🔑</span> Dischi o gusci? Come si sceglie</div>
-          <p>Guarda com'è scritta la funzione e qual è l'asse. <strong>Se lo spessore della fetta è perpendicolare all'asse di rotazione</strong>, usi dischi o anelli e integri nella variabile che corre lungo l'asse. <strong>Se invece lo spessore è parallelo all'asse</strong>, la fetta si arrotola e usi i gusci. In pratica: rotazione attorno all'asse $x$ con $y=f(x)$ data, dischi in $dx$; rotazione attorno all'asse $y$ con $y=f(x)$ data, gusci in $dx$; rotazione attorno all'asse $y$ con $x=h(y)$ data, dischi in $dy$. Se entrambi i metodi sono possibili, scegli quello che ti evita di invertire la funzione.</p>
+          <p>Guarda come è data la funzione e qual è l'asse. <strong>Se lo spessore della fetta è perpendicolare all'asse di rotazione</strong>, usa dischi o anelli e integra lungo l'asse. <strong>Se è parallelo all'asse</strong>, la fetta si arrotola: usa i gusci. In pratica: asse $x$ con $y=f(x)$ data, dischi in $dx$; asse $y$ con $y=f(x)$ data, gusci in $dx$; asse $y$ con $x=h(y)$ data, dischi in $dy$. Se vanno bene entrambi, scegli quello che evita di invertire la funzione.</p>
         </div>
 
         <h3 id="teoria-lunghezza">4.4 Lunghezza di una curva (arco)</h3>
-        <p><strong>Prima l'idea.</strong> Quanto è lunga la curva $y=f(x)$ fra $x=a$ e $x=b$? Non la distanza fra i due estremi in linea d'aria: proprio la lunghezza del filo, se lo appoggiassimo sul grafico seguendone tutte le salite e le discese. È il "chilometraggio vero" del profilo altimetrico della sezione 3. Lo schema resta quello del <span class="richiamo" data-sec="4.1">§4.1</span>: affetta, misura una fettina, somma, passa al limite.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🧵</span> L'immagine da tenere in mente</div>
-          <p>Appoggia uno spago sul disegno della curva, facendolo aderire a ogni gobba. Poi stacca lo spago, tendilo sul tavolo e misuralo con il metro: quel numero è la lunghezza dell'arco. Sarà maggiore della distanza orizzontale fra i due estremi, perché lo spago ha dovuto fare anche tutte le salite e le discese; le due misure coincidono solo nel caso limite in cui la "curva" sia un segmento orizzontale, cioè non salga e non scenda mai.</p>
-        </div>
-        <p><strong>Il pezzettino generico.</strong> Non possiamo misurare direttamente un pezzo di curva, ma possiamo misurare un <em>segmento</em>. Allora sostituiamo la curva con una <strong>spezzata</strong>: uniamo con segmenti rettilinei punti consecutivi del grafico. Ogni segmentino chiude un piccolo triangolo rettangolo: il cateto orizzontale è lo spostamento $\Delta x$, il cateto verticale è la variazione di quota $\Delta y$, e il segmentino è l'ipotenusa. Per il <strong>teorema di Pitagora</strong> (Parte 0, cap. 7):</p>
-        <div class="formula-block">$$\Delta \ell=\sqrt{(\Delta x)^2+(\Delta y)^2}$$</div>
-        <p>Questa scrittura però non va ancora bene: dentro l'integrale vogliamo qualcosa moltiplicato per $dx$, non una radice con due incrementi dentro. Sistemiamola con tre passaggi di algebra, tutti già noti.</p>
-        <div class="calcolo">$$\begin{aligned}
-        \Delta\ell &amp;= \sqrt{(\Delta x)^2+(\Delta y)^2} &amp;&amp;\text{(teorema di Pitagora sul triangolino)}\\
-        &amp;= \sqrt{(\Delta x)^2\left(1+\frac{(\Delta y)^2}{(\Delta x)^2}\right)} &amp;&amp;\text{(raccolgo } (\Delta x)^2 \text{ a fattor comune sotto la radice)}\\
-        &amp;= \sqrt{(\Delta x)^2}\cdot\sqrt{1+\frac{(\Delta y)^2}{(\Delta x)^2}} &amp;&amp;\text{(la radice di un prodotto è il prodotto delle radici, Parte 0, cap. 3)}\\
-        &amp;= \Delta x\,\sqrt{1+\left(\frac{\Delta y}{\Delta x}\right)^2} &amp;&amp;\text{(} \sqrt{(\Delta x)^2}=\Delta x \text{ perché } \Delta x\gt0 \text{; inoltre } \tfrac{A^2}{B^2}=\left(\tfrac AB\right)^2)
-        \end{aligned}$$</div>
-        <p>Il raccoglimento del secondo passaggio si verifica svolgendo il prodotto: il primo termine dà $(\Delta x)^2\cdot 1=(\Delta x)^2$, il secondo dà $(\Delta x)^2\cdot\frac{(\Delta y)^2}{(\Delta x)^2}=(\Delta y)^2$, e insieme ricostruiscono esattamente ciò da cui eravamo partiti.</p>
-        <p>Adesso guarda il pezzo $\frac{\Delta y}{\Delta x}$: è il <strong>rapporto incrementale</strong> di $f$, quello del <a href="07-derivate.html">capitolo 7</a>. Quando $\Delta x$ diventa piccolissimo, quel rapporto diventa la <span class="glossario-term" data-term="derivata">derivata</span> $f'(x)$. Il pezzettino di lunghezza è dunque</p>
-        <div class="formula-block">$$d\ell=\underbrace{\sqrt{1+[f'(x)]^2}}_{\text{fattore di allungamento dovuto alla pendenza}}\cdot\underbrace{dx}_{\text{spostamento orizzontale}}$$</div>
-
-        <p><strong>Un esempio con i numeri, controllabile con Pitagora.</strong> Prendiamo la retta $f(x)=2x$ da $x=0$ a $x=3$. Il grafico è il segmento che va da $(0,0)$ a $(3,6)$: con Pitagora la sua lunghezza è $\sqrt{3^2+6^2}=\sqrt{9+36}=\sqrt{45}=3\sqrt5\approx 6{,}71$. Vediamo se la formula dell'arco è d'accordo.</p>
-        <div class="calcolo">$$\begin{aligned}
-        f'(x) &amp;= 2 &amp;&amp;\text{(derivata di } 2x \text{: regola della potenza, cap. 7)}\\
-        [f'(x)]^2 &amp;= 2^2 = 4 &amp;&amp;\text{(elevo al quadrato)}\\
-        \sqrt{1+[f'(x)]^2} &amp;= \sqrt{1+4} = \sqrt5 &amp;&amp;\text{(sostituisco dentro la radice)}\\
-        L &amp;= \int_0^3 \sqrt5\,dx = \big[\sqrt5\,x\big]_0^3 &amp;&amp;\text{(primitiva di una costante: costante per } x)\\
-        &amp;= 3\sqrt5-0 = 3\sqrt5 &amp;&amp;\text{(teorema fondamentale)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è positivo e coincide con il $3\sqrt5$ trovato con Pitagora. Ed è maggiore della distanza orizzontale $b-a=3$, come deve essere per una curva che sale.</p>
-
-        <p><strong>Solo ora la formula, con ogni pezzo tradotto.</strong></p>
+        <p>Quanto è lunga la curva $y=f(x)$ fra $x=a$ e $x=b$? Non la distanza in linea d'aria fra gli estremi: la lunghezza del filo steso sul grafico, con tutte le salite e le discese (il chilometraggio vero della sezione 3).</p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Formula (lunghezza d'arco)</span>
-          <p>Se $f$ è derivabile su $[a,b]$ e la sua derivata $f'$ è continua, la lunghezza del grafico di $f$ fra $a$ e $b$ è</p>
-          <div class="formula-block">$$L=\int_a^b \underbrace{\sqrt{1+[f'(x)]^2}}_{\text{lunghezza del segmentino, per unità di } dx}\ dx$$</div>
-          <p>Cosa significa ogni pezzo:</p>
-          <ul>
-            <li>il numero $1$ sotto radice è il cateto orizzontale (al quadrato) del triangolino: vale $1$ perché abbiamo già raccolto fuori $\Delta x$;</li>
-            <li>$[f'(x)]^2$ è il cateto verticale al quadrato: è la <strong>derivata</strong>, non la funzione, e va <strong>al quadrato</strong>;</li>
-            <li>la radice è l'ipotenusa, cioè Pitagora;</li>
-            <li>poiché $[f'(x)]^2\geq0$, il fattore $\sqrt{1+[f'(x)]^2}$ è sempre $\geq 1$: la curva è sempre almeno lunga quanto la sua ombra orizzontale.</li>
-          </ul>
+          <p>Se $f$ è derivabile su $[a,b]$ con derivata $f'$ continua, la lunghezza del grafico di $f$ fra $a$ e $b$ è</p>
+          <div class="formula-block">$$L=\int_a^b \sqrt{1+[f'(x)]^2}\ dx$$</div>
+          <p>Dentro la radice c'è la <strong>derivata</strong> (non la funzione), elevata al <strong>quadrato</strong>. Poiché $[f'(x)]^2\geq0$, il fattore sotto integrale è sempre $\geq1$: la curva è lunga almeno quanto la sua ombra orizzontale $b-a=\int_a^b1\,dx$, e più è ripida, più è lunga.</p>
         </div>
 
         <svg viewBox="0 0 440 240" style="max-width:480px;margin:1.4em auto;display:block;" role="img" aria-label="Una curva approssimata da una spezzata; un segmentino forma un triangolo rettangolo con cateti dx e dy e ipotenusa radice di dx quadro più dy quadro">
@@ -489,132 +352,106 @@
           <text x="300" y="90" font-size="12" font-weight="700" fill="var(--color-primary)">curva</text>
         </svg>
 
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> La scrittura $\int_a^b\sqrt{1+f(x)^2}\,dx$ <strong>non</strong> è la lunghezza dell'arco: dentro ci va la derivata, non la funzione. E si capisce dal significato: la lunghezza dipende da quanto la curva è <em>ripida</em>, non da quanto è <em>alta</em>. La retta $y=2x+1000$ passa a mille metri di quota ma è lunga esattamente quanto $y=2x$, perché ha la stessa pendenza. Non va bene nemmeno $\int_a^b\big(1+[f'(x)]^2\big)dx$, dove manca la radice: senza radice non c'è Pitagora.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che la lunghezza di una curva si calcola con un integrale in cui compare la derivata.</p>
+          <p><strong>L'idea.</strong> Di una curva non sappiamo misurare nulla, di un segmento sappiamo tutto grazie a Pitagora. Sostituiamo la curva con una spezzata e sommiamo i segmenti. Un ostacolo: nella lunghezza di un segmentino compare $\Delta y$, che non è "una funzione di $x$ per $\Delta x$", e quindi la somma non è ancora una somma di Riemann. Lo superiamo con il <strong>teorema di Lagrange</strong>, che trasforma una differenza $\Delta y$ in una derivata per $\Delta x$.</p>
+          <p><strong>Passo 1 — la spezzata.</strong> Divido $[a,b]$ con i punti $a=x_0\lt x_1\lt\cdots\lt x_n=b$, equidistanti di $\Delta x$, e unisco con un segmento ogni coppia di punti consecutivi $P_{i-1}$, $P_i$ del grafico, dove $P_i=\big(x_i,f(x_i)\big)$.</p>
+          <p><strong>Passo 2 — misuro un segmentino con Pitagora.</strong> Il segmento da $P_{i-1}$ a $P_i$ è l'ipotenusa di un triangolo rettangolo con cateto orizzontale $\Delta x$ e cateto verticale $\Delta y_i=f(x_i)-f(x_{i-1})$:</p>
+          <div class="calcolo">$$\Delta\ell_i=\sqrt{(\Delta x)^2+(\Delta y_i)^2}.$$</div>
+          <p><strong>Passo 3 — trasformo $\Delta y_i$ con Lagrange.</strong> $f$ è continua su $[x_{i-1},x_i]$ e derivabile all'interno, quindi esiste $\xi_i$ fra $x_{i-1}$ e $x_i$ in cui la tangente ha la stessa pendenza della corda (cap. 8):</p>
+          <div class="calcolo">$$\frac{\Delta y_i}{\Delta x}=f'(\xi_i)\quad\Longrightarrow\quad\Delta y_i=f'(\xi_i)\,\Delta x.$$</div>
+          <p><strong>Passo 4 — sostituisco e porto fuori $\Delta x$.</strong> Dentro la radice raccolgo $(\Delta x)^2$ a fattor comune; poi estraggo la radice, ricordando che $\sqrt{(\Delta x)^2}=\Delta x$ perché $\Delta x\gt0$:</p>
+          <div class="calcolo">$$\begin{aligned}
+          \Delta\ell_i &amp;= \sqrt{(\Delta x)^2+\big(f'(\xi_i)\,\Delta x\big)^2}\\
+          &amp;= \sqrt{(\Delta x)^2\big(1+[f'(\xi_i)]^2\big)}\\
+          &amp;= \sqrt{1+[f'(\xi_i)]^2}\ \Delta x.
+          \end{aligned}$$</div>
+          <p><strong>Passo 5 — sommo e passo al limite.</strong> Ora la lunghezza della spezzata è una somma di Riemann di $\sqrt{1+[f']^2}$, con i punti $\xi_i$. Non scegliamo noi i $\xi_i$ e non sappiamo dove siano, ma non importa: per una funzione integrabile (qui è continua, perché $f'$ lo è) il limite delle somme di Riemann è l'integrale <em>comunque</em> si scelgano i punti. Per definizione, la lunghezza della curva è il limite delle lunghezze delle spezzate sempre più fitte:</p>
+          <div class="calcolo">$$L=\lim_{n\to+\infty}\sum_{i=1}^{n}\sqrt{1+[f'(\xi_i)]^2}\ \Delta x=\int_a^b\sqrt{1+[f'(x)]^2}\,dx.$$</div>
+          <p><strong>Conclusione.</strong> Spezzata, Pitagora per ogni segmento, Lagrange per scrivere $\Delta y_i=f'(\xi_i)\Delta x$, somma di Riemann, limite. <span class="qed">∎</span></p>
+          <p><strong>Controllo.</strong> Con $f(x)=2x$ su $[0,3]$ è $\sqrt{1+4}=\sqrt5$ e $L=3\sqrt5$, che è anche $\sqrt{3^2+6^2}$ (Pitagora sul segmento da $(0,0)$ a $(3,6)$).</p>
+        </div>
         <div class="callout callout--trucco">
-          <div class="callout__title"><span class="emoji">🔑</span> Come si calcola una lunghezza d'arco, in pratica</div>
-          <p><strong>(1)</strong> Deriva la funzione: ti serve $f'(x)$. <strong>(2)</strong> Elevala al quadrato e semplifica. <strong>(3)</strong> Somma $1$ e guarda bene il risultato: negli esercizi d'esame quella somma è quasi sempre un <em>quadrato perfetto</em>, e la radice se ne va. <strong>(4)</strong> Integra. <strong>(5)</strong> Controlla che il risultato sia maggiore di $b-a$: se viene minore, c'è di sicuro un errore.</p>
+          <div class="callout__title"><span class="emoji">🔑</span> Come si calcola, e un avvertimento</div>
+          <p><strong>(1)</strong> Deriva. <strong>(2)</strong> Eleva $f'$ al quadrato e semplifica. <strong>(3)</strong> Somma $1$ e guarda: negli esercizi quasi sempre viene un <em>quadrato perfetto</em> e la radice se ne va. <strong>(4)</strong> Integra. <strong>(5)</strong> Controlla che $L\geq b-a$: se viene meno, c'è un errore.</p>
+          <p><strong>Attenzione:</strong> la formula esiste sempre, ma l'integrale quasi mai si risolve con le primitive elementari. Già una gobba del seno dà $\int_0^{\pi}\sqrt{1+\cos^2x}\,dx\approx3{,}820$, che non si scrive con radici, logaritmi ed esponenziali (è un integrale ellittico) e si calcola solo a numeri. Gli esercizi sono costruiti al contrario, partendo da funzioni con $1+[f']^2$ quadrato perfetto: se la radice non si semplifica, ricontrolla i conti, ma non è detto che tu abbia sbagliato.</p>
         </div>
-        <div class="callout callout--errore">
-          <div class="callout__title"><span class="emoji">⚠️</span> Attenzione: qui l'istinto inganna</div>
-          <p>Avendo in mano una formula così breve, verrebbe da concludere: "bene, adesso so calcolare la lunghezza di qualunque curva". <strong>Non è così</strong>, e vale la pena dirlo subito. La formula <em>esiste</em> sempre, ma l'integrale che ne esce quasi mai si sa risolvere con le primitive elementari, perché la radice $\sqrt{1+[f'(x)]^2}$ è una funzione ostica.</p>
-          <p>L'esempio più imbarazzante è la curva più innocua che ci sia, l'onda del seno. La lunghezza di una sua gobba, da $x=0$ a $x=\pi$, è</p>
-          <div class="formula-block">$$L=\int_0^{\pi}\sqrt{1+\cos^2 x}\;dx\approx 3{,}820$$</div>
-          <p>e quel numero <em>non</em> si può scrivere con radici, logaritmi ed esponenziali: è un cosiddetto integrale ellittico, e si ottiene solo con metodi numerici. Che $3{,}820$ sia il valore giusto lo si può però controllare: la gobba deve essere più lunga della spezzata inscritta che unisce $(0,0)$, $\left(\tfrac\pi2,1\right)$ e $(\pi,0)$, la quale per Pitagora misura $2\sqrt{\left(\tfrac\pi2\right)^2+1}\approx3{,}724$ — e a maggior ragione più lunga della sola base $\pi\approx3{,}142$. Il valore $3{,}820$ supera entrambe, come deve.</p>
-          <p>Morale: gli esercizi che trovi nei libri e agli esami sono <strong>costruiti al contrario</strong>, partendo da quelle poche funzioni per cui $1+[f'(x)]^2$ risulta un quadrato perfetto. Se in un compito ti esce una radice che non si semplifica, non è detto che tu abbia sbagliato: controlla i conti, ma sappi che esistono curve la cui lunghezza nessuno sa scrivere in forma chiusa.</p>
-        </div>
-        <p>Guarda infine la struttura della formula: la distanza orizzontale è $b-a=\int_a^b 1\,dx$, e il fattore $\sqrt{1+[f'(x)]^2}\geq 1$ la <strong>gonfia</strong> ogni volta che la curva ha pendenza non nulla. Più la curva è ripida, più lunga risulta: esattamente come le salite e le discese allungano il chilometraggio di una strada di montagna rispetto alla distanza orizzontale che quella strada copre.</p>
 
         <h3 id="teoria-baricentro">4.5 Massa e baricentro</h3>
-        <p><strong>Prima l'idea.</strong> Finora abbiamo sommato pezzettini di area, di volume, di lunghezza. Sommiamo adesso pezzettini di <strong>massa</strong>. E poi, con lo stesso arnese, troviamo il <strong><span class="glossario-term" data-term="baricentro">baricentro</span></strong>: il punto in cui un oggetto sta in equilibrio su un dito.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🏏</span> L'immagine da tenere in mente</div>
-          <p>Prendi una mazza da baseball e prova a tenerla in equilibrio in orizzontale su un dito. Il punto giusto non è a metà della mazza: è spostato verso l'estremità grossa, perché da quella parte c'è molto più legno. La mazza è un'asta la cui "densità lineare" — quanti grammi per centimetro — cambia lungo la lunghezza. La massa totale si ottiene sommando i grammi di ogni centimetro; il punto di equilibrio è una <em>media delle posizioni, pesata con la massa</em>: le zone pesanti tirano il baricentro verso di sé.</p>
-        </div>
-        <p><strong>Il pezzettino generico (massa).</strong> Consideriamo un'asta appoggiata sull'asse $x$ fra $a$ e $b$, la cui densità lineare in posizione $x$ vale $\lambda(x)$ (per esempio in chilogrammi al metro). Il pezzetto di asta fra $x$ e $x+dx$ è lungo $dx$ e ha densità praticamente costante $\lambda(x)$; quindi la sua massa è</p>
-        <div class="formula-block">$$dm=\underbrace{\lambda(x)}_{\text{massa per unità di lunghezza}}\cdot\underbrace{dx}_{\text{lunghezza del pezzetto}}$$</div>
-        <p><strong>Il pezzettino generico (momento).</strong> Per l'equilibrio non conta solo <em>quanta</em> massa c'è, ma anche <em>dove</em> sta: una massa lontana dal perno fa più leva. Si chiama <strong>momento</strong> rispetto all'origine il prodotto "massa per distanza", quindi il pezzettino di momento è $dM=x\cdot dm=x\,\lambda(x)\,dx$. Il baricentro è la posizione in cui dovremmo concentrare <em>tutta</em> la massa per ottenere lo stesso momento: cioè $\bar x\cdot m=M$, da cui $\bar x=\frac{M}{m}$.</p>
-
-        <p><strong>Un esempio con i numeri.</strong> Un'asta lunga $2$ metri, appoggiata da $x=0$ a $x=2$, ha densità $\lambda(x)=3x^2$ (in kg/m): è leggerissima a sinistra e sempre più pesante verso destra. Calcoliamo massa e baricentro.</p>
-        <div class="calcolo">$$\begin{aligned}
-        m &amp;= \int_0^2 3x^2\,dx &amp;&amp;\text{(sommo i pezzettini } dm=\lambda(x)\,dx)\\
-        &amp;= 3\int_0^2 x^2\,dx &amp;&amp;\text{(porto fuori la costante } 3 \text{: linearità, cap. 14)}\\
-        &amp;= 3\left[\frac{x^3}{3}\right]_0^2 = \big[x^3\big]_0^2 &amp;&amp;\text{(primitiva di } x^2 \text{; il } 3 \text{ semplifica il } 3 \text{ al denominatore)}\\
-        &amp;= 2^3-0^3 = 8 &amp;&amp;\text{(teorema fondamentale: la massa è } 8 \text{ kg)}
-        \end{aligned}$$</div>
-        <div class="calcolo">$$\begin{aligned}
-        M &amp;= \int_0^2 x\cdot 3x^2\,dx &amp;&amp;\text{(sommo i pezzettini di momento } dM=x\,\lambda(x)\,dx)\\
-        &amp;= \int_0^2 3x^3\,dx &amp;&amp;\text{(} x\cdot x^2=x^3 \text{: si sommano gli esponenti)}\\
-        &amp;= 3\left[\frac{x^4}{4}\right]_0^2 = \frac{3}{4}\big[x^4\big]_0^2 &amp;&amp;\text{(primitiva di } x^3 \text{, costante portata fuori)}\\
-        &amp;= \frac34\cdot 16 = 12 &amp;&amp;\text{(} 2^4=16 \text{, poi } \tfrac34\cdot16=12)\\
-        \bar x &amp;= \frac{M}{m} = \frac{12}{8} = 1{,}5 &amp;&amp;\text{(momento diviso massa)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il baricentro cade in $x=1{,}5$ m: sta dentro l'asta (fra $0$ e $2$ m, come deve), ed è ragionevole perché è spostato <em>a destra</em> del punto di mezzo $x=1$ m, proprio dove l'asta è più pesante. Se la densità fosse stata costante, il baricentro sarebbe caduto esattamente in $x=1$ m. Torna anche la massa: la densità va da $\lambda(0)=0$ a $\lambda(2)=12$ kg/m, quindi su $2$ m la massa deve stare fra $0$ e $2\cdot12=24$ kg, e gli $8$ kg trovati ci stanno.</p>
-
-        <p><strong>Solo ora le formule.</strong></p>
+        <p>Sommiamo ora pezzettini di <strong>massa</strong>, e con lo stesso arnese cerchiamo il <strong><span class="glossario-term" data-term="baricentro">baricentro</span></strong>: il punto in cui un oggetto sta in equilibrio su un dito. Una mazza da baseball si equilibra non a metà, ma spostata verso l'estremità grossa, dove c'è più legno: il baricentro è una <em>media delle posizioni pesata con la massa</em>.</p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Formule (massa e baricentro di un'asta)</span>
-          <p>Un'asta posta fra $x=a$ e $x=b$, di densità lineare continua $\lambda(x)$, ha massa e baricentro</p>
+          <p>Un'asta posta fra $x=a$ e $x=b$, con densità lineare continua $\lambda(x)$ (per esempio in kg al metro), ha massa e baricentro</p>
           <div class="formula-block">$$m=\int_a^b \lambda(x)\,dx,\qquad \bar x=\frac{1}{m}\int_a^b x\,\lambda(x)\,dx$$</div>
-          <p>La seconda formula è una <strong>media pesata</strong>: si somma "posizione per peso" e si divide per il peso totale, esattamente come si fa con la media dei voti quando gli esami valgono crediti diversi.</p>
         </div>
-        <p>La stessa idea, applicata a una lamina piana omogenea (di densità costante) sotto il grafico di $y=f(x)\geq0$ su $[a,b]$, dà le coordinate del suo baricentro. Qui il "peso" di ogni strisciolina verticale è la sua area $f(x)\,dx$, e l'area totale è $A=\int_a^b f(x)\,dx$, che si calcola come nel <span class="richiamo" data-sec="4.2">§4.2</span> prendendo $g(x)=0$.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che la massa è l'integrale della densità, e che il baricentro è la media delle posizioni pesata con la massa.</p>
+          <p><strong>L'idea.</strong> Per la massa vale lo schema solito: su un pezzetto la densità è quasi costante, quindi massa = densità per lunghezza. Per il baricentro partiamo dal caso che conosciamo, quello di poche masse puntiformi, di cui troviamo l'equilibrio con la legge della leva; poi trattiamo ogni pezzetto dell'asta come una massa puntiforme e passiamo al limite.</p>
+          <p><strong>Passo 1 — la massa.</strong> Taglio l'asta in $n$ pezzetti di lunghezza $\Delta x$, nelle posizioni $x_i$. Il pezzetto $i$ ha massa $m_i\approx\lambda(x_i)\,\Delta x$. Sommando e passando al limite:</p>
+          <div class="calcolo">$$m=\lim_{n\to+\infty}\sum_{i=1}^{n}\lambda(x_i)\,\Delta x=\int_a^b\lambda(x)\,dx.$$</div>
+          <p><strong>Passo 2 — equilibrio di masse puntiformi.</strong> Metto masse $m_i$ nei punti $x_i$ e un perno in $\bar x$. Per la legge della leva una massa $m$ a distanza $d$ dal perno spinge con "forza" $m\cdot d$, in un verso o nell'altro (distanza con segno: negativa a sinistra, positiva a destra). C'è equilibrio quando le spinte si bilanciano, cioè quando la somma è zero. Da qui ricavo $\bar x$:</p>
+          <div class="calcolo">$$\sum_i m_i\,(x_i-\bar x)=0\ \Longrightarrow\ \sum_i m_i\,x_i=\bar x\sum_i m_i\ \Longrightarrow\ \bar x=\frac{\sum_i m_i\,x_i}{\sum_i m_i}.$$</div>
+          <p>È una media pesata: ogni posizione $x_i$ conta in proporzione alla sua massa, come i voti degli esami con crediti diversi.</p>
+          <p><strong>Passo 3 — i pezzetti dell'asta.</strong> Sostituisco $m_i=\lambda(x_i)\,\Delta x$. Per $\Delta x\to0$ il numeratore è una somma di Riemann di $x\,\lambda(x)$ e il denominatore, per il Passo 1, tende a $m$:</p>
+          <div class="calcolo">$$\bar x=\lim_{n\to+\infty}\frac{\sum_{i=1}^{n}x_i\,\lambda(x_i)\,\Delta x}{\sum_{i=1}^{n}\lambda(x_i)\,\Delta x}=\frac{\int_a^b x\,\lambda(x)\,dx}{\int_a^b\lambda(x)\,dx}=\frac1m\int_a^b x\,\lambda(x)\,dx.$$</div>
+          <p>Il limite di un rapporto è il rapporto dei limiti perché il denominatore tende a $m\gt0$.</p>
+          <p><strong>Conclusione.</strong> La massa è l'integrale di $\lambda$; il baricentro è la media pesata $\frac{\int x\lambda}{\int\lambda}$. <span class="qed">∎</span></p>
+        </div>
+        <p>La stessa idea, per una lamina piana omogenea sotto il grafico di $y=f(x)\geq0$ su $[a,b]$, dà le due coordinate del baricentro. L'area totale è $A=\int_a^b f(x)\,dx$ (come nel <span class="richiamo" data-sec="4.2">§4.2</span> con $g=0$).</p>
         <div class="box-teorema box-teorema--definizione">
-          <span class="box-teorema__label">Formule (baricentro di una regione piana)</span>
-          <div class="formula-block">$$\bar{x}=\frac{1}{A}\int_a^b \underbrace{x}_{\text{posizione}}\ \underbrace{f(x)\,dx}_{\text{peso della strisciolina}},\qquad \bar{y}=\frac{1}{A}\int_a^b \underbrace{\frac{f(x)}{2}}_{\text{quota del centro della strisciolina}}\ \underbrace{f(x)\,dx}_{\text{peso della strisciolina}}$$</div>
-          <p>La seconda si scrive di solito nella forma compatta $\bar y=\dfrac1A\displaystyle\int_a^b\frac12[f(x)]^2\,dx$: è la stessa cosa, perché $\frac{f(x)}{2}\cdot f(x)=\frac12[f(x)]^2$.</p>
+          <span class="box-teorema__label">Formule (baricentro di una regione piana omogenea)</span>
+          <div class="formula-block">$$\bar{x}=\frac{1}{A}\int_a^b x\,f(x)\,dx,\qquad \bar{y}=\frac{1}{A}\int_a^b \frac12\,[f(x)]^2\,dx$$</div>
         </div>
-        <p>Da dove viene quel $\frac{f(x)}{2}$? Ogni strisciolina verticale è un rettangolino alto $f(x)$ che parte da $y=0$: il suo centro sta a metà altezza, cioè alla quota $\frac{f(x)}{2}$. Nella media pesata delle quote, quindi, ogni strisciolina "vota" per la propria altezza dimezzata, con un peso pari alla propria area.</p>
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Il baricentro <em>non</em> è il punto di mezzo dell'intervallo. Per la regione sotto $y=x^2$ su $[0,1]$ il punto di mezzo sarebbe $x=0{,}5$, ma il baricentro cade in $\bar x=0{,}75$ (lo calcoliamo nell'Esercizio 15.12): la regione è quasi tutta ammassata a destra, dove la parabola è alta. Solo se la figura è simmetrica rispetto alla verticale di mezzo il baricentro cade al centro.</p>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Le due formule, in particolare da dove viene il $\frac12[f(x)]^2$.</p>
+          <p><strong>L'idea.</strong> Stesso schema dell'asta: taglio in strisce verticali; ogni striscia è quasi un rettangolo, con la massa concentrata nel suo centro; il baricentro è la media pesata dei centri, con le coordinate $x$ e $y$ trattate separatamente. La densità è costante, quindi la massa di una striscia è proporzionale alla sua area e il fattore di proporzionalità si semplifica.</p>
+          <p><strong>Passo 1 — una striscia.</strong> Larga $\Delta x$ e alta $f(x_i)$: area $f(x_i)\,\Delta x$, che fa da "peso". Il suo centro sta in $x_i$ per l'ascissa e a metà altezza per l'ordinata, cioè in $\left(x_i,\ \frac{f(x_i)}{2}\right)$.</p>
+          <p><strong>Passo 2 — media pesata.</strong> Con la formula del Passo 2 della dimostrazione precedente, i pesi sono le aree delle strisce:</p>
+          <div class="calcolo">$$\bar x\approx\frac{\sum_i x_i\,f(x_i)\,\Delta x}{\sum_i f(x_i)\,\Delta x},\qquad \bar y\approx\frac{\sum_i \frac{f(x_i)}{2}\,f(x_i)\,\Delta x}{\sum_i f(x_i)\,\Delta x}.$$</div>
+          <p><strong>Passo 3 — limite.</strong> I denominatori tendono ad $A$; i numeratori sono somme di Riemann di $x\,f(x)$ e di $\frac12[f(x)]^2$, perché $\frac{f}{2}\cdot f=\frac12f^2$. Passando al limite si ottengono le due formule. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Attenzione:</strong> il baricentro <em>non</em> è il punto di mezzo dell'intervallo. Per la regione sotto $y=x^2$ su $[0,1]$ il punto di mezzo sarebbe $x=0{,}5$, ma $\bar x=0{,}75$ (lo calcoliamo nell'Esercizio 15.12): la regione è ammassata a destra, dove la parabola è alta. Solo una figura simmetrica ha il baricentro al centro.</p>
 
         <h3 id="teoria-fisica">4.6 Applicazioni fisiche: lavoro, spazio e valor medio</h3>
 
         <h4>Lavoro di una forza variabile</h4>
-        <p><strong>Prima l'idea.</strong> In fisica, il lavoro di una forza <em>costante</em> $F$ lungo uno spostamento $d$ è semplicemente il prodotto $L=F\cdot d$. Ma se la forza <strong>cambia</strong> lungo il percorso non possiamo più moltiplicare: quale valore di $F$ useremmo? Allora affettiamo lo spostamento.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🪀</span> L'immagine da tenere in mente</div>
-          <p>Tira una molla. All'inizio cede quasi da sola; più la allunghi, più devi tirare forte. Non c'è "una" forza: ce n'è una diversa per ogni centimetro di allungamento. Però, se guardi un solo millimetro di allungamento, in quel millimetro la forza è praticamente costante, e per quel millimetro puoi usare tranquillamente "forza per spostamento". Sommando i lavoretti di tutti i millimetri ottieni il lavoro totale.</p>
-        </div>
-        <p><strong>Il pezzettino generico.</strong> Sul trattino fra $x$ e $x+dx$ la forza vale $F(x)$ ed è praticamente costante, quindi il lavoretto è</p>
-        <div class="formula-block">$$dL=\underbrace{F(x)}_{\text{forza in quel punto}}\cdot\underbrace{dx}_{\text{spostamento del trattino}}$$</div>
-        <p><strong>Un esempio con i numeri.</strong> Una molla segue la <strong>legge di Hooke</strong> $F(x)=k\,x$: la forza è proporzionale all'allungamento, con costante elastica $k$. Prendiamo $k=50$ N/m e allunghiamola da $0$ a $0{,}2$ m.</p>
-        <div class="calcolo">$$\begin{aligned}
-        L &amp;= \int_0^{0{,}2} 50x\,dx &amp;&amp;\text{(sommo i lavoretti } dL=F(x)\,dx \text{, con } F(x)=50x)\\
-        &amp;= 50\int_0^{0{,}2} x\,dx &amp;&amp;\text{(porto fuori la costante } 50 \text{: linearità, cap. 14)}\\
-        &amp;= 50\left[\frac{x^2}{2}\right]_0^{0{,}2} &amp;&amp;\text{(primitiva di } x \text{: regola della potenza, cap. 13)}\\
-        &amp;= 50\cdot\frac{(0{,}2)^2}{2} &amp;&amp;\text{(teorema fondamentale; in } x=0 \text{ il valore è } 0)\\
-        &amp;= 50\cdot\frac{0{,}04}{2} = 50\cdot 0{,}02 = 1 &amp;&amp;\text{(eseguo i conti: il lavoro è } 1 \text{ joule)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è positivo, come deve essere per una forza che agisce nello stesso verso dello spostamento. Ed è ragionevole anche il valore: la forza cresce da $0$ N a $50\cdot0{,}2=10$ N, quindi "in media" vale $5$ N; moltiplicata per lo spostamento di $0{,}2$ m dà $5\cdot0{,}2=1$ J, esattamente il risultato trovato.</p>
-        <p>Rifacciamo lo stesso conto con le lettere, perché il risultato è una formula famosa.</p>
-        <div class="calcolo">$$\begin{aligned}
-        L &amp;= \int_0^{d} kx\,dx &amp;&amp;\text{(legge di Hooke } F(x)=kx \text{, allungamento da } 0 \text{ a } d)\\
-        &amp;= k\int_0^{d} x\,dx &amp;&amp;\text{(} k \text{ è costante: esce per linearità, cap. 14)}\\
-        &amp;= k\left[\frac{x^2}{2}\right]_0^{d} &amp;&amp;\text{(primitiva di } x)\\
-        &amp;= k\left(\frac{d^2}{2}-0\right)=\frac12 k d^2 &amp;&amp;\text{(teorema fondamentale)}
-        \end{aligned}$$</div>
-        <p>Ecco da dove viene la celebre <strong>energia elastica</strong> $\frac12 k x^2$ che trovi nei libri di fisica: non è una formula calata dall'alto, è l'integrale della legge di Hooke.</p>
+        <p>Il lavoro di una forza <em>costante</em> $F$ lungo uno spostamento $d$ è $L=F\cdot d$. Se la forza cambia lungo il percorso (una molla più la allunghi, più devi tirare) non si può più moltiplicare: quale $F$ useremmo?</p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Formula (lavoro di una forza variabile)</span>
-          <div class="formula-block">$$L=\int_a^b \underbrace{F(x)}_{\text{forza}}\ \underbrace{dx}_{\text{spostamento}}$$</div>
-          <p>Se la forza è costante, cioè $F(x)=F_0$, la formula si riduce a $F_0\,(b-a)$: ritroviamo "forza per spostamento". L'integrale serve proprio quando la forza <em>varia</em>.</p>
+          <p>Una forza $F(x)$ continua, che agisce lungo l'asse $x$ da $a$ a $b$, compie il lavoro</p>
+          <div class="formula-block">$$L=\int_a^b F(x)\,dx$$</div>
+          <p>Se $F(x)=F_0$ è costante si ritrova $F_0\,(b-a)$: l'integrale serve quando la forza <em>varia</em>.</p>
         </div>
+        <div class="box-dimostrazione">
+          <span class="box-dimostrazione__label">Dimostrazione</span>
+          <p><strong>Cosa vogliamo mostrare.</strong> Che il lavoro è la somma, lungo il percorso, di "forza per spostamento" calcolata su tratti piccolissimi.</p>
+          <p><strong>L'idea.</strong> Su un tratto abbastanza corto la forza è quasi costante, e lì la formula "forza per spostamento" funziona. È la solita fettina: la fettina è un tratto di percorso.</p>
+          <p><strong>Passo 1 — affetto.</strong> Divido $[a,b]$ in $n$ tratti di lunghezza $\Delta x$, nelle posizioni $x_i$.</p>
+          <p><strong>Passo 2 — misuro un tratto.</strong> La forza vale circa $F(x_i)$ (sta fra il suo minimo e il suo massimo sul tratto: incastro del <span class="richiamo" data-sec="4.1">§4.1</span>). Il lavoretto è forza per spostamento: $\Delta L_i\approx F(x_i)\,\Delta x$.</p>
+          <p><strong>Passo 3 — sommo e passo al limite.</strong> È una somma di Riemann di $F$:</p>
+          <div class="calcolo">$$L=\lim_{n\to+\infty}\sum_{i=1}^{n}F(x_i)\,\Delta x=\int_a^b F(x)\,dx.$$</div>
+          <p><strong>Conclusione.</strong> Lavoretti "forza per spostamento", somma di Riemann, limite. <span class="qed">∎</span></p>
+        </div>
+        <p><strong>Esempio famoso: la molla.</strong> Per la <strong>legge di Hooke</strong> $F(x)=kx$ (forza proporzionale all'allungamento, con costante elastica $k$) il lavoro per allungarla da $0$ a $d$ è:</p>
+        <div class="calcolo">$$L=\int_0^{d}kx\,dx=k\left[\frac{x^2}{2}\right]_0^{d}=\frac12\,k\,d^2.$$</div>
+        <p>Ecco da dove viene l'<strong>energia elastica</strong> $\frac12kx^2$ dei libri di fisica: è l'integrale della legge di Hooke.</p>
 
         <h4>Spazio percorso come integrale della velocità</h4>
-        <p>Lo abbiamo già incontrato nel <a href="14-integrali-definiti.html">capitolo 14</a>. Il pezzettino è lo spazietto percorso in un istante brevissimo: velocità per tempo, cioè $ds=v(t)\,dt$. Sommando dagli istanti $t_0$ a $t_1$:</p>
+        <p>Lo abbiamo già incontrato nel <a href="14-integrali-definiti.html">capitolo 14</a>. In un istante brevissimo lo spazio percorso è velocità per tempo, $ds=v(t)\,dt$, e sommando dagli istanti $t_0$ a $t_1$:</p>
         <div class="formula-block">$$s=\int_{t_0}^{t_1} v(t)\,dt$$</div>
-        <p>È l'operazione inversa del derivare: dalla posizione si ottiene la velocità derivando, dalla velocità si torna alla posizione integrando.</p>
-        <p><strong>Un esempio con i numeri.</strong> Un'auto parte da ferma e accelera in modo che al tempo $t$ (in secondi) la sua velocità sia $v(t)=3t$ (in metri al secondo). Quanta strada percorre nei primi $4$ secondi?</p>
-        <div class="calcolo">$$\begin{aligned}
-        s &amp;= \int_0^4 3t\,dt &amp;&amp;\text{(sommo i pezzettini } ds=v(t)\,dt \text{, con } v(t)=3t)\\
-        &amp;= 3\int_0^4 t\,dt &amp;&amp;\text{(porto fuori la costante } 3 \text{: linearità, cap. 14)}\\
-        &amp;= 3\left[\frac{t^2}{2}\right]_0^4 &amp;&amp;\text{(primitiva di } t \text{: regola della potenza, cap. 13)}\\
-        &amp;= 3\cdot\frac{16}{2} = 24 &amp;&amp;\text{(teorema fondamentale: percorre } 24 \text{ metri)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Le unità tornano: metri al secondo per secondi dà metri. E il numero è ragionevole: in quei $4$ s la velocità sale da $0$ a $3\cdot4=12$ m/s, quindi lo spazio percorso deve stare fra $0\cdot4=0$ m (se fosse rimasta ferma) e $12\cdot4=48$ m (se fosse andata subito al massimo). I $24$ m stanno esattamente in mezzo, come deve essere per una velocità che cresce in modo uniforme.</p>
+        <p>È l'operazione inversa del derivare: dalla posizione si ottiene la velocità derivando, dalla velocità si torna alla posizione integrando. Per esempio, con $v(t)=3t$ (m/s) nei primi $4$ secondi si percorrono $\int_0^4 3t\,dt=24$ m.</p>
 
         <h4>Valor medio integrale</h4>
-        <p><strong>Prima l'idea.</strong> Qual è l'"altezza media" di una funzione su $[a,b]$? La media di un elenco finito di numeri si fa sommandoli e dividendo per quanti sono; ma qui i valori sono infiniti, non si possono sommare uno per uno né contare. La somma di infiniti valori la sa fare l'integrale; e al posto di "quanti sono" si divide per l'ampiezza dell'intervallo.</p>
-        <div class="callout callout--vita-reale">
-          <div class="callout__title"><span class="emoji">🏖️</span> L'immagine da tenere in mente</div>
-          <p>Hai una cassetta rettangolare piena di sabbia, con dentro torrette e avvallamenti. Passi una spatola e livelli tutto: la sabbia è sempre la stessa, ma ora la superficie è piatta. A che altezza si è fermata? A quella media. Il valor medio integrale è esattamente l'altezza del livellamento: la stessa quantità di materiale (la stessa area sotto il profilo) ridistribuita in un rettangolo.</p>
-        </div>
-        <p><strong>Un esempio con i numeri.</strong> Calcoliamo il valor medio di $f(x)=x^2$ su $[0,3]$.</p>
-        <div class="calcolo">$$\begin{aligned}
-        \bar f &amp;= \frac{1}{3-0}\int_0^3 x^2\,dx &amp;&amp;\text{(definizione: integrale diviso ampiezza dell'intervallo)}\\
-        &amp;= \frac13\left[\frac{x^3}{3}\right]_0^3 &amp;&amp;\text{(primitiva di } x^2 \text{: regola della potenza, cap. 13)}\\
-        &amp;= \frac13\left(\frac{27}{3}-0\right) &amp;&amp;\text{(teorema fondamentale: sostituisco } x=3 \text{ e poi } x=0)\\
-        &amp;= \frac13\cdot 9 = 3 &amp;&amp;\text{(eseguo i conti)}
-        \end{aligned}$$</div>
-        <p><strong>Controllo di plausibilità.</strong> Il risultato è $3$, ed è ragionevole perché su $[0,3]$ la funzione va da $0$ a $9$: la media deve stare fra questi due numeri, e infatti ci sta. È piuttosto bassa perché $x^2$ resta piccola per gran parte dell'intervallo e schizza in alto solo alla fine. Inoltre esiste davvero un punto in cui $f$ vale $3$: risolvendo $x^2=3$ si trova $x=\sqrt3\approx1{,}73$, che sta dentro $[0,3]$.</p>
+        <p>Qual è l'"altezza media" di una funzione su $[a,b]$? La media di un elenco di numeri si fa sommando e dividendo per quanti sono; qui i valori sono infiniti: la loro somma la fa l'integrale e al posto di "quanti sono" si divide per l'ampiezza dell'intervallo. È come livellare con una spatola la sabbia di una cassetta: la quantità è la stessa, ma ora la superficie è piatta, a un'altezza che è proprio la media.</p>
         <div class="box-teorema box-teorema--definizione">
           <span class="box-teorema__label">Definizione (valor medio integrale)</span>
           <p>Sia $f$ integrabile su $[a,b]$ con $a\lt b$. Si chiama <strong>valor medio</strong> di $f$ su $[a,b]$ il numero</p>
-          <div class="formula-block">$$\bar{f}=\underbrace{\frac{1}{b-a}}_{\text{diviso l'ampiezza dell'intervallo}}\ \underbrace{\int_a^b f(x)\,dx}_{\text{somma di tutti i valori}}$$</div>
-          <p>Interpretazione geometrica: $\bar f$ è <strong>l'altezza del rettangolo</strong> che ha base $b-a$ e la <em>stessa area</em> della regione sotto il grafico. Infatti, moltiplicando entrambi i membri per $b-a$, la definizione diventa $\bar f\cdot(b-a)=\int_a^b f(x)\,dx$, cioè "area del rettangolo uguale area sotto la curva".</p>
+          <div class="formula-block">$$\bar{f}=\frac{1}{b-a}\int_a^b f(x)\,dx$$</div>
+          <p>Moltiplicando per $b-a$ si legge $\bar f\cdot(b-a)=\int_a^b f(x)\,dx$: $\bar f$ è l'altezza del rettangolo di base $b-a$ che ha la <em>stessa area</em> della regione sotto il grafico.</p>
         </div>
-        <p><strong>Un non-esempio, per capire dov'è il confine.</strong> Il valor medio <em>non</em> è la media fra il valore iniziale e quello finale. Su $[0,3]$ la funzione $x^2$ parte da $0$ e arriva a $9$: la media dei due estremi sarebbe $\frac{0+9}{2}=4{,}5$, ma il valor medio vero è $3$. La differenza c'è perché i valori piccoli occupano molto più intervallo di quelli grandi, e nella media integrale ogni valore pesa in proporzione allo spazio che occupa.</p>
-        <p>Se in più $f$ è <span class="glossario-term" data-term="continuita">continua</span>, il <em>teorema della media integrale</em> (lo dimostriamo nella <a href="#dimostrazioni">sezione Dimostrazioni</a>) garantisce che esiste almeno un punto $c\in[a,b]$ in cui $f(c)=\bar{f}$: la funzione assume davvero, da qualche parte, il proprio valore medio.</p>
-
         <svg viewBox="0 0 420 220" style="max-width:460px;margin:1.4em auto;display:block;" role="img" aria-label="Il valor medio come altezza di un rettangolo di area equivalente all'area sotto il grafico">
           <line x1="30" y1="180" x2="400" y2="180" stroke="var(--color-border)" stroke-width="1.5"/>
           <line x1="55" y1="20" x2="55" y2="192" stroke="var(--color-border)" stroke-width="1.5"/>
@@ -624,434 +461,186 @@
           <text x="120" y="88" font-size="13" font-weight="700" fill="var(--color-secondary)">altezza media f̄</text>
           <text x="200" y="200" font-size="11" fill="var(--color-text-muted)">stessa area del rettangolo tratteggiato</text>
         </svg>
-      </section>
-
-      <!-- 5. DIMOSTRAZIONI -->
-      <section class="section" id="dimostrazioni">
-        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">🔍</span> Dimostrazioni</h2>
-        <p>In questo capitolo le "dimostrazioni" sono soprattutto <strong>derivazioni delle formule</strong>: non le prendiamo come regole calate dall'alto, le costruiamo dalle <span class="glossario-term" data-term="somma-di-riemann">somme di Riemann</span>. Vederle nascere è il modo migliore per non dimenticarle più, e soprattutto per saperle <em>ricostruire</em> se all'esame la memoria fa cilecca.</p>
-        <p>Le prime quattro derivazioni hanno tutte la stessa ossatura: affetto, misuro una fettina con la geometria elementare, sommo, passo al limite. Cambia solo la forma della fettina — rettangolo, disco, guscio, segmento. Quindi non stai imparando quattro dimostrazioni: ne stai imparando una, quattro volte. L'ultima, il teorema della media integrale, è di tipo diverso: lì non si affetta niente, si incastra un numero fra il minimo e il massimo e si lascia lavorare un teorema già noto.</p>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Derivazione 1</span>
-          <p><em class="nome">La formula dell'area tra due curve.</em> Se $f$ e $g$ sono continue su $[a,b]$ e $f(x)\geq g(x)$ per ogni $x\in[a,b]$, allora l'area della regione compresa fra i due grafici è $A=\int_a^b\big(f(x)-g(x)\big)\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (somme di Riemann)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che per misurare la regione schiacciata fra due curve basta integrare la loro differenza. Detto in parole ancora più semplici: che sommando le altezze "di sopra meno di sotto", moltiplicate per larghezze piccolissime, si ottiene proprio l'area della regione.</p>
-          <p><strong>Idea della strategia.</strong> Non sappiamo misurare direttamente una regione con due bordi curvi, ma sappiamo misurare un rettangolo. Allora copriamo la regione con tanti rettangoli sottili, sommiamo le loro aree e stringiamo la larghezza fino a zero. Perché proprio questo metodo? Perché la somma di quelle aree è, letteralmente, una somma di Riemann della funzione $f-g$: e per <em>definizione</em> l'integrale è il limite delle somme di Riemann. Quindi non dobbiamo inventare niente di nuovo: ci basta far comparire quella somma.</p>
-          <p><strong>Cosa ci servirà.</strong> L'area del rettangolo, base per altezza (Parte 0, cap. 7); la definizione di somma di Riemann e la definizione di integrale definito come suo limite (<a href="14-integrali-definiti.html">cap. 14</a>); il fatto che $f-g$ è continua, quindi integrabile (cap. 14).</p>
-
-          <p><em>Passo 1: affetto.</em> Divido l'intervallo $[a,b]$ in $n$ sottointervalli uguali e scelgo un punto $x_i$ in ciascuno di essi. La larghezza comune è</p>
-          <div class="calcolo">$$\begin{aligned}
-          \Delta x &amp;= \frac{b-a}{n} &amp;&amp;\text{(lunghezza totale divisa per il numero di fette)}
-          \end{aligned}$$</div>
-          <p>Ho ottenuto $n$ striscioline verticali, tutte della stessa larghezza. Adesso ne guardo una sola.</p>
-
-          <p><em>Passo 2: misuro una fettina.</em> La strisciolina $i$-esima ha i bordi superiore e inferiore leggermente curvi, ma se è sottile posso sostituirla con un rettangolo: base $\Delta x$, altezza pari alla distanza verticale fra le due curve nel punto $x_i$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \text{altezza}_i &amp;= f(x_i)-g(x_i) &amp;&amp;\text{(quota di sopra meno quota di sotto)}\\
-          \Delta A_i &amp;= \big(f(x_i)-g(x_i)\big)\,\Delta x &amp;&amp;\text{(area del rettangolo: base per altezza)}
-          \end{aligned}$$</div>
-          <p>Nota che l'altezza è un numero $\geq 0$, perché per ipotesi $f(x_i)\geq g(x_i)$: è qui, e solo qui, che serve l'ipotesi "$f$ sta sopra".</p>
-
-          <p><em>Passo 3: sommo tutte le fettine.</em> Metto insieme gli $n$ rettangoli.</p>
-          <div class="calcolo">$$\begin{aligned}
-          A &amp;\approx \sum_{i=1}^{n}\Delta A_i &amp;&amp;\text{(l'area totale è circa la somma dei rettangoli)}\\
-          &amp;= \sum_{i=1}^{n}\big(f(x_i)-g(x_i)\big)\,\Delta x &amp;&amp;\text{(sostituisco l'espressione trovata al passo 2)}
-          \end{aligned}$$</div>
-          <p>Quello che abbiamo ottenuto ha un nome preciso: è la <strong>somma di Riemann</strong> della funzione $f-g$ relativa a questa suddivisione. È il punto di svolta della dimostrazione, perché ora possiamo usare la definizione di integrale.</p>
-
-          <p><em>Passo 4: passo al limite.</em> Faccio crescere $n$ senza limite, cioè faccio tendere a zero la larghezza $\Delta x$. Poiché $f-g$ è continua, il limite esiste ed è per definizione l'integrale definito.</p>
-          <div class="calcolo">$$\begin{aligned}
-          A &amp;= \lim_{n\to+\infty}\sum_{i=1}^{n}\big(f(x_i)-g(x_i)\big)\,\Delta x &amp;&amp;\text{(stringo la larghezza delle strisce)}\\
-          &amp;= \int_a^b\big(f(x)-g(x)\big)\,dx &amp;&amp;\text{(definizione di integrale definito, cap. 14)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo coperto la regione con $n$ rettangoli di base $\Delta x$ e altezza $f(x_i)-g(x_i)$; abbiamo sommato le loro aree ottenendo una somma di Riemann della funzione $f-g$; passando al limite per $\Delta x\to0$ quella somma è diventata, per definizione, l'integrale di $f-g$ fra $a$ e $b$. <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Derivazione 2</span>
-          <p><em class="nome">La formula del volume dei dischi.</em> Se $f$ è continua e $f(x)\geq0$ su $[a,b]$, il volume del solido ottenuto ruotando il grafico di $y=f(x)$ attorno all'asse $x$ è $V=\pi\int_a^b[f(x)]^2\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (affettamento in dischi)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che il volume di un pezzo tornito si ottiene sommando le aree dei suoi cerchi, moltiplicate per spessori piccolissimi. In particolare vogliamo capire <em>da dove vengono</em> il $\pi$ e il quadrato, che sono i due ingredienti che tutti dimenticano.</p>
-          <p><strong>Idea della strategia.</strong> Identica a quella della Derivazione 1, ma con una fettina di forma diversa. Affettiamo il solido perpendicolarmente all'asse di rotazione, come un salame: così ogni fetta è un cilindro bassissimo, cioè un oggetto di cui la geometria elementare sa già calcolare il volume. Sommiamo i volumi delle fette, riconosciamo una somma di Riemann e passiamo al limite. Scegliamo di tagliare <em>perpendicolarmente all'asse $x$</em> proprio perché è l'unica direzione in cui le sezioni sono cerchi: tagliando in un altro modo otterremmo figure che non sappiamo misurare.</p>
-          <p><strong>Cosa ci servirà.</strong> L'area del cerchio $\pi r^2$ e il volume del cilindro "area di base per altezza" (Parte 0, cap. 7); la definizione di integrale come limite di somme di Riemann (<a href="14-integrali-definiti.html">cap. 14</a>); il fatto che ruotando, ogni punto del grafico a distanza $f(x)$ dall'asse descrive una circonferenza di quel raggio.</p>
-
-          <p><em>Passo 1: affetto.</em> Taglio il solido con piani perpendicolari all'asse $x$, nelle posizioni $x_i$, distanziati di $\Delta x=\frac{b-a}{n}$. Ottengo $n$ fettine.</p>
-          <p><em>Passo 2: misuro una fettina.</em> La fettina $i$-esima è un cilindro bassissimo. Il suo raggio è la distanza fra il grafico e l'asse di rotazione nel punto $x_i$, cioè $f(x_i)$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \text{area di base}_i &amp;= \pi\,[f(x_i)]^2 &amp;&amp;\text{(area del cerchio } \pi r^2 \text{, con raggio } r=f(x_i))\\
-          \Delta V_i &amp;= \pi\,[f(x_i)]^2\,\Delta x &amp;&amp;\text{(volume del cilindro: area di base per altezza)}
-          \end{aligned}$$</div>
-          <p>Ecco la risposta alla domanda del "cosa vogliamo dimostrare": <strong>il $\pi$ e il quadrato entrano insieme, in questo unico passaggio, e vengono dall'area del cerchio.</strong> Non sono due aggiunte separate.</p>
-
-          <p><em>Passo 3: sommo.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          V &amp;\approx \sum_{i=1}^{n}\Delta V_i = \sum_{i=1}^{n}\pi\,[f(x_i)]^2\,\Delta x &amp;&amp;\text{(sommo i volumi di tutti i dischetti)}
-          \end{aligned}$$</div>
-          <p>È una somma di Riemann, stavolta della funzione $\pi f^2$.</p>
-
-          <p><em>Passo 4: passo al limite.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          V &amp;= \lim_{n\to+\infty}\sum_{i=1}^{n}\pi\,[f(x_i)]^2\,\Delta x &amp;&amp;\text{(faccio tendere a zero lo spessore)}\\
-          &amp;= \pi\int_a^b [f(x)]^2\,dx &amp;&amp;\text{(definizione di integrale; il } \pi \text{ costante esce, cap. 14)}
-          \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove ci si confonde.</strong> Si potrebbe obiettare che la fettina non è <em>davvero</em> un cilindro: i suoi due cerchi di base hanno raggi leggermente diversi, perché fra $x_i$ e $x_i+\Delta x$ la funzione cambia un po'. È vero, ma l'errore che si commette è più piccolo della differenza fra il cilindro costruito sul raggio massimo e quello costruito sul raggio minimo della fettina, e questa differenza tende a zero quando $\Delta x\to0$. È la stessa cosa che succede con i rettangoli nell'area: l'approssimazione sparisce nel limite.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo tagliato il solido in $n$ fettine perpendicolari all'asse di rotazione; ogni fettina è un cilindro di raggio $f(x_i)$ e spessore $\Delta x$, quindi di volume $\pi[f(x_i)]^2\Delta x$; sommando si ottiene una somma di Riemann di $\pi f^2$, e al limite l'integrale $\pi\int_a^b[f(x)]^2dx$. <span class="qed">∎</span></p>
-        </div>
-
         <div class="box-teorema box-teorema--proposizione">
-          <span class="box-teorema__label">Corollario</span>
-          <p><em class="nome">La formula degli anelli.</em> Se $f(x)\geq g(x)\geq 0$ su $[a,b]$, ruotando attorno all'asse $x$ la regione fra i due grafici si ottiene $V=\pi\int_a^b\big([f(x)]^2-[g(x)]^2\big)\,dx$.</p>
+          <span class="box-teorema__label">Teorema della media integrale</span>
+          <p>Se $f$ è <span class="glossario-term" data-term="continuita">continua</span> su $[a,b]$, esiste almeno un punto $c\in[a,b]$ tale che $f(c)=\bar f$: la funzione assume davvero, da qualche parte, il proprio valor medio. Il teorema è già dimostrato nel <a href="14-integrali-definiti.html#teoria-proprieta">§4.4.1 del capitolo 14</a>: il valor medio sta fra il minimo e il massimo di $f$, e una funzione continua assume tutti i valori fra minimo e massimo.</p>
         </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (un solido meno l'altro)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che per un solido bucato si toglie il volume del buco, e che togliere il buco significa sottrarre i <em>quadrati</em> dei raggi, non i raggi.</p>
-          <p><strong>Idea della strategia.</strong> Non serve ricominciare da capo: il solido bucato è la differenza di due solidi pieni che sappiamo già misurare con la Derivazione 2. Riutilizzare un risultato già dimostrato è sempre preferibile a rifare tutta la costruzione.</p>
-          <p><strong>Cosa ci servirà.</strong> Solo la Derivazione 2 (il metodo dei dischi) e la linearità dell'integrale, cioè $\int(u-v)=\int u-\int v$ (cap. 14).</p>
-          <p><em>Passo 1.</em> Chiamo $V_{\text{est}}$ il volume del solido pieno generato da $f$ e $V_{\text{int}}$ quello generato da $g$. Entrambi si calcolano con la Derivazione 2.</p>
-          <div class="calcolo">$$\begin{aligned}
-          V_{\text{est}} &amp;= \pi\int_a^b [f(x)]^2\,dx &amp;&amp;\text{(metodo dei dischi applicato a } f)\\
-          V_{\text{int}} &amp;= \pi\int_a^b [g(x)]^2\,dx &amp;&amp;\text{(metodo dei dischi applicato a } g)
-          \end{aligned}$$</div>
-          <p><em>Passo 2.</em> Il solido bucato è il primo a cui è stato tolto il secondo, quindi il suo volume è la differenza.</p>
-          <div class="calcolo">$$\begin{aligned}
-          V &amp;= V_{\text{est}}-V_{\text{int}} &amp;&amp;\text{(tolgo il solido interno da quello esterno)}\\
-          &amp;= \pi\int_a^b [f(x)]^2\,dx-\pi\int_a^b [g(x)]^2\,dx &amp;&amp;\text{(sostituisco le due espressioni del passo 1)}\\
-          &amp;= \pi\int_a^b\Big([f(x)]^2-[g(x)]^2\Big)\,dx &amp;&amp;\text{(linearità: due integrali sullo stesso intervallo si uniscono)}
-          \end{aligned}$$</div>
-          <p><strong>Riassunto della dimostrazione.</strong> Volume del solido bucato $=$ volume del pieno esterno meno volume del pieno interno; entrambi li dà il metodo dei dischi; la linearità dell'integrale permette di riunirli sotto un unico segno. Da qui si vede che compare la <strong>differenza dei quadrati</strong> $[f]^2-[g]^2$, e non il quadrato della differenza. <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Derivazione 3</span>
-          <p><em class="nome">La formula dei gusci cilindrici.</em> Se $f$ è continua e non negativa su $[a,b]$, con $0\leq a\lt b$, il volume del solido ottenuto ruotando <strong>attorno all'asse $y$</strong> la regione fra il grafico di $f$ e l'asse $x$ è $V=2\pi\int_a^b x\,f(x)\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (sbucciando il solido)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che quando si ruota attorno all'asse verticale si può lasciare la funzione nella forma $y=f(x)$, senza doverla invertire, a patto di sommare gusci invece che dischi. E vogliamo capire perché nella formula compare una $x$ alla prima potenza (e non al quadrato).</p>
-          <p><strong>Idea della strategia.</strong> Affettiamo <em>in verticale</em> la regione piana di partenza, cioè nella stessa direzione dell'asse di rotazione. Una strisciolina verticale, girando attorno all'asse $y$, non genera un disco: genera un tubicino, un guscio cilindrico. Per misurarlo lo <strong>srotoliamo</strong>: tagliato per il lungo e steso su un tavolo, un guscio sottile diventa — a meno di un errore che al limite sparisce, come abbiamo contato nel <span class="richiamo" data-sec="4.3">§4.3</span> — un parallelepipedo, di cui sappiamo calcolare il volume. Usiamo questo metodo, invece dei dischi, perché ci evita di ricavare $x$ in funzione di $y$, cosa che spesso non si sa fare.</p>
-          <p><strong>Cosa ci servirà.</strong> La lunghezza della circonferenza, $2\pi r$ (Parte 0, cap. 7); il volume del parallelepipedo, lunghezza per altezza per spessore; la definizione di integrale come limite di somme di Riemann (<a href="14-integrali-definiti.html">cap. 14</a>).</p>
-
-          <p><em>Passo 1: affetto in verticale.</em> Divido $[a,b]$ in $n$ strisce verticali di larghezza $\Delta x=\frac{b-a}{n}$; la striscia $i$-esima si trova a distanza $x_i$ dall'asse $y$ ed è alta $f(x_i)$.</p>
-          <p><em>Passo 2: misuro una fettina.</em> Ruotando attorno all'asse $y$, quella striscia spazza un guscio cilindrico. Prendo le sue tre misure, una alla volta, e poi lo srotolo.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \text{raggio}_i &amp;= x_i &amp;&amp;\text{(distanza della striscia dall'asse di rotazione)}\\
-          \text{lunghezza}_i &amp;= 2\pi x_i &amp;&amp;\text{(circonferenza } 2\pi r \text{ con } r=x_i)\\
-          \text{altezza}_i &amp;= f(x_i) &amp;&amp;\text{(altezza della striscia)}\\
-          \Delta V_i &amp;= 2\pi x_i\,f(x_i)\,\Delta x &amp;&amp;\text{(lunghezza per altezza per spessore)}
-          \end{aligned}$$</div>
-          <p>Ecco la risposta alla domanda iniziale: la $x$ compare <strong>alla prima potenza</strong> perché viene dalla <em>circonferenza</em> $2\pi r$, che è lineare nel raggio, e non dall'area del cerchio $\pi r^2$, che è quadratica.</p>
-
-          <p><em>Passo 3: sommo e passo al limite.</em></p>
-          <div class="calcolo">$$\begin{aligned}
-          V &amp;\approx \sum_{i=1}^{n} 2\pi x_i\,f(x_i)\,\Delta x &amp;&amp;\text{(sommo i volumi di tutti i gusci)}\\
-          V &amp;= \lim_{n\to+\infty}\sum_{i=1}^{n} 2\pi x_i\,f(x_i)\,\Delta x &amp;&amp;\text{(stringo lo spessore delle bucce)}\\
-          &amp;= 2\pi\int_a^b x\,f(x)\,dx &amp;&amp;\text{(definizione di integrale; il } 2\pi \text{ costante esce)}
-          \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove ci si confonde.</strong> Il guscio srotolato non è un parallelepipedo perfetto: il bordo esterno è un po' più lungo di quello interno, quindi da steso ha la forma di un trapezio schiacciato. Ma la lunghezza media dei due bordi è la circonferenza calcolata nel punto di mezzo, e la differenza fra le due lunghezze è proporzionale a $\Delta x$: nel limite sparisce, esattamente come sparisce la differenza fra rettangolo e trapezio nelle somme di Riemann.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo tagliato la regione in strisce verticali; ogni striscia, ruotando attorno all'asse $y$, genera un guscio cilindrico che srotolato diventa un rettangolo lungo $2\pi x_i$, alto $f(x_i)$ e spesso $\Delta x$; sommando e passando al limite si ottiene $2\pi\int_a^b x\,f(x)\,dx$. <span class="qed">∎</span></p>
-        </div>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Derivazione 4</span>
-          <p><em class="nome">La formula della lunghezza d'arco.</em> Se $f$ ha derivata continua su $[a,b]$, la lunghezza del suo grafico è $L=\int_a^b\sqrt{1+[f'(x)]^2}\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (Pitagora + teorema di Lagrange + Riemann)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che la lunghezza di un pezzo di curva si calcola con un integrale, e che dentro quell'integrale compare la derivata. In parole povere: che misurare una curva si può ricondurre a misurare tantissimi segmenti dritti.</p>
-          <p><strong>Idea della strategia.</strong> Di una curva non sappiamo misurare niente; di un segmento sappiamo misurare tutto, grazie a Pitagora. Allora sostituiamo la curva con una spezzata e sommiamo i segmenti. C'è però un ostacolo: nella lunghezza del segmentino compare $\Delta y$, e $\Delta y$ non è una funzione di $x$, quindi la somma non è ancora una somma di Riemann. Per superare l'ostacolo usiamo il <strong>teorema di Lagrange</strong>, che serve esattamente a trasformare una differenza $\Delta y$ in una derivata moltiplicata per $\Delta x$. È il ponte che ci porta dove vogliamo arrivare.</p>
-          <p><strong>Cosa ci servirà.</strong> Il teorema di Pitagora (Parte 0, cap. 7); il <a href="08-teoremi-fondamentali.html">teorema di Lagrange</a>, o del valor medio (cap. 8); le proprietà dei radicali, in particolare $\sqrt{AB}=\sqrt A\sqrt B$ (Parte 0, cap. 3); la definizione di integrale come limite di somme di Riemann (<a href="14-integrali-definiti.html">cap. 14</a>); la continuità di $f'$, che serve per garantire che la funzione $\sqrt{1+[f']^2}$ sia integrabile.</p>
-
-          <p><em>Passo 1: sostituisco la curva con una spezzata.</em> Divido $[a,b]$ con i punti $a=x_0\lt x_1\lt\cdots\lt x_n=b$, equidistanti di $\Delta x$, e considero i punti del grafico $P_i=\big(x_i,\ f(x_i)\big)$. Unisco $P_{i-1}$ con $P_i$ con un segmento.</p>
-          <p><em>Passo 2: misuro un segmentino con Pitagora.</em> Il segmento da $P_{i-1}$ a $P_i$ è l'ipotenusa di un triangolo rettangolo con cateto orizzontale $\Delta x$ e cateto verticale $\Delta y_i=f(x_i)-f(x_{i-1})$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \Delta\ell_i &amp;= \sqrt{(\Delta x)^2+(\Delta y_i)^2} &amp;&amp;\text{(teorema di Pitagora)}
-          \end{aligned}$$</div>
-          <p>Questa espressione, però, non si può ancora sommare come somma di Riemann: dentro c'è $\Delta y_i$, che non è scritto come "qualcosa calcolato in un punto, per $\Delta x$". Il passo successivo serve proprio a sistemare questo.</p>
-
-          <p><em>Passo 3: trasformo $\Delta y_i$ con il teorema di Lagrange.</em> La funzione $f$ è continua su $[x_{i-1},x_i]$ e derivabile al suo interno, quindi esiste un punto $\xi_i$ dentro il sottointervallo in cui la pendenza della tangente coincide con quella della corda.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \frac{f(x_i)-f(x_{i-1})}{x_i-x_{i-1}} &amp;= f'(\xi_i) &amp;&amp;\text{(teorema di Lagrange, cap. 8)}\\
-          \frac{\Delta y_i}{\Delta x} &amp;= f'(\xi_i) &amp;&amp;\text{(riscrivo con i simboli } \Delta y_i \text{ e } \Delta x)\\
-          \Delta y_i &amp;= f'(\xi_i)\,\Delta x &amp;&amp;\text{(moltiplico entrambi i membri per } \Delta x)
-          \end{aligned}$$</div>
-          <p>Ora ho quello che volevo: $\Delta y_i$ scritto come "una funzione calcolata in un punto, moltiplicata per $\Delta x$".</p>
-
-          <p><em>Passo 4: sostituisco dentro Pitagora e semplifico.</em> Metto $f'(\xi_i)\,\Delta x$ al posto di $\Delta y_i$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \Delta\ell_i &amp;= \sqrt{(\Delta x)^2+\big(f'(\xi_i)\,\Delta x\big)^2} &amp;&amp;\text{(sostituisco } \Delta y_i = f'(\xi_i)\Delta x)\\
-          &amp;= \sqrt{(\Delta x)^2+[f'(\xi_i)]^2(\Delta x)^2} &amp;&amp;\text{(} (AB)^2=A^2B^2 \text{, Parte 0, cap. 2)}\\
-          &amp;= \sqrt{(\Delta x)^2\big(1+[f'(\xi_i)]^2\big)} &amp;&amp;\text{(raccolgo } (\Delta x)^2 \text{ a fattor comune)}\\
-          &amp;= \sqrt{(\Delta x)^2}\cdot\sqrt{1+[f'(\xi_i)]^2} &amp;&amp;\text{(radice di un prodotto, Parte 0, cap. 3)}\\
-          &amp;= \sqrt{1+[f'(\xi_i)]^2}\;\Delta x &amp;&amp;\text{(} \sqrt{(\Delta x)^2}=\Delta x \text{ perché } \Delta x\gt 0)
-          \end{aligned}$$</div>
-
-          <p><em>Passo 5: sommo e passo al limite.</em> Adesso la somma dei segmentini è una somma di Riemann in piena regola, della funzione $\sqrt{1+[f'(x)]^2}$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          L &amp;\approx \sum_{i=1}^{n}\sqrt{1+[f'(\xi_i)]^2}\;\Delta x &amp;&amp;\text{(sommo le lunghezze dei segmenti)}\\
-          L &amp;= \lim_{n\to+\infty}\sum_{i=1}^{n}\sqrt{1+[f'(\xi_i)]^2}\;\Delta x &amp;&amp;\text{(infittisco la spezzata)}\\
-          &amp;= \int_a^b\sqrt{1+[f'(x)]^2}\,dx &amp;&amp;\text{(definizione di integrale, cap. 14)}
-          \end{aligned}$$</div>
-          <p><strong>Attenzione: qui è dove ci si confonde.</strong> I punti $\xi_i$ non li scegliamo noi: ce li regala il teorema di Lagrange, e non sappiamo neppure dove siano esattamente. Va benissimo lo stesso, perché la definizione di integrale come limite di somme di Riemann vale <em>comunque</em> si scelgano i punti dentro i sottointervalli, purché la funzione sia integrabile. Ed è integrabile perché $f'$ è continua per ipotesi.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo approssimato la curva con una spezzata; abbiamo misurato ogni segmentino con Pitagora; abbiamo usato Lagrange per scrivere $\Delta y_i=f'(\xi_i)\Delta x$; sostituendo e raccogliendo $\Delta x$ fuori dalla radice abbiamo ottenuto una somma di Riemann di $\sqrt{1+[f']^2}$, che al limite è l'integrale cercato. <span class="qed">∎</span></p>
-          <p>Qui si vedono all'opera <em>tutti</em> i grandi strumenti dell'Analisi 1 insieme: Pitagora per la geometria, Lagrange per trasformare $\Delta y$ in $f'$, e la definizione di integrale come limite di somme di Riemann per chiudere il cerchio. Un finale degno.</p>
-        </div>
-
-        <div class="box-teorema">
-          <span class="box-teorema__label">Derivazione 5</span>
-          <p><em class="nome">Teorema della media integrale.</em> Se $f$ è continua su $[a,b]$, allora esiste almeno un punto $c\in[a,b]$ tale che $f(c)=\dfrac{1}{b-a}\displaystyle\int_a^b f(x)\,dx$.</p>
-        </div>
-        <div class="box-dimostrazione">
-          <span class="box-dimostrazione__label">Dimostrazione (Weierstrass + teorema dei valori intermedi)</span>
-          <p><strong>Cosa vogliamo dimostrare.</strong> Che l'altezza media di una funzione continua non è un numero inventato: è un'altezza che la funzione <em>tocca davvero</em>, almeno una volta, da qualche parte nell'intervallo. Tornando all'immagine del castello di sabbia livellato: il livello finale della sabbia passa per forza attraverso un punto in cui c'era già quella quota.</p>
-          <p><strong>Idea della strategia.</strong> Non proviamo a costruire il punto $c$: sarebbe difficilissimo, perché dipende dalla funzione. Facciamo invece così: dimostriamo che il valor medio è <em>compreso fra il minimo e il massimo</em> della funzione, e poi invochiamo il teorema dei valori intermedi, che dice proprio che una funzione continua assume tutti i valori compresi fra il suo minimo e il suo massimo. In sostanza: prima incastro il numero fra due valori assunti dalla funzione, poi lascio che sia un teorema già noto a produrre il punto.</p>
-          <p><strong>Cosa ci servirà.</strong> Il teorema di Weierstrass, per cui una funzione continua su un intervallo chiuso e limitato ha minimo $m$ e massimo $M$ (<a href="06-continuita.html">cap. 6</a>); la monotonia dell'integrale, cioè "se $u\leq v$ allora $\int u\leq\int v$" (<a href="14-integrali-definiti.html">cap. 14</a>); il teorema dei valori intermedi (cap. 6); l'integrale di una costante, $\int_a^b k\,dx=k(b-a)$ (cap. 14).</p>
-
-          <p><em>Passo 1: incastro la funzione fra due costanti.</em> Per Weierstrass esistono il minimo $m$ e il massimo $M$ di $f$ su $[a,b]$, e per ogni $x$ dell'intervallo vale $m\leq f(x)\leq M$.</p>
-          <p><em>Passo 2: integro la doppia disuguaglianza.</em> L'integrale conserva il verso delle disuguaglianze, quindi posso integrare tutti e tre i membri fra $a$ e $b$.</p>
-          <div class="calcolo">$$\begin{aligned}
-          \int_a^b m\,dx \ \leq\ &amp;\int_a^b f(x)\,dx\ \leq\ \int_a^b M\,dx &amp;&amp;\text{(monotonia dell'integrale, cap. 14)}\\
-          m\,(b-a) \ \leq\ &amp;\int_a^b f(x)\,dx\ \leq\ M\,(b-a) &amp;&amp;\text{(integrale di una costante: costante per ampiezza)}
-          \end{aligned}$$</div>
-          <p><em>Passo 3: divido per l'ampiezza.</em> Divido tutti e tre i membri per $b-a$, che è un numero <strong>positivo</strong> (perché $a\lt b$): dividendo per un numero positivo il verso delle disuguaglianze <em>non</em> cambia.</p>
-          <div class="calcolo">$$\begin{aligned}
-          m \ \leq\ &amp;\frac{1}{b-a}\int_a^b f(x)\,dx\ \leq\ M &amp;&amp;\text{(divido per } b-a\gt0 \text{: il verso resta)}\\
-          m \ \leq\ &amp;\ \bar f\ \leq\ M &amp;&amp;\text{(chiamo } \bar f \text{ quel numero: è il valor medio)}
-          \end{aligned}$$</div>
-          <p>Abbiamo ottenuto il fatto chiave: il valor medio è un numero compreso fra il minimo e il massimo di $f$.</p>
-          <p><em>Passo 4: uso il teorema dei valori intermedi.</em> Siano $x_m$ e $x_M$ i punti in cui $f$ assume rispettivamente il minimo e il massimo (esistono per Weierstrass). Sull'intervallo di estremi $x_m$ e $x_M$ la funzione $f$ è continua e passa dal valore $m$ al valore $M$: per il teorema dei valori intermedi assume ogni valore compreso fra i due. Poiché $\bar f$ è uno di questi valori, esiste almeno un punto $c$ fra $x_m$ e $x_M$ (quindi dentro $[a,b]$) in cui $f(c)=\bar f$.</p>
-          <p><strong>Attenzione: qui è dove ci si confonde.</strong> Il teorema dice che il punto $c$ <em>esiste</em>, non dice dov'è e non dice che è unico: possono essercene molti. E l'ipotesi di continuità non è un dettaglio burocratico. Prendi su $[0,2]$ la funzione a gradino che vale $0$ per $x\lt 1$ e $2$ per $x\geq 1$: l'integrale è $0\cdot1+2\cdot1=2$, quindi il valor medio è $\frac{2}{2-0}=1$. Ma quella funzione assume solo i valori $0$ e $2$: il valore $1$ non lo tocca mai. Senza continuità il salto scavalca il valor medio senza passarci sopra.</p>
-          <p><strong>Riassunto della dimostrazione.</strong> Abbiamo incastrato $f$ fra il suo minimo $m$ e il suo massimo $M$; integrando la doppia disuguaglianza e dividendo per $b-a$ abbiamo ottenuto $m\leq\bar f\leq M$; poiché una funzione continua assume tutti i valori fra $m$ e $M$, esiste un punto $c$ in cui $f(c)=\bar f$. <span class="qed">∎</span></p>
-        </div>
+        <p>Per esempio, $x^2$ su $[0,3]$ ha $\bar f=\frac13\int_0^3x^2\,dx=\frac13\cdot9=3$, e infatti $x^2=3$ in $x=\sqrt3\in[0,3]$. Attenzione: il valor medio <em>non</em> è la media fra valore iniziale e finale (qui sarebbe $\frac{0+9}{2}=4{,}5$): i valori piccoli occupano molto più intervallo di quelli grandi, e ogni valore pesa in proporzione allo spazio che occupa.</p>
       </section>
 
-      <!-- 6. ESEMPI SVOLTI -->
+      <!-- 5. ESEMPI SVOLTI -->
       <section class="section" id="esempi">
-        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
-        <p>Negli esempi che seguono l'ordine delle mosse è sempre lo stesso: prima si capisce <em>che cosa</em> si sta sommando, poi si trovano gli estremi, poi si imposta l'integrale, poi si calcola una riga alla volta, e alla fine si fa il <strong>controllo di plausibilità</strong>. Quell'ultimo passo non è una formalità: è ciò che ti fa accorgere degli errori prima che lo faccia il professore.</p>
+        <h2 class="section__title"><span class="num">5.</span> <span class="emoji">✏️</span> Esempi svolti</h2>
+        <p>L'ordine è sempre lo stesso: capisco <em>che cosa</em> sto sommando, trovo gli estremi, imposto l'integrale, calcolo una riga alla volta e alla fine faccio il <strong>controllo di plausibilità</strong>. Quest'ultimo passo non è una formalità: ti fa accorgere degli errori prima che lo faccia il professore.</p>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 1 — Area tra una retta e una parabola</span><span class="badge badge--base">Base</span></div>
           <p>Calcolare l'area della regione compresa tra $y=x$ e $y=x^2$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Che cosa sommiamo?</strong> Rettangolini verticali: base $dx$, altezza "funzione di sopra meno funzione di sotto". È il caso del <span class="richiamo" data-sec="4.2">§4.2</span>.</span>
-            <span class="esempio__passo"><strong>Estremi: dove si incontrano le curve?</strong> Uguaglio le due espressioni e risolvo.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> L'area racchiusa fra due grafici: è l'area tra due curve del <span class="richiamo" data-sec="4.2">§4.2</span>, $\int(\text{sopra}-\text{sotto})\,dx$. Mi servono gli estremi e chi sta sopra.</span>
+            <span class="esempio__passo"><strong>Estremi.</strong> Le curve si toccano dove hanno la stessa $y$, quindi uguaglio le due espressioni e risolvo.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          x &amp;= x^2 &amp;&amp;\text{(uguaglio: cerco le } x \text{ dove le due curve hanno la stessa } y)\\
-          x^2-x &amp;= 0 &amp;&amp;\text{(porto tutto a sinistra, sottraendo } x \text{ a entrambi i membri)}\\
-          x\,(x-1) &amp;= 0 &amp;&amp;\text{(raccolgo } x \text{ a fattor comune)}\\
-          x=0\ &amp;\text{oppure}\ x=1 &amp;&amp;\text{(un prodotto è nullo se lo è almeno un fattore)}
+          x &amp;= x^2 &amp;&amp;\text{(stessa } y\text{)}\\
+          x^2-x &amp;= 0 &amp;&amp;\text{(porto tutto a sinistra)}\\
+          x\,(x-1) &amp;= 0 &amp;&amp;\text{(raccolgo } x\text{)}\\
+          x=0\ &amp;\text{oppure}\ x=1 &amp;&amp;\text{(un prodotto è nullo se lo è un fattore)}
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo">Quindi $a=0$ e $b=1$.</span>
-            <span class="esempio__passo"><strong>Chi sta sopra?</strong> Scelgo un valore di prova interno, per esempio $x=\frac12$, e confronto.</span>
+            <span class="esempio__passo"><strong>Chi sta sopra.</strong> Non tiro a indovinare: scelgo un valore di prova dentro $[0,1]$, per esempio $x=\frac12$, e confronto. Un solo punto basta, perché dentro l'intervallo le curve non si incontrano più.</span>
           </p>
-          <div class="calcolo">$$\begin{aligned}
-          y_{\text{retta}} &amp;= \tfrac12 &amp;&amp;\text{(valore di } y=x \text{ nel punto di prova)}\\
-          y_{\text{parabola}} &amp;= \left(\tfrac12\right)^2=\tfrac14 &amp;&amp;\text{(valore di } y=x^2 \text{ nel punto di prova)}\\
-          \tfrac12 &amp;\gt \tfrac14 &amp;&amp;\text{(vince la retta: } y=x \text{ sta sopra su } [0,1])
-          \end{aligned}$$</div>
+          <div class="calcolo">$$y_{\text{retta}}=\tfrac12\ \gt\ y_{\text{parabola}}=\left(\tfrac12\right)^2=\tfrac14\quad\Longrightarrow\quad y=x \text{ sta sopra su } [0,1].$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Imposto e calcolo.</strong> Uso la formula del <span class="richiamo" data-sec="4.2">§4.2</span> con $f(x)=x$ (sopra), $g(x)=x^2$ (sotto), $a=0$, $b=1$.</span>
+            <span class="esempio__passo"><strong>Calcolo.</strong> Scrivo "sopra meno sotto", con $f=x$ e $g=x^2$; le primitive vengono dalla regola della potenza (cap. 13).</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          A &amp;= \int_0^1 (x-x^2)\,dx &amp;&amp;\text{(formula dell'area fra due curve)}\\
-          &amp;= \left[\frac{x^2}{2}-\frac{x^3}{3}\right]_0^1 &amp;&amp;\text{(primitive termine a termine: regola della potenza, cap. 13)}\\
-          &amp;= \left(\frac{1}{2}-\frac{1}{3}\right)-0 &amp;&amp;\text{(teorema fondamentale: sostituisco } x=1 \text{ e poi } x=0)\\
-          &amp;= \frac{3}{6}-\frac{2}{6} = \frac16 &amp;&amp;\text{(denominatore comune } 6 \text{, poi sottraggo)}
+          A &amp;= \int_0^1 (x-x^2)\,dx = \left[\frac{x^2}{2}-\frac{x^3}{3}\right]_0^1 &amp;&amp;\text{(primitive termine a termine)}\\
+          &amp;= \left(\frac12-\frac13\right)-0 = \frac36-\frac26 = \frac16 &amp;&amp;\text{(sostituisco } x=1 \text{ e } x=0\text{)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$A=\dfrac16$. <strong>Controllo di plausibilità:</strong> il risultato è positivo, come deve essere un'area, quindi l'ordine "sopra meno sotto" era giusto. Ed è ragionevole anche come grandezza: la regione sta dentro il quadrato di lato $1$, che ha area $1$, ma possiamo stringere il confronto. Lo spessore verticale $x-x^2$ è massimo in $x=\frac12$, dove vale $\frac12-\frac14=\frac14$; quindi l'area non può superare $1\cdot\frac14=0{,}25$, e il nostro $\frac16\approx0{,}17$ ne è esattamente i due terzi. Proporzione credibile per una figura a forma di lente.</div>
+          <div class="esempio__risultato">$A=\dfrac16$. <strong>Controllo:</strong> è positivo, quindi l'ordine "sopra meno sotto" era giusto. Lo spessore verticale $x-x^2$ vale al massimo $\frac14$ (in $x=\frac12$), quindi l'area non supera $1\cdot\frac14$, e $\frac16\approx0{,}17$ è credibile per una figura a lente.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 2 — Valor medio integrale</span><span class="badge badge--base">Base</span></div>
           <p>Calcolare il valor medio della funzione $f(x)=x$ sull'intervallo $[0,2]$ e interpretarlo.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Che cosa stiamo calcolando?</strong> L'altezza a cui si fermerebbe il "livellamento" della regione sotto il grafico: si usa la definizione del <span class="richiamo" data-sec="4.6">§4.6</span>, $\bar f=\frac{1}{b-a}\int_a^b f$, con $f(x)=x$, $a=0$, $b=2$.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Mi chiedono l'altezza a cui si fermerebbe il "livellamento" della regione sotto il grafico: è il valor medio del <span class="richiamo" data-sec="4.6">§4.6</span>, $\bar f=\frac{1}{b-a}\int_a^b f$, con $a=0$, $b=2$.</span>
+            <span class="esempio__passo"><strong>Calcolo.</strong> Integro $x$ con la regola della potenza e divido per l'ampiezza $b-a=2$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          \bar f &amp;= \frac{1}{2-0}\int_0^2 x\,dx &amp;&amp;\text{(definizione di valor medio)}\\
-          &amp;= \frac12\left[\frac{x^2}{2}\right]_0^2 &amp;&amp;\text{(primitiva di } x \text{: regola della potenza, cap. 13)}\\
-          &amp;= \frac12\left(\frac{2^2}{2}-\frac{0^2}{2}\right) &amp;&amp;\text{(teorema fondamentale: sostituisco } x=2 \text{ e poi } x=0)\\
-          &amp;= \frac12\,(2-0) = 1 &amp;&amp;\text{(eseguo i conti)}
+          \bar f &amp;= \frac{1}{2-0}\int_0^2 x\,dx = \frac12\left[\frac{x^2}{2}\right]_0^2 &amp;&amp;\text{(primitiva di } x\text{)}\\
+          &amp;= \frac12\left(\frac{2^2}{2}-0\right) = \frac12\cdot 2 = 1 &amp;&amp;\text{(sostituisco } x=2 \text{ e } x=0\text{)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$\bar{f}=1$. <strong>Controllo di plausibilità:</strong> il risultato sta fra il valore minimo ($f(0)=0$) e quello massimo ($f(2)=2$) della funzione sull'intervallo, come ogni media deve fare. Inoltre il rettangolo di base $2$ e altezza $1$ ha area $2$, esattamente come il triangolo sotto $y=x$ su $[0,2]$: il livellamento conserva l'area. E la funzione assume davvero il valore $1$, nel punto $c=1$.</div>
+          <div class="esempio__risultato">$\bar{f}=1$. <strong>Controllo:</strong> sta fra il minimo $f(0)=0$ e il massimo $f(2)=2$, come ogni media. Il rettangolo di base $2$ e altezza $1$ ha area $2$, uguale a quella del triangolo sotto $y=x$ su $[0,2]$: il livellamento conserva l'area. E $f$ vale davvero $1$ in $c=1$.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 3 — Curve che si incrociano: spezzare l'integrale</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Calcolare l'area totale racchiusa tra $y=x$ e $y=x^3$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Estremi: dove si incontrano?</strong> Uguaglio e risolvo.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Un'area fra due curve (<span class="richiamo" data-sec="4.2">§4.2</span>). Prima trovo dove si incontrano.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          x^3 &amp;= x &amp;&amp;\text{(uguaglio le due espressioni)}\\
-          x^3-x &amp;= 0 &amp;&amp;\text{(porto tutto a sinistra)}\\
-          x\,(x^2-1) &amp;= 0 &amp;&amp;\text{(raccolgo } x \text{ a fattor comune)}\\
-          x=0\ \ \text{oppure}\ \ x^2 &amp;= 1 &amp;&amp;\text{(annullo i due fattori separatamente)}\\
-          x &amp;= \pm 1 &amp;&amp;\text{(la radice quadrata dà due valori opposti)}
+          x^3-x &amp;= 0 &amp;&amp;\text{(uguaglio e porto a sinistra)}\\
+          x\,(x^2-1) &amp;= 0 &amp;&amp;\text{(raccolgo } x\text{)}\\
+          x=0\ \ \text{oppure}\ \ x &amp;= \pm 1 &amp;&amp;\text{(} x^2=1 \text{ ha due soluzioni)}
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo">Le intersezioni sono tre: $x=-1$, $x=0$, $x=1$. <strong>Attenzione: qui è dove ci si confonde.</strong> C'è un'intersezione <em>interna</em> (quella in $x=0$), quindi l'ordine "chi sta sopra" cambia: bisogna spezzare l'integrale in due tratti, $[-1,0]$ e $[0,1]$, e fare il test del punto di prova in ciascuno.</span>
-            <span class="esempio__passo"><strong>Primo tratto, $[-1,0]$: chi sta sopra?</strong> Valore di prova $x=-\frac12$.</span>
+            <span class="esempio__passo">Le intersezioni sono $x=-1,0,1$. <strong>Attenzione:</strong> quella in $x=0$ è <em>interna</em> all'intervallo, quindi l'ordine "chi sta sopra" cambia. Devo <strong>spezzare</strong> l'integrale in $[-1,0]$ e $[0,1]$ e fare la prova in ciascun tratto.</span>
+            <span class="esempio__passo"><strong>Tratto $[-1,0]$.</strong> Valore di prova $x=-\frac12$: la cubica dà $\left(-\frac12\right)^3=-\frac18$, la retta $-\frac12$. Poiché $-\frac18\gt-\frac12$, sta sopra la cubica: integro $x^3-x$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          y_{\text{cubica}} &amp;= \left(-\tfrac12\right)^3 = -\tfrac18 &amp;&amp;\text{(valore di } y=x^3 \text{ nel punto di prova)}\\
-          y_{\text{retta}} &amp;= -\tfrac12 &amp;&amp;\text{(valore di } y=x \text{ nel punto di prova)}\\
-          -\tfrac18 &amp;\gt -\tfrac12 &amp;&amp;\text{(} -\tfrac18 \text{ è più vicino a zero: sta sopra la cubica)}
+          A_1 &amp;= \int_{-1}^{0}(x^3-x)\,dx = \left[\frac{x^4}{4}-\frac{x^2}{2}\right]_{-1}^{0} &amp;&amp;\text{(primitive termine a termine)}\\
+          &amp;= 0-\left(\frac14-\frac12\right)=\frac14 &amp;&amp;\text{(in } x=-1 \text{ gli esponenti pari tolgono il segno)}
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo">Quindi su $[-1,0]$ metto $f(x)=x^3$ e $g(x)=x$, e integro $x^3-x$.</span>
+            <span class="esempio__passo"><strong>Tratto $[0,1]$.</strong> Valore di prova $x=\frac12$: la retta dà $\frac12$, la cubica $\frac18$. Ora sta sopra la retta, quindi scambio i ruoli e integro $x-x^3$.</span>
           </p>
-          <div class="calcolo">$$\begin{aligned}
-          A_1 &amp;= \int_{-1}^{0}(x^3-x)\,dx &amp;&amp;\text{(sopra meno sotto, sul primo tratto)}\\
-          &amp;= \left[\frac{x^4}{4}-\frac{x^2}{2}\right]_{-1}^{0} &amp;&amp;\text{(primitive con la regola della potenza)}\\
-          &amp;= 0-\left(\frac{(-1)^4}{4}-\frac{(-1)^2}{2}\right) &amp;&amp;\text{(sostituisco } x=0 \text{ e poi } x=-1)\\
-          &amp;= -\left(\frac14-\frac12\right) &amp;&amp;\text{(gli esponenti pari cancellano il segno meno)}\\
-          &amp;= -\left(-\frac14\right) = \frac14 &amp;&amp;\text{(} \tfrac14-\tfrac12=-\tfrac14 \text{; il meno davanti lo ribalta)}
-          \end{aligned}$$</div>
-          <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Secondo tratto, $[0,1]$: chi sta sopra?</strong> Valore di prova $x=\frac12$: la retta dà $\frac12$, la cubica dà $\left(\frac12\right)^3=\frac18$; poiché $\frac12\gt\frac18$, qui sta sopra la retta. Scambio i ruoli e integro $x-x^3$.</span>
-          </p>
-          <div class="calcolo">$$\begin{aligned}
-          A_2 &amp;= \int_{0}^{1}(x-x^3)\,dx &amp;&amp;\text{(sopra meno sotto, sul secondo tratto)}\\
-          &amp;= \left[\frac{x^2}{2}-\frac{x^4}{4}\right]_{0}^{1} &amp;&amp;\text{(primitive con la regola della potenza)}\\
-          &amp;= \left(\frac12-\frac14\right)-0 &amp;&amp;\text{(sostituisco } x=1 \text{ e poi } x=0)\\
-          &amp;= \frac14 &amp;&amp;\text{(} \tfrac24-\tfrac14=\tfrac14)
-          \end{aligned}$$</div>
-          <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Sommo i due pezzi:</strong> $A=A_1+A_2=\frac14+\frac14=\frac12$.</span>
-          </p>
-          <div class="esempio__risultato">$A=\dfrac12$. <strong>Controllo di plausibilità:</strong> entrambi i pezzi sono venuti positivi (buon segno: l'ordine era giusto in tutti e due i tratti) e sono uguali fra loro, come ci si aspetta perché la figura è simmetrica rispetto all'origine. Se invece avessi calcolato ingenuamente $\int_{-1}^{1}(x-x^3)\,dx$ senza spezzare, avrei ottenuto $0$: i due contributi si sarebbero cancellati. Ecco a cosa serve spezzare nei punti di intersezione.</div>
+          <div class="calcolo">$$A_2=\int_{0}^{1}(x-x^3)\,dx=\left[\frac{x^2}{2}-\frac{x^4}{4}\right]_{0}^{1}=\frac12-\frac14=\frac14.$$</div>
+          <div class="esempio__risultato">$A=A_1+A_2=\dfrac14+\dfrac14=\dfrac12$. <strong>Controllo:</strong> i due pezzi sono positivi (l'ordine era giusto in entrambi i tratti) e uguali, come ci si aspetta da una figura simmetrica rispetto all'origine. Senza spezzare, $\int_{-1}^{1}(x-x^3)\,dx$ darebbe $0$: i due contributi si cancellerebbero.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 4 — Volume del cono (e verifica geometrica)</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Ruotando attorno all'asse $x$ la retta $y=\dfrac{r}{h}\,x$ da $x=0$ a $x=h$ si ottiene un cono di raggio di base $r$ e altezza $h$. Calcolarne il volume e confrontarlo con la formula classica.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Attorno a quale asse ruotiamo?</strong> Attorno all'<strong>asse $x$</strong>. La regione (un triangolo) tocca l'asse, quindi le fettine sono dischi pieni: la formula che ne consegue è quella dei dischi del <span class="richiamo" data-sec="4.3">§4.3</span>, $V=\pi\int_a^b[f(x)]^2dx$.</span>
-            <span class="esempio__passo"><strong>Che cosa sommiamo?</strong> Dischetti di raggio $f(x)=\frac rh x$ e spessore $dx$. Qui $r$ e $h$ sono <em>costanti</em>: l'unica lettera che varia è $x$.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Un volume di rotazione attorno all'<strong>asse $x$</strong>. La regione (un triangolo) tocca l'asse, quindi le fettine sono dischi pieni: metodo dei dischi del <span class="richiamo" data-sec="4.3">§4.3</span>, $V=\pi\int_a^b[f(x)]^2dx$, con $f(x)=\frac rh x$.</span>
+            <span class="esempio__passo"><strong>Calcolo.</strong> Qui $r$ e $h$ sono <em>costanti</em>: l'unica lettera che varia è $x$. Elevo al quadrato e porto fuori dall'integrale tutto ciò che non dipende da $x$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          V &amp;= \pi\int_0^h\left(\frac{r}{h}x\right)^2 dx &amp;&amp;\text{(formula dei dischi con } f(x)=\tfrac rh x,\ a=0,\ b=h)\\
-          &amp;= \pi\int_0^h \frac{r^2}{h^2}x^2\,dx &amp;&amp;\text{(} (AB)^2=A^2B^2 \text{, con } A=\tfrac rh \text{ e } B=x)\\
-          &amp;= \pi\,\frac{r^2}{h^2}\int_0^h x^2\,dx &amp;&amp;\text{(la costante } \tfrac{r^2}{h^2} \text{ esce per linearità, cap. 14)}\\
-          &amp;= \pi\,\frac{r^2}{h^2}\left[\frac{x^3}{3}\right]_0^h &amp;&amp;\text{(primitiva di } x^2 \text{: regola della potenza con } n=2)\\
-          &amp;= \pi\,\frac{r^2}{h^2}\cdot\frac{h^3}{3} &amp;&amp;\text{(sostituisco } x=h \text{ e poi } x=0 \text{, che dà } 0)\\
-          &amp;= \frac{\pi r^2 h}{3} &amp;&amp;\text{(semplifico } \tfrac{h^3}{h^2}=h)
+          V &amp;= \pi\int_0^h\left(\frac{r}{h}x\right)^2 dx = \pi\,\frac{r^2}{h^2}\int_0^h x^2\,dx &amp;&amp;\text{(la costante } \tfrac{r^2}{h^2} \text{ esce)}\\
+          &amp;= \pi\,\frac{r^2}{h^2}\left[\frac{x^3}{3}\right]_0^h &amp;&amp;\text{(primitiva di } x^2\text{)}\\
+          &amp;= \pi\,\frac{r^2}{h^2}\cdot\frac{h^3}{3}=\frac{\pi r^2 h}{3} &amp;&amp;\text{(sostituisco } x=h\text{; } \tfrac{h^3}{h^2}=h\text{)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$V=\dfrac13\pi r^2 h$. <strong>Controllo di plausibilità:</strong> il risultato è positivo ed è <strong>identico</strong> alla formula del volume del cono che già conoscevi. Inoltre è un terzo del cilindro $\pi r^2 h$ che contiene il cono: proprio quello che dice la geometria solida. L'integrale ha riscoperto da solo un risultato noto: è la migliore validazione possibile del metodo.</div>
+          <div class="esempio__risultato">$V=\dfrac13\pi r^2 h$. <strong>Controllo:</strong> è <strong>identico</strong> alla formula del cono che già conoscevi, cioè un terzo del cilindro $\pi r^2h$ che lo contiene. L'integrale ha riscoperto da solo un risultato noto.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 5 — Volume della sfera (la prova regina)</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Ruotando attorno all'asse $x$ la semicirconferenza $y=\sqrt{r^2-x^2}$ da $x=-r$ a $x=r$ si ottiene una sfera di raggio $r$. Ricavarne il volume.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Da dove viene la funzione.</strong> La circonferenza di centro l'origine e raggio $r$ ha equazione $x^2+y^2=r^2$ (<a href="../parte0-prerequisiti/07-geometria-analitica.html">geometria analitica</a>, Parte 0, cap. 7); ricavando $y$ e tenendo il segno $+$ si ottiene la semicirconferenza superiore $y=\sqrt{r^2-x^2}$.</span>
-            <span class="esempio__passo"><strong>Attorno a quale asse ruotiamo?</strong> Attorno all'<strong>asse $x$</strong>, e la regione tocca l'asse (agli estremi $\pm r$ la funzione vale $0$): quindi fettine a disco pieno, formula dei dischi del <span class="richiamo" data-sec="4.3">§4.3</span>.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> La funzione viene dalla circonferenza $x^2+y^2=r^2$ (<a href="../parte0-prerequisiti/07-geometria-analitica.html">geometria analitica</a>, Parte 0, cap. 7), tenendo il segno $+$ di $y$. Si ruota attorno all'<strong>asse $x$</strong> e la regione tocca l'asse (agli estremi $\pm r$ la funzione vale $0$): dischi pieni, <span class="richiamo" data-sec="4.3">§4.3</span>.</span>
+            <span class="esempio__passo"><strong>Elevo al quadrato.</strong> Il quadrato "mangia" la radice, e resta un polinomio. Questo è lecito perché $r^2-x^2\geq0$ su $[-r,r]$.</span>
           </p>
-          <div class="calcolo">$$\begin{aligned}
-          V &amp;= \pi\int_{-r}^{r}\left(\sqrt{r^2-x^2}\right)^2 dx &amp;&amp;\text{(formula dei dischi con } f(x)=\sqrt{r^2-x^2})\\
-          &amp;= \pi\int_{-r}^{r}(r^2-x^2)\,dx &amp;&amp;\text{(} (\sqrt A)^2=A \text{ per } A\geq0 \text{, e qui } r^2-x^2\geq0)
-          \end{aligned}$$</div>
+          <div class="calcolo">$$V=\pi\int_{-r}^{r}\left(\sqrt{r^2-x^2}\right)^2 dx=\pi\int_{-r}^{r}(r^2-x^2)\,dx.$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo">Il quadrato "mangia" la radice: resta un polinomio facilissimo. Cerco ora la primitiva. La lettera $r$ è una <em>costante</em>, quindi $r^2$ si comporta come un numero: la sua primitiva è $r^2x$; da $-x^2$ viene $-\frac{x^3}{3}$. Chiamo $G(x)=r^2x-\frac{x^3}{3}$ e la valuto agli estremi, uno alla volta.</span>
+            <span class="esempio__passo"><strong>Primitiva e sostituzioni.</strong> La lettera $r$ è una costante, quindi la primitiva di $r^2$ è $r^2x$ (e quella di $-x^2$ è $-\frac{x^3}{3}$). Poi sostituisco gli estremi $r$ e $-r$, uno alla volta.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          G(r) &amp;= r^2\cdot r-\frac{r^3}{3} = r^3-\frac{r^3}{3} &amp;&amp;\text{(sostituisco } x=r)\\
-          &amp;= \frac{3r^3-r^3}{3} = \frac{2r^3}{3} &amp;&amp;\text{(denominatore comune } 3)\\
-          G(-r) &amp;= r^2\cdot(-r)-\frac{(-r)^3}{3} &amp;&amp;\text{(sostituisco } x=-r)\\
-          &amp;= -r^3-\frac{-r^3}{3} = -r^3+\frac{r^3}{3} &amp;&amp;\text{(} (-r)^3=-r^3 \text{: l'esponente dispari conserva il segno)}\\
-          &amp;= \frac{-3r^3+r^3}{3} = -\frac{2r^3}{3} &amp;&amp;\text{(denominatore comune } 3)\\
-          G(r)-G(-r) &amp;= \frac{2r^3}{3}+\frac{2r^3}{3} = \frac{4r^3}{3} &amp;&amp;\text{(meno per meno dà più)}\\
-          V &amp;= \pi\cdot\frac{4r^3}{3} = \frac43\pi r^3 &amp;&amp;\text{(moltiplico per il } \pi \text{ lasciato davanti)}
+          V &amp;= \pi\left[r^2x-\frac{x^3}{3}\right]_{-r}^{r} &amp;&amp;\text{(primitive termine a termine)}\\
+          &amp;= \pi\left[\left(r^3-\frac{r^3}{3}\right)-\left(-r^3+\frac{r^3}{3}\right)\right] &amp;&amp;\text{(} x=r \text{, poi } x=-r\text{; } (-r)^3=-r^3\text{)}\\
+          &amp;= \pi\left(\frac{2r^3}{3}+\frac{2r^3}{3}\right)=\frac43\pi r^3 &amp;&amp;\text{(meno per meno dà più)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$V=\dfrac{4}{3}\pi r^3$. <strong>Controllo di plausibilità:</strong> il risultato è positivo, cresce come $r^3$ (giusto: è un volume, e raddoppiando il raggio deve diventare otto volte più grande), ed è <em>esattamente</em> la celeberrima formula del volume della sfera. Un altro controllo rapido: la sfera è contenuta nel cilindro di raggio $r$ e altezza $2r$, che ha volume $2\pi r^3$; e infatti $\frac43\pi r^3$ è minore di $2\pi r^3$, precisamente i due terzi.</div>
+          <div class="esempio__risultato">$V=\dfrac{4}{3}\pi r^3$. <strong>Controllo:</strong> è la celebre formula del volume della sfera; cresce come $r^3$ (raddoppiando il raggio il volume diventa otto volte più grande) ed è i due terzi del cilindro che la contiene, di raggio $r$ e altezza $2r$, che vale $2\pi r^3$.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 6 — Lunghezza di un arco di curva</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>Calcolare la lunghezza del grafico di $f(x)=\dfrac23 x^{3/2}$ da $x=0$ a $x=3$.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Che cosa sommiamo?</strong> Segmentini di lunghezza $\sqrt{1+[f'(x)]^2}\,dx$ (<span class="richiamo" data-sec="4.4">§4.4</span>). Prima cosa, dunque, serve la derivata.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> La lunghezza di una curva: <span class="richiamo" data-sec="4.4">§4.4</span>, $L=\int\sqrt{1+[f'(x)]^2}\,dx$. Per prima cosa serve la derivata.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          f'(x) &amp;= \frac23\cdot\frac32\,x^{\frac32-1} &amp;&amp;\text{(regola della potenza } (x^n)'=n x^{n-1} \text{ con } n=\tfrac32 \text{, cap. 7)}\\
-          &amp;= 1\cdot x^{1/2} = \sqrt{x} &amp;&amp;\text{(} \tfrac23\cdot\tfrac32=1 \text{; e } x^{1/2}=\sqrt x)\\
-          [f'(x)]^2 &amp;= (\sqrt x)^2 = x &amp;&amp;\text{(il quadrato cancella la radice, per } x\geq0)\\
-          \sqrt{1+[f'(x)]^2} &amp;= \sqrt{1+x} &amp;&amp;\text{(sostituisco dentro la formula della lunghezza)}
+          f'(x) &amp;= \frac23\cdot\frac32\,x^{\frac32-1}=x^{1/2}=\sqrt{x} &amp;&amp;\text{(regola della potenza, cap. 7)}\\
+          [f'(x)]^2 &amp;= x &amp;&amp;\text{(il quadrato cancella la radice)}\\
+          \sqrt{1+[f'(x)]^2} &amp;= \sqrt{1+x} &amp;&amp;\text{(niente radici brutte)}
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo">Che fortuna: niente radici brutte. <strong>Imposto l'integrale</strong> con $a=0$ e $b=3$, e cerco la primitiva di $\sqrt{1+x}=(1+x)^{1/2}$: aumento l'esponente di $1$ e divido per il nuovo esponente, ottenendo $\frac{(1+x)^{3/2}}{3/2}=\frac23(1+x)^{3/2}$. Posso applicare la regola della potenza così com'è perché la derivata di $1+x$ vale $1$, quindi la regola della catena non aggiunge fattori. Verifica: $\left(\frac23(1+x)^{3/2}\right)'=\frac23\cdot\frac32(1+x)^{1/2}\cdot 1=\sqrt{1+x}$, esatto.</span>
+            <span class="esempio__passo"><strong>Primitiva di $\sqrt{1+x}=(1+x)^{1/2}$.</strong> Aumento l'esponente di $1$ e divido per il nuovo esponente: viene $\frac23(1+x)^{3/2}$. Va bene così perché la derivata di $1+x$ è $1$ (la regola della catena non aggiunge fattori). Verifica: $\left(\frac23(1+x)^{3/2}\right)'=\frac23\cdot\frac32(1+x)^{1/2}=\sqrt{1+x}$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          L &amp;= \int_0^3\sqrt{1+x}\,dx &amp;&amp;\text{(formula della lunghezza d'arco)}\\
-          &amp;= \left[\frac23(1+x)^{3/2}\right]_0^3 &amp;&amp;\text{(primitiva appena verificata)}\\
-          &amp;= \frac23\,4^{3/2}-\frac23\,1^{3/2} &amp;&amp;\text{(sostituisco } x=3 \text{, che dà } 1+3=4 \text{, e } x=0 \text{, che dà } 1)\\
-          &amp;= \frac23\cdot 8-\frac23\cdot 1 &amp;&amp;\text{(} 4^{3/2}=(\sqrt4)^3=2^3=8 \text{ e } 1^{3/2}=1)\\
-          &amp;= \frac23\,(8-1) = \frac{14}{3} &amp;&amp;\text{(raccolgo } \tfrac23 \text{ e concludo)}
+          L &amp;= \int_0^3\sqrt{1+x}\,dx = \left[\frac23(1+x)^{3/2}\right]_0^3 &amp;&amp;\text{(primitiva verificata)}\\
+          &amp;= \frac23\cdot 4^{3/2}-\frac23\cdot 1^{3/2} &amp;&amp;\text{(} x=3 \text{ dà } 1+x=4\text{; } x=0 \text{ dà } 1\text{)}\\
+          &amp;= \frac23\cdot 8-\frac23\cdot 1=\frac23\,(8-1)=\frac{14}{3} &amp;&amp;\text{(} 4^{3/2}=(\sqrt4)^3=8\text{)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$L=\dfrac{14}{3}\approx 4{,}67$. <strong>Controllo di plausibilità:</strong> il risultato è positivo ed è maggiore della distanza orizzontale $b-a=3$, come deve essere per una curva che sale. Non è nemmeno assurdamente grande: il punto di arrivo è $\left(3,\ \frac23\cdot3^{3/2}\right)\approx(3;\ 3{,}46)$, e il segmento in linea d'aria dall'origine misurerebbe $\sqrt{9+12}\approx4{,}58$. La curva, che è appena più lunga della corda, misura $4{,}67$: tutto coerente.</div>
+          <div class="esempio__risultato">$L=\dfrac{14}{3}\approx 4{,}67$. <strong>Controllo:</strong> è maggiore di $b-a=3$, come deve per una curva che sale, ed è appena sopra la corda: dall'origine al punto finale $\left(3;\ 3{,}46\right)$ la distanza è $\sqrt{9+12}\approx4{,}58$.</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 7 — Rotazione attorno all'asse y: il metodo dei gusci</span><span class="badge badge--avanzato">Avanzato</span></div>
           <p>La regione compresa fra la parabola $y=x^2$ e l'asse $x$, per $x\in[0,2]$, ruota <strong>attorno all'asse $y$</strong>. Calcolare il volume del solido ottenuto.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Attorno a quale asse ruotiamo?</strong> Attorno all'<strong>asse $y$</strong>. La funzione è data nella forma $y=f(x)$, e non abbiamo voglia di invertirla: la formula che ne consegue è quella dei <strong>gusci cilindrici</strong> del <span class="richiamo" data-sec="4.3">§4.3</span>, $V=2\pi\int_a^b x\,f(x)\,dx$.</span>
-            <span class="esempio__passo"><strong>Che cosa sommiamo?</strong> Gusci: il guscio a distanza $x$ dall'asse $y$ ha circonferenza $2\pi x$, altezza $f(x)=x^2$ e spessore $dx$.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Rotazione attorno all'<strong>asse $y$</strong> con la funzione data come $y=f(x)$, che non ho voglia di invertire: gusci cilindrici del <span class="richiamo" data-sec="4.3">§4.3</span>, $V=2\pi\int_a^b x\,f(x)\,dx$. Il guscio a distanza $x$ dall'asse ha circonferenza $2\pi x$, altezza $f(x)=x^2$ e spessore $dx$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          V &amp;= 2\pi\int_0^2 x\cdot x^2\,dx &amp;&amp;\text{(formula dei gusci con } f(x)=x^2,\ a=0,\ b=2)\\
-          &amp;= 2\pi\int_0^2 x^3\,dx &amp;&amp;\text{(} x\cdot x^2=x^3 \text{: si sommano gli esponenti)}\\
-          &amp;= 2\pi\left[\frac{x^4}{4}\right]_0^2 &amp;&amp;\text{(primitiva di } x^3 \text{: regola della potenza con } n=3)\\
-          &amp;= 2\pi\left(\frac{16}{4}-0\right) &amp;&amp;\text{(sostituisco } x=2 \text{, cioè } 2^4=16 \text{, e poi } x=0)\\
-          &amp;= 2\pi\cdot 4 = 8\pi &amp;&amp;\text{(eseguo i conti)}
+          V &amp;= 2\pi\int_0^2 x\cdot x^2\,dx = 2\pi\int_0^2 x^3\,dx &amp;&amp;\text{(} x\cdot x^2=x^3\text{)}\\
+          &amp;= 2\pi\left[\frac{x^4}{4}\right]_0^2 = 2\pi\cdot\frac{16}{4}=8\pi &amp;&amp;\text{(primitiva di } x^3\text{, poi } x=2\text{)}
           \end{aligned}$$</div>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Verifica con l'altro metodo.</strong> Rifacciamo il conto affettando in orizzontale, cioè con anelli di spessore $dy$, per vedere se torna. Per ogni quota $y$ fra $0$ e $4$, la fetta orizzontale della regione va da $x=\sqrt y$ (la parabola, ricavata invertendo $y=x^2$) fino a $x=2$; ruotando dà un anello di raggio esterno $2$ e raggio interno $\sqrt y$.</span>
+            <span class="esempio__passo"><strong>Verifica con l'altro metodo.</strong> Affetto in orizzontale, con anelli di spessore $dy$. Per ogni quota $y$ fra $0$ e $4$ la fetta della regione va da $x=\sqrt y$ (la parabola, invertita) a $x=2$: ruotando dà un anello di raggio esterno $2$ e raggio interno $\sqrt y$.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          V &amp;= \pi\int_0^4\Big(2^2-(\sqrt y)^2\Big)\,dy &amp;&amp;\text{(anelli in } dy \text{: esterno al quadrato meno interno al quadrato)}\\
-          &amp;= \pi\int_0^4 (4-y)\,dy &amp;&amp;\text{(} 2^2=4 \text{ e } (\sqrt y)^2=y)\\
-          &amp;= \pi\left[4y-\frac{y^2}{2}\right]_0^4 &amp;&amp;\text{(primitive termine a termine)}\\
-          &amp;= \pi\left(16-8\right) = 8\pi &amp;&amp;\text{(sostituisco } y=4 \text{ e poi } y=0)
+          V &amp;= \pi\int_0^4\Big(2^2-(\sqrt y)^2\Big)\,dy=\pi\int_0^4(4-y)\,dy &amp;&amp;\text{(esterno}^2\text{ meno interno}^2\text{)}\\
+          &amp;= \pi\left[4y-\frac{y^2}{2}\right]_0^4=\pi\,(16-8)=8\pi &amp;&amp;\text{(primitive, poi } y=4\text{)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$V=8\pi$. <strong>Controllo di plausibilità:</strong> il risultato è positivo e i due metodi, gusci e anelli, danno lo stesso numero: è la conferma più solida che si possa avere. È anche ragionevole come grandezza: il solido è contenuto nel cilindro di raggio $2$ e altezza $4$, che vale $\pi\cdot4\cdot4=16\pi$, e infatti $8\pi$ ne è esattamente la metà.</div>
+          <div class="esempio__risultato">$V=8\pi$. <strong>Controllo:</strong> gusci e anelli danno lo stesso numero, la conferma più solida possibile. È anche la metà del cilindro che contiene il solido, di raggio $2$ e altezza $4$ (volume $16\pi$).</div>
         </div>
 
         <div class="esempio">
           <div class="esempio__header"><span class="titolo">Esempio 8 — Massa e baricentro di un'asta non omogenea</span><span class="badge badge--intermedio">Intermedio</span></div>
           <p>Un'asta occupa il tratto da $x=0$ a $x=3$ (in metri) e ha densità lineare $\lambda(x)=2+x$ (in kg/m). Calcolare la massa totale e la posizione del baricentro.</p>
           <p class="esempio__passi">
-            <span class="esempio__passo"><strong>Che cosa sommiamo?</strong> Prima pezzettini di massa, $dm=\lambda(x)\,dx$ (<span class="richiamo" data-sec="4.5">§4.5</span>); poi pezzettini di momento, $dM=x\,\lambda(x)\,dx$. Il baricentro sarà il rapporto fra i due totali.</span>
+            <span class="esempio__passo"><strong>Che cosa mi chiedono e come riconosco lo strumento.</strong> Massa e baricentro di un'asta (<span class="richiamo" data-sec="4.5">§4.5</span>): $m=\int\lambda\,dx$ e $\bar x=\frac1m\int x\,\lambda\,dx$. Calcolo prima la massa, poi il momento $M=\int x\,\lambda\,dx$; il baricentro è il loro rapporto.</span>
           </p>
           <div class="calcolo">$$\begin{aligned}
-          m &amp;= \int_0^3 (2+x)\,dx &amp;&amp;\text{(sommo i pezzettini di massa)}\\
-          &amp;= \left[2x+\frac{x^2}{2}\right]_0^3 &amp;&amp;\text{(primitive termine a termine: da } 2 \text{ viene } 2x \text{, da } x \text{ viene } \tfrac{x^2}{2})\\
-          &amp;= \left(6+\frac92\right)-0 &amp;&amp;\text{(sostituisco } x=3 \text{ e poi } x=0)\\
-          &amp;= \frac{12}{2}+\frac92 = \frac{21}{2} = 10{,}5 &amp;&amp;\text{(denominatore comune } 2 \text{: la massa è } 10{,}5 \text{ kg)}
+          m &amp;= \int_0^3 (2+x)\,dx = \left[2x+\frac{x^2}{2}\right]_0^3 &amp;&amp;\text{(da } 2 \text{ viene } 2x\text{, da } x \text{ viene } \tfrac{x^2}{2}\text{)}\\
+          &amp;= 6+\frac92 = \frac{21}{2} = 10{,}5 &amp;&amp;\text{(sostituisco } x=3\text{; denominatore } 2\text{)}
           \end{aligned}$$</div>
+          <p class="esempio__passi">
+            <span class="esempio__passo"><strong>Momento.</strong> Svolgo il prodotto $x\,(2+x)=2x+x^2$ prima di integrare, perché così ho una somma di potenze.</span>
+          </p>
           <div class="calcolo">$$\begin{aligned}
-          M &amp;= \int_0^3 x\,(2+x)\,dx &amp;&amp;\text{(sommo i pezzettini di momento)}\\
-          &amp;= \int_0^3 (2x+x^2)\,dx &amp;&amp;\text{(svolgo il prodotto: } x\cdot2=2x \text{ e } x\cdot x=x^2)\\
-          &amp;= \left[x^2+\frac{x^3}{3}\right]_0^3 &amp;&amp;\text{(primitive termine a termine)}\\
-          &amp;= \left(9+\frac{27}{3}\right)-0 = 9+9 = 18 &amp;&amp;\text{(sostituisco } x=3 \text{ e poi } x=0)\\
-          \bar x &amp;= \frac{M}{m} = \frac{18}{21/2} = 18\cdot\frac{2}{21} &amp;&amp;\text{(dividere per una frazione = moltiplicare per la sua inversa)}\\
-          &amp;= \frac{36}{21} = \frac{12}{7} \approx 1{,}71 &amp;&amp;\text{(semplifico dividendo sopra e sotto per } 3)
+          M &amp;= \int_0^3 (2x+x^2)\,dx = \left[x^2+\frac{x^3}{3}\right]_0^3 &amp;&amp;\text{(primitive termine a termine)}\\
+          &amp;= 9+9=18 &amp;&amp;\text{(sostituisco } x=3\text{)}\\
+          \bar x &amp;= \frac{M}{m}=\frac{18}{21/2}=18\cdot\frac{2}{21}=\frac{12}{7}\approx1{,}71 &amp;&amp;\text{(dividere per una frazione)}
           \end{aligned}$$</div>
-          <div class="esempio__risultato">$m=\dfrac{21}{2}=10{,}5$ kg, $\ \bar x=\dfrac{12}{7}\approx 1{,}71$ m. <strong>Controllo di plausibilità:</strong> la massa è positiva ed è compresa fra i valori "estremi" plausibili: se la densità fosse ovunque $2$ (la minima) la massa sarebbe $6$ kg, se fosse ovunque $5$ (la massima, in $x=3$) sarebbe $15$ kg; $10{,}5$ sta comodamente in mezzo. Il baricentro cade dentro l'asta ed è spostato a destra del punto di mezzo $x=1{,}5$, come deve essere perché l'asta è più pesante verso destra.</div>
+          <div class="esempio__risultato">$m=\dfrac{21}{2}=10{,}5$ kg, $\ \bar x=\dfrac{12}{7}\approx 1{,}71$ m. <strong>Controllo:</strong> con densità ovunque $2$ (la minima) la massa sarebbe $6$ kg, con densità ovunque $5$ (la massima) sarebbe $15$ kg: $10{,}5$ sta in mezzo. Il baricentro è dentro l'asta e a destra del punto di mezzo $1{,}5$, come deve perché l'asta è più pesante a destra.</div>
         </div>
       </section>
 
-      <!-- 7. ERRORI COMUNI -->
+      <!-- 6. ERRORI COMUNI -->
       <section class="section" id="errori-comuni">
-        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
+        <h2 class="section__title"><span class="num">6.</span> <span class="emoji">⚠️</span> Errori comuni</h2>
 
         <div class="callout callout--errore">
           <div class="callout__title"><span class="emoji">❌</span> Dimenticare il $\pi$ o il quadrato nel volume di rotazione</div>
@@ -1075,9 +664,9 @@
         </div>
       </section>
 
-      <!-- 8. TRUCCHI -->
+      <!-- 7. TRUCCHI -->
       <section class="section" id="trucchi">
-        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
+        <h2 class="section__title"><span class="num">7.</span> <span class="emoji">🔑</span> Trucchi e scorciatoie</h2>
 
         <div class="callout callout--trucco">
           <div class="callout__title"><span class="emoji">✏️</span> Regola d'oro: prima lo schizzo, poi l'integrale</div>
@@ -1103,9 +692,9 @@
         </div>
       </section>
 
-      <!-- 9. MAPPA MENTALE -->
+      <!-- 8. MAPPA MENTALE -->
       <section class="section" id="mappa-mentale">
-        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
+        <h2 class="section__title"><span class="num">8.</span> <span class="emoji">🗺️</span> Mappa mentale</h2>
         <div class="mappa-mentale">
           <div class="mappa-mentale__centro">Applicazioni dell'Integrale</div>
           <div class="mappa-mentale__rami">
@@ -1129,9 +718,9 @@
         </div>
       </section>
 
-      <!-- 10. RIASSUNTO -->
+      <!-- 9. RIASSUNTO -->
       <section class="section" id="riassunto">
-        <h2 class="section__title"><span class="num">10.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
+        <h2 class="section__title"><span class="num">9.</span> <span class="emoji">📝</span> Riassunto essenziale</h2>
         <div class="riassunto-finale">
           <h3>Da ricordare assolutamente</h3>
           <ul>
