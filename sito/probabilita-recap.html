@@ -36,6 +36,7 @@ h2{font-size:clamp(1.5rem,4.4vw,2rem);line-height:1.15;margin:0 0 .3em}
 .et{display:inline-block;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--inchiostro2);margin-right:.5em}
 .sp{font-size:.98rem}
 .es{background:var(--verde-velo);border-left:3px solid var(--verde);padding:7px 11px;border-radius:2px}.es .et{color:var(--verde)}
+.es .et{display:block;margin:0 0 .2em}.es p{margin:.3em 0}.es .dom{font-size:.98rem}.es .sol{font-size:.96rem}
 .att{background:var(--rosso-velo);border-left:3px solid var(--rosso);padding:7px 11px;border-radius:2px}.att .et{color:var(--rosso)}
 .extra{font-size:.97rem}
 code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:var(--carta);padding:0 .3em;border-radius:2px}
@@ -60,13 +61,13 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Principio moltiplicativo</h3>
 <div class="formula">$$n_1\cdot n_2\cdots n_k$$</div>
 <p class="riga sp"><span class="et">In parole</span> Se un'operazione si fa in più passi e al passo $i$ hai $n_i$ scelte, i modi totali sono il prodotto delle scelte. Funziona perché per ogni scelta del primo passo ricominci con tutte quelle del secondo. Si usa per contare configurazioni costruite «a stadi».</p>
-<p class="riga es"><span class="et">Esempio · Password</span> 3 lettere (26 disponibili) con ripetizioni: $26\cdot26\cdot26=17\,576$. Senza ripetere lettere: $26\cdot25\cdot24=15\,600$.</p>
+<div class="riga es"><span class="et">Esempio · Password</span><p class="dom">Una password è formata da 3 lettere (26 disponibili). <b>Trova quante password diverse si possono creare</b>: (a) ripetendo le lettere, (b) senza ripetizioni.</p><p class="sol"><b>Svolgimento.</b> (a) A ogni posizione ci sono 26 scelte: $26\cdot26\cdot26=17\,576$. (b) A ogni passo c'è una lettera in meno: $26\cdot25\cdot24=15\,600$.</p></div>
 </article>
 <article class="fc">
 <h3>Combinazioni</h3>
 <div class="formula">$$\binom{n}{k}=\frac{n!}{k!\,(n-k)!}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Conta i gruppi di $k$ elementi scelti da $n$ quando l'ordine non conta. Si parte dai modi ordinati $n(n-1)\cdots(n-k+1)$ e si corregge: lo stesso gruppo compare $k!$ volte (una per ogni ordine), quindi si divide per $k!$.</p>
-<p class="riga es"><span class="et">Esempio · Comitato</span> 3 persone scelte su 10: $\binom{10}{3}=120$. Se i 3 ruoli sono distinti (presidente, vice, segretario) l'ordine conta: $10\cdot9\cdot8=720=120\cdot3!$.</p>
+<div class="riga es"><span class="et">Esempio · Comitato</span><p class="dom">Un gruppo ha 10 persone. <b>Trova in quanti modi si può formare un comitato di 3 persone</b>, e in quanti modi si possono assegnare 3 ruoli distinti (presidente, vice, segretario).</p><p class="sol"><b>Svolgimento.</b> Nel comitato l'ordine non conta: $\binom{10}{3}=120$. Con ruoli distinti l'ordine conta: $10\cdot9\cdot8=720=120\cdot3!$.</p></div>
 </article>
 </section>
 <section class="cap" id="cap-1">
@@ -75,57 +76,57 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Spazio uniforme</h3>
 <div class="formula">$$P(A)=\frac{|A|}{|\Omega|}$$</div>
 <p class="riga sp"><span class="et">In parole</span> La probabilità è «casi favorevoli su casi possibili». Funziona solo se tutti gli esiti sono ugualmente probabili: ognuno pesa $1/|\Omega|$ e un evento pesa quanto gli esiti che contiene. Prima di usarla chiediti sempre se l'equiprobabilità è giustificata.</p>
-<p class="riga es"><span class="et">Esempio · Mazzo di carte</span> Mazzo da 52 carte, pesco a caso: $P(\text{asso})=\tfrac{4}{52}=\tfrac1{13}\approx0{,}077$.</p>
+<div class="riga es"><span class="et">Esempio · Mazzo di carte</span><p class="dom">Si pesca una carta a caso da un mazzo di 52. <b>Trova la probabilità che sia un asso.</b></p><p class="sol"><b>Svolgimento.</b> Casi favorevoli: 4 (gli assi); casi possibili: 52. $P=\tfrac{4}{52}=\tfrac1{13}\approx0{,}077$, cioè circa il 7,7%.</p></div>
 </article>
 <article class="fc">
 <h3>Somma di eventi incompatibili</h3>
 <div class="formula">$$\begin{gathered}P(A\cup B)=P(A)+P(B)\\\text{se } A\cap B=\emptyset\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Se due eventi non possono accadere insieme (nessun esito in comune), la probabilità che accada l'uno <b>o</b> l'altro è la somma delle due. Si contano i due gruppi di esiti separatamente, senza doppioni da correggere.</p>
-<p class="riga es"><span class="et">Esempio · Due lanci di moneta</span> Probabilità di «testa-testa oppure croce-croce». Non possono capitare insieme: $P=\tfrac14+\tfrac14=\tfrac12$.</p>
+<div class="riga es"><span class="et">Esempio · Due lanci di moneta</span><p class="dom">Si lancia una moneta due volte. <b>Trova la probabilità che escano due teste oppure due croci.</b></p><p class="sol"><b>Svolgimento.</b> I due eventi non possono accadere insieme (sono incompatibili), quindi si sommano: $P=\tfrac14+\tfrac14=\tfrac12$, cioè il 50%.</p></div>
 </article>
 <article class="fc">
 <h3>Unione in generale (eventi che si sovrappongono)</h3>
 <div class="formula">$$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
 <p class="riga sp"><span class="et">In parole</span> Quando i due eventi possono accadere insieme, sommando le probabilità gli esiti in comune sono contati due volte: se ne toglie una copia con $-P(A\cap B)$. Se $A\cap B=\emptyset$ si ritrova la regola precedente.</p>
-<p class="riga es"><span class="et">Esempio · Corsi universitari</span> 30 studenti: 18 seguono Python, 12 seguono Java, 6 seguono entrambi. $P(\text{Python o Java})=\tfrac{18}{30}+\tfrac{12}{30}-\tfrac{6}{30}=\tfrac{24}{30}=0{,}8$.</p>
+<div class="riga es"><span class="et">Esempio · Corsi universitari</span><p class="dom">In una classe di 30 studenti, 18 seguono Python, 12 seguono Java e 6 seguono entrambi. <b>Trova la probabilità che uno studente scelto a caso segua Python o Java (o entrambi).</b></p><p class="sol"><b>Svolgimento.</b> I 6 che seguono entrambi sono contati sia fra i 18 sia fra i 12: si toglie una copia. $P=\tfrac{18}{30}+\tfrac{12}{30}-\tfrac{6}{30}=\tfrac{24}{30}=0{,}8$, cioè l'80%.</p></div>
 </article>
 <article class="fc">
 <h3>Complementare</h3>
 <div class="formula">$$P(A^c)=1-P(A)$$</div>
 <p class="riga sp"><span class="et">In parole</span> La probabilità che un evento <i>non</i> accada è 1 meno quella che accada, perché $A$ e «non $A$» sono incompatibili e insieme coprono tutto. È la scorciatoia per le domande «almeno uno…»: è più facile calcolare «nessuno» e sottrarre da 1.</p>
-<p class="riga es"><span class="et">Esempio · PIN a 4 cifre</span> Probabilità che in un PIN casuale ci sia <b>almeno una cifra ripetuta</b>. Il contrario è «tutte diverse»: $\tfrac{10\cdot9\cdot8\cdot7}{10^4}=0{,}504$. Quindi $P=1-0{,}504=0{,}496$.</p>
+<div class="riga es"><span class="et">Esempio · PIN a 4 cifre</span><p class="dom">Un PIN ha 4 cifre scelte a caso (0–9, ripetizioni ammesse). <b>Trova la probabilità che contenga almeno una cifra ripetuta.</b></p><p class="sol"><b>Svolgimento.</b> Conviene calcolare il contrario, «tutte le cifre diverse»: $\tfrac{10\cdot9\cdot8\cdot7}{10^4}=0{,}504$. Quindi $P=1-0{,}504=0{,}496$, circa il 49,6%.</p></div>
 </article>
 <article class="fc">
 <h3>Probabilità condizionale</h3>
 <div class="formula">$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$$</div>
 <p class="riga sp"><span class="et">In parole</span> È la probabilità di $A$ quando sai già che $B$ è accaduto. Sapere $B$ restringe l'universo ai soli casi di $B$: si guarda la parte di $A$ dentro $B$ e si divide per $P(B)$ per ri-normalizzare, così il totale torna 1.</p>
-<p class="riga es"><span class="et">Esempio · Resi di un negozio</span> 200 clienti: 80 comprano online, e 20 di loro restituiscono il prodotto. $P(\text{reso}\mid\text{online})=\tfrac{20}{80}=0{,}25$, mentre $P(\text{online e reso})=\tfrac{20}{200}=0{,}10$.</p>
-<p class="riga att"><span class="et">Attenzione</span> Non confondere $P(A\mid B)$ con $P(A\cap B)$: il denominatore cambia (qui 80 invece di 200).</p>
+<div class="riga es"><span class="et">Esempio · Resi di un negozio</span><p class="dom">Un negozio ha 200 clienti: 80 comprano online, e 20 di questi restituiscono il prodotto. <b>Trova la probabilità che un cliente restituisca il prodotto, sapendo che ha comprato online.</b></p><p class="sol"><b>Svolgimento.</b> Si restringe l'universo agli 80 clienti online: $P(\text{reso}\mid\text{online})=\tfrac{20}{80}=0{,}25$, cioè il 25%.</p></div>
+<p class="riga att"><span class="et">Attenzione</span> Non confondere $P(A\mid B)$ con $P(A\cap B)$: qui $P(\text{online e reso})=\tfrac{20}{200}=0{,}10$, perché il denominatore è 200 invece di 80.</p>
 </article>
 <article class="fc">
 <h3>Regola del prodotto</h3>
 <div class="formula">$$P(A\cap B)=P(B)\,P(A\mid B)$$</div>
 <p class="riga sp"><span class="et">In parole</span> Dà la probabilità che accadano due eventi insieme: prima accade $B$, poi $A$ nel mondo in cui $B$ è già successo. È la condizionale letta al contrario. Si usa per esperimenti a più stadi, moltiplicando le probabilità lungo il percorso.</p>
-<p class="riga es"><span class="et">Esempio · Due carte di fila</span> Pesco due carte senza rimettere la prima. $P(\text{due assi})=\tfrac{4}{52}\cdot\tfrac{3}{51}=\tfrac1{221}\approx0{,}0045$.</p>
+<div class="riga es"><span class="et">Esempio · Due carte di fila</span><p class="dom">Si pescano due carte di fila da un mazzo di 52, senza rimettere la prima. <b>Trova la probabilità che siano entrambe assi.</b></p><p class="sol"><b>Svolgimento.</b> Prima carta asso: $\tfrac4{52}$. Poi restano 3 assi su 51 carte: $\tfrac3{51}$. Si moltiplica: $P=\tfrac{4}{52}\cdot\tfrac{3}{51}=\tfrac1{221}\approx0{,}0045$, cioè circa lo 0,45%.</p></div>
 </article>
 <article class="fc">
 <h3>Probabilità totali</h3>
 <div class="formula">$$P(A)=\sum_i P(A\mid B_i)\,P(B_i)$$</div>
 <p class="riga sp"><span class="et">In parole</span> Se un evento può accadere passando per scenari che si escludono e coprono tutto, la sua probabilità è la media pesata delle probabilità dentro ogni scenario, con pesi le probabilità degli scenari. Si somma perché gli scenari sono incompatibili.</p>
-<p class="riga es"><span class="et">Esempio · Fornitori di chip</span> Il fornitore A produce il 70% dei chip, con il 1% di difettosi; B il 30%, con il 4%. $P(\text{difettoso})=0{,}7\cdot0{,}01+0{,}3\cdot0{,}04=0{,}019$.</p>
+<div class="riga es"><span class="et">Esempio · Fornitori di chip</span><p class="dom">Il fornitore A produce il 70% dei chip, con l'1% di difettosi; il fornitore B produce il 30%, con il 4% di difettosi. <b>Trova la probabilità che un chip scelto a caso sia difettoso.</b></p><p class="sol"><b>Svolgimento.</b> Si somma su entrambi i fornitori: $P=0{,}7\cdot0{,}01+0{,}3\cdot0{,}04=0{,}007+0{,}012=0{,}019$, cioè l'1,9%.</p></div>
 </article>
 <article class="fc">
 <h3>Teorema di Bayes</h3>
 <div class="formula">$$P(B_i\mid A)=\frac{P(A\mid B_i)\,P(B_i)}{P(A)}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Serve a risalire dall'effetto alla causa: conosci $P(A\mid B_i)$ e vuoi $P(B_i\mid A)$. Nasce scrivendo la regola del prodotto in due modi, $P(A\cap B)=P(A\mid B)P(B)=P(B\mid A)P(A)$, e dividendo; il denominatore è la probabilità totale.</p>
-<p class="riga es"><span class="et">Esempio · Test diagnostico</span> Malattia nell'1% delle persone; il test dà positivo al 99% dei malati e al 5% dei sani. Su 10&nbsp;000 persone: 100 malate (99 positive), 9&nbsp;900 sane (495 falsi positivi). Positivi 594, quindi $P(\text{malato}\mid +)=\tfrac{99}{594}=\tfrac16\approx17\%$.</p>
+<div class="riga es"><span class="et">Esempio · Test diagnostico</span><p class="dom">Una malattia colpisce l'1% delle persone. Un test dà positivo al 99% dei malati e al 5% dei sani. <b>Trova la probabilità che una persona sia davvero malata, sapendo che il test è positivo.</b></p><p class="sol"><b>Svolgimento.</b> Su 10&nbsp;000 persone: 100 malate (99 positive) e 9&nbsp;900 sane (495 falsi positivi). Positivi in totale 594, di cui 99 malati: $P=\tfrac{99}{594}=\tfrac16\approx17\%$.</p></div>
 <p class="riga extra">Un test «accurato» dice poco quando la malattia è rara.</p>
 </article>
 <article class="fc">
 <h3>Indipendenza</h3>
 <div class="formula">$$P(A\cap B)=P(A)\,P(B)$$</div>
 <p class="riga sp"><span class="et">In parole</span> Due eventi sono indipendenti se saperne uno non cambia la probabilità dell'altro: $P(A\mid B)=P(A)$, che equivale alla formula. Permette di moltiplicare le probabilità di eventi che non si influenzano. È un'ipotesi da giustificare, non una proprietà automatica.</p>
-<p class="riga es"><span class="et">Esempio · Sensori di un allarme</span> Due sensori indipendenti, ciascuno rileva un intruso con probabilità $0{,}9$. Entrambi falliscono: $0{,}1\cdot0{,}1=0{,}01$. Almeno uno rileva: $1-0{,}01=0{,}99$.</p>
+<div class="riga es"><span class="et">Esempio · Sensori di un allarme</span><p class="dom">Due sensori indipendenti rilevano un intruso, ciascuno con probabilità $0{,}9$. <b>Trova la probabilità che l'intruso sia rilevato da almeno un sensore.</b></p><p class="sol"><b>Svolgimento.</b> Il contrario è «entrambi falliscono»: $0{,}1\cdot0{,}1=0{,}01$ (si moltiplica perché sono indipendenti). Quindi $P=1-0{,}01=0{,}99$, cioè il 99%.</p></div>
 <p class="riga att"><span class="et">Attenzione</span> <b>Incompatibili non vuol dire indipendenti.</b> «Testa-testa» e «croce-croce» sono incompatibili, ma $P(\text{TT}\cap\text{CC})=0\neq\tfrac14\cdot\tfrac14$: sono fortemente dipendenti, perché se uno accade l'altro è impossibile.</p>
 </article>
 </section>
@@ -135,44 +136,44 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Densità discreta e ripartizione</h3>
 <div class="formula">$$\begin{gathered}p(x)=P(X=x)\\\sum_x p(x)=1\\ F(x)=P(X\le x)\\P(a\lt X\le b)=F(b)-F(a)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> La densità elenca quanta probabilità ha ogni valore possibile di $X$ (e la somma fa 1). La ripartizione $F(x)$ la accumula fino a $x$; per un intervallo si sottrae ciò che sta prima. Servono per passare da «che cosa può succedere» a «quanto è probabile».</p>
-<p class="riga es"><span class="et">Esempio · Bug in una revisione</span> $X$ = bug trovati: $p(0)=0{,}5$, $p(1)=0{,}3$, $p(2)=0{,}2$. $F(1)=0{,}8$. $P(X\ge1)=1-F(0)=0{,}5$.</p>
+<div class="riga es"><span class="et">Esempio · Bug in una revisione</span><p class="dom">In una revisione di codice il numero $X$ di bug trovati ha $p(0)=0{,}5$, $p(1)=0{,}3$, $p(2)=0{,}2$. <b>Trova la probabilità di trovare almeno un bug</b>, usando la funzione di ripartizione.</p><p class="sol"><b>Svolgimento.</b> $F(0)=p(0)=0{,}5$ è la probabilità di non trovarne. Quindi $P(X\ge1)=1-F(0)=0{,}5$. (Controllo: $F(1)=0{,}5+0{,}3=0{,}8$.)</p></div>
 </article>
 <article class="fc">
 <h3>Valore atteso</h3>
 <div class="formula">$$E[X]=\sum_x x\,p(x)$$</div>
 <p class="riga sp"><span class="et">In parole</span> È la media dei valori possibili pesata con le loro probabilità: il «baricentro» della distribuzione, cioè il risultato medio su tante ripetizioni. Serve a decidere se una scelta o un gioco conviene «in media». Non è detto che sia un valore possibile.</p>
-<p class="riga es"><span class="et">Esempio · Lotteria</span> Biglietto da 1&nbsp;€, premio 10&nbsp;€ con probabilità $0{,}05$. Guadagno netto medio: $0{,}05\cdot9+0{,}95\cdot(-1)=-0{,}5$&nbsp;€. In media perdi 50 centesimi a biglietto.</p>
+<div class="riga es"><span class="et">Esempio · Lotteria</span><p class="dom">Un biglietto costa 1&nbsp;€. Con probabilità $0{,}05$ vince 10&nbsp;€, altrimenti non vince nulla. <b>Trova il guadagno netto medio per biglietto.</b></p><p class="sol"><b>Svolgimento.</b> Se vince guadagna $10-1=9$&nbsp;€, altrimenti perde 1&nbsp;€: $E=0{,}05\cdot9+0{,}95\cdot(-1)=-0{,}5$&nbsp;€. In media si perdono 50 centesimi a biglietto.</p></div>
 </article>
 <article class="fc">
 <h3>Linearità del valore atteso</h3>
 <div class="formula">$$\begin{gathered}E[X+Y]=E[X]+E[Y]\\(\text{sempre, anche se dipendenti})\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> La media di una somma è la somma delle medie. Succede perché la media è una somma pesata e le somme si spezzano. È utilissima per scomporre una variabile complicata in pezzi semplici senza studiare come i pezzi interagiscono.</p>
-<p class="riga es"><span class="et">Esempio · Programma in due fasi</span> Due fasi con tempi medi 2&nbsp;ms e 3&nbsp;ms: il tempo medio totale è $2+3=5$&nbsp;ms, qualunque sia la relazione fra le due fasi.</p>
+<div class="riga es"><span class="et">Esempio · Programma in due fasi</span><p class="dom">Un programma ha due fasi, di durata media 2&nbsp;ms e 3&nbsp;ms (anche se dipendenti fra loro). <b>Trova la durata media totale.</b></p><p class="sol"><b>Svolgimento.</b> Per la linearità $E=2+3=5$&nbsp;ms, senza sapere come le due fasi si influenzano.</p></div>
 </article>
 <article class="fc">
 <h3>Varianza</h3>
 <div class="formula">$$\begin{gathered}\operatorname{Var}(X)=E[X^2]-E[X]^2\\ \operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Misura quanto i valori si disperdono attorno alla media (media dei quadrati degli scarti). Aggiungere $b$ non cambia la dispersione; moltiplicare per $a$ la moltiplica per $a^2$, perché gli scarti sono al quadrato. Dice quanto ci si può fidare della media.</p>
-<p class="riga es"><span class="et">Esempio · Consegna di un pacco</span> Il pacco arriva in 1, 2 o 3 giorni con probabilità $0{,}2$, $0{,}5$, $0{,}3$. $E=2{,}1$; $E[X^2]=4{,}9$; $\operatorname{Var}=4{,}9-2{,}1^2=0{,}49$ giorni².</p>
+<div class="riga es"><span class="et">Esempio · Consegna di un pacco</span><p class="dom">Un pacco arriva in 1, 2 o 3 giorni con probabilità $0{,}2$, $0{,}5$, $0{,}3$. <b>Trova la varianza del tempo di consegna</b> (quanto varia attorno alla media).</p><p class="sol"><b>Svolgimento.</b> $E=1\cdot0{,}2+2\cdot0{,}5+3\cdot0{,}3=2{,}1$ giorni; $E[X^2]=1\cdot0{,}2+4\cdot0{,}5+9\cdot0{,}3=4{,}9$; $\operatorname{Var}=4{,}9-2{,}1^2=0{,}49$ giorni².</p></div>
 <p class="riga extra">Se due consegne <b>indipendenti</b> hanno varianza $0{,}49$ ciascuna, la somma ha $0{,}98$: le varianze si sommano solo con l'indipendenza.</p>
 </article>
 <article class="fc">
 <h3>Binomiale</h3>
 <div class="formula">$$\begin{gathered}P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\\ E[X]=np\\\operatorname{Var}(X)=np(1-p)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Conta i successi in $n$ prove indipendenti, ciascuna con probabilità $p$. Una sequenza precisa con $k$ successi ha probabilità $p^k(1-p)^{n-k}$, e le sequenze con $k$ successi sono $\binom nk$ (si sceglie quali prove riescono). Media e varianza vengono dal sommare $n$ Bernoulli.</p>
-<p class="riga es"><span class="et">Esempio · Quiz a risposta multipla</span> 5 domande con 4 opzioni, rispondo a caso ($p=\tfrac14$). $P(\text{esattamente 2 giuste})=\binom52\left(\tfrac14\right)^2\left(\tfrac34\right)^3\approx0{,}264$. In media 1,25 giuste.</p>
+<div class="riga es"><span class="et">Esempio · Quiz a risposta multipla</span><p class="dom">Un quiz ha 5 domande con 4 opzioni e si risponde a caso. <b>Trova la probabilità di indovinare esattamente 2 risposte</b>, e il numero medio di risposte giuste.</p><p class="sol"><b>Svolgimento.</b> Binomiale con $n=5$, $p=\tfrac14$: $P=\binom52\left(\tfrac14\right)^2\left(\tfrac34\right)^3\approx0{,}264$, cioè circa il 26,4%. Media $np=1{,}25$ risposte giuste.</p></div>
 </article>
 <article class="fc">
 <h3>Geometrica (tempo del primo successo)</h3>
 <div class="formula">$$\begin{gathered}P(X=k)=(1-p)^{k-1}p\\ E[X]=\frac1p\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> È il numero di prove necessarie per il primo successo, con prove indipendenti di probabilità $p$. Per riuscire alla prova $k$ servono $k-1$ fallimenti di fila e poi un successo; in media servono $1/p$ prove. Si usa per tempi di attesa discreti.</p>
-<p class="riga es"><span class="et">Esempio · Connessione di rete</span> Ogni tentativo riesce con probabilità $0{,}2$: in media servono $5$ tentativi. $P(\text{riesce al terzo})=0{,}8^2\cdot0{,}2=0{,}128$.</p>
+<div class="riga es"><span class="et">Esempio · Connessione di rete</span><p class="dom">Ogni tentativo di connessione riesce con probabilità $0{,}2$, in modo indipendente. <b>Trova la probabilità che la prima connessione riuscita sia al terzo tentativo</b>, e quanti tentativi servono in media.</p><p class="sol"><b>Svolgimento.</b> Servono 2 fallimenti e poi un successo: $P=0{,}8\cdot0{,}8\cdot0{,}2=0{,}128$ (12,8%). In media servono $\tfrac1p=5$ tentativi.</p></div>
 </article>
 <article class="fc">
 <h3>Poisson</h3>
 <div class="formula">$$\begin{gathered}P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}\\ E[X]=\operatorname{Var}(X)=\lambda\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Conta eventi rari che arrivano a caso, con tasso medio $\lambda$ (media e varianza coincidono). È il limite della binomiale con $n$ grande e $p$ piccolo, $\lambda=np$: tanti tentativi, ciascuno quasi sempre fallito.</p>
-<p class="riga es"><span class="et">Esempio · Call center</span> In media 3 chiamate al minuto: $P(\text{nessuna})=e^{-3}\approx0{,}0498$; $P(\text{esattamente }2)\approx0{,}224$.</p>
+<div class="riga es"><span class="et">Esempio · Call center</span><p class="dom">Un call center riceve in media 3 chiamate al minuto. <b>Trova la probabilità che in un minuto non arrivi nessuna chiamata</b>, e che ne arrivino esattamente 2.</p><p class="sol"><b>Svolgimento.</b> Poisson con $\lambda=3$: $P(0)=e^{-3}\approx0{,}0498$ (circa il 5%); $P(2)=e^{-3}\tfrac{3^2}{2!}\approx0{,}224$ (circa il 22,4%).</p></div>
 <p class="riga extra">Controllo dell'approssimazione: Bin(100; 0,03), $P(X=2)=0{,}2252$, contro $0{,}2240$ della Poisson(3).</p>
 </article>
 </section>
@@ -182,50 +183,50 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Densità</h3>
 <div class="formula">$$\begin{gathered}P(a\lt X\lt b)=\int_a^b f(x)\,dx\\ f\ge0\\\int_{-\infty}^{+\infty}f(x)\,dx=1\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Con infiniti valori possibili la probabilità sta negli intervalli: è l'<b>area</b> sotto la densità $f$, che è non negativa e ha area totale 1. Un singolo punto ha larghezza zero, quindi $P(X=x)=0$: non è «impossibile», è che solo gli intervalli hanno probabilità.</p>
-<p class="riga es"><span class="et">Esempio · Attesa dell'autobus</span> L'autobus arriva a caso nei prossimi 10 minuti (uniforme su $[0,10]$, $f=\tfrac1{10}$): $P(2\lt X\lt5)=\tfrac3{10}$.</p>
+<div class="riga es"><span class="et">Esempio · Attesa dell'autobus</span><p class="dom">L'autobus arriva a un istante casuale dei prossimi 10 minuti (tutti gli istanti equiprobabili). <b>Trova la probabilità che arrivi fra il minuto 2 e il minuto 5.</b></p><p class="sol"><b>Svolgimento.</b> La densità è costante, $f=\tfrac1{10}$: $P=\int_2^5\tfrac1{10}\,dx=\tfrac3{10}=0{,}3$, cioè il 30%.</p></div>
 </article>
 <article class="fc">
 <h3>Funzione di ripartizione</h3>
 <div class="formula">$$\begin{gathered}F(x)=\int_{-\infty}^{x}f(t)\,dt\\ F'(x)=f(x)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> $F(x)$ è la probabilità di stare sotto $x$: l'area accumulata da sinistra. Con $F$ si calcola subito $P(a\lt X\le b)=F(b)-F(a)$ senza integrare ogni volta, e derivandola si ritrova la densità.</p>
-<p class="riga es"><span class="et">Esempio · Download di un file</span> Durata uniforme fra 2 e 6 secondi: $F(x)=\tfrac{x-2}{4}$ per $2\le x\le6$. $P(\text{finisce entro }3{,}5\text{ s})=F(3{,}5)=0{,}375$.</p>
+<div class="riga es"><span class="et">Esempio · Download di un file</span><p class="dom">Un download dura un tempo uniforme fra 2 e 6 secondi. <b>Trova la probabilità che finisca entro 3,5 secondi.</b></p><p class="sol"><b>Svolgimento.</b> Per l'uniforme $F(x)=\tfrac{x-2}{4}$ fra 2 e 6, quindi $P=F(3{,}5)=\tfrac{1{,}5}{4}=0{,}375$ (37,5%).</p></div>
 </article>
 <article class="fc">
 <h3>Valore atteso e varianza</h3>
 <div class="formula">$$\begin{gathered}E[X]=\int x\,f(x)\,dx\\ \operatorname{Var}(X)=E[X^2]-E[X]^2\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Stesso significato del caso discreto (media pesata e dispersione), con l'integrale al posto della somma: ogni valore $x$ pesa $f(x)\,dx$. Per l'uniforme su $[a,b]$ si ottiene $E=\tfrac{a+b}{2}$ e $\operatorname{Var}=\tfrac{(b-a)^2}{12}$.</p>
-<p class="riga es"><span class="et">Esempio · Ritardo di un treno</span> Ritardo uniforme fra 0 e 12 minuti: media $6$ min, varianza $\tfrac{144}{12}=12$, deviazione standard $\approx3{,}46$ min.</p>
+<div class="riga es"><span class="et">Esempio · Ritardo di un treno</span><p class="dom">Il ritardo di un treno è uniforme fra 0 e 12 minuti. <b>Trova il ritardo medio e la sua variabilità</b> (varianza e deviazione standard).</p><p class="sol"><b>Svolgimento.</b> $E=\tfrac{0+12}{2}=6$ min. $\operatorname{Var}=\tfrac{(12-0)^2}{12}=12$, deviazione standard $\sqrt{12}\approx3{,}46$ min.</p></div>
 </article>
 <article class="fc">
 <h3>Esponenziale</h3>
 <div class="formula">$$\begin{gathered}f(x)=\lambda e^{-\lambda x}\\ P(X\gt t)=e^{-\lambda t}\\ E[X]=\frac1\lambda\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Modella l'attesa di un evento che arriva a caso, con tasso $\lambda$ (media $1/\lambda$). Ha <b>assenza di memoria</b>: se hai già aspettato un po', l'attesa residua ha la stessa legge di partenza. La probabilità di superare $t$ decresce come $e^{-\lambda t}$.</p>
-<p class="riga es"><span class="et">Esempio · Guasto di un server</span> Guasto in media dopo 20 ore ($\lambda=\tfrac1{20}$): $P(\text{regge più di 10 ore})=e^{-0{,}5}\approx0{,}607$. Se ha già retto 10 ore, la probabilità di reggerne altre 10 è ancora $0{,}607$.</p>
+<div class="riga es"><span class="et">Esempio · Guasto di un server</span><p class="dom">Un server si guasta in media dopo 20 ore (tempo esponenziale, $\lambda=\tfrac1{20}$). <b>Trova la probabilità che regga più di 10 ore</b> e, sapendo che ne ha già retto 10, la probabilità che ne regga altre 10.</p><p class="sol"><b>Svolgimento.</b> $P(X\gt10)=e^{-10/20}=e^{-0{,}5}\approx0{,}607$ (60,7%). Per l'assenza di memoria, la probabilità di reggerne altre 10 è ancora $0{,}607$.</p></div>
 </article>
 <article class="fc">
 <h3>Normale e standardizzazione</h3>
 <div class="formula">$$Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$</div>
 <p class="riga sp"><span class="et">In parole</span> È la «campana» descritta da media $\mu$ e deviazione $\sigma$. Standardizzando, $Z$ conta di quante deviazioni la misura dista dalla media: ogni normale diventa la normale standard, quindi basta una sola tabella ($\Phi$) per tutti i problemi.</p>
-<p class="riga es"><span class="et">Esempio · Punteggio del QI</span> Con $\mu=100$ e $\sigma=15$: $P(\text{QI}\gt130)$ ha $z=\tfrac{130-100}{15}=2$, quindi $1-\Phi(2)\approx0{,}0228$.</p>
+<div class="riga es"><span class="et">Esempio · Punteggio del QI</span><p class="dom">Il QI ha distribuzione normale con media 100 e deviazione standard 15. <b>Trova la probabilità che una persona abbia un QI superiore a 130.</b></p><p class="sol"><b>Svolgimento.</b> Si standardizza: $z=\tfrac{130-100}{15}=2$. $P(\text{QI}\gt130)=1-\Phi(2)\approx0{,}0228$, cioè circa il 2,3%.</p></div>
 <p class="riga extra">Regola 68–95–99,7: entro 1, 2, 3 $\sigma$ dalla media c'è il 68%, 95%, 99,7% dei valori.</p>
 </article>
 <article class="fc">
 <h3>Metodo dell'inversione</h3>
 <div class="formula">$$\begin{gathered}Y=-\frac{\ln U}{\lambda}\\ U\sim\text{Unif}(0,1)\ \Longrightarrow\ Y\sim\text{Esp}(\lambda)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Permette di generare numeri casuali con la legge voluta partendo da un numero uniforme $U\in(0,1)$, cioè da <code>random()</code>. Si dimostra calcolando $P(Y\gt t)$: $-\ln U\gt\lambda t$ equivale a $U\lt e^{-\lambda t}$, che ha probabilità $e^{-\lambda t}$.</p>
-<p class="riga es"><span class="et">Esempio · Simulazione di arrivi</span> Richieste con tasso $\lambda=2$ al secondo: se <code>random()</code> dà $U=0{,}5$, il tempo fino alla prossima richiesta è $-\tfrac{\ln0{,}5}{2}\approx0{,}347$&nbsp;s.</p>
+<div class="riga es"><span class="et">Esempio · Simulazione di arrivi</span><p class="dom">Le richieste arrivano con tasso 2 al secondo (tempi fra arrivi esponenziali). Il generatore <code>random()</code> restituisce $U=0{,}5$. <b>Trova il tempo fino alla prossima richiesta</b> con il metodo dell'inversione.</p><p class="sol"><b>Svolgimento.</b> $Y=-\tfrac{\ln U}{\lambda}=-\tfrac{\ln0{,}5}{2}\approx0{,}347$&nbsp;s.</p></div>
 </article>
 <article class="fc">
 <h3>Valore atteso condizionale</h3>
 <div class="formula">$$E\big[E[X\mid Y]\big]=E[X]$$</div>
 <p class="riga sp"><span class="et">In parole</span> Per calcolare una media complicata la si spezza in due tempi: prima la media dentro ogni caso di $Y$, poi la media di queste medie. È il parente del teorema delle probabilità totali e risolve i problemi a due stadi un pezzo alla volta.</p>
-<p class="riga es"><span class="et">Esempio · Incasso di un negozio</span> Arrivano in media 40 clienti al giorno, ciascuno spende in media 25&nbsp;€. Dato $N$ clienti, l'incasso medio è $25N$; quindi $E[\text{incasso}]=25\cdot E[N]=25\cdot40=1000$&nbsp;€.</p>
+<div class="riga es"><span class="et">Esempio · Incasso di un negozio</span><p class="dom">Un negozio riceve in media 40 clienti al giorno e ognuno spende in media 25&nbsp;€. <b>Trova l'incasso medio giornaliero.</b></p><p class="sol"><b>Svolgimento.</b> Dato il numero $N$ di clienti, l'incasso medio è $25N$. Mediando su $N$: $E[\text{incasso}]=25\cdot E[N]=25\cdot40=1000$&nbsp;€.</p></div>
 </article>
 <article class="fc">
 <h3>Funzione caratteristica</h3>
 <div class="formula">$$\begin{gathered}\varphi_X(t)=E\big[e^{itX}\big]\\ \varphi_{X+Y}=\varphi_X\,\varphi_Y\\(X,Y\text{ indipendenti})\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> È una «carta d'identità» della distribuzione. Per somme di variabili indipendenti, $E[e^{it(X+Y)}]=E[e^{itX}]E[e^{itY}]$: le convoluzioni (difficili) diventano prodotti (facili). È lo strumento con cui si dimostra il teorema limite centrale.</p>
-<p class="riga es"><span class="et">Esempio · Dalla Bernoulli alla binomiale</span> Una Bernoulli ha $\varphi=1-p+pe^{it}$, quindi una binomiale (somma di $n$ Bernoulli indipendenti) ha $\varphi=(1-p+pe^{it})^n$.</p>
+<div class="riga es"><span class="et">Esempio · Dalla Bernoulli alla binomiale</span><p class="dom">Una Bernoulli ha funzione caratteristica $\varphi=1-p+pe^{it}$. <b>Trova la funzione caratteristica di una binomiale</b>, somma di $n$ Bernoulli indipendenti.</p><p class="sol"><b>Svolgimento.</b> Per l'indipendenza le funzioni caratteristiche si moltiplicano: $\varphi=(1-p+pe^{it})^n$.</p></div>
 </article>
 </section>
 <section class="cap" id="cap-4">
@@ -234,32 +235,32 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Disuguaglianza di Markov</h3>
 <div class="formula">$$\begin{gathered}P(X\ge a)\le\frac{E[X]}{a}\\(X\ge0)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Limita la probabilità che una quantità non negativa sia grande conoscendo solo la sua media. Funziona perché $E[X]\ge a\,P(X\ge a)$: ignorare i valori piccoli può solo abbassare la media. È grezza, ma vale per qualunque distribuzione.</p>
-<p class="riga es"><span class="et">Esempio · Risposta di un'API</span> Tempo medio di risposta 2&nbsp;s: $P(\text{più di 10 s})\le\tfrac{2}{10}=20\%$, qualunque sia la distribuzione.</p>
+<div class="riga es"><span class="et">Esempio · Risposta di un'API</span><p class="dom">Il tempo medio di risposta di un'API è 2&nbsp;s (della distribuzione non si sa altro). <b>Trova un limite superiore alla probabilità che una risposta impieghi 10 secondi o più.</b></p><p class="sol"><b>Svolgimento.</b> Markov: $P(X\ge10)\le\tfrac{E[X]}{10}=\tfrac{2}{10}=0{,}2$, cioè al massimo il 20%.</p></div>
 </article>
 <article class="fc">
 <h3>Disuguaglianza di Chebyshev</h3>
 <div class="formula">$$P\big(|X-\mu|\ge k\big)\le\frac{\sigma^2}{k^2}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Limita la probabilità di allontanarsi dalla media di almeno $k$ usando solo la varianza. È Markov applicato a $(X-\mu)^2$. Il limite è largo, ma vale sempre: serve soprattutto nelle dimostrazioni (ad esempio per la legge dei grandi numeri).</p>
-<p class="riga es"><span class="et">Esempio · Tempo di esecuzione</span> Media 100&nbsp;ms, $\sigma=10$&nbsp;ms: $P(|X-100|\ge30)\le\tfrac{100}{900}\approx0{,}111$. Per una normale il valore vero è $0{,}0027$: il limite è largo.</p>
+<div class="riga es"><span class="et">Esempio · Tempo di esecuzione</span><p class="dom">Un programma ha tempo medio di esecuzione 100&nbsp;ms e deviazione standard 10&nbsp;ms. <b>Trova un limite superiore alla probabilità che il tempo si discosti dalla media di almeno 30&nbsp;ms.</b></p><p class="sol"><b>Svolgimento.</b> Chebyshev: $P(|X-100|\ge30)\le\tfrac{\sigma^2}{30^2}=\tfrac{100}{900}\approx0{,}111$ (al più l'11,1%). Per una normale il valore vero è $0{,}0027$: il limite è largo, ma vale sempre.</p></div>
 </article>
 <article class="fc">
 <h3>Legge dei grandi numeri</h3>
 <div class="formula">$$\begin{gathered}\operatorname{Var}(M_n)=\frac{\sigma^2}{n}\\ P\big(|M_n-\mu|\gt\varepsilon\big)\le\frac{\sigma^2}{n\,\varepsilon^2}\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Mediando $n$ misure indipendenti la varianza si divide per $n$: la media si concentra attorno al valore vero. Chebyshev trasforma questo in una garanzia sulla probabilità di sbagliare più di $\varepsilon$. Si usa per dimensionare quante prove servono.</p>
-<p class="riga es"><span class="et">Esempio · Click su un banner</span> Quanti utenti per stimare la percentuale di click con errore $\le0{,}05$ e probabilità $\ge95\%$? Caso peggiore $\sigma^2=\tfrac14$: $n\ge\tfrac{0{,}25}{0{,}05^2\cdot0{,}05}=2000$.</p>
+<div class="riga es"><span class="et">Esempio · Click su un banner</span><p class="dom">Si vuole stimare la percentuale di utenti che cliccano un banner, con errore al più $0{,}05$ e probabilità almeno del 95%. <b>Trova quanti utenti servono</b> nel caso peggiore ($\sigma^2=\tfrac14$), usando Chebyshev.</p><p class="sol"><b>Svolgimento.</b> Si impone $\tfrac{\sigma^2}{n\,\varepsilon^2}\le0{,}05$: $n\ge\tfrac{0{,}25}{0{,}05^2\cdot0{,}05}=2000$ utenti.</p></div>
 </article>
 <article class="fc">
 <h3>Teorema limite centrale</h3>
 <div class="formula">$$\frac{S_n-n\mu}{\sigma\sqrt n}\ \xrightarrow{\ d\ }\ N(0,1)$$</div>
 <p class="riga sp"><span class="et">In parole</span> La somma di tante variabili indipendenti, standardizzata, si comporta come una normale standard, qualunque sia la legge delle singole. Si usa per approssimare binomiali e somme. Con variabili discrete conviene la <b>correzione di continuità</b>: si usa $x-0{,}5$.</p>
-<p class="riga es"><span class="et">Esempio · Richieste che falliscono</span> 100 richieste, ciascuna fallisce con probabilità $0{,}2$: $\mu=20$, $\sigma=4$. $P(\text{almeno 28 fallimenti})$: con la correzione $1-\Phi(1{,}875)\approx0{,}030$; esatto $0{,}034$; senza correzione $0{,}023$.</p>
+<div class="riga es"><span class="et">Esempio · Richieste che falliscono</span><p class="dom">100 richieste, ciascuna fallisce con probabilità $0{,}2$ in modo indipendente. <b>Trova la probabilità che falliscano almeno 28 richieste</b> (con l'approssimazione normale).</p><p class="sol"><b>Svolgimento.</b> I fallimenti hanno media $np=20$ e deviazione standard $\sqrt{100\cdot0{,}2\cdot0{,}8}=4$. Con la correzione di continuità si usa $27{,}5$: $z=\tfrac{27{,}5-20}{4}=1{,}875$, quindi $P\approx1-\Phi(1{,}875)\approx0{,}030$. Il valore esatto è $0{,}034$; senza correzione verrebbe $0{,}023$.</p></div>
 <p class="riga extra">Stesso problema del banner con il TLC: $n\approx385$ ($1{,}96^2\cdot0{,}25/0{,}05^2$) contro i $2000$ di Chebyshev. Più preciso, ma è un'approssimazione.</p>
 </article>
 <article class="fc">
 <h3>Processo di Poisson</h3>
 <div class="formula">$$\begin{gathered}N_t\sim\text{Poisson}(\lambda t)\\ T_i\sim\text{Esp}(\lambda)\\(\text{tempi fra arrivi})\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Descrive eventi che arrivano a caso nel tempo con tasso $\lambda$: il numero di arrivi in un intervallo di durata $t$ è Poisson($\lambda t$) e l'attesa fra due arrivi consecutivi è esponenziale($\lambda$). Due flussi indipendenti uniti hanno tasso $\lambda_1+\lambda_2$.</p>
-<p class="riga es"><span class="et">Esempio · Ordini di un e-commerce</span> 12 ordini all'ora, cioè $\lambda=0{,}2$ al minuto. $P(\text{nessun ordine in 10 min})=e^{-0{,}2\cdot10}=e^{-2}\approx0{,}135$. Attesa media fra ordini: 5 minuti.</p>
+<div class="riga es"><span class="et">Esempio · Ordini di un e-commerce</span><p class="dom">Un e-commerce riceve in media 12 ordini all'ora, a caso nel tempo (processo di Poisson). <b>Trova la probabilità che in 10 minuti non arrivi nessun ordine</b> e il tempo medio fra due ordini.</p><p class="sol"><b>Svolgimento.</b> 12 ordini all'ora sono $\lambda=0{,}2$ al minuto, quindi in 10 minuti $\lambda t=2$: $P(\text{nessun ordine})=e^{-2}\approx0{,}135$ (13,5%). L'attesa media fra due ordini è $\tfrac1{0{,}2}=5$ minuti.</p></div>
 </article>
 </section>
 <section class="cap" id="cap-5">
@@ -268,25 +269,25 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Matrice di transizione</h3>
 <div class="formula">$$\begin{gathered}p_{ij}=P(X_{n+1}=j\mid X_n=i)\\ \sum_j p_{ij}=1\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Una catena di Markov salta tra stati e il futuro dipende solo dallo stato presente. La matrice $P$ raccoglie i salti: la riga $i$ dice dove vai partendo da $i$, e ogni riga somma a 1. Si usa per sistemi con «poca memoria»: meteo, utenti di un sito, code.</p>
-<p class="riga es"><span class="et">Esempio · Meteo</span> Sole→sole 0,8, sole→pioggia 0,2; pioggia→sole 0,4, pioggia→pioggia 0,6, cioè $P=\begin{pmatrix}0{,}8&amp;0{,}2\\0{,}4&amp;0{,}6\end{pmatrix}$.</p>
+<div class="riga es"><span class="et">Esempio · Meteo</span><p class="dom">Se oggi c'è il sole, domani c'è il sole con probabilità 0,8 e piove con 0,2; se oggi piove, domani c'è il sole con 0,4 e piove con 0,6. <b>Scrivi la matrice di transizione.</b></p><p class="sol"><b>Svolgimento.</b> Una riga per ogni stato di partenza (sole, pioggia) con le probabilità di arrivo; ogni riga somma a 1: $P=\begin{pmatrix}0{,}8&amp;0{,}2\\0{,}4&amp;0{,}6\end{pmatrix}$.</p></div>
 </article>
 <article class="fc">
 <h3>Probabilità in n passi (Chapman–Kolmogorov)</h3>
 <div class="formula">$$P^{(n)}=P^{\,n}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Per andare da $i$ a $j$ in due passi si passa per uno stato intermedio $k$: si sommano i percorsi $i\to k\to j$ (probabilità totali). È il prodotto di matrici, quindi in $n$ passi basta calcolare $P^n$. Si usa per prevedere lo stato dopo $n$ passi.</p>
-<p class="riga es"><span class="et">Esempio · Segnale del telefono</span> Con campo, il segnale resta con probabilità 0,9 e cade con 0,1; senza campo ritorna con 0,5. Parto con campo: $P(\text{senza campo fra 2 passi})=0{,}9\cdot0{,}1+0{,}1\cdot0{,}5=0{,}14$.</p>
+<div class="riga es"><span class="et">Esempio · Segnale del telefono</span><p class="dom">Con campo, il segnale resta con probabilità 0,9 e cade con 0,1; senza campo ritorna con 0,5. Si parte con campo. <b>Trova la probabilità di essere senza campo fra 2 passi.</b></p><p class="sol"><b>Svolgimento.</b> Due percorsi: campo→campo→senza campo ($0{,}9\cdot0{,}1$) e campo→senza campo→senza campo ($0{,}1\cdot0{,}5$). Si sommano: $0{,}09+0{,}05=0{,}14$, cioè il 14%.</p></div>
 </article>
 <article class="fc">
 <h3>Distribuzione stazionaria</h3>
 <div class="formula">$$\begin{gathered}\pi=\pi P\\ \sum_i\pi_i=1\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> È la distribuzione che, una volta raggiunta, non cambia più. Nelle catene irriducibili e aperiodiche descrive il comportamento a lungo termine, indipendente dalla partenza. Si trova risolvendo $\pi=\pi P$ insieme a $\sum\pi_i=1$.</p>
-<p class="riga es"><span class="et">Esempio · Un utente fra due app</span> Da A a B con probabilità $0{,}3$, da B ad A con $0{,}6$. Da $0{,}3\,\pi_A=0{,}6\,\pi_B$ viene $\pi_A=2\pi_B$, quindi $\pi=(\tfrac23,\tfrac13)$: due terzi del tempo su A. Tempo medio di ritorno ad A: $1/\pi_A=1{,}5$ passi.</p>
+<div class="riga es"><span class="et">Esempio · Un utente fra due app</span><p class="dom">Un utente passa dall'app A alla B con probabilità $0{,}3$ e dalla B alla A con probabilità $0{,}6$. <b>Trova la frazione di tempo che passa su A nel lungo periodo</b> e ogni quanti passi in media ci ritorna.</p><p class="sol"><b>Svolgimento.</b> All'equilibrio il flusso da A a B uguaglia quello da B ad A: $0{,}3\,\pi_A=0{,}6\,\pi_B$, cioè $\pi_A=2\pi_B$. Con $\pi_A+\pi_B=1$ viene $\pi=(\tfrac23,\tfrac13)$: circa il 66,7% del tempo su A. Il tempo medio di ritorno ad A è $1/\pi_A=1{,}5$ passi.</p></div>
 </article>
 <article class="fc">
 <h3>Rovina del giocatore</h3>
 <div class="formula">$$\begin{gathered}h(i)=p\,h(i+1)+q\,h(i-1)\\\Longrightarrow\\ h(i)=\frac{i}{N}\\\text{se } p=\tfrac12\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Studia una catena che si ferma in uno stato assorbente (rovina o traguardo). Equazione del primo passo: la probabilità di vincere da $i$ è la media pesata di quelle dai due stati vicini. Per il gioco equo la soluzione è lineare, $h(i)=i/N$.</p>
-<p class="riga es"><span class="et">Esempio · Giocatore d'azzardo</span> Parto con 1&nbsp;€, voglio arrivare a 3&nbsp;€ prima di perdere tutto, gioco equo: $P=\tfrac13$. Con $p=0{,}4$ (sfavorevole) scende a circa $0{,}21$.</p>
+<div class="riga es"><span class="et">Esempio · Giocatore d'azzardo</span><p class="dom">Un giocatore parte con 1&nbsp;€ e fa puntate da 1&nbsp;€ finché arriva a 3&nbsp;€ o perde tutto. <b>Trova la probabilità che arrivi a 3&nbsp;€</b>, se il gioco è equo ($p=\tfrac12$) e se è sfavorevole ($p=0{,}4$).</p><p class="sol"><b>Svolgimento.</b> Gioco equo: $h(i)=\tfrac iN=\tfrac13$ (circa il 33%). Con $p=0{,}4$ la probabilità scende a circa $0{,}21$ (21%).</p></div>
 </article>
 </section>
 <section class="cap" id="cap-6">
@@ -295,33 +296,33 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <h3>Media e varianza campionarie</h3>
 <div class="formula">$$\begin{gathered}\bar x=\frac1n\sum_{i=1}^n x_i\\ S^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar x)^2\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> La media campionaria stima la media vera; la varianza campionaria stima la varianza. Si divide per $n-1$ perché le differenze dalla media del campione sono un po' troppo piccole ($\bar x$ è scelta proprio vicino ai dati): così $S^2$ è <i>non distorta</i>, cioè in media vale $\sigma^2$.</p>
-<p class="riga es"><span class="et">Esempio · Misure di latenza</span> Tre misure: 8, 10, 12&nbsp;ms. $\bar x=10$; $S^2=\tfrac{4+0+4}{2}=4$&nbsp;ms². Dividendo per $n$ verrebbe $\tfrac83\approx2{,}67$.</p>
+<div class="riga es"><span class="et">Esempio · Misure di latenza</span><p class="dom">Si misura tre volte la latenza di un servizio: 8, 10, 12&nbsp;ms. <b>Trova la media campionaria e la varianza campionaria.</b></p><p class="sol"><b>Svolgimento.</b> $\bar x=10$&nbsp;ms. $S^2=\tfrac{4+0+4}{3-1}=4$&nbsp;ms². Dividendo per $n$ verrebbe $\tfrac83\approx2{,}67$, che sottostima la varianza.</p></div>
 </article>
 <article class="fc">
 <h3>Massima verosimiglianza (Bernoulli)</h3>
 <div class="formula">$$\hat p=\bar x$$</div>
 <p class="riga sp"><span class="et">In parole</span> Come stima del parametro si sceglie il valore che rende <b>più probabili i dati osservati</b>: si scrive la verosimiglianza, si deriva il logaritmo e si pone la derivata uguale a zero. Per una Bernoulli il risultato è la frequenza osservata.</p>
-<p class="riga es"><span class="et">Esempio · Collaudo di componenti</span> 7 componenti su 10 passano il collaudo. $L(p)=p^7(1-p)^3$: $\tfrac7p-\tfrac3{1-p}=0$ dà $\hat p=0{,}7$. Infatti $L(0{,}7)\approx0{,}0022$ contro $L(0{,}5)\approx0{,}0010$.</p>
+<div class="riga es"><span class="et">Esempio · Collaudo di componenti</span><p class="dom">7 componenti su 10 superano il collaudo. <b>Trova la stima di massima verosimiglianza della probabilità $p$ che un componente lo superi.</b></p><p class="sol"><b>Svolgimento.</b> La verosimiglianza è $L(p)=p^7(1-p)^3$. Derivando il logaritmo: $\tfrac7p-\tfrac3{1-p}=0$, da cui $\hat p=0{,}7$. Infatti $L(0{,}7)\approx0{,}0022$ è maggiore di $L(0{,}5)\approx0{,}0010$.</p></div>
 </article>
 <article class="fc">
 <h3>Intervallo di confidenza per la media (σ nota)</h3>
 <div class="formula">$$\begin{gathered}\bar x\ \pm\ z\,\frac{\sigma}{\sqrt n}\\(z=1{,}96\text{ al }95\%)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Intervallo costruito dai dati che, ripetendo l'esperimento, contiene la media vera nel 95% dei casi. Per il TLC la media campionaria è circa normale con deviazione $\sigma/\sqrt n$, e 1,96 deviazioni ne racchiudono il 95%. Più dati, intervallo più stretto.</p>
-<p class="riga es"><span class="et">Esempio · Durata di una batteria</span> $n=25$ batterie, durata media $\bar x=100$&nbsp;ore, $\sigma=10$&nbsp;ore. $100\pm1{,}96\cdot\tfrac{10}{5}=[96{,}08;\ 103{,}92]$ ore.</p>
+<div class="riga es"><span class="et">Esempio · Durata di una batteria</span><p class="dom">Su 25 batterie la durata media è 100 ore, con $\sigma=10$ ore nota. <b>Trova l'intervallo di confidenza al 95% per la durata media vera.</b></p><p class="sol"><b>Svolgimento.</b> $100\pm1{,}96\cdot\tfrac{10}{\sqrt{25}}=100\pm3{,}92$, cioè $[96{,}08;\ 103{,}92]$ ore.</p></div>
 <p class="riga att"><span class="et">Attenzione</span> <b>Interpretazione corretta:</b> ripetendo l'esperimento, circa il 95% degli intervalli costruiti così contiene la vera $\mu$. Non vuol dire «$\mu$ ha il 95% di probabilità di essere qui dentro».</p>
 </article>
 <article class="fc">
 <h3>Intervallo per una proporzione</h3>
 <div class="formula">$$\hat p\ \pm\ 1{,}96\sqrt{\frac{\hat p(1-\hat p)}{n}}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Stessa idea per le percentuali: $\hat p$ è la media di tanti 0 e 1, quindi per il TLC è circa normale, con errore standard $\sqrt{\hat p(1-\hat p)/n}$. Si usa nei sondaggi, con $n$ abbastanza grande. Invertendo la formula si ricava quante persone intervistare.</p>
-<p class="riga es"><span class="et">Esempio · Sondaggio</span> 400 intervistati, 220 favorevoli: $\hat p=0{,}55$, errore standard $0{,}0249$, intervallo $[0{,}501;\ 0{,}599]$.</p>
+<div class="riga es"><span class="et">Esempio · Sondaggio</span><p class="dom">Su 400 intervistati, 220 sono favorevoli a una proposta. <b>Trova l'intervallo di confidenza al 95% per la percentuale di favorevoli nella popolazione.</b></p><p class="sol"><b>Svolgimento.</b> $\hat p=\tfrac{220}{400}=0{,}55$; errore standard $\sqrt{\tfrac{0{,}55\cdot0{,}45}{400}}\approx0{,}0249$. Intervallo $0{,}55\pm1{,}96\cdot0{,}0249=[0{,}501;\ 0{,}599]$, cioè dal 50,1% al 59,9%.</p></div>
 <p class="riga extra"><b>Dimensionare il campione</b> (caso della media): per un margine $\pm2$ con $\sigma=10$ serve $n\ge\big(\tfrac{1{,}96\cdot10}{2}\big)^2=96{,}04$, quindi $n=97$.</p>
 </article>
 <article class="fc">
 <h3>Test d'ipotesi sulla media (test z)</h3>
 <div class="formula">$$\begin{gathered}Z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}\\ \text{si rifiuta } H_0 \text{ se } |Z|\gt1{,}96\\(\alpha=5\%)\end{gathered}$$</div>
 <p class="riga sp"><span class="et">In parole</span> Decide se i dati sono compatibili con un'ipotesi di partenza $H_0$: si calcola di quante «unità di incertezza» ($\sigma/\sqrt n$) la media osservata dista dal valore previsto, e si rifiuta $H_0$ se la distanza è troppo grande. Il p-value è la probabilità, se $H_0$ fosse vera, di un risultato così estremo.</p>
-<p class="riga es"><span class="et">Esempio · Pacchi di pasta</span> Pacchi da 500&nbsp;g, $\sigma=10$, $n=36$, trovo $\bar x=496$: $Z=\tfrac{496-500}{10/6}=-2{,}4$, rifiuto $H_0$. $p\text{-value}=2\,(1-\Phi(2{,}4))\approx0{,}016$.</p>
+<div class="riga es"><span class="et">Esempio · Pacchi di pasta</span><p class="dom">Una macchina dovrebbe riempire pacchi da 500&nbsp;g ($\sigma=10$&nbsp;g). Su 36 pacchi la media è 496&nbsp;g. <b>Decidi, con livello 5%, se i dati sono compatibili con una media di 500&nbsp;g</b> e calcola il p-value.</p><p class="sol"><b>Svolgimento.</b> $Z=\tfrac{496-500}{10/\sqrt{36}}=\tfrac{-4}{1{,}667}=-2{,}4$. Poiché $|Z|=2{,}4\gt1{,}96$ si rifiuta $H_0$: la media sembra diversa da 500&nbsp;g. $p\text{-value}=2\,(1-\Phi(2{,}4))\approx0{,}016$.</p></div>
 <p class="riga extra"><b>Errore di I specie:</b> rifiutare una $H_0$ vera (probabilità $\alpha$). <b>Errore di II specie:</b> non rifiutare una $H_0$ falsa.</p>
 </article>
 </section>
