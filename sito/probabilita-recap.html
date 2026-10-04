@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Probabilità — RECAP veloce</title>
+<link rel="stylesheet" href="assets/vendor/katex/katex.min.css">
+<style>
+:root{--carta:#F2F5F8;--foglio:#FFFFFF;--inchiostro:#16233A;--inchiostro2:#53637A;--riga:#D8E0E9;--quadretto:#C9D8E6;--rosso:#AE372B;--rosso-velo:#FAEDEB;--rosso-bordo:#EEDBD8;--verde:#2C6B4E;--verde-velo:#E9F3ED;--evidenzia:#F7E294;
+--serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;--sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--carta:#0F141B;--foglio:#161D27;--inchiostro:#E4E9F0;--inchiostro2:#A1ACBC;--riga:#2A3444;--quadretto:#223049;--rosso:#E4806F;--rosso-velo:#2A1A19;--rosso-bordo:#4A2B27;--verde:#74C49E;--verde-velo:#13251C;--evidenzia:#5F4E18;color-scheme:dark}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%;scroll-padding-top:64px}
+body{margin:0;background:var(--carta);color:var(--inchiostro);font-family:var(--serif);font-size:18px;line-height:1.62}
+.wrap{max-width:820px;margin:0 auto;padding:0 20px 80px}
+.barra{background:var(--foglio);border-bottom:1px solid var(--riga);font-family:var(--sans);font-size:.85rem}
+.barra .in{max-width:820px;margin:0 auto;padding:10px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.barra a,.barra button{color:var(--inchiostro);text-decoration:none;border:0;background:none;font:inherit;cursor:pointer;padding:0}
+.barra a:hover,.barra button:hover{text-decoration:underline}.barra .sp{flex:1}
+h1{font-size:clamp(2rem,6vw,3rem);line-height:1.08;margin:44px 0 .25em;letter-spacing:-.015em}
+.sottotitolo{color:var(--inchiostro2);margin:0 0 1.4em;max-width:60ch}
+.chips{position:sticky;top:0;z-index:5;background:var(--carta);border-bottom:1px solid var(--riga);padding:10px 0;margin:0 0 8px;font-family:var(--sans);font-size:.85rem;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.chips span{color:var(--inchiostro2);margin-right:2px}
+.chips a{border:1px solid var(--riga);background:var(--foglio);border-radius:999px;padding:3px 12px;color:var(--inchiostro);text-decoration:none;font-weight:600}
+.chips a:hover{border-color:var(--inchiostro)}
+.cap{margin-top:56px;scroll-margin-top:60px}
+.cap>header{border-top:2px solid var(--inchiostro);padding-top:14px;margin-bottom:22px}
+.etichetta{font-family:var(--sans);font-size:.8rem;color:var(--inchiostro2);margin:0 0 .3em}
+h2{font-size:clamp(1.5rem,4.4vw,2rem);line-height:1.15;margin:0 0 .3em}
+.guida{font-family:var(--sans);font-size:.85rem;margin:0}.guida a{color:var(--inchiostro);border-bottom:1.5px solid var(--evidenzia);text-decoration:none}
+.attesa{border:1px solid var(--riga);border-radius:2px;padding:1px 7px;background:var(--foglio);color:var(--inchiostro2);font-size:.75rem}
+.fc{background:var(--foglio);border:1px solid var(--riga);border-left:4px solid var(--inchiostro);border-radius:3px;padding:14px 18px 6px;margin:0 0 18px}
+.fc h3{font-size:1.12rem;margin:0 0 .2em;line-height:1.25}
+.formula{text-align:center;font-size:1.08rem;line-height:1.8;padding:6px 0;overflow-x:auto}
+.formula .katex-display{margin:.3em 0}
+.riga{margin:0 0 .75em}
+.et{display:inline-block;font-family:var(--sans);font-size:.72rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--inchiostro2);margin-right:.5em}
+.sp{font-size:.98rem}
+.es{background:var(--verde-velo);border-left:3px solid var(--verde);padding:7px 11px;border-radius:2px}.es .et{color:var(--verde)}
+.att{background:var(--rosso-velo);border-left:3px solid var(--rosso);padding:7px 11px;border-radius:2px}.att .et{color:var(--rosso)}
+.extra{font-size:.97rem}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background:var(--carta);padding:0 .3em;border-radius:2px}
+.fine{margin-top:56px;border-top:1px solid var(--riga);padding-top:14px;color:var(--inchiostro2);font-family:var(--sans);font-size:.82rem}
+.fine a{color:inherit}
+@media print{
+  body{background:#fff;color:#000;font-size:11pt;line-height:1.45}.barra,.chips{display:none}.wrap{max-width:none;padding:0}
+  .fc{break-inside:avoid;border:1px solid #bbb;border-left:3px solid #000;margin-bottom:10px;background:#fff}
+  .cap{margin-top:22px}.cap>header{break-after:avoid}h1{margin-top:0}.es,.att{background:none}
+}
+</style>
+</head>
+<body>
+<div class="barra"><div class="in"><a href="probabilita.html">← Guida di Probabilità</a><span class="sp"></span><button type="button" onclick="window.print()">Stampa</button></div></div>
+<div class="wrap">
+<h1>RECAP veloce</h1>
+<p class="sottotitolo">Calcolo delle probabilità (01736): per ogni capitolo le formule che servono, una spiegazione breve e un esempio con numeri piccoli, ogni volta su un contesto diverso. Tutti i numeri sono stati ricalcolati.</p>
+<nav class="chips" aria-label="Capitoli"><span>Capitolo</span><a href="#cap-0">0</a><a href="#cap-1">1</a><a href="#cap-2">2</a><a href="#cap-3">3</a><a href="#cap-4">4</a><a href="#cap-5">5</a><a href="#cap-6">6</a></nav>
+<section class="cap" id="cap-0">
+<header><p class="etichetta">Capitolo 0</p><h2>Contare (serve ovunque)</h2><p class="guida"><a class="vai" href="probabilita.html#parte0">Spiegazione completa nella guida →</a></p></header>
+<article class="fc">
+<h3>Principio moltiplicativo</h3>
+<div class="formula">$$n_1\cdot n_2\cdots n_k$$</div>
+<p class="riga sp"><span class="et">In parole</span> Se un'operazione si fa in più passi e al passo $i$ hai $n_i$ scelte, i modi totali sono il prodotto delle scelte. Funziona perché per ogni scelta del primo passo ricominci con tutte quelle del secondo. Si usa per contare configurazioni costruite «a stadi».</p>
+<p class="riga es"><span class="et">Esempio · Password</span> 3 lettere (26 disponibili) con ripetizioni: $26\cdot26\cdot26=17\,576$. Senza ripetere lettere: $26\cdot25\cdot24=15\,600$.</p>
+</article>
+<article class="fc">
+<h3>Combinazioni</h3>
+<div class="formula">$$\binom{n}{k}=\frac{n!}{k!\,(n-k)!}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Conta i gruppi di $k$ elementi scelti da $n$ quando l'ordine non conta. Si parte dai modi ordinati $n(n-1)\cdots(n-k+1)$ e si corregge: lo stesso gruppo compare $k!$ volte (una per ogni ordine), quindi si divide per $k!$.</p>
+<p class="riga es"><span class="et">Esempio · Comitato</span> 3 persone scelte su 10: $\binom{10}{3}=120$. Se i 3 ruoli sono distinti (presidente, vice, segretario) l'ordine conta: $10\cdot9\cdot8=720=120\cdot3!$.</p>
+</article>
+</section>
+<section class="cap" id="cap-1">
+<header><p class="etichetta">Capitolo 1</p><h2>Spazi di probabilità, condizionata, indipendenza</h2><p class="guida"><a class="vai" href="probabilita.html#parte1">Spiegazione completa nella guida →</a></p></header>
+<article class="fc">
+<h3>Spazio uniforme</h3>
+<div class="formula">$$P(A)=\frac{|A|}{|\Omega|}$$</div>
+<p class="riga sp"><span class="et">In parole</span> La probabilità è «casi favorevoli su casi possibili». Funziona solo se tutti gli esiti sono ugualmente probabili: ognuno pesa $1/|\Omega|$ e un evento pesa quanto gli esiti che contiene. Prima di usarla chiediti sempre se l'equiprobabilità è giustificata.</p>
+<p class="riga es"><span class="et">Esempio · Mazzo di carte</span> Mazzo da 52 carte, pesco a caso: $P(\text{asso})=\tfrac{4}{52}=\tfrac1{13}\approx0{,}077$.</p>
+</article>
+<article class="fc">
+<h3>Somma di eventi incompatibili</h3>
+<div class="formula">$$\begin{gathered}P(A\cup B)=P(A)+P(B)\\\text{se } A\cap B=\emptyset\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Se due eventi non possono accadere insieme (nessun esito in comune), la probabilità che accada l'uno <b>o</b> l'altro è la somma delle due. Si contano i due gruppi di esiti separatamente, senza doppioni da correggere.</p>
+<p class="riga es"><span class="et">Esempio · Due lanci di moneta</span> Probabilità di «testa-testa oppure croce-croce». Non possono capitare insieme: $P=\tfrac14+\tfrac14=\tfrac12$.</p>
+</article>
+<article class="fc">
+<h3>Unione in generale (eventi che si sovrappongono)</h3>
+<div class="formula">$$P(A\cup B)=P(A)+P(B)-P(A\cap B)$$</div>
+<p class="riga sp"><span class="et">In parole</span> Quando i due eventi possono accadere insieme, sommando le probabilità gli esiti in comune sono contati due volte: se ne toglie una copia con $-P(A\cap B)$. Se $A\cap B=\emptyset$ si ritrova la regola precedente.</p>
+<p class="riga es"><span class="et">Esempio · Corsi universitari</span> 30 studenti: 18 seguono Python, 12 seguono Java, 6 seguono entrambi. $P(\text{Python o Java})=\tfrac{18}{30}+\tfrac{12}{30}-\tfrac{6}{30}=\tfrac{24}{30}=0{,}8$.</p>
+</article>
+<article class="fc">
+<h3>Complementare</h3>
+<div class="formula">$$P(A^c)=1-P(A)$$</div>
+<p class="riga sp"><span class="et">In parole</span> La probabilità che un evento <i>non</i> accada è 1 meno quella che accada, perché $A$ e «non $A$» sono incompatibili e insieme coprono tutto. È la scorciatoia per le domande «almeno uno…»: è più facile calcolare «nessuno» e sottrarre da 1.</p>
+<p class="riga es"><span class="et">Esempio · PIN a 4 cifre</span> Probabilità che in un PIN casuale ci sia <b>almeno una cifra ripetuta</b>. Il contrario è «tutte diverse»: $\tfrac{10\cdot9\cdot8\cdot7}{10^4}=0{,}504$. Quindi $P=1-0{,}504=0{,}496$.</p>
+</article>
+<article class="fc">
+<h3>Probabilità condizionale</h3>
+<div class="formula">$$P(A\mid B)=\frac{P(A\cap B)}{P(B)}$$</div>
+<p class="riga sp"><span class="et">In parole</span> È la probabilità di $A$ quando sai già che $B$ è accaduto. Sapere $B$ restringe l'universo ai soli casi di $B$: si guarda la parte di $A$ dentro $B$ e si divide per $P(B)$ per ri-normalizzare, così il totale torna 1.</p>
+<p class="riga es"><span class="et">Esempio · Resi di un negozio</span> 200 clienti: 80 comprano online, e 20 di loro restituiscono il prodotto. $P(\text{reso}\mid\text{online})=\tfrac{20}{80}=0{,}25$, mentre $P(\text{online e reso})=\tfrac{20}{200}=0{,}10$.</p>
+<p class="riga att"><span class="et">Attenzione</span> Non confondere $P(A\mid B)$ con $P(A\cap B)$: il denominatore cambia (qui 80 invece di 200).</p>
+</article>
+<article class="fc">
+<h3>Regola del prodotto</h3>
+<div class="formula">$$P(A\cap B)=P(B)\,P(A\mid B)$$</div>
+<p class="riga sp"><span class="et">In parole</span> Dà la probabilità che accadano due eventi insieme: prima accade $B$, poi $A$ nel mondo in cui $B$ è già successo. È la condizionale letta al contrario. Si usa per esperimenti a più stadi, moltiplicando le probabilità lungo il percorso.</p>
+<p class="riga es"><span class="et">Esempio · Due carte di fila</span> Pesco due carte senza rimettere la prima. $P(\text{due assi})=\tfrac{4}{52}\cdot\tfrac{3}{51}=\tfrac1{221}\approx0{,}0045$.</p>
+</article>
+<article class="fc">
+<h3>Probabilità totali</h3>
+<div class="formula">$$P(A)=\sum_i P(A\mid B_i)\,P(B_i)$$</div>
+<p class="riga sp"><span class="et">In parole</span> Se un evento può accadere passando per scenari che si escludono e coprono tutto, la sua probabilità è la media pesata delle probabilità dentro ogni scenario, con pesi le probabilità degli scenari. Si somma perché gli scenari sono incompatibili.</p>
+<p class="riga es"><span class="et">Esempio · Fornitori di chip</span> Il fornitore A produce il 70% dei chip, con il 1% di difettosi; B il 30%, con il 4%. $P(\text{difettoso})=0{,}7\cdot0{,}01+0{,}3\cdot0{,}04=0{,}019$.</p>
+</article>
+<article class="fc">
+<h3>Teorema di Bayes</h3>
+<div class="formula">$$P(B_i\mid A)=\frac{P(A\mid B_i)\,P(B_i)}{P(A)}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Serve a risalire dall'effetto alla causa: conosci $P(A\mid B_i)$ e vuoi $P(B_i\mid A)$. Nasce scrivendo la regola del prodotto in due modi, $P(A\cap B)=P(A\mid B)P(B)=P(B\mid A)P(A)$, e dividendo; il denominatore è la probabilità totale.</p>
+<p class="riga es"><span class="et">Esempio · Test diagnostico</span> Malattia nell'1% delle persone; il test dà positivo al 99% dei malati e al 5% dei sani. Su 10&nbsp;000 persone: 100 malate (99 positive), 9&nbsp;900 sane (495 falsi positivi). Positivi 594, quindi $P(\text{malato}\mid +)=\tfrac{99}{594}=\tfrac16\approx17\%$.</p>
+<p class="riga extra">Un test «accurato» dice poco quando la malattia è rara.</p>
+</article>
+<article class="fc">
+<h3>Indipendenza</h3>
+<div class="formula">$$P(A\cap B)=P(A)\,P(B)$$</div>
+<p class="riga sp"><span class="et">In parole</span> Due eventi sono indipendenti se saperne uno non cambia la probabilità dell'altro: $P(A\mid B)=P(A)$, che equivale alla formula. Permette di moltiplicare le probabilità di eventi che non si influenzano. È un'ipotesi da giustificare, non una proprietà automatica.</p>
+<p class="riga es"><span class="et">Esempio · Sensori di un allarme</span> Due sensori indipendenti, ciascuno rileva un intruso con probabilità $0{,}9$. Entrambi falliscono: $0{,}1\cdot0{,}1=0{,}01$. Almeno uno rileva: $1-0{,}01=0{,}99$.</p>
+<p class="riga att"><span class="et">Attenzione</span> <b>Incompatibili non vuol dire indipendenti.</b> «Testa-testa» e «croce-croce» sono incompatibili, ma $P(\text{TT}\cap\text{CC})=0\neq\tfrac14\cdot\tfrac14$: sono fortemente dipendenti, perché se uno accade l'altro è impossibile.</p>
+</article>
+</section>
+<section class="cap" id="cap-2">
+<header><p class="etichetta">Capitolo 2</p><h2>Modelli discreti</h2><p class="guida"><a class="vai" href="probabilita.html#parte2">Spiegazione completa nella guida →</a></p></header>
+<article class="fc">
+<h3>Densità discreta e ripartizione</h3>
+<div class="formula">$$\begin{gathered}p(x)=P(X=x)\\\sum_x p(x)=1\\ F(x)=P(X\le x)\\P(a\lt X\le b)=F(b)-F(a)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> La densità elenca quanta probabilità ha ogni valore possibile di $X$ (e la somma fa 1). La ripartizione $F(x)$ la accumula fino a $x$; per un intervallo si sottrae ciò che sta prima. Servono per passare da «che cosa può succedere» a «quanto è probabile».</p>
+<p class="riga es"><span class="et">Esempio · Bug in una revisione</span> $X$ = bug trovati: $p(0)=0{,}5$, $p(1)=0{,}3$, $p(2)=0{,}2$. $F(1)=0{,}8$. $P(X\ge1)=1-F(0)=0{,}5$.</p>
+</article>
+<article class="fc">
+<h3>Valore atteso</h3>
+<div class="formula">$$E[X]=\sum_x x\,p(x)$$</div>
+<p class="riga sp"><span class="et">In parole</span> È la media dei valori possibili pesata con le loro probabilità: il «baricentro» della distribuzione, cioè il risultato medio su tante ripetizioni. Serve a decidere se una scelta o un gioco conviene «in media». Non è detto che sia un valore possibile.</p>
+<p class="riga es"><span class="et">Esempio · Lotteria</span> Biglietto da 1&nbsp;€, premio 10&nbsp;€ con probabilità $0{,}05$. Guadagno netto medio: $0{,}05\cdot9+0{,}95\cdot(-1)=-0{,}5$&nbsp;€. In media perdi 50 centesimi a biglietto.</p>
+</article>
+<article class="fc">
+<h3>Linearità del valore atteso</h3>
+<div class="formula">$$\begin{gathered}E[X+Y]=E[X]+E[Y]\\(\text{sempre, anche se dipendenti})\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> La media di una somma è la somma delle medie. Succede perché la media è una somma pesata e le somme si spezzano. È utilissima per scomporre una variabile complicata in pezzi semplici senza studiare come i pezzi interagiscono.</p>
+<p class="riga es"><span class="et">Esempio · Programma in due fasi</span> Due fasi con tempi medi 2&nbsp;ms e 3&nbsp;ms: il tempo medio totale è $2+3=5$&nbsp;ms, qualunque sia la relazione fra le due fasi.</p>
+</article>
+<article class="fc">
+<h3>Varianza</h3>
+<div class="formula">$$\begin{gathered}\operatorname{Var}(X)=E[X^2]-E[X]^2\\ \operatorname{Var}(aX+b)=a^2\operatorname{Var}(X)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Misura quanto i valori si disperdono attorno alla media (media dei quadrati degli scarti). Aggiungere $b$ non cambia la dispersione; moltiplicare per $a$ la moltiplica per $a^2$, perché gli scarti sono al quadrato. Dice quanto ci si può fidare della media.</p>
+<p class="riga es"><span class="et">Esempio · Consegna di un pacco</span> Il pacco arriva in 1, 2 o 3 giorni con probabilità $0{,}2$, $0{,}5$, $0{,}3$. $E=2{,}1$; $E[X^2]=4{,}9$; $\operatorname{Var}=4{,}9-2{,}1^2=0{,}49$ giorni².</p>
+<p class="riga extra">Se due consegne <b>indipendenti</b> hanno varianza $0{,}49$ ciascuna, la somma ha $0{,}98$: le varianze si sommano solo con l'indipendenza.</p>
+</article>
+<article class="fc">
+<h3>Binomiale</h3>
+<div class="formula">$$\begin{gathered}P(X=k)=\binom{n}{k}p^k(1-p)^{n-k}\\ E[X]=np\\\operatorname{Var}(X)=np(1-p)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Conta i successi in $n$ prove indipendenti, ciascuna con probabilità $p$. Una sequenza precisa con $k$ successi ha probabilità $p^k(1-p)^{n-k}$, e le sequenze con $k$ successi sono $\binom nk$ (si sceglie quali prove riescono). Media e varianza vengono dal sommare $n$ Bernoulli.</p>
+<p class="riga es"><span class="et">Esempio · Quiz a risposta multipla</span> 5 domande con 4 opzioni, rispondo a caso ($p=\tfrac14$). $P(\text{esattamente 2 giuste})=\binom52\left(\tfrac14\right)^2\left(\tfrac34\right)^3\approx0{,}264$. In media 1,25 giuste.</p>
+</article>
+<article class="fc">
+<h3>Geometrica (tempo del primo successo)</h3>
+<div class="formula">$$\begin{gathered}P(X=k)=(1-p)^{k-1}p\\ E[X]=\frac1p\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> È il numero di prove necessarie per il primo successo, con prove indipendenti di probabilità $p$. Per riuscire alla prova $k$ servono $k-1$ fallimenti di fila e poi un successo; in media servono $1/p$ prove. Si usa per tempi di attesa discreti.</p>
+<p class="riga es"><span class="et">Esempio · Connessione di rete</span> Ogni tentativo riesce con probabilità $0{,}2$: in media servono $5$ tentativi. $P(\text{riesce al terzo})=0{,}8^2\cdot0{,}2=0{,}128$.</p>
+</article>
+<article class="fc">
+<h3>Poisson</h3>
+<div class="formula">$$\begin{gathered}P(X=k)=e^{-\lambda}\frac{\lambda^k}{k!}\\ E[X]=\operatorname{Var}(X)=\lambda\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Conta eventi rari che arrivano a caso, con tasso medio $\lambda$ (media e varianza coincidono). È il limite della binomiale con $n$ grande e $p$ piccolo, $\lambda=np$: tanti tentativi, ciascuno quasi sempre fallito.</p>
+<p class="riga es"><span class="et">Esempio · Call center</span> In media 3 chiamate al minuto: $P(\text{nessuna})=e^{-3}\approx0{,}0498$; $P(\text{esattamente }2)\approx0{,}224$.</p>
+<p class="riga extra">Controllo dell'approssimazione: Bin(100; 0,03), $P(X=2)=0{,}2252$, contro $0{,}2240$ della Poisson(3).</p>
+</article>
+</section>
+<section class="cap" id="cap-3">
+<header><p class="etichetta">Capitolo 3</p><h2>Modelli continui</h2><p class="guida"><a class="vai" href="probabilita.html#parte3">Spiegazione completa nella guida →</a></p></header>
+<article class="fc">
+<h3>Densità</h3>
+<div class="formula">$$\begin{gathered}P(a\lt X\lt b)=\int_a^b f(x)\,dx\\ f\ge0\\\int_{-\infty}^{+\infty}f(x)\,dx=1\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Con infiniti valori possibili la probabilità sta negli intervalli: è l'<b>area</b> sotto la densità $f$, che è non negativa e ha area totale 1. Un singolo punto ha larghezza zero, quindi $P(X=x)=0$: non è «impossibile», è che solo gli intervalli hanno probabilità.</p>
+<p class="riga es"><span class="et">Esempio · Attesa dell'autobus</span> L'autobus arriva a caso nei prossimi 10 minuti (uniforme su $[0,10]$, $f=\tfrac1{10}$): $P(2\lt X\lt5)=\tfrac3{10}$.</p>
+</article>
+<article class="fc">
+<h3>Funzione di ripartizione</h3>
+<div class="formula">$$\begin{gathered}F(x)=\int_{-\infty}^{x}f(t)\,dt\\ F'(x)=f(x)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> $F(x)$ è la probabilità di stare sotto $x$: l'area accumulata da sinistra. Con $F$ si calcola subito $P(a\lt X\le b)=F(b)-F(a)$ senza integrare ogni volta, e derivandola si ritrova la densità.</p>
+<p class="riga es"><span class="et">Esempio · Download di un file</span> Durata uniforme fra 2 e 6 secondi: $F(x)=\tfrac{x-2}{4}$ per $2\le x\le6$. $P(\text{finisce entro }3{,}5\text{ s})=F(3{,}5)=0{,}375$.</p>
+</article>
+<article class="fc">
+<h3>Valore atteso e varianza</h3>
+<div class="formula">$$\begin{gathered}E[X]=\int x\,f(x)\,dx\\ \operatorname{Var}(X)=E[X^2]-E[X]^2\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Stesso significato del caso discreto (media pesata e dispersione), con l'integrale al posto della somma: ogni valore $x$ pesa $f(x)\,dx$. Per l'uniforme su $[a,b]$ si ottiene $E=\tfrac{a+b}{2}$ e $\operatorname{Var}=\tfrac{(b-a)^2}{12}$.</p>
+<p class="riga es"><span class="et">Esempio · Ritardo di un treno</span> Ritardo uniforme fra 0 e 12 minuti: media $6$ min, varianza $\tfrac{144}{12}=12$, deviazione standard $\approx3{,}46$ min.</p>
+</article>
+<article class="fc">
+<h3>Esponenziale</h3>
+<div class="formula">$$\begin{gathered}f(x)=\lambda e^{-\lambda x}\\ P(X\gt t)=e^{-\lambda t}\\ E[X]=\frac1\lambda\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Modella l'attesa di un evento che arriva a caso, con tasso $\lambda$ (media $1/\lambda$). Ha <b>assenza di memoria</b>: se hai già aspettato un po', l'attesa residua ha la stessa legge di partenza. La probabilità di superare $t$ decresce come $e^{-\lambda t}$.</p>
+<p class="riga es"><span class="et">Esempio · Guasto di un server</span> Guasto in media dopo 20 ore ($\lambda=\tfrac1{20}$): $P(\text{regge più di 10 ore})=e^{-0{,}5}\approx0{,}607$. Se ha già retto 10 ore, la probabilità di reggerne altre 10 è ancora $0{,}607$.</p>
+</article>
+<article class="fc">
+<h3>Normale e standardizzazione</h3>
+<div class="formula">$$Z=\frac{X-\mu}{\sigma}\sim N(0,1)$$</div>
+<p class="riga sp"><span class="et">In parole</span> È la «campana» descritta da media $\mu$ e deviazione $\sigma$. Standardizzando, $Z$ conta di quante deviazioni la misura dista dalla media: ogni normale diventa la normale standard, quindi basta una sola tabella ($\Phi$) per tutti i problemi.</p>
+<p class="riga es"><span class="et">Esempio · Punteggio del QI</span> Con $\mu=100$ e $\sigma=15$: $P(\text{QI}\gt130)$ ha $z=\tfrac{130-100}{15}=2$, quindi $1-\Phi(2)\approx0{,}0228$.</p>
+<p class="riga extra">Regola 68–95–99,7: entro 1, 2, 3 $\sigma$ dalla media c'è il 68%, 95%, 99,7% dei valori.</p>
+</article>
+<article class="fc">
+<h3>Metodo dell'inversione</h3>
+<div class="formula">$$\begin{gathered}Y=-\frac{\ln U}{\lambda}\\ U\sim\text{Unif}(0,1)\ \Longrightarrow\ Y\sim\text{Esp}(\lambda)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Permette di generare numeri casuali con la legge voluta partendo da un numero uniforme $U\in(0,1)$, cioè da <code>random()</code>. Si dimostra calcolando $P(Y\gt t)$: $-\ln U\gt\lambda t$ equivale a $U\lt e^{-\lambda t}$, che ha probabilità $e^{-\lambda t}$.</p>
+<p class="riga es"><span class="et">Esempio · Simulazione di arrivi</span> Richieste con tasso $\lambda=2$ al secondo: se <code>random()</code> dà $U=0{,}5$, il tempo fino alla prossima richiesta è $-\tfrac{\ln0{,}5}{2}\approx0{,}347$&nbsp;s.</p>
+</article>
+<article class="fc">
+<h3>Valore atteso condizionale</h3>
+<div class="formula">$$E\big[E[X\mid Y]\big]=E[X]$$</div>
+<p class="riga sp"><span class="et">In parole</span> Per calcolare una media complicata la si spezza in due tempi: prima la media dentro ogni caso di $Y$, poi la media di queste medie. È il parente del teorema delle probabilità totali e risolve i problemi a due stadi un pezzo alla volta.</p>
+<p class="riga es"><span class="et">Esempio · Incasso di un negozio</span> Arrivano in media 40 clienti al giorno, ciascuno spende in media 25&nbsp;€. Dato $N$ clienti, l'incasso medio è $25N$; quindi $E[\text{incasso}]=25\cdot E[N]=25\cdot40=1000$&nbsp;€.</p>
+</article>
+<article class="fc">
+<h3>Funzione caratteristica</h3>
+<div class="formula">$$\begin{gathered}\varphi_X(t)=E\big[e^{itX}\big]\\ \varphi_{X+Y}=\varphi_X\,\varphi_Y\\(X,Y\text{ indipendenti})\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> È una «carta d'identità» della distribuzione. Per somme di variabili indipendenti, $E[e^{it(X+Y)}]=E[e^{itX}]E[e^{itY}]$: le convoluzioni (difficili) diventano prodotti (facili). È lo strumento con cui si dimostra il teorema limite centrale.</p>
+<p class="riga es"><span class="et">Esempio · Dalla Bernoulli alla binomiale</span> Una Bernoulli ha $\varphi=1-p+pe^{it}$, quindi una binomiale (somma di $n$ Bernoulli indipendenti) ha $\varphi=(1-p+pe^{it})^n$.</p>
+</article>
+</section>
+<section class="cap" id="cap-4">
+<header><p class="etichetta">Capitolo 4</p><h2>Teoremi limite</h2><p class="guida"><span class="attesa">nella guida: in preparazione</span></p></header>
+<article class="fc">
+<h3>Disuguaglianza di Markov</h3>
+<div class="formula">$$\begin{gathered}P(X\ge a)\le\frac{E[X]}{a}\\(X\ge0)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Limita la probabilità che una quantità non negativa sia grande conoscendo solo la sua media. Funziona perché $E[X]\ge a\,P(X\ge a)$: ignorare i valori piccoli può solo abbassare la media. È grezza, ma vale per qualunque distribuzione.</p>
+<p class="riga es"><span class="et">Esempio · Risposta di un'API</span> Tempo medio di risposta 2&nbsp;s: $P(\text{più di 10 s})\le\tfrac{2}{10}=20\%$, qualunque sia la distribuzione.</p>
+</article>
+<article class="fc">
+<h3>Disuguaglianza di Chebyshev</h3>
+<div class="formula">$$P\big(|X-\mu|\ge k\big)\le\frac{\sigma^2}{k^2}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Limita la probabilità di allontanarsi dalla media di almeno $k$ usando solo la varianza. È Markov applicato a $(X-\mu)^2$. Il limite è largo, ma vale sempre: serve soprattutto nelle dimostrazioni (ad esempio per la legge dei grandi numeri).</p>
+<p class="riga es"><span class="et">Esempio · Tempo di esecuzione</span> Media 100&nbsp;ms, $\sigma=10$&nbsp;ms: $P(|X-100|\ge30)\le\tfrac{100}{900}\approx0{,}111$. Per una normale il valore vero è $0{,}0027$: il limite è largo.</p>
+</article>
+<article class="fc">
+<h3>Legge dei grandi numeri</h3>
+<div class="formula">$$\begin{gathered}\operatorname{Var}(M_n)=\frac{\sigma^2}{n}\\ P\big(|M_n-\mu|\gt\varepsilon\big)\le\frac{\sigma^2}{n\,\varepsilon^2}\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Mediando $n$ misure indipendenti la varianza si divide per $n$: la media si concentra attorno al valore vero. Chebyshev trasforma questo in una garanzia sulla probabilità di sbagliare più di $\varepsilon$. Si usa per dimensionare quante prove servono.</p>
+<p class="riga es"><span class="et">Esempio · Click su un banner</span> Quanti utenti per stimare la percentuale di click con errore $\le0{,}05$ e probabilità $\ge95\%$? Caso peggiore $\sigma^2=\tfrac14$: $n\ge\tfrac{0{,}25}{0{,}05^2\cdot0{,}05}=2000$.</p>
+</article>
+<article class="fc">
+<h3>Teorema limite centrale</h3>
+<div class="formula">$$\frac{S_n-n\mu}{\sigma\sqrt n}\ \xrightarrow{\ d\ }\ N(0,1)$$</div>
+<p class="riga sp"><span class="et">In parole</span> La somma di tante variabili indipendenti, standardizzata, si comporta come una normale standard, qualunque sia la legge delle singole. Si usa per approssimare binomiali e somme. Con variabili discrete conviene la <b>correzione di continuità</b>: si usa $x-0{,}5$.</p>
+<p class="riga es"><span class="et">Esempio · Richieste che falliscono</span> 100 richieste, ciascuna fallisce con probabilità $0{,}2$: $\mu=20$, $\sigma=4$. $P(\text{almeno 28 fallimenti})$: con la correzione $1-\Phi(1{,}875)\approx0{,}030$; esatto $0{,}034$; senza correzione $0{,}023$.</p>
+<p class="riga extra">Stesso problema del banner con il TLC: $n\approx385$ ($1{,}96^2\cdot0{,}25/0{,}05^2$) contro i $2000$ di Chebyshev. Più preciso, ma è un'approssimazione.</p>
+</article>
+<article class="fc">
+<h3>Processo di Poisson</h3>
+<div class="formula">$$\begin{gathered}N_t\sim\text{Poisson}(\lambda t)\\ T_i\sim\text{Esp}(\lambda)\\(\text{tempi fra arrivi})\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Descrive eventi che arrivano a caso nel tempo con tasso $\lambda$: il numero di arrivi in un intervallo di durata $t$ è Poisson($\lambda t$) e l'attesa fra due arrivi consecutivi è esponenziale($\lambda$). Due flussi indipendenti uniti hanno tasso $\lambda_1+\lambda_2$.</p>
+<p class="riga es"><span class="et">Esempio · Ordini di un e-commerce</span> 12 ordini all'ora, cioè $\lambda=0{,}2$ al minuto. $P(\text{nessun ordine in 10 min})=e^{-0{,}2\cdot10}=e^{-2}\approx0{,}135$. Attesa media fra ordini: 5 minuti.</p>
+</article>
+</section>
+<section class="cap" id="cap-5">
+<header><p class="etichetta">Capitolo 5</p><h2>Catene di Markov</h2><p class="guida"><span class="attesa">nella guida: in preparazione</span></p></header>
+<article class="fc">
+<h3>Matrice di transizione</h3>
+<div class="formula">$$\begin{gathered}p_{ij}=P(X_{n+1}=j\mid X_n=i)\\ \sum_j p_{ij}=1\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Una catena di Markov salta tra stati e il futuro dipende solo dallo stato presente. La matrice $P$ raccoglie i salti: la riga $i$ dice dove vai partendo da $i$, e ogni riga somma a 1. Si usa per sistemi con «poca memoria»: meteo, utenti di un sito, code.</p>
+<p class="riga es"><span class="et">Esempio · Meteo</span> Sole→sole 0,8, sole→pioggia 0,2; pioggia→sole 0,4, pioggia→pioggia 0,6, cioè $P=\begin{pmatrix}0{,}8&amp;0{,}2\\0{,}4&amp;0{,}6\end{pmatrix}$.</p>
+</article>
+<article class="fc">
+<h3>Probabilità in n passi (Chapman–Kolmogorov)</h3>
+<div class="formula">$$P^{(n)}=P^{\,n}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Per andare da $i$ a $j$ in due passi si passa per uno stato intermedio $k$: si sommano i percorsi $i\to k\to j$ (probabilità totali). È il prodotto di matrici, quindi in $n$ passi basta calcolare $P^n$. Si usa per prevedere lo stato dopo $n$ passi.</p>
+<p class="riga es"><span class="et">Esempio · Segnale del telefono</span> Con campo, il segnale resta con probabilità 0,9 e cade con 0,1; senza campo ritorna con 0,5. Parto con campo: $P(\text{senza campo fra 2 passi})=0{,}9\cdot0{,}1+0{,}1\cdot0{,}5=0{,}14$.</p>
+</article>
+<article class="fc">
+<h3>Distribuzione stazionaria</h3>
+<div class="formula">$$\begin{gathered}\pi=\pi P\\ \sum_i\pi_i=1\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> È la distribuzione che, una volta raggiunta, non cambia più. Nelle catene irriducibili e aperiodiche descrive il comportamento a lungo termine, indipendente dalla partenza. Si trova risolvendo $\pi=\pi P$ insieme a $\sum\pi_i=1$.</p>
+<p class="riga es"><span class="et">Esempio · Un utente fra due app</span> Da A a B con probabilità $0{,}3$, da B ad A con $0{,}6$. Da $0{,}3\,\pi_A=0{,}6\,\pi_B$ viene $\pi_A=2\pi_B$, quindi $\pi=(\tfrac23,\tfrac13)$: due terzi del tempo su A. Tempo medio di ritorno ad A: $1/\pi_A=1{,}5$ passi.</p>
+</article>
+<article class="fc">
+<h3>Rovina del giocatore</h3>
+<div class="formula">$$\begin{gathered}h(i)=p\,h(i+1)+q\,h(i-1)\\\Longrightarrow\\ h(i)=\frac{i}{N}\\\text{se } p=\tfrac12\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Studia una catena che si ferma in uno stato assorbente (rovina o traguardo). Equazione del primo passo: la probabilità di vincere da $i$ è la media pesata di quelle dai due stati vicini. Per il gioco equo la soluzione è lineare, $h(i)=i/N$.</p>
+<p class="riga es"><span class="et">Esempio · Giocatore d'azzardo</span> Parto con 1&nbsp;€, voglio arrivare a 3&nbsp;€ prima di perdere tutto, gioco equo: $P=\tfrac13$. Con $p=0{,}4$ (sfavorevole) scende a circa $0{,}21$.</p>
+</article>
+</section>
+<section class="cap" id="cap-6">
+<header><p class="etichetta">Capitolo 6</p><h2>Statistica di base</h2><p class="guida"><span class="attesa">nella guida: in preparazione</span></p></header>
+<article class="fc">
+<h3>Media e varianza campionarie</h3>
+<div class="formula">$$\begin{gathered}\bar x=\frac1n\sum_{i=1}^n x_i\\ S^2=\frac{1}{n-1}\sum_{i=1}^n (x_i-\bar x)^2\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> La media campionaria stima la media vera; la varianza campionaria stima la varianza. Si divide per $n-1$ perché le differenze dalla media del campione sono un po' troppo piccole ($\bar x$ è scelta proprio vicino ai dati): così $S^2$ è <i>non distorta</i>, cioè in media vale $\sigma^2$.</p>
+<p class="riga es"><span class="et">Esempio · Misure di latenza</span> Tre misure: 8, 10, 12&nbsp;ms. $\bar x=10$; $S^2=\tfrac{4+0+4}{2}=4$&nbsp;ms². Dividendo per $n$ verrebbe $\tfrac83\approx2{,}67$.</p>
+</article>
+<article class="fc">
+<h3>Massima verosimiglianza (Bernoulli)</h3>
+<div class="formula">$$\hat p=\bar x$$</div>
+<p class="riga sp"><span class="et">In parole</span> Come stima del parametro si sceglie il valore che rende <b>più probabili i dati osservati</b>: si scrive la verosimiglianza, si deriva il logaritmo e si pone la derivata uguale a zero. Per una Bernoulli il risultato è la frequenza osservata.</p>
+<p class="riga es"><span class="et">Esempio · Collaudo di componenti</span> 7 componenti su 10 passano il collaudo. $L(p)=p^7(1-p)^3$: $\tfrac7p-\tfrac3{1-p}=0$ dà $\hat p=0{,}7$. Infatti $L(0{,}7)\approx0{,}0022$ contro $L(0{,}5)\approx0{,}0010$.</p>
+</article>
+<article class="fc">
+<h3>Intervallo di confidenza per la media (σ nota)</h3>
+<div class="formula">$$\begin{gathered}\bar x\ \pm\ z\,\frac{\sigma}{\sqrt n}\\(z=1{,}96\text{ al }95\%)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Intervallo costruito dai dati che, ripetendo l'esperimento, contiene la media vera nel 95% dei casi. Per il TLC la media campionaria è circa normale con deviazione $\sigma/\sqrt n$, e 1,96 deviazioni ne racchiudono il 95%. Più dati, intervallo più stretto.</p>
+<p class="riga es"><span class="et">Esempio · Durata di una batteria</span> $n=25$ batterie, durata media $\bar x=100$&nbsp;ore, $\sigma=10$&nbsp;ore. $100\pm1{,}96\cdot\tfrac{10}{5}=[96{,}08;\ 103{,}92]$ ore.</p>
+<p class="riga att"><span class="et">Attenzione</span> <b>Interpretazione corretta:</b> ripetendo l'esperimento, circa il 95% degli intervalli costruiti così contiene la vera $\mu$. Non vuol dire «$\mu$ ha il 95% di probabilità di essere qui dentro».</p>
+</article>
+<article class="fc">
+<h3>Intervallo per una proporzione</h3>
+<div class="formula">$$\hat p\ \pm\ 1{,}96\sqrt{\frac{\hat p(1-\hat p)}{n}}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Stessa idea per le percentuali: $\hat p$ è la media di tanti 0 e 1, quindi per il TLC è circa normale, con errore standard $\sqrt{\hat p(1-\hat p)/n}$. Si usa nei sondaggi, con $n$ abbastanza grande. Invertendo la formula si ricava quante persone intervistare.</p>
+<p class="riga es"><span class="et">Esempio · Sondaggio</span> 400 intervistati, 220 favorevoli: $\hat p=0{,}55$, errore standard $0{,}0249$, intervallo $[0{,}501;\ 0{,}599]$.</p>
+<p class="riga extra"><b>Dimensionare il campione</b> (caso della media): per un margine $\pm2$ con $\sigma=10$ serve $n\ge\big(\tfrac{1{,}96\cdot10}{2}\big)^2=96{,}04$, quindi $n=97$.</p>
+</article>
+<article class="fc">
+<h3>Test d'ipotesi sulla media (test z)</h3>
+<div class="formula">$$\begin{gathered}Z=\frac{\bar x-\mu_0}{\sigma/\sqrt n}\\ \text{si rifiuta } H_0 \text{ se } |Z|\gt1{,}96\\(\alpha=5\%)\end{gathered}$$</div>
+<p class="riga sp"><span class="et">In parole</span> Decide se i dati sono compatibili con un'ipotesi di partenza $H_0$: si calcola di quante «unità di incertezza» ($\sigma/\sqrt n$) la media osservata dista dal valore previsto, e si rifiuta $H_0$ se la distanza è troppo grande. Il p-value è la probabilità, se $H_0$ fosse vera, di un risultato così estremo.</p>
+<p class="riga es"><span class="et">Esempio · Pacchi di pasta</span> Pacchi da 500&nbsp;g, $\sigma=10$, $n=36$, trovo $\bar x=496$: $Z=\tfrac{496-500}{10/6}=-2{,}4$, rifiuto $H_0$. $p\text{-value}=2\,(1-\Phi(2{,}4))\approx0{,}016$.</p>
+<p class="riga extra"><b>Errore di I specie:</b> rifiutare una $H_0$ vera (probabilità $\alpha$). <b>Errore di II specie:</b> non rifiutare una $H_0$ falsa.</p>
+</article>
+</section>
+
+<p class="fine">Per le dimostrazioni e i dettagli apri la <a href="probabilita.html">guida completa</a>. I capitoli 4–6 sono qui in forma di recap; nella guida sono in preparazione.</p>
+</div>
+<script src="assets/vendor/katex/katex.min.js"></script>
+<script src="assets/vendor/katex/contrib/auto-render.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+  if(typeof renderMathInElement==="undefined")return;
+  renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
+});
+</script>
+</body>
+</html>
