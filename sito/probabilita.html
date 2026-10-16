@@ -371,6 +371,7 @@ pre code{white-space:pre;overflow-wrap:normal}
     <li><b>Riquadri.</b> «Definizione» fissa il significato di una parola o di un simbolo. «Teorema» è un enunciato con le sue ipotesi: leggile sempre, perché una formula usata fuori dalle sue ipotesi può essere falsa. Gli altri riquadri sono «Nella vita reale» (un'analogia), «Il punto che sblocca tutto» (l'idea centrale) e «L'errore che fanno tutti» (la trappola tipica, al più una per sezione).</li>
     <li><b>Approfondimenti facoltativi.</b> I riquadri «Approfondimento facoltativo», con la tendina «Apri l'approfondimento», trattano argomenti che non fanno parte del programma di Baldi ma compaiono in altri corsi di Calcolo delle Probabilità (la probabilità come prezzo di una scommessa, la coerenza, l'indipendenza logica, le concordanze, gli eventi scambiabili): puoi saltarli senza perdere il filo.</li>
     <li><b>Dimostrazioni.</b> Quelle brevi stanno nel testo, quelle lunghe in una tendina «Dimostrazione». Leggile una volta per capire perché l'enunciato è vero e quali ipotesi usa; le più importanti conviene saperle rifare da solo, a voce, che è anche la preparazione migliore a un eventuale colloquio orale.</li>
+    <li><b>Video.</b> Alcune sezioni hanno un breve video animato (circa un minuto, senza audio), che fa vedere l'idea prima delle formule: gli esiti che si spostano in un diagramma, una torta da spartire, una barra che si riempie. Premi il tasto di avvio, metti in pausa o scorri la barra per rivedere un passaggio, e usa i capitoli sotto il video per saltare a un punto preciso. I sottotitoli sono sotto l'immagine e la trascrizione completa è nella tendina «Trascrizione»: i video non sostituiscono il testo, lo accompagnano.</li>
     <li><b>«Prova tu» ed esercizi guidati.</b> Dopo i concetti chiave trovi esercizi brevi («Prova tu») e, per i problemi che richiedono più passi, gli esercizi guidati. Un esercizio guidato è diviso in tappe, ciascuna con la sua domanda, il suo «Suggerimento» e il suo «Controlla», e finisce con un gemello, «Ora tocca a te», da fare senza aiuti.</li>
     <li><b>Fine parte.</b> Il «Riepilogo» richiama in breve i risultati; le «Domande di verifica» controllano i concetti (spiegazioni a voce, vero o falso, scelta multipla); gli «Esercizi» sono problemi completi, raggruppati per argomento e per difficoltà.</li>
   </ul>
@@ -2005,6 +2006,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p>Dopo lo 0 non esiste un "numero successivo": fra 0 e 0,001 c'è 0,0005, fra 0 e 0,0005 c'è 0,00025, e così via senza fermarsi. Questa fittezza è un altro modo di vedere perché i punti di un intervallo non si possono mettere in fila come i numeri 1, 2, 3, … (la spiegazione precedente).</p>
   </div></details>
 </div>
+<figure class="pv" data-pv="esiti"></figure>
+
 
 
   <p>Un <b>esperimento aleatorio</b> ("aleatorio" viene dal latino <i>alea</i>, il dado) è una procedura che puoi ripetere e di cui non riesci a prevedere l'esito, anche conoscendo tutto quello che c'è da sapere prima. Lanciare un dado. Estrarre una pallina da un'urna. Guardare se un cliente che entra in negozio compra qualcosa. Contare quante mail arrivano in un'ora. Vedere se un pacco arriva in orario.</p>
@@ -2039,6 +2042,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p>Gli eventi sono insiemi. Le frasi in italiano su cui ragioni ("esce pari <b>e</b> maggiore di 3", "<b>non</b> esce 6", "esce <b>almeno</b> un asso") si traducono in operazioni su insiemi, e viceversa. Una volta che sai fare la traduzione, un problema di probabilità diventa un problema di insiemi più un po' di aritmetica.</p>
   </div>
 
+<figure class="pv" data-pv="operazioni"></figure>
+
   <div class="tabella">
     <table>
       <caption>Il dizionario italiano ↔ insiemi, con esempio sul dado</caption>
@@ -2064,6 +2069,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     (<var>A</var> ∪ <var>B</var>)<sup>c</sup> = <var>A</var><sup>c</sup> ∩ <var>B</var><sup>c</sup> &nbsp;&nbsp;&nbsp;&nbsp; (<var>A</var> ∩ <var>B</var>)<sup>c</sup> = <var>A</var><sup>c</sup> ∪ <var>B</var><sup>c</sup>
     <span class="nota">La prima si legge: «non è vero che succede A oppure B» è la stessa cosa di «non succede né A né B». Nella vita: «non è vero che domani piove o nevica» significa «domani non piove e non nevica». La seconda: «non è vero che ho superato sia analisi sia fisica» significa «almeno una delle due non l'ho superata». Tradotto in strategia: <mark>ogni volta che leggi "almeno uno", calcola il contrario</mark>, cioè "nessuno", che di solito è facile, e poi fai 1 meno quel numero.</span>
   </div>
+
+<figure class="pv" data-pv="demorgan"></figure>
 
   <p>Valgono per un numero qualsiasi di eventi, anche per una lista infinita:</p>
   <div class="formula">
@@ -2293,6 +2300,9 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p>La terna (Ω, 𝓕, <var>P</var>) si chiama <b>spazio di probabilità</b>.</p>
   </div>
   <p>Nell'ordine: nessuna fetta di torta è negativa; la torta intera vale 1; se gli eventi di una lista (anche infinita) non hanno esiti in comune, la fetta della loro unione è la somma delle loro fette. I puntini dell'assioma 3 indicano una lista <i>infinita</i>: il caso di due, tre o <var>n</var> eventi lo ricaviamo fra poco.</p>
+
+<figure class="pv" data-pv="assiomi"></figure>
+
   <p>Scrivere un modello vuol dire decidere tre cose: quali sono gli esiti (Ω), quali sottoinsiemi contano come eventi (𝓕), quanto pesa ciascuno (<var>P</var>). In pratica: se Ω è finito o numerabile prendi 𝓕 = 𝒫(Ω) e non ci pensi più; se Ω è un intervallo di numeri reali, gli eventi sono tutto ciò che descrivi con intervalli e con "non", "e", "oppure". Negli esercizi di questa guida non dovrai mai verificare che un insieme sia un evento.</p>
 
   <h4>Perché non basta prendere sempre tutte le parti</h4>
@@ -2319,6 +2329,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p class="capo">Nella vita reale</p>
     <p>In un bar il 55% dei clienti paga con la carta, il 30% in contanti e il 15% con lo smartphone. Qual è la probabilità che il prossimo cliente paghi con la carta <i>oppure</i> in contanti? 55% + 30% = 85%. Puoi sommare perché nessuno paga lo stesso caffè in due modi: i due eventi sono disgiunti. Se invece qualcuno pagasse metà con la carta e metà in contanti, quella persona verrebbe contata due volte e la somma sbaglierebbe. Come si corregge lo vediamo fra poco.</p>
   </div>
+
+<figure class="pv" data-pv="conseguenze"></figure>
 
   <p><b>3. Complementare.</b> <var>A</var> e <var>A</var><sup>c</sup> sono disgiunti e la loro unione è Ω. Per l'additività finita e l'assioma 2, <var>P</var>(<var>A</var>) + <var>P</var>(<var>A</var><sup>c</sup>) = <var>P</var>(Ω) = 1.</p>
   <div class="formula">
@@ -2665,6 +2677,8 @@ pre code{white-space:pre;overflow-wrap:normal}
   </div>
   <p>L'equiprobabilità è un'ipotesi del modello (dado equo, mazzo ben mescolato, estrazione a caso), non un teorema. Quando la traccia non la dice la dichiari tu, e se non regge, come nel dado truccato, si torna ai pesi generali.</p>
 
+<figure class="pv" data-pv="uniformi"></figure>
+
   <div class="box attento">
     <p class="capo">L'errore che fanno tutti</p>
     <p>Applicare "favorevoli su possibili" quando gli esiti non sono equiprobabili. Lancia due dadi e guarda la somma: i valori possibili sono 2, 3, …, 12, cioè undici. Ne segue che la somma faccia 7 con probabilità 1/11? No. Gli esiti davvero equiprobabili sono le 36 coppie ordinate (primo dado, secondo dado), e ogni somma ne raccoglie un numero diverso:</p>
@@ -2975,6 +2989,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p>Immagina 600 lanci di dado. Circa 300 sono pari e circa 100 sono dei 6. Se ti dico "è uscito pari", stai guardando solo quei 300 lanci; fra loro, i 6 sono 100. La frazione è 100/300 = 1/3. Condizionare è esattamente questo: butti via tutti i casi che non stanno in <var>B</var>, e nel mondo che resta ricalcoli le frequenze. Dividere per <var>P</var>(<var>B</var>) serve a far tornare a 1 la torta del nuovo universo.</p>
   </div>
 
+<figure class="pv" data-pv="condizionale"></figure>
+
   <p>Il "nuovo universo" è davvero uno spazio di probabilità, e questo ti regala tutte le regole di <a class="ref" href="#s-1-2">1.2</a> anche con la barra:</p>
   <div class="box teorema">
     <p class="capo">Teorema (la probabilità condizionale è una probabilità)</p>
@@ -3207,6 +3223,8 @@ pre code{white-space:pre;overflow-wrap:normal}
   <p>Sui corrieri: la riga del corriere <var>Y</var> vale 0,060, il totale vale 0,095. Quindi <var>P</var>(<var>Y</var> | <var>R</var>) = 0,060 / 0,095 ≈ 0,632. <b>Il corriere <var>Y</var> consegna solo il 30% dei pacchi, ma è responsabile del 63% dei ritardi.</b> Questo è il tipo di conclusione che Bayes permette di tirare.</p>
 
   <p>Il vocabolario ufficiale: <var>P</var>(<var>B</var><sub><var>i</var></sub>) si chiama <b>probabilità a priori</b> (quello che credevi prima di osservare), <var>P</var>(<var>B</var><sub><var>i</var></sub> | <var>A</var>) <b>probabilità a posteriori</b> (quello che credi dopo aver osservato <var>A</var>), e <var>P</var>(<var>A</var> | <var>B</var><sub><var>i</var></sub>) è la <b>verosimiglianza</b> (quanto è probabile osservare <var>A</var> se lo scenario è <var>B</var><sub><var>i</var></sub>).</p>
+
+<figure class="pv" data-pv="bayes"></figure>
 
   <h4>Tre scenari, e l'albero</h4>
   <p>Con più di due scenari non cambia niente: la tabella ha una riga per scenario. È l'idea degli <b>esperimenti a due stadi</b>: prima uno scenario viene scelto (un corriere, un'urna, un server), poi si osserva qualcosa. Un load balancer smista le richieste su tre server: <var>S</var><sub>1</sub> ne riceve il 50%, <var>S</var><sub>2</sub> il 30%, <var>S</var><sub>3</sub> il 20%. Una richiesta va in timeout con probabilità 1% su <var>S</var><sub>1</sub>, 2% su <var>S</var><sub>2</sub>, 5% su <var>S</var><sub>3</sub>. Prendi una richiesta a caso: con che probabilità va in timeout? E se è andata in timeout, da quale server è passata?</p>
@@ -3662,6 +3680,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p><var>A</var> e <var>B</var> sono <b>indipendenti</b> se <var>P</var>(<var>A</var> ∩ <var>B</var>) = <var>P</var>(<var>A</var>) · <var>P</var>(<var>B</var>). Per scrivere meno si usa <var>A</var> ⊥ <var>B</var>.</p>
   </div>
   <p>Si preferisce questa forma a quella con la barra perché è simmetrica in <var>A</var> e <var>B</var> e non richiede divisioni: ha senso anche se <var>P</var>(<var>B</var>) = 0 (e allora vale sempre, perché <var>P</var>(<var>A</var> ∩ <var>B</var>) ≤ <var>P</var>(<var>B</var>) = 0). Se <var>P</var>(<var>B</var>) &gt; 0 è equivalente a <var>P</var>(<var>A</var> | <var>B</var>) = <var>P</var>(<var>A</var>). Se sono indipendenti, la probabilità che succedano entrambi è semplicemente il prodotto. Segue anche che un evento di probabilità 0 o 1 è indipendente da qualunque altro: sapere che è successo, o che non è successo, non ti dice niente di nuovo.</p>
+
+<figure class="pv" data-pv="indipendenza"></figure>
 
   <div class="box vita">
     <p class="capo">Nella vita reale</p>
@@ -4150,6 +4170,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
       <li>Indipendenti ⟺ <var>P</var>(<var>A</var> ∩ <var>B</var>) = <var>P</var>(<var>A</var>)<var>P</var>(<var>B</var>). Non confondere con incompatibili. Per <var>n</var> eventi serve la fattorizzazione di ogni sottogruppo (a coppie non basta), e i complementari si possono scambiare. Prove indipendenti vuol dire spazio prodotto: per questo si moltiplica. Serie: prodotto; parallelo: 1 − prodotto dei complementari. L'indipendenza condizionale è un'altra cosa: condizionare può crearla o distruggerla.</li>
     </ul>
   </div>
+
+<figure class="pv" data-pv="parte1"><figcaption><b>Ripasso in video</b> · i video della Parte 1 uno dopo l'altro, con un cartello fra l'uno e l'altro. Ognuno si trova anche nella sua sezione. Senza audio, con sottotitoli.</figcaption></figure>
+
 <div class="esercizi">
     <h3 id="s-1-9" data-toc><span class="n">1.8</span> Domande di verifica</h3>
     <p>Rispondi a voce, come se dovessi spiegarlo a un compagno, prima di aprire la risposta. Controllano i concetti, non i conti.</p>
@@ -20477,5 +20500,7 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
   aggiorna();
 })();
 </script>
+<script src="assets/js/pv.js" defer></script>
+<script src="assets/js/pv-parte1.js" defer></script>
 </body>
 </html>
