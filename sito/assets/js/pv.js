@@ -110,6 +110,11 @@
     const { size = 18, fill = C.ink, ta = 'middle', ff = SERIF, ...r } = a;
     return `<text${at({ x, y, fill, ta, ff, fs: size, ...r })}>${mm(s, size)}</text>`;
   };
+  /* una riga con pezzi di colore diverso: parts = [[testo, colore], …]; ogni pezzo deve finire con testo normale (non con apice o pedice) */
+  const txc = (x, y, parts, a = {}) => {
+    const { size = 30, ta = 'middle', ff = SERIF, ...r } = a;
+    return `<text${at({ x, y, ta, ff, fs: size, ...r })}>${parts.map(([s, fill]) => `<tspan fill="${fill}">${mm(s, size)}</tspan>`).join('')}</text>`;
+  };
   const lbl = (x, y, s, a = {}) => tx(x, y, s, { ff: SANS, size: 16, fill: C.soft, ...a });
 
   /* frazione num/den centrata in x, riga di frazione a metà fra le due */
@@ -141,6 +146,72 @@
   }
   const check = (x, y, s, u, a = {}) => path(`M${f(x - s * 0.5)} ${f(y)} L${f(x - s * 0.12)} ${f(y + s * 0.42)} L${f(x + s * 0.55)} ${f(y - s * 0.45)}`, { stroke: 'var(--verde)', sw: s * 0.17, lc: 'round', lj: 'round', ...draw(u), ...a });
   const cross = (x, y, s, u, a = {}) => path(`M${f(x - s * 0.42)} ${f(y - s * 0.42)} L${f(x + s * 0.42)} ${f(y + s * 0.42)} M${f(x + s * 0.42)} ${f(y - s * 0.42)} L${f(x - s * 0.42)} ${f(y + s * 0.42)}`, { stroke: 'var(--rosso)', sw: s * 0.17, lc: 'round', ...draw(u), ...a });
+
+  /* ---------- aiuti comuni alle clip (usati da pv-parte*.js) ---------- */
+  /* opacità di un elemento visibile fra a e b, con dissolvenza in entrata e in uscita */
+  const vis = (t, a, b, fi = 0.5, fo = 0.45) => p(t, a, a + fi) * (1 - p(t, b - fo, b));
+  const on = (op, s) => (op > 0.004 ? s : '');
+  const bump = (t, a, d = 1.6) => Math.sin(Math.PI * p(t, a, a + d, E.lin)); // 0 → 1 → 0 fra a e a+d
+
+  /* titolo (26) e sottotitolo (17) di un capitolo, visibili fra a e b; subline = solo il sottotitolo */
+  const heading = (t, a, b, s, sub) => {
+    const op = vis(t, a, b);
+    return on(op, tx(320, 44, s, { size: 26, op }) + (sub ? tx(320, 70, sub, { ff: SANS, size: 17, fill: C.soft, op }) : ''));
+  };
+  const subline = (t, a, b, s) => {
+    const op = vis(t, a, b);
+    return on(op, tx(320, 70, s, { ff: SANS, size: 17, fill: C.soft, op }));
+  };
+  const lb = (x, y, s, a = {}) => lbl(x, y, s, { size: 17, ...a }); // etichetta secondaria: mai sotto 17 unità
+
+  /* frazione con numeratore e denominatore colorabili; la barra segue il testo visibile (senza *, ^, _) */
+  const vl = (s) => String(s).replace(/[*^_{}]/g, '').length;
+  function fr(x, y, num, den, a = {}) {
+    const { size = 20, fill = C.ink, nf = fill, df = fill, op = 1 } = a;
+    const w = Math.max(vl(num), vl(den)) * size * 0.52 + 10;
+    return g({ op }, tx(x, y - size * 0.34, num, { size, fill: nf }) + ln(x - w / 2, y - size * 0.12, x + w / 2, y - size * 0.12, { stroke: fill, sw: 1.5 }) + tx(x, y + size * 0.82, den, { size, fill: df }));
+  }
+  /* graffa verticale */
+  const vbrace = (x, y0, y1, col, op = 1) => path(`M${x} ${y0}h5V${y1}h-5`, { stroke: col, sw: 2, op });
+  /* graffa orizzontale da x0 a x1 a quota y (apre verso il basso se dir = 1) */
+  const brace = (x0, x1, y, col, op, dir = 1) => path(`M${x0} ${y}v${5 * dir}H${x1}v${-5 * dir}`, { stroke: col, sw: 2, op });
+  /* rivela il contenuto da sinistra a destra (u da 0 a 1) */
+  const wipe = (id, x, y, w, h, u, inner) => `<clipPath id="${id}">${rect(x, y, w * u, h)}</clipPath>` + g({ 'clip-path': `url(#${id})` }, inner);
+  /* etichetta arrotondata (con spunta o croce); la riga di etichette si centra da sola (su cx) */
+  const pw = (s, icon) => Math.round((icon ? 56 : 32) + s.replace(/[*^_{}]/g, '').length * 8.6);
+  function pills(y, items, cx = 320) {
+    const ws = items.map((i) => pw(i.s, i.icon)), gap = 16;
+    let x = cx - (ws.reduce((a, b) => a + b, 0) + gap * (items.length - 1)) / 2, o = '';
+    items.forEach((it, k) => {
+      const w = ws[k], h = 34, cx = x + w / 2, cy = y;
+      x += w + gap;
+      if (!(it.op > 0.004)) return;
+      let s = rect(cx - w / 2, cy - h / 2, w, h, { rx: h / 2, fill: C.paper, stroke: it.col || C.soft, sw: 1.6 });
+      if (it.icon === 'ok') s += check(cx - w / 2 + 23, cy, 15, it.u);
+      if (it.icon === 'no') s += cross(cx - w / 2 + 23, cy, 15, it.u);
+      s += tx(it.icon ? cx - w / 2 + 44 : cx, cy + 6, it.s, { ff: SANS, size: 17, ta: it.icon ? 'start' : 'middle' });
+      o += g({ op: it.op, tf: T(0, 6 * (1 - it.op)) }, s);
+    });
+    return o;
+  }
+
+  /* dado che rotola: faccia, rotazione e rimbalzo al tempo t. rolls = [[inizio, durata, faccia finale], …] */
+  function dieAt(t, rolls, init, hop) {
+    let face = init, pose = { rot: 0, dy: 0 };
+    for (let k = 0; k < rolls.length; k++) {
+      const [t0, d, n] = rolls[k];
+      if (t >= t0 + d) face = n;
+      else {
+        if (t >= t0) {
+          pose = rollPose(t, t0, d, k % 2 ? -1 : 1, hop);
+          face = pose.flying ? 1 + Math.floor(rnd(Math.floor(t * 14) + 31 * k) * 6) : n;
+        }
+        break;
+      }
+    }
+    return { face, rot: pose.rot, dy: pose.dy };
+  }
+
 
   /* ---------- il player ---------- */
   const VIDEOS = {};
@@ -179,7 +250,9 @@ figure.pv[data-st="idle"] .pv-big,figure.pv[data-st="ended"] .pv-big{display:gri
 .pv-time{flex:none;font-size:.78rem;color:var(--inchiostro2);font-variant-numeric:tabular-nums}
 .pv-cap{margin:0;padding:11px 16px 12px;min-height:4.3em;border-top:1px solid var(--riga);font-size:.94rem;line-height:1.5}
 .pv-cap var,.pv-trans var{font-family:var(--serif)}
-.pv-chap{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0 14px 12px;list-style:none}
+.pv-chap{position:relative;display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0 14px 12px;list-style:none}
+.pv-chap.many{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin}
+.pv-chap.many button{white-space:nowrap}
 .pv-chap button{font:inherit;font-size:.76rem;line-height:1.2;padding:4px 10px;border:1px solid var(--riga);border-radius:999px;background:transparent;color:var(--inchiostro2);cursor:pointer}
 .pv-chap button:hover{border-color:var(--inchiostro2)}
 .pv-chap button[aria-current="true"]{background:var(--inchiostro);border-color:var(--inchiostro);color:var(--foglio)}
@@ -198,12 +271,12 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
     fig.innerHTML = `<div class="pv-stage"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(v.alt || v.title)}"></svg><button type="button" class="pv-big" aria-label="Guarda il video"><span></span></button></div>
 <div class="pv-bar"><button type="button" class="pv-play"></button><input class="pv-seek" type="range" min="0" max="1000" value="0" aria-label="Posizione nel video"><span class="pv-time"></span></div>
 <p class="pv-cap"></p>
-<ol class="pv-chap">${v.chap.map((c, i) => `<li><button type="button" data-t="${c[0]}">${i + 1}. ${esc(c[1])}</button></li>`).join('')}</ol>
+<ol class="pv-chap${v.chap.length > 6 ? ' many' : ''}">${v.chap.map((c, i) => `<li><button type="button" data-t="${c[0]}">${i + 1}. ${esc(c[1])}</button></li>`).join('')}</ol>
 <details class="pv-trans"><summary>Trascrizione</summary>${v.caps.map((c) => `<p>${mm(c[1], 0, true)}</p>`).join('')}</details>${note}`;
     fig.dataset.ok = '1';
     const $ = (s) => fig.querySelector(s);
     const svg = $('svg'), big = $('.pv-big span'), btn = $('.pv-play'), seek = $('.pv-seek'), time = $('.pv-time'), cap = $('.pv-cap');
-    const chap = Array.from(fig.querySelectorAll('.pv-chap button'));
+    const chapList = $('.pv-chap'), chap = Array.from(chapList.querySelectorAll('button'));
 
     let t = 0, playing = false, started = false, prev = 0, raf = 0, lastSvg = '', lastCap = -1, lastChap = -1, api;
 
@@ -237,6 +310,7 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
       }
       if (ch !== lastChap) {
         chap.forEach((b, i) => (i === ch ? b.setAttribute('aria-current', 'true') : b.removeAttribute('aria-current')));
+        if (chapList.classList.contains('many')) chapList.scrollLeft = chap[ch].offsetLeft - (chapList.clientWidth - chap[ch].offsetWidth) / 2;
         lastChap = ch;
       }
       seek.value = Math.round((ct / v.dur) * 1000);
@@ -337,7 +411,7 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
       });
     },
     mount,
-    h: { clamp, lerp, seg, E, p, pulse, arc, rnd, f, esc, at, C, SERIF, SANS, T, rect, circ, ell, ln, path, g, draw, tx, lbl, frac, die, rollPose, tile, check, cross },
+    h: { clamp, lerp, seg, E, p, pulse, arc, rnd, f, esc, at, mm, C, SERIF, SANS, T, rect, circ, ell, ln, path, g, draw, tx, txc, lbl, frac, die, rollPose, tile, check, cross, vis, on, bump, heading, subline, lb, vl, fr, brace, vbrace, wipe, pills, dieAt },
   };
   root.PV = PV;
 

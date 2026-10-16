@@ -2,11 +2,13 @@
 // che non ci siano valori non finiti né attributi "NaN"/"undefined".
 // Uso: node tools/check-pv.mjs
 import { createRequire } from 'node:module';
+import { readdirSync } from 'node:fs';
 import assert from 'node:assert/strict';
 const require = createRequire(import.meta.url);
 const js = '../sito/assets/js/';
 require(js + 'pv.js');
-require(js + 'pv-parte1.js');
+// tutti i file di clip, in ordine alfabetico (pv-parte0.js, pv-parte0b.js, pv-parte1.js, …)
+for (const f of readdirSync(new URL(js, import.meta.url)).filter((n) => /^pv-parte.*\.js$/.test(n)).sort()) require(js + f);
 
 let frames = 0;
 for (const v of Object.values(PV.videos)) {

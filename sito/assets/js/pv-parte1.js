@@ -5,70 +5,11 @@
    ========================================================================= */
 (function () {
   'use strict';
-  const { lerp, E, p, arc, rnd, C, SANS, T, rect, circ, ell, ln, path, g, draw, tx, lbl, die, rollPose, tile, check, cross } = PV.h;
+  const { lerp, E, p, arc, rnd, C, SANS, T, rect, circ, ell, ln, path, g, draw, tx, lbl, die, rollPose, tile, check, cross, vis, on, bump, heading, subline, lb, vl, fr, brace, vbrace, wipe, pills, dieAt } = PV.h;
 
-  /* opacità di un elemento visibile fra a e b, con dissolvenza in entrata e in uscita */
-  const vis = (t, a, b, fi = 0.5, fo = 0.45) => p(t, a, a + fi) * (1 - p(t, b - fo, b));
-  const on = (op, s) => (op > 0.004 ? s : '');
-  const bump = (t, a, d = 1.6) => Math.sin(Math.PI * p(t, a, a + d, E.lin)); // 0 → 1 → 0 fra a e a+d
-
-  /* titolo (26) e sottotitolo (17) di un capitolo, visibili fra a e b; subline = solo il sottotitolo */
-  const heading = (t, a, b, s, sub) => {
-    const op = vis(t, a, b);
-    return on(op, tx(320, 44, s, { size: 26, op }) + (sub ? tx(320, 70, sub, { ff: SANS, size: 17, fill: C.soft, op }) : ''));
-  };
-  const subline = (t, a, b, s) => {
-    const op = vis(t, a, b);
-    return on(op, tx(320, 70, s, { ff: SANS, size: 17, fill: C.soft, op }));
-  };
-  const lb = (x, y, s, a = {}) => lbl(x, y, s, { size: 17, ...a }); // etichetta secondaria: mai sotto 17 unità
-
-  /* frazione con numeratore e denominatore colorabili; la barra segue il testo visibile (senza *, ^, _) */
-  const vl = (s) => String(s).replace(/[*^_{}]/g, '').length;
-  function fr(x, y, num, den, a = {}) {
-    const { size = 20, fill = C.ink, nf = fill, df = fill, op = 1 } = a;
-    const w = Math.max(vl(num), vl(den)) * size * 0.52 + 10;
-    return g({ op }, tx(x, y - size * 0.34, num, { size, fill: nf }) + ln(x - w / 2, y - size * 0.12, x + w / 2, y - size * 0.12, { stroke: fill, sw: 1.5 }) + tx(x, y + size * 0.82, den, { size, fill: df }));
-  }
-  /* secondo bordo dentro una casella (un esito che sta in due eventi); linguetta con la lettera; graffa verticale */
+  /* secondo bordo dentro una casella (un esito che sta in due eventi); linguetta con la lettera */
   const inner = (x, y, s, col, op = 1, sc = 1) => g({ tf: T(x, y, sc), op }, rect(-s / 2 + 5, -s / 2 + 5, s - 10, s - 10, { rx: s * 0.12, stroke: col, sw: 2.5 }));
   const tab = (x, y, s, col, op = 1) => g({ op }, rect(x, y, 32, 24, { rx: 5, fill: col }) + tx(x + 16, y + 18, s, { size: 19, fill: C.paper }));
-  const vbrace = (x, y0, y1, col, op = 1) => path(`M${x} ${y0}h5V${y1}h-5`, { stroke: col, sw: 2, op });
-
-  /* etichetta arrotondata (con spunta o croce); la riga di etichette si centra da sola (su cx) */
-  const pw = (s, icon) => Math.round((icon ? 56 : 32) + s.replace(/[*^_{}]/g, '').length * 8.6);
-  function pills(y, items, cx = 320) {
-    const ws = items.map((i) => pw(i.s, i.icon)), gap = 16;
-    let x = cx - (ws.reduce((a, b) => a + b, 0) + gap * (items.length - 1)) / 2, o = '';
-    items.forEach((it, k) => {
-      const w = ws[k], h = 34, cx = x + w / 2, cy = y;
-      x += w + gap;
-      if (!(it.op > 0.004)) return;
-      let s = rect(cx - w / 2, cy - h / 2, w, h, { rx: h / 2, fill: C.paper, stroke: it.col || C.soft, sw: 1.6 });
-      if (it.icon === 'ok') s += check(cx - w / 2 + 23, cy, 15, it.u);
-      if (it.icon === 'no') s += cross(cx - w / 2 + 23, cy, 15, it.u);
-      s += tx(it.icon ? cx - w / 2 + 44 : cx, cy + 6, it.s, { ff: SANS, size: 17, ta: it.icon ? 'start' : 'middle' });
-      o += g({ op: it.op, tf: T(0, 6 * (1 - it.op)) }, s);
-    });
-    return o;
-  }
-
-  /* dado che rotola: faccia, rotazione e rimbalzo al tempo t. rolls = [[inizio, durata, faccia finale], …] */
-  function dieAt(t, rolls, init, hop) {
-    let face = init, pose = { rot: 0, dy: 0 };
-    for (let k = 0; k < rolls.length; k++) {
-      const [t0, d, n] = rolls[k];
-      if (t >= t0 + d) face = n;
-      else {
-        if (t >= t0) {
-          pose = rollPose(t, t0, d, k % 2 ? -1 : 1, hop);
-          face = pose.flying ? 1 + Math.floor(rnd(Math.floor(t * 14) + 31 * k) * 6) : n;
-        }
-        break;
-      }
-    }
-    return { face, rot: pose.rot, dy: pose.dy };
-  }
 
   /* ======================================================================
      1.1 · Esperimento aleatorio, spazio campionario, evento
@@ -411,10 +352,6 @@
     SL.push({ d: `M${(-cx).toFixed(2)} ${(-cy).toFixed(2)}L${x0} ${y0}A${r} ${r} 0 0 1 ${x1} ${y1}Z`, cx, cy, m });
   }
   const segX = (n) => MX + (n - 1) * MS;
-  /* graffa orizzontale da x0 a x1 a quota y (apre verso il basso se dir = 1) */
-  const brace = (x0, x1, y, col, op, dir = 1) => path(`M${x0} ${y}v${5 * dir}H${x1}v${-5 * dir}`, { stroke: col, sw: 2, op });
-  /* rivela il contenuto da sinistra a destra (u da 0 a 1) */
-  const wipe = (id, x, y, w, h, u, inner) => `<clipPath id="${id}">${rect(x, y, w * u, h)}</clipPath>` + g({ 'clip-path': `url(#${id})` }, inner);
 
   PV.add('assiomi', {
     sec: '1.2',

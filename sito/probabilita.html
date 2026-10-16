@@ -727,6 +727,9 @@ pre code{white-space:pre;overflow-wrap:normal}
 
   <h4>Come si legge una formula ad alta voce</h4>
   <p>Una formula è una frase scritta con le abbreviazioni. Il metodo per capirla è sempre lo stesso: leggila da sinistra a destra sostituendo ogni simbolo con la parola della tabella, e alla fine chiediti se la frase che hai ottenuto ha senso nel mondo reale. Quattro esempi che incontrerai presto:</p>
+
+<figure class="pv" data-pv="formula"></figure>
+
   <div class="tabella">
     <table>
       <thead><tr><th>Formula</th><th>Letta in italiano</th></tr></thead>
@@ -883,6 +886,8 @@ pre code{white-space:pre;overflow-wrap:normal}
   <p><b>Una percentuale dentro un'altra.</b> Il 30% dei clienti di un negozio compra dall'app, e di questi il 40% paga con la carta. Che percentuale di tutti i clienti compra dall'app <i>e</i> paga con la carta? È il 40% del 30%: 0,4 × 0,3 = 0,12, cioè il 12%. Su 1&nbsp;000 clienti, 300 usano l'app e 120 di loro pagano con la carta.</p>
   <p>In tutti e due i casi le percentuali si <b>moltiplicano</b>, e la seconda si applica sempre al gruppo che resta dopo la prima, non al totale. Nella Parte 1 ritroverai esattamente questo schema nella formula delle probabilità composte.</p>
 
+<figure class="pv" data-pv="percentuali"></figure>
+
   <h4>Potenze</h4>
   <p><var>a</var><sup><var>n</var></sup>, con <var>n</var> intero positivo, è il prodotto di <var>n</var> fattori tutti uguali ad <var>a</var>: 2<sup>3</sup> = 2 × 2 × 2 = 8. Le regole che useremo valgono per ogni base non nulla:</p>
   <ul class="lista">
@@ -904,6 +909,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <span class="r perche">Ho preso il logaritmo di entrambi i lati (ln è crescente, quindi il verso della disuguaglianza resta) e poi ho diviso per ln(5/6), che è negativo: dividere per un numero negativo inverte il verso.</span>
   </div>
   <p>Servono quindi 13 tentativi: con 12 la probabilità di riuscire almeno una volta è 0,888, con 13 è 0,907.</p>
+
+<figure class="pv" data-pv="logaritmo"></figure>
 
   <h4>Arrotondare solo alla fine</h4>
   <p>Nei passaggi intermedi tieni due o tre cifre decimali in più di quelle che vuoi nel risultato, e arrotonda solo alla fine. Il motivo si vede con un esempio. (5/6)<sup>6</sup> vale esattamente 15&nbsp;625/46&nbsp;656 ≈ 0,3349. Ecco che cosa ottieni se all'inizio arrotondi 5/6 = 0,8333… e poi fai la potenza:</p>
@@ -1007,6 +1014,8 @@ pre code{white-space:pre;overflow-wrap:normal}
 <p><b>Il principio moltiplicativo (la parola «e»).</b> Se una prima scelta si può fare in <var>a</var> modi e, qualunque sia stata, una seconda scelta si può fare in <var>b</var> modi, allora le coppie di scelte sono <var>a</var> × <var>b</var>. Con più scelte in fila si moltiplicano i numeri di possibilità. Con due dadi: 6 modi per il primo, e per ciascuno 6 per il secondo, quindi 6 × 6 = 36 coppie (sono le caselle della tabella delle somme in <a class="ref" href="#s-1-3">1.3</a>). Con tre dadi: 6 × 6 × 6 = 216. Quasi tutto quello che segue è questo principio, applicato con attenzione.</p>
 <p><b>Il principio additivo (la parola «oppure»).</b> Se un caso può avvenire in uno di due modi alternativi che non si sovrappongono, i modi si sommano. Una password di 4 oppure di 5 cifre: 10<sup>4</sup> + 10<sup>5</sup> = 10 000 + 100 000 = 110 000. Si somma solo se i gruppi sono disgiunti: una password non può avere insieme 4 e 5 cifre. Se si sovrappongono vale la stessa formula di inclusione–esclusione delle probabilità (<a class="ref" href="#s-1-2">1.2</a>), con i conteggi al posto delle probabilità.</p>
 
+<figure class="pv" data-pv="regole"></figure>
+
 <h4>Le domande da farsi</h4>
 <p>Davanti a un conteggio non cercare la formula a memoria: rispondi in ordine a queste domande, che la scelgono al posto tuo.</p>
 <ol class="passi">
@@ -1038,6 +1047,8 @@ pre code{white-space:pre;overflow-wrap:normal}
   </div>
 
 
+<figure class="pv" data-pv="ordine"></figure>
+
 <h4>I casi, uno alla volta</h4>
   <p><b>Ordine sì, ripetizione sì: <var>n</var><sup><var>k</var></sup>.</b> Un PIN di 4 cifre. Ogni posizione può essere una qualunque delle 10 cifre, e la scelta di una posizione non limita le altre. Principio moltiplicativo: 10 × 10 × 10 × 10 = 10<sup>4</sup> = 10 000 PIN possibili.</p>
 
@@ -1055,6 +1066,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <span class="r"><span class="binom"><span>8</span><span>3</span></span> = <span class="frac"><span>8!</span><span>3! · 5!</span></span> = <span class="frac"><span>8 × 7 × 6</span><span>3 × 2 × 1</span></span> = <span class="frac"><span>336</span><span>6</span></span> = 56</span>
     <span class="r perche">Il 5! al denominatore cancella la coda dell'8!, e il 3! toglie i doppioni dovuti all'ordine. Stesso risultato per "scegli 3 ingredienti fra 8 per una pizza": una pizza con funghi, olive e cipolla è la stessa pizza in qualunque ordine li nomini.</span>
   </div>
+
+<figure class="pv" data-pv="podio"></figure>
 
   <p>Un esempio con numeri grandi, perché ti capiterà: quante mani di 5 carte esistono in un mazzo da 52? L'ordine in cui le ricevi non conta, quindi è <span class="binom"><span>52</span><span>5</span></span>:</p>
   <div class="calc">
@@ -1123,6 +1136,9 @@ pre code{white-space:pre;overflow-wrap:normal}
     <li>Quindi ogni parola vera è stata contata 6 × 2 = 12 volte, e le parole distinte sono 120/12 = <b>10</b>.</li>
   </ol>
   <p>Eccole tutte, per controllo: AAMMM, AMAMM, AMMAM, AMMMA, MAAMM, MAMAM, MAMMA, MMAAM, MMAMA, MMMAA. Sono proprio 10. Nota anche che 10 = <span class="binom"><span>5</span><span>2</span></span>: disporre le lettere di MAMMA equivale a scegliere in quali 2 delle 5 posizioni mettere le A. È la stessa struttura della legge binomiale che incontrerai nella Parte 2, dove al posto delle lettere ci saranno successi e insuccessi.</p>
+
+<figure class="pv" data-pv="anagrammi"></figure>
+
   <p>La regola generale è il <b>coefficiente multinomiale</b>. Se <var>n</var> oggetti si dividono in gruppi di oggetti uguali fra loro, di numerosità <var>k</var><sub>1</sub>, <var>k</var><sub>2</sub>, …, <var>k</var><sub><var>r</var></sub> (con <var>k</var><sub>1</sub> + … + <var>k</var><sub><var>r</var></sub> = <var>n</var>), i modi di metterli in fila sono</p>
   <div class="formula">
     <span class="frac"><span><var>n</var>!</span><span><var>k</var><sub>1</sub>! · <var>k</var><sub>2</sub>! · … · <var>k</var><sub><var>r</var></sub>!</span></span>
@@ -1193,6 +1209,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     </tbody>
   </table>
 </div>
+
+<figure class="pv" data-pv="tartaglia"></figure>
 
 <div class="box teorema">
   <p class="capo">Teorema (regola di Tartaglia)</p>
@@ -1438,6 +1456,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <span class="r">Σ<sub><var>k</var>=1</sub><sup>3</sup> <var>k</var><sup>2</sup> &nbsp;=&nbsp; 1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> &nbsp;=&nbsp; 1 + 4 + 9 &nbsp;=&nbsp; 14</span>
     <span class="r perche">Si legge: "somma di <var>k</var> al quadrato, per <var>k</var> che va da 1 a 3". È un ciclo <code>for</code> che parte da 1, arriva a 3, e a ogni giro accumula <var>k</var><sup>2</sup>.</span>
   </div>
+<figure class="pv" data-pv="sommatoria"></figure>
+
   <p>L'indice può partire da dove vuoi: Σ<sub><var>k</var>=0</sub><sup>4</sup> 2<sup><var>k</var></sup> = 1 + 2 + 4 + 8 + 16 = 31. Da <var>a</var> a <var>b</var> gli addendi sono <var>b</var> − <var>a</var> + 1, quindi qui sono cinque e non quattro: è l'errore di uno in più o in meno, lo stesso dei cicli <code>for</code>. Quando scrivo Σ<sub><var>x</var></sub> senza limiti, intendo "somma su tutti i valori possibili di <var>x</var>"; Σ<sub><var>x</var>,<var>y</var></sub> è la somma su tutte le coppie (<var>x</var>, <var>y</var>) di valori, e Σ<sub><var>i</var>&lt;<var>j</var></sub> la somma sulle coppie con <var>i</var> &lt; <var>j</var>: per <var>i</var>, <var>j</var> in {1, 2, 3} sono (1, 2), (1, 3), (2, 3), e con <var>n</var> indici sono <var>n</var>(<var>n</var> − 1)/2. Se in cima c'è ∞ (o l'indice è scritto Σ<sub><var>k</var>≥0</sub>, cioè <var>k</var> = 0, 1, 2, … senza fine) la somma ha infiniti addendi e si chiama <b>serie</b>: ne parliamo fra poco.</p>
   <p>Le proprietà che ti servono sono tre, e sono tutte "l'ovvio" scritto in simboli:</p>
   <ul class="lista">
@@ -1480,12 +1500,18 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p><var>a</var><sub><var>n</var></sub> → <var>L</var> se per ogni <var>ε</var> &gt; 0 esiste un <var>N</var> tale che, per ogni <var>n</var> ≥ <var>N</var>, |<var>a</var><sub><var>n</var></sub> − <var>L</var>| &lt; <var>ε</var>. In simboli: ∀<var>ε</var> &gt; 0 ∃<var>N</var> ∀<var>n</var> ≥ <var>N</var>: |<var>a</var><sub><var>n</var></sub> − <var>L</var>| &lt; <var>ε</var>. Come si leggono ∀ e ∃ lo vedi in <a class="ref" href="#s-0-dim">0.6</a>.</p>
   </div>
   <p>È una sfida. Tu scegli una tolleranza <var>ε</var>, piccola quanto vuoi; io devo risponderti con un <var>N</var> tale che da <var>N</var> in poi tutti i termini stanno a distanza minore di <var>ε</var> da <var>L</var>. Se so rispondere a ogni sfida, il limite è <var>L</var>. Con <var>a</var><sub><var>n</var></sub> = 1/<var>n</var> e <var>L</var> = 0: se scegli <var>ε</var> = 0,001, mi basta <var>N</var> = 1&nbsp;001, perché per <var>n</var> ≥ 1&nbsp;001 si ha 1/<var>n</var> ≤ 1/1&nbsp;001 &lt; 0,001. In generale basta un <var>N</var> &gt; 1/<var>ε</var>: più piccola è la tolleranza, più grande è <var>N</var>. È <var>N</var> che dipende da <var>ε</var>, non il contrario.</p>
+
+<figure class="pv" data-pv="limite"></figure>
+
   <p>Non si chiede che i termini si avvicinino sempre di più (<var>a</var><sub><var>n</var></sub> = (−1)<sup><var>n</var></sup>/<var>n</var> cambia segno a ogni passo e tende a 0), né che raggiungano <var>L</var>. Se nessun <var>L</var> va bene, il limite non esiste: (−1)<sup><var>n</var></sup> vale −1, 1, −1, 1, … Se i termini superano ogni numero fissato si scrive <var>a</var><sub><var>n</var></sub> → ∞, per esempio <var>n</var><sup>2</sup> → ∞.</p>
   <p>Per calcolare i limiti si usano le regole ovvie: se <var>a</var><sub><var>n</var></sub> → <var>L</var> e <var>b</var><sub><var>n</var></sub> → <var>M</var>, allora <var>a</var><sub><var>n</var></sub> + <var>b</var><sub><var>n</var></sub> → <var>L</var> + <var>M</var>, <var>a</var><sub><var>n</var></sub><var>b</var><sub><var>n</var></sub> → <var>LM</var> e, se <var>M</var> ≠ 0, <var>a</var><sub><var>n</var></sub>/<var>b</var><sub><var>n</var></sub> → <var>L</var>/<var>M</var>. Se <var>f</var> è continua nel punto <var>L</var> (lo sono le potenze, le radici, <var>e</var><sup><var>x</var></sup> e ln <var>x</var> dove sono definite) e gli <var>a</var><sub><var>n</var></sub> stanno nel suo dominio, allora <var>f</var>(<var>a</var><sub><var>n</var></sub>) → <var>f</var>(<var>L</var>). Per esempio (3<var>n</var> + 1)/(<var>n</var> + 2) = (3 + 1/<var>n</var>)/(1 + 2/<var>n</var>) → 3/1 = 3: si divide sopra e sotto per <var>n</var>. Un limite che userai spesso: se |<var>q</var>| &lt; 1 allora <var>q</var><sup><var>n</var></sup> → 0 (0,9<sup>10</sup> ≈ 0,349, 0,9<sup>100</sup> ≈ 0,00003).</p>
   <p>Lo stesso concetto vale per una funzione di una variabile che scorre fra i reali: <var>f</var>(<var>x</var>) → <var>L</var> per <var>x</var> → ∞, oppure per <var>x</var> → <var>a</var>. Due limiti che userai nella Parte 3 (<a class="ref" href="#s-3-2">3.2</a>): 1/<var>x</var> → 0 e <var>e</var><sup>−<var>λx</var></sup> → 0 per <var>x</var> → ∞, se <var>λ</var> &gt; 0. Se <var>x</var> si avvicina ad <var>a</var> restando più grande di <var>a</var> si scrive <var>x</var> → <var>a</var><sup>+</sup> (da destra), se resta più piccolo <var>x</var> → <var>a</var><sup>−</sup> (da sinistra): i due limiti possono essere diversi, per esempio nel punto in cui una funzione a scalino salta (<a class="ref" href="#s-2-2">2.2</a>).</p>
 
   <h4>Il numero <var>e</var> e i limiti notevoli</h4>
   <p><var>e</var> è una costante, come π: vale circa 2,71828 e salta fuori ogni volta che qualcosa cresce o diminuisce in proporzione a quanto ce n'è già, come i soldi che fruttano interessi o un farmaco che il corpo smaltisce un po' alla volta. Nel corso la incontrerai come <var>e</var><sup>−<var>λ</var></sup> nella legge di Poisson. Per calcolarla: <var>e</var><sup>−3</sup> = 1/<var>e</var><sup>3</sup>, e <var>e</var><sup>3</sup> = 2,71828 × 2,71828 × 2,71828 ≈ 20,0855, quindi <var>e</var><sup>−3</sup> ≈ 1/20,0855 ≈ 0,0498. In pratica userai il tasto <code>e^x</code> della calcolatrice.</p>
+
+<figure class="pv" data-pv="euler"></figure>
+
   <div class="box vita">
     <p class="capo">Da dove viene <var>e</var>: gli interessi</p>
     <p>Metti 1 € in una banca immaginaria che ti dà il 100% di interesse all'anno: dopo un anno hai 2 €. Ora la banca ti propone di dividere l'interesse in due rate, il 50% a metà anno e il 50% alla fine. A metà anno hai 1,50 €, e il secondo 50% si calcola su 1,50: a fine anno hai 1,50 × 1,5 = 2,25 €. Hai guadagnato di più, perché anche gli interessi della prima rata hanno fruttato interessi. Dividendo l'anno in rate sempre più piccole:</p>
@@ -1563,6 +1589,9 @@ pre code{white-space:pre;overflow-wrap:normal}
   <p>La formula <var>S</var><sub><var>N</var></sub> = (1 − <var>q</var><sup><var>N</var>+1</sup>)/(1 − <var>q</var>), valida per ogni <var>q</var> ≠ 1, è la <b>somma geometrica finita</b>; per <var>q</var> = 1 la somma vale semplicemente <var>N</var> + 1, perché ha <var>N</var> + 1 addendi tutti uguali a 1. Per esempio con <var>q</var> = 2 dà 1 + 2 + … + 2<sup><var>N</var></sup> = 2<sup><var>N</var>+1</sup> − 1.</p>
   <p>Ora si fa il limite. Se |<var>q</var>| &lt; 1, <var>q</var><sup><var>N</var>+1</sup> → 0 per <var>N</var> → ∞, quindi <var>S</var><sub><var>N</var></sub> → 1/(1 − <var>q</var>): è la tesi. Se |<var>q</var>| ≥ 1 gli addendi <var>q</var><sup><var>k</var></sup> non tendono a 0 (hanno valore assoluto ≥ 1), mentre in una serie convergente gli addendi tendono a 0, perché <var>a</var><sub><var>N</var></sub> = <var>S</var><sub><var>N</var></sub> − <var>S</var><sub><var>N</var>−1</sub> e le due somme parziali tendono allo stesso numero. Quindi la serie non converge. ∎ La dimostrazione non cambia se la ragione è un numero complesso <var>r</var> con |<var>r</var>| &lt; 1 (il modulo, <a class="ref" href="#s-0-2">0.2</a>): la serie vale ancora 1/(1 − <var>r</var>), e lo useremo in <a class="ref" href="#s-3-8">3.9</a>.</p>
   <p>Prova con <var>q</var> = 1/2: 1 + 1/2 + 1/4 + 1/8 + … ha somme parziali 1; 1,5; 1,75; 1,875; … (<var>S</var><sub>10</sub> = 1,99902) e infatti 1/(1 − 1/2) = 2. Se la somma parte da un indice <var>m</var> invece che da 0 si porta fuori <var>q</var><sup><var>m</var></sup>: Σ<sub><var>k</var>=<var>m</var></sub><sup>∞</sup> <var>q</var><sup><var>k</var></sup> = <var>q</var><sup><var>m</var></sup> · Σ<sub><var>j</var>=0</sub><sup>∞</sup> <var>q</var><sup><var>j</var></sup> = <var>q</var><sup><var>m</var></sup>/(1 − <var>q</var>), con <var>j</var> = <var>k</var> − <var>m</var>. Per esempio 1/8 + 1/16 + 1/32 + … = (1/2)<sup>3</sup>/(1 − 1/2) = 1/4. Queste formule ci diranno che la legge geometrica (Parte 2) ha probabilità che sommano a 1, come devono, e ne daranno le code (<a class="ref" href="#s-2-6">2.6</a>).</p>
+
+<figure class="pv" data-pv="serie"></figure>
+
   <p><b>Addendi che tendono a 0 non bastano.</b> Il ragionamento sopra mostra che è <i>necessario</i> che gli addendi tendano a 0, non che sia sufficiente. La serie armonica 1 + 1/2 + 1/3 + 1/4 + … ha addendi che tendono a 0, eppure somma infinita. Basta raggruppare:</p>
   <div class="calc">
     <span class="r">1 + 1/2 + (1/3 + 1/4) + (1/5 + … + 1/8) + (1/9 + … + 1/16) + …</span>
@@ -1584,6 +1613,9 @@ pre code{white-space:pre;overflow-wrap:normal}
     <p>Un insieme infinito è <b>numerabile</b> se i suoi elementi si possono mettere in fila come <var>a</var><sub>1</sub>, <var>a</var><sub>2</sub>, <var>a</var><sub>3</sub>, …, in modo che ogni elemento compaia in una posizione precisa della lista. Un insieme finito o numerabile si dice <b>al più numerabile</b>; in probabilità si dice anche <b>discreto</b> (<a class="ref" href="#s-1-3">1.3</a>).</p>
   </div>
   <p>Sono numerabili: ℕ (la lista è già lì); i numeri pari 2, 4, 6, … (il pari 2<var>n</var> sta in posizione <var>n</var>: un insieme infinito può avere "tanti elementi quanto una sua parte"); ℤ, con la lista 0, 1, −1, 2, −2, 3, −3, … in cui ogni intero compare; e perfino ℚ, che sembra molto più fitto. Le frazioni positive <var>p</var>/<var>q</var> si elencano per somma <var>p</var> + <var>q</var> crescente: 1/1 (somma 2); 1/2, 2/1 (somma 3); 1/3, 2/2, 3/1 (somma 4); e così via. Per ogni somma <var>s</var> le frazioni sono <var>s</var> − 1, quindi ogni frazione arriva in lista dopo un numero finito di passi (si saltano quelle già incontrate, come 2/2 = 1/1). Con il trucco di ℤ, per aggiungere lo zero e i negativi, si elencano tutti i razionali. Con lo stesso zig-zag si vede che un'unione numerabile di insiemi numerabili è numerabile.</p>
+
+<figure class="pv" data-pv="numerabili"></figure>
+
   <p>Non sono numerabili l'intervallo [0, 1] e ℝ: qualunque lista di numeri ne lascia fuori qualcuno.</p>
   <details class="aiuto dim"><summary>Dimostrazione (l'argomento diagonale)</summary><div class="dentro">
     <p>Per assurdo, supponi che [0, 1] sia numerabile: c'è una lista <var>x</var><sub>1</sub>, <var>x</var><sub>2</sub>, <var>x</var><sub>3</sub>, … che contiene tutti i suoi numeri. Scrivi ognuno in forma decimale, <var>x</var><sub><var>n</var></sub> = 0,<var>c</var><sub><var>n</var>1</sub><var>c</var><sub><var>n</var>2</sub><var>c</var><sub><var>n</var>3</sub>… Costruisci ora <var>y</var> = 0,<var>d</var><sub>1</sub><var>d</var><sub>2</sub><var>d</var><sub>3</sub>… con <var>d</var><sub><var>k</var></sub> = 5 se <var>c</var><sub><var>kk</var></sub> ≠ 5, e <var>d</var><sub><var>k</var></sub> = 4 se <var>c</var><sub><var>kk</var></sub> = 5. La <var>k</var>-esima cifra di <var>y</var> è diversa dalla <var>k</var>-esima cifra di <var>x</var><sub><var>k</var></sub>: hai preso la diagonale della tabella delle cifre e l'hai cambiata, da cui il nome.</p>
@@ -1683,10 +1715,16 @@ pre code{white-space:pre;overflow-wrap:normal}
   <h4>Quantificatori</h4>
   <p>∀ si legge «per ogni», ∃ «esiste almeno un». «Ogni pacchetto arriva» è un ∀, «almeno un pacchetto arriva» è un ∃. Due regole. L'<b>ordine conta</b>: «per ogni utente esiste una password» (ognuno ha la sua) non è «esiste una password per ogni utente» (una sola per tutti). La <b>negazione scambia i quantificatori</b>: la negazione di «per ogni <var>x</var> vale <var>P</var>» è «esiste un <var>x</var> per cui <var>P</var> non vale», e la negazione di «esiste un <var>x</var> per cui vale <var>P</var>» è «per ogni <var>x</var>, <var>P</var> non vale». Così la negazione di «tutti i pacchetti sono arrivati» è «almeno un pacchetto non è arrivato», e non «nessun pacchetto è arrivato». L'esempio più importante sono i tre quantificatori uno dentro l'altro della definizione di limite in <a class="ref" href="#s-0-4">0.5</a>: cambiarne l'ordine ne cambierebbe il significato.</p>
 
+<figure class="pv" data-pv="implicazioni"></figure>
+
+
   <h4>Le quattro tecniche</h4>
   <p><b>Dimostrazione diretta.</b> Parti dalle ipotesi e arrivi alla tesi passo per passo. Ne hai già vista una, la somma di Gauss in <a class="ref" href="#s-0-2">0.2</a>. Un altro esempio: se <var>n</var> è dispari, cioè <var>n</var> = 2<var>k</var> + 1, allora <var>n</var><sup>2</sup> = 4<var>k</var><sup>2</sup> + 4<var>k</var> + 1 = 2(2<var>k</var><sup>2</sup> + 2<var>k</var>) + 1, che è dispari. Questa è anche la contrapposta di «se <var>n</var><sup>2</sup> è pari, allora <var>n</var> è pari».</p>
   <p><b>Per assurdo.</b> Supponi che la tesi sia falsa e mostra che ne segue qualcosa di impossibile: allora la tesi è vera. Esempio: se metti 11 chiavi in una tabella hash con 10 celle, almeno una cella ne contiene almeno due (una collisione). Per assurdo, se ogni cella ne contenesse al più una, le chiavi sarebbero al più 10, e invece sono 11. Nota che la negazione di «esiste una cella con almeno due chiavi» è «ogni cella ha al più una chiave»: la regola dei quantificatori al lavoro.</p>
   <p><b>Controesempio.</b> Per smentire una frase «per ogni …» ne basta un caso in cui è falsa; per confermarla non bastano mille casi in cui funziona.</p>
+
+<figure class="pv" data-pv="tecniche"></figure>
+
 
   <div class="prova">
     <p class="capo">Prova tu</p>
@@ -1703,6 +1741,9 @@ pre code{white-space:pre;overflow-wrap:normal}
   </div>
 
   <p><b>Induzione.</b> Serve per frasi del tipo «per ogni <var>n</var> ≥ 1 vale <var>P</var>(<var>n</var>)». Funziona come una fila di tessere del domino: se cade la prima e ogni tessera, cadendo, fa cadere la successiva, allora cadono tutte. Si fanno due cose: la <b>base</b>, cioè verifichi <var>P</var>(1); il <b>passo</b>, cioè supponi <var>P</var>(<var>n</var>) vera per un <var>n</var> qualunque (è l'<i>ipotesi induttiva</i>) e ne deduci <var>P</var>(<var>n</var> + 1). Riprendiamo la formula di Gauss: il ragionamento di <a class="ref" href="#s-0-2">0.2</a> funziona perché c'è un'idea, l'induzione funziona anche quando un'idea non c'è.</p>
+
+<figure class="pv" data-pv="induzione"></figure>
+
   <div class="box teorema">
     <p class="capo">Teorema (somma dei primi <var>n</var> interi)</p>
     <p>Per ogni intero <var>n</var> ≥ 1 vale 1 + 2 + … + <var>n</var> = <var>n</var>(<var>n</var> + 1)/2.</p>
@@ -1735,6 +1776,8 @@ pre code{white-space:pre;overflow-wrap:normal}
     <li>Giustifica ogni passaggio: "per definizione", "per linearità", "per l'ipotesi induttiva".</li>
     <li>Alla fine controlla di aver usato tutte le ipotesi: se una non è servita, o c'è un buco, o l'enunciato si poteva rafforzare.</li>
   </ul>
+<figure class="pv" data-pv="parte0"><figcaption><b>Ripasso in video</b> · i video della Parte 0 uno dopo l'altro, con un cartello fra l'uno e l'altro. Ognuno si trova anche nella sua sezione. Senza audio, con sottotitoli.</figcaption></figure>
+
 <div class="esercizi">
     <h3 id="s-0-5" data-toc><span class="n">0.7</span> Esercizi di riscaldamento</h3>
     <p>Dieci conti brevi. I primi sette ripassano l'aritmetica e gli strumenti di base, gli ultimi tre (induzione, somme doppie, serie) sono un gradino più su. Se li fai tutti senza esitare, sei pronto per la Parte 1. Se uno ti blocca, torna alla sezione corrispondente e rileggila con calma.</p>
@@ -20501,6 +20544,8 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
 })();
 </script>
 <script src="assets/js/pv.js" defer></script>
+<script src="assets/js/pv-parte0.js" defer></script>
+<script src="assets/js/pv-parte0b.js" defer></script>
 <script src="assets/js/pv-parte1.js" defer></script>
 </body>
 </html>
