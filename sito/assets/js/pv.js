@@ -78,7 +78,8 @@
       out += html ? (it ? '<var>' + esc(txt) + '</var>' : esc(txt)) : `<tspan${it ? ' font-style="italic"' : ''}${extra || ''}>${esc(txt)}</tspan>`;
     };
     const flush = () => {
-      if (buf) put(buf, sh ? ` dy="${f(-sh)}"` : '');
+      if (!buf) return; // un apice chiuso da * deve tenere lo spostamento: il testo dopo torna in riga
+      put(buf, sh ? ` dy="${f(-sh)}"` : '');
       sh = 0;
       buf = '';
     };
@@ -212,6 +213,15 @@
     return { face, rot: pose.rot, dy: pose.dy };
   }
 
+
+  /* graffa verticale a sinistra di x (apre verso destra) */
+  const lbrace = (x, y0, y1, col, op = 1) => path(`M${x} ${y0}h-5V${y1}h5`, { stroke: col, sw: 2, op });
+  /* coefficiente binomiale «n su k»: due numeri impilati fra parentesi curve; x,y = centro della coppia */
+  function bn(x, y, top, bot, a = {}) {
+    const { size = 24, fill = C.ink, op = 1 } = a;
+    const w = Math.max(vl(top), vl(bot)) * size * 0.56 + 8, L = x - w / 2 - 3, R = x + w / 2 + 3, y0 = y - size * 0.92, y1 = y + size * 0.98;
+    return g({ op }, tx(x, y - size * 0.12, top, { size, fill }) + tx(x, y + size * 0.84, bot, { size, fill }) + path(`M${L + 5} ${y0}Q${L - 5} ${(y0 + y1) / 2} ${L + 5} ${y1}`, { stroke: fill, sw: 1.8 }) + path(`M${R - 5} ${y0}Q${R + 5} ${(y0 + y1) / 2} ${R - 5} ${y1}`, { stroke: fill, sw: 1.8 }));
+  }
 
   /* ---------- il player ---------- */
   const VIDEOS = {};
@@ -411,7 +421,7 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
       });
     },
     mount,
-    h: { clamp, lerp, seg, E, p, pulse, arc, rnd, f, esc, at, mm, C, SERIF, SANS, T, rect, circ, ell, ln, path, g, draw, tx, txc, lbl, frac, die, rollPose, tile, check, cross, vis, on, bump, heading, subline, lb, vl, fr, brace, vbrace, wipe, pills, dieAt },
+    h: { clamp, lerp, seg, E, p, pulse, arc, rnd, f, esc, at, mm, C, SERIF, SANS, T, rect, circ, ell, ln, path, g, draw, tx, txc, lbl, frac, die, rollPose, tile, check, cross, vis, on, bump, heading, subline, lb, vl, fr, brace, vbrace, lbrace, wipe, pills, dieAt, bn },
   };
   root.PV = PV;
 

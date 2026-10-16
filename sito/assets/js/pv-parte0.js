@@ -7,7 +7,7 @@
    ========================================================================= */
 (function () {
   'use strict';
-  const { lerp, E, p, arc, C, SANS, T, rect, circ, ln, path, g, draw, tx, txc, tile, check, cross, vis, on, bump, heading, subline, lb, vl, fr, brace, pills, die } = PV.h;
+  const { lerp, E, p, arc, C, SANS, T, rect, circ, ln, path, g, draw, tx, txc, tile, check, cross, vis, on, bump, heading, subline, lb, vl, fr, brace, lbrace, bn, pills, die } = PV.h;
   const OK = 'var(--verde)', NO = 'var(--rosso)';
 
   /* riga di frazioni e segni centrata su cx: items = [{ n, d, col } (frazione) | { s } (segno)], ops = opacità di ogni pezzo */
@@ -22,14 +22,6 @@
       o += it.n !== undefined ? fr(c, y, it.n, it.d, { size, fill: it.col || C.ink, op }) : tx(c, y + size * 0.15, it.s, { size, op });
     });
     return o;
-  }
-  /* graffa verticale a sinistra di x (apre verso destra) */
-  const lbrace = (x, y0, y1, col, op = 1) => path(`M${x} ${y0}h-5V${y1}h5`, { stroke: col, sw: 2, op });
-  /* coefficiente binomiale «n su k»: due numeri impilati fra parentesi curve; x,y = centro della coppia */
-  function bn(x, y, top, bot, a = {}) {
-    const { size = 24, fill = C.ink, op = 1 } = a;
-    const w = Math.max(vl(top), vl(bot)) * size * 0.56 + 8, L = x - w / 2 - 3, R = x + w / 2 + 3, y0 = y - size * 0.92, y1 = y + size * 0.98;
-    return g({ op }, tx(x, y - size * 0.12, top, { size, fill }) + tx(x, y + size * 0.84, bot, { size, fill }) + path(`M${L + 5} ${y0}Q${L - 5} ${(y0 + y1) / 2} ${L + 5} ${y1}`, { stroke: fill, sw: 1.8 }) + path(`M${R - 5} ${y0}Q${R + 5} ${(y0 + y1) / 2} ${R - 5} ${y1}`, { stroke: fill, sw: 1.8 }));
   }
   /* linee interne di una griglia n × n con lato s (angolo x, y) */
   const gridLines = (x, y, n, s) => {

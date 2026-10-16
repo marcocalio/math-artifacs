@@ -4621,6 +4621,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <p>Da questo momento Ω sparisce dai conti che riguardano una sola variabile: non ti interessa più <i>quale</i> esito è capitato, ti interessa solo la tabella "valori → probabilità". Questa tabella si chiama anche <b>legge</b> di <var>X</var>. Due variabili con la stessa legge sono intercambiabili in ogni calcolo in cui compare soltanto una delle due, anche se nascono da esperimenti diversi. Ma se compaiono insieme conta anche il legame fra loro, che la legge di ciascuna non descrive. Sulle due monete sia <var>W</var> il numero di <i>croci</i>: come <var>X</var>, vale 0, 1, 2 con probabilità 1/4, 1/2, 1/4, stessa legge. Eppure <var>X</var> + <var>X</var> = 2<var>X</var> vale 2 solo quando <var>X</var> = 1, con probabilità 1/2, mentre <var>X</var> + <var>W</var> vale <i>sempre</i> 2 (teste più croci, su due monete): probabilità 1. Le leggi delle singole variabili non bastano a descrivere la coppia, e per questo in <a class="ref" href="#s-2-3">2.3</a> servirà la densità congiunta.</p>
 
+<figure class="pv" data-pv="variabile"></figure>
+
+
     <h4>La legge di una funzione di <var>X</var></h4>
   <p>Spesso non ti interessa <var>X</var>, ma una quantità calcolata a partire da <var>X</var>: se <var>X</var> è il numero di caffè venduti in un'ora a 1,20 € l'uno, l'incasso è 1,20 × <var>X</var>. In generale si scrive <var>Y</var> = <var>g</var>(<var>X</var>). Per trovare la densità di <var>Y</var> nel caso discreto basta raccogliere per valori: l'evento {<var>Y</var> = <var>y</var>} è l'unione degli eventi {<var>X</var> = <var>x</var>} per tutti gli <var>x</var> che <var>g</var> trasforma in <var>y</var>, e questi eventi sono disgiunti, quindi per l'assioma 3 le probabilità si sommano:</p>
   <div class="formula">
@@ -4647,6 +4650,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="nota">La sua densità è <var>p</var>(1) = <var>P</var>(<var>A</var>) e <var>p</var>(0) = 1 − <var>P</var>(<var>A</var>): è una Bernoulli (<a class="ref" href="#s-2-6">2.6</a>). Con le indicatrici si calcola come con i numeri: 1<sub><var>A</var><sup>c</sup></sub> = 1 − 1<sub><var>A</var></sub>, e il prodotto 1<sub><var>A</var></sub> · 1<sub><var>B</var></sub> = 1<sub><var>A</var> ∩ <var>B</var></sub>, perché vale 1 solo se valgono 1 entrambe.</span>
   </div>
   <p>Sembrano un giocattolo, ma in <a class="ref" href="#s-2-4">2.4</a> e <a class="ref" href="#s-2-6">2.6</a> sono lo strumento per contare quante volte succede qualcosa senza doverne calcolare la legge.</p>
+
+<figure class="pv" data-pv="leggeg"></figure>
+
 
   <div class="prova">
     <p class="capo">Prova tu</p>
@@ -5002,6 +5008,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p>Se <var>X</var> assume solo valori interi, <var>F</var>(<var>b</var>−) = <var>F</var>(<var>b</var> − 1): per esempio <var>P</var>(<var>X</var> &lt; 3) = <var>F</var>(2). Sul nostro esempio delle monete, <var>P</var>(<var>X</var> &lt; 2) = <var>F</var>(1) = 3/4, mentre <var>P</var>(<var>X</var> ≤ 2) = <var>F</var>(2) = 1.</p>
 
+<figure class="pv" data-pv="ripartizione"></figure>
+
+
   <div class="prova">
     <p class="capo">Prova tu</p>
     <p>Il numero <var>X</var> di tentativi che servono a completare un caricamento ha funzione di ripartizione: <var>F</var>(<var>x</var>) = 0 per <var>x</var> &lt; 1; &nbsp;<var>F</var>(<var>x</var>) = 0,5 per 1 ≤ <var>x</var> &lt; 2; &nbsp;<var>F</var>(<var>x</var>) = 0,8 per 2 ≤ <var>x</var> &lt; 3; &nbsp;<var>F</var>(<var>x</var>) = 1 per <var>x</var> ≥ 3. Ricava la densità di <var>X</var>, poi calcola <var>P</var>(<var>X</var> &lt; 2), <var>P</var>(<var>X</var> ≤ 2) e <var>P</var>(1 &lt; <var>X</var> ≤ 3).</p>
@@ -5162,6 +5171,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <var>P</var>(<var>h</var>(<var>X</var>, <var>Y</var>) = <var>z</var>) = Σ<sub>(<var>x</var>, <var>y</var>) : <var>h</var>(<var>x</var>, <var>y</var>) = <var>z</var></sub> <var>p</var>(<var>x</var>, <var>y</var>) &nbsp;&nbsp;&nbsp;&nbsp; <var>p</var><sub><var>X</var>+<var>Y</var></sub>(<var>s</var>) = Σ<sub><var>x</var></sub> <var>p</var>(<var>x</var>, <var>s</var> − <var>x</var>)
   </div>
 
+<figure class="pv" data-pv="congiunta"></figure>
+
+
   <h4>Legge condizionale</h4>
   <p>Se sai che <var>Y</var> ha assunto il valore <var>y</var>, la legge di <var>X</var> può cambiare. La nuova legge è la probabilità condizionale di <a class="ref" href="#s-1-4">1.4</a> applicata agli eventi {<var>X</var> = <var>x</var>} e {<var>Y</var> = <var>y</var>}:</p>
   <div class="formula">
@@ -5206,6 +5218,12 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <li><b>Legge condizionale.</b> Sapendo che la seconda è rossa (<var>Y</var> = 1), la prima era rossa con probabilità <var>p</var>(1 | 1) = (1/10)/(4/10) = 1/4, e blu con 3/4. Sapendo che la seconda è blu, la prima era rossa con probabilità <var>p</var>(1 | 0) = (3/10)/(6/10) = 1/2. Due leggi condizionali diverse fra loro (e diverse dalla marginale 4/10): è un altro modo di vedere la dipendenza.</li>
     <li><b>La somma.</b> <var>X</var> + <var>Y</var> è il numero di rosse fra le due estratte: vale 0 con probabilità <var>p</var>(0,0) = 3/10, vale 1 con <var>p</var>(0,1) + <var>p</var>(1,0) = 6/10, vale 2 con <var>p</var>(1,1) = 1/10. È una densità ipergeometrica (<a class="ref" href="#s-2-6">2.6</a>).</li>
   </ul>
+
+<figure class="pv" data-pv="indipv"></figure>
+
+<figure class="pv" data-pv="condiz"></figure>
+
+
 
   <h4>Più di due variabili</h4>
   <p>La densità congiunta di <var>X</var><sub>1</sub>, …, <var>X</var><sub><var>n</var></sub> è <var>p</var>(<var>x</var><sub>1</sub>, …, <var>x</var><sub><var>n</var></sub>) = <var>P</var>(<var>X</var><sub>1</sub> = <var>x</var><sub>1</sub>, …, <var>X</var><sub><var>n</var></sub> = <var>x</var><sub><var>n</var></sub>), e l'indipendenza si definisce come per gli eventi (<a class="ref" href="#s-1-6">1.6</a>), chiedendo la fattorizzazione su tutte le <var>n</var>-uple di valori.</p>
@@ -5412,6 +5430,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p>Se davanti alla vincita metti un segno deciso da un'altra moneta (vinci o perdi 2<sup><var>k</var></sup>), la variabile diventa simmetrica ma <var>E</var>[<var>X</var>] non esiste: la parte positiva ha media +∞, quella negativa −∞, e "∞ − ∞" non ha significato. Quando la media è infinita o non esiste, la media dei risultati di tante ripetizioni non si stabilizza su nessun numero (<a class="ref" href="#s-4-lgn-forte">4.4</a>).</p>
   </div>
 
+<figure class="pv" data-pv="pietroburgo"></figure>
+
+
   <p>Sulle due monete, con <var>X</var> = numero di teste, un addendo per ciascun valore:</p>
   <div class="calc">
     <span class="r"><var>E</var>[<var>X</var>] = 0 × <span class="frac"><span>1</span><span>4</span></span> + 1 × <span class="frac"><span>1</span><span>2</span></span> + 2 × <span class="frac"><span>1</span><span>4</span></span> = 0 + <span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>2</span><span>4</span></span> = <span class="frac"><span>1</span><span>2</span></span> + <span class="frac"><span>1</span><span>2</span></span> = 1</span>
@@ -5422,6 +5443,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="r"><var>E</var>[<var>X</var>] = 1·<span class="frac"><span>1</span><span>6</span></span> + 2·<span class="frac"><span>1</span><span>6</span></span> + 3·<span class="frac"><span>1</span><span>6</span></span> + 4·<span class="frac"><span>1</span><span>6</span></span> + 5·<span class="frac"><span>1</span><span>6</span></span> + 6·<span class="frac"><span>1</span><span>6</span></span> = <span class="frac"><span>1 + 2 + 3 + 4 + 5 + 6</span><span>6</span></span> = <span class="frac"><span>21</span><span>6</span></span> = 3,5</span>
   </div>
 
+<figure class="pv" data-pv="media"></figure>
+
+
   <div class="box intuizione">
     <p class="capo">Tre modi di vederlo, tutti utili</p>
     <p><b>Fisico:</b> è il baricentro. Se metti dei pesi <var>p</var>(<var>x</var>) su una sbarra nei punti <var>x</var>, il valore atteso è il punto in cui la sbarra sta in equilibrio.</p>
@@ -5429,6 +5453,12 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p><b>Economico:</b> è il prezzo equo. Un'assicurazione che paga 10 000 € con probabilità 0,01 e 0 € altrimenti vale in media 10 000 × 0,01 + 0 × 0,99 = 100 €. Se il premio è 130 €, i 30 € di differenza sono il margine dell'assicurazione. Ogni compagnia assicurativa, casinò e lotteria vive di questa formula.</p>
     <p>Una conseguenza che confonde: 3,5 non è un valore che il dado può dare. Il valore atteso non è "il valore che ti aspetti di vedere al prossimo lancio", è la media a lungo andare. E non è nemmeno, in generale, il valore più probabile: una Bernoulli con <var>p</var> = 0,1 ha media 0,1 e valore più probabile 0.</p>
   </div>
+
+<figure class="pv" data-pv="tremodi"></figure>
+
+<figure class="pv" data-pv="attenzione"></figure>
+
+
 
   <h4>Valore atteso di una funzione di <var>X</var></h4>
   <p>Se ti serve la media di <var>X</var><sup>2</sup>, o di 3<var>X</var> + 1, non devi ricavare la legge della nuova variabile. Basta applicare la funzione a ciascun valore e pesare con le stesse probabilità di prima:</p>
@@ -5473,6 +5503,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   <p><b>Perché la quarta.</b> Se <var>X</var> e <var>Y</var> sono indipendenti, <var>p</var>(<var>x</var>,<var>y</var>) = <var>p</var><sub><var>X</var></sub>(<var>x</var>)<var>p</var><sub><var>Y</var></sub>(<var>y</var>), e la somma doppia Σ<sub><var>x</var></sub>Σ<sub><var>y</var></sub> <var>x</var><var>y</var> <var>p</var><sub><var>X</var></sub>(<var>x</var>)<var>p</var><sub><var>Y</var></sub>(<var>y</var>) si separa nel prodotto (Σ<sub><var>x</var></sub> <var>x</var> <var>p</var><sub><var>X</var></sub>(<var>x</var>)) · (Σ<sub><var>y</var></sub> <var>y</var> <var>p</var><sub><var>Y</var></sub>(<var>y</var>)) = <var>E</var>[<var>X</var>]<var>E</var>[<var>Y</var>] (le serie convergono assolutamente perché Σ|<var>xy</var>| <var>p</var><sub><var>X</var></sub><var>p</var><sub><var>Y</var></sub> = <var>E</var>|<var>X</var>| · <var>E</var>|<var>Y</var>| &lt; ∞). Senza indipendenza la congiunta non si spezza e il conto non si separa.</p>
   <p>La seconda proprietà si chiama <b>linearità</b> del valore atteso ed è uno degli strumenti più potenti del corso: ti permette di calcolare la media di somme complicatissime spezzandole in pezzi banali, <b>senza mai conoscere la legge della somma</b>.</p>
 
+<figure class="pv" data-pv="funzionemedia"></figure>
+
+
   <h4>Il trucco delle variabili indicatrici</h4>
   <p>La linearità diventa un'arma quando la combini con l'indicatrice di un evento (<a class="ref" href="#s-2-1">2.1</a>): la sua media è <var>E</var>[1<sub><var>A</var></sub>] = 1 · <var>P</var>(<var>A</var>) + 0 · (1 − <var>P</var>(<var>A</var>)) = <var>P</var>(<var>A</var>). Qualunque variabile che <i>conta</i> quante volte succede qualcosa si può scrivere come somma di indicatrici, una per ogni occasione. E allora la sua media è la somma delle probabilità delle singole occasioni, senza bisogno di conoscerne la legge.</p>
   <div class="box vita">
@@ -5483,6 +5516,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p>In media torna a casa con il suo cappotto una persona sola. La cosa sorprendente è che con 100 persone, o con 1 000, il ragionamento è identico: ognuna ha probabilità 1/<var>n</var>, le persone sono <var>n</var>, e la media resta 1. Nota che le <var>I</var><sub><var>k</var></sub> non sono indipendenti (se nove persone hanno avuto il loro cappotto, anche la decima ha per forza il suo), ma alla linearità della media questo non importa.</p>
   </div>
   <p>Anche la media della binomiale, <var>n</var><var>p</var>, che ricaverai in <a class="ref" href="#s-2-6">2.6</a>, si ottiene esattamente così: è una somma di <var>n</var> indicatrici, ciascuna con media <var>p</var>.</p>
+
+<figure class="pv" data-pv="guardaroba"></figure>
+
 
   <div class="prova">
     <p class="capo">Prova tu</p>
@@ -5532,10 +5568,16 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 </div>
 <p>Una ruota con 12 settori uguali, 6 blu, 4 verdi e 2 rossi. Gli esiti equiprobabili sono i 12 settori, non i 3 colori (<a class="ref" href="#s-1-3">1.3</a>): <var>P</var>(blu) = 6/12 = 1/2, <var>P</var>(verde) = 4/12 = 1/3 e <var>P</var>(rosso) = 2/12 = 1/6, quindi le quote eque sono 2, 3 e 6. Lo vedi anche così: il banco vende 12 biglietti da 1 €, uno per settore, e incassa 12 €; se esce il blu li dividono i 6 biglietti blu, 2 € a testa, e se esce il rosso i 2 biglietti rossi, 6 € a testa. Il banco restituisce tutto quello che incassa.</p>
 
+<figure class="pv" data-pv="ruota12"></figure>
+
+
 <div class="box attento">
   <p class="capo">Equo non vuol dire senza rischio</p>
   <p>E[<var>G</var>] = 0 dice dove sta la media, non quanto si disperdono i risultati (la varianza, <a class="ref" href="#s-2-5">2.5</a>). Lanci una moneta equa: con testa ricevi 2 000 €, con croce niente, e per giocare paghi 1 000 €. Il gioco è equo, ma il guadagno vale +1 000 € oppure −1 000 € con la stessa probabilità, quindi la sua deviazione standard è 1 000 €.</p>
 </div>
+
+<figure class="pv" data-pv="giochiequi"></figure>
+
 
 <p><b>Un gioco a estrazione.</b> Qui serve l'ipergeometrica di <a class="ref" href="#s-2-6">2.6</a>. Il gioco (di fantasia, ispirato ai giochi a estrazione) è questo: in un'urna ci sono 90 palline numerate e ne estraggono 20, senza rimetterle. Tu paghi 2 € e segni 5 numeri. Sia <var>X</var> quanti dei tuoi numeri sono fra i 20 estratti. Il premio è 400 € se <var>X</var> = 5, 30 € se <var>X</var> = 4, 8 € se <var>X</var> = 3, 2 € se <var>X</var> = 2, e niente se <var>X</var> ≤ 1.</p>
 <p><var>X</var> è ipergeometrica con <var>N</var> = 90 (le palline), <var>K</var> = 5 (i tuoi numeri, i «buoni») e <var>n</var> = 20 (le estratte): <var>P</var>(<var>X</var> = <var>k</var>) = <span class="binom"><span>5</span><span><var>k</var></span></span> <span class="binom"><span>85</span><span>20 − <var>k</var></span></span> / <span class="binom"><span>90</span><span>20</span></span>. Il denominatore è enorme, circa 5,1 × 10<sup>19</sup>: i binomiali si calcolano con <code>math.comb</code>, non a mano.</p>
@@ -5806,6 +5848,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p>Due linee di autobus hanno lo stesso tempo medio di attesa, 10 minuti. La prima arriva sempre fra i 9 e gli 11 minuti; la seconda a volte in 1 minuto, a volte in 19. La media è identica, l'esperienza è completamente diversa: con la prima puoi organizzarti, con la seconda no. La varianza è il numero che distingue le due linee.</p>
   </div>
 
+<figure class="pv" data-pv="varianza"></figure>
+
   <p>L'idea: misuro di quanto <var>X</var> si scosta dalla sua media, cioè <var>X</var> − <var>μ</var>, e faccio la media di questi scarti. Ma c'è un intoppo: la media degli scarti è sempre zero. Infatti <var>E</var>[<var>X</var> − <var>μ</var>] = <var>E</var>[<var>X</var>] − <var>μ</var> = <var>μ</var> − <var>μ</var> = 0 (linearità): gli scarti positivi e quelli negativi si cancellano esattamente. Per non farli cancellare si elevano al quadrato prima di fare la media, così sono tutti positivi:</p>
 
   <div class="formula">
@@ -5856,6 +5900,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Covarianza e correlazione</h4>
   <p>Misurano se due variabili tendono a muoversi insieme. L'idea: se quando <var>X</var> è sopra la sua media anche <var>Y</var> tende a stare sopra la sua, il prodotto degli scarti (<var>X</var>−<var>μ</var><sub><var>X</var></sub>)(<var>Y</var>−<var>μ</var><sub><var>Y</var></sub>) è per lo più positivo; se una sta sopra quando l'altra sta sotto, è per lo più negativo.</p>
+
+<figure class="pv" data-pv="covarianza"></figure>
+
   <div class="formula">
     Cov(<var>X</var>,<var>Y</var>) = <var>E</var>[(<var>X</var>−<var>μ</var><sub><var>X</var></sub>)(<var>Y</var>−<var>μ</var><sub><var>Y</var></sub>)] = <var>E</var>[<var>X</var><var>Y</var>] − <var>E</var>[<var>X</var>]<var>E</var>[<var>Y</var>]
     <span class="nota">Si definisce quando <var>X</var> e <var>Y</var> hanno momento secondo finito: allora tutte le medie che compaiono esistono, perché |<var>xy</var>| ≤ (<var>x</var><sup>2</sup> + <var>y</var><sup>2</sup>)/2. La seconda forma si ricava sviluppando il prodotto esattamente come per la varianza (infatti Cov(<var>X</var>,<var>X</var>) = Var(<var>X</var>)). Covarianza positiva: crescono insieme, come altezza e peso. Negativa: una sale quando l'altra scende, come prezzo e quantità venduta.</span>
@@ -6003,6 +6050,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
 <h4>La media è la migliore previsione costante</h4>
 <p>Devi prevedere <var>X</var> con un solo numero <var>c</var>, per esempio il tempo di risposta di una richiesta da usare come stima fissa, e l'errore pesa al quadrato: sbagliare di 4 costa 16 volte più che sbagliare di 1. Ti interessa quindi l'errore quadratico medio E[(<var>X</var> − <var>c</var>)<sup>2</sup>]. Quale <var>c</var> lo rende minimo?</p>
+
+<figure class="pv" data-pv="previsione"></figure>
+
 <div class="box teorema">
   <p class="capo">Teorema (errore quadratico di una costante)</p>
   <p>Se <var>X</var> ha media <var>μ</var> e varianza finita, per ogni numero reale <var>c</var> vale E[(<var>X</var> − <var>c</var>)<sup>2</sup>] = Var(<var>X</var>) + (<var>μ</var> − <var>c</var>)<sup>2</sup>. In particolare è minimo per <var>c</var> = <var>μ</var>, e il minimo è Var(<var>X</var>).</p>
@@ -6431,6 +6481,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Binomiale, <var>B</var>(<var>n</var>, <var>p</var>)</h4>
   <p><b>La storia:</b> ripeti <var>n</var> volte, in modo indipendente, la stessa prova con probabilità di successo <var>p</var>. <var>X</var> = quanti successi in totale. Valori possibili: 0, 1, …, <var>n</var>. Su 100 visitatori con tasso di acquisto del 2%, quanti comprano. Su 10 tiri liberi con l'80% di precisione, quanti entrano. Su 20 mail inviate, quante vengono aperte.</p>
+
+<figure class="pv" data-pv="binomiale"></figure>
+
   <div class="formula">
     <var>P</var>(<var>X</var> = <var>k</var>) = <span class="binom"><span><var>n</var></span><span><var>k</var></span></span> <var>p</var><sup><var>k</var></sup> (1 − <var>p</var>)<sup><var>n</var>−<var>k</var></sup> &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <var>n</var><var>p</var>, &nbsp; Var(<var>X</var>) = <var>n</var><var>p</var>(1 − <var>p</var>)
   </div>
@@ -6465,6 +6518,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Geometrica</h4>
   <p><b>La storia:</b> ripeti la stessa prova, indipendente ogni volta, finché non ottieni il primo successo. <var>X</var> = numero di prove necessarie, compresa quella del successo. Valori possibili: 1, 2, 3, … senza limite superiore (potresti fallire per sempre, con probabilità sempre più piccola). Quante volte devi ripetere una richiesta a un server instabile prima che vada a buon fine; quanti lanci di dado servono per vedere il primo 6; quante candidature devi mandare per ricevere la prima risposta.</p>
+
+<figure class="pv" data-pv="geometrica"></figure>
+
   <div class="formula">
     <var>P</var>(<var>X</var> = <var>k</var>) = (1 − <var>p</var>)<sup><var>k</var>−1</sup> <var>p</var> &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <span class="frac"><span>1</span><span><var>p</var></span></span>, &nbsp; Var(<var>X</var>) = <span class="frac"><span>1 − <var>p</var></span><span><var>p</var><sup>2</sup></span></span>
     <span class="nota">La formula si legge da sola: perché il primo successo arrivi esattamente alla prova <var>k</var>, le prime <var>k</var>−1 devono fallire (ognuna con 1−<var>p</var>, moltiplicate perché indipendenti) e la <var>k</var>-esima deve riuscire (<var>p</var>).</span>
@@ -6561,6 +6617,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Ipergeometrica</h4>
   <p><b>La storia:</b> è la binomiale <b>senza reimmissione</b>. Un'urna con <var>N</var> oggetti di cui <var>K</var> "buoni"; ne estrai <var>n</var> in blocco (o uno dopo l'altro senza rimetterli); <var>X</var> = quanti buoni hai preso. Controllo qualità: da una partita di 50 pezzi, di cui 4 difettosi, ne ispezioni 5. Le carte pescate da un mazzo, come nei conteggi di <a class="ref" href="#s-0-conteggio">0.4</a>. Quanti dei numeri che hai giocato escono fra i cinque estratti su una ruota del lotto.</p>
+
+<figure class="pv" data-pv="ipergeometrica"></figure>
+
   <div class="formula">
     <var>P</var>(<var>X</var> = <var>k</var>) = <span class="frac"><span><span class="binom"><span><var>K</var></span><span><var>k</var></span></span> <span class="binom"><span><var>N</var>−<var>K</var></span><span><var>n</var>−<var>k</var></span></span></span><span><span class="binom"><span><var>N</var></span><span><var>n</var></span></span></span></span> &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <var>n</var> <span class="frac"><span><var>K</var></span><span><var>N</var></span></span>, &nbsp; Var(<var>X</var>) = <var>n</var> <span class="frac"><span><var>K</var></span><span><var>N</var></span></span> (1 − <span class="frac"><span><var>K</var></span><span><var>N</var></span></span>) <span class="frac"><span><var>N</var> − <var>n</var></span><span><var>N</var> − 1</span></span>
     <span class="nota">È "casi favorevoli su casi possibili" con i binomiali: sopra scelgo <var>k</var> buoni fra i <var>K</var> e <var>n</var>−<var>k</var> non buoni fra gli <var>N</var>−<var>K</var>; sotto tutte le scelte di <var>n</var> oggetti fra <var>N</var>. Le probabilità sommano a 1 perché ogni gruppo di <var>n</var> oggetti contiene un certo numero <var>k</var> di buoni: sommando su <var>k</var> i casi favorevoli si ottengono tutti i <span class="binom"><span><var>N</var></span><span><var>n</var></span></span> gruppi. Media e varianza sono come nella binomiale con <var>p</var> = <var>K</var>/<var>N</var>, salvo il fattore correttivo (<var>N</var>−<var>n</var>)/(<var>N</var>−1) sulla varianza, che è ≤ 1: senza reimmissione c'è meno incertezza.</span>
@@ -6598,6 +6657,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Poisson, <var>P</var>(<var>λ</var>)</h4>
   <p><b>La storia:</b> conti quante volte succede qualcosa in un intervallo fissato di tempo, di spazio o di superficie, quando le occorrenze sono indipendenti fra loro, avvengono a ritmo costante, e ciascuna è "rara" nel senso che in un istante piccolissimo ne capita al più una. Ordini che arrivano a un sito in un minuto. Errori nei log di un server in un'ora. Refusi per pagina. Auto a un casello al minuto. Chiamate a un centralino. Valori possibili: 0, 1, 2, … senza limite. La formulazione precisa (il processo di Poisson) è in <a class="ref" href="#s-4-poisson">4.6</a>; perché esce proprio questa densità lo dimostriamo in <a class="ref" href="#s-2-7">2.7</a>, come limite delle binomiali con <var>n</var> grande e <var>p</var> piccolo.</p>
+
+<figure class="pv" data-pv="poisson"></figure>
+
   <div class="formula">
     <var>P</var>(<var>X</var> = <var>k</var>) = <var>e</var><sup>−<var>λ</var></sup> <span class="frac"><span><var>λ</var><sup><var>k</var></sup></span><span><var>k</var>!</span></span> &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <var>λ</var>, &nbsp; Var(<var>X</var>) = <var>λ</var>
     <span class="nota"><var>λ</var> (lambda) è il numero <b>medio</b> di occorrenze nell'intervallo considerato. Per la Poisson media e varianza coincidono, per ogni valore di <var>λ</var>: se una variabile di conteggio ha varianza molto diversa dalla media, non è Poisson.</span>
@@ -6648,6 +6710,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
       </tbody>
     </table>
   </div>
+
+<figure class="pv" data-pv="riconoscere"></figure>
 
   <div class="guidato" id="g-2-b">
     <p class="capo">Esercizio guidato 2.B: riconoscere la legge</p>
@@ -7078,6 +7142,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <p>Molte quantità sono somme: le richieste ricevute da due server, il punteggio di due dadi, i successi su <var>n</var> prove. Per la media e la varianza basta la linearità (<a class="ref" href="#s-2-4">2.4</a>, <a class="ref" href="#s-2-5">2.5</a>), ma spesso serve la <i>legge</i> della somma. Se <var>X</var> e <var>Y</var> sono indipendenti, si ricava dalla congiunta di <a class="ref" href="#s-2-3">2.3</a>.</p>
 
+<figure class="pv" data-pv="somme"></figure>
+
   <div class="box teorema">
     <p class="capo">Teorema (convoluzione)</p>
     <p>Se <var>X</var> e <var>Y</var> sono indipendenti e assumono valori interi, allora per ogni intero <var>s</var>: &nbsp; <var>p</var><sub><var>X</var>+<var>Y</var></sub>(<var>s</var>) = Σ<sub><var>x</var></sub> <var>p</var><sub><var>X</var></sub>(<var>x</var>) <var>p</var><sub><var>Y</var></sub>(<var>s</var> − <var>x</var>).</p>
@@ -7115,6 +7181,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   <div class="formula">
     <var>P</var>(max(<var>X</var><sub>1</sub>, …, <var>X</var><sub><var>n</var></sub>) ≤ <var>k</var>) = Π<sub><var>i</var></sub> <var>P</var>(<var>X</var><sub><var>i</var></sub> ≤ <var>k</var>) &nbsp;&nbsp;&nbsp;&nbsp; <var>P</var>(min(<var>X</var><sub>1</sub>, …, <var>X</var><sub><var>n</var></sub>) &gt; <var>k</var>) = Π<sub><var>i</var></sub> <var>P</var>(<var>X</var><sub><var>i</var></sub> &gt; <var>k</var>)
   </div>
+
+<figure class="pv" data-pv="minmax"></figure>
+
   <p><b>Il massimo di due dadi.</b> <var>P</var>(max ≤ <var>k</var>) = (<var>k</var>/6)<sup>2</sup> = <var>k</var><sup>2</sup>/36, quindi <var>P</var>(max = <var>k</var>) = (<var>k</var><sup>2</sup> − (<var>k</var> − 1)<sup>2</sup>)/36 = (2<var>k</var> − 1)/36, per <var>k</var> = 1, …, 6. Con la formula delle code di <a class="ref" href="#s-2-4">2.4</a>: <var>E</var>[max] = Σ<sub><var>k</var>=1</sub><sup>6</sup> <var>P</var>(max ≥ <var>k</var>) = Σ (1 − (<var>k</var> − 1)<sup>2</sup>/36) = 6 − 55/36 = 161/36 ≈ 4,47.</p>
   <p><b>Il minimo di due geometriche.</b> Due server indipendenti ricevono la stessa richiesta a ogni tentativo; il primo risponde con probabilità 0,3 e il secondo con 0,2. Sia <var>X</var> ~ Geom(0,3) il tentativo della prima risposta del primo server e <var>Y</var> ~ Geom(0,2) quello del secondo. La prima risposta in assoluto arriva al tentativo min(<var>X</var>, <var>Y</var>), e:</p>
   <div class="calc">
@@ -7138,6 +7207,9 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Da binomiale a Poisson: il limite</h4>
   <p>Una binomiale con <var>n</var> enorme e <var>p</var> piccolissimo è scomoda da calcolare: coefficienti binomiali giganteschi, potenze minuscole. Ma si avvicina a una legge molto più semplice. Pensa a un'ora divisa in <var>n</var> = 3 600 secondi: in ciascun secondo arriva un ordine con probabilità <var>p</var> = <var>λ</var>/3 600, piccolissima, e gli ordini dell'ora sono Bin(3 600, <var>λ</var>/3 600). Affinando la suddivisione (<var>n</var> → ∞, <var>p</var> → 0, con <var>n</var><var>p</var> = <var>λ</var> fisso) la possibilità di due ordini nello stesso istante sparisce, e resta solo il ritmo medio <var>λ</var>.</p>
+
+<figure class="pv" data-pv="bin_poisson"></figure>
+
   <div class="box teorema">
     <p class="capo">Teorema (limite di Poisson)</p>
     <p>Sia <var>λ</var> &gt; 0 fissato e <var>X</var><sub><var>n</var></sub> ~ Bin(<var>n</var>, <var>λ</var>/<var>n</var>) (con <var>n</var> &gt; <var>λ</var>). Allora, per ogni <var>k</var> = 0, 1, 2, …, &nbsp; <var>P</var>(<var>X</var><sub><var>n</var></sub> = <var>k</var>) → <var>e</var><sup>−<var>λ</var></sup> <var>λ</var><sup><var>k</var></sup>/<var>k</var>! &nbsp; per <var>n</var> → ∞.</p>
@@ -7350,6 +7422,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </ul>
   </div>
 
+
+<figure class="pv" data-pv="parte2"><figcaption><b>Ripasso in video</b> · i video della Parte 2 uno dopo l'altro, con un cartello fra l'uno e l'altro. Ognuno si trova anche nella sua sezione. Senza audio, con sottotitoli.</figcaption></figure>
 
 <div class="esercizi">
     <h3 id="s-2-10" data-toc><span class="n">2.9</span> Domande di verifica</h3>
@@ -20547,5 +20621,7 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
 <script src="assets/js/pv-parte0.js" defer></script>
 <script src="assets/js/pv-parte0b.js" defer></script>
 <script src="assets/js/pv-parte1.js" defer></script>
+<script src="assets/js/pv-parte2.js" defer></script>
+<script src="assets/js/pv-parte2b.js" defer></script>
 </body>
 </html>
