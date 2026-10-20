@@ -7812,6 +7812,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="nota">Nella scelta uniforme la probabilità non sta sui punti, sta sugli <b>intervalli</b>. Ha senso chiedere <var>P</var>(0,4 &lt; <var>X</var> &lt; 0,6), che vale 0,2; non ha senso pratico chiedere la probabilità di un valore preciso con infinite cifre decimali.</span>
   </div>
 
+<figure class="pv" data-pv="puntiintervalli"></figure>
+
   <p>Attenzione a cosa ha dimostrato questo ragionamento: che <i>se i valori pesano tutti uguale</i> nessuno può avere probabilità positiva. Per una variabile qualunque i valori non pesano uguale, e il fatto generale è un altro:</p>
 
   <div class="box teorema">
@@ -7826,6 +7828,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p class="capo">Un esempio misto</p>
     <p>Una chiamata al servizio clienti aspetta un tempo <var>X</var> uniforme fra 0 e 10 minuti, ma dopo 6 minuti la linea cade: il tempo effettivamente passato in attesa è <var>Y</var> = min(<var>X</var>, 6). Adesso <var>P</var>(<var>Y</var> = 6) = <var>P</var>(<var>X</var> ≥ 6) = 4/10 = 0,4: un atomo. La probabilità rimanente, 0,6, è distribuita fra 0 e 6 senza atomi. Né discreta né continua: mista.</p>
   </div>
+
+<figure class="pv" data-pv="mista"></figure>
 
   <div class="box intuizione">
     <p class="capo">Probabilità zero non vuol dire impossibile</p>
@@ -8276,6 +8280,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="nota">Si legge "integrale da <var>a</var> a <var>b</var> di f di x in de x". Il simbolo ∫ è una S allungata, da "somma": immagina di dividere l'intervallo [<var>a</var>, <var>b</var>] in tantissimi rettangolini di base minuscola d<var>x</var> e altezza <var>f</var>(<var>x</var>), e di sommare le loro aree. Al limite, con rettangolini infinitamente stretti, la somma diventa l'area esatta. La Σ della Parte 2 è la versione a scalini della stessa idea. Per esempio ∫<sub>−1</sub><sup>1</sup> <var>x</var> d<var>x</var> = 0: il triangolo a destra dell'asse verticale (area +1/2) e quello a sinistra (area −1/2) si cancellano. Servirà per le medie di variabili che assumono anche valori negativi.</span>
   </div>
 
+<figure class="pv" data-pv="area"></figure>
+
   <h4>Gli integrali di base</h4>
   <div class="tabella">
     <table>
@@ -8299,6 +8305,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p>Verifica su un caso che si può fare anche con la geometria. Area sotto <var>f</var>(<var>x</var>) = 2<var>x</var> fra 0 e 1: la primitiva è <var>F</var>(<var>x</var>) = <var>x</var><sup>2</sup> (derivata: 2<var>x</var> ✓), quindi l'area è <var>F</var>(1) − <var>F</var>(0) = 1 − 0 = 1. Geometricamente: è un triangolo con base 1 e altezza <var>f</var>(1) = 2, area = (1 × 2)/2 = 1. ✓</p>
 
+<figure class="pv" data-pv="primitiva"></figure>
+
   <h4>Integrali fino a infinito</h4>
   <p>Spesso un estremo è ∞ (o −∞). Significa: calcola fino a <var>b</var> e guarda a cosa tende quando <var>b</var> cresce (per −∞: quando l'estremo inferiore scende senza limite). Per l'esponenziale, con la primitiva −<var>e</var><sup>−<var>λx</var></sup>/<var>λ</var>:</p>
   <div class="calc">
@@ -8307,6 +8315,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p>L'integrale su tutta la retta si spezza in due, ∫<sub>−∞</sub><sup>∞</sup> = ∫<sub>−∞</sub><sup>0</sup> + ∫<sub>0</sub><sup>∞</sup>, e <b>ciascun</b> pezzo deve avere il suo limite finito. Non basta che ∫<sub>−<var>M</var></sub><sup><var>M</var></sup> tenda a qualcosa: per <var>f</var>(<var>x</var>) = <var>x</var> quell'integrale vale sempre 0, ma ∫<sub>0</sub><sup>∞</sup> <var>x</var> d<var>x</var> = ∞, e l'integrale su ℝ non esiste.</p>
   <p>Per una <var>f</var> ≥ 0 il limite esiste sempre, finito o +∞. Per una <var>f</var> che cambia segno chiediamo che converga ∫ |<var>f</var>|: è la <b>convergenza assoluta</b>, la stessa condizione che ti serve per le serie, e in <a class="ref" href="#s-3-4">3.4</a> sarà quella che decide se una media esiste. Due esempi da tenere a mente: ∫<sub>1</sub><sup>∞</sup> d<var>x</var>/<var>x</var><sup>2</sup> = [−1/<var>x</var>]<sub>1</sub><sup>∞</sup> = 1 converge, mentre ∫<sub>1</sub><sup><var>b</var></sup> d<var>x</var>/<var>x</var> = ln <var>b</var> → ∞ diverge, anche se 1/<var>x</var> tende a 0. Per confronto: se 0 ≤ <var>f</var> ≤ <var>g</var> e ∫ <var>g</var> &lt; ∞, allora ∫ <var>f</var> &lt; ∞.</p>
+
+<figure class="pv" data-pv="improprio"></figure>
 
   <h4>Integrazione per parti</h4>
   <p>Dalla regola del prodotto (<var>u</var><var>v</var>)′ = <var>u</var>′<var>v</var> + <var>u</var><var>v</var>′, integrando fra <var>a</var> e <var>b</var> e portando un pezzo dall'altra parte, si ottiene:</p>
@@ -8327,6 +8337,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="nota">In pratica: scrivi <var>u</var> = <var>g</var>(<var>x</var>), sostituisci <var>g</var>′(<var>x</var>) d<var>x</var> = d<var>u</var>, e cambia gli estremi. Esempio: con <var>u</var> = <var>λx</var> (d<var>u</var> = <var>λ</var> d<var>x</var>), ∫<sub>0</sub><sup>∞</sup> <var>λ</var><var>e</var><sup>−<var>λx</var></sup> d<var>x</var> = ∫<sub>0</sub><sup>∞</sup> <var>e</var><sup>−<var>u</var></sup> d<var>u</var> = 1: cambiare unità di misura non cambia l'area.</span>
   </div>
 
+<figure class="pv" data-pv="parti"></figure>
+
   <h4>La funzione Gamma</h4>
   <div class="box def">
     <p class="capo">Definizione (funzione Gamma di Eulero)</p>
@@ -8341,6 +8353,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </ol>
   <p>Un valore non intero servirà: Γ(1/2) = √π ≈ 1,7725. Lo ricavi dall'integrale gaussiano qui sotto.</p>
 
+<figure class="pv" data-pv="gamma_f"></figure>
+
   <h4>Integrali doppi</h4>
   <p>Un integrale doppio <span class="int">∫∫</span><sub><var>B</var></sub> <var>h</var>(<var>x</var>, <var>y</var>) d<var>x</var>d<var>y</var> è il <b>volume</b> sotto la superficie <var>z</var> = <var>h</var>(<var>x</var>, <var>y</var>), sopra la regione <var>B</var> del piano. Si calcola come due integrali uno dentro l'altro: prima integri in <var>y</var> tenendo ferma <var>x</var>, poi integri il risultato in <var>x</var>. Se <var>h</var> ≥ 0 (o, più in generale, se <span class="int">∫∫</span> |<var>h</var>| &lt; ∞) l'ordine si può scambiare e il risultato non cambia (teorema di Fubini–Tonelli). Se la regione non è un rettangolo, gli estremi dell'integrale interno dipendono dalla variabile esterna: <b>disegna sempre la regione prima di scrivere gli estremi</b>. Il prodotto di due integrali semplici è un integrale doppio: ∫ <var>f</var>(<var>x</var>) d<var>x</var> · ∫ <var>g</var>(<var>y</var>) d<var>y</var> = <span class="int">∫∫</span> <var>f</var>(<var>x</var>)<var>g</var>(<var>y</var>) d<var>x</var>d<var>y</var>.</p>
   <p>Esempio: il triangolo <var>T</var> = {0 &lt; <var>x</var> &lt; <var>y</var> &lt; 1} e la funzione costante 2. Due modi di leggere la stessa regione:</p>
@@ -8349,6 +8363,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="r">Per ogni <var>x</var>, <var>y</var> va da <var>x</var> a 1: &nbsp; <span class="int">∫∫</span><sub><var>T</var></sub> 2 d<var>x</var>d<var>y</var> = <span class="int">∫</span><sub>0</sub><sup>1</sup> ( <span class="int">∫</span><sub><var>x</var></sub><sup>1</sup> 2 d<var>y</var> ) d<var>x</var> = <span class="int">∫</span><sub>0</sub><sup>1</sup> 2(1 − <var>x</var>) d<var>x</var> = 1</span>
     <span class="r perche">Stesso risultato, come deve essere: il triangolo ha area 1/2 e la funzione vale 2 ovunque.</span>
   </div>
+
+<figure class="pv" data-pv="doppi"></figure>
 
   <h4>L'integrale gaussiano</h4>
   <div class="formula">
@@ -8367,6 +8383,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </div>
   </div></details>
   <p>Due conseguenze. Con la sostituzione <var>x</var> = √2 <var>u</var> si ottiene ∫<sub>−∞</sub><sup>∞</sup> <var>e</var><sup>−<var>u</var><sup>2</sup></sup> d<var>u</var> = √π. E Γ(1/2) = ∫<sub>0</sub><sup>∞</sup> <var>x</var><sup>−1/2</sup><var>e</var><sup>−<var>x</var></sup> d<var>x</var> = √π: basta la sostituzione <var>x</var> = <var>u</var><sup>2</sup> (d<var>x</var> = 2<var>u</var> d<var>u</var>, <var>x</var><sup>−1/2</sup> = 1/<var>u</var>), che dà 2∫<sub>0</sub><sup>∞</sup> <var>e</var><sup>−<var>u</var><sup>2</sup></sup> d<var>u</var> = ∫<sub>−∞</sub><sup>∞</sup> <var>e</var><sup>−<var>u</var><sup>2</sup></sup> d<var>u</var> = √π, perché la funzione è pari.</p>
+
+<figure class="pv" data-pv="gauss_int"></figure>
 
   <p>Ultimo strumento: il logaritmo naturale ln, l'inverso di <var>e</var><sup><var>x</var></sup> (proprietà in <a class="ref" href="#s-0-3">0.3</a>). Ti serve per risolvere equazioni come <var>e</var><sup>−<var>λm</var></sup> = 1/2 (la mediana dell'esponenziale) e per simulare le leggi al computer (<a class="ref" href="#s-3-5">3.5</a>).</p>
 
@@ -10132,6 +10150,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="r perche">Hai già aspettato <var>s</var>, e ti restano in media 1/<var>λ</var>, esattamente come se cominciassi ora: è l'assenza di memoria, che dimostriamo con le probabilità in <a class="ref" href="#s-3-7">3.8</a>. Con i numeri: 30 + 20 = 50 secondi in tutto.</span>
   </div>
 
+<figure class="pv" data-pv="condevento"></figure>
+
   <h4>Condizionare a un'altra variabile</h4>
   <p>Ora l'informazione non è un evento fisso, ma il valore di un'altra variabile <var>Y</var>. Per ogni possibile valore <var>y</var> cerchiamo un numero <var>g</var>(<var>y</var>) = <var>E</var>[<var>X</var> | <var>Y</var> = <var>y</var>]: la media di <var>X</var> quando <var>Y</var> vale <var>y</var>. Che cosa vuol dire "<var>Y</var> vale <var>y</var>" dipende dal tipo di <var>Y</var>.</p>
   <ul class="lista">
@@ -10175,6 +10195,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <var>E</var>[<var>X</var>] = <var>E</var>[ <var>E</var>[<var>X</var> | <var>Y</var>] ] = <var>E</var>[<var>Y</var>/2] = <span class="frac"><span>1</span><span>2</span></span> · <span class="frac"><span>1</span><span>2</span></span> = <span class="frac"><span>1</span><span>4</span></span> &nbsp;di metro, cioè 25 cm
     <span class="nota">Nessun integrale doppio: condizionando al primo taglio, il problema si è spezzato in due problemi facili. Per controllo, con la congiunta: la marginale di <var>X</var> è <var>f</var><sub><var>X</var></sub>(<var>x</var>) = ∫<sub><var>x</var></sub><sup>1</sup> d<var>y</var>/<var>y</var> = −ln <var>x</var> per 0 &lt; <var>x</var> &lt; 1, e <var>E</var>[<var>X</var>] = ∫<sub>0</sub><sup>1</sup> <var>x</var>(−ln <var>x</var>) d<var>x</var> = 1/4 (per parti: ∫<sub>0</sub><sup>1</sup> <var>x</var> ln <var>x</var> d<var>x</var> = [<var>x</var><sup>2</sup> ln <var>x</var>/2]<sub>0</sub><sup>1</sup> − ∫<sub>0</sub><sup>1</sup> <var>x</var>/2 d<var>x</var> = −1/4). Il risultato torna anche a intuito: ogni taglio, in media, dimezza la lunghezza, e 1 → 1/2 → 1/4.</span>
   </div>
+
+<figure class="pv" data-pv="torre"></figure>
 
   <div class="prova">
     <p class="capo">Prova tu</p>
@@ -20623,5 +20645,6 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
 <script src="assets/js/pv-parte1.js" defer></script>
 <script src="assets/js/pv-parte2.js" defer></script>
 <script src="assets/js/pv-parte2b.js" defer></script>
+<script src="assets/js/pv-parte3.js" defer></script>
 </body>
 </html>
