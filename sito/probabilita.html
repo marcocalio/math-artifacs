@@ -8692,6 +8692,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </div>
   </div>
 
+<figure class="pv" data-pv="ripc"></figure>
+
   <p>Da questa definizione, con le cose già viste, discendono tutte le proprietà che servono:</p>
   <ul class="lista">
     <li><b>Area totale 1:</b> ∫<sub>−∞</sub><sup>+∞</sup> <var>f</var>(<var>x</var>) d<var>x</var> = 1. Basta prendere <var>a</var> = −<var>n</var> e <var>b</var> = <var>n</var> e far crescere <var>n</var>: <var>P</var>(−<var>n</var> &lt; <var>X</var> ≤ <var>n</var>) tende a 1 (continuità della probabilità, <a class="ref" href="#s-1-2">1.2</a>).</li>
@@ -8713,6 +8715,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p>Ora rifai il disegno con fasce di 5 cm, poi di 2 cm, poi di 1 cm. I rettangoli diventano sempre più stretti, e i loro tetti disegnano una curva sempre più liscia. Quella curva, al limite, è la densità. Ecco perché l'altezza della curva si misura in "probabilità per centimetro": è l'altezza di un rettangolino di istogramma.</p>
   </div>
 
+<figure class="pv" data-pv="istogramma"></figure>
+
   <h4>Due esempi da tenere come riferimento</h4>
   <p><b>La densità uniforme su [0, 1].</b> Il <code>random()</code> di prima: nessuna zona favorita, quindi densità costante. Per avere area 1 su un intervallo di lunghezza 1, l'altezza deve essere 1: <var>f</var>(<var>x</var>) = 1 per 0 ≤ <var>x</var> ≤ 1, e 0 fuori. La ripartizione è l'area accumulata: <var>F</var>(<var>x</var>) = 0 per <var>x</var> &lt; 0, <var>F</var>(<var>x</var>) = ∫<sub>0</sub><sup><var>x</var></sup> 1 d<var>t</var> = <var>x</var> per 0 ≤ <var>x</var> ≤ 1 (un rettangolo di base <var>x</var> e altezza 1), <var>F</var>(<var>x</var>) = 1 per <var>x</var> &gt; 1. Quindi <var>P</var>(0,2 &lt; <var>X</var> &lt; 0,5) = <var>F</var>(0,5) − <var>F</var>(0,2) = 0,5 − 0,2 = 0,3: la probabilità di un intervallo è la sua lunghezza. Nota che in <var>x</var> = 0 la pendenza di <var>F</var> è 0 a sinistra e 1 a destra: <var>F</var> ha uno spigolo, non c'è derivata, e lo stesso in <var>x</var> = 1. La regola <var>F</var>′ = <var>f</var> vale nei punti dove <var>f</var> è continua, non ovunque.</p>
 
@@ -8727,6 +8731,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p class="capo">La densità non è una probabilità</p>
     <p><var>F</var>(<var>x</var>) è una probabilità: sta fra 0 e 1. <var>f</var>(<var>x</var>) no: è una probabilità <i>per unità di lunghezza</i>, e può tranquillamente superare 1. La densità uniforme su [0, 1/2] vale 2 su tutto l'intervallo: base 1/2, altezza 2, area 1. L'unico vincolo è l'area totale. Se in un esercizio ti esce una densità che vale 3 in qualche punto, non è un errore; se ti esce un'area totale diversa da 1, lo è.</p>
   </div>
+
+<figure class="pv" data-pv="normalizza"></figure>
 
   <div class="prova">
     <p class="capo">Prova tu</p>
@@ -8760,6 +8766,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>La mediana e i quantili</h4>
   <p>La <b>mediana</b> è il valore <var>m</var> che divide la probabilità a metà: <var>F</var>(<var>m</var>) = 1/2. Per la triangolare: <var>m</var><sup>2</sup> = 1/2, quindi <var>m</var> = √0,5 ≈ 0,707. Più in generale il <b>quantile</b> di livello <var>q</var> è il valore <var>x</var><sub><var>q</var></sub> con <var>F</var>(<var>x</var><sub><var>q</var></sub>) = <var>q</var>: il 90° percentile è il valore sotto cui sta il 90% della probabilità. (Se <var>F</var> ha tratti piatti o salti, il quantile si definisce come il più piccolo <var>x</var> con <var>F</var>(<var>x</var>) ≥ <var>q</var>.) I quantili torneranno nella Parte 6 con gli intervalli di confidenza.</p>
+
+<figure class="pv" data-pv="quantili"></figure>
 
   <div class="tabella">
     <table>
@@ -9020,6 +9028,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <p>Sostituisci Σ con ∫ e <var>p</var>(<var>x</var>) con <var>f</var>(<var>x</var>) d<var>x</var>. Il resto è identico, con una condizione in più: nel discreto le serie potevano non convergere (<a class="ref" href="#s-2-4">2.4</a>), e lo stesso può succedere a un integrale su tutta la retta.</p>
 
+<figure class="pv" data-pv="baricentro"></figure>
+
   <div class="box def">
     <p class="capo">Definizione (valore atteso)</p>
     <p>Se <var>X</var> ha densità <var>f</var> e ∫ |<var>x</var>| <var>f</var>(<var>x</var>) d<var>x</var> &lt; ∞ (convergenza assoluta), il <b>valore atteso</b> di <var>X</var> è <var>E</var>[<var>X</var>] = ∫ <var>x</var> <var>f</var>(<var>x</var>) d<var>x</var>. Se ∫ |<var>x</var>| <var>f</var>(<var>x</var>) d<var>x</var> = ∞, si dice che <var>X</var> non ha valore atteso. (Se <var>X</var> ≥ 0 e l'integrale vale +∞, si scrive anche <var>E</var>[<var>X</var>] = +∞.)</p>
@@ -9035,6 +9045,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p class="capo">Una legge senza valore atteso: Cauchy</p>
     <p>La funzione <var>f</var>(<var>x</var>) = 1/(π(1 + <var>x</var><sup>2</sup>)) è una densità: una primitiva di 1/(1 + <var>x</var><sup>2</sup>) è arctan <var>x</var>, che va da −π/2 a π/2, quindi l'area totale è (π/2 + π/2)/π = 1. Ma ∫<sub>0</sub><sup><var>M</var></sup> <var>x</var> <var>f</var>(<var>x</var>) d<var>x</var> = ln(1 + <var>M</var><sup>2</sup>)/(2π), che cresce senza limite quando <var>M</var> → ∞ (piano piano: per <var>M</var> = 1000 vale 2,2, per <var>M</var> = 1 000 000 vale 4,4). Siccome |<var>x</var>|<var>f</var>(<var>x</var>) è pari, ∫ |<var>x</var>| <var>f</var>(<var>x</var>) d<var>x</var> = ∞: la variabile <b>non ha valore atteso</b>. La parte positiva vale +∞ e quella negativa −∞, e ∞ − ∞ non significa niente. Non barare simmetrizzando: ∫<sub>−<var>M</var></sub><sup><var>M</var></sup> <var>x</var> <var>f</var>(<var>x</var>) d<var>x</var> vale 0 per ogni <var>M</var>, ma quello non è il valore atteso. Vedrai in <a class="ref" href="#s-4-lgn-forte">4.4</a> che per una variabile così la media di tante osservazioni non si stabilizza mai.</p>
   </div>
+
+<figure class="pv" data-pv="cauchy"></figure>
 
   <p>Le proprietà del valore atteso e della varianza restano vere, con le stesse dimostrazioni, purché le quantità coinvolte esistano. Quelle che riguardano una sola variabile seguono dalla linearità dell'integrale: <var>E</var>[<var>aX</var> + <var>b</var>] = ∫ (<var>ax</var> + <var>b</var>) <var>f</var> = <var>a</var><var>E</var>[<var>X</var>] + <var>b</var>, e da qui Var(<var>aX</var> + <var>b</var>) = <var>a</var><sup>2</sup>Var(<var>X</var>), perché (<var>aX</var> + <var>b</var>) − (<var>aμ</var> + <var>b</var>) = <var>a</var>(<var>X</var> − <var>μ</var>). Quelle che riguardano due variabili (<var>E</var>[<var>X</var> + <var>Y</var>] = <var>E</var>[<var>X</var>] + <var>E</var>[<var>Y</var>] sempre; <var>E</var>[<var>XY</var>] = <var>E</var>[<var>X</var>]<var>E</var>[<var>Y</var>] se sono indipendenti; Var(<var>X</var> + <var>Y</var>) = Var(<var>X</var>) + Var(<var>Y</var>) + 2Cov(<var>X</var>, <var>Y</var>), quindi le varianze si sommano quando la covarianza è nulla, in particolare per variabili indipendenti) si dimostrano come nella Parte 2 con la densità congiunta di <a class="ref" href="#s-3-congiunte">3.6</a>: basta scrivere <span class="int">∫∫</span> al posto di ΣΣ.</p>
 
@@ -9074,6 +9086,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p>A parole: sommi, su tutte le soglie <var>t</var>, la probabilità di superarle. È la versione continua di <var>E</var>[<var>X</var>] = Σ<sub><var>k</var>≥1</sub> <var>P</var>(<var>X</var> ≥ <var>k</var>) della Parte 2 (<a class="ref" href="#s-2-4">2.4</a>): un valore <var>X</var> = 3 contribuisce con 1 a ciascuna soglia <var>t</var> fra 0 e 3, in totale 3, che è proprio il suo valore. Ti servirà per la media dell'esponenziale (<a class="ref" href="#s-3-7">3.8</a>).</p>
 
+<figure class="pv" data-pv="formulacode"></figure>
+
 
 
 <h4 id="rev-D-densita-a-pezzi">Densità a pezzi con un estremo incognito</h4>
@@ -9081,6 +9095,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 <p>In <a class="ref" href="#s-3-3">3.3</a> la costante incognita moltiplicava tutta la densità (<var>c</var><var>x</var>(1 − <var>x</var>)) e si trovava imponendo area 1. Nei problemi veri l'incognita può stare altrove: nel punto in cui la densità finisce. Il principio è lo stesso (l'area totale deve fare 1), ma conviene lavorare un pezzo alla volta. Ecco il procedimento su un esempio completo: l'estremo, la media, la ripartizione scritta a tratti, la mediana.</p>
 
 <p><b>Il problema.</b> Il tempo di avvio <var>X</var> (in secondi) di un'applicazione ha una densità che sale in linea retta da 0 fino a 1 secondo, poi resta piatta fino a un limite massimo <var>a</var> (un timeout) e fuori da [0, <var>a</var>] vale 0. Il valore di <var>a</var> non è noto, ma si sa che <var>a</var> &gt; 1.</p>
+
+<figure class="pv" data-pv="pezzi"></figure>
 <div class="formula">
   <var>f</var>(<var>x</var>) = <span class="frac"><span><var>x</var></span><span>2</span></span> &nbsp; per 0 ≤ <var>x</var> &lt; 1; &nbsp;&nbsp; <var>f</var>(<var>x</var>) = <span class="frac"><span>1</span><span>2</span></span> &nbsp; per 1 ≤ <var>x</var> ≤ <var>a</var>; &nbsp;&nbsp; <var>f</var>(<var>x</var>) = 0 &nbsp; altrove
   <span class="nota">I due pezzi si attaccano senza salto: in <var>x</var> = 1 il primo vale 1/2 e il secondo vale 1/2. Si cercano <var>a</var>, <var>E</var>[<var>X</var>], <var>F</var> e la mediana.</span>
@@ -10687,8 +10703,12 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p>La proprietà che risolve quasi tutti gli esercizi: <b>la probabilità di un sottointervallo è proporzionale alla sua lunghezza</b>, <var>P</var>(<var>c</var> &lt; <var>X</var> &lt; <var>d</var>) = (<var>d</var> − <var>c</var>)/(<var>b</var> − <var>a</var>). Se il tuo amico arriva a caso fra le 9:00 e le 9:10, la probabilità che arrivi fra le 9:02 e le 9:05 è 3/10.</p>
 
+<figure class="pv" data-pv="uniformec"></figure>
+
   <h4>Esponenziale, Exp(<var>λ</var>)</h4>
   <p><b>La storia:</b> il tempo che passa prima che succeda qualcosa, quando quel qualcosa avviene a ritmo costante <var>λ</var> (eventi per unità di tempo; sui libri si chiama <b>tasso</b> o <b>intensità</b>) e senza memoria. Il tempo fino alla prossima richiesta a un server, fino alla prossima chiamata al centralino, fino al guasto di un componente che non si usura. È la versione continua della geometrica, ed è la compagna della Poisson: se gli eventi arrivano come un processo di Poisson di ritmo <var>λ</var> (definizione in <a class="ref" href="#s-4-poisson">4.6</a>), le attese sono esponenziali con lo stesso <var>λ</var>.</p>
+
+<figure class="pv" data-pv="esponenziale"></figure>
   <div class="formula">
     <var>f</var>(<var>x</var>) = <var>λ</var><var>e</var><sup>−<var>λx</var></sup> &nbsp;per <var>x</var> ≥ 0 &nbsp;&nbsp;&nbsp;&nbsp; <var>F</var>(<var>x</var>) = 1 − <var>e</var><sup>−<var>λx</var></sup> &nbsp;&nbsp;&nbsp;&nbsp; <var>P</var>(<var>X</var> &gt; <var>x</var>) = <var>e</var><sup>−<var>λx</var></sup> &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <span class="frac"><span>1</span><span><var>λ</var></span></span>, &nbsp; Var(<var>X</var>) = <span class="frac"><span>1</span><span><var>λ</var><sup>2</sup></span></span>
     <span class="nota">Nota che <var>F</var> non è derivabile in <var>x</var> = 0: la pendenza è 0 a sinistra e <var>λ</var> a destra, perché la densità salta da 0 a <var>λ</var> (<a class="ref" href="#s-3-3">3.3</a>).</span>
@@ -10788,6 +10808,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Gamma, Γ(<var>α</var>, <var>λ</var>)</h4>
   <p><b>La storia:</b> il tempo che passa prima che si verifichino <var>α</var> eventi, non uno solo. Con <var>α</var> intero (e allora si chiama anche legge di <b>Erlang</b>) è la somma di <var>α</var> esponenziali indipendenti di ritmo <var>λ</var> (lo dimostro qui sotto): il tempo fino al terzo cliente, fino al decimo guasto. È il parallelo continuo della binomiale negativa (<a class="ref" href="#s-2-6">2.6</a>). La densità ha senso per ogni <var>α</var> &gt; 0 reale, ed è quello che serve per il chi-quadro.</p>
+
+<figure class="pv" data-pv="gammac"></figure>
   <div class="formula">
     <var>f</var>(<var>x</var>) = <span class="frac"><span><var>λ</var><sup><var>α</var></sup> <var>x</var><sup><var>α</var>−1</sup> <var>e</var><sup>−<var>λx</var></sup></span><span>Γ(<var>α</var>)</span></span> &nbsp;per <var>x</var> &gt; 0 &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <span class="frac"><span><var>α</var></span><span><var>λ</var></span></span>, &nbsp; Var(<var>X</var>) = <span class="frac"><span><var>α</var></span><span><var>λ</var><sup>2</sup></span></span>
     <span class="nota">Γ(<var>α</var>) è la funzione Gamma di <a class="ref" href="#s-3-2">3.2</a>, ed è esattamente la costante che fa tornare l'area a 1: per <var>α</var> intero vale (<var>α</var> − 1)!, quindi Γ(1) = 1, Γ(2) = 1, Γ(3) = 2, Γ(4) = 6. <var>α</var> è il parametro di <i>forma</i>, <var>λ</var> il ritmo. Con <var>α</var> = 1 il numeratore diventa <var>λ</var><var>e</var><sup>−<var>λx</var></sup>: l'esponenziale è il caso Γ(1, <var>λ</var>).</span>
@@ -10833,6 +10855,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Normale (o gaussiana), <var>N</var>(<var>μ</var>, <var>σ</var><sup>2</sup>)</h4>
   <p><b>La storia:</b> una quantità che risulta dalla somma di tanti piccoli contributi indipendenti, nessuno dominante. Le altezze delle persone (genetica più alimentazione più mille fattori), gli errori di misura, il rumore in un segnale, la media di molte osservazioni. Nella Parte 4 il teorema limite centrale (<a class="ref" href="#s-4-tlc">4.5</a>) spiegherà perché queste somme diventano <i>sempre</i> normali, purché i singoli contributi abbiano varianza finita: è il motivo per cui questa legge è ovunque.</p>
+
+<figure class="pv" data-pv="normale"></figure>
   <div class="formula">
     <var>f</var>(<var>x</var>) = <span class="frac"><span>1</span><span><var>σ</var>√(2π)</span></span> · <var>e</var><sup>−(<var>x</var>−<var>μ</var>)<sup>2</sup>/(2<var>σ</var><sup>2</sup>)</sup> &nbsp;&nbsp;&nbsp;&nbsp; <var>E</var>[<var>X</var>] = <var>μ</var>, &nbsp; Var(<var>X</var>) = <var>σ</var><sup>2</sup>
     <span class="nota">Smontiamola. L'esponente −(<var>x</var>−<var>μ</var>)<sup>2</sup>/(2<var>σ</var><sup>2</sup>) è zero quando <var>x</var> = <var>μ</var> (lì la densità è massima) e diventa sempre più negativo man mano che <var>x</var> si allontana da <var>μ</var>, in entrambe le direzioni: ecco la campana, simmetrica attorno a <var>μ</var>, con i flessi (i punti in cui la curva smette di scendere sempre più ripida e comincia ad appiattirsi) in <var>μ</var> − <var>σ</var> e <var>μ</var> + <var>σ</var>. Il <var>σ</var> al denominatore dell'esponente decide quanto è larga: più <var>σ</var> è grande, più lentamente la campana scende. La costante 1/(<var>σ</var>√(2π)) davanti serve solo a far tornare l'area a 1 (π ≈ 3,1416, √(2π) ≈ 2,5066). Attenzione: il secondo parametro nella scrittura <var>N</var>(<var>μ</var>, <var>σ</var><sup>2</sup>) è la varianza, non la deviazione standard.</span>
@@ -10944,6 +10968,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="nota">La regola 68-95-99,7 (valori esatti: 68,27%, 95,45%, 99,73%). Un valore oltre tre deviazioni standard dalla media capita circa 3 volte su 1 000: per questo tre sigma è una soglia usata spesso per segnalare una misura come anomala.</span>
   </div>
 
+<figure class="pv" data-pv="standard"></figure>
+
   <div class="guidato" id="g-3-b">
     <p class="capo">Esercizio guidato 3.C: la consegna garantita</p>
     <p class="testo">Un negozio online spedisce con un corriere il cui tempo di consegna, in ore, segue una normale con media 48 e deviazione standard 6. Il negozio vuole scrivere sul sito: «consegna entro 60 ore, altrimenti ti rimborsiamo la spedizione». (a) Che frazione di ordini darà diritto al rimborso? (b) Se il negozio vuole rimborsare al massimo l'1% degli ordini, quante ore deve promettere?</p>
@@ -11031,6 +11057,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
 <p>In <a class="ref" href="#s-3-7">3.8</a> hai visto che un componente esponenziale che ha già funzionato <var>s</var> ore ha, per il futuro, la stessa legge di uno nuovo, e che nessun'altra legge ha questa proprietà. Per le altre leggi, come si calcola la «vita che resta»? E come si riconosce un componente che si usura? Servono due strumenti.</p>
 
+<figure class="pv" data-pv="guasto"></figure>
+
 <div class="box def">
   <p class="capo">Definizione (funzione di sopravvivenza)</p>
   <p>Per una variabile <var>X</var> ≥ 0, la <b>funzione di sopravvivenza</b> è <var>S</var>(<var>x</var>) = <var>P</var>(<var>X</var> &gt; <var>x</var>) = 1 − <var>F</var>(<var>x</var>): la probabilità di arrivare oltre <var>x</var>. È la «coda» di <a class="ref" href="#s-3-4">3.4</a> e <a class="ref" href="#s-3-7">3.8</a>, con un nome proprio.</p>
@@ -11086,6 +11114,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 <h4 id="rev-D-normale-condizionata">Con la normale: probabilità condizionate a un intervallo o a una coda</h4>
 
 <p>La procedura di <a class="ref" href="#s-3-7">3.8</a> (standardizza, leggi Φ, combina) risolve la probabilità di un intervallo. Nei problemi d'esame spesso c'è un'informazione in più: «sapendo che il valore sta fra … e …», «sapendo che ha già superato …». È la probabilità condizionale di <a class="ref" href="#s-1-4">1.4</a>, <var>P</var>(<var>A</var> | <var>B</var>) = <var>P</var>(<var>A</var> ∩ <var>B</var>)/<var>P</var>(<var>B</var>), con due probabilità da leggere sulla tavola invece di una. Il lavoro vero è scrivere bene l'evento <var>A</var> ∩ <var>B</var>.</p>
+
+<figure class="pv" data-pv="normaleintervallo"></figure>
 
 <p><b>Primo caso: condizionare a un intervallo.</b> La latenza <var>X</var> di una richiesta (in ms) è N(100, 20<sup>2</sup>). Sapendo che è stata fra 90 e 130 ms, qual è la probabilità che sia stata superiore a 110 ms?</p>
 <div class="calc">
@@ -11514,6 +11544,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p><b>Esiste sempre.</b> cos(<var>tX</var>) e sin(<var>tX</var>) sono comprese fra −1 e 1, quindi hanno valore atteso qualunque sia la legge di <var>X</var>. A differenza di <var>E</var>[<var>X</var>] e Var(<var>X</var>), che possono non esistere (<a class="ref" href="#s-3-4">3.4</a>), φ<sub><var>X</var></sub>(<var>t</var>) è definita per ogni variabile e ogni <var>t</var>: anche per la Cauchy. È il vantaggio principale dello strumento.</p>
 
+<figure class="pv" data-pv="caratteristica"></figure>
+
   <h4>Le proprietà, e perché valgono</h4>
   <ul class="lista">
     <li><b>φ(0) = 1</b>: con <var>t</var> = 0, <var>e</var><sup>0</sup> = 1 per ogni <var>x</var>, e la media di 1 è 1.</li>
@@ -11524,6 +11556,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <li><b>Momenti dalle derivate:</b> se <var>E</var>|<var>X</var>|<sup><var>k</var></sup> &lt; ∞, allora φ è derivabile <var>k</var> volte (con derivata continua) e φ<sup>(<var>k</var>)</sup>(0) = <var>i</var><sup><var>k</var></sup> <var>E</var>[<var>X</var><sup><var>k</var></sup>]. In particolare φ′(0) = <var>i</var> <var>E</var>[<var>X</var>] e φ″(0) = <var>i</var><sup>2</sup> <var>E</var>[<var>X</var><sup>2</sup>] = −<var>E</var>[<var>X</var><sup>2</sup>]. Perché derivando <var>e</var><sup><var>itx</var></sup> rispetto a <var>t</var> esce un fattore <var>ix</var> ogni volta, e in <var>t</var> = 0 l'esponenziale vale 1; derivare sotto il segno di integrale (o di serie) è lecito proprio grazie all'ipotesi <var>E</var>|<var>X</var>|<sup><var>k</var></sup> &lt; ∞ (teorema di analisi). Senza quell'ipotesi la derivata in 0 può non esistere.</li>
     <li><b>Unicità:</b> se φ<sub><var>X</var></sub> = φ<sub><var>Y</var></sub>, allora <var>X</var> e <var>Y</var> hanno la stessa legge. La funzione caratteristica è un'impronta digitale: se dopo un calcolo riconosci la φ di una legge nota, hai identificato la legge. <b>Inversione:</b> se ∫ |φ<sub><var>X</var></sub>(<var>t</var>)| d<var>t</var> &lt; ∞, allora <var>X</var> ha una densità continua, <var>f</var>(<var>x</var>) = (1/2π) ∫ <var>e</var><sup>−<var>itx</var></sup> φ<sub><var>X</var></sub>(<var>t</var>) d<var>t</var>. I due enunciati si accettano senza dimostrazione (vengono dalla teoria di Fourier).</li>
   </ul>
+
+<figure class="pv" data-pv="phiprop"></figure>
 
   <h4>Le funzioni caratteristiche delle leggi principali, calcolate</h4>
   <p><b>Bernoulli(<var>p</var>).</b> Due valori: 0 con probabilità 1−<var>p</var>, 1 con probabilità <var>p</var>.</p>
@@ -11647,6 +11681,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Gli strumenti per i teoremi limite</h4>
   <p>Restano tre risultati che la Parte 4 userà per il teorema limite centrale (<a class="ref" href="#s-4-tlc">4.5</a>) e per la legge dei grandi numeri con la sola media finita (<a class="ref" href="#s-4-lgn-debole">4.3</a>): uno sul confronto fra le leggi e le loro φ, uno su come è fatta φ vicino a 0, e un limite che serve per passare da φ a una legge.</p>
+
+<figure class="pv" data-pv="philimite"></figure>
 
   <div class="box teorema">
     <p class="capo">Teorema (continuità di Lévy)</p>
@@ -20646,5 +20682,7 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
 <script src="assets/js/pv-parte2.js" defer></script>
 <script src="assets/js/pv-parte2b.js" defer></script>
 <script src="assets/js/pv-parte3.js" defer></script>
+<script src="assets/js/pv-parte3b.js" defer></script>
+<script src="assets/js/pv-parte3d.js" defer></script>
 </body>
 </html>

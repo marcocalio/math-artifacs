@@ -20,13 +20,14 @@ const W = (m) => { console.log('ATTENZIONE: ' + m); warn++; };
 const vis = (s) => String(s).replace(/[*^_{}]/g, '').length;
 for (const id of mine) {
   const v = PV.videos[id];
-  for (const k of ['sec', 'short', 'title', 'alt']) if (!v[k]) W(`${id}: manca «${k}»`);
-  if (v.poster === undefined) W(`${id}: manca poster`);
-  else if (v.poster < 0 || v.poster > v.dur) W(`${id}: poster fuori dalla durata`);
-  if (v.dur < 35 || v.dur > 75) W(`${id}: durata ${v.dur} s (di norma 45-65 s)`);
+  const seq = /^parte\d$/.test(id); // il ripasso mette in fila clip già controllate: solo i frame
+  if (!seq) for (const k of ['sec', 'short', 'title', 'alt']) if (!v[k]) W(`${id}: manca «${k}»`);
+  if (!seq && v.poster === undefined) W(`${id}: manca poster`);
+  else if (!seq && (v.poster < 0 || v.poster > v.dur)) W(`${id}: poster fuori dalla durata`);
+  if (!seq && (v.dur < 35 || v.dur > 75)) W(`${id}: durata ${v.dur} s (di norma 45-65 s)`);
   if (v.caps[0][0] !== 0 || v.chap[0][0] !== 0) W(`${id}: sottotitoli e capitoli devono partire da 0`);
   for (const list of [v.caps, v.chap]) list.forEach((c, i) => i && c[0] <= list[i - 1][0] && W(`${id}: tempi non crescenti (${c[0]})`));
-  v.caps.forEach((c, i) => {
+  if (!seq) v.caps.forEach((c, i) => {
     const d = (i + 1 < v.caps.length ? v.caps[i + 1][0] : v.dur) - c[0], cps = vis(c[1]) / d;
     if (cps > 19) W(`${id}: sottotitolo a ${c[0]} s troppo veloce (${cps.toFixed(1)} car/s, ${vis(c[1])} car in ${d.toFixed(1)} s)`);
     if (c[0] >= v.dur) W(`${id}: sottotitolo oltre la fine`);
