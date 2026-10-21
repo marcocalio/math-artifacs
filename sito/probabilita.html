@@ -9425,6 +9425,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Esempio 1: da Celsius a Fahrenheit</h4>
   <p>La temperatura di domani a mezzogiorno, in gradi Celsius, è uniforme fra 20 e 30: <var>X</var> ~ <var>U</var>(20, 30). In gradi Fahrenheit è <var>Y</var> = 1,8<var>X</var> + 32. Che legge ha <var>Y</var>?</p>
+
+<figure class="pv" data-pv="lineare"></figure>
   <div class="calc">
     <span class="r">Passo 1: &nbsp; <var>F</var><sub><var>Y</var></sub>(<var>y</var>) = <var>P</var>(1,8<var>X</var> + 32 ≤ <var>y</var>)</span>
     <span class="r">Passo 2: &nbsp; tolgo 32 e divido per 1,8, che è positivo e quindi non gira la disuguaglianza: &nbsp; = <var>P</var>(<var>X</var> ≤ (<var>y</var> − 32)/1,8) = <var>F</var><sub><var>X</var></sub>((<var>y</var> − 32)/1,8)</span>
@@ -9440,6 +9442,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Esempio 2: il quadrato di un numero a caso</h4>
   <p>Scegli un numero a caso fra 0 e 1, <var>X</var> ~ <var>U</var>(0, 1), e lo elevi al quadrato: <var>Y</var> = <var>X</var><sup>2</sup>. Anche <var>Y</var> sta fra 0 e 1, ma è ancora uniforme?</p>
+
+<figure class="pv" data-pv="quadrato"></figure>
   <div class="calc">
     <span class="r">Passo 1: &nbsp; <var>F</var><sub><var>Y</var></sub>(<var>y</var>) = <var>P</var>(<var>X</var><sup>2</sup> ≤ <var>y</var>) &nbsp; per 0 ≤ <var>y</var> ≤ 1</span>
     <span class="r">Passo 2: &nbsp; <var>X</var> non è mai negativo, quindi <var>X</var><sup>2</sup> ≤ <var>y</var> equivale a <var>X</var> ≤ √<var>y</var>: &nbsp; <var>F</var><sub><var>Y</var></sub>(<var>y</var>) = <var>P</var>(<var>X</var> ≤ √<var>y</var>) = √<var>y</var></span>
@@ -9450,6 +9454,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>La formula per le funzioni monotone</h4>
   <p>Gli esempi 1 e 2 sono casi di una regola che vale per ogni trasformazione monotona.</p>
+
+<figure class="pv" data-pv="monotona"></figure>
   <div class="box teorema">
     <p class="capo">Teorema (cambio di variabile)</p>
     <p>Sia <var>X</var> una variabile con densità <var>f</var><sub><var>X</var></sub>, che cade con probabilità 1 in un intervallo <var>I</var>, e sia <var>g</var> una funzione strettamente monotona e derivabile su <var>I</var>, con inversa <var>g</var><sup>−1</sup> derivabile. Allora <var>Y</var> = <var>g</var>(<var>X</var>) ha densità</p>
@@ -9464,6 +9470,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Se <var>g</var> non è monotona: il quadrato di una normale</h4>
   <p>Se <var>g</var> non è monotona la formula non si applica direttamente, ma il metodo in tre passi funziona sempre. Sia <var>Z</var> con la densità normale standard <var>f</var><sub><var>Z</var></sub>(<var>z</var>) = <var>e</var><sup>−<var>z</var><sup>2</sup>/2</sup>/√(2π) (la legge normale è in <a class="ref" href="#s-3-7">3.8</a>; qui ti serve solo sapere che <var>f</var><sub><var>Z</var></sub> è una funzione <b>pari</b>, cioè <var>f</var><sub><var>Z</var></sub>(−<var>z</var>) = <var>f</var><sub><var>Z</var></sub>(<var>z</var>)) e sia <var>Y</var> = <var>Z</var><sup>2</sup>.</p>
+
+<figure class="pv" data-pv="duerami"></figure>
   <div class="calc">
     <span class="r">Passo 1: &nbsp; <var>F</var><sub><var>Y</var></sub>(<var>y</var>) = <var>P</var>(<var>Z</var><sup>2</sup> ≤ <var>y</var>) = 0 per <var>y</var> ≤ 0 (un quadrato non è mai negativo). Per <var>y</var> &gt; 0:</span>
     <span class="r">Passo 2: &nbsp; <var>Z</var><sup>2</sup> ≤ <var>y</var> equivale a −√<var>y</var> ≤ <var>Z</var> ≤ √<var>y</var>: &nbsp; <var>F</var><sub><var>Y</var></sub>(<var>y</var>) = <var>F</var><sub><var>Z</var></sub>(√<var>y</var>) − <var>F</var><sub><var>Z</var></sub>(−√<var>y</var>)</span>
@@ -9479,6 +9487,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </div>
   <p><i>Dimostrazione.</i> (a) Per 0 &lt; <var>u</var> &lt; 1: <var>P</var>(<var>F</var>(<var>X</var>) ≤ <var>u</var>) = <var>P</var>(<var>X</var> ≤ <var>F</var><sup>−1</sup>(<var>u</var>)) = <var>F</var>(<var>F</var><sup>−1</sup>(<var>u</var>)) = <var>u</var>, che è la ripartizione dell'uniforme. (b) <var>P</var>(<var>F</var><sup>−1</sup>(<var>U</var>) ≤ <var>x</var>) = <var>P</var>(<var>U</var> ≤ <var>F</var>(<var>x</var>)) = <var>F</var>(<var>x</var>). ∎</p>
   <p>La parte (b) è il <b>metodo dell'inversione</b>: se un linguaggio ti dà solo numeri uniformi fra 0 e 1, applicando <var>F</var><sup>−1</sup> ottieni numeri con la legge <var>F</var> che vuoi, purché tu sappia scrivere <var>F</var><sup>−1</sup>. Per l'esponenziale, con <var>F</var>(<var>x</var>) = 1 − <var>e</var><sup>−<var>λx</var></sup>, l'inversa è <var>F</var><sup>−1</sup>(<var>u</var>) = −ln(1 − <var>u</var>)/<var>λ</var>. Lo costruisci passo passo nell'<a href="#g-3-c">esercizio guidato 3.B</a>.</p>
+
+<figure class="pv" data-pv="inversione"></figure>
 
   <div class="prova">
     <p class="capo">Prova tu</p>
@@ -9774,6 +9784,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <p>Spesso sullo stesso esperimento osservi due quantità continue: il tempo di risposta di due server, l'altezza e il peso di una persona, l'orario di arrivo di Anna e quello di Bruno. Per descriverle insieme serve l'analogo continuo della densità congiunta di <a class="ref" href="#s-2-3">2.3</a>: una densità che vive sul piano.</p>
 
+<figure class="pv" data-pv="congiuntac"></figure>
+
   <div class="box def">
     <p class="capo">Definizione (densità congiunta)</p>
     <p>Le variabili <var>X</var> e <var>Y</var> hanno <b>densità congiunta</b> <var>f</var>(<var>x</var>, <var>y</var>) se <var>f</var> ≥ 0 e, per ogni regione <var>B</var> del piano (un rettangolo, un triangolo, un cerchio: un insieme "ragionevole"),</p>
@@ -9852,12 +9864,16 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </div>
   </div>
 
+<figure class="pv" data-pv="appuntamento"></figure>
+
   <h4>Densità condizionale</h4>
   <p>Come si condiziona una variabile continua a un'altra? Per <var>y</var> con <var>f</var><sub><var>Y</var></sub>(<var>y</var>) &gt; 0 si pone</p>
   <div class="formula">
     <var>f</var>(<var>x</var> | <var>y</var>) = <span class="frac"><span><var>f</var>(<var>x</var>, <var>y</var>)</span><span><var>f</var><sub><var>Y</var></sub>(<var>y</var>)</span></span>
     <span class="nota">Tagli la superficie con il piano di altezza <var>Y</var> = <var>y</var>: la "fetta" <var>x</var> ↦ <var>f</var>(<var>x</var>, <var>y</var>) ha area ∫ <var>f</var>(<var>x</var>, <var>y</var>) d<var>x</var> = <var>f</var><sub><var>Y</var></sub>(<var>y</var>). Dividendo per quest'area ottieni una fetta di area 1: una densità. È la ricetta "restringi e rinormalizza" della Parte 1. Non si può usare <var>P</var>(<var>A</var>|<var>B</var>) = <var>P</var>(<var>A</var> ∩ <var>B</var>)/<var>P</var>(<var>B</var>) con <var>B</var> = {<var>Y</var> = <var>y</var>}, perché <var>P</var>(<var>Y</var> = <var>y</var>) = 0: la formula è il limite del condizionare a {<var>y</var> &lt; <var>Y</var> ≤ <var>y</var> + <var>ε</var>} per <var>ε</var> → 0, e si assume come definizione.</span>
   </div>
+
+<figure class="pv" data-pv="condizc"></figure>
   <p>Se <var>X</var> e <var>Y</var> sono indipendenti, <var>f</var>(<var>x</var> | <var>y</var>) = <var>f</var><sub><var>X</var></sub>(<var>x</var>): sapere <var>Y</var> non cambia niente. In senso inverso, la <b>regola del prodotto</b> <var>f</var>(<var>x</var>, <var>y</var>) = <var>f</var>(<var>x</var> | <var>y</var>) <var>f</var><sub><var>Y</var></sub>(<var>y</var>) costruisce la congiunta da un modello a due stadi ("prima <var>Y</var>, poi <var>X</var> sapendo <var>Y</var>"): la userai nel nastro di <a class="ref" href="#s-3-6">3.7</a>.</p>
 
   <h4>Un esempio con la regione a triangolo</h4>
@@ -9888,6 +9904,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
   <h4>Somme di variabili indipendenti: la convoluzione</h4>
   <p>Quando sommi due variabili indipendenti (due tempi di attesa in sequenza, due errori di misura), la legge della somma si ricava dalle due leggi. Nel discreto era p<sub><var>X</var>+<var>Y</var></sub>(<var>z</var>) = Σ<sub><var>x</var></sub> <var>p</var><sub><var>X</var></sub>(<var>x</var>) <var>p</var><sub><var>Y</var></sub>(<var>z</var> − <var>x</var>) (<a class="ref" href="#s-2-7">2.7</a>): somma dei prodotti su tutte le coppie che danno <var>z</var>. Nel continuo la somma diventa un integrale.</p>
+
+<figure class="pv" data-pv="convoluzione"></figure>
 
   <div class="box teorema">
     <p class="capo">Teorema (convoluzione)</p>
@@ -9947,6 +9965,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <var>P</var>(max(<var>X</var>, <var>Y</var>) ≤ <var>t</var>) = <var>F</var><sub><var>X</var></sub>(<var>t</var>) · <var>F</var><sub><var>Y</var></sub>(<var>t</var>) &nbsp;&nbsp;&nbsp;&nbsp; <var>P</var>(min(<var>X</var>, <var>Y</var>) &gt; <var>t</var>) = (1 − <var>F</var><sub><var>X</var></sub>(<var>t</var>)) · (1 − <var>F</var><sub><var>Y</var></sub>(<var>t</var>))
     <span class="nota">Derivando la ripartizione si ottiene la densità. Per due uniformi su [0, 1] indipendenti: <var>P</var>(max ≤ <var>t</var>) = <var>t</var><sup>2</sup>, densità 2<var>t</var>; <var>P</var>(min &gt; <var>t</var>) = (1 − <var>t</var>)<sup>2</sup>, densità 2(1 − <var>t</var>). Sono le due marginali dell'esempio del triangolo: la coppia (min, max) ha proprio densità 2 su 0 &lt; <var>x</var> &lt; <var>y</var> &lt; 1.</span>
   </div>
+
+<figure class="pv" data-pv="minmaxc"></figure>
   <p><b>Il minimo di esponenziali indipendenti.</b> Se <var>X</var> ~ Exp(<var>λ</var><sub>1</sub>) e <var>Y</var> ~ Exp(<var>λ</var><sub>2</sub>), con <var>P</var>(<var>X</var> &gt; <var>t</var>) = <var>e</var><sup>−<var>λ</var><sub>1</sub><var>t</var></sup> e <var>P</var>(<var>Y</var> &gt; <var>t</var>) = <var>e</var><sup>−<var>λ</var><sub>2</sub><var>t</var></sup>:</p>
   <div class="formula">
     <var>P</var>(min(<var>X</var>, <var>Y</var>) &gt; <var>t</var>) = <var>e</var><sup>−<var>λ</var><sub>1</sub><var>t</var></sup> · <var>e</var><sup>−<var>λ</var><sub>2</sub><var>t</var></sup> = <var>e</var><sup>−(<var>λ</var><sub>1</sub>+<var>λ</var><sub>2</sub>)<var>t</var></sup> &nbsp;&nbsp;⟹&nbsp;&nbsp; min(<var>X</var>, <var>Y</var>) ~ Exp(<var>λ</var><sub>1</sub> + <var>λ</var><sub>2</sub>)
@@ -11736,6 +11756,8 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </ul>
   </div>
 
+
+<figure class="pv" data-pv="parte3"><figcaption><b>Ripasso in video</b> · i video della Parte 3 uno dopo l'altro, con un cartello fra l'uno e l'altro. Ognuno si trova anche nella sua sezione. Senza audio, con sottotitoli.</figcaption></figure>
 
 <div class="esercizi">
     <h3 id="s-3-11" data-toc><span class="n">3.11</span> Domande di verifica</h3>
@@ -20683,6 +20705,8 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
 <script src="assets/js/pv-parte2b.js" defer></script>
 <script src="assets/js/pv-parte3.js" defer></script>
 <script src="assets/js/pv-parte3b.js" defer></script>
+<script src="assets/js/pv-parte3c.js" defer></script>
 <script src="assets/js/pv-parte3d.js" defer></script>
+<script src="assets/js/pv-parte3z.js" defer></script>
 </body>
 </html>
