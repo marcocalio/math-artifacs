@@ -303,7 +303,7 @@
     sec: '2.6',
     short: 'Binomiale: quanti successi su n prove',
     title: 'Binomiale: n prove indipendenti, quanti successi (moneta truccata, p = 0,3)',
-    alt: 'Animazione: una moneta truccata che fa testa con probabilità 0,3 viene lanciata 10 volte, e X è il numero di successi. Con 3 prove e 2 successi le sequenze SSF, SFS e FSS valgono tutte p²(1 − p) e sono C(3,2) = 3. In generale P(X = k) = C(n,k) p^k (1 − p)^(n − k). Con n = 10, p = 0,3 e k = 3: 120 × 0,027 × 0,0824 ≈ 0,2668; l’istogramma dà tutte le probabilità, che sommano a 1. La media è np = 3, la varianza np(1 − p) = 2,1 e la deviazione standard circa 1,45.',
+    alt: 'Animazione: una moneta truccata che fa testa con probabilità 0,3 viene lanciata 10 volte, e X è il numero di successi. Con 3 prove e 2 successi le sequenze SSF, SFS e FSS valgono tutte p²(1 − p) e sono C(3,2) = 3. In generale P(X = k) = C(n,k) p^k (1 − p)^(n − k). Con n = 10, p = 0,3 e k = 3: 120 × 0,027 × 0,0824 ≈ 0,2668; l’istogramma dà tutte le probabilità, che hanno somma 1. La media è np = 3, la varianza np(1 − p) = 2,1 e la deviazione standard circa 1,45.',
     dur: 58.5,
     poster: 44.5,
     chap: [[0, 'Dieci prove, quanti successi'], [11.5, 'Tre prove, due successi'], [29, 'La formula'], [35.5, 'L’istogramma, con i numeri'], [47.3, 'Media e varianza']],
@@ -315,7 +315,7 @@
       [22.8, 'Sono tante quante le posizioni delle due S: C(3,2) = 3. Quindi P(*X* = 2) = 3 *p*^2(1 − *p*).'],
       [29, 'In generale, C(*n*,*k*) sequenze, ognuna con probabilità *p**^k*(1 − *p*)*^{n−k}*: la probabilità è il prodotto.'],
       [35.5, 'Con *n* = 10, *p* = 0,3 e *k* = 3: 120 × 0,3^3 × 0,7^7 ≈ 0,2668. Circa il 27%.'],
-      [40.5, 'Ripetendo per ogni *k* si ottiene l’istogramma: le probabilità sommano a 1, per il teorema del binomio.'],
+      [40.5, 'Ripetendo per ogni *k* si ottiene l’istogramma: le probabilità hanno somma 1, per il teorema del binomio.'],
       [47.3, '*X* è la somma di *n* indicatrici indipendenti: media *np* = 3 e varianza *np*(1 − *p*) = 2,1.'],
       [53.4, 'La deviazione standard è circa 1,45: i valori tipici stanno fra 1,5 e 4,5.'],
     ],
@@ -389,7 +389,7 @@
         o += on(v3 * (1 - tail), tx(HX(3), HB - B10[3] * HS - 10, '0,2668', { size: 22, op: v3 * (1 - tail) * a4 }));
         o += on(mn, path(`M${HX(3)} 108V${HB}`, { stroke: C.hi, sw: 3, da: '6 5', op: a4, ...draw(mn) }) + tx(HX(3), 100, '*np* = 3', { size: 22, op: mn * a4 }));
         const sm = p(t, 44.6, 45.4) * (1 - tail);
-        o += on(sm, pills(342, [{ s: 'le probabilità sommano a 1', col: C.hi, op: sm }], 207));
+        o += on(sm, pills(342, [{ s: 'le probabilità fanno 1', col: C.hi, op: sm }], 207));
         /* pannello dei numeri (capitolo 4) */
         const n1 = p(t, 36.2, 37) * (1 - p(t, 46.6, 47.4)), n2 = p(t, 37.6, 38.4) * (1 - p(t, 46.6, 47.4)), n3 = p(t, 38.6, 39.4) * (1 - p(t, 46.6, 47.4)), n4 = p(t, 39.8, 40.6) * (1 - p(t, 46.6, 47.4));
         o += on(n1, bn(426, 138, '10', '3', { size: 26, op: n1 }) + tx(460, 148, '= 120', { size: 26, ta: 'start', op: n1 }));
@@ -546,7 +546,7 @@
     sec: '2.6',
     short: 'Poisson: eventi in un intervallo',
     title: 'Poisson: eventi rari in un intervallo (centralino, λ = 3)',
-    alt: 'Animazione: le chiamate a un centralino, in media 3 all’ora, sono eventi indipendenti a ritmo costante; λ è il numero medio nell’intervallo e dipende dalla sua lunghezza: con 4 clienti all’ora, in mezz’ora λ = 2 e in due ore λ = 8. La densità è P(X = k) = e^(−λ) λ^k / k!; con λ = 3 e k = 5 vale 0,0498 × 243/120 ≈ 0,1008. L’istogramma di Poisson(3) sale finché k ≤ λ, quindi k = 2 e k = 3 sono alla pari (0,2240); le probabilità sommano a 1 e media e varianza valgono entrambe λ.',
+    alt: 'Animazione: le chiamate a un centralino, in media 3 all’ora, sono eventi indipendenti a ritmo costante; λ è il numero medio nell’intervallo e dipende dalla sua lunghezza: con 4 clienti all’ora, in mezz’ora λ = 2 e in due ore λ = 8. La densità è P(X = k) = e^(−λ) λ^k / k!; con λ = 3 e k = 5 vale 0,0498 × 243/120 ≈ 0,1008. L’istogramma di Poisson(3) sale finché k ≤ λ, quindi k = 2 e k = 3 sono alla pari (0,2240); le probabilità hanno somma 1 e media e varianza valgono entrambe λ.',
     dur: 58,
     poster: 48.5,
     chap: [[0, 'Eventi in un intervallo'], [13.3, 'λ dipende dall’intervallo'], [27.3, 'La formula'], [40, 'L’istogramma e la media']],
@@ -558,7 +558,7 @@
       [27.3, 'La densità è P(*X* = *k*) = *e*^{−λ} *λ**^k*/*k*!. Con *λ* = 3 e *k* = 5: 0,0498 × 243/120 ≈ 0,1008.'],
       [34, 'Circa il 10%. Per confronto P(*X* = 3) = 0,224: il valore più probabile è vicino alla media.'],
       [40, 'Ecco Poisson(3): il rapporto fra due barre consecutive è *λ*/*k*, quindi le barre salgono finché *k* ≤ 3.'],
-      [47.7, 'Per questo *k* = 2 e *k* = 3 sono alla pari. Le probabilità sommano a 1, perché *e*^{−λ} · *e*^{λ} = 1.'],
+      [47.7, 'Per questo *k* = 2 e *k* = 3 sono alla pari. Le probabilità hanno somma 1, perché *e*^{−λ} · *e*^{λ} = 1.'],
       [54.4, 'Media e varianza valgono entrambe *λ*.'],
     ],
     frame(t) {
@@ -654,7 +654,7 @@
     return Array.from({ length: n + 1 }, (_, k) => (k < lo || k > hi ? 0 : (cnk(K, k) * cnk(N - K, n - k)) / cnk(N, n)));
   };
   const CARDH = hyp(40, 4, 5), CARDB = binPmf(5, 0.1); // 4 assi su 40 carte, 5 pescate: senza e con reimmissione
-  const CLUS = hyp(16, 10, 12); // cluster di 16 nodi, 10 attivi, 12 scelti
+  const CLUS = hyp(16, 10, 12); // noleggio di 16 biciclette, 10 funzionanti, 12 prese
   const UB = (i) => [208 + 56 * (i % 5), 150 + 56 * Math.floor(i / 5)]; // posto delle dieci palline nell'urna
   const UR = [0, 3, 5, 8], UPICK = [3, 6, 8]; // le rosse e le tre estratte (R, non R, R)
   const TRAY = [250, 320, 390];
@@ -664,7 +664,7 @@
     sec: '2.6',
     short: 'Ipergeometrica: senza reimmissione',
     title: 'Ipergeometrica: estrarre senza rimettere (urna di 10 palline, 4 rosse)',
-    alt: 'Animazione: da un’urna con 10 palline, 4 rosse, se ne estraggono 3 in blocco e X è il numero di rosse. I gruppi possibili sono C(10,3) = 120; con due rosse ce ne sono C(4,2) · C(6,1) = 6 · 6 = 36, quindi P(X = 2) = 36/120 = 0,3. La media è nK/N = 1,2 e la varianza ha il fattore correttivo (N − n)/(N − 1) ≤ 1: con 4 assi su 40 carte e 5 pescate la varianza è 0,4038 contro 0,45 della binomiale. I valori possibili sono limitati: in un cluster di 16 nodi con 10 attivi, scegliendone 12 gli attivi sono fra 6 e 10, con 210, 720, 675, 200 e 15 casi favorevoli su 1 820.',
+    alt: 'Animazione: da un’urna con 10 palline, 4 rosse, se ne estraggono 3 in blocco e X è il numero di rosse. I gruppi possibili sono C(10,3) = 120; con due rosse ce ne sono C(4,2) · C(6,1) = 6 · 6 = 36, quindi P(X = 2) = 36/120 = 0,3. La media è nK/N = 1,2 e la varianza ha il fattore correttivo (N − n)/(N − 1) ≤ 1: con 4 assi su 40 carte e 5 pescate la varianza è 0,4038 contro 0,45 della binomiale. I valori possibili sono limitati: in un noleggio di 16 biciclette con 10 funzionanti, prendendone 12 quelle funzionanti sono fra 6 e 10, con 210, 720, 675, 200 e 15 casi favorevoli su 1 820.',
     dur: 57.5,
     poster: 26,
     chap: [[0, 'Un’urna, estrazione in blocco'], [11.4, 'Favorevoli su possibili'], [29.5, 'Media e varianza'], [44.2, 'I valori possibili']],
@@ -676,15 +676,15 @@
       [24.2, 'P(*X* = 2) = 36/120 = 0,3. In generale: C(*K*,*k*) C(*N*−*K*,*n*−*k*) / C(*N*,*n*).'],
       [29.5, 'La media è come nella binomiale, *nK*/*N* = 1,2. La varianza ha un fattore in più, (*N* − *n*)/(*N* − 1) ≤ 1: meno incertezza.'],
       [37.5, 'Con 4 assi su 40 carte e 5 carte pescate: varianza 0,4038 senza rimettere, 0,45 con la reimmissione.'],
-      [44.2, 'I valori possibili: in un cluster di 16 nodi, 10 attivi, scegliendone 12 gli attivi sono fra 6 e 10.'],
-      [51, 'Gli altri valori hanno probabilità 0. I casi favorevoli, 210, 720, 675, 200 e 15, sommano a 1 820.'],
+      [44.2, 'I valori possibili: in un noleggio di 16 biciclette, 10 funzionanti, prendendone 12 quelle funzionanti sono fra 6 e 10.'],
+      [51, 'Gli altri valori hanno probabilità 0. I casi favorevoli, 210, 720, 675, 200 e 15, fanno in tutto 1 820.'],
     ],
     frame(t) {
       let o = '';
       o += heading(t, 0.2, 10.8, 'Estrarre senza rimettere', 'un’urna: *N* = 10 palline, *K* = 4 rosse');
       o += heading(t, 11.8, 29, 'Favorevoli su possibili', 'tutti i gruppi di 3 palline sono equiprobabili');
       o += heading(t, 29.9, 43.6, 'Media e varianza', 'il fattore (*N* − *n*)/(*N* − 1) è al più 1');
-      o += heading(t, 44.6, 57.8, 'I valori possibili', 'cluster di 16 nodi, 10 attivi, 12 scelti');
+      o += heading(t, 44.6, 57.8, 'I valori possibili', 'noleggio di 16 biciclette, 10 funzionanti, 12 prese');
 
       /* capitolo 1: l'urna e l'estrazione di tre palline */
       const a1 = 1 - p(t, 10.4, 11.2);
@@ -755,7 +755,7 @@
         }
       }
 
-      /* capitolo 4: i valori possibili in un cluster di 16 nodi */
+      /* capitolo 4: i valori possibili in un noleggio di 16 biciclette */
       const a4 = p(t, 44.6, 45.4);
       if (a4 > 0.004) {
         const NX = (i) => 44 + 34 * (i % 4), NY = (i) => 116 + 34 * Math.floor(i / 4);
@@ -764,16 +764,16 @@
           o += on(u, rect(NX(i), NY(i), 28, 28, { rx: 5, fill: act ? C.A : C.soft, fo: act ? 0.55 : 0.2, stroke: act ? C.A : C.soft, sw: 1.8, da: act ? undefined : '4 3', op: u * a4 }));
         }
         const lg = p(t, 46, 46.8) * a4;
-        o += on(lg, tx(44, 278, '10 attivi', { ff: SANS, size: 17, fill: C.A, ta: 'start', op: lg }) + tx(44, 302, '6 in manutenzione', { ff: SANS, size: 17, fill: C.soft, ta: 'start', op: lg }));
-        /* le due scelte estreme: 12 nodi evidenziati e la spiegazione */
+        o += on(lg, tx(44, 278, '10 funzionanti', { ff: SANS, size: 17, fill: C.A, ta: 'start', op: lg }) + tx(44, 302, '6 da riparare', { ff: SANS, size: 17, fill: C.soft, ta: 'start', op: lg }));
+        /* le due scelte estreme: 12 biciclette evidenziate e la spiegazione */
         const s1 = vis(t, 47.2, 49.8, 0.4, 0.4) * a4, s2 = vis(t, 49.8, 51.6, 0.4, 0.4) * a4;
         for (let i = 0; i < 16; i++) {
-          const inA = i >= 4, inB = i < 12; // minimo: 6 in manutenzione + 6 attivi; massimo: 10 attivi + 2 in manutenzione
+          const inA = i >= 4, inB = i < 12; // minimo: 6 da riparare + 6 funzionanti; massimo: 10 funzionanti + 2 da riparare
           if (inA && s1 > 0.01) o += rect(NX(i) - 3, NY(i) - 3, 34, 34, { rx: 7, stroke: C.hi, sw: 3.2, so: s1 });
           if (inB && s2 > 0.01) o += rect(NX(i) - 3, NY(i) - 3, 34, 34, { rx: 7, stroke: C.hi, sw: 3.2, so: s2 });
         }
-        o += on(s1, tx(224, 150, 'se scegli i 6 nodi in manutenzione,', { size: 22, ta: 'start', op: s1 }) + tx(224, 184, 'gli altri 6 sono per forza attivi:', { size: 22, ta: 'start', op: s1 }) + tx(224, 238, '*X* ≥ 12 − 6 = 6', { size: 34, fill: C.A, ta: 'start', op: s1 }));
-        o += on(s2, tx(224, 150, 'se scegli tutti i 10 nodi attivi,', { size: 22, ta: 'start', op: s2 }) + tx(224, 184, 'gli altri 2 sono in manutenzione:', { size: 22, ta: 'start', op: s2 }) + tx(224, 238, '*X* ≤ 10', { size: 34, fill: C.A, ta: 'start', op: s2 }));
+        o += on(s1, tx(224, 150, 'se prendi le 6 da riparare,', { size: 22, ta: 'start', op: s1 }) + tx(224, 184, 'le altre 6 sono funzionanti:', { size: 22, ta: 'start', op: s1 }) + tx(224, 238, '*X* ≥ 12 − 6 = 6', { size: 34, fill: C.A, ta: 'start', op: s1 }));
+        o += on(s2, tx(224, 150, 'se prendi tutte le 10 funzionanti,', { size: 22, ta: 'start', op: s2 }) + tx(224, 184, 'le altre 2 sono da riparare:', { size: 22, ta: 'start', op: s2 }) + tx(224, 238, '*X* ≤ 10', { size: 34, fill: C.A, ta: 'start', op: s2 }));
         /* le barre */
         const bx = (k) => 268 + 52 * (k - 5), base = 290, sc = 300;
         const bc = p(t, 51.6, 52.2);
@@ -890,7 +890,7 @@
   /* ======================================================================
      2.7 · Somme di variabili indipendenti: la convoluzione sulle diagonali, binomiali e Poisson che si sommano
      ====================================================================== */
-  const SPX = [0.5, 0.3, 0.2], SPY = [0.6, 0.4]; // server A (0, 1, 2 richieste) e server B (0, 1)
+  const SPX = [0.5, 0.3, 0.2], SPY = [0.6, 0.4]; // cassa A (0, 1, 2 clienti) e cassa B (0, 1)
   const SCELL = (i, j) => [206 + 64 * j, 176 + 46 * i]; // centro della casella (x = i, y = j)
   const SBARS = [[0.3, '0,30'], [0.38, '0,38'], [0.24, '0,24'], [0.08, '0,08']]; // legge di S = X + Y
   const SSUMS = ['0,30', '0,20 + 0,18 = 0,38', '0,12 + 0,12 = 0,24', '0,08'];
@@ -900,19 +900,19 @@
     sec: '2.7',
     short: 'Somme di variabili indipendenti',
     title: 'Somme indipendenti: la convoluzione, le binomiali e le Poisson che si sommano',
-    alt: 'Animazione: due server indipendenti, A con 0, 1, 2 richieste e probabilità 0,5; 0,3; 0,2 e B con 0, 1 e probabilità 0,6; 0,4. Le caselle sono i prodotti, e la legge del totale S si legge sulle diagonali: 0,30; 0,20 + 0,18 = 0,38; 0,12 + 0,12 = 0,24; 0,08; la somma è 1 e la media è 1,10 = 0,7 + 0,4. Due binomiali con lo stesso p, Bin(3, p) e Bin(2, p), danno Bin(5, p). Due Poisson indipendenti, 1,5 e 1 ordini in mezzo minuto, danno una Poisson con λ = 2,5, e la probabilità di al più un ordine è 3,5 e^(−2,5), circa 0,287.',
+    alt: 'Animazione: due casse indipendenti, A che serve 0, 1, 2 clienti in un minuto con probabilità 0,5; 0,3; 0,2 e B che ne serve 0, 1 con probabilità 0,6; 0,4. Le caselle sono i prodotti, e la legge del totale S si legge sulle diagonali: 0,30; 0,20 + 0,18 = 0,38; 0,12 + 0,12 = 0,24; 0,08; la somma è 1 e la media è 1,10 = 0,7 + 0,4. Due binomiali con lo stesso p, Bin(3, p) e Bin(2, p), danno Bin(5, p). Due Poisson indipendenti, 1,5 e 1 prenotazioni in mezz’ora (telefono e di persona), danno una Poisson con λ = 2,5, e la probabilità di al più una prenotazione è 3,5 e^(−2,5), circa 0,287.',
     dur: 58.5,
     poster: 22.5,
     chap: [[0, 'La somma lungo le diagonali'], [25, 'Binomiali con lo stesso p'], [36.7, 'Poisson: i ritmi si sommano'], [51.4, 'Cosa si conserva']],
     caps: [
       [0, 'Se *X* e *Y* sono indipendenti, la legge della somma si legge sulle diagonali della tabella dei prodotti.'],
-      [6.7, 'Server A: 0, 1, 2 richieste con probabilità 0,5; 0,3; 0,2. Server B: 0, 1 con 0,6; 0,4. Ogni casella è il prodotto.'],
+      [6.7, 'Cassa A: 0, 1, 2 clienti serviti con probabilità 0,5; 0,3; 0,2. Cassa B: 0, 1 con 0,6; 0,4. Ogni casella è il prodotto.'],
       [14, '*S* = 1: due caselle, 0,20 + 0,18 = 0,38. *S* = 2: 0,12 + 0,12 = 0,24. *S* = 0 e *S* = 3 ne hanno una sola.'],
-      [21.3, 'Le probabilità sommano a 1, e *E*[*S*] = 1,10 = 0,7 + 0,4.'],
+      [21.3, 'Le probabilità hanno somma 1, e *E*[*S*] = 1,10 = 0,7 + 0,4.'],
       [25, 'Binomiali con lo stesso *p*: *X* ~ Bin(3, *p*) e *Y* ~ Bin(2, *p*) contano i successi in 3 + 2 prove.'],
       [31.7, 'Quindi la somma è Bin(5, *p*). Con *p* diversi la somma non è più binomiale.'],
-      [36.7, 'Poisson: un sito riceve in media 1,5 ordini in mezzo minuto e l’app 1. Insieme sono Poisson con *λ* = 2,5: i ritmi si sommano.'],
-      [45.7, 'Probabilità di al più un ordine: *e*^{−2,5} + 2,5 *e*^{−2,5} = 3,5 *e*^{−2,5} ≈ 0,287.'],
+      [36.7, 'Poisson: un ristorante riceve in media 1,5 prenotazioni in mezz’ora per telefono e 1 di persona. Insieme sono Poisson con *λ* = 2,5: i ritmi si sommano.'],
+      [45.7, 'Probabilità di al più una prenotazione: *e*^{−2,5} + 2,5 *e*^{−2,5} = 3,5 *e*^{−2,5} ≈ 0,287.'],
       [51.4, 'Per induzione vale per un numero qualsiasi di addendi.'],
       [54.9, 'Le medie si sommano sempre; le varianze, se indipendenti.'],
     ],
@@ -920,7 +920,7 @@
       let o = '';
       o += heading(t, 0.2, 24.4, 'Somma di due variabili indipendenti', 'i prodotti sulle diagonali: *s* = *x* + *y*');
       o += heading(t, 25.4, 36.2, 'Binomiali con lo stesso *p*', 'successi su 3 + 2 prove');
-      o += heading(t, 37.2, 51, 'Poisson: i ritmi si sommano', 'sito e app, in mezzo minuto');
+      o += heading(t, 37.2, 51, 'Poisson: i ritmi si sommano', 'telefono e di persona, in mezz’ora');
       o += heading(t, 51.9, 58.4, 'Cosa si conserva', 'indipendenza = somme semplici');
 
       /* capitolo 1: la tabella dei prodotti, le diagonali e la legge di S */
@@ -983,9 +983,9 @@
         ys.forEach((y, r) => {
           const ax = p(t, 37.4 + 0.2 * r, 38 + 0.2 * r) * a3;
           o += path(`M${X0} ${y}H${X0 + XW}`, { stroke: C.soft, sw: 1.8, op: ax }) + ln(X0, y - 5, X0, y + 5, { stroke: C.soft, sw: 1.6, op: ax }) + ln(X0 + XW, y - 5, X0 + XW, y + 5, { stroke: C.soft, sw: 1.6, op: ax });
-          o += tx(X0 + XW + 10, y + 6, '30 s', { ff: SANS, size: 17, fill: C.soft, ta: 'start', op: ax });
+          o += tx(X0 + XW + 10, y + 6, '30 min', { ff: SANS, size: 17, fill: C.soft, ta: 'start', op: ax });
         });
-        o += on(p(t, 37.4, 38), tx(X0, 110, 'sito', { ff: SANS, size: 17, fill: C.A, ta: 'start', op: p(t, 37.6, 38.2) * a3 }) + tx(X0, 168, 'app', { ff: SANS, size: 17, fill: C.B, ta: 'start', op: p(t, 37.6, 38.2) * a3 }) + tx(X0, 244, 'insieme', { ff: SANS, size: 17, fill: C.ink, ta: 'start', op: p(t, 37.6, 38.2) * a3 }));
+        o += on(p(t, 37.4, 38), tx(X0, 110, 'telefono', { ff: SANS, size: 17, fill: C.A, ta: 'start', op: p(t, 37.6, 38.2) * a3 }) + tx(X0, 168, 'di persona', { ff: SANS, size: 17, fill: C.B, ta: 'start', op: p(t, 37.6, 38.2) * a3 }) + tx(X0, 244, 'insieme', { ff: SANS, size: 17, fill: C.ink, ta: 'start', op: p(t, 37.6, 38.2) * a3 }));
         const SITE = [0.18, 0.7], APP = [0.46];
         SITE.forEach((m, i) => {
           const t0 = 38.4 + 0.5 * i, u = p(t, t0, t0 + 0.4, E.back), mv = p(t, 41.6 + 0.4 * i, 42.6 + 0.4 * i, E.io), [x, y] = arc(X0 + m * XW, ys[0], X0 + m * XW, ys[2], mv, 0);
@@ -1028,7 +1028,7 @@
   const PMP = poisPmf(2, 8); // Poisson(2) per k = 0…8
   const TK = [18, 21.2, 24.4, 27.6]; // istanti in cui le barre coincidono con Bin(n, 2/n) per n = 10, 100, 1 000, 10 000
   const BPX = (k) => 62 + 38 * k, BPB = 300, BPS = 560;
-  const EVT = [0.205, 0.29]; // i due ordini dell'ora (frazione di ora)
+  const EVT = [0.205, 0.29]; // le due chiamate dell'ora (frazione di ora)
   const STG = [[3.4, 6, '*n* = 6', '*p* = 2/6 = 1/3'], [6.4, 12, '*n* = 12', '*p* = 2/12 = 1/6'], [9.4, 60, '*n* = 60', '*p* = 2/60 = 1/30'], [12.4, 3600, '*n* = 3 600', '*p* = 2/3 600 = 1/1 800']];
   const EX100 = binPmf(100, 0.02).slice(0, 5); // 100 pezzi, ciascuno difettoso con probabilità 0,02
 
@@ -1036,13 +1036,13 @@
     sec: '2.7',
     short: 'Da binomiale a Poisson',
     title: 'Da binomiale a Poisson: Bin(n, λ/n) tende a Poisson(λ)',
-    alt: 'Animazione: un’ora è divisa in n parti e in ciascuna arriva un ordine con probabilità p = λ/n; affinando la suddivisione la possibilità di due ordini nella stessa parte sparisce. Con λ = 2 gli istogrammi di Bin(n, 2/n) per n = 10, 100, 1 000 e 10 000 si avvicinano a Poisson(2): P(X = 2) vale 0,30199; 0,27341; 0,27094; 0,27070 e tende a 0,27067. Il limite si dimostra scrivendo la probabilità come prodotto di tre pezzi: k rapporti che tendono a 1, (1 − λ/n)^n che tende a e^(−λ) e (1 − λ/n)^(−k) che tende a 1. L’errore massimo è circa p/4: con n = 100 e p = 0,02 vale 0,0046. Conta p, non n.',
+    alt: 'Animazione: un’ora è divisa in n parti e in ciascuna arriva una chiamata con probabilità p = λ/n; affinando la suddivisione la possibilità di due chiamate nella stessa parte sparisce. Con λ = 2 gli istogrammi di Bin(n, 2/n) per n = 10, 100, 1 000 e 10 000 si avvicinano a Poisson(2): P(X = 2) vale 0,30199; 0,27341; 0,27094; 0,27070 e tende a 0,27067. Il limite si dimostra scrivendo la probabilità come prodotto di tre pezzi: k rapporti che tendono a 1, (1 − λ/n)^n che tende a e^(−λ) e (1 − λ/n)^(−k) che tende a 1. L’errore massimo è circa p/4: con n = 100 e p = 0,02 vale 0,0046. Conta p, non n.',
     dur: 57.5,
     poster: 29.4,
     chap: [[0, 'Un’ora a pezzetti'], [17, 'La binomiale cambia forma'], [30.4, 'Il limite, a pezzi'], [45.7, 'Quanto è buona l’approssimazione']],
     caps: [
-      [0, 'Dividiamo un’ora in *n* parti: in ciascuna arriva un ordine con probabilità *p* = *λ*/*n*, piccolissima. Gli ordini dell’ora sono Bin(*n*, *λ*/*n*).'],
-      [9.3, 'Affinando la suddivisione, la possibilità di due ordini nello stesso istante sparisce: resta solo il ritmo medio *λ*.'],
+      [0, 'Dividiamo un’ora in *n* parti: in ciascuna arriva una chiamata con probabilità *p* = *λ*/*n*, piccolissima. Le chiamate dell’ora sono Bin(*n*, *λ*/*n*).'],
+      [9.3, 'Affinando la suddivisione, la possibilità di due chiamate nello stesso istante sparisce: resta solo il ritmo medio *λ*.'],
       [17, 'Con *λ* = 2, ecco Bin(*n*, 2/*n*) al crescere di *n*. *P*(*X* = 2) vale 0,30199 per *n* = 10, 0,27341 per *n* = 100…'],
       [24.7, '…0,27094 per *n* = 1 000 e 0,27070 per 10 000: tende a 0,27067, il valore di Poisson(2).'],
       [30.4, 'Perché: scriviamo la probabilità come prodotto di tre pezzi, con *k* e *λ* fissi e *n* → ∞.'],
@@ -1078,17 +1078,17 @@
           o += tx(60, 128, ln1, { size: 32, ta: 'start', op: u }) + tx(60, 160, ln2, { size: 22, ta: 'start', fill: C.soft, op: u });
           if (s === 0) {
             const fl = vis(t, ts + 0.4, te - 0.4, 0.4, 0.4) * a1;
-            o += on(fl, cross(X0 + 0.25 * XW, AY - 64, 22, p(t, ts + 0.6, ts + 1.2, E.lin), { op: fl }) + tx(X0 + 0.25 * XW + 22, AY - 56, 'due ordini nella stessa parte', { ff: SANS, size: 17, ta: 'start', fill: NO, op: fl }));
+            o += on(fl, cross(X0 + 0.25 * XW, AY - 64, 22, p(t, ts + 0.6, ts + 1.2, E.lin), { op: fl }) + tx(X0 + 0.25 * XW + 22, AY - 56, 'due chiamate nella stessa parte', { ff: SANS, size: 17, ta: 'start', fill: NO, op: fl }));
           }
-          if (s === 3) o += tx(X0 + XW / 2, AY + 74, 'una parte = un secondo: in ciascuna, al più un ordine', { ff: SANS, size: 17, fill: C.soft, op: u * p(t, ts + 0.8, ts + 1.6) });
+          if (s === 3) o += tx(X0 + XW / 2, AY + 74, 'una parte = un secondo: in ciascuna, al più una chiamata', { ff: SANS, size: 17, fill: C.soft, op: u * p(t, ts + 0.8, ts + 1.6) });
         });
-        /* i due ordini */
+        /* le due chiamate */
         EVT.forEach((e, i) => {
           const t0 = 1.4 + 0.6 * i, u = p(t, t0, t0 + 0.5, E.back);
           o += on(u, ln(X0 + e * XW, AY, X0 + e * XW, AY - 30, { stroke: C.A, sw: 2, op: u * a1 }) + circ(X0 + e * XW, AY - 36, 8 * u, { fill: C.A, fo: 0.9, stroke: C.paper, sw: 1.4, op: a1 }));
         });
         const lg = p(t, 2.2, 3) * (1 - p(t, 3.4, 4)) * a1;
-        o += on(lg, tx(X0 + XW / 2, 150, 'due ordini in un’ora (in media *λ* = 2)', { ff: SANS, size: 17, fill: C.soft, op: lg }));
+        o += on(lg, tx(X0 + XW / 2, 150, 'due chiamate in un’ora (in media *λ* = 2)', { ff: SANS, size: 17, fill: C.soft, op: lg }));
         const bl = p(t, 5, 5.8) * a1;
         o += on(bl, rect(468, 104, 116, 36, { rx: 8, fill: C.hi, fo: 0.25 * bl, stroke: C.hi, sw: 2, so: bl }) + tx(526, 130, 'Bin(*n*, *λ*/*n*)', { size: 22, op: bl }));
       }
@@ -1267,8 +1267,8 @@
   PV.add('minmax', {
     sec: '2.7',
     short: 'Minimo e massimo',
-    title: 'Minimo e massimo di variabili indipendenti: due dadi e due server',
-    alt: 'Animazione: il massimo è ≤ k se e solo se tutte le variabili sono ≤ k. Per due dadi P(max ≤ k) = k²/36: un quadrato di k² caselle nella tabella 6 × 6; le caselle con massimo esattamente k sono il bordo a L, k² − (k − 1)² = 2k − 1, quindi P(max = k) = (2k − 1)/36 e E[max] = 161/36 ≈ 4,47. Per il minimo di due geometriche indipendenti, con probabilità 0,3 e 0,2, P(min > n) = 0,7^n · 0,8^n = 0,56^n: è geometrica con p = 0,44 e media 1/0,44 ≈ 2,27 tentativi, contro 3,33 e 5.',
+    title: 'Minimo e massimo di variabili indipendenti: due dadi e due arcieri',
+    alt: 'Animazione: il massimo è ≤ k se e solo se tutte le variabili sono ≤ k. Per due dadi P(max ≤ k) = k²/36: un quadrato di k² caselle nella tabella 6 × 6; le caselle con massimo esattamente k sono il bordo a L, k² − (k − 1)² = 2k − 1, quindi P(max = k) = (2k − 1)/36 e E[max] = 161/36 ≈ 4,47. Per il minimo di due geometriche indipendenti (due arcieri), con probabilità 0,3 e 0,2, P(min > n) = 0,7^n · 0,8^n = 0,56^n: è geometrica con p = 0,44 e media 1/0,44 ≈ 2,27 turni, contro 3,33 e 5 tiri dei due arcieri.',
     dur: 50,
     poster: 23.5,
     chap: [[0, 'Il massimo di due dadi'], [25.4, 'Il minimo di due geometriche']],
@@ -1277,14 +1277,14 @@
       [7.3, 'Due dadi: *P*(max ≤ *k*) = (*k*/6)^2 = *k*^2/36, un quadrato di *k*² caselle nella tabella 6 × 6.'],
       [13.4, 'Quelle con massimo esattamente *k* sono il bordo a L: *k*^2 − (*k* − 1)^2 = 2*k* − 1 caselle.'],
       [19.4, 'Quindi *P*(max = *k*) = (2*k* − 1)/36: 1, 3, 5, 7, 9, 11 su 36, e *E*[max] = 161/36 ≈ 4,47.'],
-      [25.4, 'Il minimo: due server indipendenti rispondono a ogni tentativo con probabilità 0,3 e 0,2. La prima risposta arriva al tentativo min(*X*, *Y*).'],
+      [25.4, 'Il minimo: due arcieri indipendenti centrano il bersaglio a ogni tiro con probabilità 0,3 e 0,2. Il primo centro arriva al turno min(*X*, *Y*).'],
       [34.7, 'Il minimo è > *n* se e solo se entrambi sono > *n*: *P* = 0,7*^n* · 0,8*^n* = 0,56*^n*.'],
-      [40.4, 'È la coda di una geometrica con 1 − *p* = 0,56, cioè *p* = 0,44: media 1/0,44 ≈ 2,27 tentativi.'],
-      [46.7, 'Contro 3,33 e 5 dei due server presi da soli.'],
+      [40.4, 'È la coda di una geometrica con 1 − *p* = 0,56, cioè *p* = 0,44: media 1/0,44 ≈ 2,27 turni.'],
+      [46.7, 'Contro i 3,33 e i 5 tiri dei due arcieri presi da soli.'],
     ],
     frame(t) {
       let o = '';
-      o += heading(t, 0.2, 25, 'Il massimo di due dadi', '*P*(max ≤ *k*) = (*k*/6)^2') + heading(t, 25.8, 50.2, 'Il minimo di due geometriche', 'il primo che risponde');
+      o += heading(t, 0.2, 25, 'Il massimo di due dadi', '*P*(max ≤ *k*) = (*k*/6)^2') + heading(t, 25.8, 50.2, 'Il minimo di due geometriche', 'il primo che centra il bersaglio');
 
       /* capitolo 1: la tabella 6 × 6, i quadrati e i bordi a L */
       const a1 = 1 - p(t, 24.4, 25.2);
@@ -1323,10 +1323,10 @@
         o += on(em, rect(292, 112, 262, 44, { rx: 8, fill: C.hi, fo: 0.25 * em, stroke: C.hi, sw: 2, so: em }) + tx(423, 142, '*E*[max] = 161/36 ≈ 4,47', { size: 24, op: em }));
       }
 
-      /* capitolo 2: due server, il primo che risponde */
+      /* capitolo 2: due arcieri, il primo che centra */
       const a2 = p(t, 25.8, 26.4) * (1 - p(t, 34.5, 35.3));
       if (a2 > 0.004) {
-        const rows = [[132, C.A, 'server 1', 'p = 0,3', 4], [196, C.B, 'server 2', 'p = 0,2', 6]];
+        const rows = [[132, C.A, 'arciere 1', 'p = 0,3', 4], [196, C.B, 'arciere 2', 'p = 0,2', 6]];
         rows.forEach(([y, col, nm, pp, win]) => {
           o += tx(24, y - 2, nm, { ff: SANS, size: 17, fill: col, ta: 'start', op: a2 }) + tx(24, y + 20, pp, { ff: SANS, size: 17, fill: C.soft, ta: 'start', op: a2 });
           for (let i = 1; i <= 8; i++) {
@@ -1338,7 +1338,7 @@
         });
         for (let i = 1; i <= 8; i++) o += lb(140 + 48 * (i - 1), 244, i, { op: p(t, 27, 27.8) * a2 });
         const mn = p(t, 32.4, 33.2) * a2;
-        o += on(mn, rect(140 + 48 * 3 - 25, 107, 50, 50, { rx: 11, stroke: C.hi, sw: 3.6, so: mn, op: 1 }) + tx(140 + 48 * 3, 282, 'min(*X*, *Y*) = 4', { size: 26, op: mn }) + tx(140 + 48 * 3, 312, 'la prima risposta in assoluto', { ff: SANS, size: 17, fill: C.soft, op: mn }));
+        o += on(mn, rect(140 + 48 * 3 - 25, 107, 50, 50, { rx: 11, stroke: C.hi, sw: 3.6, so: mn, op: 1 }) + tx(140 + 48 * 3, 282, 'min(*X*, *Y*) = 4', { size: 26, op: mn }) + tx(140 + 48 * 3, 312, 'il primo centro in assoluto', { ff: SANS, size: 17, fill: C.soft, op: mn }));
       }
 
       /* la coda del minimo e la geometrica con p = 0,44 */
@@ -1357,7 +1357,7 @@
         o += on(q3, tx(484, 232, 'geometrica', { size: 22, fill: C.A, ta: 'start', op: q3 }) + tx(484, 262, '*p* = 0,44', { size: 26, fill: C.A, ta: 'start', op: q3 }));
         o += on(q4, tx(484, 304, 'media 2,27', { size: 24, ta: 'start', op: q4 }));
         const pc = p(t, 46.7, 47.5) * a3;
-        o += on(pc, pills(344, [{ s: 'min: 2,27 · server 1: 3,33 · server 2: 5', col: C.hi, op: pc }], 320));
+        o += on(pc, pills(344, [{ s: 'min: 2,27 · arciere 1: 3,33 · arciere 2: 5', col: C.hi, op: pc }], 320));
       }
       return o;
     },

@@ -33,7 +33,7 @@
     sec: '2.1',
     short: 'Una variabile aleatoria',
     title: 'Variabile aleatoria e densità discreta: due monete, X = numero di teste',
-    alt: 'Animazione: quattro esiti di due lanci di moneta vengono trasformati in numeri (teste) da una funzione X; poi le loro probabilità si raccolgono per valore e danno la densità 1/4, 1/2, 1/4; infine due variabili con la stessa legge, X e W, che sommate danno risultati diversi.',
+    alt: 'Animazione: quattro esiti di due lanci di moneta vengono trasformati in numeri (teste) da una funzione X; poi le loro probabilità si raccolgono per valore e danno la densità 1/4, 1/2, 1/4; la tabella è la densità, o legge, di X.',
     dur: 58,
     poster: 33,
     chap: [[0, 'Una funzione dagli esiti ai numeri'], [22.5, 'La densità di X'], [44.5, 'Stessa legge, coppia diversa']],
@@ -126,7 +126,7 @@
   const BLH = 38; // altezza di un blocco da 1/5
 
   PV.add('leggeg', {
-    sec: '2.1',
+    sec: '2.2',
     short: 'La legge di Y = g(X)',
     title: 'La legge di una funzione di X, e le indicatrici',
     alt: 'Animazione: cinque errori di un termostato, ciascuno con probabilità 1/5, vengono elevati al quadrato: i blocchi di probabilità di −1 e +1 si sommano su Y = 1, quelli di −2 e +2 su Y = 4; poi le indicatrici di un evento su un dado, con le regole 1 − 1_A e 1_A · 1_B.',
@@ -590,7 +590,7 @@
       [0, 'Primo modo, fisico: metti dei pesi *p*(*x*) su una sbarra, nei punti *x*. Con due monete i pesi sono 1/4, 1/2, 1/4 su 0, 1, 2: la sbarra sta in equilibrio nel punto 1.'],
       [9.4, 'Un dado equo: sei pesi uguali sui punti 1, …, 6. La sbarra si equilibra solo a metà strada, in 3,5. Il valore atteso è il baricentro.'],
       [17, 'Secondo modo, operativo: il valore atteso è il numero attorno a cui si stabilizza la media dei risultati se ripeti l’esperimento tantissime volte.'],
-      [27.4, 'Un dado lanciato 6 000 volte: ogni faccia esce circa 1 000 volte, la somma è circa 21 000 e la media circa 21 000 / 6 000 = 3,5. Questo è un teorema: la legge dei grandi numeri (4.3).'],
+      [27.4, 'Un dado lanciato 6 000 volte: ogni faccia esce circa 1 000 volte, la somma è circa 21 000 e la media circa 21 000 / 6 000 = 3,5.'],
       [37.4, 'Terzo modo, economico: il prezzo equo. Un’assicurazione paga 10 000 € con probabilità 0,01 e 0 € altrimenti: vale in media 10 000 · 0,01 + 0 · 0,99 = 100 €.'],
       [47, 'Se il premio è 130 €, i 30 € di differenza sono il margine dell’assicurazione. Ogni compagnia assicurativa, casinò e lotteria vive di questa formula.'],
     ],
@@ -675,14 +675,14 @@
     sec: '2.4',
     short: 'La media non è il valore che vedrai',
     title: 'La media non è il valore che vedrai al prossimo lancio',
-    alt: 'Animazione: la media di un dado, 3,5, non è una faccia, ma la media dei lanci si avvicina a 3,5; la media di una variabile di Bernoulli con p = 0,1 vale 0,1, mentre il valore più probabile è 0.',
+    alt: 'Animazione: la media di un dado, 3,5, non è una faccia, ma la media dei lanci si avvicina a 3,5; la media di una variabile che vale 1 con probabilità 0,1 e 0 altrimenti è 0,1, mentre il valore più probabile è 0.',
     dur: 36,
     poster: 15,
-    chap: [[0, 'Il dado: 3,5 non esce'], [17, 'Bernoulli: media e valore più probabile']],
+    chap: [[0, 'Il dado: 3,5 non esce'], [17, 'Media e valore più probabile']],
     caps: [
       [0, 'Una conseguenza che confonde: 3,5 non è un valore che il dado può dare. Il valore atteso non è «il valore che ti aspetti di vedere al prossimo lancio».'],
       [9.2, 'È la media a lungo andare: ogni lancio dà una faccia intera, ma la media dei risultati si avvicina a 3,5.'],
-      [17, 'E non è nemmeno, in generale, il valore più probabile: una Bernoulli con *p* = 0,1 vale 1 con probabilità 0,1 e 0 con probabilità 0,9.'],
+      [17, 'E non è nemmeno, in generale, il valore più probabile: una variabile con *p* = 0,1 vale 1 con probabilità 0,1 e 0 con probabilità 0,9.'],
       [26.5, 'La sua media è 0,1, ma il valore più probabile è 0.'],
     ],
     frame(t) {
@@ -1075,8 +1075,6 @@
         });
         const sm = vis(t, 39.8, 43.6, 0.5, 0.5) * c2;
         o += on(sm, tx(500, 98, '3/10 + 3/10 = 6/10', { size: 22, fill: C.B, op: sm }));
-        const pe = p(t, 46.4, 47.2) * c2;
-        o += on(pe, pills(336, [{ s: 'densità ipergeometrica (2.6)', op: pe }]));
       }
       return o;
     },
@@ -1203,17 +1201,142 @@
         }
         const m1 = vis(t, 25, 30, 0.4, 0.4) * c2;
         o += on(m1, rect(xk(1) - 32, base - 110 - 34, 64, 150, { rx: 8, stroke: C.hi, sw: 3, so: m1 }) + tx(xk(3) + 40, 160, 'metà delle volte', { size: 22, op: m1 }) + tx(xk(3) + 40, 190, 'vinci 2 €', { size: 22, op: m1 }));
-        const m2 = vis(t, 30.4, 37, 0.4, 0.4) * c2;
+        const m2 = vis(t, 30.4, 44, 0.4, 0.4) * c2;
         o += on(m2, rect(xk(1) - 32, base - 144, xk(2) - xk(1) + 64, 150, { rx: 8, stroke: C.hi, sw: 3, so: m2 }) + tx(xk(3) + 40, 160, 'tre volte su quattro', { size: 22, op: m2 }) + tx(xk(3) + 40, 190, 'al più 4 €: 3/4', { size: 22, op: m2 }));
-        const pe = p(t, 37.6, 38.4) * c2;
-        o += on(pe, pills(336, [{ s: 'media infinita: la media dei lanci non si stabilizza', col: NO, op: pe }]));
       }
       return o;
     },
   });
 
+  /* ======================================================================
+     Riordino della Parte 2: alcune clip si dividono in due, ciascuna nella sezione dove serve.
+     Ogni parte è un pezzo dell'animazione originale, rallentato di un fattore K (frame(t) è una funzione pura di t).
+     ====================================================================== */
+  (function () {
+    const V = PV.videos, r1 = (x) => Math.round(x * 10) / 10;
+    const f0 = {};
+    for (const id of ['variabile', 'leggeg', 'condiz', 'geometrica']) f0[id] = V[id].frame.bind(V[id]);
+
+    /* 2.1 · variabile: restano i primi due capitoli; il terzo diventa «Stessa legge, coppia diversa» (2.4) */
+    Object.assign(V.variabile, { dur: 43.5, chap: V.variabile.chap.slice(0, 2), caps: V.variabile.caps.slice(0, 4), frame: (t) => f0.variabile(Math.min(t, 43.3)) });
+    PV.add('coppiadiversa', {
+      sec: '2.4',
+      short: 'Stessa legge, coppia diversa',
+      title: 'Stessa legge, coppia diversa: X + X contro X + W',
+      alt: 'Animazione: sulle due monete X, il numero di teste, e W, il numero di croci, hanno la stessa legge, 1/4, 1/2, 1/4; ma X + X = 2X vale 0, 2 o 4 con probabilità 1/4, 1/2, 1/4, mentre X + W vale sempre 2. Le leggi delle singole variabili non bastano a descrivere la coppia.',
+      dur: 35,
+      poster: 26,
+      chap: [[0, 'Due variabili, la stessa legge'], [11, 'Ma la coppia cambia']],
+      caps: [
+        [0, 'Sulle due monete, *X* è il numero di teste e *W* il numero di croci.'],
+        [4.4, 'Hanno la stessa legge: 1/4, 1/2, 1/4. Da sole, nei calcoli, sono intercambiabili.'],
+        [11, 'Ma in coppia no: (*X*, *X*) dà *X* + *X* = 2*X*, che vale 0, 2 o 4 con probabilità 1/4, 1/2, 1/4.'],
+        [19, '(*X*, *W*) dà teste più croci: su due monete, sempre 2.'],
+        [24.5, 'Stesse leggi, somme diverse: per descrivere la coppia serve la densità congiunta.'],
+      ],
+      frame: (t) => f0.variabile(Math.min(44.3 + t / 2.5, 58.3)),
+    });
+
+    /* 2.2 · leggeg: resta il termostato; le indicatrici diventano una clip a sé (2.9) */
+    PV.add('indicatrici', {
+      sec: '2.9',
+      short: 'Le indicatrici',
+      title: 'Le indicatrici: 1 se l’evento si verifica, 0 altrimenti',
+      alt: 'Animazione: le indicatrici di due eventi su un dado, A = «esce pari» e B = «esce più di 4»: 1_A vale 1 sulle facce 2, 4, 6; il complementare è 1 − 1_A; il prodotto 1_A · 1_B vale 1 solo sulla faccia 6, ed è l’indicatrice dell’intersezione.',
+      dur: 35.5,
+      poster: 19,
+      chap: [[0, 'Le indicatrici']],
+      caps: [
+        [0, 'La variabile più semplice è l’indicatrice di un evento: vale 1 se *A* si verifica e 0 altrimenti. Con un dado, *A* = «esce pari».'],
+        [11, 'Si calcola come con i numeri: 1_A^c = 1 − 1_A, e il prodotto 1_A · 1_B = 1_{A∩B}, perché vale 1 solo se valgono 1 entrambe.'],
+        [24, 'La densità di 1_A è *p*(1) = *P*(*A*) e *p*(0) = 1 − *P*(*A*). Con le indicatrici si conta quante volte succede qualcosa.'],
+      ],
+      frame: (t) => f0.leggeg(Math.min(26.55 + t / 1.3, 53.9)),
+    });
+    Object.assign(V.leggeg, {
+      title: 'La legge di una funzione di X: il termostato',
+      alt: 'Animazione: cinque errori di un termostato, ciascuno con probabilità 1/5, vengono elevati al quadrato: i blocchi di probabilità di −1 e +1 si sommano su Y = 1, quelli di −2 e +2 su Y = 4.',
+      dur: 35.4,
+      poster: 28,
+      chap: [[0, 'Y = X²: le probabilità si sommano']],
+      caps: [
+        [0, 'Un termostato sbaglia la misura di −2, −1, 0, +1 o +2 gradi, e ciascun errore *X* ha probabilità 1/5.'],
+        [8.4, 'Per giudicare la precisione si usa l’errore al quadrato, *Y* = *X*²: non tiene conto del segno.'],
+        [15.4, 'Raccolgo per valori: −1 e +1 finiscono entrambi su *Y* = 1, −2 e +2 su *Y* = 4. Le loro probabilità si sommano.'],
+        [28.7, 'Quindi *Y* vale 0 con probabilità 1/5, 1 con 2/5 e 4 con 2/5. Controllo: 1/5 + 2/5 + 2/5 = 1.'],
+      ],
+      frame: (t) => f0.leggeg(Math.min(t / 1.4, 25.2)),
+    });
+
+    /* 2.3 · condiz: resta la legge condizionale (2.5); la somma sulle diagonali dell'urna va in 2.4 */
+    PV.add('sommaurna', {
+      sec: '2.4',
+      short: 'La somma sulle diagonali (urna)',
+      title: 'Urna: la somma X + Y sulle diagonali',
+      alt: 'Animazione: nella tabella dell’urna senza reimmissione, la somma X + Y, il numero di rosse fra le due estratte, si ottiene sommando le caselle di ogni diagonale: 3/10 per 0 rosse, 3/10 + 3/10 = 6/10 per 1 rossa, 1/10 per 2 rosse.',
+      dur: 35.5,
+      poster: 22,
+      chap: [[0, 'La somma sulle diagonali']],
+      caps: [
+        [0, 'La somma *X* + *Y* è il numero di rosse fra le due estratte: si sommano le caselle di una diagonale.'],
+        [9.8, '*X* + *Y* = 1 con *p*(0, 1) + *p*(1, 0) = 3/10 + 3/10 = 6/10; vale 0 con 3/10 e 2 con 1/10.'],
+      ],
+      frame: (t) => f0.condiz(Math.min(33.4 + t / 1.75, 53.8)),
+    });
+    Object.assign(V.condiz, {
+      short: 'Legge condizionale',
+      title: 'Urna: la legge condizionale',
+      alt: 'Animazione: nella tabella dell’urna senza reimmissione, riscalando la colonna di Y = 1 per farla avere somma 1 si ottiene la legge di X sapendo Y = 1 (la prima rossa con probabilità 1/4); riscalando la colonna di Y = 0 si ottiene 1/2; le due leggi condizionali differiscono dalla marginale 4/10.',
+      dur: 36.5,
+      poster: 27.6,
+      chap: [[0, 'La colonna riscalata']],
+      caps: [
+        [0, 'Se sai che *Y* ha assunto il valore *y*, la legge di *X* può cambiare. Urna con 2 rosse e 3 blu, due estrazioni senza reimmissione.'],
+        [9.4, 'Sapendo che la seconda è rossa (*Y* = 1), riscalo la colonna di *Y* = 1 perché abbia somma 1: *p*(1 | 1) = (1/10)/(4/10) = 1/4.'],
+        [19.1, 'Sapendo che la seconda è blu, la prima era rossa con probabilità *p*(1 | 0) = (3/10)/(6/10) = 1/2.'],
+        [26.5, 'Tre valori diversi: 4/10, 1/4 e 1/2. Sapere com’è andata la seconda estrazione cambia ciò che sai della prima.'],
+      ],
+      frame: (t) => f0.condiz(Math.min(t / 1.15, 31.8)),
+    });
+
+    /* 2.7 · pietroburgo: via il rimando alla legge dei grandi numeri */
+    Object.assign(V.pietroburgo, { dur: 40, caps: V.pietroburgo.caps.slice(0, 4) });
+
+    /* 2.6 → 2.21 · geometrica: resta l'attesa del primo successo; la binomiale negativa è una clip a sé (2.22) */
+    PV.add('negativa', {
+      sec: '2.22',
+      short: 'Binomiale negativa',
+      title: 'Binomiale negativa: aspettare l’r-esimo successo (call center, p = 0,3, r = 3)',
+      alt: 'Animazione: una serie di telefonate, con probabilità 0,3 di vendita ciascuna, fino alla terza vendita: le attese fra una vendita e la successiva, 2, 3 e 3 telefonate, sono geometriche indipendenti e in tutto sono 8. La probabilità che la terza vendita sia alla telefonata 8 è 21 · 0,3³ · 0,7⁵ ≈ 0,0953, e la media è r/p = 3/0,3 = 10 telefonate.',
+      dur: 35,
+      poster: 19,
+      chap: [[0, 'Aspettare la terza vendita']],
+      caps: [
+        [0, 'Si aspetta l’*r*-esimo successo: con *r* = 3 e *p* = 0,3, un call center che cerca la terza vendita.'],
+        [7.5, 'Le attese fra un successo e il successivo sono geometriche: *T*₁ = 2, *T*₂ = 3, *T*₃ = 3, in tutto 8.'],
+        [13.4, '*X* = 8: la terza vendita arriva alla telefonata 8; nelle prime 7 ce ne sono 2, in 21 modi.'],
+        [20, 'P(*X* = 8) = 21 · 0,3^3 · 0,7^5 ≈ 0,0953.'],
+        [24.6, 'Media: somma di *r* attese geometriche, *E*[*X*] = *r*/*p* = 3/0,3 = 10 telefonate.'],
+      ],
+      frame: (t) => f0.geometrica(Math.min(45.8 + t / 2.8, 58.3)),
+    });
+    Object.assign(V.geometrica, {
+      title: 'Geometrica: il dado fino al primo 6 e l’assenza di memoria',
+      alt: 'Animazione: si lancia un dado fino al primo 6, con p = 1/6, e X è il numero di lanci. Il primo 6 al lancio k richiede k − 1 fallimenti e poi un successo: P(X = k) = (1 − p)^(k − 1) p, per k = 3 vale 5/6 · 5/6 · 1/6 = 25/216, circa 0,1157, e ogni barra è 5/6 della precedente. La coda è P(X > n) = (1 − p)^n, la media è 1/p = 6 e la varianza 30. Dopo 3 lanci falliti la parte rimasta, riscalata, coincide con la distribuzione di partenza: assenza di memoria.',
+      dur: 44.6,
+      chap: V.geometrica.chap.slice(0, 4),
+      caps: V.geometrica.caps.slice(0, 8),
+      frame: (t) => f0.geometrica(Math.min(t, 44.5)),
+    });
+
+    /* sezioni nuove */
+    const SEC = { variabile: '2.1', leggeg: '2.2', ripartizione: '2.3', congiunta: '2.4', condiz: '2.5', indipv: '2.6', pietroburgo: '2.7', media: '2.7', tremodi: '2.7', attenzione: '2.7', funzionemedia: '2.8', guardaroba: '2.9', ruota12: '2.10', giochiequi: '2.10', varianza: '2.11', covarianza: '2.13', previsione: '2.16', binomiale: '2.19', geometrica: '2.21', ipergeometrica: '2.23', bin_poisson: '2.24', poisson: '2.24', riconoscere: '2.27', somme: '2.28', minmax: '2.29' };
+    for (const id of Object.keys(SEC)) V[id].sec = SEC[id];
+    void r1;
+  })();
+
   /* ripasso della Parte 2: tutte le clip in ordine di testo (quelle di 2.5-2.7 stanno in pv-parte2.js, che si carica prima) */
-  PV.seq('parte2', ['variabile', 'leggeg', 'ripartizione', 'congiunta', 'indipv', 'condiz', 'pietroburgo', 'media', 'tremodi', 'attenzione', 'funzionemedia', 'guardaroba', 'ruota12', 'giochiequi', 'varianza', 'covarianza', 'previsione', 'binomiale', 'geometrica', 'ipergeometrica', 'poisson', 'riconoscere', 'somme', 'minmax', 'bin_poisson'], {
+  PV.seq('parte2', ['variabile', 'leggeg', 'ripartizione', 'congiunta', 'sommaurna', 'coppiadiversa', 'condiz', 'indipv', 'pietroburgo', 'media', 'tremodi', 'attenzione', 'funzionemedia', 'indicatrici', 'guardaroba', 'ruota12', 'giochiequi', 'varianza', 'covarianza', 'previsione', 'binomiale', 'geometrica', 'negativa', 'ipergeometrica', 'bin_poisson', 'poisson', 'riconoscere', 'somme', 'minmax'], {
     title: 'Ripasso della Parte 2',
     alt: 'Ripasso in video della Parte 2: le animazioni delle singole sezioni una dopo l’altra, ciascuna preceduta da un cartello con il titolo.',
   });
