@@ -12,7 +12,7 @@
   const tab = (x, y, s, col, op = 1) => g({ op }, rect(x, y, 32, 24, { rx: 5, fill: col }) + tx(x + 16, y + 18, s, { size: 19, fill: C.paper }));
 
   /* ======================================================================
-     1.1 · Esperimento aleatorio, spazio campionario, evento
+     1.1 e 1.2 · Esperimento aleatorio, spazio campionario, evento (due clip: «esiti» in 1.1, «evento» in 1.2)
      ====================================================================== */
   const R1 = [[1.6, 2, 4], [5.6, 2, 1], [9.6, 2, 6]]; // i tre lanci del capitolo 1
   const R3 = [[40, 1.8, 4], [45.2, 1.8, 3]]; // i due lanci del capitolo 3
@@ -30,7 +30,7 @@
     return { x, y, s: lerp(64, 56, r), sc: lerp(0.4, 1, p(t, t0, t0 + 0.9, E.back)), op: p(t, t0, t0 + 0.25) };
   }
 
-  PV.add('esiti', {
+  const ESITI = {
     sec: '1.1',
     short: 'Spazio campionario ed eventi',
     title: 'Esperimento aleatorio, spazio campionario, evento',
@@ -45,7 +45,7 @@
       [19, 'Ogni elemento di Ω è un esito e si indica con *ω*. Qui Ω ha sei elementi: |Ω| = 6.'],
       [25, "L'elenco deve essere esaustivo (qualunque cosa succeda, c'è) e gli esiti mutuamente esclusivi (ne esce uno solo)."],
       [33.5, "Un evento è un sottoinsieme di Ω, cioè un gruppo di esiti. «Esce un numero pari» è l'evento *A* = {2, 4, 6}."],
-      [39.5, "Lanci il dado: l'evento *A* si verifica se l'esito uscito sta dentro *A*."],
+      [39.5, "Lanci il dado: *A* si verifica se l'esito è in *A*."],
       [42, 'Esce 4: 4 ∈ *A*, quindi *A* si è verificato.'],
       [45, 'Lo lanci ancora ed esce 3: 3 ∉ *A*, quindi *A* non si è verificato.'],
       [50.4, "Casi limite: Ω è l'evento certo, ∅ è l'evento impossibile, e anche un singolo esito, come {6}, è un evento."],
@@ -139,6 +139,30 @@
       }
       return o;
     },
+  };
+  /* la clip si divide in due, perché nel testo gli esiti (1.1) e gli eventi (1.2) sono sezioni diverse */
+  const taglia = (c, a, b) => c.filter((x) => x[0] >= a && x[0] < b).map((x) => [x[0] - a, x[1]]);
+  PV.add('esiti', {
+    sec: '1.1',
+    short: 'Esperimento e spazio campionario',
+    title: 'Esperimento aleatorio e spazio campionario',
+    alt: 'Animazione: un dado viene lanciato più volte; i sei esiti formano lo spazio campionario Ω, un elenco esaustivo di esiti che si escludono a vicenda.',
+    dur: 33.5,
+    poster: 30,
+    chap: taglia(ESITI.chap, 0, 33.5),
+    caps: taglia(ESITI.caps, 0, 33.5),
+    frame: ESITI.frame,
+  });
+  PV.add('evento', {
+    sec: '1.2',
+    short: 'Gli eventi',
+    title: 'Evento: un sottoinsieme di Ω',
+    alt: 'Animazione: gli esiti pari di un dado formano l’evento A; A si verifica se l’esito uscito sta dentro A. Casi limite: l’evento certo, l’evento impossibile e il singolo esito.',
+    dur: 24.5,
+    poster: 9.1,
+    chap: [[0, 'Gli eventi']],
+    caps: taglia(ESITI.caps, 33.5, 58),
+    frame: (t) => ESITI.frame(t + 33.5),
   });
 
   /* ======================================================================
@@ -178,7 +202,7 @@
   const omegaTag = (op) => on(op, g({ op }, rect(48, 70, 32, 24, { rx: 5, fill: C.soft }) + tx(64, 88, 'Ω', { size: 19, fill: C.paper })));
 
   /* ======================================================================
-     1.1 · Operazioni fra eventi: unione, intersezione, complementare, differenza
+     1.2 · Operazioni fra eventi: unione, intersezione, complementare, differenza
      ====================================================================== */
   const OPS = [
     { t0: 16, t1: 27, kind: 'union', head: '*A* ∪ *B*', sub: '«*A* oppure *B*», anche tutti e due' },
@@ -189,7 +213,7 @@
   const lst = (a) => '{' + a.join(', ') + '}';
 
   PV.add('operazioni', {
-    sec: '1.1',
+    sec: '1.2',
     short: 'Operazioni fra eventi',
     title: 'Operazioni fra eventi: unione, intersezione, complementare',
     alt: 'Animazione: gli eventi A (pari) e B (più di 4) sul dado, disposti in un diagramma di Venn; si evidenziano unione, intersezione, complementare e differenza.',
@@ -257,10 +281,10 @@
   });
 
   /* ======================================================================
-     1.1 · Leggi di De Morgan
+     1.2 · Leggi di De Morgan
      ====================================================================== */
   PV.add('demorgan', {
-    sec: '1.1',
+    sec: '1.2',
     short: 'Leggi di De Morgan',
     title: 'Leggi di De Morgan: «non (A oppure B)» e «non (A e B)»',
     alt: 'Animazione: sul diagramma di Venn si mostra che il complementare dell’unione è l’intersezione dei complementari, e il complementare dell’intersezione è l’unione dei complementari; poi l’esempio dei tre server.',
@@ -339,7 +363,7 @@
   });
 
   /* ======================================================================
-     1.2 · Gli assiomi: la probabilità come una torta che vale 1
+     1.4 · Le tre regole: la probabilità come una torta che vale 1
      ====================================================================== */
   const PIE = [320, 156, 88]; // la torta: cx, cy, r
   const MX = 110, MS = 70, MY = 272, MH = 40; // la barra lunga 1: una casella per esito
@@ -354,19 +378,19 @@
   const segX = (n) => MX + (n - 1) * MS;
 
   PV.add('assiomi', {
-    sec: '1.2',
-    short: 'La torta e i tre assiomi',
-    title: 'Gli assiomi: la probabilità come una torta che vale 1',
-    alt: 'Animazione: una torta che vale 1 si divide in sei fette uguali come gli esiti di un dado, poi diventa una barra lunga 1; sulla barra si vedono le tre regole: pesi non negativi, peso totale 1, pesi che si sommano per eventi disgiunti.',
+    sec: '1.4',
+    short: 'La torta e le tre regole',
+    title: 'Le tre regole: la probabilità come una torta che vale 1',
+    alt: 'Animazione: una torta che vale 1 si divide in sei fette uguali come gli esiti di un dado, poi diventa una barra lunga 1; sulla barra si vedono le tre regole: nessuna fetta è negativa, la torta intera vale 1, le fette di eventi senza esiti in comune si sommano.',
     dur: 56,
     poster: 18.5,
-    chap: [[0, 'La torta'], [23, 'Regola 1: pesi ≥ 0'], [32, 'Regola 2: totale 1'], [42, 'Regola 3: somma']],
+    chap: [[0, 'La torta'], [23, 'Regola 1: mai sotto zero'], [32, 'Regola 2: totale 1'], [42, 'Regola 3: somma']],
     caps: [
       [0, 'Ora diamo un numero a ogni evento. Immagina la probabilità come una torta che vale 1 intero, da spartire fra gli esiti.'],
-      [7, 'Con un dado la torta si divide in sei fette uguali, una per esito: ogni esito pesa 1/6.'],
+      [7, 'Con un dado la torta si divide in sei fette uguali, una per esito: ogni esito vale 1/6.'],
       [13, 'La probabilità di un evento è la quantità di torta sui suoi esiti. Per «esce pari» sono tre fette: *P*(*A*) = 3/6.'],
       [20, 'Per fare i conti srotoliamo la torta in una barra lunga 1: una casella per ogni fetta.'],
-      [23, 'Regola 1: nessuna fetta pesa meno di zero. *P*(*A*) ≥ 0 per ogni evento *A*.'],
+      [23, 'Regola 1: nessuna fetta è negativa. *P*(*A*) ≥ 0 per ogni evento *A*.'],
       [32, 'Regola 2: la torta intera vale 1. Sommando tutte le fette si arriva a *P*(Ω) = 1.'],
       [42, 'Regola 3: se due eventi non hanno esiti in comune, le loro fette si sommano. Qui *A* = {2, 4, 6} e *B* = {1}.'],
       [49.5, 'Basta mettere le fette una dopo l’altra: 3/6 + 1/6 = 4/6.'],
@@ -378,7 +402,7 @@
         return on(op, tx(320, 44, s, { size: 26, op }) + (sub ? tx(320, 70, sub, { ff: SANS, size: 17, fill: C.soft, op }) : ''));
       };
       o += head(0.2, 6.8, 'La probabilità è una torta') + head(7, 12.8, 'Sei esiti, sei fette') + head(13.2, 19.8, 'Un evento è una parte della torta') + head(20, 23.2, 'La torta diventa una barra lunga 1');
-      o += head(23.2, 32.2, 'Regola 1: pesi non negativi', 'nessuna fetta pesa meno di zero') + head(32.2, 42.2, 'Regola 2: il totale vale 1', 'la torta intera vale 1');
+      o += head(23.2, 32.2, 'Regola 1: mai sotto zero', 'nessuna fetta è negativa') + head(32.2, 42.2, 'Regola 2: il totale vale 1', 'la torta intera vale 1');
       o += head(42.2, 56.5, 'Regola 3: le fette si sommano', 'eventi senza esiti in comune: A = {2, 4, 6} e B = {1}');
 
       /* --- la torta (0-23) e le fette che volano nella barra --- */
@@ -427,7 +451,7 @@
         o += on(mo, '');
       }
 
-      /* regola 1: un peso negativo non esiste */
+      /* regola 1: una fetta negativa non esiste */
       const r1 = vis(t, 23.4, 31.8);
       if (r1 > 0.004) {
         o += tx(320, 140, '*P*(*A*) ≥ 0', { size: 44, op: r1 });
@@ -435,7 +459,7 @@
         const u = p(t, 26, 27.6, E.io), bad = p(t, 27.6, 28.2);
         const w = (MS - 4) * u;
         o += g({ op: r1 }, rect(MX - w, MY, w, MH, { rx: 6, fill: 'var(--rosso)', fo: 0.22, stroke: 'var(--rosso)', sw: 2, da: '5 4' }));
-        o += on(bad, g({ op: r1 * bad }, tx(MX - (MS - 4) / 2, MY - 12, '−1/6', { size: 20, fill: 'var(--rosso)' }) + cross(MX - (MS - 4) / 2, MY + MH / 2, 22, p(t, 27.8, 28.4, E.lin)) + tx(320, 232, 'un peso negativo non esiste', { ff: SANS, size: 18, fill: 'var(--rosso)' })));
+        o += on(bad, g({ op: r1 * bad }, tx(MX - (MS - 4) / 2, MY - 12, '−1/6', { size: 20, fill: 'var(--rosso)' }) + cross(MX - (MS - 4) / 2, MY + MH / 2, 22, p(t, 27.8, 28.4, E.lin)) + tx(320, 232, 'una fetta negativa non esiste', { ff: SANS, size: 18, fill: 'var(--rosso)' })));
       }
 
       /* regola 2: le caselle si riempiono, la somma cresce fino a 1 */
@@ -473,7 +497,7 @@
   });
 
   /* ======================================================================
-     1.2 · Complementare e unione di due eventi qualsiasi
+     1.4 · Complementare e unione di due eventi qualsiasi
      ====================================================================== */
   const CY = 262; // riga delle caselle (una per esito, larga 1/6 di barra)
   const SY = 136; // riga della somma P(A) + P(B)
@@ -488,23 +512,23 @@
   const grp = (n) => (n % 2 === 0 ? n / 2 - 1 : 3 + (n - 1) / 2); // posto della casella n quando A sta a sinistra
 
   PV.add('conseguenze', {
-    sec: '1.2',
+    sec: '1.4',
     short: 'Complementare e unione',
     title: 'Complementare e unione di due eventi: P(Aᶜ) = 1 − P(A), P(A ∪ B)',
-    alt: 'Animazione su una barra lunga 1 divisa in sei caselle: le caselle dell’evento A (pari) stanno da una parte e le altre dall’altra, quindi P(non A) = 1 − P(A); poi, per A e B che si sovrappongono nel 6, sommare i pesi conta due volte il 6 e va tolto P(A ∩ B).',
+    alt: 'Animazione su una barra lunga 1 divisa in sei caselle: le caselle dell’evento A (pari) stanno da una parte e le altre dall’altra, quindi P(non A) = 1 − P(A); poi, per A e B che si sovrappongono nel 6, sommare le probabilità conta due volte il 6 e va tolto P(A ∩ B).',
     dur: 56,
     poster: 17,
     chap: [[0, 'Il complementare'], [20, 'Unione con sovrapposizione']],
     caps: [
-      [0, 'Dagli assiomi si ricava tutto il resto. Primo risultato: il complementare. Prendiamo *A* = «esce pari» = {2, 4, 6}.'],
+      [0, 'Dalle tre regole si ricava tutto il resto. Primo risultato: il complementare. Prendiamo *A* = «esce pari» = {2, 4, 6}.'],
       [8, 'Mettiamo le caselle di *A* da una parte e le altre dall’altra: insieme fanno tutta la barra, che vale 1.'],
-      [12, 'Quello che non sta in *A* pesa il resto: *P*(*A*^c) = 1 − *P*(*A*) = 1 − 3/6 = 3/6.'],
+      [12, 'Quello che non sta in *A* vale il resto: *P*(*A*^c) = 1 − *P*(*A*) = 1 − 3/6 = 3/6.'],
       [16, 'È comodo quando «non *A*» è più facile da calcolare di *A*.'],
       [20, 'Per due eventi qualsiasi la cosa si complica. Prendiamo *A* = {2, 4, 6} e *B* = {5, 6}: il 6 sta in tutti e due.'],
-      [26.5, 'Se sommo i due pesi ottengo 3/6 + 2/6 = 5/6.'],
-      [29.5, 'Ma l’unione *A* ∪ *B* = {2, 4, 5, 6} sono quattro caselle: pesa 4/6, non 5/6.'],
+      [26.5, 'Se sommo le due probabilità ottengo 3/6 + 2/6 = 5/6.'],
+      [29.5, 'Ma l’unione *A* ∪ *B* = {2, 4, 5, 6} sono quattro caselle: vale 4/6, non 5/6.'],
       [34.5, 'Il 6 è stato contato due volte: una in *A* e una in *B*.'],
-      [40.5, 'Lo togliamo una volta: sottraiamo il peso dell’intersezione, *P*(*A* ∩ *B*) = 1/6.'],
+      [40.5, 'Lo togliamo una volta: sottraiamo la probabilità dell’intersezione, *P*(*A* ∩ *B*) = 1/6.'],
       [46, 'Così *P*(*A* ∪ *B*) = *P*(*A*) + *P*(*B*) − *P*(*A* ∩ *B*) = 4/6. Se *A* e *B* sono disgiunti l’ultimo termine vale 0.'],
     ],
     frame(t) {
@@ -565,7 +589,7 @@
       /* riga di commento sotto le graffe, una per volta */
       const lines = [
         [26.6, 29.5, '*P*(*A*) + *P*(*B*) = 3/6 + 2/6 = 5/6', C.ink],
-        [29.8, 34.4, 'ma *A* ∪ *B* = {2, 4, 5, 6} pesa 4/6', C.ink],
+        [29.8, 34.4, 'ma *A* ∪ *B* = {2, 4, 5, 6} vale 4/6', C.ink],
         [34.6, 40.4, 'il 6 è contato due volte', 'var(--rosso)'],
         [40.6, 46, 'togliamo una volta *P*(*A* ∩ *B*) = 1/6', C.ink],
       ];
@@ -601,21 +625,21 @@
     poster: 41.8,
     chap: [[0, 'Favorevoli su possibili'], [14, 'Due dadi: 36 coppie'], [29, 'Le somme non sono uguali']],
     caps: [
-      [0, 'Se tutti gli esiti sono equiprobabili, ognuno pesa 1/*n*. Un dado ha sei esiti: 1/6 ciascuno.'],
-      [6.5, 'Allora un evento pesa quanti esiti contiene: *P*(*A*) = casi favorevoli su casi possibili. Per «esce pari»: 3 su 6.'],
+      [0, 'Se tutti gli esiti sono equiprobabili, ognuno vale 1/*n*. Un dado ha sei esiti: 1/6 ciascuno.'],
+      [6.5, 'Allora la probabilità di un evento è *P*(*A*) = casi favorevoli su casi possibili. Per «esce pari»: 3 su 6.'],
       [14, 'Con due dadi gli esiti sono le coppie (primo, secondo). Sono 36, tutte con la stessa probabilità.'],
       [21, 'Vogliamo la probabilità che la somma faccia 7. Le coppie giuste sono 6, quindi *P*(somma = 7) = 6/36 = 1/6.'],
       [29, 'Attenzione: le somme possibili sono 11, da 2 a 12, ma non per questo ognuna vale 1/11. Lo vediamo subito.'],
       [36.5, 'Facciamo cadere le 36 caselle sulla loro somma: il 7 ne raccoglie 6, il 2 e il 12 una sola.'],
-      [43, 'Le coppie sono equiprobabili, le somme no: pesano 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 trentaseiesimi.'],
+      [43, 'Le coppie sono equiprobabili, le somme no: valgono 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1 trentaseiesimi.'],
       [50.5, 'Prima di dividere, chiediti sempre se gli oggetti che stai contando sono tutti equiprobabili.'],
     ],
     frame(t) {
       let o = '';
-      o += heading(t, 0.2, 13.6, 'Spazio uniforme') + subline(t, 0.4, 6.3, 'esiti equiprobabili: con *n* esiti, ognuno pesa 1/*n*') + subline(t, 6.8, 13.4, '*A* = «esce pari» = {2, 4, 6}');
+      o += heading(t, 0.2, 13.6, 'Spazio uniforme') + subline(t, 0.4, 6.3, 'esiti equiprobabili: con *n* esiti, ognuno vale 1/*n*') + subline(t, 6.8, 13.4, '*A* = «esce pari» = {2, 4, 6}');
       o += heading(t, 14, 28.9, 'Due dadi: 36 coppie', 'ogni coppia (primo, secondo) ha la stessa probabilità');
-      o += heading(t, 29.4, 43, 'Le somme non sono equiprobabili', '11 somme possibili, ma non pesano tutte 1/11');
-      o += heading(t, 43.6, 50.2, 'Coppie sì, somme no', 'sopra ogni colonna: il peso in trentaseiesimi');
+      o += heading(t, 29.4, 43, 'Le somme non sono equiprobabili', '11 somme possibili, ma non valgono tutte 1/11');
+      o += heading(t, 43.6, 50.2, 'Coppie sì, somme no', 'sopra ogni colonna: il valore in trentaseiesimi');
       o += pills(52, [
         { s: 'le 36 coppie: equiprobabili', icon: 'ok', op: vis(t, 50.6, 57.5), u: p(t, 50.9, 51.5, E.lin) },
         { s: 'le 11 somme: no', icon: 'no', op: vis(t, 52.8, 57.5), u: p(t, 53.1, 53.7, E.lin) },
@@ -696,13 +720,13 @@
   });
 
   /* ======================================================================
-     1.4 · Probabilità condizionale: restringere l'universo (dado, A = «esce 6», B = «esce pari»)
+     1.10 · Probabilità condizionale: restringere l'universo (dado, A = «esce 6», B = «esce pari»)
      ====================================================================== */
   const BXS = { 2: 224, 4: 320, 6: 416 }; // posti degli esiti pari quando l'universo è ristretto a B
   const BLS = { 2: 91, 4: 171, 6: 251 }; // posti nel pannello di sinistra (capitolo 4)
 
   PV.add('condizionale', {
-    sec: '1.4',
+    sec: '1.10',
     short: 'Restringere l’universo',
     title: 'Probabilità condizionale: restringere l’universo',
     alt: 'Animazione: con un dado, A = «esce 6» e B = «esce pari». L’informazione B restringe l’universo ai tre esiti 2, 4, 6 e il 6 passa da 1/6 a 1/3, cioè P(A | B) = P(A ∩ B) / P(B) = (1/6) / (3/6) = 1/3. Poi si restringe invece ad A: P(B | A) = 1, diverso da P(A | B); come «cane → quattro zampe» e «quattro zampe → cane».',
@@ -814,7 +838,7 @@
   });
 
   /* ======================================================================
-     1.5 · Formula di Bayes con le frequenze naturali: il test diagnostico su 10 000 persone
+     1.12 · Formula di Bayes con le frequenze naturali: il test diagnostico su 10 000 persone
      ====================================================================== */
   const CARDS = [
     { cx: 124, col: C.A, sym: '*P*(*M*)', big: '1%', l1: 'della popolazione', l2: 'è malata', t0: 0.8 },
@@ -840,7 +864,7 @@
   const dots = (id, col) => `<pattern id="${id}" width="${AP}" height="${AP}" patternUnits="userSpaceOnUse"><circle cx="${AP / 2}" cy="${AP / 2}" r="3.6" fill="${col}"/></pattern>`;
 
   PV.add('bayes', {
-    sec: '1.5',
+    sec: '1.12',
     short: 'Bayes con le frequenze naturali',
     title: 'Formula di Bayes con le frequenze naturali: il test diagnostico',
     alt: 'Animazione: una malattia colpisce l’1% delle persone, un test è positivo nel 99% dei malati e nel 5% dei sani. Su 10 000 persone i malati sono 100 e i sani 9 900; risultano positivi 99 malati e 495 sani. Fra i 594 positivi i malati sono 99, cioè circa 1/6 (17%). Lo stesso rapporto, diviso per 10 000, è la formula di Bayes: 0,0099 / (0,0099 + 0,0495).',
@@ -920,7 +944,7 @@
   });
 
   /* ======================================================================
-     1.6 · Indipendenza: il prodotto delle aree, e un caso di dipendenza (200 utenti)
+     1.16 · Indipendenza: il prodotto delle aree, e un caso di dipendenza (200 utenti)
      ====================================================================== */
   const SQ = 170, QY = 108; // lato dei quadrati e quota del lato superiore
   const RES = [['T', 'C'], ['C', 'C'], ['T', 'T']]; // i tre lanci delle due monete: [primo, secondo]
@@ -941,7 +965,7 @@
   const coinAt = (x, y, c, op) => g({ tf: `translate(${x.toFixed(2)} ${(y + c.dy).toFixed(2)}) scale(${c.sx.toFixed(3)} 1)`, op }, circ(0, 0, 46, { fill: C.paper, stroke: C.ink, sw: 2.4 }) + tx(0, 13, c.face, { size: 38 }));
 
   PV.add('indipendenza', {
-    sec: '1.6',
+    sec: '1.16',
     short: 'Indipendenza: il prodotto',
     title: 'Indipendenza: P(A ∩ B) = P(A) · P(B), con il modello ad aree',
     alt: 'Animazione: due lanci di moneta non si influenzano. In un quadrato che vale 1, A = «testa al primo lancio» occupa metà in larghezza e B = «testa al secondo» metà in altezza; l’intersezione è un rettangolo di area 1/2 per 1/2 = 1/4, cioè P(A ∩ B) = P(A) · P(B). Per confronto, su 200 utenti (A = smartphone, B = abbonamento) B occupa il 25% di A e il 12,5% del resto: P(A ∩ B) = 0,15 non è 0,6 · 0,2 = 0,12, quindi non sono indipendenti.',
@@ -1040,7 +1064,7 @@
      Ripasso della Parte 1: le clip delle sezioni, una dopo l'altra.
      Quando si aggiunge una clip, metterla anche in questa lista (nell'ordine del testo).
      ====================================================================== */
-  PV.seq('parte1', ['esiti', 'operazioni', 'demorgan', 'assiomi', 'conseguenze', 'uniformi', 'condizionale', 'bayes', 'indipendenza'], {
+  PV.seq('parte1', ['esiti', 'evento', 'operazioni', 'demorgan', 'uniformi', 'assiomi', 'conseguenze', 'condizionale', 'bayes', 'indipendenza'], {
     title: 'Ripasso della Parte 1',
     alt: 'Ripasso in video della Parte 1: le animazioni delle singole sezioni una dopo l’altra, ciascuna preceduta da un cartello con il titolo.',
   });
