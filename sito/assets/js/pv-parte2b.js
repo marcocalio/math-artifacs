@@ -1336,7 +1336,7 @@
   })();
 
   /* ripasso della Parte 2: tutte le clip in ordine di testo (quelle di 2.5-2.7 stanno in pv-parte2.js, che si carica prima) */
-  PV.seq('parte2', ['variabile', 'leggeg', 'ripartizione', 'congiunta', 'sommaurna', 'coppiadiversa', 'condiz', 'indipv', 'pietroburgo', 'media', 'tremodi', 'attenzione', 'funzionemedia', 'indicatrici', 'guardaroba', 'ruota12', 'giochiequi', 'varianza', 'covarianza', 'previsione', 'binomiale', 'geometrica', 'negativa', 'ipergeometrica', 'bin_poisson', 'poisson', 'riconoscere', 'somme', 'minmax'], {
+  PV.seq('parte2', ['variabile', 'leggeg', 'ripartizione', 'congiunta', 'sommaurna', 'coppiadiversa', 'condiz', 'indipv', 'media', 'pietroburgo', 'tremodi', 'attenzione', 'funzionemedia', 'indicatrici', 'guardaroba', 'ruota12', 'giochiequi', 'varianza', 'covarianza', 'previsione', 'binomiale', 'geometrica', 'negativa', 'ipergeometrica', 'bin_poisson', 'poisson', 'riconoscere', 'somme', 'minmax'], {
     title: 'Ripasso della Parte 2',
     alt: 'Ripasso in video della Parte 2: le animazioni delle singole sezioni una dopo l’altra, ciascuna preceduta da un cartello con il titolo.',
   });

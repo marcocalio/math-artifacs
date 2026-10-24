@@ -597,7 +597,7 @@
     sec: '3.16',
     short: 'La densità congiunta',
     title: 'Densità congiunta di due variabili continue: il volume sotto la superficie',
-    alt: 'Animazione: una densità congiunta f(x, y) è una superficie sul piano e P((X, Y) ∈ B) è il volume sotto la superficie, sopra B (integrale doppio; volume totale 1). Su un quadrato con densità 1 le variabili sono indipendenti, su un triangolo con densità 2 no; le marginali si ottengono integrando via l’altra variabile: f_X(x) = 2(1 − x) e f_Y(y) = 2y.',
+    alt: 'Animazione: una densità congiunta f(x, y) è una superficie sul piano e P((X, Y) ∈ B) è il volume sotto la superficie, sopra B (integrale doppio; volume totale 1). Su un quadrato con densità 1 le variabili sono indipendenti, su un triangolo con densità 2 no; le marginali si ottengono integrando rispetto all’altra variabile: f_X(x) = 2(1 − x) e f_Y(y) = 2y.',
     dur: 61,
     poster: 17,
     chap: [[0, 'La superficie e il volume'], [23.2, 'Il dominio conta'], [39.8, 'Le marginali']],
@@ -607,12 +607,12 @@
       [15.3, 'In formula è l’integrale doppio di *f* su *B*. Su tutto il piano il volume vale 1, come l’area totale di una densità.'],
       [23.2, 'Il dominio conta. Se *X* e *Y* sono uniformi e indipendenti, la densità vale 1 su tutto il quadrato, e le probabilità sono aree.'],
       [31.5, 'Su un triangolo la densità costante 2 sembra un prodotto, ma il dominio non è un rettangolo: sapere *x* restringe i valori di *y*.'],
-      [39.8, 'Le marginali si ottengono integrando via l’altra variabile. Sul triangolo, per ogni *x* la fetta va da *y* = *x* a 1.'],
+      [39.8, 'Le marginali si ottengono integrando rispetto all’altra variabile. Sul triangolo, per ogni *x* la fetta va da *y* = *x* a 1.'],
       [47.6, 'Quindi *f*_X(*x*) = 2(1 − *x*): scende. Per *y* la fetta va da 0 a *y*: *f*_Y(*y*) = 2*y*, sale. Ognuna ha area 1.'],
       [55.4, 'Il più piccolo dei due numeri sta vicino a 0, il più grande vicino a 1.'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 22.6, 'La densità vive sul piano', '*f*(*x*, *y*) è una superficie') + heading(t, 23.8, 39.2, 'Il dominio conta', 'rettangolo contro triangolo') + heading(t, 40.4, 61.4, 'Le marginali', 'si integra via l’altra variabile');
+      let o = heading(t, 0.2, 22.6, 'La densità vive sul piano', '*f*(*x*, *y*) è una superficie') + heading(t, 23.8, 39.2, 'Il dominio conta', 'rettangolo contro triangolo') + heading(t, 40.4, 61.4, 'Le marginali', 'si integra rispetto all’altra variabile');
       const c1 = 1 - p(t, 22.4, 23.2);
 
       /* ---------- capitolo 1: il piano, la superficie, la regione B e il volume sopra B ---------- */
