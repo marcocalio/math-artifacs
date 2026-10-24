@@ -249,6 +249,7 @@ figure.pv{--pv-a:#1F6FB2;--pv-b:#CC6A00;--pv-c:#8E5BB5;--pv-hi:#E0A800;margin:1.
 .pv-stage{position:relative;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .pv-stage::before{content:"";position:absolute;inset:0;opacity:.5;background-image:linear-gradient(var(--quadretto) 1px,transparent 1px),linear-gradient(90deg,var(--quadretto) 1px,transparent 1px);background-size:26px 26px;background-position:-1px -1px}
 .pv-stage svg{position:relative;display:block;width:100%;height:auto}
+.pv-stage svg *,.pv-play svg,.pv-big svg{pointer-events:none}
 .pv-big{position:absolute;inset:0;display:none;place-items:center;border:0;padding:0;cursor:pointer;background:color-mix(in srgb,var(--foglio) 42%,transparent)}
 .pv-big span{width:72px;height:72px;border-radius:50%;background:var(--inchiostro);color:var(--foglio);display:grid;place-items:center;box-shadow:0 2px 16px rgba(0,0,0,.28)}
 .pv-big svg{width:34px;height:34px;fill:currentColor}
@@ -288,10 +289,13 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
     const svg = $('svg'), big = $('.pv-big span'), btn = $('.pv-play'), seek = $('.pv-seek'), time = $('.pv-time'), cap = $('.pv-cap');
     const chapList = $('.pv-chap'), chap = Array.from(chapList.querySelectorAll('button'));
 
-    let t = 0, playing = false, started = false, prev = 0, raf = 0, lastSvg = '', lastCap = -1, lastChap = -1, api;
+    let t = 0, playing = false, started = false, prev = 0, raf = 0, lastSvg = '', lastCap = -1, lastChap = -1, lastSt = '', api;
 
     function state() {
       const st = !started ? 'idle' : playing ? 'playing' : t >= v.dur ? 'ended' : 'paused';
+      /* solo se cambia: riscrivere l'icona a ogni fotogramma stacca dalla pagina l'elemento su cui hai premuto, e il clic va perso */
+      if (st === lastSt) return;
+      lastSt = st;
       fig.dataset.st = st;
       const ic = st === 'playing' ? ICON.pause : st === 'ended' ? ICON.again : ICON.play;
       btn.innerHTML = ic;
@@ -328,7 +332,7 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
     }
     function tick(ts) {
       if (!playing) return;
-      t = Math.min(v.dur, t + Math.min(0.1, (ts - prev) / 1000));
+      t = Math.min(v.dur, t + (prev < 0 ? 0 : clamp((ts - prev) / 1000, 0, 0.1)));
       prev = ts;
       if (t >= v.dur) playing = false;
       render();
@@ -341,8 +345,9 @@ figure.pv figcaption{padding:9px 16px 11px;border-top:1px solid var(--riga);font
       if (!started || t >= v.dur - 0.05) t = 0;
       started = true;
       playing = true;
-      prev = performance.now();
+      prev = -1; // il primo fotogramma fissa l'orologio
       state();
+      cancelAnimationFrame(raf);
       raf = requestAnimationFrame(tick);
     }
     function pause() {
