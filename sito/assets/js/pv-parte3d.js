@@ -1361,8 +1361,8 @@
   const RX = (u) => 320 + 88 * u, RY = (v) => 250 - 150 * v; // le curve reali cos(t/√n)^n
 
   PV.add('philimite', {
-    sec: '4.2',
-    short: 'Gli strumenti per i teoremi limite',
+    sec: '4.33',
+    short: 'I tre strumenti della dimostrazione del teorema limite centrale',
     title: 'Gli strumenti per i teoremi limite: continuità di Lévy, il lemma e lo sviluppo vicino a 0',
     alt: 'Animazione: le binomiali Bin(n, 2/n) tendono alla Poisson(2) e le loro funzioni caratteristiche, curve nel piano complesso, si srotolano fino a quella della Poisson; a t fissato, φ_n(t) = (1 + z/n)^n è un cammino di n passi che arriva in e^z; infine, per le monete ±1, φ vicino a 0 è 1 − t²/2 e cos(t/√n)^n si avvicina a e^(−t²/2), la φ della normale standard: lo schema del teorema limite centrale.',
     dur: 60,
@@ -1377,7 +1377,7 @@
       [33.8, 'È il limite noto (1 + *x*/*n*)^n → *e*^x, esteso ai complessi. Per Lévy, la binomiale tende alla Poisson.'],
       [39.4, 'Vicino a 0 una φ con media 0 e varianza 1 è 1 − *t*²/2 + o(*t*²): per le monete ±1, φ(*t*) = cos *t*.'],
       [46.4, 'La somma standardizzata di *n* monete ha cos(*t*/√*n*)^n: al crescere di *n* la curva si avvicina a *e*^{−t²/2}, la φ della normale standard.'],
-      [54.6, 'Sviluppo, lemma e Lévy insieme: è lo schema del teorema limite centrale (4.5).'],
+      [54.6, 'Sviluppo, lemma e Lévy insieme: è lo schema del teorema limite centrale (4.23).'],
     ],
     frame(t) {
       let o = heading(t, 0.2, 19.8, 'Le φ seguono le leggi', 'Bin(*n*, 2/*n*) → Poisson(2): colonne e curve di φ_n') + heading(t, 20.6, 39, 'Il lemma: (1 + *z*/*n*)*^n* → *e**^z*', 'φ_n(*t*) a *t* = π/2: un cammino di *n* passi') + heading(t, 39.8, 60.4, 'Verso il teorema limite centrale', 'monete ±1, somma standardizzata: cos(*t*/√*n*)*^n*');
