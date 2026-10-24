@@ -88,7 +88,7 @@
   }
 
   PV.add('istogramma', {
-    sec: '3.3',
+    sec: '3.6',
     short: 'Dall’istogramma alla densità',
     title: 'Da dove viene la densità: dall’istogramma delle altezze alla curva',
     alt: 'Animazione: le altezze di 10 000 persone cadono in fasce da 10 cm e formano un istogramma in cui l’area di ogni rettangolo è la frazione di persone (35% nella fascia 170–180, altezza 0,035 per cm, area totale 1); con fasce da 5, 2 e 1 cm i rettangoli si stringono e i tetti disegnano una curva liscia, la densità, la cui altezza è una probabilità per centimetro.',
@@ -232,7 +232,7 @@
   const cB = (t) => (t < 33 ? 0.5 * p(t, 23, 27.2, E.io) : t < 35.8 ? lerp(0.5, RXR, p(t, 33, 35.4, E.io)) : t < 39 ? lerp(RXR, 0.5, p(t, 35.8, 37.4, E.io)) : lerp(0.5, 0.8, p(t, 39, 41, E.io))); // cursore sulla triangolare
 
   PV.add('ripc', {
-    sec: '3.3',
+    sec: '3.6',
     short: 'La ripartizione è l’area accumulata',
     title: 'La ripartizione è l’area accumulata sotto la densità, e F′ = f',
     alt: 'Animazione: la probabilità di un intervallo è l’area sotto la densità. Un cursore scorre sull’uniforme su [0, 1] accumulando un rettangolo che cresce (F(x) = x) e poi sulla densità triangolare 2x accumulando un triangolo (F(x) = x²), mentre sotto si disegna il grafico di F. La pendenza di F è l’altezza di f; dove f salta, F ha uno spigolo; P(0,2 < X < 0,5) = 0,3 e un punto ha area zero.',
@@ -354,7 +354,7 @@
   const nv = (v) => (Math.abs(v - Math.round(v)) < 0.02 ? String(Math.round(v)) : FMT(v, 1));
 
   PV.add('normalizza', {
-    sec: '3.3',
+    sec: '3.7',
     short: 'La densità non è una probabilità',
     title: 'La densità non è una probabilità: può superare 1, e si normalizza dividendo per l’area',
     alt: 'Animazione: un rettangolo di area 1 che si restringe da base 1 a base 1/2 e 1/3 sale a altezza 2 e 3, mostrando che la densità può superare 1 mentre l’area totale deve restare 1; poi si trova la costante c in f(x) = c x(1 − x) (area 1/6, c = 6, f(1/2) = 1,5, F(x) = 3x² − 2x³); infine una funzione di area k si divide per k per ottenere una densità.',
@@ -469,7 +469,7 @@
   const cqAt = (t) => KC.reduce((a, r, i) => (i ? lerp(a, r[1], p(t, KC[i - 1][0], r[0], E.io)) : a), KC[0][1]);
 
   PV.add('quantili', {
-    sec: '3.3',
+    sec: '3.8',
     short: 'Mediana e quantili',
     title: 'Mediana e quantili: dal livello q sull’asse di F al valore x_q',
     alt: 'Animazione: sulla densità triangolare 2x un cursore scorre fino a lasciare metà dell’area a sinistra (la mediana, m = √0,5 ≈ 0,707); sul grafico di F si legge il livello 1/2, si va a destra fino alla curva e poi giù. Poi il livello q sale a 0,9 (90° percentile, 0,949) e si ripete per 0,25 e 0,5; infine un esempio con F piatta in cui il quantile è il più piccolo x con F(x) ≥ q.',
@@ -578,7 +578,7 @@
   }
 
   PV.add('baricentro', {
-    sec: '3.4',
+    sec: '3.9',
     short: 'Valore atteso e varianza',
     title: 'Valore atteso e varianza nel continuo: da Σ a ∫, il baricentro, la varianza',
     alt: 'Animazione: l’area sotto la densità 2x viene tagliata in strisce di area f(x) dx e la somma Σ x·p di strisce sempre più sottili (0,660, 0,665, 0,666) diventa l’integrale; poi l’area appoggiata su una sbarra si equilibra con il fulcro in 2/3, diverso dalla mediana 0,707; infine E[X²] = 1/2 e Var = 1/18 per la triangolare, 1/12 per l’uniforme.',
@@ -693,7 +693,7 @@
   const Z3 = 200, SC3 = 20; // zero e scala (pixel per unità) delle barre del capitolo 3
 
   PV.add('cauchy', {
-    sec: '3.4',
+    sec: '3.9',
     short: 'Una legge senza valore atteso',
     title: 'Una legge senza valore atteso: la densità di Cauchy',
     alt: 'Animazione: la densità di Cauchy 1/(π(1 + x²)) ha area 1 (una finestra [−c, c] che si allarga racchiude un’area che tende a 1, arctan); ma l’integrale di x·f(x) fra 0 e M vale ln(1 + M²)/(2π) e cresce senza limite, piano piano (2,2 per M = 1 000, 4,4 per M = 10⁶): parte positiva +∞, negativa −∞, ∞ − ∞ non significa niente; simmetrizzare dà 0 ma non è il valore atteso, e un altro taglio dà 0,22.',
@@ -801,7 +801,7 @@
   const tail = (x) => (x <= 1 ? 1 : 1 / (x * x)); // P(X > t) per f = 2/x³
 
   PV.add('formulacode', {
-    sec: '3.4',
+    sec: '3.33',
     short: 'La formula delle code',
     title: 'La formula delle code: E[X] = ∫ P(X > t) dt',
     alt: 'Animazione: un valore X = 3 contribuisce con 1 a ogni soglia t fra 0 e 3, in totale 3; con sei strisce di lunghezza diversa l’area sotto la scala P(X > t) è la lunghezza media (2); per la densità 2/x³ la curva P(X > t) vale 1 fino a 1 e 1/t² dopo, area 1 + 1 = 2 ore; infine la regione 0 < t < x si legge per righe o per colonne e scambia l’ordine di integrazione.',
@@ -926,7 +926,7 @@
   const XM = 71 / 48; // la media
 
   PV.add('pezzi', {
-    sec: '3.4',
+    sec: '3.10',
     short: 'Densità a pezzi, estremo incognito',
     title: 'Densità a pezzi con un estremo incognito: area, media, ripartizione, mediana',
     alt: 'Animazione: una densità che sale da 0 a 1/2 su [0, 1] e poi resta piatta fino a un estremo a incognito; l’area totale pezzo per pezzo (triangolo 1/4 più rettangolo (a − 1)/2) dà a = 5/2; la media 71/48 si ottiene componendo i baricentri (1/4 in 2/3 e 3/4 in 7/4); la ripartizione si scrive a tratti, con il termine 1/4 nel secondo pezzo; la mediana è 3/2.',

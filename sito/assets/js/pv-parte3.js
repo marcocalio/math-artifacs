@@ -170,7 +170,7 @@
   const BAR = (x, y, w, h, col, op = 1, a = {}) => rect(x, y, w, h, { rx: 3, fill: col, fo: 0.85, op, ...a });
 
   PV.add('mista', {
-    sec: '3.1',
+    sec: '3.2',
     short: 'Atomi: discreta, continua, mista',
     title: 'Gli atomi di una variabile: discreta, continua, mista',
     alt: 'Animazione: i valori con probabilità almeno 1/4 sono al più quattro e quelli con almeno 1/10 al più dieci, perché una barra di probabilità totale 1 non può contenerne di più; gli atomi sono un’unione numerabile di insiemi finiti. Poi tre situazioni: discreta, continua e mista; infine l’esempio misto della chiamata che cade dopo 6 minuti, in cui la probabilità 0,4 della coda si raccoglie su un punto.',
@@ -282,7 +282,7 @@
   const riemann = (n) => { let s = 0; for (let i = 1; i <= n; i++) s += sq(i / n) / n; return s; };
 
   PV.add('area', {
-    sec: '3.2',
+    sec: '3.4',
     short: 'L’integrale è un’area',
     title: 'L’integrale come area: rettangolini sempre più stretti, area con segno, additività',
     alt: 'Animazione: l’area sotto x² fra 0 e 1 viene approssimata con 4, 8, 16 e 64 rettangoli, la cui somma scende verso 1/3; poi la funzione x fra −1 e 1, con i due triangoli di area +1/2 e −1/2 che si cancellano; infine l’area di x² spezzata in due pezzi, 1/24 e 7/24, che sommati danno 1/3.',
@@ -372,7 +372,7 @@
   const PRX = (x) => 380 + 230 * x, PRY = (y) => 290 - 75 * y; // f(x) = 2x
 
   PV.add('primitiva', {
-    sec: '3.2',
+    sec: '3.4',
     short: 'Derivata e primitiva',
     title: 'Derivata, primitiva e teorema fondamentale: l’area è F(b) − F(a)',
     alt: 'Animazione: la tangente a F(x) = x² scorre lungo la curva e la sua pendenza coincide con l’altezza di f(x) = 2x, quindi F è una primitiva di f; poi l’area sotto f fra a e b viene confrontata con la differenza F(b) − F(a), e con a = 0 e b = 1 è un triangolo di area 1; infine la tabella delle primitive di una costante, di x, di x^n e dell’esponenziale.',
@@ -469,7 +469,7 @@
   const IX = (x) => 70 + 48 * x, IY = (y) => 270 - 150 * y; // e^{-x} su [0, 10]
 
   PV.add('improprio', {
-    sec: '3.2',
+    sec: '3.5',
     short: 'Integrali fino a infinito',
     title: 'Integrali impropri: area fino a b e limite per b → ∞',
     alt: 'Animazione: l’area sotto e^(−x) fino a b cresce con b e si ferma a 1 (0,632, 0,865, 0,9933, 0,99995); poi la funzione x su tutta la retta, dove gli integrali simmetrici fra −M e M valgono sempre 0 ma ciascuna metà cresce come M²/2, quindi l’integrale non esiste; infine il confronto fra 1/x², la cui area da 1 a b si ferma a 1, e 1/x, la cui area ln b non si ferma mai.',
@@ -559,7 +559,7 @@
   const cPts = (x1, n) => { const a = []; for (let i = 0; i <= n; i++) { const x = (x1 * i) / n; a.push([VX(vOf(x)), UY(x)]); } return a; };
 
   PV.add('parti', {
-    sec: '3.2',
+    sec: '3.19',
     short: 'Per parti e sostituzione',
     title: 'Integrazione per parti e sostituzione',
     alt: 'Animazione: una curva (v(x), u(x)) divide un rettangolo in due aree, ∫u dv e ∫v du, che insieme valgono uv: da qui la formula di integrazione per parti; poi l’esempio di ∫ x e^(−x) dx, con il termine fra parentesi che tende a 0 e il risultato 1; infine la sostituzione u = λx, in cui il grafico di λe^(−λx) si allunga al variare di λ ma l’area resta 1.',
@@ -651,21 +651,21 @@
   const GAX = (x) => 70 + 50 * x, GAY = (y) => 290 - 120 * y; // x^{α−1} e^{−x}
 
   PV.add('gamma_f', {
-    sec: '3.2',
+    sec: '3.25',
     short: 'La funzione Gamma',
     title: 'La funzione Gamma: Γ(α) è un’area, e il fattoriale si estende ai numeri non interi',
-    alt: 'Animazione: le aree sotto x^(α−1) e^(−x) per α = 1, 2, 3, 4 valgono 1, 1, 2, 6, e per α = 1/2 vale √π; poi le barre Γ(1), …, Γ(5) = 1, 1, 2, 6, 24 con i moltiplicatori 1, 2, 3, 4, cioè (n − 1)!; infine la curva Γ(α) che passa per questi valori e si estende ai numeri non interi, con Γ(1/2) = √π e Γ(3/2) = √π/2.',
+    alt: 'Animazione: le aree sotto x^(α−1) e^(−x) per α = 1, 2, 3, 4 valgono 1, 1, 2, 6, e per α = 1/2 vale circa 1,77; poi le barre Γ(1), …, Γ(5) = 1, 1, 2, 6, 24 con i moltiplicatori 1, 2, 3, 4, cioè (n − 1)!; infine la curva Γ(α) che passa per questi valori e si estende ai numeri non interi, con Γ(1/2) ≈ 1,77 e Γ(3/2) ≈ 0,886.',
     dur: 57,
     poster: 20,
     chap: [[0, 'Γ(α) è un’area'], [21.4, 'Γ(α + 1) = α Γ(α)'], [39, 'Il fattoriale esteso']],
     caps: [
       [0, 'La funzione Gamma è un’area: Γ(α) = ∫_0^∞ *x**^{α−1}* *e**^{−x}* d*x*, per ogni α > 0. L’integrale converge: *e**^{−x}* vince su ogni potenza.'],
       [8, 'Con α = 1 la curva è *e**^{−x}* e l’area è 1. Con α = 2 l’area è ancora 1; con α = 3 è 2; con α = 4 è 6.'],
-      [15.6, 'Anche per α = 1/2 l’area esiste, benché la curva salga all’infinito in 0: vale √π ≈ 1,77.'],
+      [15.6, 'Anche per α = 1/2 l’area esiste, benché la curva salga all’infinito in 0: vale circa 1,77.'],
       [21.4, 'Integrando per parti si trova Γ(α + 1) = α Γ(α). Quindi ogni area si ottiene dalla precedente moltiplicando per α.'],
       [29.2, 'Da Γ(1) = 1: Γ(2) = 1, Γ(3) = 2, Γ(4) = 6, Γ(5) = 24. In generale Γ(*n*) = (*n* − 1)!, il fattoriale.'],
       [39, 'La Gamma è il fattoriale esteso ai numeri non interi: la curva passa per i punti (*n*, (*n* − 1)!).'],
-      [46, 'Fra 1 e 2, per esempio, c’è Γ(3/2) = ½ Γ(1/2) = √π/2 ≈ 0,886. Con una scala λ, l’integrale vale Γ(α)/λ^α.'],
+      [46, 'Fra 1 e 2, per esempio, c’è Γ(3/2) = ½ Γ(1/2) ≈ 0,886. Con una scala λ, l’integrale vale Γ(α)/λ^α.'],
     ],
     frame(t) {
       let o = heading(t, 0.2, 20.8, 'Γ(α) è un’area', 'Γ(*α*) = ∫_0^∞ *x**^{α−1}* *e**^{−x}* d*x*') + heading(t, 21.8, 38.6, 'Il fattoriale', 'Γ(*α* + 1) = *α* Γ(*α*)') + heading(t, 39.2, 57.4, 'Il fattoriale esteso', 'la curva passa per (*n*, (*n* − 1)!)');
@@ -689,7 +689,7 @@
         if (h > 0.004) {
           const fh = (x) => Math.pow(x, -0.5) * Math.exp(-x);
           o += `<clipPath id="${hid}">${rect(70, 100, 520, 192)}</clipPath>` + g({ 'clip-path': `url(#${hid})`, op: h }, path(areaD(fh, 0.002, 10, GAX, GAY, 290, 200), { fill: C.B, fo: 0.3 }) + path(curve(fh, 0.002, 10, GAX, GAY, 200), { stroke: C.B, sw: 3.2 }));
-          o += tx(560, 150, '*α* = 1/2', { size: 26, ta: 'end', op: h }) + tx(560, 186, 'area = Γ(1/2) = √π ≈ 1,77', { size: 26, fill: C.B, ta: 'end', op: h });
+          o += tx(560, 150, '*α* = 1/2', { size: 26, ta: 'end', op: h }) + tx(560, 186, 'area = Γ(1/2) ≈ 1,77', { size: 26, fill: C.B, ta: 'end', op: h });
         }
       }
 
@@ -727,8 +727,8 @@
           o += on(u, circ(X(n), Y(gv), 6.5 * Math.min(u, 1), { fill: C.A, stroke: C.paper, sw: 1.5, op: c3 }) + tx(X(n) + (n === 4 ? -12 : 8), Y(gv) - 14, Math.round(gv), { ff: SANS, size: 17, fill: C.soft, ta: n === 4 ? 'end' : 'start', op: c3 * u }));
         });
         const h1 = p(t, 46.4, 47.2) * c3, h2 = p(t, 49.4, 50.2) * c3;
-        o += on(h1, circ(X(0.5), Y(gammaFn(0.5)), 8, { fill: C.hi, stroke: C.ink, sw: 1.8, op: h1 }) + ln(X(0.5), Y(gammaFn(0.5)) - 10, X(0.5), 182, { stroke: C.hi, sw: 2, da: '4 4', op: h1 }) + tx(X(0.5) - 24, 172, 'Γ(1/2) = √π ≈ 1,77', { size: 22, ta: 'start', op: h1 }));
-        o += on(h2, circ(X(1.5), Y(gammaFn(1.5)), 8, { fill: C.hi, stroke: C.ink, sw: 1.8, op: h2 }) + ln(X(1.5), Y(gammaFn(1.5)) - 10, X(1.5), 230, { stroke: C.hi, sw: 2, da: '4 4', op: h2 }) + tx(X(1.5) - 24, 220, 'Γ(3/2) = √π/2 ≈ 0,886', { size: 22, ta: 'start', op: h2 }));
+        o += on(h1, circ(X(0.5), Y(gammaFn(0.5)), 8, { fill: C.hi, stroke: C.ink, sw: 1.8, op: h1 }) + ln(X(0.5), Y(gammaFn(0.5)) - 10, X(0.5), 182, { stroke: C.hi, sw: 2, da: '4 4', op: h1 }) + tx(X(0.5) - 24, 172, 'Γ(1/2) ≈ 1,77', { size: 22, ta: 'start', op: h1 }));
+        o += on(h2, circ(X(1.5), Y(gammaFn(1.5)), 8, { fill: C.hi, stroke: C.ink, sw: 1.8, op: h2 }) + ln(X(1.5), Y(gammaFn(1.5)) - 10, X(1.5), 230, { stroke: C.hi, sw: 2, da: '4 4', op: h2 }) + tx(X(1.5) - 24, 220, 'Γ(3/2) ≈ 0,886', { size: 22, ta: 'start', op: h2 }));
         const pl = p(t, 52.6, 53.4) * c3;
         o += on(pl, pills(108, [{ s: '∫_0^∞ *x**^{α−1}* *e**^{−λx}* d*x* = Γ(*α*) / λ^α', op: pl }]));
       }
@@ -745,7 +745,7 @@
   const pxy = (q) => q[0].toFixed(1) + ' ' + q[1].toFixed(1);
 
   PV.add('doppi', {
-    sec: '3.2',
+    sec: '3.15',
     short: 'Integrali doppi',
     title: 'Integrali doppi: il volume sopra il triangolo, letto in due modi',
     alt: 'Animazione: l’integrale doppio di 2 sul triangolo 0 < x < y < 1 è il volume di un prisma con base di area 1/2 e altezza 2, cioè 1; poi lo stesso volume si calcola scorrendo il triangolo per righe (x da 0 a y, integrale interno 2y) e per colonne (y da x a 1, integrale interno 2(1 − x)): in entrambi i casi l’area sotto l’integrale interno è 1.',
@@ -847,7 +847,7 @@
   const polar = (cx, cy, S, r, th) => [cx + S * r * Math.cos(th), cy - S * r * Math.sin(th)];
 
   PV.add('gauss_int', {
-    sec: '3.2',
+    sec: '3.27',
     short: 'L’integrale gaussiano',
     title: 'L’integrale gaussiano: il trucco delle coordinate polari',
     alt: 'Animazione: l’area sotto la campana e^(−x²/2) non ha una primitiva elementare; il suo quadrato è un integrale doppio sul piano, la cui superficie ha per curve di livello dei cerchi; in coordinate polari un pezzetto di piano ha area r dr dθ; l’integrale in θ vale 2π, quello in r vale 1, quindi l’area al quadrato è 2π e l’area vale √(2π), circa 2,5066.',
@@ -948,7 +948,7 @@
   const lamE = 1 / 20, fEx = (x) => lamE * Math.exp(-lamE * x);
 
   PV.add('condevento', {
-    sec: '3.7',
+    sec: '3.23',
     short: 'Media condizionata a un evento',
     title: 'Valore atteso condizionale a un evento: restringo l’universo e rinormalizzo',
     alt: 'Animazione: la media di un dado sapendo che è uscito pari sale da 3,5 a 4 perché restano 2, 4 e 6 con probabilità 1/3; una uniforme fra 0 e 10 sapendo che X > 4 diventa un’uniforme fra 4 e 10 con media 7; un tempo esponenziale con media 20 secondi, sapendo che dura già 30 secondi, ha di nuovo la forma esponenziale a partire da 30 e media 30 + 20 = 50.',
@@ -1051,7 +1051,7 @@
   const TAPE = [[0.8, 152], [0.5, 214], [0.2, 276]]; // primo taglio e quota della riga
 
   PV.add('torre', {
-    sec: '3.7',
+    sec: '3.24',
     short: 'La media delle medie',
     title: 'E[X | Y] e la media delle medie: E[E[X | Y]] = E[X]',
     alt: 'Animazione: la media degli stipendi di un’azienda è la media dei reparti pesata con il numero di persone (2040 euro, non 2000); con due monete, la media di Y dentro i gruppi X = 0 e X = 1 vale 0,5 e 1,5, e la media di queste medie è 1, cioè E[Y]; il nastro tagliato due volte, in cui il secondo taglio cade in media a metà del primo, quindi E[X] = 1/4 di metro.',
@@ -1141,6 +1141,40 @@
       return o;
     },
   });
+
+  /* ======================================================================
+     Riordino della Parte 3: 'parti' si divide in due, ciascuna nella sezione dove serve
+     (la sostituzione è in 3.13, l'integrazione per parti in 3.19).
+     Ogni parte è un pezzo dell'animazione originale, la seconda rallentata di un fattore 2,2 (frame(t) è una funzione pura di t).
+     ====================================================================== */
+  (function () {
+    const V = PV.videos;
+    const f0 = V.parti.frame.bind(V.parti);
+    PV.add('sostituzione', {
+      sec: '3.13',
+      short: 'La sostituzione negli integrali',
+      title: 'La sostituzione: cambiare variabile in un integrale, l’area non cambia',
+      alt: 'Animazione: la sostituzione è la regola della catena letta al contrario, ∫ h(g(x)) g′(x) dx = ∫ h(u) du; con u = λx l’integrale di λe^(−λx) da 0 a ∞ diventa quello di e^(−u) e vale ancora 1: il grafico si allunga al variare di λ, ma l’area resta 1.',
+      dur: 37.4,
+      poster: 34,
+      chap: [[0, 'Sostituzione: l’area non cambia']],
+      caps: [
+        [0, 'La sostituzione è la regola della catena al contrario: con *u* = *g*(*x*), ∫ *h*(*g*(*x*)) *g*′(*x*) d*x* = ∫ *h*(*u*) d*u*.'],
+        [18, 'Con *u* = λ*x*: ∫_0^∞ λ*e**^{−λx}* d*x* = ∫_0^∞ *e**^{−u}* d*u* = 1. Cambiare unità di misura allunga il grafico, ma l’area resta 1.'],
+      ],
+      frame: (t) => f0(Math.min(42 + t / 2.2, 59)),
+    });
+    Object.assign(V.parti, {
+      sec: '3.19',
+      short: 'Integrazione per parti',
+      title: 'Integrazione per parti: due aree in un rettangolo, e l’esempio di x e⁻ˣ',
+      alt: 'Animazione: una curva (v(x), u(x)) divide un rettangolo in due aree, ∫u dv e ∫v du, che insieme valgono uv: da qui la formula di integrazione per parti; poi l’esempio di ∫ x e^(−x) dx, con il termine fra parentesi che tende a 0 e il risultato 1.',
+      dur: 41.5,
+      chap: V.parti.chap.slice(0, 2),
+      caps: V.parti.caps.slice(0, 6),
+      frame: (t) => f0(Math.min(t, 41)),
+    });
+  })();
 
   /*@@FINE@@*/
 })();

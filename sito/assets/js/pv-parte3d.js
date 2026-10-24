@@ -68,7 +68,7 @@
   }
 
   PV.add('uniformec', {
-    sec: '3.8',
+    sec: '3.11',
     short: 'Uniforme',
     title: 'La legge uniforme U(a, b): un rettangolo di area 1',
     alt: 'Animazione: gli arrivi di un amico fra le 9:00 e le 9:10 cadono in tutti i minuti allo stesso modo e formano un rettangolo di area 1 (altezza 1/10); la probabilità di un intervallo è la sua lunghezza divisa per b − a (3/10 fra le 9:02 e le 9:05) e la ripartizione cresce in linea retta; la media è il punto medio e la varianza di U(a, b) è quella di U(0, 1) moltiplicata per (b − a)².',
@@ -217,7 +217,7 @@
   };
 
   PV.add('esponenziale', {
-    sec: '3.8',
+    sec: '3.20',
     short: 'Esponenziale',
     title: 'La legge esponenziale Exp(λ): attese, ritmo e assenza di memoria',
     alt: 'Animazione: le attese fra le richieste di un server, raccolte per lunghezza, disegnano la densità λe^(−λx); con λ = 2 la media è 1/λ = 0,5 s, la mediana ln 2/λ ≈ 0,35 s, la probabilità di aspettare meno di mezzo secondo è 1 − e^(−1) ≈ 0,632; λ è un ritmo (una richiesta ogni 2 secondi vuol dire λ = 1/2); infine, dopo aver aspettato s, la parte di curva a destra di s, riscalata e spostata, coincide con la curva originale: l’assenza di memoria.',
@@ -389,7 +389,7 @@
   const GAL = [[1, C.A, 17.8], [2, C.B, 19.6], [3, C.C, 21.4], [5, C.ink, 23.2]]; // α, colore, istante in cui si disegna
 
   PV.add('gammac', {
-    sec: '3.8',
+    sec: '3.26',
     short: 'Gamma',
     title: 'La legge Gamma Γ(α, λ): la somma di α attese esponenziali',
     alt: 'Animazione: il tempo fino al terzo cliente di uno sportello è la somma di tre attese esponenziali messe in fila; ripetendo l’esperimento i valori si accumulano e disegnano la densità Γ(3, 2); poi la famiglia Gamma al variare di α (α = 1 è l’esponenziale), con media α/λ e varianza α/λ²; il tempo T fino al terzo cliente ha P(T ≤ 2) = 1 − 13e^(−4) ≈ 0,762, uguale a P(Poisson(4) ≥ 3); infine l’avvertenza sul ritmo λ o sulla scala 1/λ nelle librerie.',
@@ -546,7 +546,7 @@
   const N5X = (x) => 320 + 600 * x, N5B = 262, N5Y = (d) => N5B - 40 * d; // media di n misure (mm)
 
   PV.add('normale', {
-    sec: '3.8',
+    sec: '3.28',
     short: 'Normale',
     title: 'La legge normale N(μ, σ²): la campana e i suoi parametri',
     alt: 'Animazione: la densità normale si costruisce da una parabola rivolta in basso (l’esponente), che vale 0 nella media e rende massima la densità; la campana è simmetrica con i flessi in μ ± σ; μ la sposta, σ la allarga o la stringe e l’area resta 1; entro 1, 2 e 3 deviazioni standard stanno circa il 68%, il 95% e il 99,7% dei valori; la somma di normali indipendenti è normale (medie e varianze si sommano) e la media di n misure ha deviazione standard σ/√n.',
@@ -702,7 +702,7 @@
   ];
 
   PV.add('standard', {
-    sec: '3.8',
+    sec: '3.30',
     short: 'Standardizzazione',
     title: 'Standardizzare: una sola campana, la tavola di Φ e l’esercizio della consegna garantita',
     alt: 'Animazione: la riga dei numeri sotto la campana N(48, 6²) scorre fino a mettere lo 0 sotto la media e poi si divide per σ: ogni tacca vale una deviazione standard e 60 ore diventano z = 2; la tavola dà Φ(z), area a sinistra di z, e la simmetria Φ(−z) = 1 − Φ(z); l’esercizio delle consegne: P(T > 60) = 1 − Φ(2) = 0,0228, e per rimborsare solo l’1% serve z = 2,326, cioè 62 ore; con σ = 4 invece di 6 i rimborsi scendono a 0,0013.',
@@ -856,7 +856,7 @@
   const LAWS = [['u', SU, FU, HU, C.B, 'usura', '*h* = 4*x*', 26.6, 32.4, 0.04, 1.25], ['e', SE, FE, HE, C.A, 'esponenziale', '*h* = *λ*', 33.4, 36.8, 0.02, 2], ['r', SR, FR, HR, C.C, 'rodaggio', '*h* = 2/(1 + *x*)', 37.6, 41, 0.02, 2]]; // sigla, S, f, h, colore, nome, formula, da, a, x0, x1
 
   PV.add('guasto', {
-    sec: '3.8',
+    sec: '3.33',
     short: 'Vita residua e tasso di guasto',
     title: 'Vita residua e tasso di guasto: quando l’assenza di memoria non vale',
     alt: 'Animazione: per un componente che si usura, S(x) = e^(−2x²), la parte di curva a destra di un anno, riscalata e spostata, scende molto più in fretta della curva di partenza (0,0025 contro 0,135, circa 55 volte meno), mentre per un’esponenziale con la stessa media coincide con la curva originale; il tasso di guasto h = f/S è la pendenza di S divisa per la sua altezza: cresce per l’usura, è costante per l’esponenziale, decresce per S = 1/(1+x)²; la probabilità di sopravvivere ancora un anno a età t scende per l’usura, resta 0,203 per l’esponenziale, sale per il rodaggio.',
@@ -970,7 +970,7 @@
   const gauge = (parts, op) => rect(GGX, GGB - GGH, GGW, GGH, { rx: 3, fill: C.hi, fo: 0.3 * op, stroke: C.hi, sw: 2, so: op }) + parts.map(([a, b, col]) => rect(GGX, GGB - GGH * b, GGW, GGH * (b - a), { fill: col, fo: 0.75 * op })).join('');
 
   PV.add('normaleintervallo', {
-    sec: '3.8',
+    sec: '3.31',
     short: 'Normale: condizionare',
     title: 'Con la normale: probabilità condizionate a un intervallo o a una coda',
     alt: 'Animazione: per una latenza N(100, 20²) condizionata a stare fra 90 e 130 ms, la probabilità di superare 110 è l’area fra 110 e 130 divisa per l’area fra 90 e 130 (0,2417 / 0,6247 ≈ 0,387); l’errore tipico è dividere P(A) per P(B), che include anche i valori oltre 130 e dà 0,494; per un job N(50, 8²) già in esecuzione da 60 minuti, la probabilità di superare 70 è (1 − Φ(2,5)) / (1 − Φ(1,25)) ≈ 0,059, contro lo 0,6% di partenza.',
@@ -1077,7 +1077,7 @@
   const CLOUD = [-2.3, -0.6, 0.2, 0.9, 1.7, 3.1, -7.5, 24, -45, 0.4, 8.4, -1.4]; // dodici valori di una legge con le code pesanti
 
   PV.add('caratteristica', {
-    sec: '3.9',
+    sec: '3.36',
     short: 'La funzione caratteristica',
     title: 'La funzione caratteristica φ(t) = E[e^{itX}]: il baricentro di punti sul cerchio',
     alt: 'Animazione: e^{iθ} è un punto che gira sulla circonferenza di raggio 1; la funzione caratteristica di X è la media dei punti e^{itx}, pesata con le probabilità, cioè un baricentro: per una moneta il baricentro dei punti 1 ed e^{it} disegna una circonferenza al variare di t, e vale 1 in t = 0 e 0 in t = π; per un’uniforme su [0, 1] i punti riempiono un arco e il baricentro disegna una curva con anelli sempre più piccoli; poiché ogni punto sta sul cerchio, la media esiste sempre, anche per leggi senza valore atteso.',
@@ -1206,7 +1206,7 @@
   const cavg = (arr) => { let x = 0, y = 0, w = 0; arr.forEach(([z, wt]) => { x += z[0] * wt; y += z[1] * wt; w += wt; }); return [x / w, y / w]; };
 
   PV.add('phiprop', {
-    sec: '3.9',
+    sec: '3.36',
     short: 'Le proprietà di φ',
     title: 'Le proprietà della funzione caratteristica: perché valgono',
     alt: 'Animazione: spostare X di b ruota tutti i punti e^(itx) dell’angolo tb, moltiplicare X per a li porta ad angoli a volte più grandi; per due monete indipendenti il baricentro dei punti 1, i, −1 con pesi 1/4, 1/2, 1/4 coincide con il prodotto ((1 + i)/2)² = i/2, perché moltiplicare numeri complessi somma gli angoli e moltiplica le distanze: φ della somma è il prodotto delle φ; la derivata in 0 è la velocità con cui φ parte da 1 e vale i volte la media; infine φ identifica la legge: il prodotto delle φ di Poisson(2) e Poisson(3) è la φ di una Poisson(5).',
@@ -1361,7 +1361,7 @@
   const RX = (u) => 320 + 88 * u, RY = (v) => 250 - 150 * v; // le curve reali cos(t/√n)^n
 
   PV.add('philimite', {
-    sec: '3.9',
+    sec: '4.2',
     short: 'Gli strumenti per i teoremi limite',
     title: 'Gli strumenti per i teoremi limite: continuità di Lévy, il lemma e lo sviluppo vicino a 0',
     alt: 'Animazione: le binomiali Bin(n, 2/n) tendono alla Poisson(2) e le loro funzioni caratteristiche, curve nel piano complesso, si srotolano fino a quella della Poisson; a t fissato, φ_n(t) = (1 + z/n)^n è un cammino di n passi che arriva in e^z; infine, per le monete ±1, φ vicino a 0 è 1 − t²/2 e cos(t/√n)^n si avvicina a e^(−t²/2), la φ della normale standard: lo schema del teorema limite centrale.',

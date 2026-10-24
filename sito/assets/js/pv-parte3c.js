@@ -45,7 +45,7 @@
   };
 
   PV.add('lineare', {
-    sec: '3.5',
+    sec: '3.12',
     short: 'Funzioni di una variabile',
     title: 'Funzioni di una variabile: il metodo in tre passi con Y = 1,8X + 32',
     alt: 'Animazione: una temperatura uniforme fra 20 e 30 gradi Celsius diventa Y = 1,8X + 32 in Fahrenheit; il metodo in tre passi (ripartizione, disuguaglianza risolta rispetto a X, derivata) dà Y uniforme fra 68 e 86, con l’intervallo più largo di 1,8 volte e la densità che scende da 1/10 a 1/18. Con un coefficiente negativo, Y = −2X, l’asse si capovolge e la disuguaglianza si gira.',
@@ -198,7 +198,7 @@
   const QT0 = 13.8, QDT = 0.06, QFL = 0.7; // inizio della pioggia, intervallo fra due punti, durata del volo
 
   PV.add('quadrato', {
-    sec: '3.5',
+    sec: '3.12',
     short: 'Il quadrato di un numero a caso',
     title: 'Il quadrato di un numero a caso: Y = X² con X uniforme su (0, 1)',
     alt: 'Animazione: cento numeri uniformi fra 0 e 1 cadono sul loro quadrato e si ammassano vicino a 0 (0,5 diventa 0,25 e 0,1 diventa 0,01). Il metodo dà F_Y(y) = P(X ≤ √y) = √y e, derivando, f_Y(y) = 1/(2√y), la curva che coincide con l’istogramma; P(Y ≤ 0,25) = 0,5 e l’area totale è 1.',
@@ -329,7 +329,7 @@
   const mdy = (d) => MBB - MK * d; // densità → pixel
 
   PV.add('monotona', {
-    sec: '3.5',
+    sec: '3.13',
     short: 'Il cambio di variabile',
     title: 'Il cambio di variabile per una funzione monotona: Y = −ln U è esponenziale',
     alt: 'Animazione: le dieci fettine di probabilità 1/10 di una variabile U uniforme seguono la curva u = e^(−y), scendono sull’asse di Y = −ln U e diventano colonne della stessa area, strette dove la curva è ripida e larghe dove è piatta: f_Y(y) = f_X(g^(−1)(y)) · |(g^(−1))′(y)|. Per la g decrescente −ln la disuguaglianza si gira, F_Y(y) = 1 − e^(−y), e Y è esponenziale di ritmo 1.',
@@ -475,7 +475,7 @@
   const ILT0 = 26.6, ILDT = 0.085, ILFL = 1.3; // inizio del percorso inverso, intervallo, durata del volo
 
   PV.add('inversione', {
-    sec: '3.5',
+    sec: '3.14',
     short: 'Il metodo dell’inversione',
     title: 'Il metodo dell’inversione: F(X) è uniforme, e F⁻¹(U) ha ripartizione F',
     alt: 'Animazione: un numero uniforme u sale alla curva F(x) = 1 − e^(−x/4) e scende sull’asse dei minuti (u = 0,5 dà 2,77 minuti, u = 0,9 dà 9,21); sessanta numeri si addensano dove F è ripida e il percorso inverso mostra che F(X) è uniforme. Risolvendo u = F(x) si ottiene x = −4 ln(1 − u), la riga di codice che simula un’attesa esponenziale di media 4 minuti.',
@@ -594,7 +594,7 @@
   const cpy = (y) => CY0 - CS * y;
 
   PV.add('congiuntac', {
-    sec: '3.6',
+    sec: '3.16',
     short: 'La densità congiunta',
     title: 'Densità congiunta di due variabili continue: il volume sotto la superficie',
     alt: 'Animazione: una densità congiunta f(x, y) è una superficie sul piano e P((X, Y) ∈ B) è il volume sotto la superficie, sopra B (integrale doppio; volume totale 1). Su un quadrato con densità 1 le variabili sono indipendenti, su un triangolo con densità 2 no; le marginali si ottengono integrando via l’altra variabile: f_X(x) = 2(1 − x) e f_Y(y) = 2y.',
@@ -739,7 +739,7 @@
   const hxMid = (v) => 366 + 240 * v + 30; // centro della finestra di attesa di 15 minuti che parte da v
 
   PV.add('appuntamento', {
-    sec: '3.6',
+    sec: '3.16',
     short: 'L’appuntamento in piazza',
     title: 'L’appuntamento in piazza: la probabilità è un’area nel quadrato',
     alt: 'Animazione: Anna e Bruno arrivano a caso fra mezzogiorno e l’una e aspettano 15 minuti: la coppia (X, Y) è un punto a caso nel quadrato di lato 1 e si incontrano se |X − Y| ≤ 1/4, una fascia attorno alla diagonale. I due triangoli bianchi hanno cateti 3/4 e area 9/32 ciascuno, quindi la fascia vale 1 − 9/16 = 7/16, circa 0,4375.',
@@ -872,7 +872,7 @@
   const fmt2 = (v) => v.toFixed(2).replace('.', ',');
 
   PV.add('condizc', {
-    sec: '3.6',
+    sec: '3.17',
     short: 'La densità condizionale',
     title: 'Densità condizionale: restringi e rinormalizza la fetta',
     alt: 'Animazione: tagliando la densità congiunta con il piano di altezza Y = y si ottiene una fetta x ↦ f(x, y), che si divide per la sua area f_Y(y) per avere una densità; sul triangolo con densità 2 è uniforme su (0, y), alta 1/y, con media y/2. Con variabili indipendenti tutte le fette hanno la stessa forma e f(x | y) = f_X(x); sul triangolo no.',
@@ -983,7 +983,7 @@
   };
 
   PV.add('convoluzione', {
-    sec: '3.6',
+    sec: '3.21',
     short: 'La somma e la convoluzione',
     title: 'Somma di variabili indipendenti: la convoluzione di due uniformi',
     alt: 'Animazione: la densità della somma di due variabili indipendenti è l’integrale di f_X(x) f_Y(z − x); per due uniformi su [0, 1] una finestra scorre con z e la lunghezza della sovrapposizione disegna una densità triangolare su [0, 2], con picco 1 in z = 1. Così P(X + Y ≤ 1) = 1/2 e P(X + Y > 1,5) = 1/8.',
@@ -1072,7 +1072,7 @@
   };
 
   PV.add('minmaxc', {
-    sec: '3.6',
+    sec: '3.22',
     short: 'Il minimo e il massimo',
     title: 'Minimo e massimo di variabili indipendenti: i prodotti sono aree',
     alt: 'Animazione: nel quadrato dei casi di due job indipendenti (esponenziali di ritmo 2 e 3) il massimo ≤ m è il rettangolo F_X(m) F_Y(m) e il minimo > m è il rettangolo opposto (1 − F_X)(1 − F_Y) = e^(−5m), quindi il minimo è esponenziale di ritmo 5. Il job 1 finisce per primo con probabilità 2/5, e E[max] = 1/2 + 1/3 − 1/5 = 19/30.',
@@ -1203,7 +1203,7 @@
   };
 
   PV.add('duerami', {
-    sec: '3.5',
+    sec: '3.32',
     short: 'Se g non è monotona',
     title: 'Se g non è monotona: il quadrato di una normale, due rami che si sommano',
     alt: 'Animazione: per Y = Z², con Z normale, Z² ≤ y equivale a −√y ≤ Z ≤ √y: la retta all’altezza y taglia la parabola in due punti (i due rami) e F_Y(y) = F_Z(√y) − F_Z(−√y), per esempio P(Y ≤ 1) = 0,6827. Derivando i due rami si sommano e, essendo la campana pari, f_Y(y) = f_Z(√y)/√y = e^(−y/2)/√(2πy), la legge chi-quadro con 1 grado di libertà.',
