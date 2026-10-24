@@ -1075,17 +1075,17 @@
     sec: '3.22',
     short: 'Il minimo e il massimo',
     title: 'Minimo e massimo di variabili indipendenti: i prodotti sono aree',
-    alt: 'Animazione: nel quadrato dei casi di due job indipendenti (esponenziali di ritmo 2 e 3) il massimo ≤ m è il rettangolo F_X(m) F_Y(m) e il minimo > m è il rettangolo opposto (1 − F_X)(1 − F_Y) = e^(−5m), quindi il minimo è esponenziale di ritmo 5. Il job 1 finisce per primo con probabilità 2/5, e E[max] = 1/2 + 1/3 − 1/5 = 19/30.',
+    alt: 'Animazione: nel quadrato dei casi di due lavori indipendenti (esponenziali di ritmo 2 e 3) il massimo ≤ m è il rettangolo F_X(m) F_Y(m) e il minimo > m è il rettangolo opposto (1 − F_X)(1 − F_Y) = e^(−5m), quindi il minimo è esponenziale di ritmo 5. Il lavoro 1 finisce per primo con probabilità 2/5, e E[max] = 1/2 + 1/3 − 1/5 = 19/30.',
     dur: 56,
     poster: 36,
     chap: [[0, 'Il massimo: tutti ≤ m'], [23, 'Il minimo: nessuno > m'], [39, 'Il primo e l’ultimo']],
     caps: [
-      [0, 'Per i tempi conta spesso il primo o l’ultimo di più eventi. Due job indipendenti partono insieme: *X* e *Y* sono le loro durate.'],
+      [0, 'Per i tempi conta spesso il primo o l’ultimo di più eventi. Due lavori indipendenti partono insieme: *X* e *Y* sono le loro durate.'],
       [8.3, 'Il massimo è ≤ *m* solo se entrambi sono ≤ *m*. Nel quadrato dei casi la base è *X* ≤ *m*, l’altezza *Y* ≤ *m*: la zona è un rettangolo.'],
       [17.3, 'Per l’indipendenza la sua area è un prodotto: *P*(max ≤ *m*) = *F*_X(*m*) · *F*_Y(*m*).'],
       [23, 'Il minimo è > *m* solo se nessuno dei due è ≤ *m*: è il rettangolo opposto, con area (1 − *F*_X)(1 − *F*_Y).'],
       [30.3, 'Con ritmi 2 e 3: *P*(min > *m*) = *e*^{−2m} · *e*^{−3m} = *e*^{−5m}. Il minimo è ancora esponenziale e i ritmi si sommano.'],
-      [39, 'Chi finisce per primo? Il job 1, con probabilità proporzionale al suo ritmo: 2/(2 + 3) = 2/5.'],
+      [39, 'Chi finisce per primo? Il lavoro 1, con probabilità proporzionale al suo ritmo: 2/(2 + 3) = 2/5.'],
       [45.4, 'Il massimo non è esponenziale, ma la sua media si trova con max + min = *X* + *Y*: *E*[max] = 1/2 + 1/3 − 1/5 = 19/30.'],
     ],
     frame(t) {
@@ -1157,7 +1157,7 @@
         const w1 = p(t, 40.4, 42.4, E.out), W = 460;
         o += rect(90, 104, W * 0.4 * w1, 40, { fill: C.A, fo: 0.35, stroke: C.A, sw: 2, op: c3 }) + rect(90 + W * 0.4 * w1, 104, W * 0.6 * w1, 40, { fill: C.B, fo: 0.35, stroke: C.B, sw: 2, op: c3 });
         const l1 = p(t, 42.2, 43) * c3;
-        o += on(l1, tx(90 + W * 0.2, 130, 'job 1: 2/5', { size: 22, op: l1 }) + tx(90 + W * 0.7, 130, 'job 2: 3/5', { size: 22, op: l1 }));
+        o += on(l1, tx(90 + W * 0.2, 130, 'lavoro 1: 2/5', { size: 22, op: l1 }) + tx(90 + W * 0.7, 130, 'lavoro 2: 3/5', { size: 22, op: l1 }));
         const f1 = p(t, 43.6, 44.4) * c3;
         o += on(f1, tx(320, 178, '*P*(*X* < *Y*) = *λ*_1 / (*λ*_1 + *λ*_2) = 2/5', { size: 24, op: f1 }));
         /* la media del massimo: E[X] + E[Y] − E[min] */

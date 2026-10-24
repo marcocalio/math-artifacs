@@ -220,33 +220,33 @@
     sec: '3.20',
     short: 'Esponenziale',
     title: 'La legge esponenziale Exp(λ): attese, ritmo e assenza di memoria',
-    alt: 'Animazione: le attese fra le richieste di un server, raccolte per lunghezza, disegnano la densità λe^(−λx); con λ = 2 la media è 1/λ = 0,5 s, la mediana ln 2/λ ≈ 0,35 s, la probabilità di aspettare meno di mezzo secondo è 1 − e^(−1) ≈ 0,632; λ è un ritmo (una richiesta ogni 2 secondi vuol dire λ = 1/2); infine, dopo aver aspettato s, la parte di curva a destra di s, riscalata e spostata, coincide con la curva originale: l’assenza di memoria.',
+    alt: 'Animazione: le attese fra i clienti di uno sportello, raccolte per lunghezza, disegnano la densità λe^(−λx); con λ = 2 la media è 1/λ = 0,5 minuti, la mediana ln 2/λ ≈ 0,35 minuti, la probabilità di aspettare meno di mezzo minuto è 1 − e^(−1) ≈ 0,632; λ è un ritmo (un cliente ogni 2 minuti vuol dire λ = 1/2); infine, dopo aver aspettato s, la parte di curva a destra di s, riscalata e spostata, coincide con la curva originale: l’assenza di memoria.',
     dur: 63,
     poster: 31,
-    chap: [[0, 'Le attese fra le richieste'], [18.5, 'Media, mediana, ripartizione'], [34.2, 'λ è un ritmo, non un tempo'], [44.6, 'Senza memoria']],
+    chap: [[0, 'Le attese fra i clienti'], [18.5, 'Media, mediana, ripartizione'], [34.2, 'λ è un ritmo, non un tempo'], [44.6, 'Senza memoria']],
     caps: [
-      [0, 'Un server riceve richieste a ritmo costante, in media 2 al secondo: ognuna è un segno sulla linea del tempo.'],
-      [6.2, 'Misuro l’attesa fra due richieste e la metto in una colonna per lunghezza: tante attese brevi, poche lunghe.'],
+      [0, 'A uno sportello arrivano clienti a ritmo costante, in media 2 al minuto: ognuno è un segno sulla linea del tempo.'],
+      [6.2, 'Misuro l’attesa fra due clienti e la metto in una colonna per lunghezza: tante attese brevi, poche lunghe.'],
       [12.6, 'Con molte attese il profilo si assesta: è la densità *f*(*x*) = *λ**e**^{−λx}*, con *λ* = 2.'],
-      [18.5, 'La curva scende da *λ*. L’attesa media è 1/*λ* = 0,5 s (il fulcro); la mediana, ln 2/*λ* ≈ 0,35 s, sta più a sinistra.'],
-      [25.8, 'Aspettare meno di mezzo secondo ha probabilità *F*(0,5) = 1 − *e*^{−1} ≈ 0,632. La varianza è 1/*λ*², quindi *σ* = 1/*λ*, come la media.'],
-      [34.2, '*λ* è un ritmo, non un tempo. Con 2 richieste al secondo la media è 0,5 s; con una richiesta ogni 2 secondi è *λ* = 1/2 e la media è 2 s.'],
+      [18.5, 'La curva scende da *λ*. L’attesa media è 1/*λ* = 0,5 minuti (il fulcro); la mediana, ln 2/*λ* ≈ 0,35 minuti, sta più a sinistra.'],
+      [25.8, 'Aspettare meno di mezzo minuto ha probabilità *F*(0,5) = 1 − *e*^{−1} ≈ 0,632. La varianza è 1/*λ*², quindi *σ* = 1/*λ*, come la media.'],
+      [34.2, '*λ* è un ritmo, non un tempo. Con 2 clienti al minuto la media è 0,5 minuti; con un cliente ogni 2 minuti è *λ* = 1/2 e la media è 2 minuti.'],
       [44.6, 'Hai già aspettato *s* senza che accadesse nulla: la parte di curva a sinistra di *s* non conta più, resta quella a destra.'],
       [51.6, 'Condizionare a *X* > *s* vuol dire tenerla e riscalarla per riavere area 1; poi sposto l’origine in *s*.'],
       [57.6, 'La curva è identica all’originale: la coda riparte come nuova. Solo l’esponenziale lo fa.'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 18, 'Il tempo fino alla prossima richiesta', 'un server riceve in media 2 richieste al secondo') + heading(t, 18.6, 33.8, 'Media, mediana e ripartizione', '*f*(*x*) = *λ**e**^{−λx}*,   *F*(*x*) = 1 − *e**^{−λx}*') + heading(t, 34.4, 44.2, '*λ* è un ritmo, non un tempo', 'stessa forma: cambia solo la scala dei tempi, 1/*λ*') + heading(t, 44.8, 63.4, 'Senza memoria', '*P*(*X* > *s* + *t* | *X* > *s*) = *P*(*X* > *t*)');
+      let o = heading(t, 0.2, 18, 'Il tempo fino al prossimo cliente', 'a uno sportello arrivano in media 2 clienti al minuto') + heading(t, 18.6, 33.8, 'Media, mediana e ripartizione', '*f*(*x*) = *λ**e**^{−λx}*,   *F*(*x*) = 1 − *e**^{−λx}*') + heading(t, 34.4, 44.2, '*λ* è un ritmo, non un tempo', 'stessa forma: cambia solo la scala dei tempi, 1/*λ*') + heading(t, 44.8, 63.4, 'Senza memoria', '*P*(*X* > *s* + *t* | *X* > *s*) = *P*(*X* > *t*)');
 
       /* capitoli 1 e 2: il grafico grande delle attese (λ = 2) */
       const big = p(t, 0.5, 1.4) * (1 - p(t, 33.8, 34.5));
       if (big > 0.004) {
         /* asse delle attese */
-        o += g({ op: big }, ln(HX(0) - 10, HB, HX(2) + 14, HB, { stroke: C.soft, sw: 1.8 }) + [0, 0.5, 1, 1.5, 2].map((x) => ln(HX(x), HB, HX(x), HB + 6, { stroke: C.soft, sw: 1.8 }) + tx(HX(x), HB + 26, nc(x, x % 1 ? 1 : 0), { ff: SANS, size: 17, fill: C.soft })).join('') + tx(HX(2) + 14, HB + 26, 's', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
+        o += g({ op: big }, ln(HX(0) - 10, HB, HX(2) + 14, HB, { stroke: C.soft, sw: 1.8 }) + [0, 0.5, 1, 1.5, 2].map((x) => ln(HX(x), HB, HX(x), HB + 6, { stroke: C.soft, sw: 1.8 }) + tx(HX(x), HB + 26, nc(x, x % 1 ? 1 : 0), { ff: SANS, size: 17, fill: C.soft })).join('') + tx(HX(2) + 14, HB + 26, 'min', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
         /* capitolo 1: la linea del tempo, i segni delle richieste e le attese che cadono */
         const c1 = p(t, 0.6, 1.4) * (1 - p(t, 10.2, 11));
         if (c1 > 0.004) {
-          o += ln(STX(0), 118, STX(5.4), 118, { stroke: C.soft, sw: 1.6, op: c1 }) + [0, 1, 2, 3, 4, 5].map((s) => ln(STX(s), 118, STX(s), 124, { stroke: C.soft, sw: 1.6, op: c1 }) + tx(STX(s), 144, s, { ff: SANS, size: 17, fill: C.soft, op: c1 })).join('') + tx(STX(5.4), 100, 'tempo (s)', { ff: SANS, size: 17, fill: C.soft, ta: 'end', op: c1 });
+          o += ln(STX(0), 118, STX(5.4), 118, { stroke: C.soft, sw: 1.6, op: c1 }) + [0, 1, 2, 3, 4, 5].map((s) => ln(STX(s), 118, STX(s), 124, { stroke: C.soft, sw: 1.6, op: c1 }) + tx(STX(s), 144, s, { ff: SANS, size: 17, fill: C.soft, op: c1 })).join('') + tx(STX(5.4), 100, 'tempo (min)', { ff: SANS, size: 17, fill: C.soft, ta: 'end', op: c1 });
           REQ.forEach((r, k) => {
             const u = p(t, 1.3 + 0.32 * k, 1.8 + 0.32 * k, E.back);
             if (u > 0) o += circ(STX(r), 118, 6.5 * u, { fill: C.B, stroke: C.paper, sw: 1.6, op: c1 });
@@ -284,12 +284,12 @@
         const mm_ = p(t, 20.4, 21.2) * big, bm = p(t, 23, 23.8) * big, fa = p(t, 26.4, 27.2) * big, sg = p(t, 30, 30.8) * big;
         if (bm > 0.004) {
           o += g({ op: bm }, ln(HX(med), HB, HX(med), HY(fe2(med)), { stroke: C.B, sw: 2.6, da: '6 4' }));
-          o += g({ op: bm }, ln(330, 168, 354, 168, { stroke: C.B, sw: 2.6, da: '6 4' }) + tx(364, 175, 'mediana: ln 2/*λ* ≈ 0,35 s', { size: 20, ta: 'start' }));
+          o += g({ op: bm }, ln(330, 168, 354, 168, { stroke: C.B, sw: 2.6, da: '6 4' }) + tx(364, 175, 'mediana: ln 2/*λ* ≈ 0,35 min', { size: 20, ta: 'start' }));
         }
         if (mm_ > 0.004) {
           const wob = Math.sin(14 * (t - 21.2)) * 4 * Math.exp(-3 * (t - 21.2)) * (t > 21.2 ? 1 : 0);
           o += g({ op: mm_, tf: `rotate(${f(wob)} ${HX(0.5)} ${HB + 32})` }, fulc(HX(0.5), HB + 32, 1));
-          o += g({ op: mm_ }, path(`M342 193l-8 15h16z`, { fill: C.hi, fo: 0.95, stroke: C.ink, sw: 1.2 }) + tx(364, 206, 'media: 1/*λ* = 0,5 s', { size: 20, ta: 'start' }));
+          o += g({ op: mm_ }, path(`M342 193l-8 15h16z`, { fill: C.hi, fo: 0.95, stroke: C.ink, sw: 1.2 }) + tx(364, 206, 'media: 1/*λ* = 0,5 min', { size: 20, ta: 'start' }));
         }
         if (fa > 0.004) {
           o += g({ op: fa }, path(areaD(fe2, 0, 0.5, HX, HY, HB), { fill: OK, fo: 0.4 }) + ln(HX(0.5), HB, HX(0.5), HY(fe2(0.5)), { stroke: OK, sw: 2.2, da: '5 4' }));
@@ -306,7 +306,7 @@
       /* capitolo 3: due ritmi, la stessa forma */
       const c3 = vis(t, 34.4, 44.2, 0.7, 0.6);
       if (c3 > 0.004) {
-        [[40, 2, 'ritmo *λ* = 2 al secondo', '2 richieste al secondo', [0, 1, 2], 'media 1/*λ* = 0,5 s', 35], [340, 0.5, 'ritmo *λ* = 1/2 al secondo', 'una richiesta ogni 2 secondi', [0, 2, 4, 6, 8], 'media 1/*λ* = 2 s', 38.6]].forEach(([x0, lam, tit, sub, ticks, ml, t0]) => {
+        [[40, 2, 'ritmo *λ* = 2 al minuto', '2 clienti al minuto', [0, 1, 2], 'media 1/*λ* = 0,5 min', 35], [340, 0.5, 'ritmo *λ* = 1/2 al minuto', 'un cliente ogni 2 minuti', [0, 2, 4, 6, 8], 'media 1/*λ* = 2 min', 38.6]].forEach(([x0, lam, tit, sub, ticks, ml, t0]) => {
           const a = p(t, t0, t0 + 0.8) * c3, X = (x) => SMX(x0, lam, x), Y = (x) => 262 - 110 * Math.exp(-lam * x), xe = 4 / lam;
           const fn = (x) => Math.exp(-lam * x);
           o += on(a, g({ op: a }, tx(x0 + 130, 110, tit, { size: 20 }) + tx(x0 + 130, 134, sub, { ff: SANS, size: 17, fill: C.soft }) + ln(x0 - 6, 262, x0 + 266, 262, { stroke: C.soft, sw: 1.8 }) + ticks.map((x) => ln(X(x), 262, X(x), 268, { stroke: C.soft, sw: 1.8 }) + tx(X(x), 286, x, { ff: SANS, size: 17, fill: C.soft })).join('') + path(areaD((x) => fn(x), 0, xe, X, (d) => 262 - 110 * d, 262, 70), { fill: C.A, fo: 0.2 }) + path(curve(fn, 0, xe, X, (d) => 262 - 110 * d, 70), { stroke: C.A, sw: 3, lc: 'round' })));
@@ -392,23 +392,22 @@
     sec: '3.26',
     short: 'Gamma',
     title: 'La legge Gamma Γ(α, λ): la somma di α attese esponenziali',
-    alt: 'Animazione: il tempo fino al terzo cliente di uno sportello è la somma di tre attese esponenziali messe in fila; ripetendo l’esperimento i valori si accumulano e disegnano la densità Γ(3, 2); poi la famiglia Gamma al variare di α (α = 1 è l’esponenziale), con media α/λ e varianza α/λ²; il tempo T fino al terzo cliente ha P(T ≤ 2) = 1 − 13e^(−4) ≈ 0,762, uguale a P(Poisson(4) ≥ 3); infine l’avvertenza sul ritmo λ o sulla scala 1/λ nelle librerie.',
-    dur: 61,
+    alt: 'Animazione: il tempo fino al terzo cliente di uno sportello è la somma di tre attese esponenziali messe in fila; ripetendo l’esperimento i valori si accumulano e disegnano la densità Γ(3, 2); poi la famiglia Gamma al variare di α (α = 1 è l’esponenziale), con media α/λ e varianza α/λ²; il tempo T fino al terzo cliente ha P(T ≤ 2) = 1 − 13e^(−4) ≈ 0,762, uguale a P(Poisson(4) ≥ 3).',
+    dur: 52.8,
     poster: 16.6,
-    chap: [[0, 'Tre attese in fila'], [18.4, 'La famiglia Gamma'], [37.4, 'Gamma e Poisson'], [52.2, 'Attenzione alle librerie']],
+    chap: [[0, 'Tre attese in fila'], [18.4, 'La famiglia Gamma'], [37.4, 'Gamma e Poisson']],
     caps: [
       [0, 'A uno sportello arrivano in media 2 clienti al minuto. Ogni attesa fra un cliente e il successivo è esponenziale.'],
       [6.4, 'Il tempo *T* fino al terzo cliente è la somma di tre attese esponenziali indipendenti, messe in fila.'],
       [12.4, 'Ripeto l’esperimento: i valori di *T* si accumulano in colonne e disegnano la densità Gamma, qui Γ(3, 2).'],
       [18.4, 'Con α attese in fila la forma cambia: α = 1 è l’esponenziale, poi la gobba si sposta a destra e la curva si allarga.'],
       [25.4, 'La densità è *λ*^α *x*^{α−1} *e*^{−λx} / Γ(α): Γ(α) fa tornare l’area a 1 e, per α intero, vale (α − 1)!.'],
-      [31, 'Media α/*λ* e varianza α/*λ*² crescono con α, come per una somma di α attese. Con α = *n*/2 e *λ* = 1/2 è il chi-quadro.'],
+      [31, 'Media α/*λ* e varianza α/*λ*² crescono con α, come per una somma di α attese.'],
       [37.4, 'I clienti arrivano come un processo di Poisson, 2 al minuto: il terzo arriva entro 2 minuti se in 2 minuti ne arrivano almeno 3.'],
       [45, 'Il tempo *T* è Γ(3, 2): media 1,5 minuti, varianza 3/4. E *P*(*T* ≤ 2) = 1 − 13*e*^{−4} ≈ 0,762, senza integrare.'],
-      [52.2, 'Nelle librerie controlla se il parametro è il ritmo *λ* o la scala 1/*λ*: sbagliare non dà errori, ma un’altra media.'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 18.2, 'Tre attese in fila', 'il tempo fino al terzo cliente, con 2 clienti al minuto') + heading(t, 18.8, 37, 'La famiglia Gamma', '*λ* = 2 clienti al minuto, α clienti da aspettare') + heading(t, 37.6, 52, 'Gamma e Poisson', 'il terzo cliente entro 2 minuti ⇔ almeno 3 clienti in 2 minuti') + heading(t, 52.6, 61.4, 'Ritmo o scala?', 'stessa legge, due modi di scrivere il parametro');
+      let o = heading(t, 0.2, 18.2, 'Tre attese in fila', 'il tempo fino al terzo cliente, con 2 clienti al minuto') + heading(t, 18.8, 37, 'La famiglia Gamma', '*λ* = 2 clienti al minuto, α clienti da aspettare') + heading(t, 37.6, 52, 'Gamma e Poisson', 'il terzo cliente entro 2 minuti ⇔ almeno 3 clienti in 2 minuti');
 
       /* capitolo 1: gettoni in fila e istogramma dei T */
       const c1 = 1 - p(t, 18.2, 19);
@@ -477,8 +476,6 @@
         o += on(fm, tx(282, 124, '*f*(*x*) = *λ*^α *x*^{α−1} ' + sp('e', '−λx') + ' / Γ(α)', { size: 26, op: fm }));
         const gm = p(t, 28.4, 29.4) * c2 * (1 - p(t, 30.6, 31.2));
         o += on(gm, tx(282, 158, 'Γ(1) = 1,  Γ(2) = 1,  Γ(3) = 2,  Γ(4) = 6', { size: 22, fill: C.C, op: gm }));
-        const cq = p(t, 34, 34.8) * c2;
-        o += on(cq, pills(338, [{ s: 'α = *n*/2, *λ* = 1/2:  chi-quadro con *n* gradi di libertà', op: cq }]));
       }
 
       /* capitolo 3: il terzo cliente entro 2 minuti ⇔ almeno 3 clienti in 2 minuti */
@@ -508,22 +505,6 @@
         const fl = p(t, 49.8, 50.8) * c3;
         o += on(fl, tx(320, 342, '*P*(*T* ≤ 2) = 1 − ' + sp('e', '−4') + '(1 + 4 + 8) = 1 − 13' + sp('e', '−4') + ' ≈ 0,762', { size: 22, op: fl }));
       }
-
-      /* capitolo 4: ritmo o scala nelle librerie */
-      const c4 = vis(t, 52.6, 61.4, 0.7, 0.01);
-      if (c4 > 0.004) {
-        const MN = 'ui-monospace, Menlo, Consolas, monospace', X4 = (x) => 70 + 43 * x, B4 = 300, Y4 = (d) => B4 - 150 * d;
-        const l1 = p(t, 53.4, 54.2) * c4, l2 = p(t, 56, 56.8) * c4;
-        o += on(l1, tx(60, 118, 'rng.gamma(shape=3, scale=1/2)', { ff: MN, size: 20, ta: 'start', op: l1 }) + check(540, 112, 20, p(t, 54, 54.8, E.lin), { op: l1 }) + tx(568, 118, '1,5', { size: 22, ta: 'start', fill: OK, op: l1 }) + tx(612, 94, 'media', { ff: SANS, size: 17, fill: C.soft, ta: 'end', op: l1 }) + tx(60, 94, 'numpy', { ff: SANS, size: 17, fill: C.soft, ta: 'start', op: l1 }));
-        o += on(l2, tx(60, 150, 'rng.gamma(shape=3, scale=2)', { ff: MN, size: 20, ta: 'start', op: l2 }) + cross(540, 144, 20, p(t, 56.6, 57.4, E.lin), { op: l2 }) + tx(568, 150, '6', { size: 22, ta: 'start', fill: NO, op: l2 }));
-        const pl = p(t, 54.4, 55.4) * c4;
-        o += g({ op: pl }, ln(X4(0) - 10, B4, X4(12) + 8, B4, { stroke: C.soft, sw: 1.8 }) + [0, 3, 6, 9, 12].map((m) => tx(X4(m), B4 + 24, m, { ff: SANS, size: 17, fill: C.soft })).join('') + tx(X4(12) + 14, B4 + 24, 'min', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
-        o += path(curve((x) => gpdf(x, 3, 2), 0, 12, X4, Y4, 110), { stroke: OK, sw: 3, lc: 'round', op: pl, ...draw(p(t, 54.4, 56, E.io)) });
-        const w1 = p(t, 56.6, 58.6, E.io);
-        if (w1 > 0.004) o += path(curve((x) => gpdf(x, 3, 0.5), 0, 12, X4, Y4, 110), { stroke: NO, sw: 3, lc: 'round', op: c4, ...draw(w1) });
-        const lb1 = p(t, 58.4, 59.2) * c4;
-        o += on(lb1, tx(X4(1.8), 226, 'media 1,5', { size: 20, fill: OK, ta: 'start', op: lb1 }) + tx(X4(5.6), 214, 'media 6', { size: 20, fill: NO, ta: 'start', op: lb1 }));
-      }
       return o;
     },
   });
@@ -549,23 +530,19 @@
     sec: '3.28',
     short: 'Normale',
     title: 'La legge normale N(μ, σ²): la campana e i suoi parametri',
-    alt: 'Animazione: la densità normale si costruisce da una parabola rivolta in basso (l’esponente), che vale 0 nella media e rende massima la densità; la campana è simmetrica con i flessi in μ ± σ; μ la sposta, σ la allarga o la stringe e l’area resta 1; entro 1, 2 e 3 deviazioni standard stanno circa il 68%, il 95% e il 99,7% dei valori; la somma di normali indipendenti è normale (medie e varianze si sommano) e la media di n misure ha deviazione standard σ/√n.',
-    dur: 61.5,
+    alt: 'Animazione: la densità normale si costruisce da una parabola rivolta in basso (l’esponente), che vale 0 nella media e rende massima la densità; la campana è simmetrica con i flessi in μ ± σ; μ la sposta, σ la allarga o la stringe e l’area resta 1.',
+    dur: 35,
     poster: 17.6,
-    chap: [[0, 'Smontiamo la formula'], [19.4, 'μ sposta, σ allarga'], [32.8, 'La regola 68-95-99,7'], [45.8, 'Somme e medie']],
+    chap: [[0, 'Smontiamo la formula'], [19.4, 'μ sposta, σ allarga']],
     caps: [
       [0, 'Smontiamo la formula. L’esponente −(*x* − *μ*)²/(2*σ*²) è una parabola rivolta in basso, che vale 0 in *x* = *μ*.'],
       [6.4, 'Dove l’esponente è 0 la densità è massima; più ci si allontana da *μ*, più l’esponente scende e la curva si abbassa: ecco la campana.'],
       [13.9, 'I flessi stanno in *μ* − *σ* e *μ* + *σ*. La costante 1/(*σ*√(2π)) serve solo a far tornare l’area a 1.'],
       [19.4, '*μ* sposta la campana senza cambiarne la forma; *σ* la allarga o la stringe, ma l’area resta sempre 1.'],
       [25.4, 'Con *σ* piccolo la campana è alta e stretta, con *σ* grande bassa e larga. Attenzione: in N(*μ*, *σ*²) il secondo numero è la varianza.'],
-      [32.8, 'La regola 68-95-99,7, per ogni normale: entro 1, 2 e 3 deviazioni standard dalla media stanno il 68%, il 95% e il 99,7%.'],
-      [39.8, 'Oltre tre deviazioni standard capita circa 3 volte su 1 000: è la soglia con cui si segnalano le misure anomale.'],
-      [45.8, 'Combinando normali indipendenti si resta nella famiglia: le medie si sommano e anche le varianze. Con *σ* = 3 e 4 la somma ha *σ* = 5, non 7.'],
-      [53.8, 'La media di *n* misure è N(*μ*, *σ*²/*n*): la deviazione standard scende a *σ*/√*n*. Con 4 misure l’errore entro ±0,1 mm passa dal 38% al 68%.'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 19.2, 'La campana, smontata', '*f*(*x*) = 1/(*σ*√(2π)) · ' + sp('e', '−(x − μ)²/(2σ²)')) + heading(t, 19.8, 32.4, '*μ* sposta, *σ* allarga', 'la forma resta quella, l’area resta 1') + heading(t, 33, 45.4, 'La regola 68-95-99,7', 'valida per ogni *μ* e ogni *σ*') + heading(t, 46, 61.9, 'Somme e medie di normali', 'normali indipendenti: il risultato è ancora normale');
+      let o = heading(t, 0.2, 19.2, 'La campana, smontata', '*f*(*x*) = 1/(*σ*√(2π)) · ' + sp('e', '−(x − μ)²/(2σ²)')) + heading(t, 19.8, 34.4, '*μ* sposta, *σ* allarga', 'la forma resta quella, l’area resta 1');
 
       /* capitolo 1: la parabola dell'esponente e la campana */
       const c1 = vis(t, 0.3, 19.4, 0.6, 0.6);
@@ -613,7 +590,7 @@
       }
 
       /* capitolo 2: μ sposta, σ allarga */
-      const c2 = vis(t, 19.8, 32.6, 0.6, 0.5);
+      const c2 = vis(t, 19.8, 34.6, 0.6, 0.4);
       if (c2 > 0.004) {
         const mu = kf(t, [[20.2, 0], [21, 0], [22.4, 3], [23.2, 3], [24.8, -3], [25.6, -3], [26.8, 0]]);
         const sg = kf(t, [[26.8, 1], [27.4, 1], [28.8, 0.5], [29.4, 0.5], [30.8, 2], [31.4, 2]]);
@@ -628,57 +605,6 @@
         o += tx(600, 114, 'area = 1', { size: 22, fill: C.A, ta: 'end', op: c2 });
         const pv = p(t, 30.6, 31.4) * c2;
         o += on(pv, pills(338, [{ s: 'N(*μ*, *σ*²): il secondo parametro è la varianza', op: pv }]));
-      }
-
-      /* capitolo 3: 68-95-99,7 */
-      const c3 = vis(t, 33, 45.6, 0.6, 0.5);
-      if (c3 > 0.004) {
-        o += g({ op: c3 }, ln(N3X(-4), N3B, N3X(4), N3B, { stroke: C.soft, sw: 1.8 }) + [-3, -2, -1, 0, 1, 2, 3].map((z) => ln(N3X(z), N3B, N3X(z), N3B + 6, { stroke: C.soft, sw: 1.8 }) + tx(N3X(z), N3B + 26, z === 0 ? '*μ*' : '*μ*' + (z < 0 ? '−' : '+') + (Math.abs(z) === 1 ? '' : Math.abs(z)) + '*σ*', { ff: SANS, size: 17, fill: C.soft })).join(''));
-        const kk = kf(t, [[33.4, 0], [35.2, 1], [36.2, 1], [37.8, 2], [38.8, 2], [40.4, 3]]);
-        if (kk > 0.01) {
-          o += path(areaD(npdf, -kk, kk, N3X, N3Y, N3B, 90), { fill: C.A, fo: 0.45, op: c3 }) + ln(N3X(kk), N3B, N3X(kk), N3Y(npdf(kk)), { stroke: C.A, sw: 2, da: '4 4', op: c3 }) + ln(N3X(-kk), N3B, N3X(-kk), N3Y(npdf(kk)), { stroke: C.A, sw: 2, da: '4 4', op: c3 });
-        }
-        o += path(areaD(npdf, -4, 4, N3X, N3Y, N3B, 110), { fill: C.A, fo: 0.1, op: c3 }) + path(curve(npdf, -4, 4, N3X, N3Y, 110), { stroke: C.A, sw: 3, lc: 'round', op: c3 });
-        const r1 = vis(t, 35, 37.2, 0.4, 0.4) * c3, r2 = vis(t, 37.6, 39.8, 0.4, 0.4) * c3, r3 = p(t, 40.2, 41) * c3 * (1 - p(t, 44.8, 45.4));
-        [[r1, '68%', 'esatto 68,27%'], [r2, '95%', 'esatto 95,45%'], [r3, '99,7%', 'esatto 99,73%']].forEach(([op, big, ex_]) => {
-          if (op > 0.004) o += tx(320, 112, big, { size: 40, fill: C.A, op }) + tx(320, 136, ex_, { ff: SANS, size: 17, fill: C.soft, op });
-        });
-        const tl = p(t, 41.8, 42.6) * c3 * (1 - p(t, 45, 45.5));
-        o += on(tl, brace(N3X(3), N3X(4), N3B + 34, NO, tl, 1) + brace(N3X(-4), N3X(-3), N3B + 34, NO, tl, 1) + tx(626, 200, 'oltre 3*σ*:', { size: 22, fill: NO, ta: 'end', op: tl }) + tx(626, 226, 'circa 3 su 1 000', { size: 22, fill: NO, ta: 'end', op: tl }));
-      }
-
-      /* capitolo 4a: somma di due normali indipendenti */
-      const c4 = vis(t, 46, 53.6, 0.6, 0.6);
-      if (c4 > 0.004) {
-        o += g({ op: c4 }, ln(N4X(-12), N4B, N4X(22), N4B, { stroke: C.soft, sw: 1.8 }) + [-10, -5, 0, 5, 10, 15, 20].map((x) => ln(N4X(x), N4B, N4X(x), N4B + 6, { stroke: C.soft, sw: 1.8 }) + tx(N4X(x), N4B + 26, sn(x, 0), { ff: SANS, size: 17, fill: C.soft })).join(''));
-        [[2, 3, C.A, 46.4, '*X* ~ N(2, 3²)', 112], [3, 4, C.B, 48, '*Y* ~ N(3, 4²)', 138], [5, 5, C.C, 50, '*X* + *Y* ~ N(5, 5²)', 164]].forEach(([m, sdv, col, t0, lab, ly], i) => {
-          const u = p(t, t0, t0 + 1.2, E.io);
-          if (u > 0.004) {
-            const fn = (x) => npdf(x, m, sdv);
-            o += path(areaD(fn, -12, 22, N4X, N4Y, N4B, 120), { fill: col, fo: 0.16 * u, op: c4 }) + path(curve(fn, -12, 22, N4X, N4Y, 120), { stroke: col, sw: i === 2 ? 3.6 : 3, lc: 'round', op: c4, ...draw(u) });
-            o += ln(44, ly - 6, 66, ly - 6, { stroke: col, sw: 3.4, op: c4 * u }) + tx(76, ly, lab, { size: 22, ta: 'start', op: c4 * u });
-          }
-        });
-        const pl = p(t, 51.6, 52.4) * c4;
-        o += on(pl, pills(338, [{ s: 'medie: 2 + 3 = 5   varianze: 9 + 16 = 25  (*σ* = 5, non 7)', op: pl }]));
-      }
-
-      /* capitolo 4b: la media di n misure */
-      const c5 = vis(t, 53.8, 61.9, 0.6, 0.01);
-      if (c5 > 0.004) {
-        o += g({ op: c5 }, ln(N5X(-0.5), N5B, N5X(0.5), N5B, { stroke: C.soft, sw: 1.8 }) + [-0.2, -0.1, 0, 0.1, 0.2].map((x) => ln(N5X(x), N5B, N5X(x), N5B + 6, { stroke: C.soft, sw: 1.8 }) + tx(N5X(x), N5B + 26, sn(x, 1), { ff: SANS, size: 17, fill: C.soft })).join('') + tx(N5X(0.5) + 4, N5B + 26, 'mm', { ff: SANS, size: 17, fill: C.soft, ta: 'end' }));
-        const b1 = p(t, 54.4, 55.6, E.io), b2 = p(t, 57.4, 58.8, E.io), h1 = p(t, 55.8, 56.6) * c5, h2 = p(t, 59, 59.8) * c5;
-        const f1 = (x) => npdf(x, 0, 0.2), f2 = (x) => npdf(x, 0, 0.1);
-        o += on(h1, path(areaD(f1, -0.1, 0.1, N5X, N5Y, N5B, 40), { fill: C.A, fo: 0.4 * h1 }));
-        o += on(h2, path(areaD(f2, -0.1, 0.1, N5X, N5Y, N5B, 40), { fill: C.B, fo: 0.4 * h2 }));
-        if (b1 > 0.004) o += path(curve(f1, -0.5, 0.5, N5X, N5Y, 110), { stroke: C.A, sw: 3.2, lc: 'round', op: c5, ...draw(b1) });
-        if (b2 > 0.004) o += path(curve(f2, -0.5, 0.5, N5X, N5Y, 110), { stroke: C.B, sw: 3.2, lc: 'round', op: c5, ...draw(b2) });
-        const t1 = p(t, 54.8, 55.6) * c5, t2 = p(t, 58, 58.8) * c5;
-        o += on(t1, ln(420, 116, 442, 116, { stroke: C.A, sw: 3.4, op: t1 }) + tx(452, 122, '1 misura: *σ* = 0,2', { size: 20, ta: 'start', op: t1 }));
-        o += on(t2, ln(420, 142, 442, 142, { stroke: C.B, sw: 3.4, op: t2 }) + tx(452, 148, 'media di 4: *σ* = 0,1', { size: 20, ta: 'start', op: t2 }));
-        const q1 = p(t, 56.4, 57.2) * c5 * (1 - p(t, 58.4, 59)), q2 = p(t, 59.6, 60.4) * c5;
-        o += on(q1, tx(40, 196, 'entro ±0,1 mm:', { size: 20, ta: 'start', op: q1 }) + tx(40, 228, '38%', { size: 30, fill: C.A, ta: 'start', op: q1 }));
-        o += on(q2, tx(40, 196, 'entro ±0,1 mm:', { size: 20, ta: 'start', op: q2 }) + tx(40, 228, '68%', { size: 30, fill: C.B, ta: 'start', op: q2 }));
       }
       return o;
     },
@@ -973,29 +899,29 @@
     sec: '3.31',
     short: 'Normale: condizionare',
     title: 'Con la normale: probabilità condizionate a un intervallo o a una coda',
-    alt: 'Animazione: per una latenza N(100, 20²) condizionata a stare fra 90 e 130 ms, la probabilità di superare 110 è l’area fra 110 e 130 divisa per l’area fra 90 e 130 (0,2417 / 0,6247 ≈ 0,387); l’errore tipico è dividere P(A) per P(B), che include anche i valori oltre 130 e dà 0,494; per un job N(50, 8²) già in esecuzione da 60 minuti, la probabilità di superare 70 è (1 − Φ(2,5)) / (1 − Φ(1,25)) ≈ 0,059, contro lo 0,6% di partenza.',
+    alt: 'Animazione: per il tempo di percorrenza di un treno regionale N(100, 20²) minuti, condizionato a stare fra 90 e 130 minuti, la probabilità di superare 110 è l’area fra 110 e 130 divisa per l’area fra 90 e 130 (0,2417 / 0,6247 ≈ 0,387); l’errore tipico è dividere P(A) per P(B), che include anche i valori oltre 130 e dà 0,494; per una riunione N(50, 8²) già in corso da 60 minuti, la probabilità di superare 70 è (1 − Φ(2,5)) / (1 − Φ(1,25)) ≈ 0,059, contro lo 0,6% di partenza.',
     dur: 57,
     poster: 24,
     chap: [[0, 'Condizionare a un intervallo'], [26.6, 'L’errore che fanno tutti'], [33.4, 'Condizionare a una coda']],
     caps: [
-      [0, 'La latenza di una richiesta è N(100, 20²), in ms. Sapendo che sta fra 90 e 130 ms, qual è la probabilità che superi 110 ms?'],
+      [0, 'Un treno impiega N(100, 20²) minuti per una tratta. Sapendo che sta fra 90 e 130, qual è la probabilità che superi 110?'],
       [7.4, 'L’universo è ora l’intervallo *B*. L’evento *A* = {*X* > 110} resta solo in parte: *A* ∩ *B* è l’intervallo fra 110 e 130.'],
       [14.6, 'Standardizzo: 90, 110 e 130 diventano −0,5, 0,5 e 1,5. *P*(*A* ∩ *B*) = 0,9332 − 0,6915 = 0,2417 e *P*(*B*) = 0,9332 − 0,3085 = 0,6247.'],
       [22, 'Quindi *P*(*A* | *B*) = 0,2417/0,6247 ≈ 0,387: circa il 39% dell’universo *B*.'],
       [26.6, 'L’errore che fanno tutti: dividere *P*(*A*) per *P*(*B*). Viene 0,494, sbagliato: entrano anche i valori oltre 130, che *B* esclude.'],
-      [33.4, 'Un job dura *X* ~ N(50, 8²) minuti ed è in esecuzione da 60. Con quale probabilità durerà più di 70 in tutto?'],
+      [33.4, 'Una riunione dura *X* ~ N(50, 8²) minuti ed è in corso da 60. Con quale probabilità durerà più di 70 in tutto?'],
       [40.6, 'Qui *A* = {*X* > 70} è dentro *B* = {*X* > 60}, quindi *A* ∩ *B* = *A*. Con *z* = 1,25 e 2,5: *P*(*A* | *B*) = 0,0062/0,1056 ≈ 0,059.'],
       [48.4, 'Circa il 6%, contro lo 0,6% di partenza: quasi dieci volte di più. Con l’esponenziale i 60 minuti non conterebbero; con la normale sì.'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 26, 'Condizionare a un intervallo', 'latenza *X* ~ N(100, 20²): *P*(*X* > 110 | 90 < *X* < 130)') + heading(t, 26.8, 33.1, 'L’errore che fanno tutti', 'dividere *P*(*A*) invece di *P*(*A* ∩ *B*)') + heading(t, 33.8, 57.4, 'Condizionare a una coda', 'job *X* ~ N(50, 8²): *P*(*X* > 70 | *X* > 60)');
+      let o = heading(t, 0.2, 26, 'Condizionare a un intervallo', 'treno *X* ~ N(100, 20²): *P*(*X* > 110 | 90 < *X* < 130)') + heading(t, 26.8, 33.1, 'L’errore che fanno tutti', 'dividere *P*(*A*) invece di *P*(*A* ∩ *B*)') + heading(t, 33.8, 57.4, 'Condizionare a una coda', 'riunione *X* ~ N(50, 8²): *P*(*X* > 70 | *X* > 60)');
 
       /* capitoli 1 e 2a: la latenza, B, A ∩ B, e l'errore */
       const c1 = vis(t, 0.3, 33.4, 0.6, 0.6);
       if (c1 > 0.004) {
         const fn = (x) => npdf(x, 100, 20), bu = p(t, 0.5, 1.5);
         o += on(bu, path(areaD(fn, 60, 150, I1X, I1Y, I1B, 90), { fill: C.A, fo: 0.14 * bu, op: c1 }) + path(curve(fn, 60, 150, I1X, I1Y, 90), { stroke: C.A, sw: 3, lc: 'round', op: c1 }));
-        o += g({ op: bu * c1 }, ln(I1X(56), I1B, I1X(154), I1B, { stroke: C.soft, sw: 1.8 }) + [60, 80, 90, 100, 110, 120, 130, 140].map((x) => ln(I1X(x), I1B, I1X(x), I1B + 6, { stroke: C.soft, sw: 1.8 }) + tx(I1X(x), I1B + 26, x, { ff: SANS, size: 17, fill: [90, 110, 130].includes(x) && t > 3 ? C.ink : C.soft })).join('') + tx(I1X(154) + 8, I1B + 26, 'ms', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
+        o += g({ op: bu * c1 }, ln(I1X(56), I1B, I1X(154), I1B, { stroke: C.soft, sw: 1.8 }) + [60, 80, 90, 100, 110, 120, 130, 140].map((x) => ln(I1X(x), I1B, I1X(x), I1B + 6, { stroke: C.soft, sw: 1.8 }) + tx(I1X(x), I1B + 26, x, { ff: SANS, size: 17, fill: [90, 110, 130].includes(x) && t > 3 ? C.ink : C.soft })).join('') + tx(I1X(154) + 8, I1B + 26, 'min', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
         /* B = {90 < X < 130} */
         const rb = p(t, 3, 4) * c1 * (1 - p(t, 32.4, 33));
         o += on(rb, path(areaD(fn, 90, 130, I1X, I1Y, I1B, 50), { fill: C.hi, fo: 0.4 * rb }) + ln(I1X(90), I1B, I1X(90), I1Y(fn(90)), { stroke: C.hi, sw: 2.2, da: '4 4', op: rb }) + ln(I1X(130), I1B, I1X(130), I1Y(fn(130)), { stroke: C.hi, sw: 2.2, da: '4 4', op: rb }));
@@ -1209,10 +1135,10 @@
     sec: '3.36',
     short: 'Le proprietà di φ',
     title: 'Le proprietà della funzione caratteristica: perché valgono',
-    alt: 'Animazione: spostare X di b ruota tutti i punti e^(itx) dell’angolo tb, moltiplicare X per a li porta ad angoli a volte più grandi; per due monete indipendenti il baricentro dei punti 1, i, −1 con pesi 1/4, 1/2, 1/4 coincide con il prodotto ((1 + i)/2)² = i/2, perché moltiplicare numeri complessi somma gli angoli e moltiplica le distanze: φ della somma è il prodotto delle φ; la derivata in 0 è la velocità con cui φ parte da 1 e vale i volte la media; infine φ identifica la legge: il prodotto delle φ di Poisson(2) e Poisson(3) è la φ di una Poisson(5).',
-    dur: 62.5,
+    alt: 'Animazione: spostare X di b ruota tutti i punti e^(itx) dell’angolo tb, moltiplicare X per a li porta ad angoli a volte più grandi; per due monete indipendenti il baricentro dei punti 1, i, −1 con pesi 1/4, 1/2, 1/4 coincide con il prodotto ((1 + i)/2)² = i/2, perché moltiplicare numeri complessi somma gli angoli e moltiplica le distanze: φ della somma è il prodotto delle φ; la derivata in 0 è la velocità con cui φ parte da 1 e vale i volte la media.',
+    dur: 51,
     poster: 26,
-    chap: [[0, 'Spostare e scalare'], [11.4, 'Somma di indipendenti = prodotto'], [36.6, 'Le derivate in 0'], [48.6, 'Un’impronta digitale']],
+    chap: [[0, 'Spostare e scalare'], [11.4, 'Somma di indipendenti = prodotto'], [36.6, 'Le derivate in 0']],
     caps: [
       [0, 'Spostare *X* di *b* ruota i punti dell’angolo *tb*, e con loro la media: φ_{X+b}(*t*) = *e*^{itb} φ_X(*t*).'],
       [5.6, 'Moltiplicare *X* per *a* porta i punti ad angoli *a* volte più grandi: φ_{aX}(*t*) = φ_X(*at*).'],
@@ -1222,12 +1148,10 @@
       [30.2, 'Per variabili indipendenti φ_{X+Y}(*t*) = φ_X(*t*) · φ_Y(*t*), per ogni *t*: è la proprietà che giustifica tutto lo strumento.'],
       [36.6, 'Le derivate in 0 danno i momenti: φ′(0) = *iE*[*X*]. Partendo da 1, il baricentro si muove con velocità *E*[*X*]: 1/2 per una moneta, 1 per due.'],
       [44.6, 'In generale φ^{(k)}(0) = *i*^k *E*[*X*^k]; per *k* = 2, φ″(0) = −*E*[*X*²].'],
-      [48.6, 'Se due φ coincidono, le leggi coincidono. Poisson(2) e Poisson(3) indipendenti hanno φ = exp(2(*e*^{it} − 1)) e exp(3(*e*^{it} − 1)).'],
-      [56.4, 'Il prodotto somma gli esponenti: è la φ di una Poisson(5), quindi per l’unicità *X* + *Y* ~ Poisson(5).'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 11.2, 'Spostare e scalare', 'φ_{aX+b}(*t*) = ' + sp('e', 'itb') + ' φ_X(*at*)') + heading(t, 11.8, 36.2, 'Somma di indipendenti = prodotto', 'φ_{X+Y}(*t*) = φ_X(*t*) · φ_Y(*t*)') + heading(t, 36.8, 48.2, 'Le derivate in 0 sono i momenti', 'φ′(0) = *iE*[*X*],   φ″(0) = −*E*[*X*²]') + heading(t, 48.8, 62.7, 'Un’impronta digitale', 'φ determina la legge: Poisson(2) + Poisson(3) = Poisson(5)');
-      o += plane(p(t, 0.4, 1.4), 0, !(t > 36.8 && t < 48.6));
+      let o = heading(t, 0.2, 11.2, 'Spostare e scalare', 'φ_{aX+b}(*t*) = ' + sp('e', 'itb') + ' φ_X(*at*)') + heading(t, 11.8, 36.2, 'Somma di indipendenti = prodotto', 'φ_{X+Y}(*t*) = φ_X(*t*) · φ_Y(*t*)') + heading(t, 36.8, 50.6, 'Le derivate in 0 sono i momenti', 'φ′(0) = *iE*[*X*],   φ″(0) = −*E*[*X*²]');
+      o += plane(p(t, 0.4, 1.4), 0, !(t > 36.8 && t < 50.8));
 
       /* capitolo 1: aX + b sulla moneta, con t fissato (1,1 rad) */
       const c1 = vis(t, 0.3, 11.4, 0.6, 0.6);
@@ -1306,7 +1230,7 @@
       }
 
       /* capitolo 3: la derivata in 0 è la velocità di partenza, cioè la media */
-      const c3 = vis(t, 36.8, 48.4, 0.6, 0.6);
+      const c3 = vis(t, 36.8, 50.8, 0.6, 0.2);
       if (c3 > 0.004) {
         o += path(TRACE(phiCoin, 0, TAU, 80), { stroke: C.B, sw: 3, op: c3 }) + path(TRACE(phi2, 0, TAU, 100), { stroke: C.A, sw: 3, op: c3 });
         const a1 = p(t, 38.6, 40, E.io), a2 = p(t, 41, 42.4, E.io);
@@ -1320,25 +1244,6 @@
         o += on(f3, ln(30, 204, 50, 204, { stroke: C.A, sw: 3.6, op: f3 }) + tx(58, 210, 'due monete: *E* = 1', { size: 22, ta: 'start', op: f3 }));
         const f4 = p(t, 44.8, 45.6) * c3;
         o += on(f4, tx(30, 262, 'φ″(0) = −*E*[*X*²]', { size: 24, ta: 'start', op: f4 }));
-      }
-
-      /* capitolo 4: Poisson(2) · Poisson(3) = Poisson(5) */
-      const c4 = vis(t, 48.8, 62.7, 0.6, 0.01);
-      if (c4 > 0.004) {
-        const tt = Math.PI * seg(t, 51.4, 60), cs = [[2, C.B], [3, C.C], [5, C.A]];
-        cs.forEach(([lam, col], i) => {
-          const u = p(t, 50.4 + 0.3 * i, 51 + 0.3 * i);
-          o += path(TRACE(phiPoi(lam), 0, tt, 90), { stroke: col, sw: 3, lc: 'round', op: c4 * u });
-        });
-        const P2 = phiPoi(2)(tt), P3 = phiPoi(3)(tt), P5 = cmul(P2, P3);
-        o += cdot(P2, 6.5, C.B, c4) + cdot(P3, 6.5, C.C, c4) + cdot(P5, 8, C.A, c4);
-        const l1 = p(t, 49.2, 50) * c4, l2 = p(t, 50, 50.8) * c4, l3 = p(t, 53.6, 54.4) * c4;
-        o += on(l1, ln(30, 134, 50, 134, { stroke: C.B, sw: 3.6, op: l1 }) + tx(58, 140, '*X* ~ Poisson(2):', { size: 20, ta: 'start', op: l1 }) + tx(58, 166, 'φ_X = exp(2(*e*^{it} − 1))', { size: 22, fill: C.B, ta: 'start', op: l1 }));
-        o += on(l2, ln(30, 198, 50, 198, { stroke: C.C, sw: 3.6, op: l2 }) + tx(58, 204, '*Y* ~ Poisson(3):', { size: 20, ta: 'start', op: l2 }) + tx(58, 230, 'φ_Y = exp(3(*e*^{it} − 1))', { size: 22, fill: C.C, ta: 'start', op: l2 }));
-        o += on(l3, ln(30, 262, 50, 262, { stroke: C.A, sw: 3.6, op: l3 }) + tx(58, 268, 'φ_X φ_Y = exp(5(*e*^{it} − 1))', { size: 22, fill: C.A, ta: 'start', op: l3 }));
-        o += tx(30, 306, '*t* = ' + nc(tt, 1), { size: 22, ta: 'start', op: c4 * p(t, 51.4, 52.2) });
-        const pl = p(t, 57.6, 58.4) * c4;
-        o += on(pl, pills(338, [{ s: 'stessa φ ⇒ stessa legge: Poisson(5)', op: pl }], 195));
       }
       return o;
     },

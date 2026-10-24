@@ -951,7 +951,7 @@
     sec: '3.23',
     short: 'Media condizionata a un evento',
     title: 'Valore atteso condizionale a un evento: restringo l’universo e rinormalizzo',
-    alt: 'Animazione: la media di un dado sapendo che è uscito pari sale da 3,5 a 4 perché restano 2, 4 e 6 con probabilità 1/3; una uniforme fra 0 e 10 sapendo che X > 4 diventa un’uniforme fra 4 e 10 con media 7; un tempo esponenziale con media 20 secondi, sapendo che dura già 30 secondi, ha di nuovo la forma esponenziale a partire da 30 e media 30 + 20 = 50.',
+    alt: 'Animazione: la media di un dado sapendo che è uscito pari sale da 3,5 a 4 perché restano 2, 4 e 6 con probabilità 1/3; una uniforme fra 0 e 10 sapendo che X > 4 diventa un’uniforme fra 4 e 10 con media 7; il tempo di arrivo di un autobus, esponenziale con media 20 minuti, sapendo che sono già passati 30 minuti, ha di nuovo la forma esponenziale a partire da 30 e media 30 + 20 = 50 minuti.',
     dur: 59.5,
     poster: 28,
     chap: [[0, 'Un dado, sapendo «pari»'], [19, 'Un’uniforme, sapendo X > 4'], [38.6, 'Un’esponenziale, sapendo X > 30']],
@@ -962,12 +962,12 @@
       [19.4, 'Ora *X* è uniforme fra 0 e 10, con densità 1/10 e media 5. Sapendo che *X* > 4…'],
       [24.6, '…tengo solo la parte da 4 a 10, di probabilità 6/10, e la rinormalizzo: la densità diventa 1/6.'],
       [31, 'È di nuovo un’uniforme, su un intervallo più corto: la media è il punto medio, *E*[*X* | *X* > 4] = 7.'],
-      [38.6, 'Un download ha durata esponenziale con media 20 secondi. Dopo 30 secondi non è ancora finito: quanto dura in tutto?'],
+      [38.6, 'Un autobus arriva dopo un tempo esponenziale con media 20 minuti. Dopo 30 minuti non è ancora arrivato: quanto aspetterai in tutto?'],
       [46.4, 'Restringo a *X* > 30 e rinormalizzo: la coda, alzata e traslata, coincide con la curva di partenza.'],
-      [52.8, 'È l’assenza di memoria: restano in media 20 secondi, quindi in tutto *E*[*X* | *X* > 30] = 30 + 20 = 50.'],
+      [52.8, 'È l’assenza di memoria: restano in media 20 minuti, quindi in tutto *E*[*X* | *X* > 30] = 30 + 20 = 50 minuti.'],
     ],
     frame(t) {
-      let o = heading(t, 0.2, 18.8, 'Un dado, sapendo «pari»', 'restringo l’universo ad *A* e rinormalizzo') + heading(t, 19.4, 38.2, 'Un’uniforme, sapendo *X* > 4', '*X* uniforme in [0, 10]') + heading(t, 38.8, 59.7, 'Un’esponenziale, sapendo *X* > 30', 'durata con media 20 secondi');
+      let o = heading(t, 0.2, 18.8, 'Un dado, sapendo «pari»', 'restringo l’universo ad *A* e rinormalizzo') + heading(t, 19.4, 38.2, 'Un’uniforme, sapendo *X* > 4', '*X* uniforme in [0, 10]') + heading(t, 38.8, 59.7, 'Un’esponenziale, sapendo *X* > 30', 'attesa con media 20 minuti');
 
       /* capitolo 1: il dado */
       const c1 = vis(t, 0.4, 18.8, 0.6, 0.6);
@@ -1017,7 +1017,7 @@
       if (c3 > 0.004) {
         const X = (x) => 70 + 4 * x, base = 280, YY = (fv) => base - 2400 * fv;
         const s0 = 30, kfull = Math.exp(lamE * s0);
-        o += g({ op: c3 }, ln(50, base, 580, base, { stroke: C.soft, sw: 1.8 }) + [0, 30, 60, 90, 120].map((v) => tx(X(v), base + 24, v, { ff: SANS, size: 17, fill: C.soft })).join('') + tx(588, base + 6, 's', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
+        o += g({ op: c3 }, ln(50, base, 580, base, { stroke: C.soft, sw: 1.8 }) + [0, 30, 60, 90, 120].map((v) => tx(X(v), base + 24, v, { ff: SANS, size: 17, fill: C.soft })).join('') + tx(588, base + 6, 'min', { ff: SANS, size: 17, fill: C.soft, ta: 'start' }));
         const cd = p(t, 39.4, 42.4, E.lin), cut = p(t, 44, 45), up = p(t, 46.6, 49, E.io), sh = p(t, 49, 51.4, E.io) * (1 - p(t, 52.6, 54.4, E.io));
         const piece = (a, b, kk, shift, fillc, fo, strokec, sw, op) => {
           let d = '';
