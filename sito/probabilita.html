@@ -3255,6 +3255,7 @@ pre code{white-space:pre;overflow-wrap:normal}
     <var>P</var>(<var>M</var> | <var>T</var>) = 0,0099 / 0,0594 = <b>0,1667</b>, cioè circa il <b>17%</b>.</p>
     <p class="passo"><b>Perché è così basso?</b> Immagina 10 000 persone. Malati: l'1%, cioè 100; di questi il 99%, cioè 99, risulta positivo. Sani: 9 900; di questi il 5%, cioè 495, risulta positivo per errore. I positivi totali sono 99 + 495 = 594, e solo 99 sono davvero malati: 99/594 ≈ 0,1667. I sani sono talmente tanti di più che anche una piccola percentuale di errori su di loro produce più falsi positivi di quanti siano i veri positivi. <mark>La probabilità a priori conta quanto la precisione del test.</mark> Se invece ti fai testare perché hai dei sintomi, l'1% non è più il tuo punto di partenza: la probabilità a priori è più alta, e con lei la risposta.</p>
   </div>
+<figure class="gi" data-gi="bayes"></figure>
 <div class="guidato" id="g-1-b">
     <p class="capo">Esercizio guidato 1.B: le previsioni del tempo</p>
     <p class="testo">In una città piove, in media, un giorno su cinque. Il meteo locale non è perfetto: nei giorni in cui poi piove davvero, la sera prima aveva annunciato pioggia 9 volte su 10; nei giorni in cui non piove, aveva annunciato pioggia (sbagliando) 1 volta su 10. Stasera il meteo annuncia pioggia per domani. Con che probabilità pioverà davvero? (Considera domani un giorno come gli altri.)</p>
@@ -3353,6 +3354,7 @@ pre code{white-space:pre;overflow-wrap:normal}
   </tbody>
 </table></div>
 <p>Nel machine learning li ritrovi con altri nomi: la sensibilità è il <i>recall</i>, il VPP è la <i>precision</i>.</p>
+<figure class="gi" data-gi="vpp"></figure>
 <div class="box attento">
   <p class="capo">L'errore che fanno tutti</p>
   <p>«Il test è affidabile all'85%» può voler dire sensibilità, specificità o VPP: tre numeri diversi. Scrivi sempre la probabilità condizionale con la barra: a destra c'è ciò che sai, a sinistra ciò che vuoi sapere. Se il dato è <var>P</var>(<var>T</var> | <var>M</var>) e ti chiedono <var>P</var>(<var>M</var> | <var>T</var>), serve Bayes.</p>
@@ -3563,6 +3565,7 @@ pre code{white-space:pre;overflow-wrap:normal}
 <h4 id="rev-A2-indipendenza-casi">Indizi a favore e contro, e due casi che spiegano la definizione</h4>
 <p><b>Indizio a favore, indizio contro.</b> Dire che <var>A</var> e <var>B</var> non sono indipendenti non basta: conviene sapere in che direzione. Se <var>P</var>(<var>A</var> | <var>B</var>) &gt; <var>P</var>(<var>A</var>), sapere <var>B</var> rende <var>A</var> più probabile: <var>B</var> è un <b>indizio a favore</b> di <var>A</var> (si dice anche che i due eventi sono <i>correlati positivamente</i>). Se <var>P</var>(<var>A</var> | <var>B</var>) &lt; <var>P</var>(<var>A</var>), è un <b>indizio contro</b> (correlazione negativa). Se vale l'uguaglianza sono indipendenti. Con <var>P</var>(<var>A</var>) &gt; 0 e <var>P</var>(<var>B</var>) &gt; 0 la relazione è simmetrica: moltiplicando per <var>P</var>(<var>B</var>) la prima disuguaglianza diventa <var>P</var>(<var>A</var> ∩ <var>B</var>) &gt; <var>P</var>(<var>A</var>)<var>P</var>(<var>B</var>), e dividendo per <var>P</var>(<var>A</var>) diventa <var>P</var>(<var>B</var> | <var>A</var>) &gt; <var>P</var>(<var>B</var>).</p>
 <p>Nel «Prova tu» degli utenti di <a class="ref" href="#s-1-condizionale">1.10</a> si ha <var>P</var>(abbonato | smartphone) = 0,25 &gt; <var>P</var>(abbonato) = 0,2: lo smartphone è un indizio a favore dell'abbonamento, e per simmetria l'abbonamento lo è dello smartphone (0,75 contro 0,6). Passando al complementare il segno si inverte (se 0 &lt; <var>P</var>(<var>B</var>) &lt; 1): <var>P</var>(<var>A</var>) è la media pesata di <var>P</var>(<var>A</var> | <var>B</var>) e <var>P</var>(<var>A</var> | <var>B</var><sup>c</sup>), quindi se la prima sta sopra <var>P</var>(<var>A</var>) l'altra sta sotto. Sul dado, «pari» è un indizio a favore del 6 (1/3 contro 1/6) e «dispari» è un indizio contro (0 contro 1/6): la media pesata 1/2 × 1/3 + 1/2 × 0 torna a 1/6, come deve. Attenzione: «indizio a favore» non vuol dire «probabile». Il test positivo di <a class="ref" href="#s-1-bayes">1.12</a> è un indizio a favore della malattia (1/6 contro 0,01), che resta però improbabile.</p>
+<figure class="gi" data-gi="indipendenza"></figure>
 <p><b>Indipendente da sé stesso?</b> Per avere <var>A</var> ⊥ <var>A</var> serve <var>P</var>(<var>A</var> ∩ <var>A</var>) = <var>P</var>(<var>A</var>)<var>P</var>(<var>A</var>), cioè <var>p</var> = <var>p</var><sup>2</sup> con <var>p</var> = <var>P</var>(<var>A</var>). L'equazione ha due soluzioni: <var>p</var> = 0 e <var>p</var> = 1. Un evento è indipendente da sé stesso solo se ha probabilità 0 o 1. L'indipendenza è una condizione sui numeri, non l'assenza di un legame: qui il legame è il più stretto possibile, ma sapere che si è verificato un evento certo non aggiunge niente.</p>
 <p><b>La somma 7 non dipende dal primo dado.</b> Con due dadi equi, <var>P</var>(somma = 7) = 6/36 = 1/6. Qualunque sia il primo dado <var>k</var> (da 1 a 6), una sola faccia del secondo dà somma 7, quindi <var>P</var>(somma = 7 | primo dado = <var>k</var>) = 1/6 per ogni <var>k</var>: sapere il primo dado non cambia niente, quindi «somma 7» e «primo dado» sono indipendenti (e lo stesso vale per il secondo dado). Per la somma 6 non vale: <var>P</var>(somma = 6) = 5/36, ma se il primo dado ha dato 6 la probabilità è 0. Fra tutte le somme possibili solo il 7 ha questa proprietà.</p>
 
@@ -3936,6 +3939,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   </table>
 </div>
 <p><b>Non solo compleanni.</b> Il problema vale per qualunque estrazione uniforme con reimmissione. Un'urna con 100 palline numerate da 1 a 100 è il caso <var>N</var> = 100 della tabella: servono 13 estrazioni per superare 1/2 e 22 per superare 0,9. Se l'urna ha 200 palline, due per ogni numero (o <var>k</var> per ogni numero), e rimetti dentro la pallina dopo ogni estrazione, ogni numero esce con probabilità <var>k</var>/(100<var>k</var>) = 1/100: il problema è identico e le risposte restano 13 e 22. (Senza reimmissione sarebbe un altro problema.)</p>
+<figure class="gi" data-gi="compleanni"></figure>
 <p>Per un informatico il caso più importante sono gli <b>hash</b>. Una funzione hash a 32 bit manda ogni chiave in uno di <var>N</var> = 2<sup>32</sup> = 4&nbsp;294&nbsp;967&nbsp;296 valori. Per avere probabilità 1/2 di una collisione bastano circa 1,1774 × 2<sup>16</sup> ≈ 77&nbsp;000 chiavi: la radice quadrata di <var>N</var>, non <var>N</var>. Con 64 bit ne servono circa 5 × 10<sup>9</sup>. È il motivo per cui un hash che deve identificare molti oggetti ha molti bit.</p>
 <div class="prova">
   <p class="capo">Prova tu</p>
@@ -4525,7 +4529,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
 <div class="esercizi">
   <h3 id="s-1-in-breve" data-toc><span class="n">1.26</span> Il capitolo in breve</h3>
-  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi e quali video guardare.</p>
+  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi, quali video guardare e quali grafici muovere.</p>
   <ul class="lista">
     <li><b>La teoria (21 sezioni).</b><br>
     <a class="ref" href="#s-1-esiti">1.1</a>–<a class="ref" href="#s-1-infinito">1.9</a>: la probabilità, con esiti ed eventi, casi favorevoli su casi possibili, regole del calcolo, inclusione-esclusione e Boole, conteggio, esiti con pesi diversi, assiomi e infiniti esiti numerabili.<br>
@@ -4538,6 +4542,11 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <b>1.C</b> i compleanni (<a class="ref" href="#s-1-classici">1.20</a>): passare all'evento contrario.<br>
     <b>1.D</b> la moneta truccata (<a class="ref" href="#s-1-compiti">1.25</a>): Bayes con lanci ripetuti.</li>
     <li><b>Esercizi non guidati.</b> Dentro la teoria, 28 «Prova tu» con la soluzione a tendina. In fondo, 5 domande di verifica (<a class="ref" href="#s-1-domande">1.23</a>), 8 esercizi con soluzione (<a class="ref" href="#s-1-esercizi">1.24</a>) e il compito 2, «tre carte da un mazzo di 40» (<a class="ref" href="#s-1-compiti">1.25</a>), con la soluzione nascosta da aprire alla fine.</li>
+    <li><b>Grafici interattivi (4).</b> Si muovono con i cursori e rispondono subito.<br>
+    <a class="ref" href="#s-1-bayes">1.12</a> la formula di Bayes con 10 000 persone;<br>
+    <a class="ref" href="#s-1-test">1.13</a> valore predittivo e percentuale di malati;<br>
+    <a class="ref" href="#s-1-indip2">1.16</a> l'indipendenza come confronto di aree;<br>
+    <a class="ref" href="#s-1-classici">1.20</a> compleanni e collisioni.</li>
     <li><b>Video.</b> 10 animazioni senza audio, con sottotitoli, ciascuna nella sezione che illustra (da 25 a 59 secondi). Il ripasso in video, nel riepilogo (<a class="ref" href="#s-1-riepilogo">1.22</a>), le mette in fila in circa 9 minuti, con un cartello fra l'una e l'altra.</li>
   </ul>
 </div>
@@ -6147,6 +6156,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </ol>
   </div></details>
 <p>Quindi <var>ρ</var> = ±1 è la dipendenza lineare perfetta, <var>ρ</var> = 0 (variabili <b>incorrelate</b>) l'assenza di legame lineare, e i valori intermedi dicono quanto una variabile assomiglia a una funzione lineare dell'altra.</p>
+<figure class="gi" data-gi="correlazione"></figure>
 <div class="box attento">
     <p class="capo">Covarianza nulla non vuol dire indipendenza</p>
     <p>Indipendenti ⟹ Cov = 0. Il viceversa è <b>falso</b>. Controesempio piccolissimo (lo stesso della nota di <a class="ref" href="#s-2-linearita">2.8</a>): <var>X</var> vale −1, 0, 1 con probabilità 1/3 ciascuno, e <var>Y</var> = <var>X</var><sup>2</sup>, quindi <var>Y</var> vale 1, 0, 1 rispettivamente.<br>
@@ -6480,6 +6490,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="r"><var>P</var>(<var>X</var> = 3) = 120 × 0,027 × 0,082354 = 3,24 × 0,082354 ≈ <b>0,2668</b></span>
     <span class="r perche">Circa il 27%. Media: 10 × 0,3 = 3 teste. Varianza: 10 × 0,3 × 0,7 = 2,1; deviazione standard √2,1 ≈ 1,45.</span>
   </div>
+<figure class="gi" data-gi="binomiale"></figure>
 
 <div class="box risorse" id="ris-s-2-binomiale">
   <p class="capo">Per approfondire, in italiano</p>
@@ -7138,6 +7149,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <p>Il prodotto dei limiti è <var>λ</var><sup><var>k</var></sup>/<var>k</var>! · 1 · <var>e</var><sup>−<var>λ</var></sup> · 1, cioè la densità di Poisson. (Lo stesso vale se <var>p</var><sub><var>n</var></sub> non è esattamente <var>λ</var>/<var>n</var> ma <var>n</var><var>p</var><sub><var>n</var></sub> → <var>λ</var>.)</p>
   </div></details>
   <p>Il numero <var>e</var><sup>−<var>λ</var></sup><var>λ</var><sup><var>k</var></sup>/<var>k</var>! che compare nel limite, per <var>k</var> = 0, 1, 2, …, è la densità di una legge che si usa di continuo e ha un nome: la <b>legge di Poisson</b>.</p>
+<figure class="gi" data-gi="poisson"></figure>
 <p><b>La storia:</b> conti quante volte succede qualcosa in un intervallo fissato di tempo, di spazio o di superficie, quando gli eventi sono indipendenti fra loro, avvengono a ritmo costante, e ciascuno è "raro" nel senso che in un istante piccolissimo ne capita al più uno. Pazienti che arrivano al pronto soccorso in un'ora. Stelle cadenti in un'ora di una notte d'agosto. Refusi per pagina. Auto a un casello al minuto. Chiamate a un centralino. Valori possibili: 0, 1, 2, … senza limite. Esce proprio questa densità perché ogni evento è una prova rara fra moltissime, come nel limite delle binomiali di sopra.</p>
 <figure class="pv" data-pv="poisson"></figure>
 <div class="formula">
@@ -8062,7 +8074,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
 <div class="esercizi">
   <h3 id="s-2-in-breve" data-toc><span class="n">2.35</span> Il capitolo in breve</h3>
-  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi e quali video guardare.</p>
+  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi, quali video guardare e quali grafici muovere.</p>
   <ul class="lista">
     <li><b>La teoria (30 sezioni).</b><br>
     <a class="ref" href="#s-2-variabili">2.1</a>–<a class="ref" href="#s-2-indipendenti">2.6</a>: le variabili aleatorie, con densità, funzioni di X, ripartizione, congiunta, condizionale e indipendenza.<br>
@@ -8075,6 +8087,10 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <b>2.B</b> riconoscere la legge (<a class="ref" href="#s-2-riconoscere">2.27</a>): dalla storia al nome e ai parametri.<br>
     <b>2.C</b> il chiosco di gelati (<a class="ref" href="#s-2-compiti">2.34</a>): binomiale, media e varianza, incasso e correlazione in un solo problema.</li>
     <li><b>Esercizi non guidati.</b> Dentro la teoria, 23 «Prova tu» con la soluzione a tendina. In fondo, 5 domande di verifica (<a class="ref" href="#s-2-domande">2.32</a>), 7 esercizi con soluzione (<a class="ref" href="#s-2-esercizi">2.33</a>) e il compito 2, «la gru del luna park» (<a class="ref" href="#s-2-compiti">2.34</a>), con la soluzione nascosta da aprire alla fine.</li>
+    <li><b>Grafici interattivi (3).</b> Si muovono con i cursori e rispondono subito.<br>
+    <a class="ref" href="#s-2-correlazione">2.14</a> correlazione e varianza di una somma;<br>
+    <a class="ref" href="#s-2-binomiale">2.19</a> la binomiale al variare di <var>n</var> e <var>p</var>;<br>
+    <a class="ref" href="#s-2-poisson">2.24</a> dalla binomiale alla legge di Poisson.</li>
     <li><b>Video.</b> 29 animazioni senza audio, con sottotitoli, ciascuna nella sezione che illustra (da 35 a 62 secondi). Il ripasso in video, nel riepilogo (<a class="ref" href="#s-2-riepilogo">2.31</a>), le mette in fila in circa 25 minuti, con un cartello fra l'una e l'altra.</li>
   </ul>
 </div>
@@ -9438,6 +9454,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   <figure class="pv" data-pv="sostituzione"></figure>
 <p>Ne segue la formula di <a class="ref" href="#s-3-valore-atteso">3.9</a> per le <var>g</var> monotone: con la sostituzione <var>x</var> = <var>g</var><sup>−1</sup>(<var>y</var>), cioè <var>y</var> = <var>g</var>(<var>x</var>) e d<var>x</var> = (<var>g</var><sup>−1</sup>)′(<var>y</var>) d<var>y</var>, si ha <var>E</var>[<var>Y</var>] = ∫ <var>y</var> <var>f</var><sub><var>Y</var></sub>(<var>y</var>) d<var>y</var> = ∫ <var>y</var> <var>f</var><sub><var>X</var></sub>(<var>g</var><sup>−1</sup>(<var>y</var>)) |(<var>g</var><sup>−1</sup>)′(<var>y</var>)| d<var>y</var> = ∫ <var>g</var>(<var>x</var>) <var>f</var><sub><var>X</var></sub>(<var>x</var>) d<var>x</var> (il valore assoluto tiene conto degli estremi che si scambiano quando <var>g</var> decresce).</p>
 <p><b>Esempio con <var>g</var> decrescente.</b> <var>U</var> ~ <var>U</var>(0, 1) e <var>Y</var> = −ln <var>U</var>. La funzione <var>g</var>(<var>u</var>) = −ln <var>u</var> (il logaritmo di <a class="ref" href="#s-3-integrale">3.4</a>) è decrescente su (0, 1); la sua inversa è <var>g</var><sup>−1</sup>(<var>y</var>) = <var>e</var><sup>−<var>y</var></sup>, con |(<var>g</var><sup>−1</sup>)′(<var>y</var>)| = <var>e</var><sup>−<var>y</var></sup>; e <var>f</var><sub><var>U</var></sub> = 1. Quindi <var>f</var><sub><var>Y</var></sub>(<var>y</var>) = 1 · <var>e</var><sup>−<var>y</var></sup> per <var>y</var> &gt; 0: <var>Y</var> ha densità <var>e</var><sup>−<var>y</var></sup>, che parte da 1 in <var>y</var> = 0 e scende verso 0 senza mai annullarsi. Un numero a caso, trasformato con −ln, ha questa densità.</p>
+<figure class="gi" data-gi="cambio"></figure>
 <p><b>Se <var>g</var> non è monotona.</b> La formula non si applica direttamente, ma il metodo in tre passi funziona sempre (lo hai visto con (<var>X</var> − 1/2)<sup>2</sup> in <a class="ref" href="#s-3-legge-g">3.12</a>). Nei punti in cui a un valore <var>y</var> corrispondono più ingressi <var>x</var><sub>1</sub>, <var>x</var><sub>2</sub>, … (i «rami» di <var>g</var>) i contributi si sommano: <var>f</var><sub><var>Y</var></sub>(<var>y</var>) = Σ <var>f</var><sub><var>X</var></sub>(<var>x</var><sub><var>i</var></sub>)/|<var>g</var>′(<var>x</var><sub><var>i</var></sub>)|, sommando su tutti gli <var>x</var><sub><var>i</var></sub> con <var>g</var>(<var>x</var><sub><var>i</var></sub>) = <var>y</var>. Con (<var>X</var> − 1/2)<sup>2</sup> e <var>X</var> uniforme su [0, 1] i due rami sono 1/2 ± √<var>y</var>, entrambi con |<var>g</var>′| = 2√<var>y</var> e densità 1: la somma dà 2 · 1/(2√<var>y</var>) = 1/√<var>y</var>, come nella «Prova tu».</p>
 
 <h3 id="s-3-inversione" data-toc><span class="n">3.14</span> Il metodo dell'inversione</h3>
@@ -9933,6 +9950,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="r"><var>P</var>(<var>X</var> &gt; <var>s</var> + <var>t</var> | <var>X</var> &gt; <var>s</var>) = <span class="frac"><span><var>P</var>(<var>X</var> &gt; <var>s</var> + <var>t</var>)</span><span><var>P</var>(<var>X</var> &gt; <var>s</var>)</span></span> = <span class="frac"><span><var>e</var><sup>−<var>λ</var>(<var>s</var>+<var>t</var>)</sup></span><span><var>e</var><sup>−<var>λs</var></sup></span></span> = <var>e</var><sup>−<var>λs</var>−<var>λt</var>+<var>λs</var></sup> = <var>e</var><sup>−<var>λt</var></sup> = <var>P</var>(<var>X</var> &gt; <var>t</var>)</span>
     <span class="r perche">L'intersezione {<var>X</var> &gt; <var>s</var>+<var>t</var>} ∩ {<var>X</var> &gt; <var>s</var>} è solo {<var>X</var> &gt; <var>s</var>+<var>t</var>}. Poi si usa che dividere potenze della stessa base sottrae gli esponenti. Un componente che ha già funzionato <var>s</var> ore ha, per il futuro, la stessa legge di uno nuovo: l'esponenziale descrive guasti casuali, non usura.</span>
   </div>
+<figure class="gi" data-gi="esponenziale"></figure>
 <details class="aiuto dim"><summary>Dimostrazione: è l'unica legge senza memoria</summary><div class="dentro">
     <p>Sia <var>X</var> &gt; 0 e <var>G</var>(<var>t</var>) = <var>P</var>(<var>X</var> &gt; <var>t</var>). L'assenza di memoria dice <var>G</var>(<var>s</var> + <var>t</var>) = <var>G</var>(<var>s</var>) <var>G</var>(<var>t</var>) per ogni <var>s</var>, <var>t</var> ≥ 0. Escludo i casi banali: <var>a</var> = <var>G</var>(1) è strettamente fra 0 e 1 (se fosse 1 sarebbe <var>X</var> = ∞, se fosse 0 sarebbe <var>X</var> = 0).</p>
     <ol class="passi">
@@ -10093,6 +10111,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <span class="r perche">I due esponenti si sommano: −<var>λx</var> − <var>λ</var>(<var>z</var> − <var>x</var>) = −<var>λz</var>, che non dipende da <var>x</var> e quindi esce dall'integrale; resta l'integrale di 1, che vale <var>z</var>.</span>
   </div>
 <p>È una densità nuova, non esponenziale: vale 0 in <var>z</var> = 0 (le due attese non possono essere entrambe quasi nulle), e la sua media è 2/<var>λ</var>, la somma delle due medie.</p>
+<figure class="gi" data-gi="convoluzione"></figure>
 <div class="prova">
     <p class="capo">Prova tu</p>
     <p>Un paziente fa due visite in sequenza, indipendenti: la prima dura <var>X</var>, esponenziale di ritmo 1 (media 1 ora); la seconda <var>Y</var>, esponenziale di ritmo 2 (media 0,5 ore). Trova la densità della durata totale <var>T</var> = <var>X</var> + <var>Y</var> e calcola <var>P</var>(<var>T</var> ≤ 1).</p>
@@ -10726,6 +10745,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <var>P</var>(<var>μ</var> − <var>σ</var> &lt; <var>X</var> &lt; <var>μ</var> + <var>σ</var>) ≈ 68% &nbsp;&nbsp;&nbsp; <var>P</var>(<var>μ</var> − 2<var>σ</var> &lt; <var>X</var> &lt; <var>μ</var> + 2<var>σ</var>) ≈ 95% &nbsp;&nbsp;&nbsp; <var>P</var>(<var>μ</var> − 3<var>σ</var> &lt; <var>X</var> &lt; <var>μ</var> + 3<var>σ</var>) ≈ 99,7%
     <span class="nota">La regola 68-95-99,7 (valori esatti: 68,27%, 95,45%, 99,73%). Un valore oltre tre deviazioni standard dalla media capita circa 3 volte su 1 000: per questo tre sigma è una soglia usata spesso per segnalare una misura come anomala.</span>
   </div>
+<figure class="gi" data-gi="normale"></figure>
 <figure class="pv" data-pv="standard"></figure>
 <div class="guidato" id="g-3-b">
     <p class="capo">Esercizio guidato 3.C: la consegna garantita</p>
@@ -11140,6 +11160,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     </div>
   </div>
 <p><b>Esiste sempre.</b> cos(<var>tX</var>) e sin(<var>tX</var>) sono comprese fra −1 e 1, quindi hanno valore atteso qualunque sia la legge di <var>X</var>. A differenza di <var>E</var>[<var>X</var>] e Var(<var>X</var>), che possono non esistere (<a class="ref" href="#s-3-valore-atteso">3.9</a>), φ<sub><var>X</var></sub>(<var>t</var>) è definita per ogni variabile e ogni <var>t</var>: anche per la Cauchy. È il vantaggio principale dello strumento.</p>
+<figure class="gi" data-gi="caratteristica"></figure>
 <figure class="pv" data-pv="caratteristica"></figure>
 <h4>Le proprietà, e perché valgono</h4>
 <ul class="lista">
@@ -11730,7 +11751,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
 
 <div class="esercizi">
   <h3 id="s-3-in-breve" data-toc><span class="n">3.44</span> Il capitolo in breve</h3>
-  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi e quali video guardare.</p>
+  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi, quali video guardare e quali grafici muovere.</p>
   <ul class="lista">
     <li><b>La teoria (39 sezioni).</b><br>
     <a class="ref" href="#s-3-numero-a-caso">3.1</a>–<a class="ref" href="#s-3-eventi">3.3</a>: un numero scelto a caso, la probabilità sugli intervalli e non sui punti, gli atomi e gli eventi.<br>
@@ -11747,6 +11768,12 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
     <b>3.C</b> la consegna garantita (<a class="ref" href="#s-3-normale-pratica">3.30</a>): standardizzare, leggere la tavola e cercare un quantile.<br>
     <b>3.D</b> l'ambulatorio (<a class="ref" href="#s-3-compiti">3.43</a>): assenza di memoria, somma di esponenziali e minimo.</li>
     <li><b>Esercizi non guidati.</b> Dentro la teoria, 25 «Prova tu» con la soluzione a tendina. In fondo, 6 domande di verifica (<a class="ref" href="#s-3-domande">3.41</a>), 8 esercizi con soluzione (<a class="ref" href="#s-3-esercizi">3.42</a>) e il compito 2, «i pacchi della spedizione» (<a class="ref" href="#s-3-compiti">3.43</a>), con la soluzione nascosta da aprire alla fine.</li>
+    <li><b>Grafici interattivi (5).</b> Si muovono con i cursori e rispondono subito.<br>
+    <a class="ref" href="#s-3-monotone">3.13</a> il cambio di variabile;<br>
+    <a class="ref" href="#s-3-esponenziale">3.20</a> l'assenza di memoria;<br>
+    <a class="ref" href="#s-3-convoluzione">3.21</a> la convoluzione;<br>
+    <a class="ref" href="#s-3-normale-pratica">3.30</a> standardizzare e leggere un'area;<br>
+    <a class="ref" href="#s-3-caratteristica">3.36</a> la funzione caratteristica come baricentro.</li>
     <li><b>Video.</b> 39 animazioni senza audio, con sottotitoli, ciascuna nella sezione che illustra (da 35 a 64 secondi). Il ripasso in video, nel riepilogo (<a class="ref" href="#s-3-riepilogo">3.40</a>), le mette in fila in circa 38 minuti, con un cartello fra l'una e l'altra.</li>
   </ul>
 </div>
@@ -11968,6 +11995,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   <var>P</var>(|<var>X</var> − <var>μ</var>| ≥ <var>kσ</var>) ≤ <span class="frac"><span>1</span><span><var>k</var><sup>2</sup></span></span>
   <span class="nota">Lo scostamento dalla media supera <var>k</var> deviazioni standard con probabilità al più 1/<var>k</var><sup>2</sup>: 1/4 per <var>k</var> = 2, 1/9 per <var>k</var> = 3, 1/100 per <var>k</var> = 10. Passando al complementare, nell'intervallo (<var>μ</var> − <var>kσ</var>, <var>μ</var> + <var>kσ</var>) c'è almeno 1 − 1/<var>k</var><sup>2</sup> della probabilità: almeno il 75% con <var>k</var> = 2, almeno l'88,9% con <var>k</var> = 3. Per <var>k</var> ≤ 1 il secondo membro è ≥ 1 e la disuguaglianza non dice nulla.</span>
 </div>
+<figure class="gi" data-gi="chebyshev"></figure>
 <div class="prova">
   <p class="capo">Prova tu</p>
   <p>Il numero di clienti che in un'ora entrano in un negozio ha media 500 e deviazione standard 40; la legge non è nota. Dai una minorazione della probabilità che in un'ora entrino fra 430 e 600 clienti (estremi esclusi).</p>
@@ -12269,6 +12297,7 @@ while (1 - p &lt;= 0.9) { p *= (365 - n) / 365; n++; }
   <p>Siano <var>X</var><sub>1</sub>, <var>X</var><sub>2</sub>, … variabili aleatorie indipendenti (basta a due a due incorrelate), con la stessa media <var>μ</var> e la stessa varianza <var>σ</var><sup>2</sup> &lt; ∞. Allora per ogni <var>ε</var> &gt; 0 e per ogni <var>n</var>: <var>P</var>(|<var>M</var><sub><var>n</var></sub> − <var>μ</var>| ≥ <var>ε</var>) ≤ <var>σ</var><sup>2</sup>/(<var>nε</var><sup>2</sup>). In particolare <var>M</var><sub><var>n</var></sub>&nbsp;→<sup>P</sup>&nbsp;<var>μ</var>, cioè lim<sub><var>n</var>→∞</sub> <var>P</var>(|<var>M</var><sub><var>n</var></sub> − <var>μ</var>| &gt; <var>ε</var>) = 0 per ogni <var>ε</var> &gt; 0.</p>
 </div>
 <p><b>Dimostrazione.</b> La disuguaglianza è quella di <a class="ref" href="#s-4-media-n">4.4</a>: <var>M</var><sub><var>n</var></sub> ha media <var>μ</var> e varianza <var>σ</var><sup>2</sup>/<var>n</var>, e Chebyshev dà <var>P</var>(|<var>M</var><sub><var>n</var></sub> − <var>μ</var>| ≥ <var>ε</var>) ≤ <var>σ</var><sup>2</sup>/(<var>nε</var><sup>2</sup>). Con <var>ε</var> e <var>σ</var> fissi il secondo membro tende a 0 per <var>n</var> → ∞; una probabilità è sempre ≥ 0, quindi tende a 0 anche <var>P</var>(|<var>M</var><sub><var>n</var></sub> − <var>μ</var>| &gt; <var>ε</var>) ≤ <var>P</var>(|<var>M</var><sub><var>n</var></sub> − <var>μ</var>| ≥ <var>ε</var>). ∎</p>
+<figure class="gi" data-gi="lgn"></figure>
 <p><b>Medie e varianze diverse.</b> Nella dimostrazione l'uguaglianza delle leggi serve solo per calcolare <var>E</var>[<var>M</var><sub><var>n</var></sub>] e Var(<var>M</var><sub><var>n</var></sub>). Se le <var>X</var><sub><var>i</var></sub> sono a due a due incorrelate, con medie <var>μ</var><sub><var>i</var></sub> e varianze <var>σ</var><sub><var>i</var></sub><sup>2</sup> finite, anche se tutte diverse, la stessa strada dà <var>E</var>[<var>M</var><sub><var>n</var></sub>] = (<var>μ</var><sub>1</sub> + … + <var>μ</var><sub><var>n</var></sub>)/<var>n</var> e Var(<var>M</var><sub><var>n</var></sub>) = (<var>σ</var><sub>1</sub><sup>2</sup> + … + <var>σ</var><sub><var>n</var></sub><sup>2</sup>)/<var>n</var><sup>2</sup>, quindi per Chebyshev</p>
 <div class="formula">
   <var>P</var>(|<var>M</var><sub><var>n</var></sub> − <var>E</var>[<var>M</var><sub><var>n</var></sub>]| ≥ <var>ε</var>) ≤ <span class="frac"><span><var>σ</var><sub>1</sub><sup>2</sup> + … + <var>σ</var><sub><var>n</var></sub><sup>2</sup></span><span><var>n</var><sup>2</sup><var>ε</var><sup>2</sup></span></span> → 0 &nbsp;&nbsp; se &nbsp;&nbsp; <span class="frac"><span><var>σ</var><sub>1</sub><sup>2</sup> + … + <var>σ</var><sub><var>n</var></sub><sup>2</sup></span><span><var>n</var><sup>2</sup></span></span> → 0
@@ -13640,6 +13669,7 @@ print(4 * dentro / n)   # circa 3.14</code></pre></div>
 <div class="formula"><var>Z</var><sub><var>n</var></sub> = <span class="frac"><span><var>S</var><sub><var>n</var></sub> − <var>nμ</var></span><span><var>σ</var>√<var>n</var></span></span> &nbsp;→<sup>d</sup>&nbsp; <var>Z</var> ~ <var>N</var>(0, 1)</div>
 <p>cioè, per ogni numero reale <var>x</var>, <var>P</var>(<var>Z</var><sub><var>n</var></sub> ≤ <var>x</var>) → Φ(<var>x</var>) per <var>n</var> → ∞.</p></div>
 <p><b>Cosa c'è dentro.</b> <var>S</var><sub><var>n</var></sub> − <var>nμ</var> è la somma meno la sua media, e <var>σ</var>√<var>n</var> è la sua deviazione standard: per l'indipendenza Var(<var>S</var><sub><var>n</var></sub>) = <var>nσ</var><sup>2</sup> (<a class="ref" href="#s-2-covarianza">2.13</a>). Quindi <var>Z</var><sub><var>n</var></sub> ha media 0 e varianza 1 per ogni <var>n</var>, e il teorema dice che tutta la sua legge, non solo questi due numeri, converge alla campana. «Converge in legge» (<a class="ref" href="#s-4-legge">4.20</a>) vuol dire che le ripartizioni convergono nei punti in cui il limite è continuo; Φ è continua dappertutto, quindi qui la convergenza vale per ogni <var>x</var> e di conseguenza anche per gli intervalli: <var>P</var>(<var>a</var> &lt; <var>Z</var><sub><var>n</var></sub> ≤ <var>b</var>) → Φ(<var>b</var>) − Φ(<var>a</var>). Dividendo numeratore e denominatore per <var>n</var> si ottiene la forma equivalente <var>Z</var><sub><var>n</var></sub> = √<var>n</var> (<var>M</var><sub><var>n</var></sub> − <var>μ</var>)/<var>σ</var>, scritta con la media <var>M</var><sub><var>n</var></sub> = <var>S</var><sub><var>n</var></sub>/<var>n</var>.</p>
+<figure class="gi" data-gi="tlc"></figure>
 <p><b>Come si usa.</b> Per <var>n</var> grande si sostituisce il limite con l'approssimazione:</p>
 <div class="formula">
   <var>S</var><sub><var>n</var></sub> ≈ <var>N</var>(<var>nμ</var>, <var>nσ</var><sup>2</sup>) &nbsp;&nbsp;&nbsp; <var>M</var><sub><var>n</var></sub> ≈ <var>N</var>(<var>μ</var>, <var>σ</var><sup>2</sup>/<var>n</var>)
@@ -13831,6 +13861,7 @@ print(4 * dentro / n)   # circa 3.14</code></pre></div>
   <span class="r">Con correzione: <var>z</var> = (10,5 − 8)/2 = 1,25, &nbsp; Φ(1,25) = 0,8944</span>
   <span class="r perche">Senza correzione si perde mezza barra e si sbaglia di circa 0,05. Nota che senza correzione un valore singolo avrebbe probabilità 0; con la correzione <var>P</var>(<var>X</var> = 8) ≈ Φ(0,25) − Φ(−0,25) = 0,5987 − 0,4013 = 0,1974, contro l'esatto 0,1964.</span>
 </div>
+<figure class="gi" data-gi="correzione"></figure>
 <p>Un'altra lettura della figura: per i valori vicini al centro l'altezza di una barra è circa la densità normale, cioè <var>P</var>(<var>X</var> = <var>k</var>) ≈ 1/(<var>σ</var>√(2π)) · <var>e</var><sup>−(<var>k</var>−<var>μ</var>)<sup>2</sup>/(2<var>σ</var><sup>2</sup>)</sup> (teorema locale di De Moivre–Laplace, che si enuncia senza dimostrazione; per <var>k</var> = 8 dà 0,1995).</p>
 
 <h3 id="s-4-quanto-buona" data-toc><span class="n">4.27</span> Quando l'approssimazione è buona</h3>
@@ -14665,6 +14696,7 @@ print(4 * dentro / n)   # circa 3.14</code></pre></div>
   <span class="r"><var>P</var>(<var>T</var><sub>20</sub> ≤ 30) = <var>P</var>(<var>N</var><sub>30</sub> ≥ 20), con <var>N</var><sub>30</sub> ~ Poisson(15): 0,1248</span>
   <span class="r perche">Il valore 0,1248 è una somma di termini di Poisson, fatta con Python. Con il teorema limite centrale (<a class="ref" href="#s-4-limite-centrale">4.23</a>), <var>T</var><sub>20</sub> ≈ <var>N</var>(40; 80) e <var>P</var>(<var>T</var><sub>20</sub> ≤ 30) ≈ Φ(−10/8,94) = Φ(−1,12) = 0,1314: vicino, ma con 20 addendi esponenziali, che sono asimmetrici, l'errore è ancora del 5%.</span>
 </div>
+<figure class="gi" data-gi="processo"></figure>
 <div class="prova">
   <p class="capo">Prova tu</p>
   <p>Un pronto soccorso riceve pazienti secondo un processo di Poisson di intensità 3 all'ora. (a) Probabilità che il 4° paziente arrivi entro 1 ora. (b) Media e deviazione standard dell'istante del 4° arrivo.</p>
@@ -14771,6 +14803,7 @@ print(4 * dentro / n)   # circa 3.14</code></pre></div>
   <p><b>Intervalli disgiunti.</b> Prendi intervalli disgiunti <var>I</var><sub>1</sub>, …, <var>I</var><sub><var>r</var></sub>. I conteggi di <var>N</var> su di essi sono indipendenti (proprietà (2)) e le etichette di arrivi diversi sono indipendenti: quindi le coppie (<var>N</var><sup>(1)</sup>(<var>I</var><sub><var>j</var></sub>), <var>N</var><sup>(2)</sup>(<var>I</var><sub><var>j</var></sub>)) sono indipendenti al variare di <var>j</var>. Dentro ciascuna coppia vale il calcolo precedente, con <var>t</var> uguale alla lunghezza di <var>I</var><sub><var>j</var></sub>. Dunque tutti i 2<var>r</var> conteggi sono indipendenti, quelli di ciascun processo sono Poisson di parametri <var>pλ</var>|<var>I</var>| e (1 − <var>p</var>)<var>λ</var>|<var>I</var>|, e i due processi sono indipendenti fra loro. Le traiettorie salgono di 1 alla volta perché sono sottoinsiemi degli arrivi di <var>N</var>. ∎</p>
 </div></details>
 <p>La parte sorprendente è l'<i>indipendenza</i>. Un casello riceve veicoli secondo un processo di Poisson di intensità 100 al minuto, e ciascuno, indipendentemente, è un camion con probabilità 0,02. I camion formano un processo di Poisson di intensità 100 × 0,02 = 2 al minuto, le auto uno di intensità 98, e i due sono indipendenti. In un minuto passa almeno un camion con probabilità 1 − <var>e</var><sup>−2</sup> = 0,8647. Sapere che in quel minuto sono passate 90 auto non cambia nulla: la probabilità di nessun camion resta <var>e</var><sup>−2</sup> = 0,1353. Sapere invece che sono passati 100 veicoli in totale cambia la risposta: i camion sono Bin(100; 0,02), e <var>P</var>(nessun camion) = 0,98<sup>100</sup> = 0,1326. Con 500 veicoli in totale sarebbe 0,98<sup>500</sup> = 0,00004.</p>
+<figure class="gi" data-gi="flussi"></figure>
 <p><b>Viceversa.</b> Se sovrapponi due processi di Poisson indipendenti di intensità <var>λ</var><sub>1</sub> e <var>λ</var><sub>2</sub>, ogni arrivo del flusso totale è di tipo 1 con probabilità <var>λ</var><sub>1</sub>/(<var>λ</var><sub>1</sub> + <var>λ</var><sub>2</sub>), indipendentemente dagli altri. Infatti, con <var>λ</var> = <var>λ</var><sub>1</sub> + <var>λ</var><sub>2</sub> e <var>p</var> = <var>λ</var><sub>1</sub>/<var>λ</var>, il teorema di assottigliamento produce una coppia di processi di Poisson indipendenti di intensità <var>λ</var><sub>1</sub> e <var>λ</var><sub>2</sub>, cioè una coppia con la stessa legge di quella data. Quindi la sequenza delle etichette del flusso totale ha la stessa legge che in quella costruzione, dove le etichette sono indipendenti con probabilità <var>p</var>. Per gli ordini di sopra, la probabilità che i primi tre ordini vengano tutti dal sito è (3/5)<sup>3</sup> = 0,216.</p>
 <div class="prova">
   <p class="capo">Prova tu</p>
@@ -15728,7 +15761,7 @@ def arrivi(lam, T):
 
 <div class="esercizi">
   <h3 id="s-4-in-breve" data-toc><span class="n">4.48</span> Il capitolo in breve</h3>
-  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi e quali video guardare.</p>
+  <p>Una mappa del capitolo: che cosa contiene, dove esercitarsi, quali video guardare e quali grafici muovere.</p>
   <ul class="lista">
     <li><b>La teoria (43 sezioni).</b><br>
     <a class="ref" href="#s-4-markov">4.1</a>–<a class="ref" href="#s-4-media-n">4.4</a>: Markov e Chebyshev, che maggiorano la probabilità di scostamenti grandi, e la media di <i>n</i> osservazioni.<br>
@@ -15743,6 +15776,13 @@ def arrivi(lam, T):
     <b>4.C</b> l'ufficio postale (<a class="ref" href="#s-4-sovrapposizione">4.39</a>): sommare flussi di Poisson e passare dai conteggi alle attese.<br>
     <b>4.D</b> la pasticceria (<a class="ref" href="#s-4-compiti">4.47</a>): Poisson, teorema limite centrale, Chebyshev e attese esponenziali in un solo problema.</li>
     <li><b>Esercizi non guidati.</b> Dentro la teoria, 16 «Prova tu» con la soluzione a tendina. In fondo, 13 domande di verifica (<a class="ref" href="#s-4-domande">4.45</a>), 29 esercizi con soluzione (<a class="ref" href="#s-4-esercizi">4.46</a>) e il compito 2, «la macchina utensile» (<a class="ref" href="#s-4-compiti">4.47</a>), con la soluzione nascosta da aprire alla fine.</li>
+    <li><b>Grafici interattivi (6).</b> Si muovono con i cursori e rispondono subito.<br>
+    <a class="ref" href="#s-4-chebyshev">4.2</a> Chebyshev contro la probabilità esatta;<br>
+    <a class="ref" href="#s-4-legge-debole">4.6</a> la media che si stabilizza;<br>
+    <a class="ref" href="#s-4-limite-centrale">4.23</a> la somma standardizzata e la normale;<br>
+    <a class="ref" href="#s-4-continuita">4.26</a> la correzione di continuità;<br>
+    <a class="ref" href="#s-4-poisson-gamma">4.38</a> arrivi, conteggi e attese;<br>
+    <a class="ref" href="#s-4-assottigliamento">4.40</a> assottigliare un flusso.</li>
     <li><b>Video.</b> Una sola animazione, senza audio e con sottotitoli, nella sezione <a class="ref" href="#s-4-levy">4.33</a>: i tre strumenti della dimostrazione del teorema limite centrale (60 secondi). Il resto della parte è a testo e formule.</li>
   </ul>
 </div>
@@ -21030,5 +21070,10 @@ il massimo comun divisore dei tempi in cui è possibile tornare in <var>i</var>.
 <script src="assets/js/pv-parte3c.js" defer></script>
 <script src="assets/js/pv-parte3d.js" defer></script>
 <script src="assets/js/pv-parte3z.js" defer></script>
+<script src="assets/js/gi.js" defer></script>
+<script src="assets/js/gi-parte1.js" defer></script>
+<script src="assets/js/gi-parte2.js" defer></script>
+<script src="assets/js/gi-parte3.js" defer></script>
+<script src="assets/js/gi-parte4.js" defer></script>
 </body>
 </html>
